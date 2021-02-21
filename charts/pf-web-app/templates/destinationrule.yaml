@@ -1,0 +1,23 @@
+{{- if and .Values.ingress.enabled (or (eq .Values.ingress.kind "istio") (eq .Values.ingress.kind "both")) }}
+{{- $root := . }}
+{{- $fullName := include "newprojects.fullname" . -}}
+{{- range $site := .Values.sites }}
+{{- range $country, $config := $root.Values.countries }}
+{{- $releaseName := (printf "%s-%s-%s" $fullName $country $site) }}
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: {{ $releaseName }}
+  labels:
+    {{- include "newprojects.labels" $root | nindent 4 }}
+    country: {{ $country }}
+    site: {{ $site }}
+spec:
+  host: {{ $country }}-{{ $root.Values.service.name }}-{{ $site }}
+  trafficPolicy:
+    loadBalancer:
+      simple: LEAST_CONN
+{{- end }}
+{{- end }}
+{{- end }}

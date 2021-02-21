@@ -1,0 +1,20 @@
+{
+  "name": "pf-web-app",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Propertyfinder/pf-web-app"
+  },
+  "homepage": "https://github.com/Propertyfinder/pf-web-app",
+  "keywords": [],
+  "main": "src/server/entry.js",
+  "scripts": {
+    "start": "PORT=8080 node src/server/entry.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

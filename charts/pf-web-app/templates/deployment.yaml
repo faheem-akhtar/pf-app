@@ -1,0 +1,74 @@
+{{- $data := .}}
+{{- range $site := .Values.sites }}
+{{- range $country, $config := $data.Values.countries }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}
+  labels:
+    {{- include "newprojects.labels" $data | nindent 4 }}
+spec:
+  replicas: {{ $data.Values.replicaCount }}
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: {{ template "newprojects.name" $data }}-{{ $country }}-{{ $site }}
+      release: {{ $data.Release.Name }}
+      site: {{ $site }}
+  template:
+    metadata:
+      annotations:
+{{- include "newprojects.deployment.annotations" $data | nindent 8 }}
+        sidecar.istio.io/inject: "false"
+        ad.datadoghq.com/{{ $data.Chart.Name }}-{{ $site }}.logs: '[{"source":"{{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}","service":"{{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}"}]'
+      labels:
+        app: {{ template "newprojects.name" $data }}-{{ $country }}-{{ $site }}
+        release: {{ $data.Release.Name }}
+        site: {{ $site }}
+    spec:
+      {{- if $data.Values.nodeSelector }}
+      nodeSelector:
+{{ $data.Values.nodeSelector | toYaml | indent 8 }}
+      {{ end }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              topologyKey: "kubernetes.io/hostname"
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - {{ template "newprojects.name" $data }}-{{ $country }}-{{ $site }}
+      containers:
+        - name: {{ $data.Chart.Name }}-{{ $site }}
+          image: "{{ $data.Values.image.repository }}:{{ $data.Values.image.tag }}"
+          imagePullPolicy: {{ $data.Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            {{- if eq $site "mobile" }}
+            - name: NEXT_PUBLIC_MOBILE
+              value: "true"
+            {{- end }}
+            - name: ENVIRONMENT
+              value: {{ $data.Values.environment }}
+            {{- if ne $data.Values.environment "prenv" }}
+            - name: COUNTRY
+              value: {{ $country }}
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            {{- end }}
+{{- if $data.Values.resources }}
+          resources:
+{{ toYaml $data.Values.resources | indent 12 }}
+{{- end }}
+{{- end }}
+{{- end }}

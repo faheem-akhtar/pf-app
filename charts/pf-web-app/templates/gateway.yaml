@@ -1,0 +1,29 @@
+{{- if and .Values.ingress.enabled (or (eq .Values.ingress.kind "istio") (eq .Values.ingress.kind "both")) }}
+{{- $root := . }}
+{{- $releaseName := (include "newprojects.fullname" .) -}}
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: {{ $releaseName }}
+  labels:
+    {{- include "newprojects.labels" . | nindent 4 }}
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+      {{- range $country, $config := $root.Values.countries }}
+      {{- if eq $root.Values.environment "prenv" }}
+      - website.{{ $root.Release.Name  }}-{{ $country }}{{ $root.Values.ingress.host}}
+      - m.website.{{ $root.Release.Name }}-{{ $country }}{{ $root.Values.ingress.host }}
+      {{- else}}
+      {{- range $config.hosts }}
+      - {{ . }}
+      {{- end }}
+      {{- end }}
+      {{- end }}
+      port:
+        name: http-{{ $releaseName }}
+        number: 80
+        protocol: HTTP
+{{- end }}

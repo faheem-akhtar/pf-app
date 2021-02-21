@@ -1,0 +1,39 @@
+# Default values for pf-web-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+environment: production
+
+autoscaling:
+  enabled: true
+
+replicaCount: 2
+maxReplicaCount: 20
+
+countries:
+  ae:
+    hosts:
+      - www.propertyfinder.ae
+      - m.propertyfinder.ae
+  eg:
+    hosts:
+      - www.propertyfinder.eg
+      - m.propertyfinder.eg
+  lb:
+    hosts:
+      - www.propertyfinder.com.lb
+      - m.propertyfinder.com.lb
+  ma:
+    hosts:
+      - www.sarouty.ma
+      - m.sarouty.ma
+  sa:
+    hosts:
+      - www.propertyfinder.sa
+      - m.propertyfinder.sa
+      - www.esimsar.com
+      - m.esimsar.com
+
+resources:
+  limits:
+    memory: 2Gi

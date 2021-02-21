@@ -1,0 +1,26 @@
+DOCKER_COMPOSE_FILE ?= docker-compose.builder.yml
+
+
+#######################################
+
+help::
+	@printf "\n"
+	@printf "\033[1;33mMakefile.environment\033[0m\n"
+	@printf "\033[0;33m\tVariables:\033[0m\n"
+	@printf "\033[0;33m\tprint-variables\033[0m - Print variables in Makefile\n"
+
+print-variables::
+	@printf "\n\n"
+	@echo 'DOCKER_COMPOSE_FILE="${DOCKER_COMPOSE_FILE}"'
+	@printf "\n\n"
+
+
+#######################################
+
+environment: print-variables environment-clean ecr-login
+	@printf "\033[1;33menvironment: print-variables\033[0m\n"
+	docker-compose -f ${DOCKER_COMPOSE_FILE} up -d
+
+environment-clean: print-variables
+	@printf "\033[1;33menvironment-clean: print-variables\033[0m\n"
+	docker-compose -f ${DOCKER_COMPOSE_FILE} down -v

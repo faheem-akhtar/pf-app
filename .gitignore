@@ -1,0 +1,14 @@
+.idea/
+node_modules/
+dist/
+build/
+coverage/
+.awcache/
+.env
+*.iml
+npm-debug.log
+package-lock.json
+.DS_Store
+.project
+test-reports/
+yarn-error.log

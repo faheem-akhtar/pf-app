@@ -1,0 +1,11 @@
+.awcache
+.DS_Store
+.git
+.gitignore
+.nvmrc
+.idea
+.vscode
+coverage
+npm-debug.log
+yarn-error.log
+newrelic_agent.log

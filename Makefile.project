@@ -1,0 +1,15 @@
+arg = $(filter-out $@,$(MAKECMDGOALS))
+TARGET_ENV ?= devenvironment
+
+yarn-install:
+	@echo "======================"
+	@echo "Running yarn install"
+	@echo "======================"
+	docker-compose -f ${DOCKER_COMPOSE_FILE} run --rm pfwebapp-builder bash -c 'yarn install'
+
+build-app: yarn-install
+
+run-tests: yarn-install
+	@echo "======================"
+	@echo "Skipped tests"
+	@echo "======================"

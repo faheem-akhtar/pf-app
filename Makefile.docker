@@ -1,0 +1,78 @@
+DOCKER_IMAGES_TAG ?= latest
+TARGET_ENV ?= devenvironment
+AWS_DEFAULT_REGION ?= ap-southeast-1
+ECR_REPO ?= 624165964329.dkr.ecr.$(AWS_DEFAULT_REGION).amazonaws.com
+AWS_CLI_VERSION := $(shell aws --version | awk '{print $1}' | cut -d '/' -f2 | cut -d '.' -f 1)
+
+#######################################
+
+help::
+	@printf "\n"
+	@printf "\033[1;33mMakefile.docker\033[0m\n"
+	@printf "\033[0;33m\tbuild-images\033[0m - Build all docker images\n"
+	@printf "\033[0;33m\tbuild-push-images\033[0m - Push all docker images\n"
+
+
+#######################################
+
+ifeq ($(AWS_CLI_VERSION),2)
+ecr-login: aws-ecr-login-v2
+else
+ecr-login: aws-ecr-login-v1
+endif
+
+aws-ecr-login-v1:
+	@echo "======== Logging into AWS container registry ========"
+	eval `aws ecr get-login --no-include-email --region $(AWS_DEFAULT_REGION)`
+
+aws-ecr-login-v2:
+	@echo "======== Logging into AWS container registry ========"
+	aws ecr get-login-password --region $(AWS_DEFAULT_REGION) | docker login --username AWS --password-stdin $(ECR_REPO)
+
+pull-images: ecr-login
+	@echo "======================="
+	@echo "Pull docker images from ECR"
+	@echo "======================="
+	docker-compose -f ${DOCKER_COMPOSE_FILE} pull
+
+build-image-builder:
+	@echo "======================="
+	@echo "Build builder image"
+	@echo "======================="
+	docker-compose -f ${DOCKER_COMPOSE_FILE} pull pfwebapp-builder
+	docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${ECR_REPO}/pf-newprojects-web:builder-latest -t ${ECR_REPO}/pf-newprojects-web:builder-${DOCKER_IMAGES_TAG} -f ./Dockerfile.builder .
+
+push-image-builder:
+	@echo "======================"
+	@echo "Push builder image"
+	@echo "======================"
+	docker push ${ECR_REPO}/pf-newprojects-web:builder-${DOCKER_IMAGES_TAG}
+
+build-image-test:
+	@echo "======================="
+	@echo "Build test image"
+	@echo "======================="
+	docker-compose -f ${DOCKER_COMPOSE_FILE} pull pfwebapp-test
+	docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${ECR_REPO}/pf-newprojects-web:test-latest -t ${ECR_REPO}/pf-newprojects-web:test-latest -f ./Dockerfile.test .
+
+push-image-test:
+	@echo "======================"
+	@echo "Push test image"
+	@echo "======================"
+	docker push ${ECR_REPO}/pf-newprojects-web:test-latest
+
+build-image-app:
+	@echo "======================="
+	@echo "Build app image"
+	@echo "======================="
+	docker build -t ${ECR_REPO}/pf-newprojects-web:${DOCKER_IMAGES_TAG} -f ./Dockerfile .
+
+push-image-app:
+	@echo "======================"
+	@echo "Push app image"
+	@echo "======================"
+	docker push ${ECR_REPO}/pf-newprojects-web:${DOCKER_IMAGES_TAG}
+
+build-images: ecr-login build-image-builder build-app build-image-test build-image-app
+
+push-images: ecr-login push-image-builder push-image-app push-image-test

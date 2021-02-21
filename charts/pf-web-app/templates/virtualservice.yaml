@@ -1,0 +1,72 @@
+{{- if and .Values.ingress.enabled (or (eq .Values.ingress.kind "istio") (eq .Values.ingress.kind "both")) }}
+{{- $root := . }}
+{{- $releaseName := include "newprojects.fullname" . -}}
+{{- range $country, $config := .Values.countries }}
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ $releaseName }}-{{ $country }}
+  labels:
+    {{- include "newprojects.labels" $root | nindent 4 }}
+    scheme: external
+spec:
+  gateways:
+  - {{ $releaseName }}
+  - mesh
+  hosts:
+  {{- if eq $root.Values.environment "prenv" }}
+  - website.{{ $root.Release.Name }}-{{ $country }}{{ $root.Values.ingress.host }}
+  - m.website.{{ $root.Release.Name }}-{{ $country }}{{ $root.Values.ingress.host }}
+  {{- else}}
+  {{- range $config.hosts}}
+  - {{ . }}
+  {{- end }}
+  {{- end }}
+  http:
+  # This rule is just for prenv. This routes the traffic coming from
+  # m.website to mobile pods.
+  {{- if eq $root.Values.environment "prenv" }}
+  - match:
+    - headers:
+        host:
+          prefix: "m.website"
+      uri:
+        regex: {{ $root.Values.ingress.mobilePath }}
+    route:
+    - destination:
+        host: {{ $country }}-{{ $root.Values.service.name }}-mobile
+    retries:
+      attempts: 5
+      perTryTimeout: 10s
+      retryOn: gateway-error,connect-failure,refused-stream
+    timeout: "30s"
+  {{- end }}
+  - match:
+    - uri:
+        regex: {{ $root.Values.ingress.mobilePath }}
+      headers:
+        x-akamai-device-characteristics:
+          exact: "is_mobile=true"
+    route:
+    - destination:
+        host: {{ $country }}-{{ $root.Values.service.name }}-mobile
+    retries:
+      attempts: 5
+      perTryTimeout: 10s
+      retryOn: gateway-error,connect-failure,refused-stream
+    timeout: "30s"
+  # Defaults to desktop
+  - match:
+    - uri:
+        regex: {{ $root.Values.ingress.desktopPath }}
+    route:
+    - destination:
+        host: {{ $country }}-{{ $root.Values.service.name }}-desktop
+    retries:
+      attempts: 5
+      perTryTimeout: 10s
+      retryOn: gateway-error,connect-failure,refused-stream
+    timeout: "30s"
+{{- end }}
+{{- end }}

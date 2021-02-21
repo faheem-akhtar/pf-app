@@ -1,0 +1,44 @@
+{{- $data := .}}
+{{- if .Values.autoscaling.enabled }}
+{{- range $site := .Values.sites }}
+{{- range $country, $config := $data.Values.countries }}
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}
+  labels:
+    {{- include "newprojects.labels" $data | nindent 4 }}
+    site: {{ $site }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}
+  minReplicas: {{ $data.Values.replicaCount }}
+  maxReplicas: {{ $data.Values.maxReplicaCount }}
+  metrics:
+  - type: Resource
+    resource:
+      name: {{ $data.Values.autoscaling.type }}
+      target:
+        type: Utilization
+        averageUtilization: {{ $data.Values.autoscaling.targetUtilization }}
+---
+apiVersion: autoscaling.k8s.io/v1beta2
+kind: VerticalPodAutoscaler
+metadata:
+  name: {{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}
+  labels:
+    {{- include "newprojects.labels" $data | nindent 4 }}
+    site: {{ $site }}
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}
+  updatePolicy:
+    updateMode: "Off"
+{{- end }}
+{{- end }}
+{{- end }}

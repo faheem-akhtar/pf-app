@@ -1,0 +1,42 @@
+{{- if and .Values.ingress.enabled (or (eq .Values.ingress.kind "nginx") (eq .Values.ingress.kind "both")) }}
+{{- $fullName := include "newprojects.fullname" . -}}
+{{- $name := .Values.service.name -}}
+{{- $ingressPath := .Values.ingress.path -}}
+{{- $releaseName := .Release.Name -}}
+{{- $prName := .Values.prId -}}
+{{- $data := . -}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "newprojects.labels" . | nindent 4 }}
+  annotations:
+    {{- include "newprojects.common.annotations" . | nindent 4 }}
+    {{- with .Values.ingress.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  rules:
+{{- range $country, $config := .Values.countries }}
+  {{- if eq $data.Values.environment "prenv" }}
+    - host: website.{{ $releaseName }}-{{ $country }}{{ $data.Values.ingress.host }}
+      http:
+        paths:
+          - path: {{ $ingressPath }}
+            backend:
+              serviceName: {{ $country }}-{{ $name }}
+              servicePort: http
+  {{- else }}
+    {{- range $config.hosts }}
+    - host: {{ . }}
+      http:
+        paths:
+          - path: {{ $ingressPath }}
+            backend:
+              serviceName: {{ $country }}-{{ $name }}
+              servicePort: http
+    {{- end }}
+  {{- end }}
+{{- end }}
+{{- end }}

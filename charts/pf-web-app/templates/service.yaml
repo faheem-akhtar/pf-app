@@ -1,0 +1,24 @@
+{{- $data := .}}
+{{- range $site := .Values.sites }}
+{{- range $country, $config := $data.Values.countries }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $country }}-{{ $data.Values.service.name }}-{{ $site }}
+  labels:
+    {{- include "newprojects.labels" $data | nindent 4 }}
+    site: {{ $site }}
+spec:
+  type: {{ $data.Values.service.type }}
+  ports:
+    - port: {{ $data.Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "newprojects.name" $data }}-{{ $country }}-{{ $site }}
+    release: {{ $data.Release.Name }}
+    site: {{ $site }}
+{{- end }}
+{{- end }}

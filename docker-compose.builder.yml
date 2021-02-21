@@ -1,0 +1,12 @@
+version: '2.1'
+services:
+
+  pfwebapp-builder:
+    image: 624165964329.dkr.ecr.ap-southeast-1.amazonaws.com/pf-newprojects-web:builder-latest
+    volumes:
+      - .:/src
+
+  pfwebapp-test:
+    image: 624165964329.dkr.ecr.ap-southeast-1.amazonaws.com/pf-newprojects-web:test-latest
+    volumes:
+      - .:/src
