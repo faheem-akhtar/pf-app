@@ -40,39 +40,26 @@ build-image-builder:
 	@echo "Build builder image"
 	@echo "======================="
 	docker-compose -f ${DOCKER_COMPOSE_FILE} pull pfwebapp-builder
-	docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${ECR_REPO}/pf-newprojects-web:builder-latest -t ${ECR_REPO}/pf-newprojects-web:builder-${DOCKER_IMAGES_TAG} -f ./Dockerfile.builder .
+	docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${ECR_REPO}/pf-web-app:builder-latest -t ${ECR_REPO}/pf-web-app:builder-${DOCKER_IMAGES_TAG} -f ./Dockerfile.builder .
 
 push-image-builder:
 	@echo "======================"
 	@echo "Push builder image"
 	@echo "======================"
-	docker push ${ECR_REPO}/pf-newprojects-web:builder-${DOCKER_IMAGES_TAG}
-
-build-image-test:
-	@echo "======================="
-	@echo "Build test image"
-	@echo "======================="
-	docker-compose -f ${DOCKER_COMPOSE_FILE} pull pfwebapp-test
-	docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from ${ECR_REPO}/pf-newprojects-web:test-latest -t ${ECR_REPO}/pf-newprojects-web:test-latest -f ./Dockerfile.test .
-
-push-image-test:
-	@echo "======================"
-	@echo "Push test image"
-	@echo "======================"
-	docker push ${ECR_REPO}/pf-newprojects-web:test-latest
+	docker push ${ECR_REPO}/pf-web-app:builder-${DOCKER_IMAGES_TAG}
 
 build-image-app:
 	@echo "======================="
 	@echo "Build app image"
 	@echo "======================="
-	docker build -t ${ECR_REPO}/pf-newprojects-web:${DOCKER_IMAGES_TAG} -f ./Dockerfile .
+	docker build -t ${ECR_REPO}/pf-web-app:${DOCKER_IMAGES_TAG} -f ./Dockerfile .
 
 push-image-app:
 	@echo "======================"
 	@echo "Push app image"
 	@echo "======================"
-	docker push ${ECR_REPO}/pf-newprojects-web:${DOCKER_IMAGES_TAG}
+	docker push ${ECR_REPO}/pf-web-app:${DOCKER_IMAGES_TAG}
 
-build-images: ecr-login build-image-builder build-app build-image-test build-image-app
+build-images: ecr-login build-image-builder build-app build-image-app
 
-push-images: ecr-login push-image-builder push-image-app push-image-test
+push-images: ecr-login push-image-builder push-image-app

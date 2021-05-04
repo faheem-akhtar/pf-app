@@ -1,12 +1,12 @@
 {{- if and .Values.ingress.enabled (or (eq .Values.ingress.kind "istio") (eq .Values.ingress.kind "both")) }}
 {{- $root := . }}
-{{- $releaseName := (include "newprojects.fullname" .) -}}
+{{- $releaseName := (include "web-app.fullname" .) -}}
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
   name: {{ $releaseName }}
   labels:
-    {{- include "newprojects.labels" . | nindent 4 }}
+    {{- include "web-app.labels" . | nindent 4 }}
 spec:
   selector:
     istio: ingressgateway

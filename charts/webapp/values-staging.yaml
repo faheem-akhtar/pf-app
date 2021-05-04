@@ -12,18 +12,18 @@ countries:
     hosts:
       - staging.propertyfinder.ae
       - m.staging.propertyfinder.ae
+  bh:
+    hosts:
+      - staging.propertyfinder.ae
+      - m.staging.propertyfinder.ae
   eg:
     hosts:
       - staging.propertyfinder.eg
       - m.staging.propertyfinder.eg
-  lb:
+  qa:
     hosts:
-      - staging.propertyfinder.com.lb
-      - m.staging.propertyfinder.com.lb
-  ma:
-    hosts:
-      - staging.sarouty.ma
-      - m.staging.sarouty.ma
+      - staging.propertyfinder.qa
+      - m.staging.propertyfinder.qa
   sa:
     hosts:
       - staging.propertyfinder.sa

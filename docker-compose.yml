@@ -8,5 +8,5 @@ web:
     - .:/src
   command: "tail -f /dev/null"
   environment:
-    VIRTUAL_HOST: ~^newprojects\.(.*)\.propertyfinder\.dev
+    VIRTUAL_HOST: ~^web-app\.(.*)\.propertyfinder\.dev
     VIRTUAL_PORT: 3000

@@ -1,6 +1,6 @@
 {{- if and .Values.ingress.enabled (or (eq .Values.ingress.kind "istio") (eq .Values.ingress.kind "both")) }}
 {{- $root := . }}
-{{- $releaseName := include "newprojects.fullname" . -}}
+{{- $releaseName := include "web-app.fullname" . -}}
 {{- range $country, $config := .Values.countries }}
 ---
 apiVersion: networking.istio.io/v1beta1
@@ -8,12 +8,11 @@ kind: VirtualService
 metadata:
   name: {{ $releaseName }}-{{ $country }}
   labels:
-    {{- include "newprojects.labels" $root | nindent 4 }}
+    {{- include "web-app.labels" $root | nindent 4 }}
     scheme: external
 spec:
   gateways:
   - {{ $releaseName }}
-  - mesh
   hosts:
   {{- if eq $root.Values.environment "prenv" }}
   - website.{{ $root.Release.Name }}-{{ $country }}{{ $root.Values.ingress.host }}
@@ -41,13 +40,13 @@ spec:
       perTryTimeout: 10s
       retryOn: gateway-error,connect-failure,refused-stream
     timeout: "30s"
-  {{- end }}
+  {{- else }}
   - match:
     - uri:
         regex: {{ $root.Values.ingress.mobilePath }}
       headers:
         x-akamai-device-characteristics:
-          exact: "is_mobile=true"
+          regex: "is_mobile=true(.*)"
     route:
     - destination:
         host: {{ $country }}-{{ $root.Values.service.name }}-mobile
@@ -56,6 +55,7 @@ spec:
       perTryTimeout: 10s
       retryOn: gateway-error,connect-failure,refused-stream
     timeout: "30s"
+  {{- end }}
   # Defaults to desktop
   - match:
     - uri:

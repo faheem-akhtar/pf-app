@@ -12,7 +12,8 @@
   "keywords": [],
   "main": "src/server/entry.js",
   "scripts": {
-    "start": "PORT=8080 node src/server/entry.js"
+    "start": "PORT=8080 node src/server/entry.js",
+    "build": "echo 'dummy build'"
   },
   "dependencies": {
     "express": "^4.17.1"

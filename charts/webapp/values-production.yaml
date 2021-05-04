@@ -15,18 +15,18 @@ countries:
     hosts:
       - www.propertyfinder.ae
       - m.propertyfinder.ae
+  bh:
+    hosts:
+      - www.propertyfinder.bh
+      - m.propertyfinder.bh
   eg:
     hosts:
       - www.propertyfinder.eg
       - m.propertyfinder.eg
-  lb:
+  qa:
     hosts:
-      - www.propertyfinder.com.lb
-      - m.propertyfinder.com.lb
-  ma:
-    hosts:
-      - www.sarouty.ma
-      - m.sarouty.ma
+      - www.propertyfinder.qa
+      - m.propertyfinder.qa
   sa:
     hosts:
       - www.propertyfinder.sa

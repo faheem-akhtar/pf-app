@@ -5,25 +5,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}
+  name: {{ template "web-app.fullname" $data }}-{{ $country }}-{{ $site }}
   labels:
-    {{- include "newprojects.labels" $data | nindent 4 }}
+    {{- include "web-app.labels" $data | nindent 4 }}
 spec:
   replicas: {{ $data.Values.replicaCount }}
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: {{ template "newprojects.name" $data }}-{{ $country }}-{{ $site }}
+      app: {{ template "web-app.name" $data }}-{{ $country }}-{{ $site }}
       release: {{ $data.Release.Name }}
       site: {{ $site }}
   template:
     metadata:
       annotations:
-{{- include "newprojects.deployment.annotations" $data | nindent 8 }}
+{{- include "web-app.deployment.annotations" $data | nindent 8 }}
         sidecar.istio.io/inject: "false"
-        ad.datadoghq.com/{{ $data.Chart.Name }}-{{ $site }}.logs: '[{"source":"{{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}","service":"{{ template "newprojects.fullname" $data }}-{{ $country }}-{{ $site }}"}]'
+        ad.datadoghq.com/{{ $data.Chart.Name }}-{{ $site }}.logs: '[{"source":"{{ template "web-app.fullname" $data }}-{{ $country }}-{{ $site }}","service":"{{ template "web-app.fullname" $data }}-{{ $country }}-{{ $site }}"}]'
       labels:
-        app: {{ template "newprojects.name" $data }}-{{ $country }}-{{ $site }}
+        app: {{ template "web-app.name" $data }}-{{ $country }}-{{ $site }}
         release: {{ $data.Release.Name }}
         site: {{ $site }}
     spec:
@@ -42,7 +42,7 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - {{ template "newprojects.name" $data }}-{{ $country }}-{{ $site }}
+                  - {{ template "web-app.name" $data }}-{{ $country }}-{{ $site }}
       containers:
         - name: {{ $data.Chart.Name }}-{{ $site }}
           image: "{{ $data.Values.image.repository }}:{{ $data.Values.image.tag }}"

@@ -1,6 +1,6 @@
 {{- if and .Values.ingress.enabled (or (eq .Values.ingress.kind "istio") (eq .Values.ingress.kind "both")) }}
 {{- $root := . }}
-{{- $fullName := include "newprojects.fullname" . -}}
+{{- $fullName := include "web-app.fullname" . -}}
 {{- range $site := .Values.sites }}
 {{- range $country, $config := $root.Values.countries }}
 {{- $releaseName := (printf "%s-%s-%s" $fullName $country $site) }}
@@ -10,7 +10,7 @@ kind: DestinationRule
 metadata:
   name: {{ $releaseName }}
   labels:
-    {{- include "newprojects.labels" $root | nindent 4 }}
+    {{- include "web-app.labels" $root | nindent 4 }}
     country: {{ $country }}
     site: {{ $site }}
 spec:

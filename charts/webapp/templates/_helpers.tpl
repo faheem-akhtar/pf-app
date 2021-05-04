@@ -2,7 +2,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "newprojects.name" -}}
+{{- define "web-app.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
@@ -11,7 +11,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "newprojects.fullname" -}}
+{{- define "web-app.fullname" -}}
 {{- if .Values.fullnameOverride -}}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -27,17 +27,17 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Selector labels
 */}}
-{{- define "newprojects.selectorLabels" -}}
-app: {{ template "newprojects.name" . }}
+{{- define "web-app.selectorLabels" -}}
+app: {{ template "web-app.name" . }}
 release: {{ .Release.Name }}
 {{- end -}}
 
 {{/*
 Common labels
 */}}
-{{- define "newprojects.labels" -}}
-chart: {{ include "newprojects.chart" . }}
-{{ include "newprojects.selectorLabels" . }}
+{{- define "web-app.labels" -}}
+chart: {{ include "web-app.chart" . }}
+{{ include "web-app.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -47,7 +47,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Common annotations
 */}}
-{{- define "newprojects.common.annotations" -}}
+{{- define "web-app.common.annotations" -}}
 meta.helm.sh/release-name: {{ .Release.Name }}
 meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 {{- end -}}
@@ -55,7 +55,7 @@ meta.helm.sh/release-namespace: {{ .Release.Namespace }}
 {{/*
 Deployment annotations
 */}}
-{{- define "newprojects.deployment.annotations" -}}
+{{- define "web-app.deployment.annotations" -}}
 {{- if eq .Values.environment "prenv" -}}
 app.propertyfinder.io/random: {{ randAlphaNum 8 | quote }}
 {{- end -}}
@@ -64,6 +64,6 @@ app.propertyfinder.io/random: {{ randAlphaNum 8 | quote }}
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "newprojects.chart" -}}
+{{- define "web-app.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}

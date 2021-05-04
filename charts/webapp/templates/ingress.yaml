@@ -1,5 +1,5 @@
 {{- if and .Values.ingress.enabled (or (eq .Values.ingress.kind "nginx") (eq .Values.ingress.kind "both")) }}
-{{- $fullName := include "newprojects.fullname" . -}}
+{{- $fullName := include "web-app.fullname" . -}}
 {{- $name := .Values.service.name -}}
 {{- $ingressPath := .Values.ingress.path -}}
 {{- $releaseName := .Release.Name -}}
@@ -10,9 +10,9 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "newprojects.labels" . | nindent 4 }}
+    {{- include "web-app.labels" . | nindent 4 }}
   annotations:
-    {{- include "newprojects.common.annotations" . | nindent 4 }}
+    {{- include "web-app.common.annotations" . | nindent 4 }}
     {{- with .Values.ingress.annotations }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
@@ -23,7 +23,14 @@ spec:
     - host: website.{{ $releaseName }}-{{ $country }}{{ $data.Values.ingress.host }}
       http:
         paths:
-          - path: {{ $ingressPath }}
+          - path: {{ $data.Values.ingress.desktopPath }}
+            backend:
+              serviceName: {{ $country }}-{{ $name }}
+              servicePort: http        
+    - host: m.website.{{ $releaseName }}-{{ $country }}{{ $data.Values.ingress.host }}
+      http:
+        paths:
+          - path: {{ $data.Values.ingress.mobilePath }}
             backend:
               serviceName: {{ $country }}-{{ $name }}
               servicePort: http
@@ -32,7 +39,7 @@ spec:
     - host: {{ . }}
       http:
         paths:
-          - path: {{ $ingressPath }}
+          - path: {{ $data.Values.ingress.desktopPath }}
             backend:
               serviceName: {{ $country }}-{{ $name }}
               servicePort: http

@@ -7,7 +7,7 @@ kind: Service
 metadata:
   name: {{ $country }}-{{ $data.Values.service.name }}-{{ $site }}
   labels:
-    {{- include "newprojects.labels" $data | nindent 4 }}
+    {{- include "web-app.labels" $data | nindent 4 }}
     site: {{ $site }}
 spec:
   type: {{ $data.Values.service.type }}
@@ -17,7 +17,7 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: {{ template "newprojects.name" $data }}-{{ $country }}-{{ $site }}
+    app: {{ template "web-app.name" $data }}-{{ $country }}-{{ $site }}
     release: {{ $data.Release.Name }}
     site: {{ $site }}
 {{- end }}

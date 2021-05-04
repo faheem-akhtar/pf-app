@@ -7,7 +7,13 @@ yarn-install:
 	@echo "======================"
 	docker-compose -f ${DOCKER_COMPOSE_FILE} run --rm pfwebapp-builder bash -c 'yarn install'
 
-build-app: yarn-install
+yarn-build:
+	@echo "======================"
+	@echo "Running yarn build"
+	@echo "======================"
+	docker-compose -f ${DOCKER_COMPOSE_FILE} run --rm pfwebapp-builder bash -c 'yarn build'
+
+build-app: yarn-install yarn-build
 
 run-tests: yarn-install
 	@echo "======================"

@@ -1,4 +1,4 @@
-FROM 624165964329.dkr.ecr.ap-southeast-1.amazonaws.com/pf-newprojects-web:builder-latest
+FROM 624165964329.dkr.ecr.ap-southeast-1.amazonaws.com/pf-web-app:builder-latest
 
 COPY docker/docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh

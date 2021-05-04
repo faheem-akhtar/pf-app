@@ -19,7 +19,7 @@ replicaCount: 1
 maxReplicaCount: 2
 
 image:
-  repository: 624165964329.dkr.ecr.ap-southeast-1.amazonaws.com/pf-newprojects-web
+  repository: 624165964329.dkr.ecr.ap-southeast-1.amazonaws.com/pf-web-app
   tag: latest
   pullPolicy: Always
 
@@ -43,9 +43,9 @@ ingress:
 
 countries:
   ae: {}
+  bh: {}
   eg: {}
-  lb: {}
-  ma: {}
+  qa: {}
   sa: {}
 
 resources:
