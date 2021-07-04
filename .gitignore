@@ -14,3 +14,4 @@ test-reports/
 yarn-error.log
 .mobile.next
 .desktop.next
+.next
