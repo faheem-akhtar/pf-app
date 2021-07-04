@@ -12,3 +12,5 @@ package-lock.json
 .project
 test-reports/
 yarn-error.log
+.mobile.next
+.desktop.next

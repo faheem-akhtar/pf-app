@@ -1,6 +1,5 @@
-FROM node:10.17.0-jessie-slim
+FROM node:14.17.1-stretch-slim
 
-RUN npm i -g yarn@1.21.1
 RUN apt-get update \
   && apt-get install -y \ 
     git \

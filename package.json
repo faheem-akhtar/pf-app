@@ -1,7 +1,5 @@
 {
   "name": "pf-web-app",
-  "description": "",
-  "author": "",
   "license": "MIT",
   "version": "1.0.0",
   "repository": {
@@ -9,13 +7,33 @@
     "url": "https://github.com/Propertyfinder/pf-web-app"
   },
   "homepage": "https://github.com/Propertyfinder/pf-web-app",
-  "keywords": [],
-  "main": "src/server/entry.js",
   "scripts": {
-    "start": "PORT=8080 node src/server/entry.js",
-    "build": "echo 'dummy build'"
+    "dev": "next dev -p 8080",
+    "dev-mobile": "NEXT_PUBLIC_MOBILE=true next dev -p 8080",
+    "dev-mobile-dbg": "NEXT_PUBLIC_MOBILE=true NODE_OPTIONS='--inspect' next dev -p 8080",
+    "build": "rm -rf .next && rm -rf .mobile.next && rm -rf .desktop.next && NEXT_PUBLIC_MOBILE=true next build && next build",
+    "start": "next start -p 8080",
+    "start-mobile": "NEXT_PUBLIC_MOBILE=true next start -p 8080"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "i18next": "^19.8.4",
+    "next": "11.0.1",
+    "next-http-proxy-middleware": "1.0.10",
+    "next-i18next": "^8.5.1",
+    "next-plugin-preact": "3.0.6",
+    "preact": "10.5.14",
+    "preact-render-to-string": "^5.1.19",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat",
+    "react-ssr-prepass": "npm:preact-ssr-prepass",
+    "sass": "^1.35.1"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
+    "@types/node": "^12.12.21",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
+    "tslint": "^6.1.3",
+    "webpack": "5.42.0"
   }
 }
