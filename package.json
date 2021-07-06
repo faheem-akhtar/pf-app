@@ -16,10 +16,10 @@
     "start-mobile": "NEXT_PUBLIC_MOBILE=true next start -p 8080"
   },
   "dependencies": {
-    "i18next": "^19.8.4",
+    "i18next": "20.3.2",
     "next": "11.0.1",
     "next-http-proxy-middleware": "1.0.10",
-    "next-i18next": "^8.5.1",
+    "next-i18next": "8.5.1",
     "next-plugin-preact": "3.0.6",
     "preact": "10.5.14",
     "preact-render-to-string": "^5.1.19",
