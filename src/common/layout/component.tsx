@@ -1,7 +1,7 @@
-import { LayoutBaseComponentPropsInterface } from "./component-props.interface";
 import Head from 'next/head'
+import { LayoutComponentPropsInterface } from './component-props.interface'
 
-export const LayoutBaseComponent = ({ children, pageTitle }: LayoutBaseComponentPropsInterface) => {
+export const LayoutComponent = ({ children, pageTitle }: LayoutComponentPropsInterface) => {
     return <>
       <Head>
         <title>{pageTitle}</title>
