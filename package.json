@@ -9,11 +9,11 @@
   "homepage": "https://github.com/Propertyfinder/pf-web-app",
   "scripts": {
     "dev": "next dev -p 8080",
-    "dev-mobile": "NEXT_PUBLIC_MOBILE=true next dev -p 8080",
-    "dev-mobile-dbg": "NEXT_PUBLIC_MOBILE=true NODE_OPTIONS='--inspect' next dev -p 8080",
-    "build": "rm -rf .next && rm -rf .mobile.next && rm -rf .desktop.next && NEXT_PUBLIC_MOBILE=true next build && next build",
+    "dev-mobile": "NEXT_PUBLIC_MOBILE=1 next dev -p 8080",
+    "dev-mobile-dbg": "NEXT_PUBLIC_MOBILE=1 NODE_OPTIONS='--inspect' next dev -p 8080",
+    "build": "rm -rf .mobile.next && rm -rf .desktop.next && NEXT_PUBLIC_MOBILE=1 next build && NEXT_PUBLIC_MOBILE= next build",
     "start": "next start -p 8080",
-    "start-mobile": "NEXT_PUBLIC_MOBILE=true next start -p 8080"
+    "start-mobile": "NEXT_PUBLIC_MOBILE=1 next start -p 8080"
   },
   "dependencies": {
     "i18next": "20.3.2",

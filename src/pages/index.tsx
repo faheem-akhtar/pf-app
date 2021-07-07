@@ -1,16 +1,4 @@
-import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { LayoutComponent } from '../mobile/layout/component';
-
-const Homepage = () => {
-    const { t } = useTranslation('common');
-
-    return (
-        <LayoutComponent pageTitle={t(('index page title'))}>
-            {t('index page')}
-        </LayoutComponent>
-    );
-}
 
 export const getStaticProps = async ({ locale }: {locale: string}) => ({
     props: {
@@ -18,4 +6,8 @@ export const getStaticProps = async ({ locale }: {locale: string}) => ({
     },
 });
 
-export default Homepage;
+export default (
+    process.env.NEXT_PUBLIC_MOBILE ?
+        require("mobile/page/home/component") :
+        require("desktop/page/home/component")
+).PageHomeComponent;
