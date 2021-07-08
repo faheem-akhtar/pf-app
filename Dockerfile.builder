@@ -7,7 +7,9 @@ RUN apt-get update \
     bzip2 \
     libfontconfig \
     ca-certificates \
-    --no-install-recommends
+    --no-install-recommends \
+  && curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh \
+  && mv bin/lokalise2 /usr/local/bin/
 
 RUN mkdir -p /src 
 WORKDIR /src

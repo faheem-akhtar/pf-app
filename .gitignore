@@ -15,4 +15,6 @@ yarn-error.log
 .mobile.next
 .desktop.next
 .next
+# Translations
+/public/static/translations
 story-book/
