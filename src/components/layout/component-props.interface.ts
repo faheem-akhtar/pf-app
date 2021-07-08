@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface LayoutBaseComponentPropsInterface {
+export interface LayoutComponentPropsInterface {
     /**
      * Page title
      */

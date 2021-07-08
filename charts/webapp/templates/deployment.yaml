@@ -54,7 +54,10 @@ spec:
           env:
             {{- if eq $site "mobile" }}
             - name: NEXT_PUBLIC_MOBILE
-              value: "true"
+              value: ""
+            {{- else}}
+            - name: NEXT_PUBLIC_MOBILE
+              value: "1"
             {{- end }}
             - name: ENVIRONMENT
               value: {{ $data.Values.environment }}
