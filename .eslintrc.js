@@ -58,17 +58,6 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       rules: {
         '@typescript-eslint/explicit-function-return-type': ['warn'],
-        '@typescript-eslint/typedef': [
-          'warn',
-          {
-            arrowParameter: false,
-            memberVariableDeclaration: true,
-            objectDestructuring: false,
-            parameter: true,
-            propertyDeclaration: true,
-            variableDeclaration: true,
-          },
-        ],
         'no-duplicate-imports': 'off',
         '@typescript-eslint/no-inferrable-types': 0,
         // TODO-FE[TPNX-2309] - Remove these once fixed
