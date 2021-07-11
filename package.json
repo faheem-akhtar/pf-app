@@ -25,7 +25,7 @@
   "lint-staged": {
     "*.{js,ts,tsx,css,scss,md}": "prettier --check",
     "*.css": "stylelint --quiet",
-    "src/**/*.{js,ts,tsx}": "eslint"
+    "src/**/*.{js,ts,tsx}": "eslint --max-warnings=0"
   },
   "dependencies": {
     "i18next": "20.3.2",
