@@ -4,6 +4,6 @@ import { appWithTranslation } from 'next-i18next';
 
 const MyApp = ({ Component, pageProps }: AppProps) => <Component {...pageProps} />;
 
-MyApp.getInitialProps = async (appContext: AppContext) => ({ ...await App.getInitialProps(appContext) });
+MyApp.getInitialProps = async (appContext: AppContext) => ({ ...(await App.getInitialProps(appContext)) });
 
 export default appWithTranslation(MyApp);

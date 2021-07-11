@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
 export interface LayoutComponentPropsInterface {
-    /**
-     * Page title
-     */
-    pageTitle: string,
+  /**
+   * Page title
+   */
+  pageTitle: string;
 
-    /**
-     * Children components
-     */
-    children: React.ReactNode;
+  /**
+   * Children components
+   */
+  children: React.ReactNode;
 }
