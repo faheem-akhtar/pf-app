@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { LayoutComponentPropsInterface } from './component-props.interface';
 
-export const LayoutComponent = ({ children, pageTitle }: LayoutComponentPropsInterface) => {
+export const LayoutComponent = ({ children, pageTitle }: LayoutComponentPropsInterface): JSX.Element => {
   return (
     <>
       <Head>
