@@ -1,0 +1,12 @@
+body {
+  font-family: var(--font-family-default);
+}
+
+.body__svg {
+  display: none;
+}
+
+/* This class coming from pf-frontend common so can't change to BEM */
+.body-noscroll {
+  overflow: hidden;
+}

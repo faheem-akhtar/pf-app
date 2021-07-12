@@ -1,0 +1,58 @@
+html * {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: initial;
+}
+
+html {
+  /* Keep base font-size to 10px, so it is easy to compute the REMs */
+  font-size: 62.5%;
+  height: 100%;
+
+  /* Prevent font scaling in landscape while allowing user zoom */
+  -webkit-text-size-adjust: 100%;
+  line-height: var(--html-line-height);
+}
+
+body {
+  height: 100%;
+  font-size: var(--font-size-01);
+  color: var(--brand-color-04);
+  direction: ltr;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  display: block;
+}
+
+form {
+  display: block;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+}

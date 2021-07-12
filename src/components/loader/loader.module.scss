@@ -1,0 +1,44 @@
+/* Tree dots loader for inputs loading state */
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  background-color: var(--color-global-grey2);
+  border-radius: 0.6rem;
+  text-align: center;
+  transition: opacity 0.3s;
+
+  :global {
+    animation: opacity-up 1s infinite ease-in-out both;
+  }
+
+  &:not(:last-child) {
+    margin-right: 0.4rem;
+  }
+
+  &.middle {
+    animation-delay: 0.2s;
+  }
+
+  &.last {
+    animation-delay: 0.4s;
+  }
+}
+
+.dropdownLoader {
+  height: 2.2rem;
+  margin-left: 0.3rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.inverted {
+  background-color: var(--color-global-white);
+}

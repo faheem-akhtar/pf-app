@@ -1,0 +1,11 @@
+/* Common variables & styles (not allowed to override) */
+@import './common/variables.scss';
+@import './common/language.scss';
+
+/** Common keyframes */
+@import './common/keyframes.scss';
+
+/* Common variables & styles (not allowed to override) */
+@import './common/module/fonts.scss';
+@import './common/html.scss';
+@import './common/body.scss';

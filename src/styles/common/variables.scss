@@ -1,0 +1,125 @@
+/**
+ * Common variables definition.
+ *
+ * Before defining a new variable or using an existing variable, please ask yourself about the meaning of the variable.
+ *
+ * Examples:
+ *   --panel-padding should only be used for "panel" blocks, not for a button.
+ *   --error-color can be used for a font-color, a background color, as long as it's error related.
+ */
+:root {
+  --width-boxed: 94%;
+
+  /* LATEST: Color Library */
+
+  /* Global */
+  --color-global-black: #403b45;
+  --color-global-grey1: #77757a;
+  --color-global-grey2: #bbb8bd;
+  --color-global-grey3: #e4e4e4;
+  --color-global-grey4: #f8f8f8;
+  --color-global-white: #ffffff;
+
+  /* Global / Black with opacity */
+  --color-global-black-op-5: rgba(64, 59, 69, 0.05);
+  --color-global-black-op-10: rgba(64, 59, 69, 0.1);
+  --color-global-black-op-15: rgba(64, 59, 69, 0.15);
+  --color-global-black-op-20: rgba(64, 59, 69, 0.2);
+  --color-global-black-op-70: rgba(64, 59, 69, 0.7);
+
+  /* Global / Stone */
+  --color-global-stone-dark: #d6c7c7;
+  --color-global-stone-100: #e2d8d7;
+  --color-global-stone-75: #e8e1e0;
+  --color-global-stone-50: #efebea;
+  --color-global-stone-25: #f7f5f5;
+
+  /* Primary / Clay */
+  --color-primary-clay-dark: #d55a4d;
+  --color-primary-clay-100: #ef5e4e;
+  --color-primary-clay-75: #e38b7e;
+  --color-primary-clay-50: #ecb1a8;
+  --color-primary-clay-25: #f5d8d4;
+
+  /* Brand / Sand */
+  --color-brand-sand-dark: #e99b76;
+  --color-brand-sand-100: #f1a786;
+  --color-brand-sand-75: #f5bca4;
+  --color-brand-sand-50: #f8d2c2;
+  --color-brand-sand-25: #fbe9e0;
+
+  /* Brand / Sea */
+  --color-brand-sea-dark: #4f3290;
+  --color-brand-sea-100: #5745a0;
+  --color-brand-sea-75: #7e74b2;
+  --color-brand-sea-50: #a8a2cc;
+  --color-brand-sea-25: #d4d1e5;
+
+  /* Brand / Sky */
+  --color-brand-sky-dark: #a0bec9;
+  --color-brand-sky-100: #9bd3dd;
+  --color-brand-sky-75: #bcdce5;
+  --color-brand-sky-50: #d2e7ed;
+  --color-brand-sky-25: #e8f4f6;
+
+  /* Feedback */
+  --color-feedback-success-base: #39a76d;
+  --color-feedback-success-light: #67cd6a;
+  --color-feedback-success-lighter: #bad461;
+  --color-feedback-warning-base: #f3bf4f;
+  --color-feedback-warning-light: #ffdb8c;
+  --color-feedback-error-base: #ed4c6b;
+  --color-feedback-error-dark: #b82d48;
+  --color-feedback-error-light: #ff8098;
+  --color-feedback-error-lighter: #ffe6ea;
+
+  /* Interaction */
+  --color-interaction-1-light-mode: #007ea8;
+  --color-interaction-1-dark-mode: #3b97ba;
+
+  /* not in our design system */
+  --color-facebook: #4267b2;
+
+  /* z-index with specific usage */
+  --z-index-0: 0;
+  --z-index-01: 1;
+  --z-index-02: 2;
+  --z-index-03: 3;
+  --z-index-04: 10;
+  --z-index-05: 50;
+  --z-index-06: 70;
+  --z-index-07: 90;
+  --z-index-08: 100;
+  --z-index-09: 110;
+  --z-index-10: 120;
+  --z-index-11: 121;
+  --z-index-12: 122;
+  --z-index-13: 125;
+  --z-index-14: 1001;
+  --z-index-15: -1;
+  --z-index-16: 1000;
+  --z-index-17: 9999;
+  --z-index-18: 5;
+  --z-index-19: 20;
+  --z-index-20: 30;
+
+  /* Transitions settings */
+  --transition-duration: 300ms;
+  --transition-duration2: 800ms;
+  --transition-duration3: 0.15s;
+  --transition-duration4: 0.16s;
+  --transition-duration5: 2s;
+  --transition-logic: ease-out;
+  --transition-logic2: linear;
+  --transition-logic3: ease-in-out;
+  --transition-count1: infinite;
+
+  /* Base atom for spacing */
+  --spacing: 0.6rem;
+
+  /* box shadow */
+  --box-shadow-04: 0 0.2rem 0.4rem var(--color-global-black-op-10), 0px 0.4rem 0.5rem var(--color-global-black-op-5);
+
+  /* transition timing functions */
+  --ease-out-elastic: cubic-bezier(0.29, 2.5, 0.39, 0.39);
+}

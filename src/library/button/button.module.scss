@@ -1,0 +1,115 @@
+.button {
+  /* reset */
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+  outline: none;
+  font: inherit;
+  -webkit-appearance: none;
+
+  /* base styles */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: normal;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.3s;
+  font-size: var(--font-size-08);
+  width: fit-content;
+
+  /* Tertiary/Floating - default */
+  background-color: var(--color-global-white);
+  color: var(--color-global-black);
+  border: 0.1rem solid var(--color-global-stone-75);
+  border-radius: 0.3rem;
+  padding: calc(var(--spacing) * 2);
+  line-height: 2.4rem;
+  min-width: 8rem;
+
+  &:hover {
+    background: var(--color-global-stone-25);
+  }
+
+  &:active {
+    border-color: var(--color-global-stone-75);
+    background: var(--color-global-stone-50);
+  }
+}
+
+.small {
+  padding: calc(var(--spacing) * 1.5);
+  font-size: var(--font-size-09);
+  line-height: 2rem;
+}
+
+.loader {
+  fill: var(--color-global-black);
+}
+
+.disabled {
+  color: var(color-global-grey2);
+}
+
+.icon {
+  height: 2.4rem;
+}
+
+.icon--left {
+  margin-right: calc(var(--spacing) / 2);
+}
+
+.icon--right {
+  margin-left: calc(var(--spacing) / 2);
+}
+
+/* Primary */
+.primary {
+  background-color: var(--color-primary-clay-100);
+  color: var(--color-global-white);
+  fill: var(--color-global-white);
+  border: none;
+  &:hover,
+  &:active {
+    background-color: var(--color-primary-clay-dark);
+  }
+}
+
+/* Secondary */
+.secondary {
+  background-color: var(--color-global-white);
+  color: var(--color-primary-clay-100);
+  fill: var(--color-primary-clay-100);
+  &:hover {
+    background-color: var(--color-global-stone-25);
+  }
+  &:active {
+    background-color: var(--color-global-stone-50);
+  }
+}
+
+/* Floating */
+.floating {
+  box-shadow: var(--box-shadow-04);
+  border-radius: 1rem;
+  &:hover {
+    border-color: transparent;
+  }
+}
+
+/* Secondary blue */
+.secondaryBlue {
+  background-color: var(--color-global-white);
+  color: var(--color-interaction-1-light-mode);
+  fill: var(--color-interaction-1-light-mode);
+  &:hover {
+    background-color: var(--color-global-stone-25);
+  }
+  &:active {
+    background-color: var(--color-global-stone-50);
+  }
+}
