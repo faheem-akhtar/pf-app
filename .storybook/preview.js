@@ -1,6 +1,3 @@
-import { addDecorator } from "@storybook/react";
-import { withA11y } from "@storybook/addon-a11y";
-
 // TODO-FE[TPNX-2988] Load globally applied default stylesheets
 
 const customViewports = {
@@ -39,5 +36,3 @@ export const globalTypes = {
     },
   },
 };
-
-addDecorator(withA11y);

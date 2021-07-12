@@ -1,6 +1,6 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-import LinkTo from '@storybook/addon-links/react';
-import './assets/styles.css';
+import { Meta } from "@storybook/addon-docs/";
+import LinkTo from "@storybook/addon-links/react";
+import styles from "./assets/styles.module.css";
 
 <Meta title='Intro' />
 
@@ -15,6 +15,7 @@ We recommend building UIs with a [**component-driven**](https://componentdriven.
 
 <br />
 
-<div className='tip-wrapper'>
-  <span className='tip'>Tip</span>Edit the Markdown in <code>src/stories/intro.stories.mdx</code>
+<div className={styles.tipWrapper}>
+  <span className={styles.tip}>Tip</span>Edit the Markdown in{" "}
+  <code>src/stories/intro.stories.mdx</code>
 </div>

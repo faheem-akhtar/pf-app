@@ -1,1 +1,1 @@
-// TODO-FE[TPNX-2928] The lang provider logic should be added after i18n is completed
+// TODO-FE[TPNX-3018] The lang provider should be added
