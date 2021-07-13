@@ -1,10 +1,11 @@
-import { useTranslation } from 'next-i18next';
-import { PageHomeComponentPropsInterface } from './component-props.interface';
-import { HeaderComponent } from 'components/header/component';
-import { LayoutComponent } from 'components/layout/component';
 import { FooterComponent } from 'components/footer/component';
+import { FunctionalComponent } from 'preact';
+import { HeaderComponent } from 'components/header/component';
+import { HomeViewPropsInterface } from './view-props.interface';
+import { LayoutComponent } from 'components/layout/component';
+import { useTranslation } from 'next-i18next';
 
-export const PageHomeComponent = (props: PageHomeComponentPropsInterface) => {
+export const HomeView: FunctionalComponent<HomeViewPropsInterface> = () => {
   const { t } = useTranslation('common');
 
   return (

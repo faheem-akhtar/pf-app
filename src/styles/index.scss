@@ -1,6 +1,6 @@
 /* Common variables & styles (not allowed to override) */
 @import './common/variables.scss';
-@import './common/language.scss';
+/* TODO-FE[TPNX-3036] should be dependent on the language */
 
 /** Common keyframes */
 @import './common/keyframes.scss';

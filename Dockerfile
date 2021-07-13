@@ -6,5 +6,6 @@ RUN chmod +x /docker-entrypoint.sh
 EXPOSE 8080 3000
 
 COPY . /src
+COPY ./scripts /scripts
 
 CMD ["/docker-entrypoint.sh"]

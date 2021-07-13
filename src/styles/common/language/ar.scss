@@ -1,0 +1,51 @@
+:root {
+  --display-ltr: none;
+  --display-rtl: initial;
+
+  /* Font Family */
+  --font-family-default: 'Droid Arabic Kufi', sans-serif;
+  --font-family-default-mobile: '-apple-system', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Font Weights */
+  --font-weight-01: 200;
+  --font-weight-02: 700;
+  --font-weight-03: 300;
+  --font-weight-04: 400;
+  --font-weight-05: 600;
+
+  /* Font sizes */
+  --font-size-01: 1.4rem; /* Default Font size 14px */
+  --font-size-02: 1.5rem; /* 17px to 15px */
+  --font-size-03: 1.9rem; /* 21px to 19px */
+  --font-size-04: 2.8rem; /* 30px to 28px */
+  --font-size-05: 1.3rem; /* 15px to 13px */
+  --font-size-06: 3.2rem; /* 34px to 32px */
+  --font-size-07: 1.8rem; /* 20px to 18px */
+  --font-size-08: 1.3rem; /* 14px to 13px */
+  --font-size-09: 1.2rem; /* 12px */
+  --font-size-10: 1.6rem; /* 18px to 16px */
+  --font-size-11: 2.3rem; /* 25px to 23px */
+  --font-size-12: 2.6rem; /* 28px to 26px */
+  --font-size-13: 1rem; /* 10px */
+  --font-size-14: 2.4rem; /* 26px to 24px */
+  --font-size-15: 1.1rem; /* 11px */
+  --font-size-16: 2rem; /* 22px to 20px */
+  --font-size-17: 2.1rem; /* 23px to 21px */
+  --font-size-18: 1.2rem; /* 13px to 12px */
+  --font-size-19: 10.3rem; /* 105px to 103 */
+  --font-size-20: 3.8rem; /* 40px to 38px */
+  --font-size-21: 4.6rem; /* 48px to 46px */
+  --font-size-22: 5.5rem; /* 57px to 55px */
+  --font-size-23: 2.2rem; /* 24px to 22px */
+  --font-size-24: 3rem; /* 32px to 30 */
+  --font-size-25: 0.88rem; /* 9px */
+
+  --html-line-height: 2.4rem;
+
+  /* language specific variables */
+  --counter-count-line-height: 1.8rem;
+  --text-direction: right;
+  --menu-dropdown-position: -9.6rem; /* 96px */
+  --menu-dropdown-arrow1: 11.2rem; /* 112px */
+  --menu-dropdown-arrow2: 11.1rem; /* 111px */
+}

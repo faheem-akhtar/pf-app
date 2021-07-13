@@ -1,6 +1,5 @@
 version: '2.1'
 services:
-
   pfwebapp-builder:
     image: 624165964329.dkr.ecr.ap-southeast-1.amazonaws.com/pf-web-app:builder-latest
     volumes:

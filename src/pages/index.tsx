@@ -1,4 +1,4 @@
-import { PageHomeComponent } from 'page/home/component';
+import { HomeView } from 'views/home/view';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 export const getStaticProps = async ({ locale }: { locale: string }): Promise<{ props: unknown }> => ({
@@ -7,4 +7,4 @@ export const getStaticProps = async ({ locale }: { locale: string }): Promise<{ 
   },
 });
 
-export default PageHomeComponent;
+export default HomeView;

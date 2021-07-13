@@ -1,11 +1,11 @@
-import { useTranslation } from 'next-i18next';
-
 import { FooterComponent } from 'components/footer/component';
+import { FunctionalComponent } from 'preact';
 import { HeaderComponent } from 'components/header/component';
 import { LayoutComponent } from 'components/layout/component';
-import { PropertySearchComponentPropsInterface } from './component-props.interface';
+import { PropertySearchViewPropsInterface } from './view-props.interface';
+import { useTranslation } from 'next-i18next';
 
-export const PagePropertySearchComponent = (props: PropertySearchComponentPropsInterface): JSX.Element => {
+export const PropertySearchView: FunctionalComponent<PropertySearchViewPropsInterface> = (props) => {
   const { t } = useTranslation('common');
 
   return (

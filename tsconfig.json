@@ -16,9 +16,18 @@
     "jsxImportSource": "preact",
     "baseUrl": "src",
     "paths": {
-      "common/*": ["common/*"],
-      "mobile/*": ["mobile/*"],
-      "desktop/*": ["desktop/*"]
+      "api/*": ["api/*"],
+      "backend/*": ["backend/*"],
+      "components/*": ["components/*"],
+      "config/*": ["config/*"],
+      "enums/*": ["enums/*"],
+      "feature/*": ["feature/*"],
+      "helpers/*": ["helpers/*"],
+      "library/*": ["library/*"],
+      "pages/*": ["pages/*"],
+      "views/*": ["views/*"],
+      "styles/*": ["styles/*"],
+      "types/*": ["types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

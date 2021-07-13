@@ -1,7 +1,8 @@
-import { domClassMerge } from 'helper/dom/class-merge';
 import { FunctionalComponent } from 'preact';
+import { domClassMerge } from 'helpers/dom/class-merge';
 import styles from './loader.module.scss';
 
+// TODO-FE[TPNX-2931] move it to the library, it's used in Button
 export const LoaderTemplate: FunctionalComponent<{
   cssClass?: string;
   isInverted?: boolean;

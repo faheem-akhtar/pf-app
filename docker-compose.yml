@@ -2,11 +2,11 @@ web:
   build: .
   container_name: app-web
   ports:
-   - "3000:3000"
-   - "8081:8080"
+    - '3000:3000'
+    - '8081:8080'
   volumes:
     - .:/src
-  command: "tail -f /dev/null"
+  command: 'tail -f /dev/null'
   environment:
     VIRTUAL_HOST: ~^web-app\.(.*)\.propertyfinder\.dev
     VIRTUAL_PORT: 3000

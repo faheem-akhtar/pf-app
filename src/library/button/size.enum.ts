@@ -1,4 +1,4 @@
-export enum LibraryButtonSizeEnum {
+export enum ButtonSizeEnum {
   /**
    * button with regular height
    */

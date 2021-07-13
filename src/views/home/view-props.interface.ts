@@ -1,4 +1,4 @@
-export interface PageHomeComponentPropsInterface {
+export interface HomeViewPropsInterface {
   /**
    * TODO-FE[] remove this temporaty placeholder prop
    */

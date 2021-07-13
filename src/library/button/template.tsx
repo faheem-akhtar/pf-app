@@ -1,16 +1,16 @@
-import { FunctionalComponent, Fragment } from 'preact';
-import { LoaderTemplate } from '../../components/loader/template';
-import { ButtonLinkTemplatePropsInterface } from './link-template-props.interface';
+import { Fragment, FunctionalComponent } from 'preact';
 import { ButtonButtonTemplateInterface } from './button-template-props.interface';
-import { domClassMerge } from '../../helper/dom/class-merge';
 import { ButtonIconPositionEnum } from './icon-position.enum';
+import { ButtonLinkTemplatePropsInterface } from './link-template-props.interface';
+import { LoaderTemplate } from 'components/loader/template';
+import { domClassMerge } from 'helpers/dom/class-merge';
 import styles from './button.module.scss';
 
+// TODO-FE[TPNX-3016] add tests
 /**
  * Web UI Kit Button tempalte
  * Figma: https://www.figma.com/file/gRARY1Vi4W2Ow1vRLw02am/PF_Consumer-Web-Kit?node-id=3869%3A2340
  */
-// TODO-FE[TPNX-3016] add tests
 export const LibraryButtonTemplate: FunctionalComponent<
   ButtonLinkTemplatePropsInterface | ButtonButtonTemplateInterface
 > = ({ icon = {}, componentType, ...props }) => {
@@ -18,9 +18,11 @@ export const LibraryButtonTemplate: FunctionalComponent<
   const typeClass = styles[componentType];
 
   // TODO-FE[TPNX-2699] Use loader as per design
-  const renderLoader = () => <LoaderTemplate cssClass={domClassMerge(styles.loader, styles[`${typeClass}Loader`])} />;
-  const renderIcon = () =>
-    Icon && (
+  const renderLoader = (): JSX.Element => (
+    <LoaderTemplate cssClass={domClassMerge(styles.loader, styles[`${typeClass}Loader`])} />
+  );
+  const renderIcon = (): JSX.Element | null =>
+    Icon ? (
       <Icon
         clipped={false}
         class={domClassMerge(
@@ -30,9 +32,9 @@ export const LibraryButtonTemplate: FunctionalComponent<
           props.iconClassName
         )}
       />
-    );
+    ) : null;
 
-  const renderContent = () => (
+  const renderContent = (): JSX.Element => (
     <Fragment>
       {(iconPosition === ButtonIconPositionEnum.left || iconPosition === ButtonIconPositionEnum.top) && renderIcon()}
       {props.children}

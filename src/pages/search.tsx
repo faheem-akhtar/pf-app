@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next';
 
-import { PagePropertySearchComponent } from 'page/property-search/component';
-import { PropertySearchComponentPropsInterface } from 'page/property-search/component-props.interface';
+import { PropertySearchView } from 'views/property-search/view';
+import { PropertySearchViewPropsInterface } from 'views/property-search/view-props.interface';
 import { apiPropertySearchBackendFetcher } from 'api/property-search/backend-fetcher';
 import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-value';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-export const getServerSideProps: GetServerSideProps<PropertySearchComponentPropsInterface> = async (context) => {
+export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsInterface> = async (context) => {
   const searchResult = await apiPropertySearchBackendFetcher({
     locale: context.locale,
     query: objectFilterNonOrEmptyValue({
@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchComponentProps
     return {
       props: {
         data: searchResult.error,
-      } as PropertySearchComponentPropsInterface,
+      } as PropertySearchViewPropsInterface,
     };
   }
 
@@ -28,11 +28,11 @@ export const getServerSideProps: GetServerSideProps<PropertySearchComponentProps
     // TODO-FE[TPNX-2938] remove json stringify
     data: JSON.stringify(searchResult.data),
     ...(await serverSideTranslations(context.locale as string, ['common'])),
-  } as PropertySearchComponentPropsInterface;
+  } as PropertySearchViewPropsInterface;
 
   return {
     props, // will be passed to the page component as props
   };
 };
 
-export default PagePropertySearchComponent;
+export default PropertySearchView;
