@@ -1,4 +1,5 @@
 charts/*
 Dockerfile*
 Makefile*
-docker*
+dist
+yarn.lock

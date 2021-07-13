@@ -8,9 +8,9 @@
   },
   "homepage": "https://github.com/Propertyfinder/pf-web-app",
   "scripts": {
-    "dev": "NEXT_PUBLIC_COUNTRY_CODE=ae NEXT_PUBLIC_MOBILE=1 next dev -p 8080",
-    "dev-desktop": "NEXT_PUBLIC_COUNTRY_CODE=ae NEXT_PUBLIC_MOBILE= next dev -p 8080",
-    "dev-qa": "NEXT_PUBLIC_COUNTRY_CODE=qa NEXT_PUBLIC_MOBILE=1 next dev -p 8080",
+    "dev": "next dev -p 8080",
+    "dev-desktop": "NEXT_PUBLIC_MOBILE= next dev -p 8080",
+    "dev-qa": "NEXT_PUBLIC_COUNTRY_CODE=qa next dev -p 8080",
     "dev-qa-desktop": "NEXT_PUBLIC_COUNTRY_CODE=qa NEXT_PUBLIC_MOBILE= next dev -p 8080",
     "dev-dbg": "NEXT_PUBLIC_MOBILE=1 NODE_OPTIONS='--inspect' next dev -p 8080",
     "dev-desktop-dbg": "NEXT_PUBLIC_MOBILE= NODE_OPTIONS='--inspect' next dev -p 8080",

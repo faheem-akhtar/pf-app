@@ -12,10 +12,6 @@ package-lock.json
 .project
 test-reports/
 yarn-error.log
-.ae.mobile.next
-.ae.desktop.next
-.qa.mobile.next
-.qa.desktop.next
 .next
 # Translations
 /public/static/translations
