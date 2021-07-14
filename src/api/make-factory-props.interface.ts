@@ -6,7 +6,7 @@ export interface ApiMakeFactoryPropsInterface {
   /**
    * Map the data returned from the server
    */
-  dataMapper?: <I, O>(json: I) => O;
+  dataMapper?: (data: Object | Array<Object>) => Object | Array<Object>;
   /**
    * Alter headers
    * called on every request letting set custom headers for each request

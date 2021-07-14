@@ -37,7 +37,7 @@ export interface BackendModelPropertyInterface extends JsonApiModel {
   /**
    * Is the property exclusive
    */
-  exclusive?: boolean;
+  exclusive: boolean;
 
   /**
    * Is the property verified
@@ -336,7 +336,7 @@ export interface BackendModelPropertyInterface extends JsonApiModel {
   /**
    * Number of bedrooms
    */
-  bedroom_value?: number;
+  bedroom_value: number;
 
   /**
    * Bathroom name
@@ -346,7 +346,7 @@ export interface BackendModelPropertyInterface extends JsonApiModel {
   /**
    * Number of bathrooms
    */
-  bathroom_value?: number;
+  bathroom_value: number;
 
   /**
    * Listing level
@@ -486,7 +486,7 @@ export interface BackendModelPropertyInterface extends JsonApiModel {
   /**
    * The type of property (office, villa, warehouse, etc...)
    */
-  property_type?: BackendModelPropertyTypeInterface;
+  property_type: BackendModelPropertyTypeInterface;
 
   // tslint:enable:variable-name
 
@@ -509,4 +509,9 @@ export interface BackendModelPropertyInterface extends JsonApiModel {
    * Location
    */
   location: BackendModelLocationInterface;
+
+  /**
+   * Url of the property
+   */
+  share_url: string;
 }

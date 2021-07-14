@@ -10,15 +10,15 @@ import { urlQuerySerialize } from '../helpers/url-query/serialize';
  * Not to be used directly
  * Use one of [
  *   - apiHookFactory, to create a fetcher as react hook
- *   - apiBackendFactory, to create fetcher to be used exclusively by backend code (adds headers that allow to bypass api protections)
+ *   - backendApiFactory, to create fetcher to be used exclusively by backend code (adds headers that allow to bypass api protections)
  *   - apiFactory, to create a general fetcher with promise base api, that can be used in any environment
  * ]
  * @param makeFactoryProps Top level properties depending on the environment
  */
 export const apiMakeFactory =
   (makeFactoryProps: ApiMakeFactoryPropsInterface) =>
-  <D>(factoryProps: ApiFactoryPropsBaseInterface) =>
-  (props: DataApiFetcherRequestProps): Promise<ApiFetcherResultType<D>> => {
+  <R, JR = Object>(factoryProps: ApiFactoryPropsBaseInterface<R, JR>) =>
+  (props: DataApiFetcherRequestProps): Promise<ApiFetcherResultType<R>> => {
     const { authToken, data } = props;
 
     const headers: Record<string, string> = {};
@@ -94,9 +94,19 @@ export const apiMakeFactory =
           };
         })
         .then((json) => {
+          let data = json;
+
+          if (makeFactoryProps.dataMapper) {
+            data = makeFactoryProps.dataMapper(data);
+          }
+
+          if (factoryProps.dataMapper) {
+            data = factoryProps.dataMapper(data);
+          }
+
           return {
             ok: true,
-            data: makeFactoryProps.dataMapper ? makeFactoryProps.dataMapper(json) : json,
+            data,
             headers,
           };
         });
