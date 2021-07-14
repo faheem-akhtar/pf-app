@@ -1,10 +1,13 @@
 import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
+import { BackendApiPropertySearchRawJsonResponseType } from './raw-json-response-type';
 import { PropertySearchResultType } from 'components/property/search-result.type';
 import { PropertySerpInterface } from 'components/property/serp.interface';
+
 import { isTrace } from 'config/is-trace';
 
 export const backendApiPropertySearchMapper = (
-  data: BackendApiPropertySearchJsonApiResultType
+  data: BackendApiPropertySearchJsonApiResultType,
+  rawJson: BackendApiPropertySearchRawJsonResponseType
 ): PropertySearchResultType => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const properties = data.properties.map((property) => {
@@ -48,10 +51,8 @@ export const backendApiPropertySearchMapper = (
 
   const result: PropertySearchResultType = {
     properties,
-    // TODO-FE[TPNX-3048] gather the total and pages from the search response
-    // The problem now is that the sync method is stripping out the meta for properties
-    total: 0,
-    pages: 0,
+    total: rawJson.data.relationships.properties.meta.total_count,
+    pages: rawJson.data.relationships.properties.meta.page_count,
   };
 
   if (isTrace) {

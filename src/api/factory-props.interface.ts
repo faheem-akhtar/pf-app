@@ -1,6 +1,6 @@
 import { UrlQuery } from '../helpers/types';
 
-export interface ApiFactoryPropsBaseInterface<R, JR = Object> {
+export interface ApiFactoryPropsBaseInterface<Result, Data = Object, RawJson = Object> {
   /**
    * HTTP Method
    */
@@ -16,5 +16,5 @@ export interface ApiFactoryPropsBaseInterface<R, JR = Object> {
   /**
    * Additional data mapper per instance of fetcher
    */
-  dataMapper?: (data: JR) => R;
+  dataMapper?: (data: Data, rawJson: RawJson) => Result;
 }

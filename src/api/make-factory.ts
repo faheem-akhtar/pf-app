@@ -17,8 +17,8 @@ import { urlQuerySerialize } from '../helpers/url-query/serialize';
  */
 export const apiMakeFactory =
   (makeFactoryProps: ApiMakeFactoryPropsInterface) =>
-  <R, JR = Object>(factoryProps: ApiFactoryPropsBaseInterface<R, JR>) =>
-  (props: DataApiFetcherRequestProps): Promise<ApiFetcherResultType<R>> => {
+  <Result, Data = Object, RawJson = Object>(factoryProps: ApiFactoryPropsBaseInterface<Result, Data, RawJson>) =>
+  (props: DataApiFetcherRequestProps): Promise<ApiFetcherResultType<Result>> => {
     const { authToken, data } = props;
 
     const headers: Record<string, string> = {};
@@ -101,7 +101,7 @@ export const apiMakeFactory =
           }
 
           if (factoryProps.dataMapper) {
-            data = factoryProps.dataMapper(data);
+            data = factoryProps.dataMapper(data, json);
           }
 
           return {
