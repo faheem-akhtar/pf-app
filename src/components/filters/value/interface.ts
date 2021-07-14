@@ -11,8 +11,10 @@ import { FiltersValueFieldMinArea } from './field/min-area';
 import { FiltersValueFieldMinBathroom } from './field/min-bathroom';
 import { FiltersValueFieldMinBedroom } from './field/min-bedroom';
 import { FiltersValueFieldMinPrice } from './field/min-price';
+import { FiltersValueFieldPaymentMethod } from './field/payment-method';
 import { FiltersValueFieldPriceType } from './field/price-type';
 import { FiltersValueFieldSort } from './field/sort';
+import { FiltersValueFieldUtilitiesPriceType } from './field/utilities-price-type';
 import { FiltersValueFieldVirtualViewing } from './field/virtual-viewing';
 import { LocationCompactInterface } from 'components/location/compact.interface';
 
@@ -60,12 +62,12 @@ export interface FiltersValueInterface extends FiltersValueBaseInterface {
   /**
    * Payment method
    */
-  [FiltersParametersEnum.paymentMethod]?: string;
+  [FiltersParametersEnum.paymentMethod]?: FiltersValueFieldPaymentMethod | '';
 
   /**
    * Price inclusive/exclusive
    */
-  [FiltersParametersEnum.utilitiesPriceType]?: string | '';
+  [FiltersParametersEnum.utilitiesPriceType]?: FiltersValueFieldUtilitiesPriceType | '';
 
   /**
    * Virtual viewings
@@ -111,11 +113,6 @@ export interface FiltersValueInterface extends FiltersValueBaseInterface {
    * Furnishing
    */
   [FiltersParametersEnum.furnishing]?: FiltersValueFieldFurnished | '';
-
-  /**
-   * How to order the results
-   */
-  [FiltersParametersEnum.sort]: FiltersValueFieldSort | '';
 
   /**
    * Page number

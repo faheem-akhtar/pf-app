@@ -9,7 +9,7 @@ import { PropertyPriceTypeShortEnum } from 'components/property-price-type/short
 export const backendFiltersValueDefaultBase: FiltersValueInterface = {
   [FiltersParametersEnum.amenities]: [],
   [FiltersParametersEnum.locationsIds]: [],
-  // TODO-FE[] investigate why it is 0 and not an empty string
+  // TODO-FE[TPNX-3049] investigate why it is 0 and not an empty string
   [FiltersParametersEnum.furnishing]: '0' as FiltersValueFieldFurnished,
   [FiltersParametersEnum.pricePeriod]: PropertyPriceTypeShortEnum.yearly as FiltersValueFieldPriceType,
   [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForRent as FiltersValueFieldCategoryId,
