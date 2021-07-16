@@ -6,11 +6,9 @@ import { FiltersValueFieldFurnished } from './field/furnished';
 import { FiltersValueFieldMaxArea } from './field/max-area';
 import { FiltersValueFieldMaxBathroom } from './field/max-bathroom';
 import { FiltersValueFieldMaxBedroom } from './field/max-bedroom';
-import { FiltersValueFieldMaxPrice } from './field/max-price';
 import { FiltersValueFieldMinArea } from './field/min-area';
 import { FiltersValueFieldMinBathroom } from './field/min-bathroom';
 import { FiltersValueFieldMinBedroom } from './field/min-bedroom';
-import { FiltersValueFieldMinPrice } from './field/min-price';
 import { FiltersValueFieldPaymentMethod } from './field/payment-method';
 import { FiltersValueFieldPriceType } from './field/price-type';
 import { FiltersValueFieldSort } from './field/sort';
@@ -27,12 +25,12 @@ export interface FiltersValueInterface extends FiltersValueBaseInterface {
   /**
    * Min price
    */
-  [FiltersParametersEnum.minPrice]: FiltersValueFieldMinPrice | '';
+  [FiltersParametersEnum.minPrice]: number | null;
 
   /**
    * Max price
    */
-  [FiltersParametersEnum.maxPrice]: FiltersValueFieldMaxPrice | '';
+  [FiltersParametersEnum.maxPrice]: number | null;
 
   /**
    * Area (Min)
@@ -77,7 +75,7 @@ export interface FiltersValueInterface extends FiltersValueBaseInterface {
   /**
    * Price period
    */
-  [FiltersParametersEnum.pricePeriod]?: FiltersValueFieldPriceType | '';
+  [FiltersParametersEnum.pricePeriod]?: FiltersValueFieldPriceType;
 
   /**
    * Min beds

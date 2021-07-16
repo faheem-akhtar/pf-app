@@ -5,7 +5,10 @@ import { FiltersDataInterface } from './data/interface';
 import { FiltersValueInterface } from './value/interface';
 
 export const FiltersContext = React.createContext<FiltersContextInterface>({
-  update: (value) => value,
+  change: () => null as unknown as FiltersValueInterface,
+  set: (value) => value,
+  reset: () => null,
   data: null as unknown as FiltersDataInterface,
   value: null as unknown as FiltersValueInterface,
+  valueIsDefault: false,
 });

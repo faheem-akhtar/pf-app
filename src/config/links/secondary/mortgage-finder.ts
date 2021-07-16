@@ -1,6 +1,6 @@
-import { Link } from '../definition.interface';
+import { ConfigLinksLinkInterface } from '../link.interface';
 
-export const configLinksSecondaryMortgageFinder: Link = {
+export const configLinksSecondaryMortgageFinder: ConfigLinksLinkInterface = {
   translationKey: 'mortgage_finder',
   target: 'https://www.mortgagefinder.ae',
 };

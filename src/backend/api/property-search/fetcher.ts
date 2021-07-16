@@ -1,21 +1,18 @@
-import { backendApiFactory } from 'backend/api/backend-factory';
-import { backendApiPropertySearchMapper } from './mapper';
+import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-value';
 
-import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
-import { BackendApiPropertySearchRawJsonResponseType } from './raw-json-response-type';
-import { PropertySearchResultType } from 'components/property/search-result.type';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { FiltersValueInterface } from 'components/filters/value/interface';
+import { backendApiPropertySearchRawFetcher } from './raw-fetcher';
 
-export const backendApiPropertySearchFetcher = backendApiFactory<
-  PropertySearchResultType,
-  BackendApiPropertySearchJsonApiResultType,
-  BackendApiPropertySearchRawJsonResponseType
->({
-  method: 'GET',
-  url: 'search',
-  queryDefaultParams: {
-    include: 'properties,properties.property_type',
-    'page[limit]': 25,
-    sort: 'mr',
-  },
-  dataMapper: backendApiPropertySearchMapper,
-});
+export const backendApiPropertySearchFetcher = (
+  locale: string,
+  filtersValue: FiltersValueInterface
+): ReturnType<typeof backendApiPropertySearchRawFetcher> => {
+  return backendApiPropertySearchRawFetcher({
+    locale,
+    query: objectFilterNonOrEmptyValue({
+      ...filtersValue,
+      [FiltersParametersEnum.locationsIds]: filtersValue[FiltersParametersEnum.locationsIds].map((l) => l.id),
+    }),
+  });
+};

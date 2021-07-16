@@ -10,11 +10,9 @@ import { FiltersValueFieldFurnished } from '../value/field/furnished';
 import { FiltersValueFieldMaxArea } from '../value/field/max-area';
 import { FiltersValueFieldMaxBathroom } from '../value/field/max-bathroom';
 import { FiltersValueFieldMaxBedroom } from '../value/field/max-bedroom';
-import { FiltersValueFieldMaxPrice } from '../value/field/max-price';
 import { FiltersValueFieldMinArea } from '../value/field/min-area';
 import { FiltersValueFieldMinBathroom } from '../value/field/min-bathroom';
 import { FiltersValueFieldMinBedroom } from '../value/field/min-bedroom';
-import { FiltersValueFieldMinPrice } from '../value/field/min-price';
 import { FiltersValueFieldPaymentMethod } from '../value/field/payment-method';
 import { FiltersValueFieldPriceType } from '../value/field/price-type';
 import { FiltersValueFieldPropertyTypeId } from '../value/field/property-type-id';
@@ -43,10 +41,12 @@ export const filtersQueryToValue = (
       (queryParams[FiltersQueryParametersEnum.minBathroom] as FiltersValueFieldMinBathroom) || '',
     [FiltersParametersEnum.maxBathroom]:
       (queryParams[FiltersQueryParametersEnum.maxBathroom] as FiltersValueFieldMaxBathroom) || '',
-    [FiltersParametersEnum.minPrice]:
-      (queryParams[FiltersQueryParametersEnum.minPrice] as FiltersValueFieldMinPrice) || '',
-    [FiltersParametersEnum.maxPrice]:
-      (queryParams[FiltersQueryParametersEnum.maxPrice] as FiltersValueFieldMaxPrice) || '',
+    [FiltersParametersEnum.minPrice]: queryParams[FiltersQueryParametersEnum.minPrice]
+      ? parseInt(queryParams[FiltersQueryParametersEnum.minPrice] as string, 10)
+      : null,
+    [FiltersParametersEnum.maxPrice]: queryParams[FiltersQueryParametersEnum.maxPrice]
+      ? parseInt(queryParams[FiltersQueryParametersEnum.maxPrice] as string, 10)
+      : null,
     [FiltersParametersEnum.furnishing]:
       (queryParams[FiltersQueryParametersEnum.furnishing] as FiltersValueFieldFurnished) || '',
     [FiltersParametersEnum.minArea]:

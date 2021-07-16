@@ -14,5 +14,7 @@ test-reports/
 yarn-error.log
 .next
 # Translations
-/public/static/translations
+/public/static/translations/ar
+/public/static/translations/en
+/public/static/translations/fr
 story-book/

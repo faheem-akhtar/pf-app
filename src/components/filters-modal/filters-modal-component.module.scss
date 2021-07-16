@@ -1,0 +1,42 @@
+.containter {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.content {
+  flex: 1;
+  overflow: scroll;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--spacing) * 2);
+  box-shadow: var(--box-shadow-04);
+}
+
+.footer {
+  padding: calc(var(--spacing) * 2);
+  box-shadow: 0 0.2rem 0.5rem 0.1rem rgb(0 0 0 / 20%), 0 0.1rem 0.2rem 0 rgb(0 0 0 / 15%);
+}
+
+.submit_btn {
+  width: 100%;
+}
+
+.dropdown {
+  align-items: center;
+  justify-content: center;
+  margin: var(--spacing);
+}
+
+.dropdown select {
+  padding: var(--spacing);
+  width: 18rem;
+}

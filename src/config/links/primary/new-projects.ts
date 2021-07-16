@@ -1,6 +1,6 @@
-import { Link } from '../definition.interface';
+import { ConfigLinksLinkInterface } from '../link.interface';
 
-export const configLinksPrimaryNewProjects: Link = {
+export const configLinksPrimaryNewProjects: ConfigLinksLinkInterface = {
   translationKey: 'new_projects',
   target: 'new-projects',
 };

@@ -1,6 +1,6 @@
-import { Link } from '../definition.interface';
+import { ConfigLinksLinkInterface } from '../link.interface';
 
-export const configLinksSecondaryAboutUs: Link = {
+export const configLinksSecondaryAboutUs: ConfigLinksLinkInterface = {
   translationKey: 'about_us',
   target: 'about-us.html',
 };

@@ -1,6 +1,6 @@
-import { Link } from '../definition.interface';
+import { ConfigLinksLinkInterface } from '../link.interface';
 
-export const configLinksSecondaryPrivacyPolicy: Link = {
+export const configLinksSecondaryPrivacyPolicy: ConfigLinksLinkInterface = {
   translationKey: 'privacy_policy',
   target: 'privacy-policy.html',
 };

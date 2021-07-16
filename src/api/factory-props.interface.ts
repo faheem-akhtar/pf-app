@@ -1,10 +1,15 @@
 import { UrlQuery } from '../helpers/types';
 
 export interface ApiFactoryPropsBaseInterface<Result, Data = Object, RawJson = Object> {
+  // TODO-FE[TPNX-3062] Add capabilities for POST
+  /**
+   * True if this endpoint requires user to be logged in
+   */
+  requireAuth?: boolean;
   /**
    * HTTP Method
    */
-  method: 'POST' | 'GET' | 'HEAD';
+  method: 'GET' | 'HEAD';
   /**
    * Endpoint url /api/${url}
    */

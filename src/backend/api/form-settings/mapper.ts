@@ -34,9 +34,15 @@ const FilterFormSettingsParametersMapping: Record<string, Array<string>> = {
 
 type SettingsType = BackendApiFormSettingsSettingType[];
 
-type ValidateSettingsResultType = Record<string, { value: string; choices: { label: string; value: string }[] }>;
+type ValidateSettingsResultType = Record<
+  string,
+  {
+    value: string | string[];
+    choices: { label: string; value: string }[];
+  }
+>;
 
-type ParamsType = Record<string, { value: string }>;
+type ParamsType = Record<string, { value: string | string[] }>;
 
 /**
  * On filter settings validate
@@ -49,23 +55,36 @@ const validateSettings = (settings: SettingsType, params: ParamsType): ValidateS
     ...extractParams(settings, params, fieldsToReset),
   };
 
-  return filterInvalidParams(result, fieldsToReset);
+  return filterInvalidParams(result, fieldsToReset, params);
 };
+
+/**
+ * This fields choices are read directly from the bundle
+ */
+const directChoicesHandlingFields = [FiltersParametersEnum.minPrice, [FiltersParametersEnum.maxPrice]];
 
 /**
  * Filter out params that are invilid for current state of params
  */
-const filterInvalidParams = (params: ParamsType, toRemove: Array<string>): ValidateSettingsResultType => {
+const filterInvalidParams = (
+  params: ParamsType,
+  toRemove: Array<string>,
+  inputParams: ParamsType
+): ValidateSettingsResultType => {
   const validationParams = { ...params };
 
   // Remove price period if sale category is selected
   if (
     ([FiltersCategoryIdEnum.residentialForSale, FiltersCategoryIdEnum.commercialForSale] as Array<string>).includes(
-      params[FiltersParametersEnum.categoryId]?.value
+      inputParams[FiltersParametersEnum.categoryId]?.value as string
     )
   ) {
     delete validationParams[FiltersParametersEnum.pricePeriod];
   }
+
+  directChoicesHandlingFields.forEach((field) => {
+    delete validationParams[field as FiltersParametersEnum];
+  });
 
   toRemove.map((key) => {
     if (validationParams?.[key]) {
@@ -178,7 +197,7 @@ const toFilterParams = (
   return {
     [FilterFormSettingsParametersMapping[filterName][0]]: {
       value: '',
-      ...(Array.isArray(settingsList) && { choices }),
+      choices,
     },
   } as Record<string, { value: string; choices: { value: string; label: string | null }[] | null }>;
 };
@@ -203,11 +222,13 @@ const toFilterValue = (fields: { id: string }[] | void, params: ParamsType): Par
   );
 };
 
+// TODO-FE[] read it directly
 const commonInitialState: Partial<FiltersValueInterface> = {
+  [FiltersParametersEnum.pageNumber]: 1,
   [FiltersParametersEnum.sort]: '',
   [FiltersParametersEnum.locationsIds]: [],
-  [FiltersParametersEnum.minPrice]: '',
-  [FiltersParametersEnum.maxPrice]: '',
+  [FiltersParametersEnum.minPrice]: null,
+  [FiltersParametersEnum.maxPrice]: null,
   [FiltersParametersEnum.minArea]: '',
   [FiltersParametersEnum.maxArea]: '',
   [FiltersParametersEnum.keyword]: '',
@@ -234,10 +255,17 @@ type AllChoicesType = Record<FiltersParametersEnum, FiltersValueFieldChoiceInter
 type ChoicesIndexesType = Record<string, number[]>;
 type InitialStateMap = Record<string, FiltersValueInterface>;
 
+const cleanQueryAndFixAmenities = (value: ValidateSettingsResultType): void => {
+  delete value[FiltersParametersEnum.query];
+  if (value[FiltersParametersEnum.amenities]?.value === '') {
+    value[FiltersParametersEnum.amenities].value = [];
+  }
+};
+
 const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => {
   const choiceAny = {
     value: '',
-    label: 'Any',
+    label: '',
   };
 
   const filterTypesToAddAnyOption: Array<
@@ -269,7 +297,9 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
   ];
 
   filterTypesToAddAnyOption.forEach((filterType) => {
-    initialFilterParams[filterType]?.choices.unshift(choiceAny);
+    if (!initialFilterParams[filterType]?.choices.find((c) => c.value === choiceAny.value)) {
+      initialFilterParams[filterType]?.choices.unshift(choiceAny);
+    }
   });
 };
 
@@ -290,7 +320,19 @@ const makePropertyTypeProcessor =
       [FiltersParametersEnum.propertyTypeId]: { value: propertyTypeValue },
     });
 
+    cleanQueryAndFixAmenities(initialFilterParamsForCategoryAndType);
     addAnyChoice(initialFilterParamsForCategoryAndType);
+
+    // Fix initial value if it is empty, but there are choices available
+    Object.keys(initialFilterParamsForCategoryAndType).forEach((paramKey) => {
+      if (
+        initialFilterParamsForCategoryAndType[paramKey].value === '' &&
+        initialFilterParamsForCategoryAndType[paramKey]?.choices?.length
+      ) {
+        initialFilterParamsForCategoryAndType[paramKey].value =
+          initialFilterParamsForCategoryAndType[paramKey].choices[0].value;
+      }
+    });
 
     const categoryPropertyTypeKey = filtersDataMakeInitialStateKey({
       [FiltersParametersEnum.categoryId]: categoryId as FiltersValueFieldCategoryId,
@@ -299,6 +341,7 @@ const makePropertyTypeProcessor =
     initialStateByCategoryAndPropertyTypeMap[categoryPropertyTypeKey] = extractAndFilterValues(
       initialFilterParamsForCategoryAndType
     );
+
     initialStateByCategoryAndPropertyTypeMap[categoryPropertyTypeKey][FiltersParametersEnum.categoryId] =
       categoryId as FiltersValueFieldCategoryId;
     initialStateByCategoryAndPropertyTypeMap[categoryPropertyTypeKey][FiltersParametersEnum.propertyTypeId] =
@@ -353,7 +396,6 @@ const makePropertyTypeProcessor =
 const makeCategoryProcessor =
   (
     formSettings: BackendApiFormSettingJsonApiResultType,
-    initialStateByCategoryMap: InitialStateMap,
 
     allChoices: AllChoicesType,
     choicesIndexes: ChoicesIndexesType,
@@ -367,19 +409,6 @@ const makeCategoryProcessor =
     });
 
     addAnyChoice(initialFilterParamsForCategory);
-
-    // Fix the default type for the category to be the first type
-    const propertyType = initialFilterParamsForCategory[FiltersParametersEnum.propertyTypeId];
-    propertyType.value = propertyType.choices[0].value;
-
-    const categoryKey = filtersDataMakeInitialStateKey({
-      [FiltersParametersEnum.categoryId]: categoryId as FiltersValueFieldCategoryId,
-      [FiltersParametersEnum.propertyTypeId]: '',
-    });
-
-    initialStateByCategoryMap[categoryKey] = extractAndFilterValues(initialFilterParamsForCategory);
-    initialStateByCategoryMap[categoryKey][FiltersParametersEnum.categoryId] =
-      categoryId as FiltersValueFieldCategoryId;
 
     const processPropertyType = makePropertyTypeProcessor(
       categoryId,
@@ -402,16 +431,9 @@ export const backendApiFormSettingsMapper = (
 ): FiltersDataInterface => {
   const allChoices: AllChoicesType = {} as AllChoicesType;
   const choicesIndexes: ChoicesIndexesType = {};
-  const initialStateByCategoryMap: InitialStateMap = {} as InitialStateMap;
-  const initialStateByCategoryAndPropertyTypeMap: InitialStateMap = {} as Record<string, FiltersValueInterface>;
+  const specificInitialState: InitialStateMap = {} as Record<string, FiltersValueInterface>;
 
-  const processCategory = makeCategoryProcessor(
-    formSettings,
-    initialStateByCategoryMap,
-    allChoices,
-    choicesIndexes,
-    initialStateByCategoryAndPropertyTypeMap
-  );
+  const processCategory = makeCategoryProcessor(formSettings, allChoices, choicesIndexes, specificInitialState);
 
   // Traverse each category to fill up the choices and initial states
   [
@@ -420,11 +442,6 @@ export const backendApiFormSettingsMapper = (
     FiltersCategoryIdEnum.commercialForSale,
     FiltersCategoryIdEnum.commercialForRent,
   ].forEach(processCategory);
-
-  const specificInitialState = {
-    ...initialStateByCategoryMap,
-    ...initialStateByCategoryAndPropertyTypeMap,
-  };
 
   return {
     initialState: Object.keys(specificInitialState).reduce((acc, key) => {

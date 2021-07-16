@@ -1,13 +1,4 @@
-export type Link = {
-  /**
-   * translation key for links
-   */
-  translationKey: string;
-  /**
-   * target path or url
-   */
-  target: string;
-};
+import { ConfigLinksLinkInterface } from './link.interface';
 
 export interface ConfigLinksDefinitionInterface {
   /**
@@ -15,13 +6,13 @@ export interface ConfigLinksDefinitionInterface {
    * header menu links partially in desktop
    * footer blue links in mobile
    */
-  primary: [Link[], Link[]];
+  primary: [ConfigLinksLinkInterface[], ConfigLinksLinkInterface[]];
   /**
    * secondary links
    * footer links in desktop
    * gray links in mobile
    */
-  secondary: [Link[], Link[]];
+  secondary: [ConfigLinksLinkInterface[], ConfigLinksLinkInterface[]];
   /**
    * iOS - Mobile app link
    */

@@ -1,6 +1,6 @@
-import { Link } from '../definition.interface';
+import { ConfigLinksLinkInterface } from '../link.interface';
 
-export const configLinksPrimaryBlog: Link = {
+export const configLinksPrimaryBlog: ConfigLinksLinkInterface = {
   translationKey: 'blog',
   target: 'https://blog.propertyfinder.qa',
 };

@@ -5,7 +5,7 @@ import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-
 import { FiltersQueryInterface } from '../query/interface';
 import { FiltersValueInterface } from './interface';
 
-export const filtersValueTo = (params: FiltersValueInterface): FiltersQueryInterface => {
+export const filtersValueToQuery = (params: FiltersValueInterface): FiltersQueryInterface => {
   return objectFilterNonOrEmptyValue<FiltersQueryInterface>({
     [FiltersQueryParametersEnum.locationsIds]: params[FiltersParametersEnum.locationsIds].map((l) => l.id).join('-'),
     [FiltersQueryParametersEnum.categoryId]: params[FiltersParametersEnum.categoryId],
@@ -14,8 +14,8 @@ export const filtersValueTo = (params: FiltersValueInterface): FiltersQueryInter
     [FiltersQueryParametersEnum.maxBedroom]: params[FiltersParametersEnum.maxBedroom],
     [FiltersQueryParametersEnum.minBathroom]: params[FiltersParametersEnum.minBathroom],
     [FiltersQueryParametersEnum.maxBathroom]: params[FiltersParametersEnum.maxBathroom],
-    [FiltersQueryParametersEnum.minPrice]: params[FiltersParametersEnum.minPrice],
-    [FiltersQueryParametersEnum.maxPrice]: params[FiltersParametersEnum.maxPrice],
+    [FiltersQueryParametersEnum.minPrice]: String(params[FiltersParametersEnum.minPrice]),
+    [FiltersQueryParametersEnum.maxPrice]: String(params[FiltersParametersEnum.maxPrice]),
     [FiltersQueryParametersEnum.furnishing]: params[FiltersParametersEnum.furnishing],
     [FiltersQueryParametersEnum.minArea]: params[FiltersParametersEnum.minArea],
     [FiltersQueryParametersEnum.maxArea]: params[FiltersParametersEnum.maxArea],

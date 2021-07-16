@@ -1,7 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { PropertySearchComponentPropsType } from 'views/property-search/view-props.type';
 import { PropertySearchView } from 'views/property-search/view';
 
@@ -9,14 +8,15 @@ import { backendApiFormSettingsFetcher } from 'backend/api/form-settings/fetcher
 import { backendApiLocationAllFetcher } from 'backend/api/location/all-fetcher';
 import { backendApiPropertySearchFetcher } from 'backend/api/property-search/fetcher';
 import { filtersQueryToValue } from 'components/filters/query/to-value';
-import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-value';
 
 export const getServerSideProps: GetServerSideProps<PropertySearchComponentPropsType> = async (
   context: GetServerSidePropsContext
 ) => {
+  const locale = context.locale as string;
+
   // TODO-FE[TPNX-3047] consider fetching form-settings during the build
   const formSettingsResult = await backendApiFormSettingsFetcher({
-    locale: context.locale,
+    locale,
   });
 
   if (!formSettingsResult.ok) {
@@ -32,9 +32,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchComponentProps
   const filtersData = formSettingsResult.data;
 
   // TODO-FE[TPNX-3047] consider fetching locations during the build
-  const allLocationsResult = await backendApiLocationAllFetcher({
-    locale: context.locale,
-  });
+  const allLocationsResult = await backendApiLocationAllFetcher({ locale });
 
   if (!allLocationsResult.ok) {
     context.res.statusCode = 500;
@@ -48,13 +46,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchComponentProps
 
   const filtersValueFromQuery = filtersQueryToValue(context.query, allLocationsResult.data);
 
-  const searchResult = await backendApiPropertySearchFetcher({
-    locale: context.locale,
-    query: objectFilterNonOrEmptyValue({
-      ...filtersValueFromQuery,
-      [FiltersParametersEnum.locationsIds]: filtersValueFromQuery[FiltersParametersEnum.locationsIds].map((l) => l.id),
-    }),
-  });
+  const searchResult = await backendApiPropertySearchFetcher(locale, filtersValueFromQuery);
 
   if (!searchResult.ok) {
     context.res.statusCode = 500;
@@ -72,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchComponentProps
       filtersData,
       filtersValueFromQuery,
       searchResult: searchResult.data,
-      ...(await serverSideTranslations(context.locale as string, ['common'])),
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
   };
 };

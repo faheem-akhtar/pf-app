@@ -1,6 +1,6 @@
-import { Link } from '../definition.interface';
+import { ConfigLinksLinkInterface } from '../link.interface';
 
-export const configLinksPrimaryCommercialRent: Link = {
+export const configLinksPrimaryCommercialRent: ConfigLinksLinkInterface = {
   translationKey: 'commercial_rent',
   target: '/commercial-rent/properties-for-rent.html',
 };

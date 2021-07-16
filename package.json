@@ -39,7 +39,8 @@
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
     "react-ssr-prepass": "npm:preact-ssr-prepass",
-    "sass": "^1.35.1"
+    "sass": "^1.35.1",
+    "swr": "^0.5.6"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

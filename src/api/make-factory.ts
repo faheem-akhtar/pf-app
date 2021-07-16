@@ -1,9 +1,12 @@
 import { ApiFactoryPropsBaseInterface } from './factory-props.interface';
 import { ApiFetcherResultType } from './fetcher-result-type';
+import { ApiHeaderEnum } from 'enums/api/header.enum';
 import { ApiMakeFactoryPropsInterface } from './make-factory-props.interface';
-import { DataApiFetcherRequestProps } from './request-props.interface';
+import { DataApiFetcherRequestPropsType } from './request-props.type';
+
 import { urlQuerySerialize } from '../helpers/url-query/serialize';
 
+// TODO-FE[TPNX-3062] Add POST capabilities
 // TODO-FE[TPNX-3009] Add tests
 /**
  * Base for all network requsts
@@ -18,8 +21,8 @@ import { urlQuerySerialize } from '../helpers/url-query/serialize';
 export const apiMakeFactory =
   (makeFactoryProps: ApiMakeFactoryPropsInterface) =>
   <Result, Data = Object, RawJson = Object>(factoryProps: ApiFactoryPropsBaseInterface<Result, Data, RawJson>) =>
-  (props: DataApiFetcherRequestProps): Promise<ApiFetcherResultType<Result>> => {
-    const { authToken, data } = props;
+  <QueryData>(props: DataApiFetcherRequestPropsType<QueryData>): Promise<ApiFetcherResultType<Result>> => {
+    const { authToken, locale } = props;
 
     const headers: Record<string, string> = {};
 
@@ -27,18 +30,16 @@ export const apiMakeFactory =
       makeFactoryProps.alterHeaders(headers);
     }
 
-    if (authToken) {
-      headers['x-pf-jwt'] = `Bearer ${authToken}`;
+    if (factoryProps.requireAuth && authToken) {
+      headers[ApiHeaderEnum.auth] = `Bearer ${authToken}`;
     }
+
+    headers[ApiHeaderEnum.locale] = locale;
 
     const payload: Record<string, string | Record<string, string>> = {
       method: factoryProps.method,
       headers,
     };
-
-    if (data) {
-      payload.body = JSON.stringify({ data });
-    }
 
     if (props.reloadCache) {
       payload.cache = 'reload';
@@ -48,7 +49,6 @@ export const apiMakeFactory =
       payload.cache = 'no-cache';
     }
 
-    const locale = props.locale;
     const basePath = `${makeFactoryProps.getOrigin()}/${locale}/api`;
 
     let finalUrl = `${basePath}/${factoryProps.url}`;

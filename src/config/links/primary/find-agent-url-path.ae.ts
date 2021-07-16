@@ -1,1 +1,1 @@
-export const configLinksFindAgentUrlPath = '/find-agent';
+export const configLinksPrimaryFindAgentUrlPath = '/find-agent';
