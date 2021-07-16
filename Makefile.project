@@ -16,12 +16,13 @@ yarn-build:
 	@echo "======================"
 	docker-compose -f ${DOCKER_COMPOSE_FILE} run --rm pfwebapp-builder bash -c 'yarn build'
 
-build-app: yarn-install yarn-build
+build-app: yarn-install i18n-download yarn-build
 
 run-tests: yarn-install
 	@echo "======================"
 	@echo "Skipped tests"
 	@echo "======================"
+
 
 ###############
 # i18n #
@@ -30,17 +31,13 @@ run-tests: yarn-install
 i18n-download:
 	docker-compose run --rm --user root pfwebapp-builder sh -c '\
         lokalise2 file download \
-        --token  ${LOKALISE_API_TOKEN} \
+        --token ${LOKALISE_API_TOKEN} \
         --project-id ${LOKALISE_PROJECT_ID} \
         --export-empty-as skip \
         --export-sort first_added \
         --format json \
-        --all-platforms  other \
+        --all-platforms other \
         --filter-filenames common/messages.%LANG_ISO%.po \
-        --bundle-structure  %LANG_ISO%/common.json \
+        --bundle-structure %LANG_ISO%/common.json \
         --original-filenames=false \
-        --unzip-to ./public/static/translations
-
-
-
-
+        --unzip-to ./public/static/translations'

@@ -7,5 +7,6 @@ EXPOSE 8080 3000
 
 COPY . /src
 COPY ./scripts /scripts
+COPY ./public /public
 
 CMD ["/docker-entrypoint.sh"]
