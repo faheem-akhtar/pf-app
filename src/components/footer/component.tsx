@@ -1,5 +1,4 @@
 import { CopyrightTemplate } from 'components/copyright/template';
-import { FunctionalComponent } from 'preact';
 import { IconAppStoreTemplate } from './icon/app-store.template';
 import { IconGooglePlayTemplate } from './icon/google-play.template';
 import { configLinksDefinition } from 'config/links/definition';
@@ -9,36 +8,44 @@ import styles from './footer.module.scss';
 import { useTranslation } from 'react-i18next';
 
 // TODO-FE[TPNX-3009] Add tests
-export const FooterComponent: FunctionalComponent = () => {
+export const FooterComponent = (): JSX.Element => {
   const { t } = useTranslation('common');
 
   return (
     <footer className={styles.footer}>
-      <ul className={domClassMerge(styles.section, styles.categories)}>
-        {configLinksDefinition.primary.map((link) => (
-          <li className={styles.item} key={link.translationKey}>
-            <a className={domClassMerge(styles.link, styles.primary)} href={link.urlPath}>
-              {t(link.translationKey)}
-            </a>
-          </li>
+      <div className={domClassMerge(styles.section, styles.categories)}>
+        {configLinksDefinition.primary.map((links, index) => (
+          <ul className={styles.container} key={`links-${index}`}>
+            {links.map((link) => (
+              <li key={link.translationKey} className={styles.item}>
+                <a className={domClassMerge(styles.link, styles.primary)} href={t(link.target)}>
+                  {t(link.translationKey)}
+                </a>
+              </li>
+            ))}
+          </ul>
         ))}
-      </ul>
-      <ul className={styles.section}>
-        {configLinksDefinition.secondary.map((link) => (
-          <li className={styles.item} key={link.translationKey}>
-            <a className={domClassMerge(styles.link, styles.secondary)} href={link.urlPath}>
-              {t(link.translationKey)}
-            </a>
-          </li>
+      </div>
+      <div className={styles.section}>
+        {configLinksDefinition.secondary.map((links, index) => (
+          <ul className={styles.container} key={`links-${index}`}>
+            {links.map((link) => (
+              <li key={link.translationKey} className={styles.item}>
+                <a className={domClassMerge(styles.link, styles.secondary)} href={t(link.target)}>
+                  {t(link.translationKey)}
+                </a>
+              </li>
+            ))}
+          </ul>
         ))}
-      </ul>
+      </div>
       <ul className={domClassMerge(styles.section, styles.apps)}>
-        <li className={styles.item}>
+        <li className={domClassMerge(styles.item, styles.container)}>
           <a className={styles.downloadLink} href={configLinksDefinition.iosDownloadLink}>
             <IconAppStoreTemplate />
           </a>
         </li>
-        <li className={styles.item}>
+        <li className={domClassMerge(styles.item, styles.container)}>
           <a className={styles.downloadLink} href={configLinksDefinition.androidDownloadLink}>
             <IconGooglePlayTemplate />
           </a>

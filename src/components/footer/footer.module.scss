@@ -17,6 +17,12 @@
   margin-bottom: calc(var(--spacing) * 2.5);
 }
 
+.container {
+  width: 48%;
+  font-size: var(--font-size-08);
+  line-height: 1.6rem;
+}
+
 .apps {
   margin-top: calc(var(--spacing) * 4);
 }
@@ -31,9 +37,6 @@
 }
 
 .item {
-  width: 48%;
-  font-size: var(--font-size-08);
-  line-height: 1.6rem;
   margin-bottom: calc(var(--spacing) * 2.5);
 }
 
