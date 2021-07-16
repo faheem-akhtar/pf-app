@@ -7,8 +7,8 @@ Website - rewrite repository
 To start container in local, please run scripts in root folder
 
 ```
+make build-images
 docker-compose up -d
-make build-app
 ```
 
 #### Start project
