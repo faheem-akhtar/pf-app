@@ -1,5 +1,9 @@
 .container {
+  margin: calc(var(--spacing) * 2);
+}
+
+.buttons_row {
   display: flex;
   justify-content: space-between;
-  margin: calc(var(--spacing) * 2);
+  margin-top: var(--spacing);
 }

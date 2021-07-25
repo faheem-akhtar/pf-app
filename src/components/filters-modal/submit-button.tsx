@@ -1,6 +1,7 @@
 import { useApiPropertySearchCount } from 'api/property-search-count/use';
 
 import { ButtonSizeEnum } from 'library/button/size.enum';
+import { FetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
 import { FiltersModalSubmitButtonPropsInterface } from './submit-button-props.interface';
 import { LibraryButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { LibraryButtonTemplate } from 'library/button/template';
@@ -10,8 +11,14 @@ import styles from './filters-modal-component.module.scss';
 export const FiltersModalSubmitButton = ({
   onSubmit,
   filtersValue,
+  forceNumberOfProperties,
 }: FiltersModalSubmitButtonPropsInterface): JSX.Element => {
-  const result = useApiPropertySearchCount(filtersValue);
+  const doNotFetch = forceNumberOfProperties !== null;
+  let result = useApiPropertySearchCount(filtersValue, doNotFetch);
+
+  if (forceNumberOfProperties !== null) {
+    result = { ok: true, data: forceNumberOfProperties } as FetcherResultSuccessInterface<number>;
+  }
 
   return (
     <LibraryButtonTemplate

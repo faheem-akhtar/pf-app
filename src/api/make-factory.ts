@@ -49,7 +49,9 @@ export const apiMakeFactory =
       payload.cache = 'no-cache';
     }
 
-    const basePath = `${makeFactoryProps.getOrigin()}/${locale}/api`;
+    const getOrigin = props.getOrigin || makeFactoryProps.getOrigin;
+
+    const basePath = `${getOrigin()}/${locale}/api`;
 
     let finalUrl = `${basePath}/${factoryProps.url}`;
 

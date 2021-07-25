@@ -1,10 +1,10 @@
-import { PropertySerpInterface } from 'components/property/serp.interface';
+import { PropertySerpObfuscatedType } from './serp/obfuscated/type';
 
 export type PropertySearchResultType = {
   /**
    * Array of property cards
    */
-  properties: PropertySerpInterface[];
+  properties: PropertySerpObfuscatedType[];
   /**
    * Total number of properties available for this search parameters
    */

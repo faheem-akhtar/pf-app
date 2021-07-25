@@ -5,7 +5,9 @@
  * When argument is an object, all of its properties
  * whose values are evaluating to true are added to the list.
  */
-export function domClassMerge(...args: Array<string | number | Record<string, boolean> | undefined>): string {
+export function domClassMerge(
+  ...args: Array<string | number | Record<string, boolean | null | void> | undefined>
+): string {
   const classes = [];
 
   for (const arg of args) {

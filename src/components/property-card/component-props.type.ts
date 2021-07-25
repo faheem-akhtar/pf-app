@@ -1,6 +1,6 @@
-import { PropertySerpInterface } from 'components/property/serp.interface';
+import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 
 export type PropertyCardComponentPropsType = {
-  property: PropertySerpInterface;
+  property: PropertySerpObfuscatedType;
   loading: boolean;
 };

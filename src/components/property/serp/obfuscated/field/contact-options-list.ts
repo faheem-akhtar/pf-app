@@ -1,0 +1,2 @@
+export const propertySerpObfuscatedFieldContactOptionsList: string = process.env
+  .NEXT_PUBLIC_PROPERTY_SERP_OBFUSCATED_FIELD_CONTACT_OPTIONS_LIST as string;

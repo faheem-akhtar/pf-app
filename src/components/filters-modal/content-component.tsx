@@ -13,6 +13,7 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueInterface } from '../filters/value/interface';
 import { LibraryButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { LibraryButtonTemplate } from 'library/button/template';
+import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
 
 import { filtersDataChoicesGetCategoryId } from '../filters/data/choices/get-category-id';
 import { filtersDataChoicesGetCompletionStatus } from '../filters/data/choices/get-completeon-status';
@@ -28,10 +29,10 @@ import { filtersDataChoicesGetPropertyTypeId } from '../filters/data/choices/get
 import { filtersDataChoicesGetVirtualViewing } from '../filters/data/choices/get-virtual-viewing';
 import { filtersDataGetEnabledFilterTypes } from '../filters/data/get-enabled-filter-types';
 import { filtersValueEquals } from 'components/filters/value/equals';
+import { useFiltersDataPriceChoices } from 'components/filters/data/choices/use-price-choices';
 import { useFiltersValueState } from 'components/filters/value/use-state';
 
 import styles from './filters-modal-component.module.scss';
-import { useFiltersDataPriceChoices } from 'components/filters/data/choices/use-price-choices';
 
 interface RenderWidgetPropsInterface {
   filtersValue: FiltersValueInterface;
@@ -180,6 +181,7 @@ const filtersSequence = Object.keys(widgetRenderMap);
 
 // TODO-FE[TPNX-3061] Replace this temporary modal implementation with a permanent one
 export const FiltersModalContentComponent = ({ close }: { close: () => void }): JSX.Element => {
+  const resultsCountForCurrentQuery = useContext(PropertySearchResultsCountForCurrentQueryContext);
   const filtersCtx = useContext(FiltersContext);
   const { filtersValue, changeFiltersValue, resetFiltersValue, filtersValueIsDefault } = useFiltersValueState(
     filtersCtx.data,
@@ -231,17 +233,16 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
           );
         })}
       </div>
-      {!filtersHasNotBeenChanged && (
-        <div className={styles.footer}>
-          <FiltersModalSubmitButton
-            filtersValue={filtersValue}
-            onSubmit={(): void => {
-              close();
-              filtersCtx.set(filtersValue);
-            }}
-          />
-        </div>
-      )}
+      <div className={styles.footer}>
+        <FiltersModalSubmitButton
+          forceNumberOfProperties={filtersHasNotBeenChanged ? resultsCountForCurrentQuery : null}
+          filtersValue={filtersValue}
+          onSubmit={(): void => {
+            close();
+            filtersCtx.set(filtersValue);
+          }}
+        />
+      </div>
     </div>
   );
 };

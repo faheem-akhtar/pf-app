@@ -8,7 +8,7 @@ module.exports = withPreact({
   distDir: buildConfig.getDistDir(),
   webpack: (config) => {
     const countryCode = process.env.NEXT_PUBLIC_COUNTRY_CODE.toLowerCase();
-    config.resolve.extensions.unshift(`.${countryCode}.ts`, `.${countryCode}.tsx`);
+    config.resolve.extensions.unshift(`.${countryCode}.ts`, `.${countryCode}.tsx`, `.${countryCode}.json`);
 
     config.resolve.alias['~language'] = getLanguageCssAlias();
 
@@ -25,5 +25,30 @@ module.exports = withPreact({
     }
 
     return config;
+  },
+  compress: false,
+  async headers() {
+    return [
+      {
+        // to enable 30 min akamai cache:
+        source: '/search',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=1800, s-maxage=1800, stale-while-revalidate=1800',
+          },
+        ],
+      },
+      {
+        // cache for 10 years
+        source: '/api/location/list',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=315360000, s-maxage=315360000, stale-while-revalidate=315360000',
+          },
+        ],
+      },
+    ];
   },
 });

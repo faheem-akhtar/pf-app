@@ -1,4 +1,4 @@
-import { PropertyContactOptionsListInterace } from './contact-option-list.interface';
+import { PropertyContactOptionsListInterace } from '../contact-option-list.interface';
 
 export interface PropertySerpInterface {
   /**

@@ -13,4 +13,8 @@ export type DataApiFetcherRequestBasePropsType<Query = UrlQuery> = {
    * Url Query object
    */
   query?: Query;
+  /**
+   * Specify the origin for the request
+   */
+  getOrigin?: () => string;
 };

@@ -15,14 +15,14 @@ import styles from './pagination-section.module.scss';
 // TODO-FE[TPNX-3064] Proper implementation for pagination section
 Router.events.on('routeChangeStart', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-const renderLink = (router: NextRouter, text: string, page: number, visible: boolean): JSX.Element => {
-  const url = `${router.pathname}?${urlQuerySerialize({ ...router.query, page })}`;
+const renderLink = (router: NextRouter, text: string, page: number, hidden: boolean): JSX.Element => {
+  const url = `/${router.locale}${router.pathname}?${urlQuerySerialize({ ...router.query, page })}`;
 
   return (
     <LibraryButtonTemplate
-      className={visible ? styles.hidden : ''}
-      href={`${router.pathname}?${urlQuerySerialize({ ...router.query, page })}`}
+      className={hidden ? styles.hidden : ''}
       componentType={LibraryButtonComponentTypeEnum.secondary}
+      href={hidden ? '#' : url}
       size={ButtonSizeEnum.small}
       onClick={(e): void => {
         e?.preventDefault();

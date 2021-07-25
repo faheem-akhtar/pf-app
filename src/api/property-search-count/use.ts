@@ -5,8 +5,11 @@ import { ApiHookResultType } from 'api/hook-result-type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { UrlQuery } from 'helpers/types';
 
-export const useApiPropertySearchCount = (filtersValue: FiltersValueInterface): ApiHookResultType<number> =>
+export const useApiPropertySearchCount = (
+  filtersValue: FiltersValueInterface,
+  doNotFetch: boolean
+): ApiHookResultType<number> =>
   apiHookFactory<number>({
     method: 'GET',
     url: 'property-search/count',
-  })({ query: filtersValueToQuery(filtersValue) as UrlQuery });
+  })({ query: filtersValueToQuery(filtersValue) as UrlQuery, swrDoNotFetch: doNotFetch });

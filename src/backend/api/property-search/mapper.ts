@@ -1,16 +1,16 @@
+import { backendPropertySerpObfuscate } from 'backend/property/serp-obfuscate';
+import { isTrace } from 'config/is-trace';
+
 import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
 import { BackendApiPropertySearchRawJsonResponseType } from './raw-json-response-type';
 import { PropertySearchResultType } from 'components/property/search-result.type';
-import { PropertySerpInterface } from 'components/property/serp.interface';
-
-import { isTrace } from 'config/is-trace';
+import { PropertySerpInterface } from 'components/property/serp/interface';
 
 export const backendApiPropertySearchMapper = (
   data: BackendApiPropertySearchJsonApiResultType,
   rawJson: BackendApiPropertySearchRawJsonResponseType
 ): PropertySearchResultType => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const properties = data.properties.map((property) => {
+  const properties: PropertySerpInterface[] = data.properties.map((property) => {
     const {
       name,
       links,
@@ -50,7 +50,7 @@ export const backendApiPropertySearchMapper = (
   });
 
   const result: PropertySearchResultType = {
-    properties,
+    properties: properties.map(backendPropertySerpObfuscate),
     total: rawJson.data.relationships.properties.meta.total_count,
     pages: rawJson.data.relationships.properties.meta.page_count,
   };

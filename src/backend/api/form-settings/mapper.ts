@@ -8,7 +8,7 @@ import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field
 import { FiltersValueFieldPropertyTypeId } from 'components/filters/value/field/property-type-id';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 
-import { backendFiltersValueDefault } from 'backend/filters-value/default';
+import { backendFiltersValueDefault } from 'backend/filters/value/default';
 import { filtersDataMakeChoicesIndexesKey } from 'components/filters/data/make-choices-indexes-key';
 import { filtersDataMakeInitialStateKey } from 'components/filters/data/make-initial-state-key';
 

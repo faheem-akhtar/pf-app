@@ -1,50 +1,20 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import { backendApiPropertySearchFetcher } from 'backend/api/property-search/fetcher';
+import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
+import filtersDataByLocale from '../../public/static/filters-data';
+
+import { FiltersDataInterface } from 'components/filters/data/interface';
 import { PropertySearchComponentPropsType } from 'views/property-search/view-props.type';
 import { PropertySearchView } from 'views/property-search/view';
-
-import { backendApiFormSettingsFetcher } from 'backend/api/form-settings/fetcher';
-import { backendApiLocationAllFetcher } from 'backend/api/location/all-fetcher';
-import { backendApiPropertySearchFetcher } from 'backend/api/property-search/fetcher';
-import { filtersQueryToValue } from 'components/filters/query/to-value';
 
 export const getServerSideProps: GetServerSideProps<PropertySearchComponentPropsType> = async (
   context: GetServerSidePropsContext
 ) => {
   const locale = context.locale as string;
 
-  // TODO-FE[TPNX-3047] consider fetching form-settings during the build
-  const formSettingsResult = await backendApiFormSettingsFetcher({
-    locale,
-  });
-
-  if (!formSettingsResult.ok) {
-    context.res.statusCode = 500;
-    return {
-      props: {
-        ok: false,
-        error: `failed to fetch the form settings. (${formSettingsResult.error.status}) ${formSettingsResult.error.body}`,
-      },
-    };
-  }
-
-  const filtersData = formSettingsResult.data;
-
-  // TODO-FE[TPNX-3047] consider fetching locations during the build
-  const allLocationsResult = await backendApiLocationAllFetcher({ locale });
-
-  if (!allLocationsResult.ok) {
-    context.res.statusCode = 500;
-    return {
-      props: {
-        ok: false,
-        error: `failed to fetch the locations. (${allLocationsResult.error.status}) ${allLocationsResult.error.body}`,
-      },
-    };
-  }
-
-  const filtersValueFromQuery = filtersQueryToValue(context.query, allLocationsResult.data);
+  const filtersValueFromQuery = backendFiltersQueryToValue(context.query, locale);
 
   const searchResult = await backendApiPropertySearchFetcher(locale, filtersValueFromQuery);
 
@@ -61,7 +31,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchComponentProps
   return {
     props: {
       ok: true,
-      filtersData,
+      filtersData: (filtersDataByLocale as unknown as Record<string, FiltersDataInterface>)[locale],
       filtersValueFromQuery,
       searchResult: searchResult.data,
       ...(await serverSideTranslations(locale as string, ['common'])),

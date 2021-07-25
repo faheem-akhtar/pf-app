@@ -52,18 +52,18 @@ spec:
               containerPort: 8080
               protocol: TCP
           env:
+            - name: NEXT_PUBLIC_COUNTRY_CODE
+              value: {{ $country }}
             {{- if eq $site "mobile" }}
             - name: NEXT_PUBLIC_MOBILE
-              value: ""
+              value: "1"
             {{- else}}
             - name: NEXT_PUBLIC_MOBILE
-              value: "1"
+              value: ""
             {{- end }}
             - name: ENVIRONMENT
               value: {{ $data.Values.environment }}
             {{- if ne $data.Values.environment "prenv" }}
-            - name: COUNTRY
-              value: {{ $country }}
             - name: DD_AGENT_HOST
               valueFrom:
                 fieldRef:
