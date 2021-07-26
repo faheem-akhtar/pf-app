@@ -3,3 +3,4 @@ Dockerfile*
 Makefile*
 dist
 yarn.lock
+result/

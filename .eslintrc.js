@@ -14,19 +14,13 @@ module.exports = {
     project: ['./tsconfig.json', './tsconfig.jest.json'],
     tsconfigRootDir: __dirname,
   },
-  plugins: [
-    '@typescript-eslint',
-    // TODO-FE[TPNX-3019] - activate once done
-    // 'pf-rules'
-  ],
+  plugins: ['@typescript-eslint', 'pf-rules'],
   root: true,
   rules: {
     'new-cap': ['warn', { newIsCap: true, capIsNew: false }],
     'no-console': 'warn',
     'object-shorthand': ['warn', 'properties'],
     'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true }],
-    // TODO-FE[TPNX-3019] - activate once done
-    // 'pf-rules/imports-group': 'warn',
     '@typescript-eslint/no-var-requires': 0,
     'no-irregular-whitespace': 'off',
     // TODO-FE[TPNX-2309] - Remove these once fixed
@@ -39,8 +33,22 @@ module.exports = {
     'no-prototype-builtins': 'warn',
     'no-global-assign': 'warn',
     // TODO-FE[TPNX-3019] - activate once done
-    // 'pf-rules/filename-validation': 'warn',
-    // 'pf-rules/export-name-validation': 'warn',
+    'pf-rules/filename-validation': 'warn',
+    'pf-rules/export-name-validation': [
+      'warn',
+      {
+        ignorePascalCase: {
+          regex: '^(use|backend|api|config|feature)',
+          match: true,
+        },
+      },
+    ],
+    'pf-rules/must-prefix': [
+      'error',
+      {
+        prefixes: ['backend', 'api'],
+      },
+    ],
     'react/self-closing-comp': 'warn',
     'prefer-const': 'error',
     'no-unneeded-ternary': 'warn',
@@ -73,6 +81,18 @@ module.exports = {
         '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/ban-ts-comment': 'warn',
         '@typescript-eslint/triple-slash-reference': 'warn',
+        '@typescript-eslint/naming-convention': [
+          'error',
+          {
+            selector: ['variable', 'function'],
+            modifiers: ['exported'],
+            format: ['PascalCase', 'camelCase'],
+            filter: {
+              regex: '^(use|backend|api|config|feature)',
+              match: false,
+            },
+          },
+        ],
       },
     },
   ],
