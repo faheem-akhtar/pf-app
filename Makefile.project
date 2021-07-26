@@ -20,8 +20,9 @@ build-app: yarn-install i18n-download yarn-build
 
 run-tests: yarn-install
 	@echo "======================"
-	@echo "Skipped tests"
+	@echo "Running tests"
 	@echo "======================"
+	docker-compose -f ${DOCKER_COMPOSE_FILE} run --rm pfwebapp-builder bash -c 'yarn test'
 
 
 ###############

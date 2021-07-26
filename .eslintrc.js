@@ -11,7 +11,7 @@ module.exports = {
     },
     ecmaVersion: 12,
     sourceType: 'module',
-    project: './tsconfig.json',
+    project: ['./tsconfig.json', './tsconfig.jest.json'],
     tsconfigRootDir: __dirname,
   },
   plugins: [
@@ -24,7 +24,7 @@ module.exports = {
     'new-cap': ['warn', { newIsCap: true, capIsNew: false }],
     'no-console': 'warn',
     'object-shorthand': ['warn', 'properties'],
-    'sort-imports': ['warn', { allowSeparatedGroups: true }],
+    'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true }],
     // TODO-FE[TPNX-3019] - activate once done
     // 'pf-rules/imports-group': 'warn',
     '@typescript-eslint/no-var-requires': 0,

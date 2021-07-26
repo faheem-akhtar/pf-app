@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderComponent should create the wrapper 1`] = `"<header>Mobile Header TODO-FE[TPNX-2973]</header>"`;

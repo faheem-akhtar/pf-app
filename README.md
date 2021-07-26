@@ -24,3 +24,20 @@ The page to be run is decided by the ingress defined in `chars/pf-web-app/values
 URL is resolved in in sequence from left to right.
 
 Healtcheck path: /pf-web-app/ping
+
+## Testing
+
+The app is tested with [jest](https://jestjs.io/) and [enzyme](https://enzymejs.github.io/enzyme/).
+
+There are 4 scripts to test the app:
+
+- `test`: Tests the app, will close on success or fail.
+- `test:watch`: Tests the app but keeps running, will automaticaly run the test for the modified files.
+- `test:update`: Tests the app and is used to update snapshots (if any).
+- `test:coverage`: Tests the app and creates a coverage reporter.
+
+To test a single file just add the path to the end of the comment like:
+
+```bash
+yarn test:update src/components/header/__tests__/component.spec.tsx
+```
