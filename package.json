@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/Propertyfinder/pf-web-app",
   "scripts": {
-    "dev": "yarn download-resources && next dev -p 8080",
+    "dev": "yarn download-i18n && yarn download-resources && next dev -p 8080",
     "dev-desktop": "NEXT_PUBLIC_MOBILE= yarn dev",
     "dev-qa": "NEXT_PUBLIC_COUNTRY_CODE=qa yarn dev",
     "dev-qa-desktop": "NEXT_PUBLIC_COUNTRY_CODE=qa yarn dev-desktop",
@@ -32,7 +32,8 @@
     "prettier-fix": "prettier --write",
     "prepare": "husky install",
     "setup-vscode": "node ./scripts/setup-vscode",
-    "download-resources": "./scripts/download-resources/run.sh"
+    "download-resources": "./scripts/download-resources/run.sh",
+    "download-i18n": "make i18n-download"
   },
   "lint-staged": {
     "*.{js,ts,tsx,css,scss,md}": "prettier --check",
