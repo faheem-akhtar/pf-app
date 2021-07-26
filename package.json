@@ -80,6 +80,7 @@
     "lint-staged": "^11.0.0",
     "node-fetch-polyfill": "^2.0.6",
     "prettier": "^2.3.2",
+    "sass-loader": "^10",
     "style-loader": "^2.0.0",
     "stylelint": "^13.13.1",
     "stylelint-declaration-strict-value": "^1.7.12",
