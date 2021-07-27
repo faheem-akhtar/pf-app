@@ -1,13 +1,19 @@
+interface ExtensionAndPrefix {
+  extension: string;
+  prefix: string;
+}
+
 export interface ExportNameOptionInterface {
-  /**
-   * Whether or not to ignore the pascal case in filenames matching regex
-   */
-  ignorePascalCase?: {
-    match: boolean;
-    regex: string;
-  };
   /**
    * Base folder for naming suggestions, default "src"
    */
   rootFolder: string;
+  /**
+   * Regex to enforce pascal case in certain types of modules
+   */
+  enforcePascalCaseOn?: string;
+  /**
+   * Enforces the use of a specific prefix on specific extensions
+   */
+  enforcePrefixOnExtension?: ExtensionAndPrefix[];
 }

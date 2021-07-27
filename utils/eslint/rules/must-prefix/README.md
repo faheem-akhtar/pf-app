@@ -9,7 +9,12 @@ The purpose of this lint rule is to enforce naming conventions for exported modu
   "pf-rules/must-prefix": [
     "error",
     {
-        prefixes: ['backend', 'api'],
+      prefixes: [
+        {
+          prefix: 'backend',
+          ignoreCase: false
+        }
+      ],
     }
   ]
 }
@@ -39,7 +44,12 @@ Example:
       "pf-rules/must-prefix": [
           "error",
           {
-            prefixes: ['backend', 'api', 'object'],
+            prefixes:[
+              {
+                prefix: 'backend',
+                ignoreCase: false
+              }
+            ],
             rootFolder: 'helpers'
           }
       ]
@@ -51,9 +61,9 @@ Example:
 
 ### prefixes
 
-List of prefixes to enforce starting from the root folder.
+List of prefixes to enforce starting from the root folder. It is possible to set to ignore the case or not to be compliant with conflicting rules as well.
 
-Example:
+Example 1:
 
 - Given a file at this path `src/backend/api/object/compare.ts`.
 - Given this configuration:
@@ -62,10 +72,41 @@ Example:
       "pf-rules/must-prefix": [
           "error",
           {
-            prefixes: ['backend', 'api', 'object'],
+            prefixes:[
+              {
+                prefix: 'backend',
+                ignoreCase: false
+              },
+              {
+                prefix: 'api',
+                ignoreCase: false
+              }
+            ],
             rootFolder: 'src'
           }
       ]
   }
   ```
 - Only names starting with `backend` will be accepted. Even though `api` is also parth of the filepath, since `backend` comes first it will match only against `backend`.
+
+Example 2:
+
+- Given a file at this path `src/backend/api/object/compare.ts`.
+- Given this configuration:
+  ```js
+  {
+      "pf-rules/must-prefix": [
+          "error",
+          {
+            prefixes:[
+              {
+                prefix: 'backend',
+                ignoreCase: true
+              }
+            ],
+            rootFolder: 'src'
+          }
+      ]
+  }
+  ```
+- In this case names starting with either `backend` or `Backend` will be accepted.

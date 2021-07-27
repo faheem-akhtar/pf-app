@@ -45,35 +45,68 @@ Example:
   ```
 
 - Accepted names will be:
-  - `ObjectCompare`
-  - `HelpersObjectCompare`
+  - `objectCompare`
+  - `helpersObjectCompare`
 
-### ignorePascalCase
+### enforcePascalCaseOn
 
-Checks whether or not for the given name it needs to ignore pascal case in favour of camel case.
-This option is an object with 2 properties:
-
-- `regex`: Regular expresion to match the name against
-- `match`: Whether or not the regex needs to match or not the name.
+Enforces the use of pascal case according to regex match.
 
 Example:
 
-- Given a file at this path `src/helpers/use/constructor.tsx`.
+- Given a file at this path `src/components/filter/component.tsx`.
 - Given this configuration:
   ```js
   {
       "pf-rules/export-name-validation": [
           "error",
           {
-              ignorePascalCase: {
-                  regex: '^(use|backend|api|config|feature)',
-                  match: true,
-              },
+              enforcePascalCaseOn: '(component|template)$',
           }
       ]
   }
   ```
 - Accepted names will be:
-  - `useConstructor`
-  - `HelpersUseConstructor`
-  - `SrcHelpersUseConstructor`
+
+  - `FilterComponent`
+  - `ComponentsFilterComponent`
+  - `SrcComponentsFilterComponent`
+
+- Without the rule, accepted names would be:
+  - `filterComponent`
+  - `componentsFilterComponent`
+  - `srcComponentsFilterComponent`
+
+### enforcePrefixOnExtension
+
+Enforces the use of a specific prefix according to a specific extension and replacing the extension itself from the name.
+
+Example:
+
+- Given a file at this path `src/helpers/object/compare.hook.ts`.
+- Given this configuration:
+  ```js
+  {
+      "pf-rules/export-name-validation": [
+          "error",
+          {
+              enforcePrefixOnExtension: [
+                {
+                  extension: 'hook',
+                  prefix: 'use',
+                },
+              ],
+          }
+      ]
+  }
+  ```
+- Accepted names will be:
+
+  - `useObjectCompare`
+  - `useHelpersObjectCompare`
+  - `useSrcHelpersObjectCompare`
+
+- Without the rule, accepted names would be:
+  - `ObjectCompareHook`
+  - `HelpersObjectCompareHook`
+  - `SrcHelpersObjectCompareHook`

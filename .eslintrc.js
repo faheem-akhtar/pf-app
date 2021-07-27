@@ -32,21 +32,22 @@ module.exports = {
     'no-extra-boolean-cast': 'warn',
     'no-prototype-builtins': 'warn',
     'no-global-assign': 'warn',
-    // TODO-FE[TPNX-3019] - activate once done
-    'pf-rules/filename-validation': 'warn',
     'pf-rules/export-name-validation': [
-      'warn',
+      'error',
       {
-        ignorePascalCase: {
-          regex: '^(use|backend|api|config|feature)',
-          match: true,
-        },
+        enforcePascalCaseOn: '(enum|component|store|factory|interface|template)$',
+        enforcePrefixOnExtension: [
+          {
+            extension: 'hook',
+            prefix: 'use',
+          },
+        ],
       },
     ],
     'pf-rules/must-prefix': [
       'error',
       {
-        prefixes: ['backend', 'api'],
+        prefixes: [{ prefix: 'backend', ignoreCase: true }],
       },
     ],
     'react/self-closing-comp': 'warn',

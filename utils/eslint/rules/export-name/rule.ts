@@ -2,13 +2,18 @@ import { Rule } from 'eslint';
 
 import { ExportNameOptionInterface } from './option.interface';
 
-function getPossibleNames(context: Rule.RuleContext): string[] {
+function getPossibleNames(context: Rule.RuleContext): {
+  filename: string;
+  camelCaseSuggestions: string[];
+  pascalCaseSuggestions: string[];
+  customExtensionsSuggestions: { [key: string]: string[] };
+} {
   const fileName: string = context.getFilename();
   const extension: string = `.${fileName.split('.').pop()}`;
   // Get filename and remove extension, then split
   const pathArray: string[] = fileName.replace(extension, '').split('/');
   // Get Options
-  const { ignorePascalCase, rootFolder = 'src' } = (context.options[0] || {}) as ExportNameOptionInterface;
+  const { enforcePrefixOnExtension = [], rootFolder = 'src' } = (context.options[0] || {}) as ExportNameOptionInterface;
 
   const possibleNameGroups: string[] = [];
   let counter: number = 2;
@@ -18,44 +23,170 @@ function getPossibleNames(context: Rule.RuleContext): string[] {
     counter++;
   }
 
-  const pascalCaseNames = possibleNameGroups.map((current) =>
+  const pascalCaseSuggestions = possibleNameGroups.map((current) =>
     current
       // Split by - / .
       .split(/[/.-]/g)
       // Transforms first letters to uppercase
       .map((section) => `${section[0].toUpperCase()}${section.substr(1)}`)
-      // Joins string
       .join('')
   );
 
-  if (ignorePascalCase) {
-    const regex = new RegExp(ignorePascalCase.regex, 'i');
+  return {
+    filename: pathArray[pathArray.length - 1],
+    camelCaseSuggestions: pascalCaseSuggestions.map((current) => `${current[0].toLowerCase()}${current.substr(1)}`),
+    pascalCaseSuggestions,
+    customExtensionsSuggestions: enforcePrefixOnExtension.reduce((result, current) => {
+      const extensionRegex = new RegExp(current.extension, 'i');
+      result[current.extension] = pascalCaseSuggestions.map(
+        (suggestion) => `${current.prefix}${suggestion.replace(extensionRegex, '')}`
+      );
+      return result;
+    }, {}),
+  };
+}
 
-    return pascalCaseNames.map((current) =>
-      regex.test(current) === ignorePascalCase.match ? `${current[0].toLowerCase()}${current.substr(1)}` : current
-    );
+function isWordInPascalCase(word: string): boolean {
+  const firstLetter = word[0].toUpperCase();
+  return firstLetter === word[0];
+}
+
+function checkCase(name: string, { enforcePascalCaseOn }: ExportNameOptionInterface = { rootFolder: 'src' }): boolean {
+  if (enforcePascalCaseOn) {
+    const regex = new RegExp(enforcePascalCaseOn, 'i');
+    return regex.test(name);
+  }
+  return true;
+}
+
+function checkName(
+  name: string,
+  isPascalCase: boolean,
+  camelCaseSuggestions: string[],
+  pascalCaseSuggestions: string[]
+): boolean {
+  if (isPascalCase) {
+    if (isWordInPascalCase(name)) {
+      return pascalCaseSuggestions.includes(name);
+    } else {
+      return false;
+    }
   } else {
-    return pascalCaseNames;
+    return camelCaseSuggestions.includes(name);
+  }
+}
+
+function getErrorMessageByCase(isPascalCase: boolean, list: string[]): string {
+  return `: ${
+    isPascalCase ? 'pascal' : 'camel'
+  } case logic does not match with file path, try one of these instead:\n${list.reduce(
+    (result, current) => `${result}- ${current}\n`,
+    ''
+  )}`;
+}
+
+function getErrorMessages(
+  camelCaseSuggestions: string[],
+  pascalCaseSuggestions: string[],
+  customExtensionsSuggestions: { [key: string]: string[] }
+): { camelCaseMessage: string; pascalCaseMessage: string; [key: string]: string } {
+  return {
+    camelCaseMessage: getErrorMessageByCase(false, camelCaseSuggestions),
+    pascalCaseMessage: getErrorMessageByCase(true, pascalCaseSuggestions),
+    ...Object.keys(customExtensionsSuggestions).reduce((result, current) => {
+      result[current] = getErrorMessageByCase(isWordInPascalCase(current), customExtensionsSuggestions[current]);
+      return result;
+    }, {}),
+  };
+}
+
+function checkNode(
+  name: string,
+  node: Rule.Node,
+  context: Rule.RuleContext,
+  filename: string,
+  camelCaseSuggestions: string[],
+  camelCaseMessage: string,
+  pascalCaseSuggestions: string[],
+  pascalCaseMessage: string,
+  customExtensionsSuggestions: { [key: string]: string[] },
+  customExtensionsMessages: { [key: string]: string }
+) {
+  if (Object.keys(customExtensionsSuggestions).length) {
+    const match = Object.keys(customExtensionsSuggestions).find((current) => {
+      const extensionRegex = new RegExp(current, 'i');
+      return extensionRegex.test(filename);
+    });
+
+    if (match) {
+      const valid = checkName(
+        name,
+        isWordInPascalCase(match),
+        customExtensionsSuggestions[match],
+        customExtensionsSuggestions[match]
+      );
+      if (!valid) {
+        context.report({
+          node,
+          message: `${name} ${customExtensionsMessages[match]}`,
+        });
+      }
+      return;
+    }
+  }
+
+  const isPascalCase = checkCase(name, context.options[0]);
+  const valid = checkName(name, isPascalCase, camelCaseSuggestions, pascalCaseSuggestions);
+  if (!valid) {
+    context.report({
+      node,
+      message: `${name} ${isPascalCase ? pascalCaseMessage : camelCaseMessage}`,
+    });
   }
 }
 
 export function exportNameRule(context: Rule.RuleContext): Rule.RuleListener {
-  const possibleNames: string[] = getPossibleNames(context);
-  const message: string = `camel case logic does not match with file path, try one of these instead:\n${possibleNames.reduce(
-    (result, current) => `${result}- ${current}\n`,
-    ''
-  )}`;
+  const { camelCaseSuggestions, pascalCaseSuggestions, customExtensionsSuggestions, filename } =
+    getPossibleNames(context);
+
+  const { camelCaseMessage, pascalCaseMessage, ...customExtensionsMessages } = getErrorMessages(
+    camelCaseSuggestions,
+    pascalCaseSuggestions,
+    customExtensionsSuggestions
+  );
 
   return {
     ExportNamedDeclaration: (node) => {
       if (node.declaration.type === 'VariableDeclaration') {
         node.declaration.declarations.forEach(({ id }) => {
-          if (!possibleNames.includes((id as any).name)) {
-            context.report({ node, message: `${(id as any).name} ${message}` });
-          }
+          const name = (id as any).name;
+          checkNode(
+            name,
+            node,
+            context,
+            filename,
+            camelCaseSuggestions,
+            camelCaseMessage,
+            pascalCaseSuggestions,
+            pascalCaseMessage,
+            customExtensionsSuggestions,
+            customExtensionsMessages
+          );
         });
-      } else if (!possibleNames.includes(node.declaration.id.name)) {
-        context.report({ node, message: `${node.declaration.id.name} ${message}` });
+      } else {
+        const name = node.declaration.id.name;
+        checkNode(
+          name,
+          node,
+          context,
+          filename,
+          camelCaseSuggestions,
+          camelCaseMessage,
+          pascalCaseSuggestions,
+          pascalCaseMessage,
+          customExtensionsSuggestions,
+          customExtensionsMessages
+        );
       }
     },
   };
