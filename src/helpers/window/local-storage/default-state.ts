@@ -1,4 +1,4 @@
-import { WindowLocalStorageInterface } from '../local-storage.interface';
+import { WindowLocalStorageInterface } from './interface';
 
 export const windowLocalStorageDefaultState: WindowLocalStorageInterface = {
   getItem: () => null,

@@ -1,3 +1,6 @@
+const { pathsToModuleNameMapper } = require('ts-jest/utils');
+const { compilerOptions } = require('./tsconfig');
+
 module.exports = {
   // Coverage information
   collectCoverageFrom: [
@@ -21,10 +24,11 @@ module.exports = {
   coverageReporters: ['text', 'html'],
   // Mocking static assets
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/__mocks__/fileMock.js',
-    '\\.(css|scss)$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '__mocks__/fileMock.js',
+    '\\.(css|scss)$': '__mocks__/styleMock.js',
+    ...pathsToModuleNameMapper(compilerOptions.paths),
   },
+  modulePaths: ['<rootDir>'],
 
   preset: 'ts-jest',
   transform: {

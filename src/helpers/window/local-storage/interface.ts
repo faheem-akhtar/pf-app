@@ -9,7 +9,7 @@ export interface WindowLocalStorageInterface {
   /**
    * Returns the data identified by @key
    */
-  getItem<R>(key: string): R | null;
+  getItem(key: string): AnyValue;
 
   /**
    * Removes the data identified by @key

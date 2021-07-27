@@ -5,7 +5,7 @@
     "outDir": "result" /*where to compile javascript files*/,
     "skipLibCheck": true,
     "paths": {
-      "eslint":["../../node_modules/eslint"]
+      "eslint": ["../../node_modules/eslint"]
     }
   },
   "typeRoots": ["../../node_modules/@types", "../../node_modules/@typescript-eslint/types"]

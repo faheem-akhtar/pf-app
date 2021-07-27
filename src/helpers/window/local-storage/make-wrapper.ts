@@ -1,6 +1,7 @@
-import { AnyValue } from 'types/value';
-import { WindowLocalStorageInterface } from '../local-storage.interface';
 import { windowLocalStorageDefaultState } from './default-state';
+
+import { AnyValue } from 'types/value';
+import { WindowLocalStorageInterface } from './interface';
 
 function storageAvailable(window: Window): boolean {
   if (typeof window.localStorage === 'undefined') {

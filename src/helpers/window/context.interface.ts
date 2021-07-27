@@ -1,4 +1,4 @@
-import { WindowLocalStorageInterface } from './local-storage.interface';
+import { WindowLocalStorageInterface } from './local-storage/interface';
 
 /**
  * Use this context to access any window interface you may need.
