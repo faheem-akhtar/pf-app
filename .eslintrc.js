@@ -36,6 +36,7 @@ module.exports = {
       'error',
       {
         enforcePascalCaseOn: '(enum|component|store|factory|interface|template)$',
+        ignoreCustomExtensionInNameOn: ['.desktop', '.ae', '.bh', '.eg', '.lb', '.ma', '.qa', '.sa'],
         enforcePrefixOnExtension: [
           {
             extension: 'hook',

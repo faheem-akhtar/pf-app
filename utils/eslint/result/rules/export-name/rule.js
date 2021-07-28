@@ -29,7 +29,13 @@ function getPossibleNames(context) {
     // Get filename and remove extension, then split
     var pathArray = fileName.replace(extension, '').split('/');
     // Get Options
-    var _a = (context.options[0] || {}), _b = _a.enforcePrefixOnExtension, enforcePrefixOnExtension = _b === void 0 ? [] : _b, _c = _a.rootFolder, rootFolder = _c === void 0 ? 'src' : _c;
+    var _a = (context.options[0] || {}), _b = _a.enforcePrefixOnExtension, enforcePrefixOnExtension = _b === void 0 ? [] : _b, _c = _a.ignoreCustomExtensionInNameOn, ignoreCustomExtensionInNameOn = _c === void 0 ? [] : _c, _d = _a.rootFolder, rootFolder = _d === void 0 ? 'src' : _d;
+    // Name of the file without path and extension and custom extensions
+    var nameWithoutIgnoredExtensions = ignoreCustomExtensionInNameOn.reduce(function (result, current) {
+        var ignoreRegex = new RegExp(current);
+        return result.replace(ignoreRegex, '');
+    }, pathArray[pathArray.length - 1]);
+    pathArray[pathArray.length - 1] = nameWithoutIgnoredExtensions;
     var possibleNameGroups = [];
     var counter = 2;
     // Get all possible groups until the rootFolder
@@ -46,7 +52,7 @@ function getPossibleNames(context) {
             .join('');
     });
     return {
-        filename: pathArray[pathArray.length - 1],
+        filename: nameWithoutIgnoredExtensions,
         camelCaseSuggestions: pascalCaseSuggestions.map(function (current) { return "" + current[0].toLowerCase() + current.substr(1); }),
         pascalCaseSuggestions: pascalCaseSuggestions,
         customExtensionsSuggestions: enforcePrefixOnExtension.reduce(function (result, current) {

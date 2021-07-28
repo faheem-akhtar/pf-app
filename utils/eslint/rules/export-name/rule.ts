@@ -13,7 +13,19 @@ function getPossibleNames(context: Rule.RuleContext): {
   // Get filename and remove extension, then split
   const pathArray: string[] = fileName.replace(extension, '').split('/');
   // Get Options
-  const { enforcePrefixOnExtension = [], rootFolder = 'src' } = (context.options[0] || {}) as ExportNameOptionInterface;
+  const {
+    enforcePrefixOnExtension = [],
+    ignoreCustomExtensionInNameOn = [],
+    rootFolder = 'src',
+  } = (context.options[0] || {}) as ExportNameOptionInterface;
+
+  // Name of the file without path and extension and custom extensions
+  const nameWithoutIgnoredExtensions = ignoreCustomExtensionInNameOn.reduce((result, current) => {
+    const ignoreRegex = new RegExp(current);
+    return result.replace(ignoreRegex, '');
+  }, pathArray[pathArray.length - 1]);
+
+  pathArray[pathArray.length - 1] = nameWithoutIgnoredExtensions;
 
   const possibleNameGroups: string[] = [];
   let counter: number = 2;
@@ -33,7 +45,7 @@ function getPossibleNames(context: Rule.RuleContext): {
   );
 
   return {
-    filename: pathArray[pathArray.length - 1],
+    filename: nameWithoutIgnoredExtensions,
     camelCaseSuggestions: pascalCaseSuggestions.map((current) => `${current[0].toLowerCase()}${current.substr(1)}`),
     pascalCaseSuggestions,
     customExtensionsSuggestions: enforcePrefixOnExtension.reduce((result, current) => {

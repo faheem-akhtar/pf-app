@@ -16,4 +16,8 @@ export interface ExportNameOptionInterface {
    * Enforces the use of a specific prefix on specific extensions
    */
   enforcePrefixOnExtension?: ExtensionAndPrefix[];
+  /**
+   * List of extensions to ignore in the module name
+   */
+  ignoreCustomExtensionInNameOn?: string[];
 }

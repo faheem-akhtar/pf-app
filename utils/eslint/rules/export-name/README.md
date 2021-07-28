@@ -110,3 +110,32 @@ Example:
   - `ObjectCompareHook`
   - `HelpersObjectCompareHook`
   - `SrcHelpersObjectCompareHook`
+
+### ignoreCustomExtensionInNameOn
+
+Given an array of extensions (eg: `.ae`, `.bh`), ignores them in the check of the module name.
+
+Example:
+
+- Given a file at this path `src/helpers/object/compare.desktop.ts`.
+- Given this configuration:
+  ```js
+  {
+      "pf-rules/export-name-validation": [
+          "error",
+          {
+              ignoreCustomExtensionInNameOn: [
+                '.desktop',
+              ],
+          }
+      ]
+  }
+  ```
+- Accepted names will be:
+  - `objectCompare`
+  - `helpersObjectCompare`
+  - `srcHelpersObjectCompare`
+- Without the rule, accepted names would be:
+  - `objectCompareDesktop`
+  - `helpersObjectCompareDesktop`
+  - `srcHelpersObjectCompareDesktop`
