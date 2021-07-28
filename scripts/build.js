@@ -3,7 +3,7 @@
 var exec = require('child_process').exec;
 
 const checkForErrors = (name, consoleOutput) => {
-  if (consoleOutput.includes('Failed to compile.')) {
+  if (consoleOutput.includes('Type error:')) {
     console.error(
       `========================\nBuild error for: ${name}\n========================\nconsole output:\n${consoleOutput}\n`
     );
