@@ -1,7 +1,7 @@
+import { BackendJsonApiModelType } from 'backend/json-api/model.type';
 import { BackendModelPropertyContactedTypeEnum } from './contacted-type.enum';
-import { JsonApiModel } from 'helpers/json-api/model';
 
-export interface BackendModelPropertyContactedInterface extends JsonApiModel {
+export interface BackendModelPropertyContactedInterface extends BackendJsonApiModelType {
   /**
    * BackendModelProperty id
    */

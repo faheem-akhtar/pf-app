@@ -1,3 +1,4 @@
+/* eslint-disable pf-rules/export-name-validation */
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
@@ -6,10 +7,10 @@ import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
 import filtersDataByLocale from '../../public/static/filters-data';
 
 import { FiltersDataInterface } from 'components/filters/data/interface';
-import { PropertySearchComponentPropsType } from 'views/property-search/view-props.type';
 import { PropertySearchView } from 'views/property-search/view';
+import { PropertySearchViewPropsType } from 'views/property-search/view-props.type';
 
-export const getServerSideProps: GetServerSideProps<PropertySearchComponentPropsType> = async (
+export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType> = async (
   context: GetServerSidePropsContext
 ) => {
   const locale = context.locale as string;

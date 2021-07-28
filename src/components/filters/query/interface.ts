@@ -1,4 +1,4 @@
-import { FiltersQueryParametersEnum } from '../../../enums/filters/query-parameters.enum';
+import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 
 /**
  * Search form settings parameters to supply to the form settings API

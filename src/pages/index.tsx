@@ -1,3 +1,4 @@
+/* eslint-disable pf-rules/export-name-validation */
 import { HomeView } from 'views/home/view';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 

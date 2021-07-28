@@ -1,6 +1,6 @@
-import { FetcherResultBaseInterface } from './fetcher-result-base.interface';
+import { ApiFetcherResultBaseInterface } from './fetcher-result-base.interface';
 
-export interface FetcherResultFailureInterface extends FetcherResultBaseInterface {
+export interface ApiFetcherResultFailureInterface extends ApiFetcherResultBaseInterface {
   ok: false;
   error: {
     url: string;

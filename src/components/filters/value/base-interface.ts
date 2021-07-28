@@ -1,15 +1,15 @@
-import { FiltersParametersEnum } from '../../../enums/filters/parameters.enum';
-import { FiltersValueFieldCategoryId } from './field/category-id';
-import { FiltersValueFieldPropertyTypeId } from './field/property-type-id';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { FiltersValueFieldCategoryIdType } from './field/category-id.type';
+import { FiltersValueFieldPropertyTypeIdType } from './field/property-type-id.type';
 
 export interface FiltersValueBaseInterface {
   /**
    * Category id
    */
-  [FiltersParametersEnum.categoryId]: FiltersValueFieldCategoryId;
+  [FiltersParametersEnum.categoryId]: FiltersValueFieldCategoryIdType;
 
   /**
    * Property type id
    */
-  [FiltersParametersEnum.propertyTypeId]: FiltersValueFieldPropertyTypeId | '';
+  [FiltersParametersEnum.propertyTypeId]: FiltersValueFieldPropertyTypeIdType | '';
 }

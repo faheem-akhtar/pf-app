@@ -1,5 +1,5 @@
 import { backendPropertySerpObfuscate } from 'backend/property/serp-obfuscate';
-import { isTrace } from 'config/is-trace';
+import { configIsTrace } from 'config/is-trace';
 
 import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
 import { BackendApiPropertySearchRawJsonResponseType } from './raw-json-response-type';
@@ -42,7 +42,7 @@ export const backendApiPropertySearchMapper = (
       priceText: meta.price_text,
     };
 
-    if (isTrace) {
+    if (configIsTrace) {
       (propertyCompact as unknown as Record<string, Object>).full = JSON.parse(JSON.stringify(property));
     }
 
@@ -55,7 +55,7 @@ export const backendApiPropertySearchMapper = (
     pages: rawJson.data.relationships.properties.meta.page_count,
   };
 
-  if (isTrace) {
+  if (configIsTrace) {
     (result as unknown as Record<string, Object>).full = JSON.parse(JSON.stringify(data));
   }
 

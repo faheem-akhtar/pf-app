@@ -1,4 +1,4 @@
-import { FetcherResultFailureInterface } from './fetcher-result-failure.interface';
-import { FetcherResultSuccessInterface } from './fetcher-result-success.interface';
+import { ApiFetcherResultFailureInterface } from './fetcher-result-failure.interface';
+import { ApiFetcherResultSuccessInterface } from './fetcher-result-success.interface';
 
-export type ApiFetcherResultType<D> = FetcherResultSuccessInterface<D> | FetcherResultFailureInterface;
+export type ApiFetcherResultType<D> = ApiFetcherResultSuccessInterface<D> | ApiFetcherResultFailureInterface;

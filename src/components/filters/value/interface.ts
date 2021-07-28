@@ -1,19 +1,19 @@
-import { FiltersParametersEnum } from '../../../enums/filters/parameters.enum';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueBaseInterface } from './base-interface';
-import { FiltersValueFieldAmenities } from './field/amenities';
-import { FiltersValueFieldCompletionStatus } from './field/completion-status';
-import { FiltersValueFieldFurnished } from './field/furnished';
-import { FiltersValueFieldMaxArea } from './field/max-area';
-import { FiltersValueFieldMaxBathroom } from './field/max-bathroom';
-import { FiltersValueFieldMaxBedroom } from './field/max-bedroom';
-import { FiltersValueFieldMinArea } from './field/min-area';
-import { FiltersValueFieldMinBathroom } from './field/min-bathroom';
-import { FiltersValueFieldMinBedroom } from './field/min-bedroom';
-import { FiltersValueFieldPaymentMethod } from './field/payment-method';
-import { FiltersValueFieldPriceType } from './field/price-type';
-import { FiltersValueFieldSort } from './field/sort';
-import { FiltersValueFieldUtilitiesPriceType } from './field/utilities-price-type';
-import { FiltersValueFieldVirtualViewing } from './field/virtual-viewing';
+import { FiltersValueFieldAmenitiesType } from './field/amenities.type';
+import { FiltersValueFieldCompletionStatusType } from './field/completion-status.type';
+import { FiltersValueFieldFurnishedType } from './field/furnished.type';
+import { FiltersValueFieldMaxAreaType } from './field/max-area.type';
+import { FiltersValueFieldMaxBathroomType } from './field/max-bathroom.type';
+import { FiltersValueFieldMaxBedroomType } from './field/max-bedroom.type';
+import { FiltersValueFieldMinAreaType } from './field/min-area.type';
+import { FiltersValueFieldMinBathroomType } from './field/min-bathroom.type';
+import { FiltersValueFieldMinBedroomType } from './field/min-bedroom.type';
+import { FiltersValueFieldPaymentMethodType } from './field/payment-method.type';
+import { FiltersValueFieldPricePeriodType } from './field/price-period.type';
+import { FiltersValueFieldSortType } from './field/sort.type';
+import { FiltersValueFieldUtilitiesPriceTypeType } from './field/utilities-price-type.type';
+import { FiltersValueFieldVirtualViewingType } from './field/virtual-viewing.type';
 import { LocationCompactInterface } from 'components/location/compact.interface';
 
 export interface FiltersValueInterface extends FiltersValueBaseInterface {
@@ -35,12 +35,12 @@ export interface FiltersValueInterface extends FiltersValueBaseInterface {
   /**
    * Area (Min)
    */
-  [FiltersParametersEnum.minArea]: FiltersValueFieldMinArea | '';
+  [FiltersParametersEnum.minArea]: FiltersValueFieldMinAreaType | '';
 
   /**
    * Area (Max)
    */
-  [FiltersParametersEnum.maxArea]: FiltersValueFieldMaxArea | '';
+  [FiltersParametersEnum.maxArea]: FiltersValueFieldMaxAreaType | '';
 
   /**
    * Keywords
@@ -50,67 +50,67 @@ export interface FiltersValueInterface extends FiltersValueBaseInterface {
   /**
    * Amenities
    */
-  [FiltersParametersEnum.amenities]?: FiltersValueFieldAmenities[];
+  [FiltersParametersEnum.amenities]?: FiltersValueFieldAmenitiesType[];
 
   /**
    * Completion status
    */
-  [FiltersParametersEnum.completionStatus]?: FiltersValueFieldCompletionStatus | '';
+  [FiltersParametersEnum.completionStatus]?: FiltersValueFieldCompletionStatusType | '';
 
   /**
    * Payment method
    */
-  [FiltersParametersEnum.paymentMethod]?: FiltersValueFieldPaymentMethod | '';
+  [FiltersParametersEnum.paymentMethod]?: FiltersValueFieldPaymentMethodType | '';
 
   /**
    * Price inclusive/exclusive
    */
-  [FiltersParametersEnum.utilitiesPriceType]?: FiltersValueFieldUtilitiesPriceType | '';
+  [FiltersParametersEnum.utilitiesPriceType]?: FiltersValueFieldUtilitiesPriceTypeType | '';
 
   /**
    * Virtual viewings
    */
-  [FiltersParametersEnum.virtualViewings]?: FiltersValueFieldVirtualViewing | '';
+  [FiltersParametersEnum.virtualViewings]?: FiltersValueFieldVirtualViewingType | '';
 
   /**
    * Price period
    */
-  [FiltersParametersEnum.pricePeriod]?: FiltersValueFieldPriceType;
+  [FiltersParametersEnum.pricePeriod]?: FiltersValueFieldPricePeriodType;
 
   /**
    * Min beds
    */
-  [FiltersParametersEnum.minBedroom]?: FiltersValueFieldMinBedroom | '';
+  [FiltersParametersEnum.minBedroom]?: FiltersValueFieldMinBedroomType | '';
 
   /**
    * Max beds
    */
-  [FiltersParametersEnum.maxBedroom]?: FiltersValueFieldMaxBedroom | '';
+  [FiltersParametersEnum.maxBedroom]?: FiltersValueFieldMaxBedroomType | '';
 
   /**
    * Min bathrooms
    */
-  [FiltersParametersEnum.minBathroom]?: FiltersValueFieldMinBathroom | '';
+  [FiltersParametersEnum.minBathroom]?: FiltersValueFieldMinBathroomType | '';
 
   /**
    * Max bathrooms
    */
-  [FiltersParametersEnum.maxBathroom]?: FiltersValueFieldMaxBathroom | '';
+  [FiltersParametersEnum.maxBathroom]?: FiltersValueFieldMaxBathroomType | '';
 
   /**
    * Furnishing
    */
-  [FiltersParametersEnum.furnishing]?: FiltersValueFieldFurnished | '';
+  [FiltersParametersEnum.furnishing]?: FiltersValueFieldFurnishedType | '';
 
   /**
    * How to order the results
    */
-  [FiltersParametersEnum.sort]: FiltersValueFieldSort | '';
+  [FiltersParametersEnum.sort]: FiltersValueFieldSortType | '';
 
   /**
    * Furnishing
    */
-  [FiltersParametersEnum.furnishing]?: FiltersValueFieldFurnished | '';
+  [FiltersParametersEnum.furnishing]?: FiltersValueFieldFurnishedType | '';
 
   /**
    * Page number

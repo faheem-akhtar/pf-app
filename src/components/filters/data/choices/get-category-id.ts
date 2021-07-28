@@ -1,7 +1,8 @@
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { FiltersValueFieldCategoryIdChoice } from 'components/filters/value/field/category-id-choice';
-import { filtersDataMakeGetChoices } from './make-get-choices';
+import { filtersDataChoicesMakeGetChoices } from './make-get-choices';
 
-export const filtersDataChoicesGetCategoryId = filtersDataMakeGetChoices<FiltersValueFieldCategoryIdChoice>(
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { FiltersValueFieldCategoryIdChoiceType } from 'components/filters/value/field/category-id-choice.type';
+
+export const filtersDataChoicesGetCategoryId = filtersDataChoicesMakeGetChoices<FiltersValueFieldCategoryIdChoiceType>(
   FiltersParametersEnum.categoryId
 );

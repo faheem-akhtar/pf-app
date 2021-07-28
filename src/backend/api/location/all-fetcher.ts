@@ -1,10 +1,11 @@
-import { backendApiFactory } from '../backend-factory';
+import { backendApiLocationAllMapper } from './all-mapper';
+
+import { BackendApiFactory } from '../factory';
 
 import { LocationCompactInterface } from 'components/location/compact.interface';
-import { backendApiAllLocationMapper } from './all-mapper';
 
-export const backendApiLocationAllFetcher = backendApiFactory<LocationCompactInterface[], LocationCompactInterface[]>({
+export const backendApiLocationAllFetcher = BackendApiFactory<LocationCompactInterface[], LocationCompactInterface[]>({
   method: 'GET',
   url: 'autocomplete/location',
-  dataMapper: backendApiAllLocationMapper,
+  dataMapper: backendApiLocationAllMapper,
 });

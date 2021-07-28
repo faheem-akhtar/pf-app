@@ -6,12 +6,12 @@ import { appWithTranslation } from 'next-i18next';
 import { WindowContextProvider } from 'helpers/window/context-provider';
 
 import '../styles/index.scss';
-import { isClient } from 'helpers/isClient';
+import { helpersIsClient } from 'helpers/is-client';
 import { windowDefaultState } from 'helpers/window/default-state';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
-    <WindowContextProvider window={isClient ? window : (windowDefaultState as Window)}>
+    <WindowContextProvider window={helpersIsClient ? window : (windowDefaultState as Window)}>
       <Component {...pageProps} />
     </WindowContextProvider>
   );

@@ -21,7 +21,7 @@ import { configCommon as saConfig } from 'config/common.sa';
 import { configOriginValue as saOrigin } from 'config/origin/value.sa';
 
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
-import { DataApiFetcherRequestPropsType } from 'api/request-props.type';
+import { ApiRequestPropsType } from 'api/request-props.type';
 import { CountryCodeEnum } from 'enums/country/code.enum';
 
 const configByCountry = {
@@ -45,7 +45,7 @@ const originByCountry = {
 };
 
 const makeDownloader = <QueryData, Result>(
-  fetcher: (props: DataApiFetcherRequestPropsType<QueryData>) => Promise<ApiFetcherResultType<Result>>,
+  fetcher: (props: ApiRequestPropsType<QueryData>) => Promise<ApiFetcherResultType<Result>>,
   name: string
 ) =>
   async function (country: CountryCodeEnum) {

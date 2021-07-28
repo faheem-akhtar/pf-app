@@ -1,7 +1,7 @@
-import { DataApiFetcherRequestBasePropsType } from './request-base-props.type';
-import { UrlQuery } from 'helpers/types';
+import { ApiRequestBasePropsType } from './request-base-props.type';
+import { UrlQueryType } from 'types/url/query.type';
 
-export type DataApiSwrRequestPropsType<Query = UrlQuery> = DataApiFetcherRequestBasePropsType<Query> & {
+export type ApiSwrRequestPropsType<Query = UrlQueryType> = ApiRequestBasePropsType<Query> & {
   /**
    * Will not start fetching if true
    */

@@ -1,7 +1,7 @@
-import { UrlQuery } from '../types';
+import { UrlQueryType } from 'types/url/query.type';
 
 // TODO-FE[TPNX-3005] add test
-export const urlQuerySerialize = (query: UrlQuery): string => {
+export const urlQuerySerialize = (query: UrlQueryType): string => {
   const parts: string[] = [];
   for (const key in query) {
     const value = query[key];

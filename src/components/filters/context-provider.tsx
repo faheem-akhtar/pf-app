@@ -2,14 +2,14 @@ import { NextRouter, Router, useRouter } from 'next/dist/client/router';
 
 import { filtersValueToQuery } from './value/to-query';
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
-import { useFiltersValueState } from './value/use-state';
+import { useFiltersValueState } from './value/state.hook';
 
 import { FiltersContext } from './context';
 import { FiltersContextInterface } from './context.interface';
 import { FiltersContextProviderPropsInterface } from './context-provider-props.interface';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueInterface } from './value/interface';
-import { UrlQuery } from 'helpers/types';
+import { UrlQueryType } from 'types/url/query.type';
 import { useEffect } from 'react';
 
 /**
@@ -17,14 +17,14 @@ import { useEffect } from 'react';
  */
 const navigate = (router: NextRouter, filtersValue: FiltersValueInterface): void => {
   const query = filtersValueToQuery(filtersValue);
-  const url = `${router.pathname}?${urlQuerySerialize(query as UrlQuery)}`;
+  const url = `${router.pathname}?${urlQuerySerialize(query as UrlQueryType)}`;
 
   if (router.asPath !== url) {
     router.push(url);
   }
 };
 
-export const FiltersValueContextProvider = ({
+export const FiltersContextProvider = ({
   filtersValueFromQuery,
   filtersData,
   children,

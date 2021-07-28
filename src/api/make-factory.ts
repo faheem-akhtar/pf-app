@@ -1,10 +1,10 @@
-import { ApiFactoryPropsBaseInterface } from './factory-props.interface';
+import { ApiFactoryPropsInterface } from './factory-props.interface';
 import { ApiFetcherResultType } from './fetcher-result-type';
 import { ApiHeaderEnum } from 'enums/api/header.enum';
 import { ApiMakeFactoryPropsInterface } from './make-factory-props.interface';
-import { DataApiFetcherRequestPropsType } from './request-props.type';
+import { ApiRequestPropsType } from './request-props.type';
 
-import { urlQuerySerialize } from '../helpers/url-query/serialize';
+import { urlQuerySerialize } from 'helpers/url-query/serialize';
 
 // TODO-FE[TPNX-3062] Add POST capabilities
 // TODO-FE[TPNX-3009] Add tests
@@ -12,16 +12,16 @@ import { urlQuerySerialize } from '../helpers/url-query/serialize';
  * Base for all network requsts
  * Not to be used directly
  * Use one of [
- *   - apiHookFactory, to create a fetcher as react hook
- *   - backendApiFactory, to create fetcher to be used exclusively by backend code (adds headers that allow to bypass api protections)
- *   - apiFactory, to create a general fetcher with promise base api, that can be used in any environment
+ *   - ApiSwrFactory, to create a fetcher as react hook
+ *   - BackendApiFactory, to create fetcher to be used exclusively by backend code (adds headers that allow to bypass api protections)
+ *   - ApiFactory, to create a general fetcher with promise base api, that can be used in any environment
  * ]
  * @param makeFactoryProps Top level properties depending on the environment
  */
-export const apiMakeFactory =
+export const ApiMakeFactory =
   (makeFactoryProps: ApiMakeFactoryPropsInterface) =>
-  <Result, Data = Object, RawJson = Object>(factoryProps: ApiFactoryPropsBaseInterface<Result, Data, RawJson>) =>
-  <QueryData>(props: DataApiFetcherRequestPropsType<QueryData>): Promise<ApiFetcherResultType<Result>> => {
+  <Result, Data = Object, RawJson = Object>(factoryProps: ApiFactoryPropsInterface<Result, Data, RawJson>) =>
+  <QueryData>(props: ApiRequestPropsType<QueryData>): Promise<ApiFetcherResultType<Result>> => {
     const { authToken, locale } = props;
 
     const headers: Record<string, string> = {};

@@ -1,6 +1,6 @@
-import { UrlQuery } from '../helpers/types';
+import { UrlQueryType } from 'types/url/query.type';
 
-export interface ApiFactoryPropsBaseInterface<Result, Data = Object, RawJson = Object> {
+export interface ApiFactoryPropsInterface<Result, Data = Object, RawJson = Object> {
   // TODO-FE[TPNX-3062] Add capabilities for POST
   /**
    * True if this endpoint requires user to be logged in
@@ -17,7 +17,7 @@ export interface ApiFactoryPropsBaseInterface<Result, Data = Object, RawJson = O
   /**
    * Default query parameters to be merged with specific paramerters for the request
    */
-  queryDefaultParams?: UrlQuery;
+  queryDefaultParams?: UrlQueryType;
   /**
    * Additional data mapper per instance of fetcher
    */

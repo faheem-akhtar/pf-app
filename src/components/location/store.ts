@@ -14,19 +14,19 @@ export class LocationStore {
     etag: string | null,
     updateEtag: (etag: string) => void,
     private locale: LanguageCodeEnum,
-    apiFactory: ApiFactoryInterface
+    ApiFactory: ApiFactoryInterface
   ) {
-    this.fetchAllLocations = apiFactory<LocationCompactInterface[]>({
+    this.fetchAllLocations = ApiFactory<LocationCompactInterface[]>({
       method: 'GET',
       url: 'location/list',
     });
 
-    this.fetchLocationsEtag = apiFactory<{ etag: string }>({
+    this.fetchLocationsEtag = ApiFactory<{ etag: string }>({
       method: 'HEAD',
       url: 'location/list',
     });
 
-    this.fetchLocationsForQuery = apiFactory<LocationCompactInterface[]>({
+    this.fetchLocationsForQuery = ApiFactory<LocationCompactInterface[]>({
       method: 'GET',
       url: 'location/search',
       queryDefaultParams: {

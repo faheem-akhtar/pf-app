@@ -1,4 +1,4 @@
-import { PropertyContactOptionsListInterace } from '../contact-option-list.interface';
+import { PropertyContactOptionsListInterface } from '../contact-options-list.interface';
 
 export interface PropertySerpInterface {
   /**
@@ -58,7 +58,7 @@ export interface PropertySerpInterface {
   /**
    * Contact options
    */
-  contactOptionsList: PropertyContactOptionsListInterace;
+  contactOptionsList: PropertyContactOptionsListInterface;
 
   /**
    * Price text

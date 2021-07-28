@@ -8,7 +8,6 @@ import { MultiLocationSelectorMakeOnAddLocationPropsInterface } from '../make-on
 import { WindowLocalStorageInterface } from 'helpers/window/local-storage/interface';
 import { WindowLocalStorageMock } from 'mocks/window/local-storage.mock';
 
-
 const location1 = { ...locationCompactKcMock, id: '1', path: '1' };
 const location3 = { ...locationCompactKcMock, id: '3', path: '3' };
 const location1_2 = { ...locationCompactKcMock, id: '2', path: '1.2' };

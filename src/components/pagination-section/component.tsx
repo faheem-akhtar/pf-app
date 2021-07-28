@@ -1,7 +1,7 @@
 import Router, { NextRouter, useRouter } from 'next/router';
 import { useContext } from 'react';
 
-import { urlQuerySerialize } from '../../helpers/url-query/serialize';
+import { urlQuerySerialize } from 'helpers/url-query/serialize';
 
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { FiltersContext } from 'components/filters/context';

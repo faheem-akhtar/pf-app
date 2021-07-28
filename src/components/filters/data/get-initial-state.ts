@@ -1,7 +1,8 @@
+import { filtersDataMakeInitialStateKey } from './make-initial-state-key';
+
 import { FiltersDataInterface } from './interface';
 import { FiltersValueBaseInterface } from '../value/base-interface';
 import { FiltersValueInterface } from '../value/interface';
-import { filtersDataMakeInitialStateKey } from './make-initial-state-key';
 
 /**
  * Returns initial state for given category and propertyTypeId
@@ -13,7 +14,7 @@ import { filtersDataMakeInitialStateKey } from './make-initial-state-key';
  * - when we change the category, some values need to be reseted to initial state
  * - initial state also defines the filter types that available for current combination of categoryId/propertyTypeId
  */
-export const filtersGetInitialState = (
+export const filtersDataGetInitialState = (
   value: FiltersValueBaseInterface,
   filtersData: FiltersDataInterface
 ): FiltersValueInterface => {

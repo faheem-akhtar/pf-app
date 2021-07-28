@@ -1,11 +1,11 @@
-import { BackendApiFormSettingJsonApiResultType } from './json-api-result.type';
+import { BackendApiFormSettingsJsonApiResultType } from './json-api-result.type';
 import { BackendApiFormSettingsSettingType } from './setting.type';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { FiltersDataInterface } from 'components/filters/data/interface';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { FiltersValueFieldCategoryId } from 'components/filters/value/field/category-id';
+import { FiltersValueFieldCategoryIdType } from 'components/filters/value/field/category-id.type';
 import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
-import { FiltersValueFieldPropertyTypeId } from 'components/filters/value/field/property-type-id';
+import { FiltersValueFieldPropertyTypeIdType } from 'components/filters/value/field/property-type-id.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 
 import { backendFiltersValueDefault } from 'backend/filters/value/default';
@@ -99,7 +99,7 @@ const filterInvalidParams = (
  * Recursive parsing of filter settings object in order to extract the
  * filter params based on params what user selected.
  *
- * Filter settings represents the tree structure of JsonApiModel, so in order
+ * Filter settings represents the tree structure of BackendJsonApiModelType, so in order
  * to understand whether we need to go deeper in the tree we use jsonApiRelationships
  * that represents the list of depended on current category settings.
  * In order to extract static fields we need to check 'fields' object.
@@ -309,12 +309,12 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
 const makePropertyTypeProcessor =
   (
     categoryId: FiltersCategoryIdEnum,
-    formSettings: BackendApiFormSettingJsonApiResultType,
+    formSettings: BackendApiFormSettingsJsonApiResultType,
     allChoices: AllChoicesType,
     choicesIndexes: ChoicesIndexesType,
     initialStateByCategoryAndPropertyTypeMap: InitialStateMap
   ) =>
-  (propertyTypeValue: FiltersValueFieldPropertyTypeId): void => {
+  (propertyTypeValue: FiltersValueFieldPropertyTypeIdType): void => {
     const initialFilterParamsForCategoryAndType = validateSettings(formSettings as SettingsType, {
       [FiltersParametersEnum.categoryId]: { value: categoryId },
       [FiltersParametersEnum.propertyTypeId]: { value: propertyTypeValue },
@@ -335,7 +335,7 @@ const makePropertyTypeProcessor =
     });
 
     const categoryPropertyTypeKey = filtersDataMakeInitialStateKey({
-      [FiltersParametersEnum.categoryId]: categoryId as FiltersValueFieldCategoryId,
+      [FiltersParametersEnum.categoryId]: categoryId as FiltersValueFieldCategoryIdType,
       [FiltersParametersEnum.propertyTypeId]: propertyTypeValue,
     });
     initialStateByCategoryAndPropertyTypeMap[categoryPropertyTypeKey] = extractAndFilterValues(
@@ -343,7 +343,7 @@ const makePropertyTypeProcessor =
     );
 
     initialStateByCategoryAndPropertyTypeMap[categoryPropertyTypeKey][FiltersParametersEnum.categoryId] =
-      categoryId as FiltersValueFieldCategoryId;
+      categoryId as FiltersValueFieldCategoryIdType;
     initialStateByCategoryAndPropertyTypeMap[categoryPropertyTypeKey][FiltersParametersEnum.propertyTypeId] =
       propertyTypeValue;
 
@@ -380,7 +380,7 @@ const makePropertyTypeProcessor =
 
       const choicesIndexesKey = filtersDataMakeChoicesIndexesKey(
         {
-          [FiltersParametersEnum.categoryId]: categoryId as FiltersValueFieldCategoryId,
+          [FiltersParametersEnum.categoryId]: categoryId as FiltersValueFieldCategoryIdType,
           [FiltersParametersEnum.propertyTypeId]: propertyTypeValue,
         },
         filterType
@@ -395,7 +395,7 @@ const makePropertyTypeProcessor =
  */
 const makeCategoryProcessor =
   (
-    formSettings: BackendApiFormSettingJsonApiResultType,
+    formSettings: BackendApiFormSettingsJsonApiResultType,
 
     allChoices: AllChoicesType,
     choicesIndexes: ChoicesIndexesType,
@@ -419,7 +419,7 @@ const makeCategoryProcessor =
     );
 
     initialFilterParamsForCategory[FiltersParametersEnum.propertyTypeId]?.choices
-      .map((choice) => choice.value as FiltersValueFieldPropertyTypeId)
+      .map((choice) => choice.value as FiltersValueFieldPropertyTypeIdType)
       .forEach(processPropertyType);
   };
 
@@ -427,7 +427,7 @@ const makeCategoryProcessor =
  * Map form settings into FiltersDataInterface
  */
 export const backendApiFormSettingsMapper = (
-  formSettings: BackendApiFormSettingJsonApiResultType
+  formSettings: BackendApiFormSettingsJsonApiResultType
 ): FiltersDataInterface => {
   const allChoices: AllChoicesType = {} as AllChoicesType;
   const choicesIndexes: ChoicesIndexesType = {};

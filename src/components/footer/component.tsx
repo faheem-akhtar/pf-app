@@ -1,11 +1,14 @@
-import { CopyrightTemplate } from 'components/copyright/template';
-import { IconAppStoreTemplate } from './icon/app-store.template';
-import { IconGooglePlayTemplate } from './icon/google-play.template';
+import { useTranslation } from 'react-i18next';
+
 import { configLinksDefinition } from 'config/links/definition';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { featureCopyrightEnabled } from 'feature/copyright/enabled';
+
+import { CopyrightTemplate } from 'components/copyright/template';
+import { IconAppStoreTemplate } from './icon/app-store.template';
+import { IconGooglePlayTemplate } from './icon/google-play.template';
+
 import styles from './footer.module.scss';
-import { useTranslation } from 'react-i18next';
 
 // TODO-FE[TPNX-3009] Add tests
 export const FooterComponent = (): JSX.Element => {

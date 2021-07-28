@@ -1,4 +1,4 @@
-import { apiFactory } from '../../api/factory';
+import { ApiFactory } from 'api/factory';
 
 import { LocationServiceInterface } from './service.interface';
 import { LocationStore } from './store';
@@ -13,7 +13,7 @@ export const locationService: LocationServiceInterface = {
       const etag = localStorage.getItem(makeEtagLocalStorageKey(locale));
       const updateEtag = (etag: string): void => localStorage.setItem(makeEtagLocalStorageKey(locale), etag);
 
-      locationsStore = new LocationStore(etag, updateEtag, locale, apiFactory);
+      locationsStore = new LocationStore(etag, updateEtag, locale, ApiFactory);
     }
   },
   search: (searchString, limit = 10) => {

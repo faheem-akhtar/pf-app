@@ -1,6 +1,6 @@
 import { windowLocalStorageDefaultState } from './default-state';
 
-import { AnyValue } from 'types/value';
+import { AnyValueType } from 'types/any/value.type';
 import { WindowLocalStorageInterface } from './interface';
 
 function storageAvailable(window: Window): boolean {
@@ -26,7 +26,7 @@ export const windowLocalStorageMakeWrapper = (window: Window): WindowLocalStorag
   }
 
   return {
-    setItem: (key: string, value: AnyValue): void => {
+    setItem: (key: string, value: AnyValueType): void => {
       try {
         const str = typeof value === 'object' ? JSON.stringify(value) : String(value);
 

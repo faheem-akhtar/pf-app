@@ -8,7 +8,7 @@ import { ButtonSizeEnum } from 'library/button/size.enum';
 import { DropdownTemplate } from '../dropdown/template';
 import { FiltersContext } from '../filters/context';
 import { FiltersDataInterface } from '../filters/data/interface';
-import { FiltersModalSubmitButton } from './submit-button';
+import { FiltersModalSubmitButtonComponent } from './submit-button-component';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueInterface } from '../filters/value/interface';
 import { LibraryButtonComponentTypeEnum } from 'library/button/component-type.enum';
@@ -16,7 +16,7 @@ import { LibraryButtonTemplate } from 'library/button/template';
 import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
 
 import { filtersDataChoicesGetCategoryId } from '../filters/data/choices/get-category-id';
-import { filtersDataChoicesGetCompletionStatus } from '../filters/data/choices/get-completeon-status';
+import { filtersDataChoicesGetCompleteonStatus } from '../filters/data/choices/get-completeon-status';
 import { filtersDataChoicesGetFurnished } from '../filters/data/choices/get-furnished';
 import { filtersDataChoicesGetMaxArea } from '../filters/data/choices/get-max-area';
 import { filtersDataChoicesGetMaxBathroom } from '../filters/data/choices/get-max-bathroom';
@@ -24,13 +24,13 @@ import { filtersDataChoicesGetMaxBedroom } from '../filters/data/choices/get-max
 import { filtersDataChoicesGetMinArea } from '../filters/data/choices/get-min-area';
 import { filtersDataChoicesGetMinBathroom } from '../filters/data/choices/get-min-bathroom';
 import { filtersDataChoicesGetMinBedroom } from '../filters/data/choices/get-min-bedroom';
-import { filtersDataChoicesGetPriceType } from '../filters/data/choices/get-price-type';
+import { filtersDataChoicesGetPricePeriod } from '../filters/data/choices/get-price-period';
 import { filtersDataChoicesGetPropertyTypeId } from '../filters/data/choices/get-property-type-id';
 import { filtersDataChoicesGetVirtualViewing } from '../filters/data/choices/get-virtual-viewing';
 import { filtersDataGetEnabledFilterTypes } from '../filters/data/get-enabled-filter-types';
 import { filtersValueEquals } from 'components/filters/value/equals';
-import { useFiltersDataPriceChoices } from 'components/filters/data/choices/use-price-choices';
-import { useFiltersValueState } from 'components/filters/value/use-state';
+import { useFiltersDataChoicesPrice } from 'components/filters/data/choices/price.hook';
+import { useFiltersValueState } from 'components/filters/value/state.hook';
 
 import styles from './filters-modal-component.module.scss';
 
@@ -82,7 +82,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
     <DropdownTemplate
       className={styles.dropdown}
       title={t('Completeon status')}
-      choices={filtersDataChoicesGetCompletionStatus(filtersValue, filtersData)}
+      choices={filtersDataChoicesGetCompleteonStatus(filtersValue, filtersData)}
       value={filtersValue[FiltersParametersEnum.completionStatus]}
       onChange={(value): void =>
         changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.completionStatus]: value })
@@ -93,7 +93,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
     <DropdownTemplate
       className={styles.dropdown}
       title={t('Price period')}
-      choices={filtersDataChoicesGetPriceType(filtersValue, filtersData)}
+      choices={filtersDataChoicesGetPricePeriod(filtersValue, filtersData)}
       value={filtersValue[FiltersParametersEnum.pricePeriod]}
       onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.pricePeriod]: value })}
     />
@@ -102,7 +102,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
     <DropdownTemplate
       className={styles.dropdown}
       title={t('Min. Price')}
-      choices={useFiltersDataPriceChoices(filtersValue)}
+      choices={useFiltersDataChoicesPrice(filtersValue)}
       value={filtersValue[FiltersParametersEnum.minPrice]}
       onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.minPrice]: value })}
     />
@@ -111,7 +111,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
     <DropdownTemplate
       className={styles.dropdown}
       title={t('Max. Price')}
-      choices={useFiltersDataPriceChoices(filtersValue)}
+      choices={useFiltersDataChoicesPrice(filtersValue)}
       value={filtersValue[FiltersParametersEnum.maxPrice]}
       onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.maxPrice]: value })}
     />
@@ -234,7 +234,7 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
         })}
       </div>
       <div className={styles.footer}>
-        <FiltersModalSubmitButton
+        <FiltersModalSubmitButtonComponent
           forceNumberOfProperties={filtersHasNotBeenChanged ? resultsCountForCurrentQuery : null}
           filtersValue={filtersValue}
           onSubmit={(): void => {

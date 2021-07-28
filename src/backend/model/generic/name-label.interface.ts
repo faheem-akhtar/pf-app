@@ -1,6 +1,6 @@
-import { JsonApiModel } from 'helpers/json-api/model';
+import { BackendJsonApiModelType } from 'backend/json-api/model.type';
 
-export interface GenericNameLabelInterface extends JsonApiModel {
+export interface BackendModelGenericNameLabelInterface extends BackendJsonApiModelType {
   /**
    * Property type ID
    */

@@ -1,12 +1,12 @@
-import { PropertyContactOptionsListInterace } from 'components/property/contact-option-list.interface';
+import { PropertyContactOptionsListInterface } from 'components/property/contact-options-list.interface';
 import { propertySerpObfuscatedFieldContactOptionsList } from '../field/contact-options-list';
 
 import { PropertySerpObfuscatedType } from '../type';
 
 export const propertySerpObfuscatedGetContactOptionsList = (
   property: PropertySerpObfuscatedType
-): PropertyContactOptionsListInterace => {
-  return (property as unknown as Record<string, PropertyContactOptionsListInterace>)[
+): PropertyContactOptionsListInterface => {
+  return (property as unknown as Record<string, PropertyContactOptionsListInterface>)[
     propertySerpObfuscatedFieldContactOptionsList
   ];
 };

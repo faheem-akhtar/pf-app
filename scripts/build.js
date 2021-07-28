@@ -2,10 +2,20 @@
 
 var exec = require('child_process').exec;
 
+const checkForErrors = (name, consoleOutput) => {
+  if (consoleOutput.includes('Failed to compile.')) {
+    console.error(
+      `========================\nBuild error for: ${name}\n========================\nconsole output:\n${consoleOutput}\n`
+    );
+    process.exit(1)
+  }
+}
+
 function promiseFromChildProcess(child, name) {
   return new Promise(function (resolve, reject) {
     console.log('Started build for', name);
     let consoleOutput = '';
+
     child.stdout.on('data', function (data) {
       consoleOutput += data;
     });
@@ -13,22 +23,17 @@ function promiseFromChildProcess(child, name) {
       consoleOutput += data;
     });
 
-    child.addListener('error', (data) => {
-      console.error(
-        `========================\nBuild error for: ${name}\n========================\nconsole output:\n${consoleOutput}\nError data:\n${data}\n================================================\n\n\n`
-      );
-      reject();
-    });
-
     child.addListener('exit', (status) => {
       console.log(
         `========================\nBuild complete for, ${name}. status:${status}\n========================\nconsole output:\n${consoleOutput}================================================\n\n\n`
       );
 
+      checkForErrors(name, consoleOutput);
+
       if (status === 0) {
-        resolve();
+        resolve(true);
       } else {
-        reject();
+        reject(status);
       }
     });
   });
@@ -48,7 +53,8 @@ async function build(country, isMobile, retry = true) {
       console.warn('Retrying', name);
       await build(country, isMobile, false);
     } else {
-      throw e;
+      console.warn('Retrying failed for', name, 'with', e);
+      process.exit(1)
     }
   }
 }

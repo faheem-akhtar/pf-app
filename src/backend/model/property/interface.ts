@@ -1,14 +1,14 @@
+import { BackendJsonApiModelType } from 'backend/json-api/model.type';
 import { BackendModelAgentInterface } from '../agent/interface';
 import { BackendModelBrokerInterface } from '../broker/interface';
 import { BackendModelLocationInterface } from '../location/interface';
 import { BackendModelPropertyCategoryIdentifierEnum } from './category-identifier.enum';
 import { BackendModelPropertyCategoryInterface } from './category.interface';
-import { BackendModelPropertyLiveEventMetadataInterface } from './live-event/metadate.interface';
+import { BackendModelPropertyLiveEventMetadateInterface } from './live-event/metadate.interface';
 import { BackendModelPropertyPriceInterface } from './price.interface';
 import { BackendModelPropertyTypeInterface } from './type.interface';
-import { JsonApiModel } from 'helpers/json-api/model';
 
-export interface BackendModelPropertyInterface extends JsonApiModel {
+export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
   /**
    * BackendModelProperty ID
    */
@@ -285,7 +285,7 @@ export interface BackendModelPropertyInterface extends JsonApiModel {
     /**
      * Live event metadata
      */
-    live_event_metadata: BackendModelPropertyLiveEventMetadataInterface;
+    live_event_metadata: BackendModelPropertyLiveEventMetadateInterface;
   };
 
   /**

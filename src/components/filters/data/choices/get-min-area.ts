@@ -1,7 +1,8 @@
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { FiltersValueFieldMinAreaChoice } from 'components/filters/value/field/min-area-choice';
-import { filtersDataMakeGetChoices } from './make-get-choices';
+import { filtersDataChoicesMakeGetChoices } from './make-get-choices';
 
-export const filtersDataChoicesGetMinArea = filtersDataMakeGetChoices<FiltersValueFieldMinAreaChoice>(
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { FiltersValueFieldMinAreaChoiceType } from 'components/filters/value/field/min-area-choice.type';
+
+export const filtersDataChoicesGetMinArea = filtersDataChoicesMakeGetChoices<FiltersValueFieldMinAreaChoiceType>(
   FiltersParametersEnum.minArea
 );

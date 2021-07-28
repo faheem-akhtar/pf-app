@@ -318,6 +318,6 @@ class S {
   }
 }
 
-export const cookieAuthenticatorSha1 = function e(str: string): string {
+export const apiCookieAuthenticatorSha1 = function e(str: string): string {
   return new S().update(str).hex();
 };

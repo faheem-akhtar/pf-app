@@ -1,7 +1,8 @@
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { FiltersValueFieldSortChoice } from 'components/filters/value/field/sort-choice';
-import { filtersDataMakeGetChoices } from './make-get-choices';
+import { filtersDataChoicesMakeGetChoices } from './make-get-choices';
 
-export const filtersDataChoicesGetSort = filtersDataMakeGetChoices<FiltersValueFieldSortChoice>(
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { FiltersValueFieldSortChoiceType } from 'components/filters/value/field/sort-choice.type';
+
+export const filtersDataChoicesGetSort = filtersDataChoicesMakeGetChoices<FiltersValueFieldSortChoiceType>(
   FiltersParametersEnum.sort
 );

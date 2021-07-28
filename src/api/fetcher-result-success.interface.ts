@@ -1,6 +1,6 @@
-import { FetcherResultBaseInterface } from './fetcher-result-base.interface';
+import { ApiFetcherResultBaseInterface } from './fetcher-result-base.interface';
 
-export interface FetcherResultSuccessInterface<D> extends FetcherResultBaseInterface {
+export interface ApiFetcherResultSuccessInterface<D> extends ApiFetcherResultBaseInterface {
   /**
    * Ok
    */

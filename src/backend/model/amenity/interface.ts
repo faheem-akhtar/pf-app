@@ -1,6 +1,6 @@
-import { JsonApiModel } from 'helpers/json-api/model';
+import { BackendJsonApiModelType } from 'backend/json-api/model.type';
 
-export interface BackendModelAmenityInterface extends JsonApiModel {
+export interface BackendModelAmenityInterface extends BackendJsonApiModelType {
   /**
    * Amenity ID
    * @example 'MR'

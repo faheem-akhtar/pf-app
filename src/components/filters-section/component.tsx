@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useRouter } from 'next/router';
 
 import { FiltersContext } from 'components/filters/context';
-import { FiltersModalButton } from 'components/filters-modal/button';
+import { FiltersModalButtonComponent } from 'components/filters-modal/button-component';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { LocationCompactInterface } from 'components/location/compact.interface';
@@ -29,7 +29,7 @@ export const FiltersSectionComponent = (): JSX.Element => {
         }}
       />
       <div className={styles.buttons_row}>
-        <FiltersModalButton />
+        <FiltersModalButtonComponent />
       </div>
     </div>
   );

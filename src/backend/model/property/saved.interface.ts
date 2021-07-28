@@ -1,6 +1,6 @@
-import { JsonApiModel } from 'helpers/json-api/model';
+import { BackendJsonApiModelType } from 'backend/json-api/model.type';
 
-export interface BackendModelPropertySavedInterface extends JsonApiModel {
+export interface BackendModelPropertySavedInterface extends BackendJsonApiModelType {
   /**
    * BackendModelProperty id
    */

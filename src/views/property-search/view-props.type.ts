@@ -2,7 +2,7 @@ import { FiltersDataInterface } from 'components/filters/data/interface';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { PropertySearchResultType } from 'components/property/search-result.type';
 
-export type PropertySearchComponentPropsType =
+export type PropertySearchViewPropsType =
   | {
       ok: true;
       filtersData: FiltersDataInterface;

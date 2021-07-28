@@ -1,14 +1,14 @@
-import { cookieAuthenticatorSha1 } from './sha1';
+import { apiCookieAuthenticatorSha1 } from './sha1';
 
 // TODO-FE[TPNX-3006] delete this file once proper auth flow is in place
 
 const SALT_INDEX = 5;
 const SECRET = 'a08d7bfd646cbea9397966e98d28238a8258623d';
 
-const generateSalt = (): string => cookieAuthenticatorSha1(Date.now().toString(16)).padStart(40, '0');
+const generateSalt = (): string => apiCookieAuthenticatorSha1(Date.now().toString(16)).padStart(40, '0');
 
 const generateHash = (salt: string, cookie: string): string => {
-  return cookieAuthenticatorSha1(`${salt}${cookie}${SECRET}`);
+  return apiCookieAuthenticatorSha1(`${salt}${cookie}${SECRET}`);
 };
 
 const mixHashAndSalt = (hash: string, salt: string): string =>

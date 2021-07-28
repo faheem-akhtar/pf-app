@@ -1,6 +1,6 @@
-import { UrlQuery } from 'helpers/types';
+import { UrlQueryType } from 'types/url/query.type';
 
-export type DataApiFetcherRequestBasePropsType<Query = UrlQuery> = {
+export type ApiRequestBasePropsType<Query = UrlQueryType> = {
   /**
    * Authentication token
    */

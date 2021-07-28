@@ -1,5 +1,7 @@
-import { FunctionalComponent } from 'preact';
 import { domClassMerge } from 'helpers/dom/class-merge';
+
+import { FunctionalComponent } from 'preact';
+
 import styles from './loader.module.scss';
 
 // TODO-FE[TPNX-2931] move it to the library, it's used in Button

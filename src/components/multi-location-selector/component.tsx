@@ -2,11 +2,11 @@ import { useContext, useState } from 'react';
 
 import { TFunction, useTranslation } from 'next-i18next';
 
-import { isClient } from '../../helpers/isClient';
+import { helpersIsClient } from 'helpers/is-client';
 import { locationService } from 'components/location/service';
 import { multiLocationSelectorGetHistory } from './get-history';
 import { multiLocationSelectorMakeOnAddLocation } from './make-on-add-location';
-import { useConstructor } from 'helpers/use/constructor';
+import { useConstructorHook } from 'helpers/hook/constructor.hook';
 
 import { IconLocationTemplate } from '../icon/location-template';
 import { IconTimeTemplate } from '../icon/time-template';
@@ -36,8 +36,8 @@ export const MultiLocationSelectorComponent = ({
   const { t } = useTranslation();
   const [inputValue, setInputValue] = useState('');
 
-  useConstructor(() => {
-    if (isClient) {
+  useConstructorHook(() => {
+    if (helpersIsClient) {
       locationService.init(locale);
     }
   });

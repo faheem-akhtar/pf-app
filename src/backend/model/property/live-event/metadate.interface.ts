@@ -1,6 +1,6 @@
 import { BackendModelPropertyLiveEventStatusEnum } from './status.enum';
 
-export interface BackendModelPropertyLiveEventMetadataInterface {
+export interface BackendModelPropertyLiveEventMetadateInterface {
   /**
    * Scheduled start date
    */

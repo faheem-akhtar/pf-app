@@ -4,3 +4,6 @@ Makefile*
 dist
 yarn.lock
 result/
+public/static/locations
+public/static/filters-data
+coverage

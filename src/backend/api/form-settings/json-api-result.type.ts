@@ -1,7 +1,7 @@
 /**
  * The result of the JsonApi sync for this endpoint
  */
-export type BackendApiFormSettingJsonApiResultType = Array<{
+export type BackendApiFormSettingsJsonApiResultType = Array<{
   /**
    * Relationships
    */

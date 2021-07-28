@@ -1,7 +1,7 @@
+import { BackendJsonApiModelType } from 'backend/json-api/model.type';
 import { BackendModelBrokerClientTypeEnum } from './client-type.enum';
-import { JsonApiModel } from 'helpers/json-api/model';
 
-export interface BackendModelBrokerInterface extends JsonApiModel {
+export interface BackendModelBrokerInterface extends BackendJsonApiModelType {
   /**
    * ID
    */

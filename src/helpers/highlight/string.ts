@@ -1,4 +1,4 @@
-import { stringEscape } from '../../helpers/string/escape';
+import { stringEscape } from 'helpers/string/escape';
 
 import { HighlightParamsInterface } from './params.interface';
 

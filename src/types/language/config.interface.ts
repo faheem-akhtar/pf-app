@@ -1,4 +1,4 @@
-import { LanguageCodeEnum } from '../../enums/language/code.enum';
+import { LanguageCodeEnum } from 'enums/language/code.enum';
 
 export interface LanguageConfigInterface {
   /**

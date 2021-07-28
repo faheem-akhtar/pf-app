@@ -1,4 +1,4 @@
-import { useConstructor } from 'helpers/use/constructor';
+import { useConstructorHook } from 'helpers/hook/constructor.hook';
 import { useState } from 'react';
 
 import { ModalComponentPropsInterface } from './component.props.interface';
@@ -9,7 +9,7 @@ import styles from './modal.module.scss';
 export const ModalComponent = ({ openRef, closeRef, children }: ModalComponentPropsInterface): JSX.Element | null => {
   const [opened, setOpened] = useState(false);
 
-  useConstructor(() => {
+  useConstructorHook(() => {
     openRef.current = (): void => setOpened(true);
     closeRef.current = (): void => setOpened(false);
   });

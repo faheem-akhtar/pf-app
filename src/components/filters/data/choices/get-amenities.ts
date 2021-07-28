@@ -1,7 +1,8 @@
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { FiltersValueFieldAmenitiesChoice } from 'components/filters/value/field/amenities-choice';
-import { filtersDataMakeGetChoices } from './make-get-choices';
+import { filtersDataChoicesMakeGetChoices } from './make-get-choices';
 
-export const filtersDataChoicesGetAmenities = filtersDataMakeGetChoices<FiltersValueFieldAmenitiesChoice>(
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { FiltersValueFieldAmenitiesChoiceType } from 'components/filters/value/field/amenities-choice.type';
+
+export const filtersDataChoicesGetAmenities = filtersDataChoicesMakeGetChoices<FiltersValueFieldAmenitiesChoiceType>(
   FiltersParametersEnum.amenities
 );

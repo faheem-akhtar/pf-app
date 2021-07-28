@@ -1,10 +1,11 @@
+import { backendFiltersValueDefaultBase } from './default-base';
+
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { FiltersValueFieldPriceType } from 'components/filters/value/field/price-type';
+import { FiltersValueFieldPricePeriodType } from 'components/filters/value/field/price-period.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { PropertyPriceTypeShortEnum } from 'components/property-price-type/short.enum';
-import { backendFiltersValueDefaultBase } from './base';
 
 export const backendFiltersValueDefault: FiltersValueInterface = {
   ...backendFiltersValueDefaultBase,
-  [FiltersParametersEnum.pricePeriod]: PropertyPriceTypeShortEnum.monthly as FiltersValueFieldPriceType,
+  [FiltersParametersEnum.pricePeriod]: PropertyPriceTypeShortEnum.monthly as FiltersValueFieldPricePeriodType,
 };

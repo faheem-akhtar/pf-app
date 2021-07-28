@@ -1,9 +1,9 @@
-import { backendApiFactory } from '../backend-factory';
-
-import { LocationCompactInterface } from 'components/location/compact.interface';
+import { BackendApiFactory } from '../factory';
 import { backendApiLocationMapper } from './mapper';
 
-export const backendApiLocationFetcher = backendApiFactory<LocationCompactInterface[], LocationCompactInterface[]>({
+import { LocationCompactInterface } from 'components/location/compact.interface';
+
+export const backendApiLocationFetcher = BackendApiFactory<LocationCompactInterface[], LocationCompactInterface[]>({
   method: 'GET',
   url: 'location',
   dataMapper: backendApiLocationMapper,

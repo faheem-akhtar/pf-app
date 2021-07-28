@@ -1,8 +1,4 @@
-import { assertUnreachable } from 'helpers/assert-unreachable';
-
-import { AnyValue } from 'types/value';
-import { PropertySerpInterface } from 'components/property/serp/interface';
-import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
+import { assertUnreachable } from 'helpers/assert/unreachable';
 import { propertySerpObfuscatedFieldBathroomValue } from 'components/property/serp/obfuscated/field/bathroom-value';
 import { propertySerpObfuscatedFieldBedroomValue } from 'components/property/serp/obfuscated/field/bedroom-value';
 import { propertySerpObfuscatedFieldContactOptionsList } from 'components/property/serp/obfuscated/field/contact-options-list';
@@ -16,8 +12,12 @@ import { propertySerpObfuscatedFieldPropertyTypeName } from 'components/property
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
 
+import { AnyValueType } from 'types/any/value.type';
+import { PropertySerpInterface } from 'components/property/serp/interface';
+import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
+
 export const backendPropertySerpObfuscate = (property: PropertySerpInterface): PropertySerpObfuscatedType => {
-  const obfuscatedProperty: Record<string, AnyValue> = {};
+  const obfuscatedProperty: Record<string, AnyValueType> = {};
 
   Object.keys(property).forEach((key) => {
     const propertyKey = key as keyof PropertySerpInterface;

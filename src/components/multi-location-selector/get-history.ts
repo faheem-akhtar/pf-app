@@ -9,5 +9,6 @@ export const multiLocationSelectorGetHistory = (
   locale: LanguageCodeEnum
 ): LocationCompactInterface[] => {
   const historyKey = multiLocationSelectorMakeHistoryKey(locale);
-  return localStorage.getItem<LocationCompactInterface[]>(historyKey) || [];
+
+  return (localStorage.getItem(historyKey) || []) as LocationCompactInterface[];
 };
