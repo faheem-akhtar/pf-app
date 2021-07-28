@@ -32,7 +32,7 @@ function getPossibleNames(context) {
     var _a = (context.options[0] || {}), _b = _a.enforcePrefixOnExtension, enforcePrefixOnExtension = _b === void 0 ? [] : _b, _c = _a.ignoreCustomExtensionInNameOn, ignoreCustomExtensionInNameOn = _c === void 0 ? [] : _c, _d = _a.rootFolder, rootFolder = _d === void 0 ? 'src' : _d;
     // Name of the file without path and extension and custom extensions
     var nameWithoutIgnoredExtensions = ignoreCustomExtensionInNameOn.reduce(function (result, current) {
-        var ignoreRegex = new RegExp(current);
+        var ignoreRegex = new RegExp(current.replace('.', '\\.'));
         return result.replace(ignoreRegex, '');
     }, pathArray[pathArray.length - 1]);
     pathArray[pathArray.length - 1] = nameWithoutIgnoredExtensions;

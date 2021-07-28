@@ -21,7 +21,7 @@ function getPossibleNames(context: Rule.RuleContext): {
 
   // Name of the file without path and extension and custom extensions
   const nameWithoutIgnoredExtensions = ignoreCustomExtensionInNameOn.reduce((result, current) => {
-    const ignoreRegex = new RegExp(current);
+    const ignoreRegex = new RegExp(current.replace('.', '\\.'));
     return result.replace(ignoreRegex, '');
   }, pathArray[pathArray.length - 1]);
 
