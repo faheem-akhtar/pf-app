@@ -2,15 +2,6 @@
 
 var exec = require('child_process').exec;
 
-const checkForErrors = (name, consoleOutput) => {
-  if (consoleOutput.includes('Type error:')) {
-    console.error(
-      `========================\nBuild error for: ${name}\n========================\nconsole output:\n${consoleOutput}\n`
-    );
-    process.exit(1)
-  }
-}
-
 function promiseFromChildProcess(child, name) {
   return new Promise(function (resolve, reject) {
     console.log('Started build for', name);
@@ -27,9 +18,6 @@ function promiseFromChildProcess(child, name) {
       console.log(
         `========================\nBuild complete for, ${name}. status:${status}\n========================\nconsole output:\n${consoleOutput}================================================\n\n\n`
       );
-
-      checkForErrors(name, consoleOutput);
-
       if (status === 0) {
         resolve(true);
       } else {
