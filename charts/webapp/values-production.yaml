@@ -33,6 +33,13 @@ countries:
       - m.propertyfinder.sa
       - www.esimsar.com
       - m.esimsar.com
+  lb:
+    hosts:
+      - www.propertyfinder.com.lb
+  ma:
+    hosts:
+      - www.propertyfinder.ma
+      - www.sarouty.ma
 
 resources:
   limits:

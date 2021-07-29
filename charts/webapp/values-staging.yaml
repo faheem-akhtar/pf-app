@@ -30,3 +30,10 @@ countries:
       - m.staging.propertyfinder.sa
       - staging.esimsar.com
       - m.staging.esimsar.com
+  lb:
+    hosts:
+      - www.propertyfinder.com.lb
+  ma:
+    hosts:
+      - www.propertyfinder.ma
+      - www.sarouty.ma
