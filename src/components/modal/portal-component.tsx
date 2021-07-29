@@ -6,6 +6,11 @@ export const ModalPortalComponent = ({ children }: { children: ReactNode }): JSX
 
   useEffect(() => {
     setIsBrowser(true);
+    document.body.classList.add('body-noscroll');
+
+    return (): void => {
+      document.body.classList.remove('body-noscroll');
+    };
   }, []);
 
   if (isBrowser) {
