@@ -4,15 +4,15 @@ import { useContext } from 'react';
 
 import { TFunction, useTranslation } from 'next-i18next';
 
+import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
+import { ButtonTemplate } from 'library/button/template';
 import { DropdownTemplate } from '../dropdown/template';
 import { FiltersContext } from '../filters/context';
 import { FiltersDataInterface } from '../filters/data/interface';
 import { FiltersModalSubmitButtonComponent } from './submit-button-component';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueInterface } from '../filters/value/interface';
-import { LibraryButtonComponentTypeEnum } from 'library/button/component-type.enum';
-import { LibraryButtonTemplate } from 'library/button/template';
 import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
 
 import { filtersDataChoicesGetCategoryId } from '../filters/data/choices/get-category-id';
@@ -197,24 +197,24 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
   return (
     <div className={styles.containter}>
       <div className={styles.header}>
-        <LibraryButtonTemplate
+        <ButtonTemplate
           type='button'
-          componentType={LibraryButtonComponentTypeEnum.tertiary}
+          componentType={ButtonComponentTypeEnum.tertiary}
           size={ButtonSizeEnum.small}
           onClick={close}
         >
           Close
-        </LibraryButtonTemplate>
+        </ButtonTemplate>
         <span>Filters</span>
-        <LibraryButtonTemplate
+        <ButtonTemplate
           className={filtersValueIsDefault ? styles.hidden : ''}
           type='button'
-          componentType={LibraryButtonComponentTypeEnum.secondaryBlue}
+          componentType={ButtonComponentTypeEnum.secondaryBlue}
           size={ButtonSizeEnum.small}
           onClick={resetFiltersValue}
         >
           Reset
-        </LibraryButtonTemplate>
+        </ButtonTemplate>
       </div>
       <div className={styles.content}>
         {enabledFiltersInSequence.map((filterType) => {

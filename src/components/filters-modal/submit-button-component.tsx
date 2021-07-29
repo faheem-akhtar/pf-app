@@ -1,10 +1,10 @@
 import { useApiPropertySearchCount } from 'api/property-search-count/hook';
 
 import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
+import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
+import { ButtonTemplate } from 'library/button/template';
 import { FiltersModalSubmitButtonPropsInterface } from './submit-button-props.interface';
-import { LibraryButtonComponentTypeEnum } from 'library/button/component-type.enum';
-import { LibraryButtonTemplate } from 'library/button/template';
 
 import styles from './filters-modal-component.module.scss';
 
@@ -21,9 +21,9 @@ export const FiltersModalSubmitButtonComponent = ({
   }
 
   return (
-    <LibraryButtonTemplate
+    <ButtonTemplate
       type='button'
-      componentType={LibraryButtonComponentTypeEnum.primary}
+      componentType={ButtonComponentTypeEnum.primary}
       size={ButtonSizeEnum.regular}
       className={styles.submit_btn}
       onClick={onSubmit}
@@ -34,6 +34,6 @@ export const FiltersModalSubmitButtonComponent = ({
       ) : (
         <span>Loading...</span>
       )}
-    </LibraryButtonTemplate>
+    </ButtonTemplate>
   );
 };

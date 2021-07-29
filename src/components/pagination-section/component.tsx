@@ -1,13 +1,14 @@
-import Router, { NextRouter, useRouter } from 'next/router';
 import { useContext } from 'react';
+
+import Router, { NextRouter, useRouter } from 'next/router';
 
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
 
+import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
+import { ButtonTemplate } from 'library/button/template';
 import { FiltersContext } from 'components/filters/context';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { LibraryButtonComponentTypeEnum } from 'library/button/component-type.enum';
-import { LibraryButtonTemplate } from 'library/button/template';
 import { PaginationSectionComponentPropsType } from './component-props.type';
 
 import styles from './pagination-section.module.scss';
@@ -19,9 +20,9 @@ const renderLink = (router: NextRouter, text: string, page: number, hidden: bool
   const url = `/${router.locale}${router.pathname}?${urlQuerySerialize({ ...router.query, page })}`;
 
   return (
-    <LibraryButtonTemplate
+    <ButtonTemplate
       className={hidden ? styles.hidden : ''}
-      componentType={LibraryButtonComponentTypeEnum.secondary}
+      componentType={ButtonComponentTypeEnum.secondary}
       href={hidden ? '#' : url}
       size={ButtonSizeEnum.small}
       onClick={(e): void => {
@@ -30,7 +31,7 @@ const renderLink = (router: NextRouter, text: string, page: number, hidden: bool
       }}
     >
       {text}
-    </LibraryButtonTemplate>
+    </ButtonTemplate>
   );
 };
 

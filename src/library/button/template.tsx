@@ -1,9 +1,12 @@
 import { Fragment, FunctionalComponent } from 'preact';
+
+import { domClassMerge } from 'helpers/dom/class-merge';
+
 import { ButtonButtonTemplateInterface } from './button-template-props.interface';
 import { ButtonIconPositionEnum } from './icon-position.enum';
 import { ButtonLinkTemplatePropsInterface } from './link-template-props.interface';
 import { LoaderTemplate } from 'components/loader/template';
-import { domClassMerge } from 'helpers/dom/class-merge';
+
 import styles from './button.module.scss';
 
 // TODO-FE[TPNX-3016] add tests
@@ -11,9 +14,11 @@ import styles from './button.module.scss';
  * Web UI Kit Button tempalte
  * Figma: https://www.figma.com/file/gRARY1Vi4W2Ow1vRLw02am/PF_Consumer-Web-Kit?node-id=3869%3A2340
  */
-export const LibraryButtonTemplate: FunctionalComponent<
-  ButtonLinkTemplatePropsInterface | ButtonButtonTemplateInterface
-> = ({ icon = {}, componentType, ...props }) => {
+export const ButtonTemplate: FunctionalComponent<ButtonLinkTemplatePropsInterface | ButtonButtonTemplateInterface> = ({
+  icon = {},
+  componentType,
+  ...props
+}) => {
   const { component: Icon, position: iconPosition } = icon;
   const typeClass = styles[componentType];
 

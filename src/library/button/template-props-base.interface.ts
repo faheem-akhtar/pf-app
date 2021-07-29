@@ -1,13 +1,14 @@
+import { FunctionComponent } from 'preact';
+
+import { ButtonComponentTypeEnum } from './component-type.enum';
 import { ButtonIconPositionEnum } from './icon-position.enum';
 import { ButtonSizeEnum } from './size.enum';
-import { FunctionComponent } from 'preact';
-import { LibraryButtonComponentTypeEnum } from './component-type.enum';
 
 export interface ButtonTemplatePropsBaseInterface {
   /**
    * Component type
    */
-  componentType: LibraryButtonComponentTypeEnum;
+  componentType: ButtonComponentTypeEnum;
 
   /**
    * Button size

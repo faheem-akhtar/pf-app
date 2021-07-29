@@ -1,11 +1,12 @@
 import { useRef } from 'react';
 
-import { ButtonSizeEnum } from 'library/button/size.enum';
-import { FiltersModalContentComponent } from './content-component';
-import { LibraryButtonComponentTypeEnum } from 'library/button/component-type.enum';
-import { LibraryButtonTemplate } from 'library/button/template';
-import { ModalComponent } from 'components/modal/component';
 import { useTranslation } from 'next-i18next';
+
+import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
+import { ButtonSizeEnum } from 'library/button/size.enum';
+import { ButtonTemplate } from 'library/button/template';
+import { FiltersModalContentComponent } from './content-component';
+import { ModalComponent } from 'components/modal/component';
 
 export const FiltersModalButtonComponent = (): JSX.Element => {
   const openFiltersRef = useRef<() => void>(() => null);
@@ -14,14 +15,14 @@ export const FiltersModalButtonComponent = (): JSX.Element => {
 
   return (
     <>
-      <LibraryButtonTemplate
+      <ButtonTemplate
         type='button'
-        componentType={LibraryButtonComponentTypeEnum.secondary}
+        componentType={ButtonComponentTypeEnum.secondary}
         size={ButtonSizeEnum.regular}
         onClick={(): void => openFiltersRef.current()}
       >
         {t('Filters')}
-      </LibraryButtonTemplate>
+      </ButtonTemplate>
       <ModalComponent openRef={openFiltersRef} closeRef={closeFiltersRef}>
         <FiltersModalContentComponent close={(): void => closeFiltersRef.current()} />
       </ModalComponent>

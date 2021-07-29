@@ -67,6 +67,12 @@
   margin-left: calc(var(--spacing) / 2);
 }
 
+.primary,
+.secondary,
+.secondaryBlue {
+  font-weight: var(--font-weight-02);
+}
+
 /* Primary */
 .primary {
   background-color: var(--color-primary-clay-100);
