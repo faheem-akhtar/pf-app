@@ -42,7 +42,7 @@ async function build(country, isMobile, retry = true) {
       await build(country, isMobile, false);
     } else {
       console.warn('Retrying failed for', name, 'with', e);
-      process.exit(1)
+      process.exit(1);
     }
   }
 }

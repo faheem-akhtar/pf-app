@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { TFunction, useTranslation } from 'next-i18next';
 
 import { helpersIsClient } from 'helpers/is-client';
-import { locationService } from 'components/location/service';
+import { LocationService } from 'components/location/service';
 import { multiLocationSelectorGetHistory } from './get-history';
 import { multiLocationSelectorMakeOnAddLocation } from './make-on-add-location';
 import { useConstructorHook } from 'helpers/hook/constructor.hook';
@@ -38,7 +38,7 @@ export const MultiLocationSelectorComponent = ({
 
   useConstructorHook(() => {
     if (helpersIsClient) {
-      locationService.init(locale);
+      LocationService.init(locale);
     }
   });
 
@@ -57,7 +57,7 @@ export const MultiLocationSelectorComponent = ({
       return Promise.resolve(multiLocationSelectorGetHistory(localStorage, locale));
     }
 
-    return locationService.search(input, maxSearchResults);
+    return LocationService.search(input, maxSearchResults);
   };
 
   return (

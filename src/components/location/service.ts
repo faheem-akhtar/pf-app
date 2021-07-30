@@ -7,7 +7,7 @@ let locationsStore: LocationStore;
 
 const makeEtagLocalStorageKey = (locale: string): string => `locations-etag-${locale}`;
 
-export const locationService: LocationServiceInterface = {
+export const LocationService: LocationServiceInterface = {
   init: (locale) => {
     if (!locationsStore) {
       const etag = localStorage.getItem(makeEtagLocalStorageKey(locale));

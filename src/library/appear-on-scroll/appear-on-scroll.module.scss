@@ -1,0 +1,39 @@
+.appear_on_scroll {
+  left: 0;
+  position: fixed;
+  top: 0;
+  transform: translateY(-100%);
+  z-index: var(--z-index-08);
+}
+
+.appear_on_scroll.appear_on_scroll__entering {
+  animation: enter 200ms ease-out forwards;
+}
+.appear_on_scroll.appear_on_scroll__visible {
+  animation: enter 0ms ease-out forwards;
+}
+
+.appear_on_scroll.appear_on_scroll__exiting {
+  animation: exit 200ms ease-out forwards;
+}
+.appear_on_scroll.appear_on_scroll__hidden {
+  animation: exit 0ms ease-out forwards;
+}
+
+@keyframes enter {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes exit {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
