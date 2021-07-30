@@ -13,6 +13,7 @@ import { FiltersDataInterface } from '../filters/data/interface';
 import { FiltersModalSubmitButtonComponent } from './submit-button-component';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueInterface } from '../filters/value/interface';
+import { IconCloseTemplate } from 'components/icon/close-template';
 import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
 
 import { filtersDataChoicesGetCategoryId } from '../filters/data/choices/get-category-id';
@@ -197,23 +198,18 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
   return (
     <div className={styles.containter}>
       <div className={styles.header}>
-        <ButtonTemplate
-          type='button'
-          componentType={ButtonComponentTypeEnum.tertiary}
-          size={ButtonSizeEnum.small}
-          onClick={close}
-        >
-          Close
-        </ButtonTemplate>
-        <span>Filters</span>
+        <div onClick={close} className={styles.headerLeft}>
+          <IconCloseTemplate class={styles.closeIcon} />
+          <span className={styles.title}>{t('Filters')}</span>
+        </div>
         <ButtonTemplate
           className={filtersValueIsDefault ? styles.hidden : ''}
           type='button'
-          componentType={ButtonComponentTypeEnum.secondaryBlue}
+          componentType={ButtonComponentTypeEnum.secondary}
           size={ButtonSizeEnum.small}
           onClick={resetFiltersValue}
         >
-          Reset
+          {t('Clear All')}
         </ButtonTemplate>
       </div>
       <div className={styles.content}>

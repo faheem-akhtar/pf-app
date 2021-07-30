@@ -24,7 +24,7 @@ export const ButtonTemplate: FunctionalComponent<ButtonLinkTemplatePropsInterfac
 
   // TODO-FE[TPNX-2699] Use loader as per design
   const renderLoader = (): JSX.Element => (
-    <LoaderTemplate cssClass={domClassMerge(styles.loader, styles[`${typeClass}Loader`])} />
+    <LoaderTemplate containerCssClass={styles.loader} dotCssClass={styles[`${componentType}--loader`]} />
   );
   const renderIcon = (): JSX.Element | null =>
     Icon ? (
@@ -57,9 +57,9 @@ export const ButtonTemplate: FunctionalComponent<ButtonLinkTemplatePropsInterfac
         styles[`icon-${iconPosition}`],
         styles[props.size],
         {
-          [styles[`${typeClass}--loading`]]: !!props.loading,
+          [styles[`${componentType}--loading`]]: !!props.loading,
           [styles.disabled]: !!props.disabled,
-          [styles[`${typeClass}--disabled`]]: !!props.disabled,
+          [styles[`${componentType}--disabled`]]: !!props.disabled,
         },
         props.className
       )}

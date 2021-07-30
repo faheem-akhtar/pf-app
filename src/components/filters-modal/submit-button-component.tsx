@@ -28,12 +28,9 @@ export const FiltersModalSubmitButtonComponent = ({
       className={styles.submit_btn}
       onClick={onSubmit}
       disabled={!result.ok}
+      loading={!result.ok}
     >
-      {result.ok ? (
-        <span>{result.data ? `Show ${result.data} properties` : 'No results.'}</span>
-      ) : (
-        <span>Loading...</span>
-      )}
+      {result.ok && <span>{result.data ? `Show ${result.data} properties` : 'No results.'}</span>}
     </ButtonTemplate>
   );
 };
