@@ -130,12 +130,13 @@
 }
 
 .suggestion {
-  height: 3.6rem;
-  padding: var(--spacing);
+  height: 4rem;
   line-height: 2.4rem;
   display: flex;
   width: 100%;
   text-align: left;
+  display: flex;
+  align-items: center;
 }
 
 .suggestion_icon {

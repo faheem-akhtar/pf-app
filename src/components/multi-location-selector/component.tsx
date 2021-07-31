@@ -30,8 +30,8 @@ export const MultiLocationSelectorComponent = ({
   locale,
   onChange,
   value: locations,
-  maxHistoryLength = 3,
-  maxSearchResults = 3,
+  maxHistoryLength = 8,
+  maxSearchResults = 8,
 }: MultiLocationSelectorComponentPropsInterface): JSX.Element => {
   const { t } = useTranslation();
   const [inputValue, setInputValue] = useState('');

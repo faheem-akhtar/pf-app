@@ -18,13 +18,14 @@
   --color-global-grey2: #bbb8bd;
   --color-global-grey3: #e4e4e4;
   --color-global-grey4: #f8f8f8;
-  --color-global-white: #ffffff;
+  --color-global-white: #fff;
 
   /* Global / Black with opacity */
   --color-global-black-op-5: rgba(64, 59, 69, 0.05);
   --color-global-black-op-10: rgba(64, 59, 69, 0.1);
   --color-global-black-op-15: rgba(64, 59, 69, 0.15);
   --color-global-black-op-20: rgba(64, 59, 69, 0.2);
+  --color-global-black-op-35: rgba(64, 59, 69, 0.35);
   --color-global-black-op-70: rgba(64, 59, 69, 0.7);
 
   /* Global / Stone */
@@ -118,7 +119,8 @@
   --spacing: 0.6rem;
 
   /* box shadow */
-  --box-shadow-04: 0 0.2rem 0.4rem var(--color-global-black-op-10), 0px 0.4rem 0.5rem var(--color-global-black-op-5);
+  --box-shadow-02: 0 0.1rem 0.2rem 0 var(--color-global-black-op-35);
+  --box-shadow-04: 0 0.2rem 0.4rem var(--color-global-black-op-10), 0 0.4rem 0.5rem var(--color-global-black-op-5);
 
   /* transition timing functions */
   --ease-out-elastic: cubic-bezier(0.29, 2.5, 0.39, 0.39);

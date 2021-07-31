@@ -1,13 +1,21 @@
 import { IconTemplatePropsInterface } from './template-props.interface';
 
-// tslint:disable:max-line-length
-export const IconChevronRightTemplate = (props: IconTemplatePropsInterface): JSX.Element => (
-  <svg width='10' height='16' viewBox='0 0 10 16' fill='none' className={props.class}>
-    <path
-      fill-rule='evenodd'
-      clip-rule='evenodd'
-      d='M2.41203 0.707106C2.0215 0.316582 1.38832 0.316601 0.997796 0.707126C0.608936 1.09599 0.607018 1.72588 0.993526 2.11708L6.82743 8.02177L0.997039 13.884C0.608962 14.2742 0.609821 14.9049 0.998961 15.294C1.38885 15.6839 2.02099 15.6839 2.41088 15.294L8.99782 8.70711C9.38834 8.31658 9.38834 7.68342 8.99782 7.29289L2.41203 0.707106Z'
-      fill='white'
-    />
-  </svg>
-);
+export const IconChevronRightTemplate = (props: IconTemplatePropsInterface): JSX.Element => {
+  const { clipped = true } = props;
+  return (
+    <svg
+      viewBox={clipped ? '0 0 10 16' : '0 0 24 24'}
+      height={clipped ? undefined : '24'}
+      width={clipped ? undefined : '24'}
+      className={props.class}
+    >
+      {/* tslint:disable-next-line: max-line-length */}
+      <path
+        fill-rule='evenodd'
+        clip-rule='evenodd'
+        d='M10.412 4.70711C10.0215 4.31658 9.38832 4.3166 8.9978 4.70713C8.60894 5.09599 8.60702 5.72588 8.99353 6.11708L14.8274 12.0218L8.99704 17.884C8.60896 18.2742 8.60982 18.9049 8.99896 19.294C9.38885 19.6839 10.021 19.6839 10.4109 19.294L16.9978 12.7071C17.3883 12.3166 17.3883 11.6834 16.9978 11.2929L10.412 4.70711Z'
+        fill='white'
+      />
+    </svg>
+  );
+};

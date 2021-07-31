@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+}
+
+.link {
+  color: var(--color-interaction-1-dark-mode);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-02);
+  line-height: normal;
+  text-decoration: none;
+}
+
+.linkAr {
+  font-size: var(--font-size-10);
+  margin-bottom: var(--spacing);
+}

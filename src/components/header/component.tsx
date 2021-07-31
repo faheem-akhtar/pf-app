@@ -1,5 +1,22 @@
-import styles from './header.module.scss';
+import { FunctionalComponent } from 'preact';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-export const HeaderComponent = (): JSX.Element => {
-  return <header className={styles.container}>Mobile Header TODO-FE[TPNX-2973]</header>;
+import { HeaderTemplate } from './template';
+
+export const HeaderComponent: FunctionalComponent = (): JSX.Element => {
+  const { locale } = useRouter();
+  // TODO-FE[TPNX-1946] Login service should be replaced
+  const [userProfile, setUserProfile] = useState<{
+    image: string;
+    savedPropertiesCount: number;
+  }>();
+
+  return (
+    <HeaderTemplate
+      locale={locale}
+      userProfile={userProfile}
+      onLoginButtonClick={(): void => setUserProfile({ image: '', savedPropertiesCount: 5 })}
+    />
+  );
 };
