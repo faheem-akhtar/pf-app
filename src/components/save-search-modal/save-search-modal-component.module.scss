@@ -1,0 +1,9 @@
+.icon__inactive {
+  stroke: var(--color-global-black);
+  fill: none;
+}
+
+.icon__active {
+  stroke: var(--color-feedback-warning-light);
+  fill: var(--color-feedback-warning-light);
+}

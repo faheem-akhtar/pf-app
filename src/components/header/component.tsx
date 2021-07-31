@@ -1,10 +1,9 @@
-import { FunctionalComponent } from 'preact';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { HeaderTemplate } from './template';
 
-export const HeaderComponent: FunctionalComponent = (): JSX.Element => {
+export const HeaderComponent = (): JSX.Element => {
   const { locale } = useRouter();
   // TODO-FE[TPNX-1946] Login service should be replaced
   const [userProfile, setUserProfile] = useState<{

@@ -1,6 +1,4 @@
-import { FunctionalComponent } from 'preact';
-
-export const IconAppStoreTemplate: FunctionalComponent = () => (
+export const IconAppStoreTemplate = (): JSX.Element => (
   <svg
     width='165'
     height='52'

@@ -1,6 +1,6 @@
 import { ButtonTemplatePropsBaseInterface } from './template-props-base.interface';
 
-export interface ButtonButtonTemplateInterface extends ButtonTemplatePropsBaseInterface {
+export interface ButtonTemplatePropsInterface extends ButtonTemplatePropsBaseInterface {
   /**
    * Type
    */

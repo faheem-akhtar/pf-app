@@ -1,5 +1,3 @@
-import { FunctionComponent } from 'preact';
-
 import { ButtonComponentTypeEnum } from './component-type.enum';
 import { ButtonIconPositionEnum } from './icon-position.enum';
 import { ButtonSizeEnum } from './size.enum';
@@ -32,22 +30,22 @@ export interface ButtonTemplatePropsBaseInterface {
     /**
      * Icon component
      */
-    component: FunctionComponent<{ class?: string; clipped?: boolean }>;
+    component: React.FunctionComponent<{ class?: string; clipped?: boolean }>;
     /**
      * Icon position
      */
     position: ButtonIconPositionEnum;
+
+    /**
+     * Icon class name
+     */
+    className?: string;
   };
 
   /**
    * Additional css class
    */
   className?: string;
-
-  /**
-   * Icon css class
-   */
-  iconClassName?: string;
 
   /**
    * Handle button click event

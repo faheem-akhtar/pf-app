@@ -8,10 +8,6 @@ export interface AppearOnScrollComponentPropsInterface {
    */
   className?: string;
   /**
-   * Whether or not show the component on load of the page (Just in case the component itself is out of view)
-   */
-  showOnLoad?: boolean;
-  /**
    * Handler for when the component (not the wrapper) starts exiting the viewport
    */
   onExiting?: () => void;

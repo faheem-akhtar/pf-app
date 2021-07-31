@@ -4,6 +4,8 @@
   top: 0;
   transform: translateY(-100%);
   z-index: var(--z-index-08);
+  width: 100%;
+  box-shadow: var(--box-shadow-04);
 }
 
 .appear_on_scroll.appear_on_scroll__entering {

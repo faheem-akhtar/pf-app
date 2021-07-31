@@ -1,10 +1,10 @@
-import { Fragment, FunctionalComponent } from 'preact';
+import { Fragment, FunctionComponent } from 'react';
 
 import { domClassMerge } from 'helpers/dom/class-merge';
 
-import { ButtonButtonTemplateInterface } from './button-template-props.interface';
 import { ButtonIconPositionEnum } from './icon-position.enum';
 import { ButtonLinkTemplatePropsInterface } from './link-template-props.interface';
+import { ButtonTemplatePropsInterface } from './template-props.interface';
 import { LoaderTemplate } from 'components/loader/template';
 
 import styles from './button.module.scss';
@@ -14,7 +14,7 @@ import styles from './button.module.scss';
  * Web UI Kit Button tempalte
  * Figma: https://www.figma.com/file/gRARY1Vi4W2Ow1vRLw02am/PF_Consumer-Web-Kit?node-id=3869%3A2340
  */
-export const ButtonTemplate: FunctionalComponent<ButtonLinkTemplatePropsInterface | ButtonButtonTemplateInterface> = ({
+export const ButtonTemplate: FunctionComponent<ButtonLinkTemplatePropsInterface | ButtonTemplatePropsInterface> = ({
   icon = {},
   componentType,
   ...props
@@ -30,12 +30,7 @@ export const ButtonTemplate: FunctionalComponent<ButtonLinkTemplatePropsInterfac
     Icon ? (
       <Icon
         clipped={false}
-        class={domClassMerge(
-          styles.icon,
-          styles[`${styles.icon}--${iconPosition}`],
-          styles[`${typeClass}Icon`],
-          props.iconClassName
-        )}
+        class={domClassMerge(styles.icon, styles[`icon--${iconPosition}`], styles[`${typeClass}Icon`], icon.className)}
       />
     ) : null;
 
@@ -54,7 +49,6 @@ export const ButtonTemplate: FunctionalComponent<ButtonLinkTemplatePropsInterfac
       class={domClassMerge(
         styles.button,
         typeClass,
-        styles[`icon-${iconPosition}`],
         styles[props.size],
         {
           [styles[`${componentType}--loading`]]: !!props.loading,

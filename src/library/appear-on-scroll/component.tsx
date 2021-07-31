@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'react';
 
 import { appearOnScrollObserve } from './observe';
 import { appearOnScrollOnStatusChange } from './on-status-change';

@@ -7,3 +7,20 @@
   justify-content: space-between;
   margin-top: var(--spacing);
 }
+
+.buttons_row__appear_on_scroll {
+  padding: calc(var(--spacing) * 2);
+  background-color: var(--color-global-white);
+  width: 100%;
+  margin-top: 0;
+}
+
+.buttons_row button {
+  border-radius: 1rem;
+  flex: 1;
+  font-size: var(--font-size-08);
+}
+
+.buttons_row button:last-child {
+  margin-left: calc(var(--spacing) * 1.5);
+}
