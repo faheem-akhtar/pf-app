@@ -1,8 +1,16 @@
 .container {
   margin: calc(var(--spacing) * 2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   font-size: var(--font-size-08);
   white-space: nowrap;
+}
+
+.sort_btn {
+  display: inline;
+  color: var(--color-interaction-1-light-mode);
+  font-weight: var(--font-weight-02);
+}
+
+.sort_icon {
+  width: 0.8rem;
+  margin-left: var(--spacing);
 }

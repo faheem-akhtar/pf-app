@@ -1,6 +1,8 @@
 import locationsByLocale from '../../../../public/static/locations';
 
 import { backendFiltersValueDefault } from 'backend/filters/value/default';
+import { categoryIdIsRent } from 'helpers/category-id/is-rent';
+import { configPriceChoicesDefinition } from 'config/price-choices/definition';
 
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersQueryInterface } from 'components/filters/query/interface';
@@ -42,12 +44,16 @@ export const backendFiltersQueryToValue = (
   queryParams: FiltersQueryInterface,
   locale: string
 ): FiltersValueInterface => {
+  const categoryId = (queryParams[FiltersQueryParametersEnum.categoryId] ||
+    backendFiltersValueDefault[FiltersParametersEnum.categoryId]) as FiltersValueFieldCategoryIdType;
+
+  const defaultPricePeriod = categoryIdIsRent(categoryId) ? Object.keys(configPriceChoicesDefinition.rent)[0] : '';
+
   return {
     [FiltersParametersEnum.locationsIds]:
       queryParams[FiltersQueryParametersEnum.locationsIds]?.split('-')?.map((id) => locationsMapByLocale[locale][id]) ||
       [],
-    [FiltersParametersEnum.categoryId]: (queryParams[FiltersQueryParametersEnum.categoryId] ||
-      backendFiltersValueDefault[FiltersParametersEnum.categoryId]) as FiltersValueFieldCategoryIdType,
+    [FiltersParametersEnum.categoryId]: categoryId,
     [FiltersParametersEnum.propertyTypeId]:
       (queryParams[FiltersQueryParametersEnum.propertyTypeId] as FiltersValueFieldPropertyTypeIdType) || '',
     [FiltersParametersEnum.minBedroom]:
@@ -71,7 +77,7 @@ export const backendFiltersQueryToValue = (
     [FiltersParametersEnum.maxArea]:
       (queryParams[FiltersQueryParametersEnum.maxArea] as FiltersValueFieldMaxAreaType) || '',
     [FiltersParametersEnum.pricePeriod]:
-      (queryParams[FiltersQueryParametersEnum.pricePeriod] as FiltersValueFieldPricePeriodType) || '',
+      (queryParams[FiltersQueryParametersEnum.pricePeriod] as FiltersValueFieldPricePeriodType) || defaultPricePeriod,
     [FiltersParametersEnum.keyword]: queryParams[FiltersQueryParametersEnum.keyword] || '',
     [FiltersParametersEnum.amenities]:
       (queryParams[FiltersQueryParametersEnum.amenities] as FiltersValueFieldAmenitiesType[]) || [],
@@ -83,7 +89,7 @@ export const backendFiltersQueryToValue = (
       (queryParams[FiltersQueryParametersEnum.utilitiesPriceType] as FiltersValueFieldUtilitiesPriceTypeType) || '',
     [FiltersParametersEnum.virtualViewings]:
       (queryParams[FiltersQueryParametersEnum.virtualViewings] as FiltersValueFieldVirtualViewingType) || '',
-    [FiltersParametersEnum.sort]: (queryParams[FiltersQueryParametersEnum.sort] as FiltersValueFieldSortType) || '',
+    [FiltersParametersEnum.sort]: (queryParams[FiltersQueryParametersEnum.sort] || 'mr') as FiltersValueFieldSortType,
     [FiltersParametersEnum.pageNumber]: parseInt(queryParams[FiltersQueryParametersEnum.pageNumber] || '1', 10),
   };
 };
