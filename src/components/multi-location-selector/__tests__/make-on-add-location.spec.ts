@@ -3,9 +3,9 @@ import { LocationCompactKcMock } from 'mocks/location/compact-kc.mock';
 import { multiLocationSelectorMakeOnAddLocation } from '../make-on-add-location';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { LocationCompactInterface } from 'components/location/compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 import { MultiLocationSelectorMakeOnAddLocationPropsInterface } from '../make-on-add-location-props.interface';
-import { WindowLocalStorageInterface } from 'helpers/window/local-storage/interface';
+import { WindowLocalStorageInterface } from 'context/window/local-storage/interface';
 import { WindowLocalStorageMock } from 'mocks/window/local-storage.mock';
 
 const location1 = { ...LocationCompactKcMock, id: '1', path: '1' };

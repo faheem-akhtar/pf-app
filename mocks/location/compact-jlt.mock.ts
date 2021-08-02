@@ -1,4 +1,4 @@
-import { LocationCompactInterface } from '../../src/components/location/compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 
 export const LocationCompactJltMock: LocationCompactInterface = {
   id: '943',

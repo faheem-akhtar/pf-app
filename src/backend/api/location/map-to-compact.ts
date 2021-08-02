@@ -1,4 +1,4 @@
-import { LocationCompactInterface } from 'components/location/compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 
 export const backendApiLocationMapToCompact = (location: LocationCompactInterface): LocationCompactInterface => ({
   name: location.name,

@@ -24,8 +24,8 @@ import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.t
 import { FiltersValueFieldUtilitiesPriceTypeType } from 'components/filters/value/field/utilities-price-type.type';
 import { FiltersValueFieldVirtualViewingType } from 'components/filters/value/field/virtual-viewing.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { LocationCompactInterface } from 'components/location/compact.interface';
-import { LocationCompactMapType } from 'components/location/compact-map.type';
+import { LocationCompactInterface } from 'types/location/compact.interface';
+import { LocationCompactMapType } from 'types/location/compact-map.type';
 
 const locationsMapByLocale: Record<string, LocationCompactMapType> = {};
 

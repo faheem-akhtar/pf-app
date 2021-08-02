@@ -1,6 +1,6 @@
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
 
-import { LocationCompactInterface } from 'components/location/compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import { NextApiRequest, NextApiResponse } from 'next';
 

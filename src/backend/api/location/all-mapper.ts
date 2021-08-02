@@ -1,6 +1,6 @@
 import { backendApiLocationMapToCompact } from './map-to-compact';
 
-import { LocationCompactInterface } from 'components/location/compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 
 /**
  * Map Locations response to compact map interface

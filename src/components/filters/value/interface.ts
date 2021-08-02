@@ -14,7 +14,7 @@ import { FiltersValueFieldPricePeriodType } from './field/price-period.type';
 import { FiltersValueFieldSortType } from './field/sort.type';
 import { FiltersValueFieldUtilitiesPriceTypeType } from './field/utilities-price-type.type';
 import { FiltersValueFieldVirtualViewingType } from './field/virtual-viewing.type';
-import { LocationCompactInterface } from 'components/location/compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 
 export interface FiltersValueInterface extends FiltersValueBaseInterface {
   /**

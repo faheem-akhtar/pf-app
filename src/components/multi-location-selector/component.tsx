@@ -3,17 +3,17 @@ import { useContext, useState } from 'react';
 import { TFunction, useTranslation } from 'next-i18next';
 
 import { helpersIsClient } from 'helpers/is-client';
-import { LocationService } from 'components/location/service';
+import { LocationService } from 'services/location/service';
 import { multiLocationSelectorGetHistory } from './get-history';
 import { multiLocationSelectorMakeOnAddLocation } from './make-on-add-location';
 import { useConstructorHook } from 'helpers/hook/constructor.hook';
 
 import { IconLocationTemplate } from '../icon/location-template';
 import { IconTimeTemplate } from '../icon/time-template';
-import { LocationCompactInterface } from 'components/location/compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 import { MultiLocationSelectorComponentPropsInterface } from './component-props.interface';
 import { MultiSelectionAutocompleteComponent } from 'library/multi-selection-autocomplete/component';
-import { WindowContext } from 'helpers/window/context';
+import { WindowContext } from 'context/window/context';
 
 import styles from './multi-location-selector.module.scss';
 

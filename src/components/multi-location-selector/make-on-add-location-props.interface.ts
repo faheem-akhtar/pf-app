@@ -1,6 +1,6 @@
 import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { LocationCompactInterface } from '../location/compact.interface';
-import { WindowLocalStorageInterface } from 'helpers/window/local-storage/interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
+import { WindowLocalStorageInterface } from 'context/window/local-storage/interface';
 
 export interface MultiLocationSelectorMakeOnAddLocationPropsInterface {
   /**

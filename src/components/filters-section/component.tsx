@@ -8,7 +8,7 @@ import { FiltersContext } from 'components/filters/context';
 import { FiltersModalButtonComponent } from 'components/filters-modal/button-component';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { LocationCompactInterface } from 'components/location/compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 import { MultiLocationSelectorComponent } from 'components/multi-location-selector/component';
 import { SaveSearchModalButtonComponent } from 'components/save-search-modal/button-component';
 

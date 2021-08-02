@@ -2,7 +2,7 @@ import { stringEscape } from 'helpers/string/escape';
 
 import { ApiFactoryInterface } from 'api/factory.interface';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { LocationCompactInterface } from './compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 
 export class LocationStore {
   private locations: LocationCompactInterface[] = [];

@@ -1,5 +1,5 @@
 import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { LocationCompactInterface } from '../location/compact.interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 
 export interface MultiLocationSelectorComponentPropsInterface {
   /**

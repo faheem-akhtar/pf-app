@@ -3,11 +3,11 @@ import App from 'next/app';
 
 import { appWithTranslation } from 'next-i18next';
 
-import { WindowContextProvider } from 'helpers/window/context-provider';
+import { WindowContextProvider } from 'context/window/context-provider';
 
 import '../styles/index.scss';
 import { helpersIsClient } from 'helpers/is-client';
-import { windowDefaultState } from 'helpers/window/default-state';
+import { windowDefaultState } from 'context/window/default-state';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
