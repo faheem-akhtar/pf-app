@@ -7,7 +7,7 @@ import { appearOnScrollOnVisibilityChange } from './on-visibility-change';
 import { AppearOnScrollComponentPropsInterface } from './component-props.interface';
 import { AppearOnScrollStatusEnum } from './status.enum';
 import { AppearOnScrollTemplate } from './template';
-import { ElementService } from 'src/services/element/service';
+import { ElementService } from 'services/element/service';
 
 export const AppearOnScrollComponent = (props: AppearOnScrollComponentPropsInterface): JSX.Element => {
   const wrapper = useRef<HTMLDivElement>(null);

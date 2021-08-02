@@ -1,4 +1,4 @@
-import { ElementService } from 'src/services/element/service';
+import { ElementService } from 'services/element/service';
 
 const original = ElementService.getBoundingClientRect;
 

@@ -1,6 +1,6 @@
 import { LocationCompactInterface } from '../../src/components/location/compact.interface';
 
-export const locationCompactJltMock: LocationCompactInterface = {
+export const LocationCompactJltMock: LocationCompactInterface = {
   id: '943',
   name: 'Jumeirah Lake Towers',
   abbreviation: 'JLT',

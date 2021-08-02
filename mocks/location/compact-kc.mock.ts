@@ -1,6 +1,6 @@
 import { LocationCompactInterface } from 'components/location/compact.interface';
 
-export const locationCompactKcMock: LocationCompactInterface = {
+export const LocationCompactKcMock: LocationCompactInterface = {
   id: '280',
   name: 'Khalifa City',
   abbreviation: '',

@@ -1,4 +1,4 @@
-import { TimeService } from 'src/services/time/service';
+import { TimeService } from 'services/time/service';
 
 const original = TimeService.setTimeout;
 

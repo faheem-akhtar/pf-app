@@ -28,6 +28,7 @@
       "views/*": ["src/views/*"],
       "styles/*": ["src/styles/*"],
       "types/*": ["src/types/*"],
+      "services/*": ["src/services/*"],
       "mocks/*": ["mocks/*"]
     }
   },

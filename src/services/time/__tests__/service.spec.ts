@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { recoverSetTimeout } from 'mocks/mock/set-timeout';
 import { TimeService } from '../service';
 

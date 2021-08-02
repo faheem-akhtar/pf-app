@@ -1,5 +1,5 @@
-import { locationCompactJltMock } from 'mocks/location/compact-jlt.mock';
-import { locationCompactKcMock } from 'mocks/location/compact-kc.mock';
+import { LocationCompactJltMock } from 'mocks/location/compact-jlt.mock';
+import { LocationCompactKcMock } from 'mocks/location/compact-kc.mock';
 import { multiLocationSelectorMakeOnAddLocation } from '../make-on-add-location';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
@@ -8,9 +8,9 @@ import { MultiLocationSelectorMakeOnAddLocationPropsInterface } from '../make-on
 import { WindowLocalStorageInterface } from 'helpers/window/local-storage/interface';
 import { WindowLocalStorageMock } from 'mocks/window/local-storage.mock';
 
-const location1 = { ...locationCompactKcMock, id: '1', path: '1' };
-const location3 = { ...locationCompactKcMock, id: '3', path: '3' };
-const location1_2 = { ...locationCompactKcMock, id: '2', path: '1.2' };
+const location1 = { ...LocationCompactKcMock, id: '1', path: '1' };
+const location3 = { ...LocationCompactKcMock, id: '3', path: '3' };
+const location1_2 = { ...LocationCompactKcMock, id: '2', path: '1.2' };
 
 describe('multiLocationSelectorMakeOnAddLocation', () => {
   let onNewLocationsSpy: jest.Mock;
@@ -34,10 +34,10 @@ describe('multiLocationSelectorMakeOnAddLocation', () => {
   it('should do nothing if location is already exist in value', () => {
     const onAddLocation = multiLocationSelectorMakeOnAddLocation({
       ...baseProps,
-      locations: [locationCompactKcMock],
+      locations: [LocationCompactKcMock],
     });
 
-    onAddLocation({ ...locationCompactKcMock });
+    onAddLocation({ ...LocationCompactKcMock });
 
     expect(onNewLocationsSpy).not.toHaveBeenCalled();
     expect(windowLocalStorageMock.setItem).not.toHaveBeenCalled();
@@ -46,18 +46,18 @@ describe('multiLocationSelectorMakeOnAddLocation', () => {
   it('should add location if it does not exist in value', () => {
     const onAddLocation = multiLocationSelectorMakeOnAddLocation({
       ...baseProps,
-      locations: [locationCompactKcMock],
+      locations: [LocationCompactKcMock],
     });
 
-    windowLocalStorageMock.getItem = (): LocationCompactInterface[] => [locationCompactKcMock];
+    windowLocalStorageMock.getItem = (): LocationCompactInterface[] => [LocationCompactKcMock];
 
-    onAddLocation(locationCompactJltMock);
+    onAddLocation(LocationCompactJltMock);
 
-    expect(onNewLocationsSpy).toHaveBeenCalledWith([locationCompactKcMock, locationCompactJltMock]);
+    expect(onNewLocationsSpy).toHaveBeenCalledWith([LocationCompactKcMock, LocationCompactJltMock]);
 
     expect(windowLocalStorageMock.setItem).toHaveBeenCalledWith('multi-location-selector-history-en', [
-      locationCompactJltMock,
-      locationCompactKcMock,
+      LocationCompactJltMock,
+      LocationCompactKcMock,
     ]);
   });
 

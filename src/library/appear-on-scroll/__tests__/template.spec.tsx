@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { shallow } from 'enzyme';
 
 import { AppearOnScrollStatusEnum } from '../status.enum';

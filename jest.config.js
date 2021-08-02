@@ -1,6 +1,3 @@
-const { pathsToModuleNameMapper } = require('ts-jest/utils');
-const { compilerOptions } = require('./tsconfig');
-
 module.exports = {
   // Coverage information
   collectCoverageFrom: [
@@ -22,29 +19,26 @@ module.exports = {
     },
   },
   coverageReporters: ['text', 'html'],
-  // Mocking static assets
   moduleNameMapper: {
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '__mocks__/fileMock.js',
-    '\\.(css|scss)$': '__mocks__/styleMock.js',
-    ...pathsToModuleNameMapper(compilerOptions.paths),
+    ...require('jest-module-name-mapper').default(),
+   // Mocking static assets
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': 'mocks/fileMock.js',
+    '\\.(css|scss)$': 'mocks/styleMock.js',
   },
   modulePaths: ['<rootDir>'],
-
-  preset: 'ts-jest',
   transform: {
-    '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
+    '^.+\\.(ts|tsx)$': [ 
+      "@swc/jest", 
+      { 
+        sourceMaps: true,
+      } 
+    ]
   },
-  testEnvironment: 'jsdom',
+
+  testEnvironment: 'node',
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)?$',
   setupFilesAfterEnv: ['<rootDir>/setup-enzyme.ts'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleDirectories: ['node_modules'],
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\](?!lodash-es/).+\\.js$'],
-  globals: {
-    'ts-jest': {
-      // Ignore suggestion to update this, it doesn't work
-      tsConfigFile: '<rootDir>/tsconfig.jest.json',
-      diagnostics: false,
-    },
-  },
 };

@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { shallow, ShallowWrapper } from 'enzyme';
 
 import { AppearOnScrollComponent } from '../component';

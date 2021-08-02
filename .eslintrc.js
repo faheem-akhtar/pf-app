@@ -35,7 +35,7 @@ module.exports = {
     'pf-rules/export-name-validation': [
       'error',
       {
-        enforcePascalCaseOn: '(enum|component|store|factory|type|interface|template|provider|context|view|service)$',
+        enforcePascalCaseOn: '(enum|component|store|factory|type|interface|template|provider|context|view|service|mock)$',
         ignoreCustomExtensionInNameOn: ['.desktop', '.ae', '.bh', '.eg', '.lb', '.ma', '.qa', '.sa'],
         enforcePrefixOnExtension: [
           {
