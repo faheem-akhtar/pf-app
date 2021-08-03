@@ -1,35 +1,41 @@
-.button {
-  /* reset */
-  margin: 0;
-  overflow: visible;
+@mixin reset-button {
   background: transparent;
-  outline: none;
   font: inherit;
+  margin: 0;
+  outline: none;
+  overflow: visible;
   -webkit-appearance: none;
+}
 
-  /* base styles */
-  display: flex;
+@mixin base-button {
   align-items: center;
+  border: 0.1rem solid var(--color-global-stone-75);
+  cursor: pointer;
+  display: flex;
   justify-content: center;
+  line-height: normal;
   position: relative;
   text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-  line-height: normal;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
   transition: background 0.3s;
-  font-size: var(--font-size-08);
+  user-select: none;
+  white-space: nowrap;
   width: fit-content;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button {
+  @include reset-button;
+  @include base-button;
+
+  font-size: var(--font-size-01);
 
   /* Tertiary/Floating - default */
   background-color: var(--color-global-white);
-  color: var(--color-global-black);
-  border: 0.1rem solid var(--color-global-stone-75);
   border-radius: calc(var(--spacing) / 2);
-  padding: calc(var(--spacing) * 2);
+  color: var(--color-global-black);
   line-height: 2.4rem;
   min-width: 8rem;
+  padding: calc(var(--spacing) * 2);
 
   &:hover {
     background: var(--color-global-stone-25);
@@ -41,37 +47,34 @@
   }
 }
 
+/* Sizes */
 .small {
-  font-size: var(--font-size-09);
+  font-size: var(--font-size-08);
   line-height: 2rem;
   padding: calc(var(--spacing) * 1.5);
 }
 
-.loader {
-  fill: var(--color-global-black);
-}
-
 .disabled {
   color: var(--color-global-grey2);
+}
+
+.disabled,
+.loading {
   pointer-events: none;
 }
 
+/* Icon */
 .icon {
-  height: 2.4rem;
+  height: 1.6rem;
+  width: 1.6rem;
 }
 
 .icon--left {
-  margin-right: calc(var(--spacing) / 2);
+  margin-right: calc(var(--spacing) * 1.5);
 }
 
 .icon--right {
-  margin-left: calc(var(--spacing) / 2);
-}
-
-.primary,
-.secondary,
-.secondaryBlue {
-  font-weight: var(--font-weight-02);
+  margin-left: calc(var(--spacing) * 1.5);
 }
 
 /* Primary */
@@ -104,8 +107,18 @@
   &:hover {
     background-color: var(--color-global-stone-25);
   }
+
   &:active {
     background-color: var(--color-global-stone-50);
+  }
+
+  &--disabled {
+    color: var(--color-primary-clay-50);
+    fill: var(--color-primary-clay-50);
+  }
+
+  &--loader {
+    background-color: var(--color-primary-clay-100);
   }
 }
 
@@ -116,6 +129,15 @@
 
   &:hover {
     border-color: transparent;
+  }
+
+  &--disabled {
+    color: var(--color-global-grey2);
+    fill: var(--color-global-grey2);
+  }
+
+  &--loader {
+    background-color: var(--color-global-black);
   }
 }
 
@@ -128,7 +150,23 @@
   &:hover {
     background-color: var(--color-global-stone-25);
   }
+
   &:active {
     background-color: var(--color-global-stone-50);
   }
+
+  &--disabled {
+    color: var(--color-brand-sky-75);
+    fill: var(--color-brand-sky-75);
+  }
+
+  &--loader {
+    background-color: var(--color-interaction-1-light-mode);
+  }
+}
+
+.primary,
+.secondary,
+.secondaryBlue {
+  font-weight: var(--font-weight-02);
 }

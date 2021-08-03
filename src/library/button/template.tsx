@@ -20,18 +20,14 @@ export const ButtonTemplate: FunctionComponent<ButtonLinkTemplatePropsInterface 
   ...props
 }) => {
   const { component: Icon, position: iconPosition } = icon;
-  const typeClass = styles[componentType];
 
-  // TODO-FE[TPNX-2699] Use loader as per design
   const renderLoader = (): JSX.Element => (
     <LoaderTemplate containerCssClass={styles.loader} dotCssClass={styles[`${componentType}--loader`]} />
   );
+
   const renderIcon = (): JSX.Element | null =>
     Icon ? (
-      <Icon
-        clipped={false}
-        class={domClassMerge(styles.icon, styles[`icon--${iconPosition}`], styles[`${typeClass}Icon`], icon.className)}
-      />
+      <Icon clipped={false} class={domClassMerge(styles.icon, styles[`icon--${iconPosition}`], icon.className)} />
     ) : null;
 
   const renderContent = (): JSX.Element => (
@@ -48,11 +44,12 @@ export const ButtonTemplate: FunctionComponent<ButtonLinkTemplatePropsInterface 
     <Component
       class={domClassMerge(
         styles.button,
-        typeClass,
+        styles[componentType],
         styles[props.size],
         {
           [styles[`${componentType}--loading`]]: !!props.loading,
           [styles.disabled]: !!props.disabled,
+          [styles.loading]: !!props.loading,
           [styles[`${componentType}--disabled`]]: !!props.disabled,
         },
         props.className
