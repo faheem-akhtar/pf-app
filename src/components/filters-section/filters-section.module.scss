@@ -1,5 +1,7 @@
 .container {
   margin: calc(var(--spacing) * 2);
+  position: relative;
+  z-index: var(--z-index-03);
 }
 
 .buttons_row {

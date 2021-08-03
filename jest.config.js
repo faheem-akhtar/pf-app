@@ -21,18 +21,21 @@ module.exports = {
   coverageReporters: ['text', 'html'],
   moduleNameMapper: {
     ...require('jest-module-name-mapper').default(),
-   // Mocking static assets
+    // Mocking static assets
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': 'mocks/fileMock.js',
     '\\.(css|scss)$': 'mocks/styleMock.js',
   },
   modulePaths: ['<rootDir>'],
   transform: {
-    '^.+\\.(ts|tsx)$': [ 
-      "@swc/jest", 
-      { 
+    '^.+\\.(ts|tsx)$': [
+      '@swc/jest',
+      {
         sourceMaps: true,
-      } 
-    ]
+        jsc: {
+          target: 'es2021',
+        },
+      },
+    ],
   },
 
   testEnvironment: 'node',

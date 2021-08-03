@@ -2,6 +2,11 @@ import { PropertyContactOptionsListInterface } from '../contact-options-list.int
 
 export interface PropertySerpInterface {
   /**
+   * Property ID
+   */
+  id: string;
+
+  /**
    * Name
    * Example: "Upgraded | Custom Design | Full Sea View"
    */
@@ -48,6 +53,11 @@ export interface PropertySerpInterface {
    * Image url
    */
   imgUrl: string;
+
+  /**
+   * Images count
+   */
+  imagesCount: number;
 
   /**
    * Property type name

@@ -2,7 +2,7 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import { backendApiPropertySearchFetcher } from 'backend/api/property-search/fetcher';
+import { backendApiPropertySearchFetcher } from 'backend/api/property/search/fetcher';
 import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
 import filtersDataByLocale from '../../public/static/filters-data';
 

@@ -1,6 +1,6 @@
-import { PropertySerpObfuscatedType } from './serp/obfuscated/type';
+import { PropertySerpObfuscatedType } from './obfuscated/type';
 
-export type PropertySearchResultType = {
+export type PropertySerpSearchResultType = {
   /**
    * Array of property cards
    */

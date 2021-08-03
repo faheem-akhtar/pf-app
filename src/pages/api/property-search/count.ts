@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
-import { backendApiPropertySearchFetcher } from 'backend/api/property-search/fetcher';
+import { backendApiPropertySearchFetcher } from 'backend/api/property/search/fetcher';
 import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {

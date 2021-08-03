@@ -1,3 +1,4 @@
-export function assertUnreachable(x: never): never {
-  throw new Error(`AssertUnreachable called with ${JSON.stringify(x)}`);
+export function assertUnreachable(x: never): void {
+  // eslint-disable-next-line no-console
+  console.error('AssertUnreachable called with', x);
 }

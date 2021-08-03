@@ -3,10 +3,10 @@ import { backendApiPropertySearchMapper } from './mapper';
 
 import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
 import { BackendApiPropertySearchRawJsonResponseType } from './raw-json-response-type';
-import { PropertySearchResultType } from 'components/property/search-result.type';
+import { PropertySerpSearchResultType } from 'components/property/serp/search-result.type';
 
 export const backendApiPropertySearchRawFetcher = BackendApiFactory<
-  PropertySearchResultType,
+  PropertySerpSearchResultType,
   BackendApiPropertySearchJsonApiResultType,
   BackendApiPropertySearchRawJsonResponseType
 >({

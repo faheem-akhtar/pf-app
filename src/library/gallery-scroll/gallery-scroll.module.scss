@@ -1,0 +1,38 @@
+.wrapper {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-global-black);
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease-out;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-index-01);
+  background-color: var(--brand-color-03);
+  overflow: hidden;
+}
+
+.item > img {
+  object-fit: none;
+  min-width: 100%;
+  min-height: 100%;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
+  height: 100%;
+}

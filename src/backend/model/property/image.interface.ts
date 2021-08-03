@@ -36,6 +36,11 @@ export interface BackendModelPropertyImageInterface extends BackendJsonApiModelT
     default: string;
 
     /**
+     * Format for home page
+     */
+    homepage: string;
+
+    /**
      * Small size image URL
      */
     small: string;

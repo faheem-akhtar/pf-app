@@ -99,11 +99,43 @@ export const ApiMakeFactory =
           let data = json;
 
           if (makeFactoryProps.dataMapper) {
-            data = makeFactoryProps.dataMapper(data);
+            try {
+              data = makeFactoryProps.dataMapper(data);
+            } catch (e) {
+              const error: string = `failed to execute makeFactoryProps.dataMapper for: ${finalUrl}. ${e.message}`;
+              // eslint-disable-next-line no-console
+              console.error(error);
+
+              return {
+                ok: false,
+                error: {
+                  url: finalUrl,
+                  status: response.status,
+                  body: error,
+                },
+                headers,
+              };
+            }
           }
 
           if (factoryProps.dataMapper) {
-            data = factoryProps.dataMapper(data, json);
+            try {
+              data = factoryProps.dataMapper(data, json);
+            } catch (e) {
+              const error: string = `failed to execute factoryProps.dataMapper for: ${finalUrl}. ${e.message}`;
+              // eslint-disable-next-line no-console
+              console.error(error);
+
+              return {
+                ok: false,
+                error: {
+                  url: finalUrl,
+                  status: response.status,
+                  body: error,
+                },
+                headers,
+              };
+            }
           }
 
           return {

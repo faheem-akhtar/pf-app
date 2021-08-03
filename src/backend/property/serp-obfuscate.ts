@@ -1,8 +1,11 @@
 import { assertUnreachable } from 'helpers/assert/unreachable';
+import { configIsTrace } from 'config/is-trace';
 import { propertySerpObfuscatedFieldBathroomValue } from 'components/property/serp/obfuscated/field/bathroom-value';
 import { propertySerpObfuscatedFieldBedroomValue } from 'components/property/serp/obfuscated/field/bedroom-value';
 import { propertySerpObfuscatedFieldContactOptionsList } from 'components/property/serp/obfuscated/field/contact-options-list';
 import { propertySerpObfuscatedFieldExclusive } from 'components/property/serp/obfuscated/field/exclusive';
+import { propertySerpObfuscatedFieldId } from 'components/property/serp/obfuscated/field/id';
+import { propertySerpObfuscatedFieldImagesCount } from 'components/property/serp/obfuscated/field/images-count';
 import { propertySerpObfuscatedFieldImgUrl } from 'components/property/serp/obfuscated/field/img-url';
 import { propertySerpObfuscatedFieldListingLevel } from 'components/property/serp/obfuscated/field/listing-level';
 import { propertySerpObfuscatedFieldLocationTreePath } from 'components/property/serp/obfuscated/field/location-tree-path';
@@ -18,6 +21,10 @@ import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/
 
 export const backendPropertySerpObfuscate = (property: PropertySerpInterface): PropertySerpObfuscatedType => {
   const obfuscatedProperty: Record<string, AnyValueType> = {};
+
+  if (configIsTrace) {
+    obfuscatedProperty.full = property;
+  }
 
   Object.keys(property).forEach((key) => {
     const propertyKey = key as keyof PropertySerpInterface;
@@ -58,6 +65,12 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
         break;
       case 'priceText':
         obfuscatedProperty[propertySerpObfuscatedFieldPriceText] = value;
+        break;
+      case 'imagesCount':
+        obfuscatedProperty[propertySerpObfuscatedFieldImagesCount] = value;
+        break;
+      case 'id':
+        obfuscatedProperty[propertySerpObfuscatedFieldId] = value;
         break;
       default:
         assertUnreachable(propertyKey);

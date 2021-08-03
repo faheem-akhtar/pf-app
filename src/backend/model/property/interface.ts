@@ -4,6 +4,7 @@ import { BackendModelBrokerInterface } from '../broker/interface';
 import { BackendModelLocationInterface } from '../location/interface';
 import { BackendModelPropertyCategoryIdentifierEnum } from './category-identifier.enum';
 import { BackendModelPropertyCategoryInterface } from './category.interface';
+import { BackendModelPropertyImageInterface } from './image.interface';
 import { BackendModelPropertyLiveEventMetadateInterface } from './live-event/metadate.interface';
 import { BackendModelPropertyPriceInterface } from './price.interface';
 import { BackendModelPropertyTypeInterface } from './type.interface';
@@ -471,7 +472,7 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
   /**
    * BackendModelProperty images models
    */
-  property_images?: string[];
+  property_images?: BackendModelPropertyImageInterface[];
 
   /**
    * BackendModelProperty prices

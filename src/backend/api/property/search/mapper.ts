@@ -3,13 +3,13 @@ import { configIsTrace } from 'config/is-trace';
 
 import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
 import { BackendApiPropertySearchRawJsonResponseType } from './raw-json-response-type';
-import { PropertySearchResultType } from 'components/property/search-result.type';
 import { PropertySerpInterface } from 'components/property/serp/interface';
+import { PropertySerpSearchResultType } from 'components/property/serp/search-result.type';
 
 export const backendApiPropertySearchMapper = (
   data: BackendApiPropertySearchJsonApiResultType,
   rawJson: BackendApiPropertySearchRawJsonResponseType
-): PropertySearchResultType => {
+): PropertySerpSearchResultType => {
   const properties: PropertySerpInterface[] = data.properties.map((property) => {
     const {
       name,
@@ -34,12 +34,14 @@ export const backendApiPropertySearchMapper = (
       exclusive,
       url: links.self,
       imgUrl: links.image_property_small,
+      imagesCount: meta.images_count,
       propertyTypeName: property_type.name,
       contactOptionsList: {
         ...meta.contact_options.list,
         email: !!meta.contact_options.list.email,
       },
       priceText: meta.price_text,
+      id: property.id,
     };
 
     if (configIsTrace) {
@@ -49,7 +51,7 @@ export const backendApiPropertySearchMapper = (
     return propertyCompact;
   });
 
-  const result: PropertySearchResultType = {
+  const result: PropertySerpSearchResultType = {
     properties: properties.map(backendPropertySerpObfuscate),
     total: rawJson.data.relationships.properties.meta.total_count,
     pages: rawJson.data.relationships.properties.meta.page_count,

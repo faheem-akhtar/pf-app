@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`galleryScrollIndicatorMakeItems 3 items, first is active 1`] = `
+Array [
+  Object {
+    "isActive": true,
+    "isHidden": false,
+    "isSmall": false,
+  },
+  Object {
+    "isActive": false,
+    "isHidden": false,
+    "isSmall": true,
+  },
+  Object {
+    "isActive": false,
+    "isHidden": false,
+    "isSmall": true,
+  },
+]
+`;
+
+exports[`galleryScrollIndicatorMakeItems 3 items, last is active 1`] = `
+Array [
+  Object {
+    "isActive": false,
+    "isHidden": false,
+    "isSmall": true,
+  },
+  Object {
+    "isActive": false,
+    "isHidden": false,
+    "isSmall": true,
+  },
+  Object {
+    "isActive": true,
+    "isHidden": false,
+    "isSmall": false,
+  },
+]
+`;
+
+exports[`galleryScrollIndicatorMakeItems 3 items, second is active 1`] = `
+Array [
+  Object {
+    "isActive": false,
+    "isHidden": false,
+    "isSmall": true,
+  },
+  Object {
+    "isActive": true,
+    "isHidden": false,
+    "isSmall": false,
+  },
+  Object {
+    "isActive": false,
+    "isHidden": false,
+    "isSmall": true,
+  },
+]
+`;

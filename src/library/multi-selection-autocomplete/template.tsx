@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import { domClassMerge } from 'helpers/dom/class-merge';
 import { highlightString } from 'helpers/highlight/string';
 import { multiSelectionAutocompleteComputeInactiveRenderValue } from './compute-inactive-render-value';
 
@@ -7,7 +8,6 @@ import { IconCrossTemplate } from 'components/icon/cross-template';
 import { IconMagnifierTemplate } from 'components/icon/magnifier-template';
 import { MultiSelectionAutocompleteChipTemplate } from './chip/template';
 import { MultiSelectionAutocompleteTemplatePropsInterface } from './template-props.interface';
-import { domClassMerge } from 'helpers/dom/class-merge';
 
 import styles from './multi-selection-autocomplete.module.scss';
 

@@ -4,6 +4,16 @@
   min-height: 15rem;
   border-radius: 5px;
   background: var(--color-global-stone-25);
+  display: flex;
+}
+
+.gallery_container {
+  position: relative;
+  width: 12.4rem;
+}
+
+.content_container {
+  flex: 1;
 }
 
 .container p {
