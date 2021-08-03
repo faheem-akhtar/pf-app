@@ -1,6 +1,7 @@
+import { AnyValueType } from 'types/any/value.type';
 import { UrlQueryType } from 'types/url/query.type';
 
-export type ApiRequestBasePropsType<Query = UrlQueryType> = {
+export type ApiRequestBasePropsType<Query = UrlQueryType, PostData = AnyValueType> = {
   /**
    * Authentication token
    */
@@ -13,6 +14,10 @@ export type ApiRequestBasePropsType<Query = UrlQueryType> = {
    * Url Query object
    */
   query?: Query;
+  /**
+   * Post data
+   */
+  postData?: PostData;
   /**
    * Specify the origin for the request
    */

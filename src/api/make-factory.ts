@@ -1,3 +1,4 @@
+import { AnyValueType } from 'types/any/value.type';
 import { ApiFactoryPropsInterface } from './factory-props.interface';
 import { ApiFetcherResultType } from './fetcher-result-type';
 import { ApiHeaderEnum } from 'enums/api/header.enum';
@@ -6,7 +7,6 @@ import { ApiRequestPropsType } from './request-props.type';
 
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
 
-// TODO-FE[TPNX-3062] Add POST capabilities
 // TODO-FE[TPNX-3009] Add tests
 /**
  * Base for all network requsts
@@ -20,9 +20,11 @@ import { urlQuerySerialize } from 'helpers/url-query/serialize';
  */
 export const ApiMakeFactory =
   (makeFactoryProps: ApiMakeFactoryPropsInterface) =>
-  <Result, Data = Object, RawJson = Object>(factoryProps: ApiFactoryPropsInterface<Result, Data, RawJson>) =>
+  <Result, Data = AnyValueType, RawJson = AnyValueType>(
+    factoryProps: ApiFactoryPropsInterface<Result, Data, RawJson>
+  ) =>
   <QueryData>(props: ApiRequestPropsType<QueryData>): Promise<ApiFetcherResultType<Result>> => {
-    const { authToken, locale } = props;
+    const { authToken, locale, postData } = props;
 
     const headers: Record<string, string> = {};
 
@@ -47,6 +49,10 @@ export const ApiMakeFactory =
 
     if (factoryProps.method === 'HEAD') {
       payload.cache = 'no-cache';
+    }
+
+    if (factoryProps.method === 'POST') {
+      payload.body = JSON.stringify(postData);
     }
 
     const getOrigin = props.getOrigin || makeFactoryProps.getOrigin;

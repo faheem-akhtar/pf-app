@@ -1,7 +1,7 @@
+import { AnyValueType } from 'types/any/value.type';
 import { UrlQueryType } from 'types/url/query.type';
 
-export interface ApiFactoryPropsInterface<Result, Data = Object, RawJson = Object> {
-  // TODO-FE[TPNX-3062] Add capabilities for POST
+export interface ApiFactoryPropsInterface<Result, Data = AnyValueType, RawJson = AnyValueType> {
   /**
    * True if this endpoint requires user to be logged in
    */
@@ -9,7 +9,7 @@ export interface ApiFactoryPropsInterface<Result, Data = Object, RawJson = Objec
   /**
    * HTTP Method
    */
-  method: 'GET' | 'HEAD';
+  method: 'GET' | 'HEAD' | 'POST';
   /**
    * Endpoint url /api/${url}
    */
