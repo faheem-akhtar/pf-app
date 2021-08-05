@@ -11,15 +11,10 @@ import styles from './property-card-title.module.scss';
 
 export const PropertyCardTitleTemplate: React.FunctionComponent<PropertyCardTitleTemplatePropsInterface> = ({
   property,
-  loading,
   saved,
   onSaveButtonClick,
   onMenuButtonClick,
 }) => {
-  if (loading) {
-    return <div className={domClassMerge(styles.container, { loading })} />;
-  }
-
   return (
     <div className={styles.container}>
       <a className={styles.link} href={propertySerpObfuscatedGetUrl(property)}>

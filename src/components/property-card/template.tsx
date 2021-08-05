@@ -1,28 +1,37 @@
-import { domClassMerge } from 'helpers/dom/class-merge';
 import { propertySerpObfuscatedGetContactOptionsList } from 'components/property/serp/obfuscated/get/contact-options-list';
+import { propertySerpObfuscatedGetLocationTreePath } from 'components/property/serp/obfuscated/get/location-tree-path';
+import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
 
 import { GalleryScrollComponent } from 'library/gallery-scroll/component';
 import { PropertyCardCtaButtonsGroupTemplate } from './cta-buttons-group/template';
+import { PropertyCardInfoTemplate } from './info/template';
+import { PropertyCardLoadingSkeletonTemplate } from './loading-skeleton/template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
 import { PropertyCardTitleTemplate } from './title/template';
 
 import styles from './property-card.module.scss';
 
 export const PropertyCardTemplate = (props: PropertyCardTemplatePropsType): JSX.Element => {
-  const contactOptions = propertySerpObfuscatedGetContactOptionsList(props.property);
+  const { loading } = props;
+
+  if (loading) {
+    return <PropertyCardLoadingSkeletonTemplate />;
+  }
 
   return (
     <div className={styles.container}>
-      <div className={domClassMerge(styles.gallery_container, { loading: props.loading })}>
-        {!props.loading && <GalleryScrollComponent {...props.gallery} />}
+      <div className={styles.gallery_container}>
+        <GalleryScrollComponent {...props.gallery} />
       </div>
       <div className={styles.content_container}>
         <PropertyCardTitleTemplate {...props} />
+        <h2 className={styles.title_from_agent}>{propertySerpObfuscatedGetName(props.property)}</h2>
+        <div className={styles.location}>{propertySerpObfuscatedGetLocationTreePath(props.property)}</div>
+        <PropertyCardInfoTemplate property={props.property} />
         <div className={styles.fill_vertical_space} />
         <PropertyCardCtaButtonsGroupTemplate
           {...props.ctaButtons}
-          contactOptions={contactOptions}
-          loading={props.loading}
+          contactOptions={propertySerpObfuscatedGetContactOptionsList(props.property)}
         />
       </div>
     </div>

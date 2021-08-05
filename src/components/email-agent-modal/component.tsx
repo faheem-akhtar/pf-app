@@ -9,7 +9,7 @@ import { ButtonTemplate } from 'library/button/template';
 import { EmailAgentModalComponentPropsInterface } from './component-props.interface';
 import { ModalComponent } from 'components/modal/component';
 
-// TODO-FE[TPNX-3180] imlement Email agent modal 
+// TODO-FE[TPNX-3180] imlement Email agent modal
 export const EmailAgentModalComponent: React.FunctionComponent<EmailAgentModalComponentPropsInterface> = ({
   openRef,
 }) => {

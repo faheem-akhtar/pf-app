@@ -17,8 +17,4 @@ export interface PropertyCardCtaButtonsGroupTemplatePropsInterface {
    * On Email click
    */
   onEmailClick: () => void;
-  /**
-   * Is property card loading
-   */
-  loading: boolean;
 }

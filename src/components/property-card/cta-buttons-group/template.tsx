@@ -1,5 +1,3 @@
-import { domClassMerge } from 'helpers/dom/class-merge';
-
 import { IconEmailTemplate } from 'components/icon/email-template';
 import { IconSolidPhoneTemplate } from 'components/icon/solid-phone-template';
 import { IconWhatsappTemplate } from 'components/icon/whatsapp-template';
@@ -10,12 +8,8 @@ import styles from './property-cta-buttons.module.scss';
 
 export const PropertyCardCtaButtonsGroupTemplate: React.FunctionComponent<PropertyCardCtaButtonsGroupTemplatePropsInterface> =
   (props) => {
-    const { contactOptions, loading } = props;
+    const { contactOptions } = props;
     const { phone, whatsapp, email } = contactOptions;
-
-    if (loading) {
-      return <div className={domClassMerge(styles.container, { loading })} />;
-    }
 
     return (
       <div className={styles.container}>

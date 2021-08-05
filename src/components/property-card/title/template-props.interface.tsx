@@ -2,10 +2,6 @@ import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/
 
 export interface PropertyCardTitleTemplatePropsInterface {
   /**
-   * True if we are loading property cards
-   */
-  loading: boolean;
-  /**
    * Has property has been short listed by the user
    */
   saved: boolean;
