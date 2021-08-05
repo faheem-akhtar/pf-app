@@ -7,21 +7,31 @@ import { TFunction, useTranslation } from 'next-i18next';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
+import { ChipChoiceTemplate } from 'library/chip-choice/template';
 import { DropdownTemplate } from '../dropdown/template';
 import { FiltersContext } from '../filters/context';
 import { FiltersDataInterface } from '../filters/data/interface';
+import { FiltersModalItemTemplate } from 'components/filters-modal/item/template';
 import { FiltersModalSubmitButtonComponent } from './submit-button-component';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { FiltersValueFieldMaxBathroomType } from 'components/filters/value/field/max-bathroom.type';
+import { FiltersValueFieldMaxBedroomType } from 'components/filters/value/field/max-bedroom.type';
 import { FiltersValueInterface } from '../filters/value/interface';
-import { IconCloseTemplate } from 'components/icon/close-template';
 import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
+
+import { IconCloseTemplate } from 'components/icon/close-template';
+import { IconThickBathroomTemplate } from 'components/icon/thick-bathroom-template';
+import { IconThickBedroomTemplate } from 'components/icon/thick-bedroom-template';
+import { IconThickBuildingCompletionTemplate } from 'components/icon/thick-building-completion-template';
+import { IconThickFurnishingTemplate } from 'components/icon/thick-furnishing-template';
+import { IconThickPlayCircleTemplate } from 'components/icon/thick-play-circle-template';
+import { IconThickPriceTemplate } from 'components/icon/thick-price-template';
+import { IconThickPropertyTemplate } from 'components/icon/thick-property-template';
 
 import { filtersDataChoicesGetCategoryId } from '../filters/data/choices/get-category-id';
 import { filtersDataChoicesGetCompleteonStatus } from '../filters/data/choices/get-completeon-status';
 import { filtersDataChoicesGetFurnished } from '../filters/data/choices/get-furnished';
 import { filtersDataChoicesGetMaxArea } from '../filters/data/choices/get-max-area';
-import { filtersDataChoicesGetMaxBathroom } from '../filters/data/choices/get-max-bathroom';
-import { filtersDataChoicesGetMaxBedroom } from '../filters/data/choices/get-max-bedroom';
 import { filtersDataChoicesGetMinArea } from '../filters/data/choices/get-min-area';
 import { filtersDataChoicesGetMinBathroom } from '../filters/data/choices/get-min-bathroom';
 import { filtersDataChoicesGetMinBedroom } from '../filters/data/choices/get-min-bedroom';
@@ -53,51 +63,44 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
     />
   ),
   [FiltersParametersEnum.propertyTypeId]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Property type')}
-      value={filtersValue[FiltersParametersEnum.propertyTypeId]}
-      choices={filtersDataChoicesGetPropertyTypeId(filtersValue, filtersData)}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.propertyTypeId]: value })}
-    />
+    <FiltersModalItemTemplate label={t('Property type')} icon={<IconThickPropertyTemplate class={styles.icon} />}>
+      <ChipChoiceTemplate
+        containerClassName={styles.list}
+        options={filtersDataChoicesGetPropertyTypeId(filtersValue, filtersData)}
+        selected={filtersValue[FiltersParametersEnum.propertyTypeId]}
+        onCheck={(selectedOption): void => {
+          changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.propertyTypeId]: selectedOption.value });
+        }}
+      />
+    </FiltersModalItemTemplate>
   ),
-  [FiltersParametersEnum.minBedroom]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Min. Bedrooms')}
-      value={filtersValue[FiltersParametersEnum.minBedroom]}
-      choices={filtersDataChoicesGetMinBedroom(filtersValue, filtersData)}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.minBedroom]: value })}
-    />
-  ),
-  [FiltersParametersEnum.maxBedroom]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Max. Bedrooms')}
-      choices={filtersDataChoicesGetMaxBedroom(filtersValue, filtersData)}
-      value={filtersValue[FiltersParametersEnum.maxBedroom]}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.maxBedroom]: value })}
-    />
-  ),
-  [FiltersParametersEnum.completionStatus]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Completeon status')}
-      choices={filtersDataChoicesGetCompleteonStatus(filtersValue, filtersData)}
-      value={filtersValue[FiltersParametersEnum.completionStatus]}
-      onChange={(value): void =>
-        changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.completionStatus]: value })
-      }
-    />
+  [FiltersParametersEnum.virtualViewings]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
+    <FiltersModalItemTemplate
+      label={t('Virtual Viewings')}
+      icon={<IconThickPlayCircleTemplate class={styles.icon} />}
+      isNew
+    >
+      <ChipChoiceTemplate
+        containerClassName={styles.list}
+        options={filtersDataChoicesGetVirtualViewing(filtersValue, filtersData)}
+        selected={filtersValue[FiltersParametersEnum.virtualViewings]}
+        onCheck={(selectedOption): void => {
+          changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.virtualViewings]: selectedOption.value });
+        }}
+      />
+    </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.pricePeriod]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Price period')}
-      choices={filtersDataChoicesGetPricePeriod(filtersValue, filtersData)}
-      value={filtersValue[FiltersParametersEnum.pricePeriod]}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.pricePeriod]: value })}
-    />
+    <FiltersModalItemTemplate label={t('Price period')} icon={<IconThickPriceTemplate class={styles.icon} />}>
+      <ChipChoiceTemplate
+        containerClassName={styles.list}
+        options={filtersDataChoicesGetPricePeriod(filtersValue, filtersData)}
+        selected={filtersValue[FiltersParametersEnum.pricePeriod]}
+        onCheck={(selectedOption): void => {
+          changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.pricePeriod]: selectedOption.value });
+        }}
+      />
+    </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.minPrice]: ({ filtersValue, changeFiltersValue, t }) => (
     <DropdownTemplate
@@ -117,45 +120,37 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
       onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.maxPrice]: value })}
     />
   ),
-  [FiltersParametersEnum.paymentMethod]: () => <div>paymentMethod not implemented</div>,
-  [FiltersParametersEnum.utilitiesPriceType]: () => <div>utilitiesPriceType not implemented</div>,
-  [FiltersParametersEnum.furnishing]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Furnished')}
-      choices={filtersDataChoicesGetFurnished(filtersValue, filtersData)}
-      value={filtersValue[FiltersParametersEnum.furnishing]}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.furnishing]: value })}
-    />
-  ),
-  [FiltersParametersEnum.minBathroom]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Min. Bathrooms')}
-      choices={filtersDataChoicesGetMinBathroom(filtersValue, filtersData)}
-      value={filtersValue[FiltersParametersEnum.minBathroom]}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.minBathroom]: value })}
-    />
+  [FiltersParametersEnum.maxBedroom]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
+    <FiltersModalItemTemplate label={t('Bedrooms')} icon={<IconThickBedroomTemplate class={styles.icon} />}>
+      <ChipChoiceTemplate
+        containerClassName={styles.list}
+        options={filtersDataChoicesGetMinBedroom(filtersValue, filtersData)}
+        selected={filtersValue[FiltersParametersEnum.minBedroom]}
+        onCheck={(selectedOption): void => {
+          changeFiltersValue({
+            ...filtersValue,
+            [FiltersParametersEnum.minBedroom]: selectedOption.value,
+            [FiltersParametersEnum.maxBedroom]: selectedOption.value as FiltersValueFieldMaxBedroomType,
+          });
+        }}
+      />
+    </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.maxBathroom]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Max. Bathrooms')}
-      choices={filtersDataChoicesGetMaxBathroom(filtersValue, filtersData)}
-      value={filtersValue[FiltersParametersEnum.maxBathroom]}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.maxBathroom]: value })}
-    />
-  ),
-  [FiltersParametersEnum.virtualViewings]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Virtual viewings')}
-      choices={filtersDataChoicesGetVirtualViewing(filtersValue, filtersData)}
-      value={filtersValue[FiltersParametersEnum.virtualViewings]}
-      onChange={(value): void =>
-        changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.virtualViewings]: value })
-      }
-    />
+    <FiltersModalItemTemplate label={t('Bathrooms')} icon={<IconThickBathroomTemplate class={styles.icon} />}>
+      <ChipChoiceTemplate
+        containerClassName={styles.list}
+        options={filtersDataChoicesGetMinBathroom(filtersValue, filtersData)}
+        selected={filtersValue[FiltersParametersEnum.minBathroom]}
+        onCheck={(selectedOption): void => {
+          changeFiltersValue({
+            ...filtersValue,
+            [FiltersParametersEnum.minBathroom]: selectedOption.value,
+            [FiltersParametersEnum.maxBathroom]: selectedOption.value as FiltersValueFieldMaxBathroomType,
+          });
+        }}
+      />
+    </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.minArea]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
     <DropdownTemplate
@@ -175,7 +170,42 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
       onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.maxArea]: value })}
     />
   ),
+  [FiltersParametersEnum.completionStatus]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
+    <FiltersModalItemTemplate
+      label={t('Completeon status')}
+      icon={<IconThickBuildingCompletionTemplate class={styles.icon} />}
+    >
+      <ChipChoiceTemplate
+        containerClassName={styles.list}
+        options={filtersDataChoicesGetCompleteonStatus(filtersValue, filtersData)}
+        selected={filtersValue[FiltersParametersEnum.completionStatus]}
+        onCheck={(selectedOption): void => {
+          changeFiltersValue({
+            ...filtersValue,
+            [FiltersParametersEnum.completionStatus]: selectedOption.value,
+          });
+        }}
+      />
+    </FiltersModalItemTemplate>
+  ),
   [FiltersParametersEnum.amenities]: () => <span />,
+  [FiltersParametersEnum.furnishing]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
+    <FiltersModalItemTemplate label={t('Furnishing')} icon={<IconThickFurnishingTemplate class={styles.icon} />}>
+      <ChipChoiceTemplate
+        containerClassName={styles.list}
+        options={filtersDataChoicesGetFurnished(filtersValue, filtersData)}
+        selected={filtersValue[FiltersParametersEnum.furnishing]}
+        onCheck={(selectedOption): void => {
+          changeFiltersValue({
+            ...filtersValue,
+            [FiltersParametersEnum.furnishing]: selectedOption.value,
+          });
+        }}
+      />
+    </FiltersModalItemTemplate>
+  ),
+  [FiltersParametersEnum.paymentMethod]: () => <div>paymentMethod not implemented</div>,
+  [FiltersParametersEnum.utilitiesPriceType]: () => <div>utilitiesPriceType not implemented</div>,
 };
 
 const filtersSequence = Object.keys(widgetRenderMap);
