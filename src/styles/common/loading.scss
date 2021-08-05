@@ -1,0 +1,19 @@
+@keyframes shineAnim {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.loading {
+  font-size: 0;
+  animation-duration: 1s;
+  animation-name: shineAnim;
+  animation-iteration-count: infinite;
+  background: linear-gradient(
+    110deg,
+    var(--color-global-stone-25) 8%,
+    var(--color-global-stone-50) 18%,
+    var(--color-global-stone-25) 33%
+  );
+  background-size: 200% 100%;
+}

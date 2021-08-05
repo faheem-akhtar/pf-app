@@ -9,7 +9,6 @@ export const IconChevronRightTemplate = (props: IconTemplatePropsInterface): JSX
       width={clipped ? undefined : '24'}
       className={props.class}
     >
-      {/* tslint:disable-next-line: max-line-length */}
       <path
         fill-rule='evenodd'
         clip-rule='evenodd'

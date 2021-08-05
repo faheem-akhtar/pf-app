@@ -2,7 +2,7 @@ export interface PropertyContactOptionsListInterface {
   /**
    * Contact phone
    */
-  phone: {
+  phone?: {
     type: string;
     value: string;
     link: string;
@@ -18,15 +18,6 @@ export interface PropertyContactOptionsListInterface {
    * Contact whatsapp
    */
   whatsapp?: {
-    type: string;
-    value: string;
-    link: string;
-  };
-
-  /**
-   * Contact sms
-   */
-  sms?: {
     type: string;
     value: string;
     link: string;

@@ -15,7 +15,7 @@ export const backendApiPropertyImagesMapper = (
   }, {} as PropertyImagesResultType);
 
   if (configIsTrace) {
-    (result as unknown as Record<string, Object>).full = JSON.parse(JSON.stringify(properties));
+    (result as unknown as Record<string, Object>).__full = JSON.parse(JSON.stringify(properties));
   }
 
   return result;

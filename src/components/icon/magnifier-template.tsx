@@ -9,7 +9,6 @@ export const IconMagnifierTemplate = (props: IconTemplatePropsInterface): JSX.El
       width={clipped ? undefined : '24'}
       className={props.class}
     >
-      {/* tslint:disable-next-line: max-line-length */}
       <path
         fillRule='evenodd'
         clipRule='evenodd'

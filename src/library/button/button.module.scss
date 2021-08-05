@@ -13,7 +13,6 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  line-height: normal;
   position: relative;
   text-decoration: none;
   transition: background 0.3s;
@@ -51,7 +50,7 @@
 .small {
   font-size: var(--font-size-08);
   line-height: 2rem;
-  padding: calc(var(--spacing) * 1.5);
+  padding: calc(var(--spacing) * 1);
 }
 
 .disabled {
@@ -65,8 +64,8 @@
 
 /* Icon */
 .icon {
-  height: 1.6rem;
-  width: 1.6rem;
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
 .icon--left {

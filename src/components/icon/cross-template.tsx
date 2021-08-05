@@ -9,7 +9,6 @@ export const IconCrossTemplate = (props: IconTemplatePropsInterface): JSX.Elemen
       width={clipped ? undefined : '24'}
       className={props.class}
     >
-      {/* tslint:disable-next-line: max-line-length */}
       <path
         fillRule='evenodd'
         clipRule='evenodd'

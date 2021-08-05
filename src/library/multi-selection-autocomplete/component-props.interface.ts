@@ -56,7 +56,7 @@ export interface MultiSelectionAutocompleteComponentPropsInterface<T> {
   /**
    * Render function for "no suggestions available" case
    */
-  renderNoSuggestions: (inputValue: string) => preact.JSX.Element;
+  renderNoSuggestions: (inputValue: string) => JSX.Element;
   /**
    * Callback for input key press (You can add custom addItem logic here (on enter key for example))
    */
@@ -64,7 +64,7 @@ export interface MultiSelectionAutocompleteComponentPropsInterface<T> {
   /**
    * Suggestion icon
    */
-  suggestionIcon?: preact.JSX.Element;
+  suggestionIcon?: JSX.Element;
   /**
    * On window mouse down outside autocomplete component
    */

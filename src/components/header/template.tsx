@@ -9,9 +9,9 @@ import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { HeaderTemplatePropsInterface } from './template.props.interface';
-import { IconHeart2Template } from 'components/icon/heart-2-template';
 import { IconLogoAlternativeTemplate } from 'components/icon/logo/alternative-template';
 import { IconLogoCurrentTemplate } from 'components/icon/logo/current-template';
+import { IconThinHeartTemplate } from 'components/icon/thin-heart-template';
 import { IconUserOFilledTemplate } from 'components/icon/user-o-filled-template';
 import { LanguageSelectorComponent } from 'components/language-selector/component';
 
@@ -49,7 +49,7 @@ export const HeaderTemplate = ({
               <div className={styles.savedProperties}>
                 <span className={styles.spacer} />
                 <a href={`${userAccountPath}/saved-properties`} className={styles.savedPropertiesButton}>
-                  <IconHeart2Template class={styles.savedPropertiesIcon} />
+                  <IconThinHeartTemplate class={styles.savedPropertiesIcon} clipped />
                   <div className={styles.notificationDot} />
                   <div className={styles.notificationBadge}>{userProfile.savedPropertiesCount}</div>
                 </a>

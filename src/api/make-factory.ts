@@ -5,6 +5,7 @@ import { ApiHeaderEnum } from 'enums/api/header.enum';
 import { ApiMakeFactoryPropsInterface } from './make-factory-props.interface';
 import { ApiRequestPropsType } from './request-props.type';
 
+import { configIsTrace } from 'config/is-trace';
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
 
 // TODO-FE[TPNX-3009] Add tests
@@ -66,6 +67,11 @@ export const ApiMakeFactory =
         ...factoryProps.queryDefaultParams,
         ...props.query,
       })}`;
+    }
+
+    if (configIsTrace) {
+      // eslint-disable-next-line no-console
+      console.log('fetch', finalUrl, payload);
     }
 
     return fetch(finalUrl, payload).then((response) => {

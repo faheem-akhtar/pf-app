@@ -1,14 +1,17 @@
+// setup file for jest
+const dotenv = require('dotenv');
+dotenv.config({ path: `${__dirname}/.env` });
+
 module.exports = {
   // Coverage information
-  collectCoverageFrom: [
-    './src/**/*.ts',
-    './src/**/*.tsx',
-    '!./src/**/*.enum.ts',
-    '!./src/**/*.stories.ts',
-    '!./src/**/*.mock.ts',
-    '!./src/**/*.interface.ts',
-    '!./src/**/index.ts',
-    '!./src/environments/**',
+  collectCoverageFrom: ['./src/**/*.ts', './src/**/*.tsx'],
+  coveragePathIgnorePatterns: [
+    'src/components/icon/*',
+    'mocks/*',
+    '.enum.ts',
+    '.interface.ts',
+    '.type.ts',
+    '.stories.ts',
   ],
   coverageThreshold: {
     global: {

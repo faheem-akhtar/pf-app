@@ -4,7 +4,7 @@ import { FiltersValueFieldCategoryIdType } from 'components/filters/value/field/
 import { FiltersValueFieldFurnishedType } from 'components/filters/value/field/furnished.type';
 import { FiltersValueFieldPricePeriodType } from 'components/filters/value/field/price-period.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { PropertyPriceTypeShortEnum } from 'components/property-price-type/short.enum';
+import { PropertyPriceTypeShortEnum } from 'enums/property/price-type-short.enum';
 
 export const backendFiltersValueDefaultBase: FiltersValueInterface = {
   [FiltersParametersEnum.amenities]: [],

@@ -23,7 +23,7 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
   const obfuscatedProperty: Record<string, AnyValueType> = {};
 
   if (configIsTrace) {
-    obfuscatedProperty.full = property;
+    obfuscatedProperty.__full = property;
   }
 
   Object.keys(property).forEach((key) => {

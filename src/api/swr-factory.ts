@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import { ApiMakeFactory } from './make-factory';

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PropertyCardComponent Initial gallery images, before gallery touched 1`] = `
+Array [
+  Object {
+    "sourceUrl": "img url",
+  },
+  Object {
+    "sourceUrl": "",
+  },
+  Object {
+    "sourceUrl": "",
+  },
+]
+`;
+
+exports[`PropertyCardComponent should load images when gallery is touched 1`] = `
+Array [
+  Object {
+    "sourceUrl": "i1",
+  },
+  Object {
+    "sourceUrl": "i2",
+  },
+  Object {
+    "sourceUrl": "i3",
+  },
+]
+`;

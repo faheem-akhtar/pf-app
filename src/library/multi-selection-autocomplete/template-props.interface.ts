@@ -46,7 +46,7 @@ export interface MultiSelectionAutocompleteTemplatePropsInterface<T> {
   /**
    * suggestion icon
    */
-  suggestionIcon?: preact.JSX.Element;
+  suggestionIcon?: JSX.Element;
   /**
    * Reference to root element
    */
@@ -86,7 +86,7 @@ export interface MultiSelectionAutocompleteTemplatePropsInterface<T> {
   /**
    * Render function for "no suggestions available" case
    */
-  renderNoSuggestions: (inputValue: string) => preact.JSX.Element;
+  renderNoSuggestions: (inputValue: string) => JSX.Element;
   /**
    * Selected item
    */
