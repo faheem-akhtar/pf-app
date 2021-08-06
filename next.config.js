@@ -4,6 +4,10 @@ const { getLanguageCssAlias } = require('./scripts/build-config');
 const buildConfig = require('./scripts/build-config');
 
 module.exports = withPreact({
+  typescript: {
+    ignoreDevErrors: true,
+    ignoreBuildErrors: true,
+  },
   i18n,
   distDir: buildConfig.getDistDir(),
   webpack: (config) => {
