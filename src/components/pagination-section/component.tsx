@@ -16,6 +16,7 @@ import { IconTemplatePropsInterface } from 'components/icon/template-props.inter
 import { PaginationSectionComponentPropsType } from './component-props.type';
 
 import styles from './pagination-section.module.scss';
+import { useTranslation } from 'next-i18next';
 
 // TODO-FE[TPNX-3064] Proper implementation for pagination section
 Router.events.on('routeChangeStart', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
@@ -24,7 +25,9 @@ const renderLink = (
   router: NextRouter,
   icon: (props: IconTemplatePropsInterface) => JSX.Element,
   page: number,
-  hidden: boolean
+  hidden: boolean,
+  label: string,
+  iconPosition: ButtonIconPositionEnum
 ): JSX.Element => {
   const url = `/${router.locale}${router.pathname}?${urlQuerySerialize({ ...router.query, page })}`;
 
@@ -32,14 +35,20 @@ const renderLink = (
     <ButtonTemplate
       componentType={ButtonComponentTypeEnum.primary}
       href={hidden ? '#' : url}
-      size={ButtonSizeEnum.regular}
+      size={ButtonSizeEnum.small}
       disabled={hidden}
       onClick={(e): void => {
         e?.preventDefault();
         router.push(url);
       }}
-      icon={{ component: icon, position: ButtonIconPositionEnum.top }}
-    />
+      icon={{
+        component: icon,
+        position: iconPosition,
+      }}
+      className={styles.button}
+    >
+      {label}
+    </ButtonTemplate>
   );
 };
 
@@ -47,6 +56,7 @@ export const PaginationSectionComponent = ({
   pagesAvailable,
   loading,
 }: PaginationSectionComponentPropsType): JSX.Element => {
+  const { t } = useTranslation();
   const router = useRouter();
   const {
     value: { [FiltersParametersEnum.pageNumber]: currentPage },
@@ -54,8 +64,22 @@ export const PaginationSectionComponent = ({
 
   return (
     <div className={styles.container}>
-      {renderLink(router, IconChevronLeftTemplate, currentPage - 1, loading || currentPage === 1)}
-      {renderLink(router, IconChevronRightTemplate, currentPage + 1, loading || currentPage === pagesAvailable)}
+      {renderLink(
+        router,
+        IconChevronLeftTemplate,
+        currentPage - 1,
+        loading || currentPage === 1,
+        t('Prev'),
+        ButtonIconPositionEnum.left
+      )}
+      {renderLink(
+        router,
+        IconChevronRightTemplate,
+        currentPage + 1,
+        loading || currentPage === pagesAvailable,
+        t('Next'),
+        ButtonIconPositionEnum.right
+      )}
     </div>
   );
 };
