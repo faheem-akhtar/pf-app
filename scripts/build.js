@@ -32,19 +32,29 @@ function promiseFromChildProcess(child, name) {
 
 let availableWorkers = cpuCount;
 
+const lockWorker = () => {
+  availableWorkers -= 1;
+}
+
+const unlockWorker = () => {
+  availableWorkers += 1;
+}
+
 async function build(country, isMobile, retry = true) {
   while (availableWorkers === 0) {
     // check  for available workers every seconds
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-  availableWorkers -= 1;
+  lockWorker();
   const name = `${country}-${isMobile ? 'mobile' : 'desktop'}`;
   var child = exec(`PATH=${process.env.PATH} next build`, {
     env: { NEXT_PUBLIC_COUNTRY_CODE: country, NEXT_PUBLIC_MOBILE: isMobile ? '1' : '' },
   });
   try {
     await promiseFromChildProcess(child, name);
+    unlockWorker();
   } catch (e) {
+    unlockWorker();
     // For some reason nextjs build is sometimes failing when executed in parallel
     // with 14 builds happening in parallel ususally 1 or 2 are failing with some silly error like can not import file because it is not found
     if (retry) {
@@ -55,7 +65,6 @@ async function build(country, isMobile, retry = true) {
       process.exit(1);
     }
   }
-  availableWorkers += 1;
 }
 
 const countries = ['bh', 'eg', 'lb', 'ma', 'qa', 'sa', 'ae'];
