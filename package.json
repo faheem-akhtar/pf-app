@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/Propertyfinder/pf-web-app",
   "scripts": {
-    "dev": "yarn download-i18n && yarn download-resources && next dev -p 8080",
+    "dev": "DEV=1 yarn download-i18n && yarn download-resources && next dev -p 8080",
     "dev-desktop": "NEXT_PUBLIC_MOBILE= yarn dev",
     "dev-qa": "NEXT_PUBLIC_COUNTRY_CODE=qa yarn dev",
     "dev-qa-desktop": "NEXT_PUBLIC_COUNTRY_CODE=qa yarn dev-desktop",
@@ -40,6 +40,7 @@
     "download-resources": "./scripts/download-resources/run.sh",
     "randomize-obfuscation-keys": "./scripts/randomize-obfuscation-keys.js",
     "download-i18n": "make i18n-download",
+    "validate-types": "tsc --project ./tsconfig.json",
     "build-eslint": "rm -rf ./utils/eslint/result && tsc --project ./utils/eslint/tsconfig.json && cp ./utils/eslint/package.json ./utils/eslint/result && yarn add --dev file:./utils/eslint/result"
   },
   "lint-staged": {

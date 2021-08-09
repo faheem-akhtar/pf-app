@@ -5,7 +5,6 @@ const buildConfig = require('./scripts/build-config');
 
 module.exports = withPreact({
   typescript: {
-    ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
   i18n,

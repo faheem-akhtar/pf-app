@@ -15,7 +15,6 @@ const makeDefaultProps = (): PropertyCardCtaButtonsGroupTemplatePropsInterface =
   onCallClick: jest.fn(),
   onWhatsappClick: jest.fn(),
   onEmailClick: jest.fn(),
-  loading: false,
 });
 
 describe('PropertyCardCtaButtonsGroupTemplate', () => {
