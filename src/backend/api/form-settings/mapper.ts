@@ -37,12 +37,12 @@ type SettingsType = BackendApiFormSettingsSettingType[];
 type ValidateSettingsResultType = Record<
   string,
   {
-    value: string | string[];
-    choices: { label: string; value: string }[];
+    value: string | string[] | number | null;
+    choices: { label: string; value: string | number | null }[];
   }
 >;
 
-type ParamsType = Record<string, { value: string | string[] }>;
+type ParamsType = Record<string, { value: string | string[] | number | null }>;
 
 /**
  * On filter settings validate
@@ -229,8 +229,8 @@ const commonInitialState: Partial<FiltersValueInterface> = {
   [FiltersParametersEnum.locationsIds]: [],
   [FiltersParametersEnum.minPrice]: null,
   [FiltersParametersEnum.maxPrice]: null,
-  [FiltersParametersEnum.minArea]: '',
-  [FiltersParametersEnum.maxArea]: '',
+  [FiltersParametersEnum.minArea]: null,
+  [FiltersParametersEnum.maxArea]: null,
   [FiltersParametersEnum.keyword]: '',
   [FiltersParametersEnum.propertyTypeId]: '',
 };
@@ -251,22 +251,50 @@ const extractAndFilterValues = (filterParams: ParamsType): FiltersValueInterface
     {} as FiltersValueInterface & Record<string, string>
   );
 
-type AllChoicesType = Record<FiltersParametersEnum, FiltersValueFieldChoiceInterface<string>[]>;
+type AllChoicesType = Record<FiltersParametersEnum, FiltersValueFieldChoiceInterface<string | number>[]>;
 type ChoicesIndexesType = Record<string, number[]>;
 type InitialStateMap = Record<string, FiltersValueInterface>;
 
-const cleanQueryAndFixAmenities = (value: ValidateSettingsResultType): void => {
+const cleanUp = (value: ValidateSettingsResultType): void => {
   delete value[FiltersParametersEnum.query];
   if (value[FiltersParametersEnum.amenities]?.value === '') {
     value[FiltersParametersEnum.amenities].value = [];
   }
+  if (value[FiltersParametersEnum.minArea]?.value === '') {
+    value[FiltersParametersEnum.minArea].value = null;
+  }
+  if (value[FiltersParametersEnum.maxArea]?.value === '') {
+    value[FiltersParametersEnum.maxArea].value = null;
+  }
+  value[FiltersParametersEnum.minArea]?.choices.forEach((choice) => {
+    choice.value = Number(choice.value);
+  });
+  value[FiltersParametersEnum.maxArea]?.choices.forEach((choice) => {
+    choice.value = Number(choice.value);
+  });
 };
 
 const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => {
+  const choiceAnyNumber = {
+    value: null,
+    label: '',
+  };
   const choiceAny = {
     value: '',
     label: '',
   };
+
+  const filterTypesToAddAnyNumberOption: Array<
+    | FiltersParametersEnum.minArea
+    | FiltersParametersEnum.maxArea
+    | FiltersParametersEnum.minPrice
+    | FiltersParametersEnum.maxPrice
+  > = [
+    FiltersParametersEnum.minArea,
+    FiltersParametersEnum.maxArea,
+    FiltersParametersEnum.minPrice,
+    FiltersParametersEnum.maxPrice,
+  ];
 
   const filterTypesToAddAnyOption: Array<
     | FiltersParametersEnum.propertyTypeId
@@ -275,12 +303,8 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
     | FiltersParametersEnum.maxBedroom
     | FiltersParametersEnum.minBathroom
     | FiltersParametersEnum.maxBathroom
-    | FiltersParametersEnum.minArea
-    | FiltersParametersEnum.maxArea
     | FiltersParametersEnum.furnishing
     | FiltersParametersEnum.completionStatus
-    | FiltersParametersEnum.minPrice
-    | FiltersParametersEnum.maxPrice
   > = [
     FiltersParametersEnum.propertyTypeId,
     FiltersParametersEnum.virtualViewings,
@@ -288,10 +312,6 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
     FiltersParametersEnum.maxBedroom,
     FiltersParametersEnum.minBathroom,
     FiltersParametersEnum.maxBathroom,
-    FiltersParametersEnum.minArea,
-    FiltersParametersEnum.maxArea,
-    FiltersParametersEnum.minPrice,
-    FiltersParametersEnum.maxPrice,
     FiltersParametersEnum.furnishing,
     FiltersParametersEnum.completionStatus,
   ];
@@ -299,6 +319,12 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
   filterTypesToAddAnyOption.forEach((filterType) => {
     if (!initialFilterParams[filterType]?.choices.find((c) => c.value === choiceAny.value)) {
       initialFilterParams[filterType]?.choices.unshift(choiceAny);
+    }
+  });
+
+  filterTypesToAddAnyNumberOption.forEach((filterType) => {
+    if (!initialFilterParams[filterType]?.choices.find((c) => c.value === choiceAnyNumber.value)) {
+      initialFilterParams[filterType]?.choices.unshift(choiceAnyNumber);
     }
   });
 };
@@ -320,7 +346,7 @@ const makePropertyTypeProcessor =
       [FiltersParametersEnum.propertyTypeId]: { value: propertyTypeValue },
     });
 
-    cleanQueryAndFixAmenities(initialFilterParamsForCategoryAndType);
+    cleanUp(initialFilterParamsForCategoryAndType);
     addAnyChoice(initialFilterParamsForCategoryAndType);
 
     // Fix initial value if it is empty, but there are choices available
@@ -368,7 +394,7 @@ const makePropertyTypeProcessor =
 
         let index = existingChoiceIndex;
         if (existingChoiceIndex === -1) {
-          allChoices[filterType].push(choice);
+          allChoices[filterType].push(choice as FiltersValueFieldChoiceInterface<string | number>);
           index = allChoices[filterType].length - 1;
         }
 

@@ -1,4 +1,4 @@
-export interface ChipPropsInterface {
+export interface ChipTemplatePropsInterface {
   /**
    * Chip label
    */
@@ -8,11 +8,6 @@ export interface ChipPropsInterface {
    * Id of related to label input
    */
   htmlFor?: string;
-
-  /**
-   * Component template
-   */
-  template?: (props: ChipPropsInterface) => JSX.Element;
 
   /**
    * Prefix chip icon

@@ -4,30 +4,38 @@ import { useContext } from 'react';
 
 import { TFunction, useTranslation } from 'next-i18next';
 
+import { configCommon } from 'config/common';
+
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
+import { CheckboxTemplate } from 'library/checkbox/template';
 import { ChipChoiceTemplate } from 'library/chip-choice/template';
-import { DropdownTemplate } from '../dropdown/template';
+import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { FiltersContext } from '../filters/context';
 import { FiltersDataInterface } from '../filters/data/interface';
 import { FiltersModalItemTemplate } from 'components/filters-modal/item/template';
 import { FiltersModalSubmitButtonComponent } from './submit-button-component';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { FiltersValueFieldCategoryIdType } from 'components/filters/value/field/category-id.type';
 import { FiltersValueFieldMaxBathroomType } from 'components/filters/value/field/max-bathroom.type';
 import { FiltersValueFieldMaxBedroomType } from 'components/filters/value/field/max-bedroom.type';
 import { FiltersValueInterface } from '../filters/value/interface';
 import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
+import { SelectFieldTemplate } from 'library/select-field/template';
+import { SwitchTemplate } from 'library/switch/template';
 
 import { IconCloseTemplate } from 'components/icon/close-template';
 import { IconThickBathroomTemplate } from 'components/icon/thick-bathroom-template';
 import { IconThickBedroomTemplate } from 'components/icon/thick-bedroom-template';
 import { IconThickBuildingCompletionTemplate } from 'components/icon/thick-building-completion-template';
+import { IconThickFloorPlanTemplate } from 'components/icon/thick-floor-plan-template';
 import { IconThickFurnishingTemplate } from 'components/icon/thick-furnishing-template';
 import { IconThickPlayCircleTemplate } from 'components/icon/thick-play-circle-template';
 import { IconThickPriceTemplate } from 'components/icon/thick-price-template';
 import { IconThickPropertyTemplate } from 'components/icon/thick-property-template';
 
+import { categoryIdIsCommercial } from 'helpers/category-id/is-commercial';
 import { filtersDataChoicesGetCategoryId } from '../filters/data/choices/get-category-id';
 import { filtersDataChoicesGetCompleteonStatus } from '../filters/data/choices/get-completeon-status';
 import { filtersDataChoicesGetFurnished } from '../filters/data/choices/get-furnished';
@@ -39,6 +47,7 @@ import { filtersDataChoicesGetPricePeriod } from '../filters/data/choices/get-pr
 import { filtersDataChoicesGetPropertyTypeId } from '../filters/data/choices/get-property-type-id';
 import { filtersDataChoicesGetVirtualViewing } from '../filters/data/choices/get-virtual-viewing';
 import { filtersDataGetEnabledFilterTypes } from '../filters/data/get-enabled-filter-types';
+import { filtersToRangeOptions } from 'helpers/filters/to-range-options';
 import { filtersValueEquals } from 'components/filters/value/equals';
 import { useFiltersDataChoicesPrice } from 'components/filters/data/choices/price.hook';
 import { useFiltersValueState } from 'components/filters/value/state.hook';
@@ -54,13 +63,39 @@ interface RenderWidgetPropsInterface {
 
 const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX.Element> = {
   [FiltersParametersEnum.categoryId]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Category')}
-      value={filtersValue[FiltersParametersEnum.categoryId]}
-      choices={filtersDataChoicesGetCategoryId(filtersValue, filtersData)}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.categoryId]: value })}
-    />
+    <FiltersModalItemTemplate>
+      <>
+        <SwitchTemplate
+          options={filtersDataChoicesGetCategoryId(filtersValue, filtersData).filter((choice) => {
+            const commercialPredicate = categoryIdIsCommercial(choice.value);
+
+            return categoryIdIsCommercial(filtersValue[FiltersParametersEnum.categoryId])
+              ? commercialPredicate
+              : !commercialPredicate;
+          })}
+          selected={filtersValue[FiltersParametersEnum.categoryId]}
+          onCheck={(selectedOption): void =>
+            changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.categoryId]: selectedOption.value })
+          }
+        />
+        <CheckboxTemplate
+          id='commercial'
+          checked={categoryIdIsCommercial(filtersValue[FiltersParametersEnum.categoryId])}
+          onChange={(e): void => {
+            const toggleCommercial: FiltersValueFieldCategoryIdType = (e.target as HTMLInputElement).checked
+              ? FiltersCategoryIdEnum.commercialForRent
+              : FiltersCategoryIdEnum.residentialForRent;
+
+            changeFiltersValue({
+              ...filtersValue,
+              [FiltersParametersEnum.categoryId]: toggleCommercial,
+            });
+          }}
+        >
+          {t('View commercial properties only')}
+        </CheckboxTemplate>
+      </>
+    </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.propertyTypeId]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
     <FiltersModalItemTemplate label={t('Property type')} icon={<IconThickPropertyTemplate class={styles.icon} />}>
@@ -103,22 +138,39 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
     </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.minPrice]: ({ filtersValue, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Min. Price')}
-      choices={useFiltersDataChoicesPrice(filtersValue)}
-      value={filtersValue[FiltersParametersEnum.minPrice]}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.minPrice]: value })}
-    />
-  ),
-  [FiltersParametersEnum.maxPrice]: ({ filtersValue, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Max. Price')}
-      choices={useFiltersDataChoicesPrice(filtersValue)}
-      value={filtersValue[FiltersParametersEnum.maxPrice]}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.maxPrice]: value })}
-    />
+    <FiltersModalItemTemplate
+      label={t('Price ({currency})').replace('{currency}', t(configCommon.currencyCode))}
+      icon={<IconThickPriceTemplate class={styles.icon} />}
+    >
+      <div className={styles.split}>
+        <SelectFieldTemplate
+          dropdownIcon
+          label={t('From')}
+          value={filtersValue[FiltersParametersEnum.minPrice]}
+          options={filtersToRangeOptions(
+            useFiltersDataChoicesPrice(filtersValue),
+            filtersValue[FiltersParametersEnum.maxPrice],
+            true
+          )}
+          onChange={(value): void => {
+            changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.minPrice]: value });
+          }}
+        />
+        <SelectFieldTemplate
+          dropdownIcon
+          label={t('To')}
+          value={filtersValue[FiltersParametersEnum.maxPrice]}
+          options={filtersToRangeOptions(
+            useFiltersDataChoicesPrice(filtersValue),
+            filtersValue[FiltersParametersEnum.minPrice],
+            false
+          )}
+          onChange={(value): void => {
+            changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.maxPrice]: value });
+          }}
+        />
+      </div>
+    </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.maxBedroom]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
     <FiltersModalItemTemplate label={t('Bedrooms')} icon={<IconThickBedroomTemplate class={styles.icon} />}>
@@ -153,22 +205,45 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
     </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.minArea]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Min. Area')}
-      choices={filtersDataChoicesGetMinArea(filtersValue, filtersData)}
-      value={filtersValue[FiltersParametersEnum.minArea]}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.minArea]: value })}
-    />
-  ),
-  [FiltersParametersEnum.maxArea]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <DropdownTemplate
-      className={styles.dropdown}
-      title={t('Max. Area')}
-      choices={filtersDataChoicesGetMaxArea(filtersValue, filtersData)}
-      value={filtersValue[FiltersParametersEnum.maxArea]}
-      onChange={(value): void => changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.maxArea]: value })}
-    />
+    <FiltersModalItemTemplate
+      label={t('Property Size ({area_unit})').replace('{area_unit}', t(configCommon.areaUnit))}
+      icon={<IconThickFloorPlanTemplate class={styles.icon} />}
+    >
+      <div className={styles.split}>
+        <SelectFieldTemplate
+          dropdownIcon
+          label={t('From')}
+          value={filtersValue[FiltersParametersEnum.minArea]}
+          options={filtersToRangeOptions(
+            filtersDataChoicesGetMinArea(filtersValue, filtersData),
+            filtersValue[FiltersParametersEnum.maxArea],
+            true
+          )}
+          onChange={(value): void => {
+            changeFiltersValue({
+              ...filtersValue,
+              [FiltersParametersEnum.minArea]: value,
+            });
+          }}
+        />
+        <SelectFieldTemplate
+          dropdownIcon
+          label={t('To')}
+          value={filtersValue[FiltersParametersEnum.maxArea]}
+          options={filtersToRangeOptions(
+            filtersDataChoicesGetMaxArea(filtersValue, filtersData),
+            filtersValue[FiltersParametersEnum.minArea],
+            false
+          )}
+          onChange={(value): void => {
+            changeFiltersValue({
+              ...filtersValue,
+              [FiltersParametersEnum.maxArea]: value,
+            });
+          }}
+        />
+      </div>
+    </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.completionStatus]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
     <FiltersModalItemTemplate

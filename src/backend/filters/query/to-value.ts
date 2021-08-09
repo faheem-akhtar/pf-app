@@ -11,10 +11,8 @@ import { FiltersValueFieldAmenitiesType } from 'components/filters/value/field/a
 import { FiltersValueFieldCategoryIdType } from 'components/filters/value/field/category-id.type';
 import { FiltersValueFieldCompletionStatusType } from 'components/filters/value/field/completion-status.type';
 import { FiltersValueFieldFurnishedType } from 'components/filters/value/field/furnished.type';
-import { FiltersValueFieldMaxAreaType } from 'components/filters/value/field/max-area.type';
 import { FiltersValueFieldMaxBathroomType } from 'components/filters/value/field/max-bathroom.type';
 import { FiltersValueFieldMaxBedroomType } from 'components/filters/value/field/max-bedroom.type';
-import { FiltersValueFieldMinAreaType } from 'components/filters/value/field/min-area.type';
 import { FiltersValueFieldMinBathroomType } from 'components/filters/value/field/min-bathroom.type';
 import { FiltersValueFieldMinBedroomType } from 'components/filters/value/field/min-bedroom.type';
 import { FiltersValueFieldPaymentMethodType } from 'components/filters/value/field/payment-method.type';
@@ -72,10 +70,12 @@ export const backendFiltersQueryToValue = (
       : null,
     [FiltersParametersEnum.furnishing]:
       (queryParams[FiltersQueryParametersEnum.furnishing] as FiltersValueFieldFurnishedType) || '',
-    [FiltersParametersEnum.minArea]:
-      (queryParams[FiltersQueryParametersEnum.minArea] as FiltersValueFieldMinAreaType) || '',
-    [FiltersParametersEnum.maxArea]:
-      (queryParams[FiltersQueryParametersEnum.maxArea] as FiltersValueFieldMaxAreaType) || '',
+    [FiltersParametersEnum.minArea]: queryParams[FiltersQueryParametersEnum.minArea]
+      ? parseInt(queryParams[FiltersQueryParametersEnum.minArea] as string, 10)
+      : null,
+    [FiltersParametersEnum.maxArea]: queryParams[FiltersQueryParametersEnum.maxArea]
+      ? parseInt(queryParams[FiltersQueryParametersEnum.maxArea] as string, 10)
+      : null,
     [FiltersParametersEnum.pricePeriod]:
       (queryParams[FiltersQueryParametersEnum.pricePeriod] as FiltersValueFieldPricePeriodType) || defaultPricePeriod,
     [FiltersParametersEnum.keyword]: queryParams[FiltersQueryParametersEnum.keyword] || '',

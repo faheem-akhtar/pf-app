@@ -1,0 +1,36 @@
+.list {
+  display: flex;
+  margin-bottom: calc(var(--spacing) * 2.5);
+}
+
+.item {
+  flex: 1;
+
+  &:first-child button {
+    border-radius: calc(var(--spacing) / 2) 0 0 calc(var(--spacing) / 2);
+    border-right: none;
+  }
+
+  &:last-child button {
+    border-left: none;
+    border-radius: 0 calc(var(--spacing) / 2) calc(var(--spacing) / 2) 0;
+  }
+
+  button {
+    border-radius: 0;
+    font-weight: normal;
+    width: 100%;
+  }
+}
+
+.activeItem {
+  background: var(--color-interaction-1-light-mode);
+  border-color: var(--color-interaction-1-light-mode);
+  color: var(--color-global-white);
+
+  &:active,
+  &:hover {
+    background: var(--color-interaction-1-light-mode);
+    border-color: var(--color-interaction-1-light-mode);
+  }
+}

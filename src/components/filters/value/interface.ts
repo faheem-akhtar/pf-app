@@ -3,10 +3,8 @@ import { FiltersValueBaseInterface } from './base-interface';
 import { FiltersValueFieldAmenitiesType } from './field/amenities.type';
 import { FiltersValueFieldCompletionStatusType } from './field/completion-status.type';
 import { FiltersValueFieldFurnishedType } from './field/furnished.type';
-import { FiltersValueFieldMaxAreaType } from './field/max-area.type';
 import { FiltersValueFieldMaxBathroomType } from './field/max-bathroom.type';
 import { FiltersValueFieldMaxBedroomType } from './field/max-bedroom.type';
-import { FiltersValueFieldMinAreaType } from './field/min-area.type';
 import { FiltersValueFieldMinBathroomType } from './field/min-bathroom.type';
 import { FiltersValueFieldMinBedroomType } from './field/min-bedroom.type';
 import { FiltersValueFieldPaymentMethodType } from './field/payment-method.type';
@@ -35,12 +33,12 @@ export interface FiltersValueInterface extends FiltersValueBaseInterface {
   /**
    * Area (Min)
    */
-  [FiltersParametersEnum.minArea]: FiltersValueFieldMinAreaType | '';
+  [FiltersParametersEnum.minArea]: number | null;
 
   /**
    * Area (Max)
    */
-  [FiltersParametersEnum.maxArea]: FiltersValueFieldMaxAreaType | '';
+  [FiltersParametersEnum.maxArea]: number | null;
 
   /**
    * Keywords

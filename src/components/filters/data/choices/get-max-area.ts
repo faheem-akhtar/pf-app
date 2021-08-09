@@ -1,8 +1,8 @@
 import { filtersDataChoicesMakeGetChoices } from './make-get-choices';
 
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { FiltersValueFieldMaxAreaChoiceType } from 'components/filters/value/field/max-area-choice.type';
+import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
 
-export const filtersDataChoicesGetMaxArea = filtersDataChoicesMakeGetChoices<FiltersValueFieldMaxAreaChoiceType>(
+export const filtersDataChoicesGetMaxArea = filtersDataChoicesMakeGetChoices<FiltersValueFieldChoiceInterface<number>>(
   FiltersParametersEnum.maxArea
 );

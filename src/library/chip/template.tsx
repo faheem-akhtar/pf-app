@@ -1,10 +1,10 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 
-import { ChipPropsInterface } from './props.interface';
+import { ChipTemplatePropsInterface } from './template-props.interface';
 
 import styles from './chip.module.scss';
 
-export const ChipTemplate = (props: ChipPropsInterface): JSX.Element => {
+export const ChipTemplate = (props: ChipTemplatePropsInterface): JSX.Element => {
   return (
     <label
       htmlFor={props.htmlFor}

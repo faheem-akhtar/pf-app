@@ -1,11 +1,12 @@
 /* eslint-disable pf-rules/export-name-validation */
-import styles from './component.stories.module.scss';
 
 import { AppearOnScrollComponent } from './component';
 import { AppearOnScrollComponentPropsInterface } from './component-props.interface';
 
+import styles from './component.stories.module.scss';
+
 export default {
-  title: 'Appear on scroll',
+  title: 'Library/Appear on scroll',
   component: AppearOnScrollComponent,
   argTypes: {
     onExiting: { action: 'onExiting' },

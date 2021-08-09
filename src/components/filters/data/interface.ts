@@ -16,7 +16,7 @@ export interface FiltersDataInterface {
   /**
    * All possible choices for a given filter type
    */
-  allChoices: Record<FiltersParametersEnum, FiltersValueFieldChoiceInterface<string>[]>;
+  allChoices: Record<FiltersParametersEnum, FiltersValueFieldChoiceInterface<string | number>[]>;
   /**
    * Choices indexes map for category and property type with respect to all choices map
    * key: `${categoryId}-${propertyTypeId}-${filterType}`

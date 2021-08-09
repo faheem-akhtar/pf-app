@@ -1,8 +1,9 @@
+/* eslint-disable pf-rules/export-name-validation */
+
 import { GalleryScrollComponent } from './component';
 
-/* eslint-disable pf-rules/export-name-validation */
 export default {
-  title: 'Gallery',
+  title: 'Library/Gallery',
   component: GalleryScrollComponent,
 };
 

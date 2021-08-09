@@ -2,12 +2,12 @@ export interface FiltersModalItemTemplatePropsInterface {
   /**
    * Label
    */
-  label: string;
+  label?: string;
 
   /**
    * Heading icon
    */
-  icon: JSX.Element;
+  icon?: JSX.Element;
 
   /**
    * Whether the list item is new

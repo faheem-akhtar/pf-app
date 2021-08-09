@@ -7,7 +7,7 @@ import { FiltersValueBaseInterface } from 'components/filters/value/base-interfa
 import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
 
 export const filtersDataChoicesMakeGetChoices =
-  <Choice extends FiltersValueFieldChoiceInterface<string>>(filterType: FiltersParametersEnum) =>
+  <Choice extends FiltersValueFieldChoiceInterface<string | number>>(filterType: FiltersParametersEnum) =>
   (value: FiltersValueBaseInterface, data: FiltersDataInterface): Choice[] => {
     const choicesIndexes = data.choicesIndexes[filtersDataMakeChoicesIndexesKey(value, filterType)] || [];
 

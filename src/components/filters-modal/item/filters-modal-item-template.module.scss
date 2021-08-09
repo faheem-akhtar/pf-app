@@ -1,7 +1,10 @@
 .container {
-  border-bottom: 1px solid var(--color-global-grey3);
   margin-bottom: calc(var(--spacing) * 3);
   padding-bottom: calc(var(--spacing) * 3);
+}
+
+.containerWithIcon:not(:last-child) {
+  border-bottom: 1px solid var(--color-global-grey3);
 }
 
 .headline {

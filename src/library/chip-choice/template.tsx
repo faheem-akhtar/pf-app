@@ -6,7 +6,7 @@ import { ChipTemplate } from '../chip/template';
 import styles from './chip-choice.module.scss';
 
 /**
- * Chip choice allow users to make selections from a list of values.
+ * Chip choice allows users to make selections from a list of values.
  *
  * Design: https://www.figma.com/file/gRARY1Vi4W2Ow1vRLw02am/PF_Consumer-Web-Kit?node-id=16%3A781
  */

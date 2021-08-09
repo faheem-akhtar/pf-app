@@ -1,16 +1,17 @@
 /* eslint-disable pf-rules/export-name-validation */
-import { ChipPropsInterface } from './props.interface';
+
 import { ChipTemplate } from './template';
+import { ChipTemplatePropsInterface } from './template-props.interface';
 
 export default {
-  title: 'Chip',
+  title: 'Library/Chip',
   component: ChipTemplate,
   argTypes: {
     onClick: { action: 'onClick' },
   },
 };
 
-export const Chip = (args: ChipPropsInterface): JSX.Element => <ChipTemplate {...args} htmlFor='1' />;
+export const Chip = (args: ChipTemplatePropsInterface): JSX.Element => <ChipTemplate {...args} htmlFor='1' />;
 
 Chip.args = {
   label: 'Chip Label',
