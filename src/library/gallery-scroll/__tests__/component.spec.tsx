@@ -67,9 +67,11 @@ describe('AppearOnScrollComponent', () => {
 
     const wrapper = mount(<GalleryScrollComponent {...defaultProps} />);
     const { onMouseDown } = wrapper.find(GalleryScrollTemplate).props();
+    const mouseEventMock = MouseEventMock();
 
-    onMouseDown({ ...MouseEventMock, clientX: 5 });
+    onMouseDown({ ...mouseEventMock, clientX: 5 });
 
+    expect(mouseEventMock.preventDefault).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({
       galleryLeft: 0,
@@ -84,9 +86,11 @@ describe('AppearOnScrollComponent', () => {
 
     const wrapper = shallow(<GalleryScrollComponent {...defaultProps} />);
     const { onMouseDown } = wrapper.find(GalleryScrollTemplate).props();
+    const mouseEventMock = MouseEventMock();
 
-    onMouseDown(MouseEventMock);
+    onMouseDown(mouseEventMock);
 
+    expect(mouseEventMock.preventDefault).toHaveBeenCalledTimes(1);
     expect(dispatchMock).not.toHaveBeenCalled();
   });
 
@@ -96,11 +100,13 @@ describe('AppearOnScrollComponent', () => {
     const wrapper = mount(<GalleryScrollComponent {...defaultProps} />);
     const { onTouchStart } = wrapper.find(GalleryScrollTemplate).props();
 
+    const touchEventMock = TouchEventMock();
     onTouchStart({
-      ...TouchEventMock,
+      ...touchEventMock,
       changedTouches: [{ pageX: 5 } as Touch] as unknown as TouchList,
     });
 
+    expect(touchEventMock.preventDefault).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({
       galleryLeft: 0,

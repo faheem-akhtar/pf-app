@@ -55,6 +55,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
       onTouchStart={
         hasMultipleImages
           ? (e): void => {
+              e.preventDefault();
               onStart(e.changedTouches[0].pageX);
               props.onTouch();
             }

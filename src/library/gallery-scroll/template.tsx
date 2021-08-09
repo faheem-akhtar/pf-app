@@ -1,6 +1,7 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 
 import { GalleryScrollIndicatorTemplate } from './indicator/template';
+import { GalleryScrollPictureComponent } from './picture-component';
 import { GalleryScrollTemplatePropsInterface } from './template-props.interface';
 
 import styles from './gallery-scroll.module.scss';
@@ -15,11 +16,7 @@ export const GalleryScrollTemplate: React.FunctionComponent<GalleryScrollTemplat
         onClick={props.onClick}
       >
         {(props.isTouched ? props.items : props.items.slice(0, 1)).map((item, i) => (
-          <picture style={item.style || ''} className={domClassMerge(styles.item)} key={i}>
-            {item.sourceUrl && <source srcSet={item.sourceUrl.replace('.jpg', '.webp')} type='image/webp' />}
-            {item.sourceUrl && <source srcSet={item.sourceUrl} type='image/jpeg' />}
-            {item.sourceUrl && <img loading={props.isTouched ? undefined : 'lazy'} src={item.sourceUrl} />}
-          </picture>
+          <GalleryScrollPictureComponent {...item} isTouched={props.isTouched} key={i} />
         ))}
       </div>
 

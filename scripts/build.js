@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const os = require('os')
-const cpuCount = os.cpus().length
+const os = require('os');
+const cpuCount = os.cpus().length;
 
 var exec = require('child_process').exec;
 
@@ -30,12 +30,12 @@ function promiseFromChildProcess(child, name) {
   });
 }
 
-let availableWorkers = cpuCount; 
+let availableWorkers = cpuCount;
 
 async function build(country, isMobile, retry = true) {
   while (availableWorkers === 0) {
     // check  for available workers every seconds
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   }
   availableWorkers -= 1;
   const name = `${country}-${isMobile ? 'mobile' : 'desktop'}`;
@@ -55,7 +55,7 @@ async function build(country, isMobile, retry = true) {
       process.exit(1);
     }
   }
-  availableWorkers +=1;
+  availableWorkers += 1;
 }
 
 const countries = ['bh', 'eg', 'lb', 'ma', 'qa', 'sa', 'ae'];
