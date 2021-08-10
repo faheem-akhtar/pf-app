@@ -1,11 +1,11 @@
 /* eslint-disable pf-rules/export-name-validation */
 import { HomeView } from 'views/home/view';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { translationGetDefinitions } from 'helpers/translation/get-definitions';
 
-export const getStaticProps = async ({ locale }: { locale: string }): Promise<{ props: unknown }> => ({
-  props: {
-    ...(await serverSideTranslations(locale, ['common'])),
-  },
-});
+export const getStaticProps = async ({ locale }: { locale: string }): Promise<{ props: unknown }> => {
+  return {
+    props: { ...(await translationGetDefinitions(locale)) },
+  };
+};
 
 export default HomeView;

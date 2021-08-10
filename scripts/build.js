@@ -3,7 +3,8 @@
 const os = require('os');
 const cpuCount = os.cpus().length;
 
-var exec = require('child_process').exec;
+const { exec } = require('child_process');
+const countries = require('./countries');
 
 function promiseFromChildProcess(child, name) {
   return new Promise(function (resolve, reject) {
@@ -66,8 +67,6 @@ async function build(country, isMobile, retry = true) {
     }
   }
 }
-
-const countries = ['bh', 'eg', 'lb', 'ma', 'qa', 'sa', 'ae'];
 
 async function start() {
   console.log('Number of cpus available:', cpuCount);

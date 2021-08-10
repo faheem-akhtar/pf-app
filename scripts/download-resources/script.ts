@@ -1,4 +1,4 @@
-global.fetch = require('node-fetch-polyfill');
+global.fetch = require('node-fetch');
 
 import { writeFileSync } from 'fs';
 

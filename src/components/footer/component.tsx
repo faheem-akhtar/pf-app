@@ -1,5 +1,3 @@
-import { useTranslation } from 'react-i18next';
-
 import { configLinksDefinition } from 'config/links/definition';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { featureCopyrightEnabled } from 'feature/copyright/enabled';
@@ -9,10 +7,14 @@ import { IconAppStoreTemplate } from './icon/app-store.template';
 import { IconGooglePlayTemplate } from './icon/google-play.template';
 
 import styles from './footer.module.scss';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
-// TODO-FE[TPNX-3009] Add tests
+/**
+ * TODO-FE[TPNX-3016] Add tests
+ * TODO-FE[TPNX-3142] Add translations
+ */
 export const FooterComponent = (): JSX.Element => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslationHook();
 
   return (
     <footer className={styles.footer}>

@@ -1,5 +1,3 @@
-import { useTranslation } from 'next-i18next';
-
 import { categoryIdIsSale } from 'helpers/category-id/is-sale';
 import { configPriceChoicesDefinition } from 'config/price-choices/definition';
 import { numberFormat } from 'helpers/number/format';
@@ -10,6 +8,7 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
 import { FiltersValueFieldPricePeriodType } from 'components/filters/value/field/price-period.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 const cache: Record<string, FiltersValueFieldChoiceInterface<number | null>[]> = {};
 const makeKey = (categoryId: FiltersCategoryIdEnum, pricePeriod: FiltersValueFieldPricePeriodType | void): string =>
@@ -19,7 +18,7 @@ const usePriceChoices = (
   categoryId: FiltersCategoryIdEnum,
   pricePeriod: FiltersValueFieldPricePeriodType | void
 ): FiltersValueFieldChoiceInterface<number | null>[] => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslationHook();
 
   if (cache[makeKey(categoryId, pricePeriod)]) {
     return cache[makeKey(categoryId, pricePeriod)];

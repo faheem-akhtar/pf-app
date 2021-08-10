@@ -1,5 +1,3 @@
-import { useTranslation } from 'next-i18next';
-
 import { FiltersContextProvider } from 'components/filters/context-provider';
 import { FiltersSectionComponent } from 'components/filters-section/component';
 import { FooterComponent } from 'components/footer/component';
@@ -13,9 +11,10 @@ import { PropertySearchViewPropsType } from './view-props.type';
 
 import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
 import { usePageIsLoadingHook } from 'helpers/hook/page-is-loading.hook';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Element => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslationHook();
 
   const pageIsLoading = usePageIsLoadingHook();
 

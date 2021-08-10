@@ -1,6 +1,7 @@
-import { useTranslation } from 'next-i18next';
+import { FunctionalComponent } from 'preact';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
-export const CopyrightTemplate = (): JSX.Element => {
-  const { t } = useTranslation('common');
+export const CopyrightTemplate: FunctionalComponent = () => {
+  const { t } = useTranslationHook();
   return <div>{t('copyright')}</div>;
 };
