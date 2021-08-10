@@ -2,7 +2,7 @@ import { multiLocationSelectorMakeHistoryKey } from './make-history-key';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';
-import { WindowLocalStorageInterface } from 'context/window/local-storage/interface';
+import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
 
 export const multiLocationSelectorGetHistory = (
   localStorage: WindowLocalStorageInterface,

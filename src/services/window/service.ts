@@ -1,3 +1,7 @@
+import { helpersIsClient } from 'helpers/is-client';
+import { windowLocalStorageDefaultState } from './local-storage/default-state';
+import { windowLocalStorageMakeWrapper } from './local-storage/make-wrapper';
+
 export const WindowService = {
   addEventListener: <K extends keyof WindowEventMap>(
     type: K,
@@ -8,4 +12,5 @@ export const WindowService = {
     type: K,
     handler: (this: Window, ev: WindowEventMap[K]) => void
   ): void => window.removeEventListener(type, handler),
+  localStorage: helpersIsClient ? windowLocalStorageMakeWrapper(window) : windowLocalStorageDefaultState,
 };

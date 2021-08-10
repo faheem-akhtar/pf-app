@@ -3,19 +3,11 @@ import App from 'next/app';
 
 import { appWithTranslation } from 'next-i18next';
 
-import { WindowContextProvider } from 'context/window/context-provider';
-
 // TODO-FE[TPNX-3181] import desktop css for desktop, to apply corret font-family
 import '../styles/index.scss';
-import { helpersIsClient } from 'helpers/is-client';
-import { windowDefaultState } from 'context/window/default-state';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
-  return (
-    <WindowContextProvider window={helpersIsClient ? window : (windowDefaultState as Window)}>
-      <Component {...pageProps} />
-    </WindowContextProvider>
-  );
+  return <Component {...pageProps} />;
 };
 
 MyApp.getInitialProps = async (appContext: AppContext): Promise<{ pageProps: unknown }> => ({

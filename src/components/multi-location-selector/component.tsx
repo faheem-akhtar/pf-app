@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 import { TFunction, useTranslation } from 'next-i18next';
 
@@ -13,9 +13,9 @@ import { IconTimeTemplate } from '../icon/time-template';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 import { MultiLocationSelectorComponentPropsInterface } from './component-props.interface';
 import { MultiSelectionAutocompleteComponent } from 'library/multi-selection-autocomplete/component';
-import { WindowContext } from 'context/window/context';
 
 import styles from './multi-location-selector.module.scss';
+import { WindowService } from 'services/window/service';
 
 const renderNoSuggestions = (t: TFunction, inputValue: string): JSX.Element => (
   <span
@@ -42,7 +42,7 @@ export const MultiLocationSelectorComponent = ({
     }
   });
 
-  const { localStorage } = useContext(WindowContext);
+  const { localStorage } = WindowService;
 
   const onAddItem = multiLocationSelectorMakeOnAddLocation({
     locations,
