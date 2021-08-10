@@ -40,6 +40,7 @@
     "download-resources": "./scripts/download-resources/run.sh",
     "randomize-obfuscation-keys": "./scripts/randomize-obfuscation-keys.js",
     "download-i18n": "make i18n-download",
+    "lint": "yarn eslint src --ext .ts,.tsx && yarn stylelint 'src/**/*.{css,scss}'",
     "validate-types": "tsc --project ./tsconfig.json",
     "build-eslint": "rm -rf ./utils/eslint/result && tsc --project ./utils/eslint/tsconfig.json && cp ./utils/eslint/package.json ./utils/eslint/result && yarn add --dev file:./utils/eslint/result"
   },

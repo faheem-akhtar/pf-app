@@ -1,5 +1,5 @@
 .example_component {
-  background-color: red;
-  padding: 20px;
+  background-color: var(--color-primary-clay-100);
+  padding: calc(var(--spacing) * 3);
   width: 100%;
 }

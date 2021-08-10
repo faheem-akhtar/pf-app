@@ -1,8 +1,8 @@
 .container {
-  margin-bottom: calc(var(--spacing) * 2);
   background-color: var(--color-global-white);
-  min-height: 15rem;
   display: flex;
+  margin-bottom: calc(var(--spacing) * 2);
+  min-height: 15rem;
 }
 
 .gallery_container {
@@ -11,11 +11,11 @@
 }
 
 .content_container {
-  padding: var(--spacing) 0;
-  flex: 1;
-  margin: 0 var(--spacing) 0 var(--spacing);
   display: flex;
+  flex: 1;
   flex-direction: column;
+  margin: 0 var(--spacing) 0 var(--spacing);
+  padding: var(--spacing) 0;
 }
 
 .fill_vertical_space {
@@ -24,22 +24,22 @@
 
 .title_from_agent {
   font-size: var(--font-size-08);
-  line-height: normal;
   font-weight: var(--font-weight-04);
+  line-height: normal;
   margin-bottom: var(--spacing);
 }
 
 .location {
-  font-size: var(--font-size-09);
-  line-height: normal;
-  letter-spacing: -0.03rem;
   color: var(--color-global-black-op-80);
+  font-size: var(--font-size-09);
+  letter-spacing: -0.03rem;
+  line-height: normal;
   margin-bottom: var(--spacing);
 }
 
 .info {
   font-size: var(--font-size-09);
-  line-height: normal;
   letter-spacing: -0.03rem;
+  line-height: normal;
   margin-bottom: var(--spacing);
 }

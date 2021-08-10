@@ -7,6 +7,11 @@ export interface ApiFactoryPropsInterface<Result, Data = AnyValueType, RawJson =
    */
   requireAuth?: boolean;
   /**
+   * Alter headers
+   * called on every request letting set custom headers for each request
+   */
+  alterHeaders?: (headers: Record<string, string>) => void;
+  /**
    * HTTP Method
    */
   method: 'GET' | 'HEAD' | 'POST';

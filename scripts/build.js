@@ -34,11 +34,11 @@ let availableWorkers = cpuCount;
 
 const lockWorker = () => {
   availableWorkers -= 1;
-}
+};
 
 const unlockWorker = () => {
   availableWorkers += 1;
-}
+};
 
 async function build(country, isMobile, retry = true) {
   while (availableWorkers === 0) {

@@ -1,11 +1,11 @@
 .container {
+  background-color: var(--color-global-white);
   /*rtl:ignore*/
   direction: ltr;
   /*rtl:ignore*/
   display: flex;
   height: 7rem;
   width: 100%;
-  background-color: var(--color-global-white);
 }
 
 .wrapper {

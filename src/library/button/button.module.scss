@@ -1,10 +1,10 @@
 @mixin reset-button {
+  -webkit-appearance: none;
   background: transparent;
   font: inherit;
   margin: 0;
   outline: none;
   overflow: visible;
-  -webkit-appearance: none;
 }
 
 @mixin base-button {
@@ -14,24 +14,24 @@
   display: flex;
   justify-content: center;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
   text-decoration: none;
   transition: background 0.3s;
   user-select: none;
   white-space: nowrap;
   width: fit-content;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .button {
   @include reset-button;
   @include base-button;
 
-  font-size: var(--font-size-01);
-
   /* Tertiary/Floating - default */
   background-color: var(--color-global-white);
   border-radius: calc(var(--spacing) / 2);
   color: var(--color-global-black);
+
+  font-size: var(--font-size-01);
   line-height: 2.4rem;
   min-width: 8rem;
   padding: calc(var(--spacing) * 2);

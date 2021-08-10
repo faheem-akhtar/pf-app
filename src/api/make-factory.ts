@@ -32,6 +32,12 @@ export const ApiMakeFactory =
     if (makeFactoryProps.alterHeaders) {
       makeFactoryProps.alterHeaders(headers);
     }
+    if (factoryProps.alterHeaders) {
+      factoryProps.alterHeaders(headers);
+    }
+    if (props.alterHeaders) {
+      props.alterHeaders(headers);
+    }
 
     if (factoryProps.requireAuth && authToken) {
       headers[ApiHeaderEnum.auth] = `Bearer ${authToken}`;

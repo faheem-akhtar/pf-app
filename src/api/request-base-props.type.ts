@@ -22,4 +22,9 @@ export type ApiRequestBasePropsType<Query = UrlQueryType, PostData = AnyValueTyp
    * Specify the origin for the request
    */
   getOrigin?: () => string;
+  /**
+   * Alter headers
+   * called on every request letting set custom headers for each request
+   */
+  alterHeaders?: (headers: Record<string, string>) => void;
 };

@@ -1,26 +1,26 @@
 .footer {
+  background-color: var(--color-global-white);
   display: flex;
   flex-direction: column;
-  z-index: var(--z-index-04);
-  background-color: var(--color-global-white);
   padding: calc(var(--spacing) * 5) calc(var(--spacing) * 2) 0;
+  z-index: var(--z-index-04);
 }
 
 .section {
   display: inherit;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .categories {
-  text-transform: uppercase;
   margin-bottom: calc(var(--spacing) * 2.5);
+  text-transform: uppercase;
 }
 
 .container {
-  width: 48%;
   font-size: var(--font-size-08);
   line-height: 1.6rem;
+  width: 48%;
 }
 
 .apps {
@@ -32,8 +32,8 @@
 }
 
 .secondary {
-  text-transform: capitalize;
   color: var(--color-global-grey1);
+  text-transform: capitalize;
 }
 
 .item {

@@ -1,3 +1,5 @@
+import { UserModelInterface } from 'services/user/model.interface';
+
 export interface HeaderTemplatePropsInterface {
   /**
    * Locale
@@ -16,7 +18,7 @@ export interface HeaderTemplatePropsInterface {
     /**
      * The URL of the user photo
      */
-    image: string;
+    user: UserModelInterface | null;
 
     /**
      * #s of saved properties

@@ -1,16 +1,16 @@
 .container {
-  margin: calc(var(--spacing) * 2);
   font-size: var(--font-size-08);
+  margin: calc(var(--spacing) * 2);
   white-space: nowrap;
 }
 
 .sort_btn {
-  display: inline;
   color: var(--color-interaction-1-light-mode);
+  display: inline;
   font-weight: var(--font-weight-02);
 }
 
 .sort_icon {
-  width: 0.8rem;
   margin-left: var(--spacing);
+  width: 0.8rem;
 }

@@ -1,27 +1,27 @@
 .root {
-  width: 100%;
   text-align: left;
+  width: 100%;
 }
 
 .container {
-  position: relative;
-  width: 100%;
-  height: 4.8rem;
+  align-items: center;
   background: var(--color-global-white);
   border: 0.1rem solid var(--color-global-grey2);
-  font-size: var(--font-size-08);
   border-radius: 0.3rem;
-  display: flex;
-  align-items: center;
   cursor: text;
+  display: flex;
+  font-size: var(--font-size-08);
+  height: 4.8rem;
+  position: relative;
+  width: 100%;
 }
 
 .input {
-  color: var(--color-global-black);
-  outline: none;
   border: none;
+  color: var(--color-global-black);
   flex: 1;
   font-weight: var(--font-weight-04);
+  outline: none;
 }
 
 .input::placeholder {
@@ -31,9 +31,9 @@
 }
 
 .hidden_input {
-  width: 0;
   height: 0;
   position: absolute;
+  width: 0;
 }
 
 .input_not_empty {
@@ -41,10 +41,10 @@
 }
 
 .add_label {
-  line-height: 2.4rem;
   color: var(--color-global-grey1);
-  padding: calc(var(--spacing) / 2) calc(var(--spacing) * 2) calc(var(--spacing) / 2) calc(var(--spacing) / 2);
   font-weight: var(--font-weight-04);
+  line-height: 2.4rem;
+  padding: calc(var(--spacing) / 2) calc(var(--spacing) * 2) calc(var(--spacing) / 2) calc(var(--spacing) / 2);
   white-space: nowrap;
 }
 
@@ -63,43 +63,44 @@
 }
 
 .container_not_active_multiple_elements {
-  padding-left: calc(var(--spacing) / 2);
   display: grid;
-  grid-template-columns: minmax(0, auto) minmax(0, auto) minmax(auto, 1fr);
   grid-gap: calc(var(--spacing) / 2);
+  grid-template-columns: minmax(0, auto) minmax(0, auto) minmax(auto, 1fr);
+  padding-left: calc(var(--spacing) / 2);
 }
 .container_not_active_single_element {
-  padding-left: calc(var(--spacing) / 2);
   display: grid;
-  grid-template-columns: minmax(0, auto) minmax(auto, 1fr);
   grid-gap: calc(var(--spacing) / 2);
+  grid-template-columns: minmax(0, auto) minmax(auto, 1fr);
+  padding-left: calc(var(--spacing) / 2);
 }
 
 .search_icon {
-  width: 1.5rem;
-  margin: 0 var(--spacing) 0 calc(var(--spacing) * 2);
   fill: var(--color-global-grey1);
+  margin: 0 var(--spacing) 0 calc(var(--spacing) * 2);
+  width: 1.5rem;
 }
 
 .dropdown {
-  border-radius: 0 0 0.3rem 0.3rem;
-  position: relative;
   background-color: var(--color-global-white);
+  border-radius: 0 0 0.3rem 0.3rem;
+  box-shadow: var(--box-shadow-02);
+  margin-left: -0.1rem;
+  position: relative;
   position: absolute;
   top: 100%;
   width: calc(100% + 0.2rem); /* +2px to match the 1px border of container */
-  margin-left: -0.1rem;
-  box-shadow: var(--box-shadow-02);
 }
 
 .dropdown:before {
+  background: inherit;
+
   /* cover the shadow top for dropdown */
   content: '';
   height: 0.4rem;
-  width: 100%;
   position: absolute;
   top: -0.4rem;
-  background: inherit;
+  width: 100%;
   z-index: var(--z-index-01);
 }
 
@@ -108,8 +109,8 @@
 }
 
 .selected_value_container_on_the_bottom {
-  padding-top: calc(var(--spacing) * 1.5);
   cursor: initial;
+  padding-top: calc(var(--spacing) * 1.5);
 }
 
 .suggestions_container {
@@ -121,36 +122,36 @@
 }
 
 .separator {
-  position: absolute;
-  z-index: var(--z-index-02);
+  background: var(--color-global-grey3);
   height: 0.1rem;
   left: 0.8rem;
+  position: absolute;
   right: 0.8rem;
-  background: var(--color-global-grey3);
+  z-index: var(--z-index-02);
 }
 
 .suggestion {
+  align-items: center;
+  display: flex;
+  display: flex;
   height: 4rem;
   line-height: 2.4rem;
-  display: flex;
-  width: 100%;
   text-align: left;
-  display: flex;
-  align-items: center;
+  width: 100%;
 }
 
 .suggestion_icon {
-  margin-right: calc(var(--spacing) * 1.5);
-  display: flex;
   align-items: center;
+  display: flex;
   height: 100%;
+  margin-right: calc(var(--spacing) * 1.5);
 }
 
 .suggestion_text {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
   flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .suggestion:hover {
@@ -165,8 +166,8 @@
 }
 
 .no_suggestions {
-  line-height: 2.4rem;
   color: var(--color-global-black);
+  line-height: 2.4rem;
 }
 
 .input_cross_button {
@@ -181,11 +182,11 @@
 
 .chip_wrapper_when_opened {
   display: inline-block !important;
-  max-width: 100%;
   margin: calc(var(--spacing) / 2) calc(var(--spacing) / 2) 0 0;
+  max-width: 100%;
 }
 
 .chip_wrapper_on_the_bottom {
-  margin: calc(var(--spacing) * 1.5) calc(var(--spacing) * 1.5) 0 0;
   cursor: initial;
+  margin: calc(var(--spacing) * 1.5) calc(var(--spacing) * 1.5) 0 0;
 }

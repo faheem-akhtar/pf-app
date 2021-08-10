@@ -396,8 +396,6 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
    */
   property_type: BackendModelPropertyTypeInterface;
 
-  // tslint:enable:variable-name
-
   /**
    * Ranking score primary
    */

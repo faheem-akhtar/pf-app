@@ -1,9 +1,9 @@
 .container {
-  position: fixed;
-  z-index: var(--z-index-17);
-  width: 100%;
+  background-color: var(--color-global-white);
   height: 100%;
   left: 0;
+  position: fixed;
   top: 0;
-  background-color: var(--color-global-white);
+  width: 100%;
+  z-index: var(--z-index-17);
 }

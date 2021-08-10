@@ -45,7 +45,7 @@ export const HeaderTemplate = ({
 
           <div className={styles.sectionRight}>
             <LanguageSelectorComponent />
-            {userProfile && (
+            {userProfile?.user && (
               <div className={styles.savedProperties}>
                 <span className={styles.spacer} />
                 <a href={`${userAccountPath}/saved-properties`} className={styles.savedPropertiesButton}>
@@ -56,7 +56,7 @@ export const HeaderTemplate = ({
               </div>
             )}
             <div className={styles.userContainer}>
-              {!userProfile ? (
+              {!userProfile?.user ? (
                 <ButtonTemplate
                   type='button'
                   onClick={onLoginButtonClick}
@@ -67,8 +67,8 @@ export const HeaderTemplate = ({
                 </ButtonTemplate>
               ) : (
                 <Fragment>
-                  {userProfile.image ? (
-                    <img src={userProfile.image} class={styles.userPhoto} />
+                  {userProfile?.user.image ? (
+                    <img src={userProfile?.user.image} class={styles.userPhoto} />
                   ) : (
                     <IconUserOFilledTemplate class={styles.userIcon} />
                   )}

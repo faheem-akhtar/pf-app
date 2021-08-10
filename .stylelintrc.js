@@ -1,6 +1,6 @@
 module.exports = {
   plugins: ['stylelint-order', 'stylelint-declaration-strict-value'],
-  defaultSeverity: 'warning',
+  defaultSeverity: 'error',
   rules: {
     'at-rule-empty-line-before': [
       'always',

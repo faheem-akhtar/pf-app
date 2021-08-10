@@ -1,8 +1,8 @@
 .container {
+  background-color: var(--color-global-white);
   padding: calc(var(--spacing) * 2);
   position: relative;
   z-index: var(--z-index-03);
-  background-color: var(--color-global-white);
 }
 
 .buttons_row {
@@ -12,10 +12,10 @@
 }
 
 .buttons_row__appear_on_scroll {
-  padding: calc(var(--spacing) * 2);
   background-color: var(--color-global-white);
-  width: 100%;
   margin-top: 0;
+  padding: calc(var(--spacing) * 2);
+  width: 100%;
 }
 
 .buttons_row button {

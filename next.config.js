@@ -4,6 +4,9 @@ const { getLanguageCssAlias } = require('./scripts/build-config');
 const buildConfig = require('./scripts/build-config');
 
 module.exports = withPreact({
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

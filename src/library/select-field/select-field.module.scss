@@ -54,7 +54,7 @@
 
 .icon {
   fill: var(--color-global-black);
-  padding: 0.14rem;
+  padding: calc(var(--spacing) * 2.5);
   pointer-events: none;
   position: absolute;
   right: calc(var(--spacing) * 2.7);
