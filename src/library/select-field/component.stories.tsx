@@ -1,13 +1,28 @@
 /* eslint-disable pf-rules/export-name-validation */
 
+import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
 import { SelectFieldTemplate } from './template';
 import { SelectFieldTemplatePropsInterface } from './template-props.interface';
 
+const options = [
+  { value: null, label: '' },
+  { value: 1, label: 'Apple' },
+  { value: 2, label: 'Banana' },
+  { value: 3, label: 'Orange' },
+];
+
 export default {
   title: 'Library/Select Field',
   component: SelectFieldTemplate,
+  args: {
+    disabled: false,
+    dropdownIcon: true,
+    className: '',
+    label: 'Select',
+    options,
+  },
   argTypes: {
     onChange: { action: 'onChange' },
   },
@@ -19,18 +34,7 @@ export const SelectField = <V extends number | null>(args: SelectFieldTemplatePr
   </div>
 );
 
-const options = [
-  { value: null, label: '' },
-  { value: 1, label: 'Apple' },
-  { value: 2, label: 'Banana' },
-  { value: 3, label: 'Orange' },
-];
-
 SelectField.args = {
-  disabled: false,
-  dropdownIcon: true,
-  className: '',
-  label: 'Select',
-  options,
   value: null,
+  onChange: action('select field on change'),
 };
