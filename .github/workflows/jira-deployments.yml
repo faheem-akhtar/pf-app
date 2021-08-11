@@ -1,0 +1,63 @@
+name: 'jira-deployments-integration'
+on:
+  push:
+    branches:
+      - master
+jobs:
+  update-deployment:
+    runs-on: 'ubuntu-20.04'
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Jira login
+        uses: atlassian/gajira-login@master
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+      
+      - name: Find Jira ticket id in commit messages
+        uses: atlassian/gajira-find-issue-key@master
+        id: jira-ticket-number
+        with:
+          from: commits
+
+      - name: limit display name from message
+        id: vars
+        run: echo ::set-output name=display_name::$(echo ${GITHUB_HEAD_MESSAGE}  | cut -b1-250 )
+        env:
+          GITHUB_HEAD_MESSAGE: "${{ github.event.head_commit.message }}"
+
+      - name: Update Jira ticket deployment status
+        if: "! contains(github.event.head_commit.message, 'Revert')"
+        uses: HighwayThree/jira-upload-deployment-info@master
+        with:
+          client-id: '${{ secrets.JIRA_CLIENT_ID }}'
+          client-secret: '${{ secrets.JIRA_CLIENT_SECRET }}'
+          cloud-instance-base-url: '${{ secrets.JIRA_BASE_URL }}'
+          issue-keys: "${{ steps.jira-ticket-number.outputs.issue }}"
+          display-name: "${{ steps.vars.outputs.display_name }}"
+          description: "Merged and deployed"
+          last-updated: '${{github.event.head_commit.timestamp}}'
+          label: 'Deployed'
+          state: 'successful'
+          environment-id: 'Prod'
+          environment-display-name: 'Prod'
+          environment-type: 'production'
+          
+      - name: Update Jira ticket deployment status reverted
+        if: "contains(github.event.head_commit.message, 'Revert')"
+        uses: HighwayThree/jira-upload-deployment-info@master
+        with:
+          client-id: '${{ secrets.JIRA_CLIENT_ID }}'
+          client-secret: '${{ secrets.JIRA_CLIENT_SECRET }}'
+          cloud-instance-base-url: '${{ secrets.JIRA_BASE_URL }}'
+          issue-keys: "${{ steps.jira-ticket-number.outputs.issue }}"
+          display-name: "${{ steps.vars.outputs.display_name }}"
+          description: "Reverted"
+          last-updated: '${{github.event.head_commit.timestamp}}'
+          label: 'Reverted'
+          state: 'rolled_back'
+          environment-id: 'Prod'
+          environment-display-name: 'Prod'
+          environment-type: 'production'
