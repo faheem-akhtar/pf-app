@@ -15,11 +15,6 @@ export interface FiltersModalItemTemplatePropsInterface {
   isNew?: boolean;
 
   /**
-   * Selected value
-   */
-  value?: string;
-
-  /**
    * Children
    */
   children: React.ReactNode;

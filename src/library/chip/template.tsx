@@ -14,9 +14,9 @@ export const ChipTemplate = (props: ChipTemplatePropsInterface): JSX.Element => 
       })}
       onClick={props.onClick}
     >
-      {props.prefixIcon && <span className='chip_prefix'>{props.prefixIcon}</span>}
+      {props.prefixIcon && <span className={styles.chipPrefix}>{props.prefixIcon}</span>}
       {<span className={props.labelClassName}>{props.label}</span>}
-      {props.suffixIcon && <span className='chip_suffix'>{props.suffixIcon}</span>}
+      {props.suffixIcon && <span className={styles.chipSuffix}>{props.suffixIcon}</span>}
     </label>
   );
 };

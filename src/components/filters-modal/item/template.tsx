@@ -19,7 +19,6 @@ export const FiltersModalItemTemplate = (props: FiltersModalItemTemplatePropsInt
         </div>
       )}
 
-      {props.value && <span>{props.value}</span>}
       {props.children}
     </section>
   );

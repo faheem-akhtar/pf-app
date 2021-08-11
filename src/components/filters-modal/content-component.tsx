@@ -11,6 +11,7 @@ import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { CheckboxTemplate } from 'library/checkbox/template';
 import { ChipChoiceTemplate } from 'library/chip-choice/template';
+import { ChipsFilterTemplate } from 'library/chips-filter/template';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { FiltersContext } from '../filters/context';
 import { FiltersDataInterface } from '../filters/data/interface';
@@ -26,6 +27,7 @@ import { SelectFieldTemplate } from 'library/select-field/template';
 import { SwitchTemplate } from 'library/switch/template';
 
 import { IconCloseTemplate } from 'components/icon/close-template';
+import { IconThickAmenitiesTemplate } from 'components/icon/thick-amenities-template';
 import { IconThickBathroomTemplate } from 'components/icon/thick-bathroom-template';
 import { IconThickBedroomTemplate } from 'components/icon/thick-bedroom-template';
 import { IconThickBuildingCompletionTemplate } from 'components/icon/thick-building-completion-template';
@@ -36,6 +38,7 @@ import { IconThickPriceTemplate } from 'components/icon/thick-price-template';
 import { IconThickPropertyTemplate } from 'components/icon/thick-property-template';
 
 import { categoryIdIsCommercial } from 'helpers/category-id/is-commercial';
+import { filtersDataChoicesGetAmenities } from '../filters/data/choices/get-amenities';
 import { filtersDataChoicesGetCategoryId } from '../filters/data/choices/get-category-id';
 import { filtersDataChoicesGetCompleteonStatus } from '../filters/data/choices/get-completeon-status';
 import { filtersDataChoicesGetFurnished } from '../filters/data/choices/get-furnished';
@@ -263,7 +266,21 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
       />
     </FiltersModalItemTemplate>
   ),
-  [FiltersParametersEnum.amenities]: () => <span />,
+  [FiltersParametersEnum.amenities]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
+    <FiltersModalItemTemplate label={t('Amenities')} icon={<IconThickAmenitiesTemplate class={styles.icon} />}>
+      <ChipsFilterTemplate
+        containerClassName={styles.list}
+        options={filtersDataChoicesGetAmenities(filtersValue, filtersData)}
+        selected={filtersValue[FiltersParametersEnum.amenities] || []}
+        onCheck={(selectedOptions): void => {
+          changeFiltersValue({
+            ...filtersValue,
+            [FiltersParametersEnum.amenities]: selectedOptions,
+          });
+        }}
+      />
+    </FiltersModalItemTemplate>
+  ),
   [FiltersParametersEnum.furnishing]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
     <FiltersModalItemTemplate label={t('Furnishing')} icon={<IconThickFurnishingTemplate class={styles.icon} />}>
       <ChipChoiceTemplate
