@@ -10,6 +10,7 @@ import { UserContextProvider } from 'context/user/context-provider';
 // TODO-FE[TPNX-3181] import desktop css for desktop, to apply corret font-family
 
 import '../styles/index.scss';
+import { appRootElementId } from 'src/constants/app/root-element-id';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   // Init locale service
@@ -17,7 +18,9 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 
   return (
     <UserContextProvider>
-      <Component {...pageProps} />
+      <div id={appRootElementId}>
+        <Component {...pageProps} />
+      </div>
     </UserContextProvider>
   );
 };

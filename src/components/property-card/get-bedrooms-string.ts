@@ -4,7 +4,7 @@ import { TFunction } from 'next-i18next';
 export const propertyCardGetBedroomsString = (t: TFunction, bedsValue: number): string => {
   let beds = '';
   if (bedsValue === 0) {
-    beds = t('Studio');
+    beds = `, ${t('Studio')}`;
   } else if (bedsValue === 1) {
     beds = `, 1 ${t('Bedroom')}`;
   } else if (bedsValue > 1) {

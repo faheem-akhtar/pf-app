@@ -30,6 +30,7 @@
       "types/*": ["src/types/*"],
       "context/*": ["src/context/*"],
       "services/*": ["src/services/*"],
+      "constants/*": ["src/constants/*"],
       "mocks/*": ["mocks/*"]
     }
   },
