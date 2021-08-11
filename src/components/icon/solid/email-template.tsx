@@ -1,11 +1,14 @@
-import { IconTemplatePropsInterface } from './template-props.interface';
+import { IconTemplatePropsInterface } from '../template-props.interface';
 
-export const IconEmailTemplate = (props: IconTemplatePropsInterface): JSX.Element => {
+/**
+ * https://www.figma.com/file/BVGglAIgmnat5ZIwihRY9H/PF_Icon-Library?node-id=0%3A1350
+ */
+export const IconSolidEmailTemplate = (props: IconTemplatePropsInterface): JSX.Element => {
   const { clipped = true } = props;
+
   return (
     <svg
-      fill='none'
-      viewBox={clipped ? '0 0 16 16' : '0 0 24 24'}
+      viewBox={clipped ? '4 4 16 16' : '0 0 24 24'}
       height={clipped ? undefined : '24'}
       width={clipped ? undefined : '24'}
       className={props.class}

@@ -1,6 +1,6 @@
-import { IconEmailTemplate } from 'components/icon/email-template';
-import { IconSolidPhoneTemplate } from 'components/icon/solid-phone-template';
-import { IconWhatsappTemplate } from 'components/icon/whatsapp-template';
+import { IconSolidEmailTemplate } from 'components/icon/solid/email-template';
+import { IconSolidPhoneTemplate } from 'components/icon/solid/phone-template';
+import { IconSolidWhatsappTemplate } from 'components/icon/solid/whatsapp-template';
 import { PropertyCardCtaButtonsGroupButtonTemplate } from './button/template';
 import { PropertyCardCtaButtonsGroupTemplatePropsInterface } from './template-props.interface';
 
@@ -24,7 +24,7 @@ export const PropertyCardCtaButtonsGroupTemplate: React.FunctionComponent<Proper
         {whatsapp && (
           <PropertyCardCtaButtonsGroupButtonTemplate
             href={whatsapp.link}
-            iconComponent={IconWhatsappTemplate}
+            iconComponent={IconSolidWhatsappTemplate}
             onClick={props.onWhatsappClick}
             labelKey={'WhatsApp'}
           />
@@ -32,7 +32,7 @@ export const PropertyCardCtaButtonsGroupTemplate: React.FunctionComponent<Proper
         {email && (
           <PropertyCardCtaButtonsGroupButtonTemplate
             href='#'
-            iconComponent={IconEmailTemplate}
+            iconComponent={IconSolidEmailTemplate}
             onClick={props.onEmailClick}
             labelKey={'Email'}
           />

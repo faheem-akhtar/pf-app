@@ -1,7 +1,11 @@
-import { IconTemplatePropsInterface } from './template-props.interface';
+import { IconTemplatePropsInterface } from '../template-props.interface';
 
-export const IconFilterTemplate = (props: IconTemplatePropsInterface): JSX.Element => {
+/**
+ * https://www.figma.com/file/BVGglAIgmnat5ZIwihRY9H/PF_Icon-Library?node-id=0%3A1006
+ */
+export const IconThinFilterOpenTemplate = (props: IconTemplatePropsInterface): JSX.Element => {
   const { clipped = true } = props;
+
   return (
     <svg
       viewBox={clipped ? '0 0 16 10' : '-5 -7 24 24'}

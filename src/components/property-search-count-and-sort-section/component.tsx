@@ -6,7 +6,7 @@ import { DropdownTemplate } from 'components/dropdown/template';
 import { FiltersContext } from 'components/filters/context';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.type';
-import { IconSortTemplate } from 'components/icon/sort-template';
+import { IconThickArrowDownTemplate } from 'components/icon/thick/arrow-down-template';
 import { ModalComponent } from 'components/modal/component';
 import { PropertySearchCountAndSortSectionComponentPropsType } from './component-props.type';
 
@@ -31,7 +31,7 @@ export const PropertySearchCountAndSortSectionComponent = ({
       <span>{loading ? '...' : count} properties sorted by </span>
       <button class={styles.sort_btn} onClick={(): void => openFiltersRef.current()}>
         <span>{choices.find((c) => c.value === filtersCtx.value[FiltersParametersEnum.sort])?.label}</span>
-        <IconSortTemplate class={styles.sort_icon} />
+        <IconThickArrowDownTemplate class={styles.sort_icon} />
       </button>
 
       {/* TODO-FE[TPNX-3155] Implement modal */}

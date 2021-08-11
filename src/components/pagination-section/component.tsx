@@ -10,9 +10,9 @@ import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { FiltersContext } from 'components/filters/context';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { IconChevronLeftTemplate } from 'components/icon/chevron-left-template';
-import { IconChevronRightTemplate } from 'components/icon/chevron-right-template';
 import { IconTemplatePropsInterface } from 'components/icon/template-props.interface';
+import { IconThickChevronLeftTemplate } from 'components/icon/thick/chevron-left-template';
+import { IconThickChevronRightTemplate } from 'components/icon/thick/chevron-right-template';
 import { PaginationSectionComponentPropsType } from './component-props.type';
 
 import styles from './pagination-section.module.scss';
@@ -66,7 +66,7 @@ export const PaginationSectionComponent = ({
     <div className={styles.container}>
       {renderLink(
         router,
-        IconChevronLeftTemplate,
+        IconThickChevronLeftTemplate,
         currentPage - 1,
         loading || currentPage === 1,
         t('Prev'),
@@ -74,7 +74,7 @@ export const PaginationSectionComponent = ({
       )}
       {renderLink(
         router,
-        IconChevronRightTemplate,
+        IconThickChevronRightTemplate,
         currentPage + 1,
         loading || currentPage === pagesAvailable,
         t('Next'),

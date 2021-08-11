@@ -1,5 +1,8 @@
-import { IconTemplatePropsInterface } from './template-props.interface';
+import { IconTemplatePropsInterface } from '../template-props.interface';
 
+/**
+ * https://www.figma.com/file/BVGglAIgmnat5ZIwihRY9H/PF_Icon-Library?node-id=7%3A2489
+ */
 export const IconThickBedroomTemplate = (props: IconTemplatePropsInterface): JSX.Element => {
   const { clipped = false } = props;
 

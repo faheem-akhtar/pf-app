@@ -1,7 +1,7 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 
 import { ChipTemplate } from 'library/chip/template';
-import { IconCrossTemplate } from 'components/icon/cross-template';
+import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
 import { MultiSelectionAutocompleteChipTemplatePropsInterface } from './template-props.interface';
 
 import styles from './multi-selection-autocomplete-chip.module.scss';
@@ -25,7 +25,7 @@ export const MultiSelectionAutocompleteChipTemplate = ({
           onCrossClick();
         }}
       >
-        <IconCrossTemplate class={styles.cross_icon} />
+        <IconThickSmallCloseTemplate class={styles.cross_icon} />
       </button>
     }
   />

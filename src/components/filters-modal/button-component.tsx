@@ -7,7 +7,7 @@ import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { FiltersModalContentComponent } from './content-component';
-import { IconFilterTemplate } from 'components/icon/filter-template';
+import { IconThinFilterOpenTemplate } from 'components/icon/thin/filter-open-template';
 import { ModalComponent } from 'components/modal/component';
 
 // TODO-FE[TPNX-3152] display number of non default filters
@@ -23,7 +23,7 @@ export const FiltersModalButtonComponent = (): JSX.Element => {
         componentType={ButtonComponentTypeEnum.tertiary}
         size={ButtonSizeEnum.small}
         onClick={(): void => openFiltersRef.current()}
-        icon={{ component: IconFilterTemplate, position: ButtonIconPositionEnum.left }}
+        icon={{ component: IconThinFilterOpenTemplate, position: ButtonIconPositionEnum.left }}
       >
         {t('filters-button')}
       </ButtonTemplate>

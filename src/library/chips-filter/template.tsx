@@ -2,7 +2,7 @@ import { ChipsFilterIconPositionEnum } from './icon-position.enum';
 import { ChipsFilterTemplatePropsInterface } from './template-props.interface';
 import { ChipTemplate } from 'library/chip/template';
 
-import { IconThinCheckmarkTemplate } from 'components/icon/thin-checkmark-template';
+import { IconThinCheckmarkTemplate } from 'components/icon/thin/checkmark-template';
 
 import styles from './chips-filter.module.scss';
 

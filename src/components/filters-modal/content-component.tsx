@@ -26,16 +26,16 @@ import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property
 import { SelectFieldTemplate } from 'library/select-field/template';
 import { SwitchTemplate } from 'library/switch/template';
 
-import { IconCloseTemplate } from 'components/icon/close-template';
-import { IconThickAmenitiesTemplate } from 'components/icon/thick-amenities-template';
-import { IconThickBathroomTemplate } from 'components/icon/thick-bathroom-template';
-import { IconThickBedroomTemplate } from 'components/icon/thick-bedroom-template';
-import { IconThickBuildingCompletionTemplate } from 'components/icon/thick-building-completion-template';
-import { IconThickFloorPlanTemplate } from 'components/icon/thick-floor-plan-template';
-import { IconThickFurnishingTemplate } from 'components/icon/thick-furnishing-template';
-import { IconThickPlayCircleTemplate } from 'components/icon/thick-play-circle-template';
-import { IconThickPriceTemplate } from 'components/icon/thick-price-template';
-import { IconThickPropertyTemplate } from 'components/icon/thick-property-template';
+import { IconThickAmenitiesLuxuryTemplate } from 'components/icon/thick/amenities-luxury-template';
+import { IconThickBathroomTemplate } from 'components/icon/thick/bathroom-template';
+import { IconThickBedroomTemplate } from 'components/icon/thick/bedroom-template';
+import { IconThickBuildingCompletionTemplate } from 'components/icon/thick/building-completion-template';
+import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
+import { IconThickFloorPlanTemplate } from 'components/icon/thick/floor-plan-template';
+import { IconThickFurnishingTemplate } from 'components/icon/thick/furnishing-template';
+import { IconThickPlayTemplate } from 'components/icon/thick/play-template';
+import { IconThickPriceTemplate } from 'components/icon/thick/price-template';
+import { IconThickPropertyTemplate } from 'components/icon/thick/property-template';
 
 import { categoryIdIsCommercial } from 'helpers/category-id/is-commercial';
 import { filtersDataChoicesGetAmenities } from '../filters/data/choices/get-amenities';
@@ -113,11 +113,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
     </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.virtualViewings]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <FiltersModalItemTemplate
-      label={t('Virtual Viewings')}
-      icon={<IconThickPlayCircleTemplate class={styles.icon} />}
-      isNew
-    >
+    <FiltersModalItemTemplate label={t('Virtual Viewings')} icon={<IconThickPlayTemplate class={styles.icon} />} isNew>
       <ChipChoiceTemplate
         containerClassName={styles.list}
         options={filtersDataChoicesGetVirtualViewing(filtersValue, filtersData)}
@@ -267,7 +263,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
     </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.amenities]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
-    <FiltersModalItemTemplate label={t('Amenities')} icon={<IconThickAmenitiesTemplate class={styles.icon} />}>
+    <FiltersModalItemTemplate label={t('Amenities')} icon={<IconThickAmenitiesLuxuryTemplate class={styles.icon} />}>
       <ChipsFilterTemplate
         containerClassName={styles.list}
         options={filtersDataChoicesGetAmenities(filtersValue, filtersData)}
@@ -321,7 +317,7 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
     <div className={styles.containter}>
       <div className={styles.header}>
         <div onClick={close} className={styles.headerLeft}>
-          <IconCloseTemplate class={styles.closeIcon} />
+          <IconThickCloseTemplate class={styles.closeIcon} />
           <span className={styles.title}>{t('Filters')}</span>
         </div>
         <ButtonTemplate

@@ -1,15 +1,17 @@
-import { IconTemplatePropsInterface } from './template-props.interface';
+import { IconTemplatePropsInterface } from '../template-props.interface';
 
+/**
+ * https://www.figma.com/file/BVGglAIgmnat5ZIwihRY9H/PF_Icon-Library?node-id=703%3A1715
+ */
 export const IconThinCheckmarkTemplate = (props: IconTemplatePropsInterface): JSX.Element => {
   const { clipped = true } = props;
 
   return (
     <svg
       viewBox={clipped ? '4 5 17 13' : '0 0 24 24'}
-      height={clipped ? undefined : '24'}
       width={clipped ? undefined : '24'}
+      height={clipped ? undefined : '24'}
       className={props.class}
-      fill='none'
     >
       <path
         fill-rule='evenodd'

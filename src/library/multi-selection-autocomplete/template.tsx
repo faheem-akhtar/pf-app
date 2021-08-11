@@ -4,8 +4,8 @@ import { domClassMerge } from 'helpers/dom/class-merge';
 import { highlightString } from 'helpers/highlight/string';
 import { multiSelectionAutocompleteComputeInactiveRenderValue } from './compute-inactive-render-value';
 
-import { IconCrossTemplate } from 'components/icon/cross-template';
-import { IconMagnifierTemplate } from 'components/icon/magnifier-template';
+import { IconThickSearchTemplate } from 'components/icon/thick/search-template';
+import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
 import { MultiSelectionAutocompleteChipTemplate } from './chip/template';
 import { MultiSelectionAutocompleteTemplatePropsInterface } from './template-props.interface';
 
@@ -173,11 +173,11 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
   return (
     <div ref={props.rootRef} onClick={props.onRootClick} onKeyDown={props.onRootKeyDown} className={styles.root}>
       <div className={domClassMerge(styles.container, props.className, ...calcContainerExtraClasses())}>
-        {isActiveOrNoValue && !props.chipsOnTheBottom && <IconMagnifierTemplate class={styles.search_icon} />}
+        {isActiveOrNoValue && !props.chipsOnTheBottom && <IconThickSearchTemplate class={styles.search_icon} />}
         {(isActiveOrNoValue || props.chipsOnTheBottom ? renderInput : renderChips)()}
         {props.isActive && props.inputValue && (
           <button className={styles.input_cross_button} onClick={props.onInputCrossButtonClick}>
-            <IconCrossTemplate class={styles.input_cross_icon} />
+            <IconThickSmallCloseTemplate class={styles.input_cross_icon} />
           </button>
         )}
         {props.isActive && !props.chipsOnTheBottom && renderDropDown()}

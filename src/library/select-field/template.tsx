@@ -4,7 +4,7 @@ import { numberFormat } from 'helpers/number/format';
 import { SelectFieldOptionInterface } from './option.interface';
 import { SelectFieldTemplatePropsInterface } from './template-props.interface';
 
-import { IconChevronDownTemplate } from 'components/icon/chevron-down-template';
+import { IconThinChevronDownTemplate } from 'components/icon/thin/chevron-down-template';
 
 import styles from './select-field.module.scss';
 
@@ -43,7 +43,7 @@ export const SelectFieldTemplate = <V extends number | null>({
         ))}
       </select>
 
-      {dropdownIcon && <IconChevronDownTemplate class={styles.icon} />}
+      {dropdownIcon && <IconThinChevronDownTemplate class={styles.icon} />}
     </div>
   );
 };

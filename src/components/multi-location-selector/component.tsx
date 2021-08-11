@@ -8,8 +8,8 @@ import { multiLocationSelectorGetHistory } from './get-history';
 import { multiLocationSelectorMakeOnAddLocation } from './make-on-add-location';
 import { useConstructorHook } from 'helpers/hook/constructor.hook';
 
-import { IconLocationTemplate } from '../icon/location-template';
-import { IconTimeTemplate } from '../icon/time-template';
+import { IconThinMapPinTemplate } from 'components/icon/thin/map-pin-template';
+import { IconThinTimeTemplate } from 'components/icon/thin/time-template';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 import { MultiLocationSelectorComponentPropsInterface } from './component-props.interface';
 import { MultiSelectionAutocompleteComponent } from 'library/multi-selection-autocomplete/component';
@@ -82,9 +82,9 @@ export const MultiLocationSelectorComponent = ({
       renderNoSuggestions={(inputValue): JSX.Element => renderNoSuggestions(t, inputValue)}
       suggestionIcon={
         inputValue ? (
-          <IconLocationTemplate class={styles.suggestion_icon} />
+          <IconThinMapPinTemplate class={styles.suggestion_icon} />
         ) : (
-          <IconTimeTemplate class={styles.suggestion_icon} />
+          <IconThinTimeTemplate class={styles.suggestion_icon} />
         )
       }
     />

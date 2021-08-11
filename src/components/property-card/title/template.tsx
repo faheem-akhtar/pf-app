@@ -2,9 +2,9 @@ import { domClassMerge } from 'helpers/dom/class-merge';
 import { propertySerpObfuscatedGetPriceText } from 'components/property/serp/obfuscated/get/price-text';
 import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
 
-import { IconFilledHeartTemplate } from 'components/icon/filled-heart-template';
-import { IconMenuTemplate } from 'components/icon/menu-template';
-import { IconThinHeartTemplate } from 'components/icon/thin-heart-template';
+import { IconSolidFavoriteTemplate } from 'components/icon/solid/favorite-template';
+import { IconThinFavoriteTemplate } from 'components/icon/thin/favorite-template';
+import { IconThinMenuTemplate } from 'components/icon/thin/menu-template';
 import { PropertyCardTitleTemplatePropsInterface } from './template-props.interface';
 
 import styles from './property-card-title.module.scss';
@@ -24,16 +24,16 @@ export const PropertyCardTitleTemplate: React.FunctionComponent<PropertyCardTitl
       <div className={styles.interactive_area}>
         <button type='button' onClick={onSaveButtonClick}>
           {saved ? (
-            <IconFilledHeartTemplate
+            <IconSolidFavoriteTemplate
               clipped
               class={domClassMerge(styles.save_button_icon, styles.save_button_icon__saved)}
             />
           ) : (
-            <IconThinHeartTemplate clipped class={styles.save_button_icon} />
+            <IconThinFavoriteTemplate clipped class={styles.save_button_icon} />
           )}
         </button>
         <button type='button' onClick={onMenuButtonClick} className={styles.menu_button}>
-          <IconMenuTemplate clipped class={styles.menu_button_icon} />
+          <IconThinMenuTemplate clipped class={styles.menu_button_icon} />
         </button>
       </div>
     </div>

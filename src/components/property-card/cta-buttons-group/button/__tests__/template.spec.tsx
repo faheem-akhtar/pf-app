@@ -5,7 +5,7 @@
 import { shallow } from 'enzyme';
 
 import { ButtonTemplate } from 'library/button/template';
-import { IconWhatsappTemplate } from 'components/icon/whatsapp-template';
+import { IconSolidWhatsappTemplate } from 'components/icon/solid/whatsapp-template';
 import { PropertyCardCtaButtonsGroupButtonTemplate } from '../template';
 import { PropertyCardCtaButtonsGroupButtonTemplatePropsInterface } from '../template-props.interface';
 
@@ -13,7 +13,7 @@ const makeDefaultProps = (): PropertyCardCtaButtonsGroupButtonTemplatePropsInter
   ({
     href: 'href',
     onClick: jest.fn(),
-    iconComponent: IconWhatsappTemplate,
+    iconComponent: IconSolidWhatsappTemplate,
     labelKey: 'label-key',
   } as PropertyCardCtaButtonsGroupButtonTemplatePropsInterface);
 

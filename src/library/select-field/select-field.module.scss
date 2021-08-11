@@ -54,11 +54,11 @@
 
 .icon {
   fill: var(--color-global-black);
-  padding: calc(var(--spacing) * 2.5);
+  padding: calc(var(--spacing) / 4);
   pointer-events: none;
   position: absolute;
   right: calc(var(--spacing) * 2.7);
   top: 50%;
-  transform: translate(0, -50%);
+  transform: translateY(-50%);
   width: calc(var(--spacing) * 3);
 }

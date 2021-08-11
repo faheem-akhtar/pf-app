@@ -11,8 +11,8 @@ import { ButtonTemplate } from 'library/button/template';
 import { HeaderTemplatePropsInterface } from './template.props.interface';
 import { IconLogoAlternativeTemplate } from 'components/icon/logo/alternative-template';
 import { IconLogoCurrentTemplate } from 'components/icon/logo/current-template';
-import { IconThinHeartTemplate } from 'components/icon/thin-heart-template';
-import { IconUserOFilledTemplate } from 'components/icon/user-o-filled-template';
+import { IconThinFavoriteTemplate } from 'components/icon/thin/favorite-template';
+import { IconThinUserTemplate } from 'components/icon/thin/user-template';
 import { LanguageSelectorComponent } from 'components/language-selector/component';
 
 import styles from './header.module.scss';
@@ -49,12 +49,13 @@ export const HeaderTemplate = ({
               <div className={styles.savedProperties}>
                 <span className={styles.spacer} />
                 <a href={`${userAccountPath}/saved-properties`} className={styles.savedPropertiesButton}>
-                  <IconThinHeartTemplate class={styles.savedPropertiesIcon} clipped />
+                  <IconThinFavoriteTemplate class={styles.savedPropertiesIcon} clipped />
                   <div className={styles.notificationDot} />
                   <div className={styles.notificationBadge}>{userProfile.savedPropertiesCount}</div>
                 </a>
               </div>
             )}
+
             <div className={styles.userContainer}>
               {!userProfile?.user ? (
                 <ButtonTemplate
@@ -70,7 +71,7 @@ export const HeaderTemplate = ({
                   {userProfile?.user.image ? (
                     <img src={userProfile?.user.image} class={styles.userPhoto} />
                   ) : (
-                    <IconUserOFilledTemplate class={styles.userIcon} />
+                    <IconThinUserTemplate class={styles.userIcon} />
                   )}
                 </Fragment>
               )}

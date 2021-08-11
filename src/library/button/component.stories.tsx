@@ -10,7 +10,7 @@ import { ButtonSizeEnum } from './size.enum';
 import { ButtonTemplate } from './template';
 import { ButtonTemplatePropsInterface } from './template-props.interface';
 
-import { IconCloseTemplate } from 'components/icon/close-template';
+import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
 
 export default {
   title: 'Library/Button',
@@ -22,7 +22,7 @@ export default {
     componentType: ButtonComponentTypeEnum.tertiary,
     label: 'Label',
     icon: {
-      component: IconCloseTemplate,
+      component: IconThickCloseTemplate,
       position: ButtonIconPositionEnum.right,
     },
   },

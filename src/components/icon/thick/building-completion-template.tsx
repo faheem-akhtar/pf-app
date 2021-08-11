@@ -1,5 +1,8 @@
-import { IconTemplatePropsInterface } from './template-props.interface';
+import { IconTemplatePropsInterface } from '../template-props.interface';
 
+/**
+ * https://www.figma.com/file/BVGglAIgmnat5ZIwihRY9H/PF_Icon-Library?node-id=501%3A1738
+ */
 export const IconThickBuildingCompletionTemplate = (props: IconTemplatePropsInterface): JSX.Element => {
   const { clipped = false } = props;
 

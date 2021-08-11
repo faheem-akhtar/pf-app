@@ -32,12 +32,12 @@
 }
 
 .save_button_icon {
-  fill: var(--color-interaction-1-light-mode);
+  color: var(--color-interaction-1-light-mode);
   width: 1.7rem;
 }
 
 .save_button_icon.save_button_icon__saved {
-  fill: var(--color-primary-clay-100);
+  color: var(--color-primary-clay-100);
 }
 
 .menu_button {
@@ -45,8 +45,7 @@
 }
 
 .menu_button_icon {
-  fill: var(--color-interaction-1-light-mode);
+  color: var(--color-interaction-1-light-mode);
   height: 1.5rem;
-  transform: rotate(90deg);
   width: 1.5rem;
 }
