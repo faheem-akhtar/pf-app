@@ -1,3 +1,4 @@
+import 'intersection-observer';
 import type { AppContext, AppProps } from 'next/app';
 import App from 'next/app';
 import { appWithTranslation } from 'next-i18next';
