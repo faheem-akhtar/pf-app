@@ -1,8 +1,8 @@
-import { apiCookieAuthenticatorSignCookie } from '../../api/cookie-authenticator/sign-cookie';
+import { apiCookieAuthenticatorSignCookie } from 'api/cookie-authenticator/sign-cookie';
 import { backendJsonApiSync } from 'backend/json-api/sync';
 import { configOriginValue } from 'config/origin/value';
 
-import { ApiMakeFactory } from '../../api/make-factory';
+import { ApiMakeFactory } from 'api/make-factory';
 import { BackendJsonApiPayloadInterface } from 'backend/json-api/payload.interface';
 
 // TODO-FE[TPNX-3006] delete it once proper auth flow is in place
@@ -21,4 +21,5 @@ export const BackendApiFactory = ApiMakeFactory({
     headers['cookie'] = `captcha_authenticator=${captchaAuthenticatorCookie}`;
     headers['user-agent'] = 'PostmanRuntime/1';
   },
+  requireAuth: false,
 });

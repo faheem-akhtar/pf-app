@@ -1,3 +1,3 @@
 export interface ApiFetcherResultBaseInterface {
-  headers: Request['headers'];
+  headers: Request['headers'] | null;
 }

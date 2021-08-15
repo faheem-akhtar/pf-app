@@ -3,10 +3,6 @@ import { UrlQueryType } from 'types/url/query.type';
 
 export interface ApiFactoryPropsInterface<Result, Data = AnyValueType, RawJson = AnyValueType> {
   /**
-   * True if this endpoint requires user to be logged in
-   */
-  requireAuth?: boolean;
-  /**
    * Alter headers
    * called on every request letting set custom headers for each request
    */

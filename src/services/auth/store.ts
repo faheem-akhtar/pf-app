@@ -1,5 +1,10 @@
+import { ApiAuthSignInModelInterface } from 'api/auth/sign-in/model.interface';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
+import { ApiFetcherResultType } from 'api/fetcher-result-type';
+import { JwtTokenService } from 'services/jwt/token/service';
+import { JwtTokenStore } from 'services/jwt/token/store';
 import { UserModelInterface } from 'services/user/model.interface';
+import { WindowService } from 'services/window/service';
 
 export class AuthStore {
   /**
@@ -12,33 +17,29 @@ export class AuthStore {
    */
   private readonly authenticationProviderKey: string = 'user-authentication-provider';
 
-  // /**
-  //  * TODO-FE[TPNX-3189] - Uncomment and update
-  //  */
-  // public getToken(): string | null {
-  //   const model = this.jwtTokenService.getToken();
-  //
-  //   if (!model) {
-  //     return null;
-  //   }
-  //
-  //   return model.payload;
-  // }
+  /**
+   * JWT service
+   * @private
+   */
+  private jwtTokenService: JwtTokenStore;
+
+  constructor() {
+    this.jwtTokenService = JwtTokenService;
+  }
 
   /**
-   * @inheritDoc
+   * Log out ser
    */
   public logOut(): void {
-    // TODO-FE[TPNX-3189] - Uncomment and update
-    // this.resetToken();
+    this.resetToken();
     this.signOut();
   }
 
   /**
-   * @inheritDoc
+   * GEt user data
    */
   public getUser(): UserModelInterface | null {
-    const data = <UserModelInterface>JSON.parse(localStorage.getItem(this.userKey) as string);
+    const data = <UserModelInterface>WindowService.localStorage.getItem(this.userKey);
 
     if (!data || typeof data !== 'object') {
       return null;
@@ -53,14 +54,16 @@ export class AuthStore {
     };
   }
 
-  // TODO-FE[TPNX-3189] - Uncomment and update
-  // /**
-  //  * Reset token and refresh token
-  //  */
-  // private resetToken(): void {
-  //   this.setToken();
-  //   this.jwtTokenService.setRefreshToken();
-  // }
+  /**
+   * Reset token and refresh token
+   */
+  private resetToken(): void {
+    // Clear token
+    this.jwtTokenService.setToken();
+
+    // Clear refresh
+    this.jwtTokenService.setRefreshToken();
+  }
 
   /**
    * Sign out user
@@ -79,12 +82,11 @@ export class AuthStore {
    */
   private setUser(model: UserModelInterface | null): void {
     if (!model) {
-      localStorage.removeItem(this.userKey);
-
+      WindowService.localStorage.removeItem(this.userKey);
       return;
     }
 
-    localStorage.setItem(
+    WindowService.localStorage.setItem(
       this.userKey,
       JSON.stringify({
         id: model.userId,
@@ -95,6 +97,27 @@ export class AuthStore {
       })
     );
   }
+
+  /**
+   * User sign in promise resolved
+   */
+  public onSignInResolved = (
+    response: ApiFetcherResultType<ApiAuthSignInModelInterface>
+  ): UserModelInterface | null => {
+    if (!response.ok) {
+      this.onSignInRejected(response);
+      return null;
+    }
+
+    // Update data
+    this.jwtTokenService.setRefreshToken(response.data.meta.refresh_token);
+    this.jwtTokenService.setToken(response.data.meta.token);
+
+    // Update user data in local storage
+    this.setUser(response.data.user);
+
+    return response.data.user;
+  };
 
   /**
    * User login promise rejected

@@ -10,16 +10,17 @@ To start container in local, please run scripts in root folder
 make build-images
 docker-compose up -d
 ```
+
 [PR-env pipeline url](https://build.propertyfinder.ae/view/PF-K8S-PRENV/job/pf-k8s-deploy-prenv/)
 
 #### Managing Translations
+
 We use [lokalise](https://app.lokalise.com/project/8608849260eedebb9ba8d9.28758700/?view=multi) for translations. All translation keys must be created in lokalise app.
 
 - Common translations should be assigned to `common/%LANG_ISO%.json` in lokalise.
 - Country spesific translations should be assigned to `country/${countryName}/%LANG_ISO%.json` where `${countryName}` is country-code like `ma, ae, bh ...`. Country spesific translations should have the exact key with the common.
 
 The application initially reads the country-specific key, if it's not defined it reads from the common ones.
-
 
 #### Start project
 

@@ -1,22 +1,25 @@
 import { apiAuthAutoRegisterFetcher } from 'api/auth/auto-register/fetcher';
-import { ApiAuthAutoRegisterModelInterface } from 'api/auth/auto-register/model.interface';
-import { ApiAuthAutoRegisterRequestInterface } from 'api/auth/auto-register/request.interface';
 import { apiAuthChangePasswordFetcher } from 'api/auth/change-password/fetcher';
-import { ApiAuthChangePasswordRequestInterface } from 'api/auth/change-password/request.interface';
 import { apiAuthLogoutFetcher } from 'api/auth/logout/fetcher';
 import { apiAuthRegisterFetcher } from 'api/auth/register/fetcher';
+import { apiAuthResetPasswordFetcher } from 'api/auth/reset-password/fetcher';
+import { apiAuthSignInFetcher } from 'api/auth/sign-in/fetcher';
+
+import { ApiAuthAutoRegisterModelInterface } from 'api/auth/auto-register/model.interface';
+import { ApiAuthAutoRegisterRequestInterface } from 'api/auth/auto-register/request.interface';
+import { ApiAuthChangePasswordRequestInterface } from 'api/auth/change-password/request.interface';
 import { ApiAuthRegisterModelInterface } from 'api/auth/register/model.interface';
 import { ApiAuthRegisterRequestInterface } from 'api/auth/register/request.interface';
-import { apiAuthResetPasswordFetcher } from 'api/auth/reset-password/fetcher';
 import { ApiAuthResetPasswordModelInterface } from 'api/auth/reset-password/model.interface';
 import { ApiAuthResetPasswordRequestInterface } from 'api/auth/reset-password/request.interface';
-import { apiAuthSignInFetcher } from 'api/auth/sign-in/fetcher';
-import { ApiAuthSignInModelInterface } from 'api/auth/sign-in/model.interface';
 import { ApiAuthSignInRequestInterface } from 'api/auth/sign-in/request.interface';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
 import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { AuthStore } from 'services/auth/store';
+import { AuthSubscriberType } from './subscriber.type';
+import { JwtTokenService } from 'services/jwt/token/service';
+import { JwtTokenStore } from 'services/jwt/token/store';
 import { LocaleEnum } from 'services/locale/enum';
 import { LocaleService } from 'services/locale/service';
 import { UserModelInterface } from 'services/user/model.interface';
@@ -28,16 +31,29 @@ class Service {
   // Auth store instance
   private authStore: AuthStore;
 
+  // Jwt token store store instance
+  private jwtTokenService: JwtTokenStore;
+
   // Service subscribers
-  private subscribers: Function[] = [];
+  private subscribers: AuthSubscriberType[] = [];
 
   constructor() {
     this.locale = LocaleService.getLocale();
     this.authStore = new AuthStore();
+    this.jwtTokenService = JwtTokenService;
   }
 
-  // Subscribe to the service update
-  public subscribe = (onUpdate: Function): Function => {
+  /**
+   * Get user data
+   */
+  public getUser(): UserModelInterface | null {
+    return this.authStore.getUser();
+  }
+
+  /**
+   * Subscribe to the service update
+   */
+  public subscribe = (onUpdate: AuthSubscriberType): (() => void) => {
     this.subscribers.push(onUpdate);
 
     return (): void => {
@@ -65,6 +81,10 @@ class Service {
         }
 
         this.updateUserData((user as ApiFetcherResultSuccessInterface<ApiAuthRegisterModelInterface>).data.user);
+        this.jwtTokenService.setRefreshToken(
+          (user as ApiFetcherResultSuccessInterface<ApiAuthRegisterModelInterface>).data.meta.refresh_token
+        );
+
         return user.data.user;
       })
       .catch((error: ApiFetcherResultFailureInterface) => {
@@ -90,6 +110,10 @@ class Service {
         }
 
         this.updateUserData((user as ApiFetcherResultSuccessInterface<ApiAuthAutoRegisterModelInterface>).data.user);
+        this.jwtTokenService.setRefreshToken(
+          (user as ApiFetcherResultSuccessInterface<ApiAuthAutoRegisterModelInterface>).data.meta.refresh_token
+        );
+
         return user.data.user;
       })
       .catch((error: ApiFetcherResultFailureInterface) => {
@@ -100,22 +124,13 @@ class Service {
    * Sign In user
    * @param model
    */
-  public signIn = (
-    model: ApiAuthSignInRequestInterface
-  ): Promise<UserModelInterface | ApiFetcherResultFailureInterface> =>
+  public signIn = (model: ApiAuthSignInRequestInterface): Promise<void | ApiFetcherResultFailureInterface> =>
     apiAuthSignInFetcher({
       email: model.email,
       password: model.password,
       captcha_token: model?.captcha_token,
     })
-      .then((user) => {
-        if (!user.ok) {
-          return this.authStore.onSignInRejected(user) as ApiFetcherResultFailureInterface;
-        }
-
-        this.updateUserData((user as ApiFetcherResultSuccessInterface<ApiAuthSignInModelInterface>).data.user);
-        return user.data.user;
-      })
+      .then((user) => this.updateUserData(this.authStore.onSignInResolved(user)))
       .catch((error: ApiFetcherResultFailureInterface) => {
         return this.authStore.onSignInRejected(error) as ApiFetcherResultFailureInterface;
       });
@@ -156,12 +171,9 @@ class Service {
 
   /**
    * Logout
-   * @param authToken
    */
-  public logout = (authToken: string): Promise<void> =>
-    apiAuthLogoutFetcher({
-      authToken,
-    }).then(() => {
+  public logout = (): Promise<void> =>
+    apiAuthLogoutFetcher().then(() => {
       this.updateUserData(null);
     });
 

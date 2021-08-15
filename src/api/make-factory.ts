@@ -2,7 +2,7 @@ import { AnyValueType } from 'types/any/value.type';
 import { ApiFactoryPropsInterface } from './factory-props.interface';
 import { ApiFetcherResultType } from './fetcher-result-type';
 import { ApiHeaderEnum } from 'enums/api/header.enum';
-import { ApiMakeFactoryPropsInterface } from './make-factory-props.interface';
+import { ApiMakeFactoryPropsType } from './make-factory-props.type';
 import { ApiRequestPropsType } from './request-props.type';
 
 import { configIsTrace } from 'config/is-trace';
@@ -20,12 +20,15 @@ import { urlQuerySerialize } from 'helpers/url-query/serialize';
  * @param makeFactoryProps Top level properties depending on the environment
  */
 export const ApiMakeFactory =
-  (makeFactoryProps: ApiMakeFactoryPropsInterface) =>
+  (makeFactoryProps: ApiMakeFactoryPropsType) =>
   <Result, Data = AnyValueType, RawJson = AnyValueType>(
     factoryProps: ApiFactoryPropsInterface<Result, Data, RawJson>
   ) =>
-  <QueryData>(props: ApiRequestPropsType<QueryData>): Promise<ApiFetcherResultType<Result>> => {
-    const { authToken, locale, postData } = props;
+  <QueryData>(
+    props: ApiRequestPropsType<QueryData>,
+    shouldRetryOn401 = true
+  ): Promise<ApiFetcherResultType<Result>> => {
+    const { locale, postData } = props;
 
     const headers: Record<string, string> = {};
 
@@ -39,8 +42,26 @@ export const ApiMakeFactory =
       props.alterHeaders(headers);
     }
 
-    if (factoryProps.requireAuth && authToken) {
-      headers[ApiHeaderEnum.auth] = `Bearer ${authToken}`;
+    const getOrigin = props.getOrigin || makeFactoryProps.getOrigin;
+
+    const basePath = `${getOrigin()}/${locale}/api`;
+
+    let finalUrl = `${basePath}/${factoryProps.url}`;
+
+    if (makeFactoryProps.requireAuth) {
+      const token = makeFactoryProps.jwtTokenService.getToken();
+      if (!token) {
+        return Promise.resolve({
+          ok: false,
+          error: {
+            url: finalUrl,
+            status: 0,
+            body: 'Can not fetch this url without authToken.',
+          },
+          headers: null,
+        });
+      }
+      headers[ApiHeaderEnum.auth] = `Bearer ${token}`;
     }
 
     headers[ApiHeaderEnum.locale] = locale;
@@ -62,12 +83,6 @@ export const ApiMakeFactory =
       payload.body = JSON.stringify(postData);
     }
 
-    const getOrigin = props.getOrigin || makeFactoryProps.getOrigin;
-
-    const basePath = `${getOrigin()}/${locale}/api`;
-
-    let finalUrl = `${basePath}/${factoryProps.url}`;
-
     if (factoryProps.queryDefaultParams || props.query) {
       finalUrl = `${finalUrl}?${urlQuerySerialize({
         ...factoryProps.queryDefaultParams,
@@ -84,6 +99,12 @@ export const ApiMakeFactory =
       const { headers } = response;
 
       if (!response.ok) {
+        if (makeFactoryProps.requireAuth && response.status === 401 && shouldRetryOn401) {
+          return makeFactoryProps.jwtTokenService.refreshToken().then((): Promise<ApiFetcherResultType<Result>> => {
+            return ApiMakeFactory(makeFactoryProps)(factoryProps)(props, false);
+          });
+        }
+
         return response.text().then((body) => {
           return {
             ok: false,

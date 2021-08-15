@@ -18,8 +18,9 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
         },
         followRedirects: true,
       });
+    } else {
+      res.status(404).send(null);
     }
-    res.status(404).send(null);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('Proxy error', e);

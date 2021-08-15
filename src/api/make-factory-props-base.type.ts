@@ -1,4 +1,4 @@
-export interface ApiMakeFactoryPropsInterface {
+export type ApiMakeFactoryPropsBaseType = {
   /**
    * Origin of the website. Example: https://propertyfinder.ae
    */
@@ -12,4 +12,4 @@ export interface ApiMakeFactoryPropsInterface {
    * called on every request letting set custom headers for each request
    */
   alterHeaders?: (headers: Record<string, string>) => void;
-}
+};
