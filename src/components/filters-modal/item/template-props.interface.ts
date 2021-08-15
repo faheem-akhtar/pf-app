@@ -15,7 +15,17 @@ export interface FiltersModalItemTemplatePropsInterface {
   isNew?: boolean;
 
   /**
+   * Whether the list item has border
+   */
+  hasBorder?: boolean;
+
+  /**
    * Children
    */
   children: React.ReactNode;
+
+  /**
+   * Additional container css class
+   */
+  containerClassName?: string;
 }

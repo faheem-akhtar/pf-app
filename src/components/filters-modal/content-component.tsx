@@ -34,6 +34,7 @@ import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
 import { IconThickFloorPlanTemplate } from 'components/icon/thick/floor-plan-template';
 import { IconThickFurnishingTemplate } from 'components/icon/thick/furnishing-template';
 import { IconThickPlayTemplate } from 'components/icon/thick/play-template';
+import { IconThickPriceInclusiveTemplate } from 'components/icon/thick/price-inclusive-template';
 import { IconThickPriceTemplate } from 'components/icon/thick/price-template';
 import { IconThickPropertyTemplate } from 'components/icon/thick/property-template';
 
@@ -46,8 +47,10 @@ import { filtersDataChoicesGetMaxArea } from '../filters/data/choices/get-max-ar
 import { filtersDataChoicesGetMinArea } from '../filters/data/choices/get-min-area';
 import { filtersDataChoicesGetMinBathroom } from '../filters/data/choices/get-min-bathroom';
 import { filtersDataChoicesGetMinBedroom } from '../filters/data/choices/get-min-bedroom';
+import { filtersDataChoicesGetPaymentMethod } from '../filters/data/choices/get-payment-method';
 import { filtersDataChoicesGetPricePeriod } from '../filters/data/choices/get-price-period';
 import { filtersDataChoicesGetPropertyTypeId } from '../filters/data/choices/get-property-type-id';
+import { filtersDataChoicesGetUtilitiesPrice } from '../filters/data/choices/get-utilities-price';
 import { filtersDataChoicesGetVirtualViewing } from '../filters/data/choices/get-virtual-viewing';
 import { filtersDataGetEnabledFilterTypes } from '../filters/data/get-enabled-filter-types';
 import { filtersToRangeOptions } from 'helpers/filters/to-range-options';
@@ -136,10 +139,11 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
       />
     </FiltersModalItemTemplate>
   ),
-  [FiltersParametersEnum.minPrice]: ({ filtersValue, changeFiltersValue, t }) => (
+  [FiltersParametersEnum.minPrice]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
     <FiltersModalItemTemplate
       label={t('Price ({currency})').replace('{currency}', t(configCommon.currencyCode))}
       icon={<IconThickPriceTemplate class={styles.icon} />}
+      hasBorder={!filtersDataChoicesGetPaymentMethod(filtersValue, filtersData).length}
     >
       <div className={styles.split}>
         <SelectFieldTemplate
@@ -169,6 +173,44 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
           }}
         />
       </div>
+    </FiltersModalItemTemplate>
+  ),
+  [FiltersParametersEnum.paymentMethod]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
+    <FiltersModalItemTemplate containerClassName={styles.paymentMethod}>
+      <CheckboxTemplate
+        id='payment-method'
+        checked={!!filtersValue[FiltersParametersEnum.paymentMethod]}
+        onChange={(): void => {
+          const choices = filtersDataChoicesGetPaymentMethod(filtersValue, filtersData);
+          const otherChoice = choices.find((item) => item.value !== filtersValue[FiltersParametersEnum.paymentMethod]);
+
+          changeFiltersValue({
+            ...filtersValue,
+            [FiltersParametersEnum.paymentMethod]: otherChoice?.value,
+          });
+        }}
+      >
+        {t('filters:payment-method:choice_installments:label')}
+      </CheckboxTemplate>
+    </FiltersModalItemTemplate>
+  ),
+  [FiltersParametersEnum.utilitiesPriceType]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
+    <FiltersModalItemTemplate
+      label={t('filters:utilities-price-type:label')}
+      icon={<IconThickPriceInclusiveTemplate class={styles.icon} />}
+    >
+      <ChipChoiceTemplate
+        containerClassName={styles.list}
+        placeholder={t('All')}
+        options={filtersDataChoicesGetUtilitiesPrice(filtersValue, filtersData)}
+        selected={filtersValue[FiltersParametersEnum.utilitiesPriceType]}
+        onCheck={(selectedOption): void => {
+          changeFiltersValue({
+            ...filtersValue,
+            [FiltersParametersEnum.utilitiesPriceType]: selectedOption.value,
+          });
+        }}
+      />
     </FiltersModalItemTemplate>
   ),
   [FiltersParametersEnum.maxBedroom]: ({ filtersValue, filtersData, changeFiltersValue, t }) => (
@@ -292,8 +334,6 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
       />
     </FiltersModalItemTemplate>
   ),
-  [FiltersParametersEnum.paymentMethod]: () => <div>paymentMethod not implemented</div>,
-  [FiltersParametersEnum.utilitiesPriceType]: () => <div>utilitiesPriceType not implemented</div>,
 };
 
 const filtersSequence = Object.keys(widgetRenderMap);

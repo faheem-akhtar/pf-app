@@ -12,6 +12,11 @@ export interface ChipChoiceTemplatePropsInterface<V> {
   selected: V;
 
   /**
+   * Placeholder for non-value option label
+   */
+  placeholder?: string;
+
+  /**
    * Class list for element
    */
   className?: string;

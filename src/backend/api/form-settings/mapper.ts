@@ -305,6 +305,8 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
     | FiltersParametersEnum.maxBathroom
     | FiltersParametersEnum.furnishing
     | FiltersParametersEnum.completionStatus
+    | FiltersParametersEnum.paymentMethod
+    | FiltersParametersEnum.utilitiesPriceType
   > = [
     FiltersParametersEnum.propertyTypeId,
     FiltersParametersEnum.virtualViewings,
@@ -314,6 +316,8 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
     FiltersParametersEnum.maxBathroom,
     FiltersParametersEnum.furnishing,
     FiltersParametersEnum.completionStatus,
+    FiltersParametersEnum.paymentMethod,
+    FiltersParametersEnum.utilitiesPriceType,
   ];
 
   filterTypesToAddAnyOption.forEach((filterType) => {

@@ -12,13 +12,14 @@ import styles from './chip-choice.module.scss';
  */
 export const ChipChoiceTemplate = <V extends unknown>(props: ChipChoiceTemplatePropsInterface<V>): JSX.Element => {
   const { t } = useTranslation();
+  const { placeholder = t('Any') as string } = props;
 
   return (
     <ul className={props.containerClassName || ''}>
       {props.options.map((option, id) => (
         <li key={id} className={styles.item}>
           <ChipTemplate
-            label={option.label ? option.label : t('Any')}
+            label={option.label ? option.label : placeholder}
             className={props.chipClassName}
             isSelected={props.selected === option.value}
             onClick={(e): void => {
