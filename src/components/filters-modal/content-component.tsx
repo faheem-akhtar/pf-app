@@ -33,10 +33,12 @@ import { IconThickBuildingCompletionTemplate } from 'components/icon/thick/build
 import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
 import { IconThickFloorPlanTemplate } from 'components/icon/thick/floor-plan-template';
 import { IconThickFurnishingTemplate } from 'components/icon/thick/furnishing-template';
+import { IconThickMagnifierTemplate } from 'components/icon/thick/magnifier-template';
 import { IconThickPlayTemplate } from 'components/icon/thick/play-template';
 import { IconThickPriceInclusiveTemplate } from 'components/icon/thick/price-inclusive-template';
 import { IconThickPriceTemplate } from 'components/icon/thick/price-template';
 import { IconThickPropertyTemplate } from 'components/icon/thick/property-template';
+import { KeywordsComponent } from 'components/keywords/component';
 
 import { categoryIdIsCommercial } from 'helpers/category-id/is-commercial';
 import { filtersDataChoicesGetAmenities } from '../filters/data/choices/get-amenities';
@@ -334,6 +336,28 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
       />
     </FiltersModalItemTemplate>
   ),
+  [FiltersParametersEnum.keyword]: ({ t, filtersValue, changeFiltersValue }) => {
+    return (
+      <FiltersModalItemTemplate
+        label={t('search/filters/keywords_title')}
+        icon={<IconThickMagnifierTemplate class={styles.icon} />}
+      >
+        <KeywordsComponent
+          chipsOnTheBottom
+          className={styles.keywords}
+          chipClassName={styles.keywords_chip}
+          category={filtersValue[FiltersParametersEnum.categoryId]}
+          value={filtersValue[FiltersParametersEnum.keyword]}
+          onChange={(keywords): void =>
+            changeFiltersValue({
+              ...filtersValue,
+              [FiltersParametersEnum.keyword]: keywords,
+            })
+          }
+        />
+      </FiltersModalItemTemplate>
+    );
+  },
 };
 
 const filtersSequence = Object.keys(widgetRenderMap);

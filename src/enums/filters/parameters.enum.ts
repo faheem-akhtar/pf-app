@@ -80,7 +80,7 @@ export enum FiltersParametersEnum {
   /**
    * Keywords
    */
-  keyword = 'filter[keyword]',
+  keyword = 'filter[keywords]',
 
   /**
    * Amenities
