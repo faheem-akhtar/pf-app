@@ -43,6 +43,7 @@ export const TextFieldTemplate = (props: TextFieldTemplatePropsBaseInterface): J
           <InputElement
             type={type}
             value={value}
+            placeholder={floatPlaceholder ? undefined : placeholder}
             onChange={onChange}
             onFocus={onFocus}
             onBlur={onBlur}
