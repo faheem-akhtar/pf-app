@@ -27,7 +27,7 @@ export const TextFieldTemplate = (props: TextFieldTemplatePropsBaseInterface): J
     onFocus,
     onBlur,
   } = props;
-  const InputElement = textarea ? 'textarea' : 'input';
+  const InputElement = (textarea ? 'textarea' : 'input') as 'input';
   const isPlaceholderFloating = floatPlaceholder && !!value;
 
   return (

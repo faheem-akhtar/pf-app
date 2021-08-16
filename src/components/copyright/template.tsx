@@ -1,7 +1,6 @@
-import { FunctionalComponent } from 'preact';
 import { useTranslationHook } from 'helpers/hook/translation.hook';
 
-export const CopyrightTemplate: FunctionalComponent = () => {
+export const CopyrightTemplate: React.FunctionComponent = () => {
   const { t } = useTranslationHook();
   return <div>{t('copyright')}</div>;
 };

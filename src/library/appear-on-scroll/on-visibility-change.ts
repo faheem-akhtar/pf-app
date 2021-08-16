@@ -1,11 +1,10 @@
 import { appearOnScrollMakeStatusUpdater } from './make-status-updater';
 
 import { AppearOnScrollStatusEnum } from './status.enum';
-import { StateUpdater } from 'preact/hooks';
 
 export const appearOnScrollOnVisibilityChange = (
   wrapperIsVisible: boolean,
-  setStatus: StateUpdater<AppearOnScrollStatusEnum | null>
+  setStatus: React.Dispatch<React.SetStateAction<AppearOnScrollStatusEnum | null>>
 ): void => {
   if (wrapperIsVisible) {
     setStatus(

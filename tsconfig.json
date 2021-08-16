@@ -13,7 +13,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "jsxImportSource": "preact",
     "baseUrl": ".",
     "paths": {
       "api/*": ["src/api/*"],

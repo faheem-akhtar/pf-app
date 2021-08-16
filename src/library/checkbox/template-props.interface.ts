@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface CheckboxTemplatePropsInterface {
   /**
    * Id for the input
@@ -12,7 +14,7 @@ export interface CheckboxTemplatePropsInterface {
   /**
    * onChange event handler
    */
-  onChange: (e: Event) => void;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 
   /**
    * Children

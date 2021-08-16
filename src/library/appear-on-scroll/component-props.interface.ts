@@ -2,7 +2,7 @@ export interface AppearOnScrollComponentPropsInterface {
   /**
    * children component
    */
-  children: preact.ComponentChildren;
+  children: JSX.Element;
   /**
    * Custom classname
    */

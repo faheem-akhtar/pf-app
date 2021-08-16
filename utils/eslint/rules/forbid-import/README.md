@@ -61,5 +61,5 @@ Example:
   }
   ```
 - Given these imports:
-  `ts import { useRef, useState, useEffect } from 'preact/hooks'; `
+  `ts import { useRef, useState, useEffect } from 'react'; `
   An error will appear suggesting to change both `useRef` and `useState`, but not `useEffect`.

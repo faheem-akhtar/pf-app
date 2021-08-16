@@ -50,5 +50,5 @@ export interface ButtonTemplatePropsBaseInterface {
   /**
    * Handle button click event
    */
-  onClick?: (e?: Event) => void;
+  onClick?: React.MouseEventHandler<Element>;
 }

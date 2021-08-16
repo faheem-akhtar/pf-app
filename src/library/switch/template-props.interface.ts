@@ -1,3 +1,4 @@
+import React from 'react';
 import { SwitchOptionInterface } from './option.interface';
 
 export interface SwitchTemplatePropsInterface<V> {
@@ -19,5 +20,5 @@ export interface SwitchTemplatePropsInterface<V> {
   /**
    * On option is selected
    */
-  onCheck(selectedOption: SwitchOptionInterface<V>, e?: Event): void;
+  onCheck(selectedOption: SwitchOptionInterface<V>, e?: React.MouseEvent): void;
 }

@@ -95,7 +95,6 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
               {props.suggestionIcon && <span className={styles.suggestion_icon}>{props.suggestionIcon}</span>}
               <span
                 className={styles.suggestion_text}
-                // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
                   __html: highlightString(props.inputValue, props.getTitle(item)),
                 }}
@@ -121,7 +120,7 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
     );
   };
 
-  const renderChipsOnTheBottom = (): JSX.Element | void => {
+  const renderChipsOnTheBottom = (): React.ReactNode => {
     if (!props.value.length) {
       return;
     }

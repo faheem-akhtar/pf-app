@@ -30,5 +30,5 @@ export interface ChipsFilterTemplatePropsInterface<V> {
   /**
    * On option is selected
    */
-  onCheck(selectedOptions: V[], e: Event): void;
+  onCheck(selectedOptions: V[], e: React.MouseEvent<Element, MouseEvent>): void;
 }

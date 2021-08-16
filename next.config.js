@@ -1,9 +1,8 @@
-const withPreact = require('next-plugin-preact');
 const { i18n } = require('./next-i18next.config');
 const { getLanguageCssAlias } = require('./scripts/build-config');
 const buildConfig = require('./scripts/build-config');
 
-module.exports = withPreact({
+module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -57,4 +56,4 @@ module.exports = withPreact({
       },
     ];
   },
-});
+};

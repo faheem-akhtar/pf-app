@@ -1,22 +1,22 @@
 import { FunctionComponent, useState } from 'react';
 
 import { TextFieldComponentPropsInterface } from './component-props.interface';
-
 import { TextFieldTemplate } from './template';
+import { TextFieldTemplatePropsBaseInterface } from './template-props-base.interface';
 
 export const TextFieldComponent: FunctionComponent<TextFieldComponentPropsInterface> = ({
   onChange,
   onFocus,
   onBlur,
   value,
-  ...props
+  ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   /*
    * Handling input onChange event
    */
-  const handleChange = (e: Event): void => {
+  const handleChange: TextFieldTemplatePropsBaseInterface['onChange'] = (e) => {
     const newValue = (e.target as HTMLInputElement).value;
     onChange(newValue);
   };
@@ -24,22 +24,22 @@ export const TextFieldComponent: FunctionComponent<TextFieldComponentPropsInterf
   /*
    * Handling input onFocus event
    */
-  const handleFocus = (e: FocusEvent): void => {
+  const handleFocus: TextFieldTemplatePropsBaseInterface['onFocus'] = (e) => {
     setIsFocused(true);
 
     if (onFocus) {
-      onFocus(e);
+      onFocus(e as React.FocusEvent<HTMLInputElement>);
     }
   };
 
   /*
    * Handling input onBlur event
    */
-  const handleBlur = (e: FocusEvent): void => {
+  const handleBlur: TextFieldTemplatePropsBaseInterface['onBlur'] = (e) => {
     setIsFocused(false);
 
     if (onBlur) {
-      onBlur(e);
+      onBlur(e as React.FocusEvent<HTMLInputElement>);
     }
   };
 
@@ -50,7 +50,7 @@ export const TextFieldComponent: FunctionComponent<TextFieldComponentPropsInterf
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      {...props}
+      {...rest}
     />
   );
 };

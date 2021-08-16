@@ -1,27 +1,25 @@
-import { Ref } from 'preact';
-
 import { GalleryScrollTemplateItemInterface } from './template-item.interface';
 
 export interface GalleryScrollTemplatePropsInterface {
   /**
    * Ref to gallery
    */
-  containerRef: Ref<HTMLDivElement>;
+  containerRef: React.Ref<HTMLDivElement>;
 
   /**
    * Touch started
    */
-  onTouchStart: (e: TouchEvent) => void;
+  onTouchStart: React.TouchEventHandler<HTMLDivElement>;
 
   /**
    * Pressing down mouse button
    */
-  onMouseDown: (e: MouseEvent) => void;
+  onMouseDown: React.MouseEventHandler<HTMLDivElement>;
 
   /**
    * Clicked the gallery
    */
-  onClick?: (e: MouseEvent) => void;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 
   /**
    * Additional class name

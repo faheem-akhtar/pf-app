@@ -95,12 +95,15 @@ export const MultiSelectionAutocompleteComponent = <T extends unknown>(
    * On input keydown
    * @param e KeyboardEvent
    */
-  const onInputKeyDown = (e: KeyboardEvent): void => {
+  const onInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     // deactivate widget if user pressed tab during input is in focus
     if (e.key === KeyboardKeyEnum.tab) {
       deactivate();
     }
   };
+
+  const onInputKeyPress: React.KeyboardEventHandler<HTMLInputElement> = (e) =>
+    props.onInputKeyPress && props.onInputKeyPress({ e, ...extensionInterfaceProps });
 
   /**
    * On suggestion click
@@ -164,9 +167,7 @@ export const MultiSelectionAutocompleteComponent = <T extends unknown>(
         setSelectedItemIndex(null);
         handleSuggestionsResult(props.onFocus(inputValue));
       }}
-      onInputKeyPress={(e: KeyboardEvent): void =>
-        props.onInputKeyPress && props.onInputKeyPress({ e, ...extensionInterfaceProps })
-      }
+      onInputKeyPress={onInputKeyPress}
       onRootClick={(): void => {
         if (!isActive) {
           setIsActive(true);

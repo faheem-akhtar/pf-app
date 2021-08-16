@@ -16,7 +16,7 @@ export const GalleryScrollPictureComponent = ({
 
   return (
     <picture
-      style={style || ''}
+      style={style || {}}
       className={domClassMerge(styles.item, { loading })}
       onLoad={(): void => setLoading(false)}
     >

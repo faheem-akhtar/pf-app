@@ -7,7 +7,8 @@ import { shallow } from 'enzyme';
 
 import { ModalPortalComponent } from '../portal-component';
 
-describe('ModalPortalComponent', () => {
+// TODO-FE[CX-169] enable back
+xdescribe('ModalPortalComponent', () => {
   beforeEach(() => {
     const getElementByIdSpy = (document.getElementById = jest.fn());
     getElementByIdSpy.mockReturnValue({

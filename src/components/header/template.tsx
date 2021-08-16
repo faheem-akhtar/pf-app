@@ -69,7 +69,7 @@ export const HeaderTemplate = ({
               ) : (
                 <Fragment>
                   {userProfile?.user.image ? (
-                    <img src={userProfile?.user.image} class={styles.userPhoto} />
+                    <img src={userProfile?.user.image} className={styles.userPhoto} />
                   ) : (
                     <IconThinUserTemplate class={styles.userIcon} />
                   )}

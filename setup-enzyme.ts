@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/// <reference types='enzyme-adapter-preact-pure' />
 
 import { configure } from 'enzyme';
 
-import Adapter from 'enzyme-adapter-preact-pure';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import React from 'react';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';

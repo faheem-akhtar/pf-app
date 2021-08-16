@@ -34,5 +34,5 @@ export interface ChipChoiceTemplatePropsInterface<V> {
   /**
    * On option is selected
    */
-  onCheck(selectedOption: ChipChoiceOptionInterface<V>, e: Event): void;
+  onCheck(selectedOption: ChipChoiceOptionInterface<V>, e: React.MouseEvent<Element, MouseEvent>): void;
 }

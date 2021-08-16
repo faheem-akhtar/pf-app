@@ -10,11 +10,9 @@ import { AppearOnScrollTemplate } from '../template';
 describe('AppearOnScrollTemplate', () => {
   it('should render template without an error', () => {
     const wrapper = shallow(
-      <AppearOnScrollTemplate
-        status={AppearOnScrollStatusEnum.ENTERING}
-        className={'additional class'}
-        children={'123'}
-      />
+      <AppearOnScrollTemplate status={AppearOnScrollStatusEnum.ENTERING} className={'additional class'}>
+        <div />
+      </AppearOnScrollTemplate>
     );
 
     expect(wrapper.html()).toMatchSnapshot();

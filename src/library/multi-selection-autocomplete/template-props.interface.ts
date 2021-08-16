@@ -30,7 +30,7 @@ export interface MultiSelectionAutocompleteTemplatePropsInterface<T> {
   /**
    * On input change
    */
-  onInputChange: (e: Event) => void;
+  onInputChange: React.ChangeEventHandler<HTMLInputElement>;
   /**
    * On input focus
    */
@@ -38,11 +38,11 @@ export interface MultiSelectionAutocompleteTemplatePropsInterface<T> {
   /**
    * On input key down
    */
-  onInputKeyDown: (e: KeyboardEvent) => void;
+  onInputKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
   /**
    * On input key press
    */
-  onInputKeyPress: (e: KeyboardEvent) => void;
+  onInputKeyPress: React.KeyboardEventHandler<HTMLInputElement>;
   /**
    * suggestion icon
    */
@@ -50,15 +50,15 @@ export interface MultiSelectionAutocompleteTemplatePropsInterface<T> {
   /**
    * Reference to root element
    */
-  rootRef: preact.Ref<HTMLDivElement>;
+  rootRef: React.Ref<HTMLDivElement>;
   /**
    * Reference to input element
    */
-  inputRef: preact.Ref<HTMLInputElement>;
+  inputRef: React.Ref<HTMLInputElement>;
   /**
    * Reference to hidden input element
    */
-  hiddenInputRef: preact.Ref<HTMLInputElement>;
+  hiddenInputRef: React.Ref<HTMLInputElement>;
   /**
    * Whether component is active
    */
@@ -102,5 +102,5 @@ export interface MultiSelectionAutocompleteTemplatePropsInterface<T> {
   /**
    * On root key down
    */
-  onRootKeyDown: (e: KeyboardEvent) => void;
+  onRootKeyDown: (e: React.KeyboardEvent) => void;
 }

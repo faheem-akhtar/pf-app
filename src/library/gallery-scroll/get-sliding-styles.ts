@@ -1,5 +1,3 @@
-import { JSXInternal } from 'preact/src/jsx';
-
 import { GalleryScrollBrowseEnum } from './browse.enum';
 import { galleryScrollGetSlidingImagesIndexes } from './get-sliding-images-indexes';
 import { GalleryScrollStateInterface } from './state.interface';
@@ -13,7 +11,7 @@ export function galleryScrollGetSlidingStyles(
   state: GalleryScrollStateInterface,
   index: number,
   numberOfImages: number
-): JSXInternal.CSSProperties {
+): React.CSSProperties {
   const slidingIndexes = galleryScrollGetSlidingImagesIndexes(state.activeIndex, numberOfImages);
   const isSliding = slidingIndexes.includes(index);
 

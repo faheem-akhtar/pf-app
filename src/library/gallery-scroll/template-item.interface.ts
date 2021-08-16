@@ -1,5 +1,3 @@
-import { JSXInternal } from 'preact/src/jsx';
-
 export interface GalleryScrollTemplateItemInterface {
   /**
    * Image source url
@@ -8,5 +6,5 @@ export interface GalleryScrollTemplateItemInterface {
   /**
    * Image style attributes
    */
-  style: JSXInternal.CSSProperties | null;
+  style: React.CSSProperties | null;
 }

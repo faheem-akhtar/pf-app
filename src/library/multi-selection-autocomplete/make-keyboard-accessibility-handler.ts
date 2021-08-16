@@ -6,8 +6,10 @@ import { MultiSelectionAutocompleteMakeKeyboardAccesibilityHandlerPropsInterface
  * @param props
  */
 export const multiSelectionAutocompleteMakeKeyboardAccessibilityHandler =
-  <T extends unknown>(props: MultiSelectionAutocompleteMakeKeyboardAccesibilityHandlerPropsInterface<T>) =>
-  (e: KeyboardEvent): void => {
+  <T extends unknown>(
+    props: MultiSelectionAutocompleteMakeKeyboardAccesibilityHandlerPropsInterface<T>
+  ): React.KeyboardEventHandler<Element> =>
+  (e): void => {
     if (e.key === KeyboardKeyEnum.down) {
       let nextIndex;
       switch (props.selectedItemIndex) {

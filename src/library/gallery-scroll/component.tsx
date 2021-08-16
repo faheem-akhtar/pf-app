@@ -36,7 +36,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
 
   const itemsToRender = props.items.map((item, i) => ({
     ...item,
-    style: hasMultipleImages ? galleryScrollGetSlidingStyles(state, i, numberOfImages) : null,
+    style: hasMultipleImages ? galleryScrollGetSlidingStyles(state, i, numberOfImages) : {},
   }));
 
   return (

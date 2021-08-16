@@ -1,12 +1,11 @@
 import { AppearOnScrollStatusEnum } from './status.enum';
-import { StateUpdater } from 'preact/hooks';
 import { TimeService } from 'services/time/service';
 
 export const appearOnScrollMakeStatusUpdater =
   (props: {
     afterAnimationStatus: AppearOnScrollStatusEnum;
     animationStatus: AppearOnScrollStatusEnum;
-    setStatus: StateUpdater<AppearOnScrollStatusEnum | null>;
+    setStatus: React.Dispatch<React.SetStateAction<AppearOnScrollStatusEnum | null>>;
   }) =>
   (status: AppearOnScrollStatusEnum | null): AppearOnScrollStatusEnum | null => {
     // If the status is not yet reached final destination, set status to play animation

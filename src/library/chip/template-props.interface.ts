@@ -42,5 +42,5 @@ export interface ChipTemplatePropsInterface {
   /**
    * On chip is clicked
    */
-  onClick?(e: MouseEvent): void;
+  onClick?(e: React.MouseEvent): void;
 }

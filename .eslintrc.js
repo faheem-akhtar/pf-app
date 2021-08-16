@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['eslint:recommended', 'preact', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier', "plugin:react/recommended", "plugin:react-hooks/recommended"],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -29,6 +29,8 @@ module.exports = {
     'react/no-did-update-set-state': 'warn',
     'react/no-did-mount-set-state': 'warn',
     'react/jsx-no-target-blank': 'warn',
+    'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off',
     'no-extra-boolean-cast': 'warn',
     'no-prototype-builtins': 'warn',
     'no-global-assign': 'warn',
@@ -61,14 +63,6 @@ module.exports = {
     'react/self-closing-comp': 'warn',
     'prefer-const': 'error',
     'no-unneeded-ternary': 'warn',
-    // Disabled rules coming from eslint-config-preact
-    'jest/no-jasmine-globals': 'off',
-    'jest/no-test-callback': 'off',
-    'jest/no-identical-title': 'off',
-    'jest/expect-expect': 'off',
-    'jest/valid-expect-in-promise': 'off',
-    'jest/valid-expect': 'off',
-    'jest/valid-describe': 'off',
   },
   overrides: [
     {

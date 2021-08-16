@@ -42,7 +42,7 @@ export const ButtonTemplate: FunctionComponent<ButtonLinkTemplatePropsInterface 
 
   return (
     <Component
-      class={domClassMerge(
+      className={domClassMerge(
         styles.button,
         styles[componentType],
         styles[props.size],

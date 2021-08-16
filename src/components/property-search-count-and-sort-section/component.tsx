@@ -29,7 +29,7 @@ export const PropertySearchCountAndSortSectionComponent = ({
     <div className={styles.container}>
       {/* TODO-FE[TPNX-3154] search count and sort section add translations */}
       <span>{loading ? '...' : count} properties sorted by </span>
-      <button class={styles.sort_btn} onClick={(): void => openFiltersRef.current()}>
+      <button className={styles.sort_btn} onClick={(): void => openFiltersRef.current()}>
         <span>{choices.find((c) => c.value === filtersCtx.value[FiltersParametersEnum.sort])?.label}</span>
         <IconThickArrowDownTemplate class={styles.sort_icon} />
       </button>

@@ -5,5 +5,5 @@ export interface MultiSelectionAutocompleteInputKeyPressExtensionPropsInterface<
   /**
    * Keyboard event
    */
-  e: KeyboardEvent;
+  e: React.KeyboardEvent;
 }

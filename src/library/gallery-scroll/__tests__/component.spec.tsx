@@ -67,7 +67,7 @@ describe('AppearOnScrollComponent', () => {
 
     const wrapper = mount(<GalleryScrollComponent {...defaultProps} />);
     const { onMouseDown } = wrapper.find(GalleryScrollTemplate).props();
-    const mouseEventMock = MouseEventMock();
+    const mouseEventMock = MouseEventMock<HTMLDivElement>();
 
     onMouseDown({ ...mouseEventMock, clientX: 5 });
 
@@ -86,7 +86,7 @@ describe('AppearOnScrollComponent', () => {
 
     const wrapper = shallow(<GalleryScrollComponent {...defaultProps} />);
     const { onMouseDown } = wrapper.find(GalleryScrollTemplate).props();
-    const mouseEventMock = MouseEventMock();
+    const mouseEventMock = MouseEventMock<HTMLDivElement>();
 
     onMouseDown(mouseEventMock);
 
@@ -100,10 +100,10 @@ describe('AppearOnScrollComponent', () => {
     const wrapper = mount(<GalleryScrollComponent {...defaultProps} />);
     const { onTouchStart } = wrapper.find(GalleryScrollTemplate).props();
 
-    const touchEventMock = TouchEventMock();
+    const touchEventMock = TouchEventMock<HTMLDivElement>();
     onTouchStart({
       ...touchEventMock,
-      changedTouches: [{ pageX: 5 } as Touch] as unknown as TouchList,
+      changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
     });
 
     expect(touchEventMock.preventDefault).toHaveBeenCalledTimes(1);
@@ -120,7 +120,7 @@ describe('AppearOnScrollComponent', () => {
     const wrapper = mount(<GalleryScrollComponent {...defaultProps} items={[image1]} />);
     const { items } = wrapper.find(GalleryScrollTemplate).props();
 
-    expect(items).toStrictEqual([{ ...image1, style: null }]);
+    expect(items).toStrictEqual([{ ...image1, style: {} }]);
   });
 
   it('when gallery is touched, it should render all images', () => {

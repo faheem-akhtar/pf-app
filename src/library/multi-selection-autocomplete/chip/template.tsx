@@ -20,7 +20,7 @@ export const MultiSelectionAutocompleteChipTemplate = ({
     suffixIcon={
       <button
         className={styles.cross_button}
-        onClick={(e: MouseEvent): void => {
+        onClick={(e: React.MouseEvent): void => {
           e.stopPropagation();
           onCrossClick();
         }}
