@@ -35,7 +35,8 @@ module.exports = {
     'pf-rules/export-name-validation': [
       'error',
       {
-        enforcePascalCaseOn: '(enum|component|store|factory|type|interface|template|provider|context|view|service|mock)$',
+        enforcePascalCaseOn:
+          '(enum|component|store|factory|type|interface|template|provider|context|view|service|mock)$',
         ignoreCustomExtensionInNameOn: ['.desktop', '.ae', '.bh', '.eg', '.lb', '.ma', '.qa', '.sa'],
         enforcePrefixOnExtension: [
           {
@@ -51,6 +52,12 @@ module.exports = {
         prefixes: [{ prefix: 'backend', ignoreCase: true }],
       },
     ],
+    /*     'pf-rules/forbid-import': [
+      'error',
+      {
+        modules: ['next-i18next'],
+      },
+    ], */
     'react/self-closing-comp': 'warn',
     'prefer-const': 'error',
     'no-unneeded-ternary': 'warn',
