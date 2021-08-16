@@ -2,5 +2,5 @@ import { ConfigLinksLinkInterface } from '../link.interface';
 
 export const configLinksPrimaryBuy: ConfigLinksLinkInterface = {
   translationKey: 'buy',
-  target: 'buy/properties-for-sale.html',
+  target: 'buy-target',
 };

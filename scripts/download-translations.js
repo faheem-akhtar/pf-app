@@ -15,7 +15,6 @@ const lokaliseApi = new LokaliseApi({ apiKey: LOKALISE_API_TOKEN });
 const staticFolder = path.resolve(process.cwd(), 'public/static');
 const translationsPath = path.resolve(staticFolder, 'translations');
 
-// TODO-FE[TPNX-3145] update README
 const fetchTranslations = async (url, filename) => {
   const response = await fetch(url);
   const downloadedFilePath = `${staticFolder}/${filename}.zip`;
@@ -61,7 +60,7 @@ const getBundleUrlForCountrySpecificTranslations = async (countryCode) => {
     console.info(`Lokalise bundle url for ${countryCode} is ready to download`);
     return bundle_url;
   } catch (err) {
-    console.error('Lokalise bundle url is not ready. Reason: ', err);
+    console.error(`Lokalise bundle url for ${countryCode} is not ready. Reason: `, err);
     if (err.code === 406) {
       // it means country/${coode}/%LANG_ISO%.json is not exist
       return null;

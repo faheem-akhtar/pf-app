@@ -11,7 +11,6 @@ import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 /**
  * TODO-FE[TPNX-3016] Add tests
- * TODO-FE[TPNX-3142] Add translations
  */
 export const FooterComponent = (): JSX.Element => {
   const { t } = useTranslationHook();
