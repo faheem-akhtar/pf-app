@@ -23,7 +23,6 @@ import { FiltersValueFieldMaxBathroomType } from 'components/filters/value/field
 import { FiltersValueFieldMaxBedroomType } from 'components/filters/value/field/max-bedroom.type';
 import { FiltersValueInterface } from '../filters/value/interface';
 import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
-import { SelectFieldTemplate } from 'library/select-field/template';
 import { SwitchTemplate } from 'library/switch/template';
 
 import { IconThickAmenitiesLuxuryTemplate } from 'components/icon/thick/amenities-luxury-template';
@@ -39,6 +38,7 @@ import { IconThickPriceInclusiveTemplate } from 'components/icon/thick/price-inc
 import { IconThickPriceTemplate } from 'components/icon/thick/price-template';
 import { IconThickPropertyTemplate } from 'components/icon/thick/property-template';
 import { KeywordsComponent } from 'components/keywords/component';
+import { SelectFieldTemplate } from 'library/select-field/template';
 
 import { categoryIdIsCommercial } from 'helpers/category-id/is-commercial';
 import { filtersDataChoicesGetAmenities } from '../filters/data/choices/get-amenities';
@@ -55,6 +55,7 @@ import { filtersDataChoicesGetPropertyTypeId } from '../filters/data/choices/get
 import { filtersDataChoicesGetUtilitiesPrice } from '../filters/data/choices/get-utilities-price';
 import { filtersDataChoicesGetVirtualViewing } from '../filters/data/choices/get-virtual-viewing';
 import { filtersDataGetEnabledFilterTypes } from '../filters/data/get-enabled-filter-types';
+import { filtersModalMapSelectOptionsLabels } from './map-select-options-labels';
 import { filtersToRangeOptions } from 'helpers/filters/to-range-options';
 import { filtersValueEquals } from 'components/filters/value/equals';
 import { useFiltersDataChoicesPrice } from 'components/filters/data/choices/price.hook';
@@ -153,7 +154,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
           label={t('From')}
           value={filtersValue[FiltersParametersEnum.minPrice]}
           options={filtersToRangeOptions(
-            useFiltersDataChoicesPrice(filtersValue),
+            filtersModalMapSelectOptionsLabels(useFiltersDataChoicesPrice(filtersValue), t('From')),
             filtersValue[FiltersParametersEnum.maxPrice],
             true
           )}
@@ -166,7 +167,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
           label={t('To')}
           value={filtersValue[FiltersParametersEnum.maxPrice]}
           options={filtersToRangeOptions(
-            useFiltersDataChoicesPrice(filtersValue),
+            filtersModalMapSelectOptionsLabels(useFiltersDataChoicesPrice(filtersValue), t('To')),
             filtersValue[FiltersParametersEnum.minPrice],
             false
           )}
@@ -258,7 +259,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
           label={t('From')}
           value={filtersValue[FiltersParametersEnum.minArea]}
           options={filtersToRangeOptions(
-            filtersDataChoicesGetMinArea(filtersValue, filtersData),
+            filtersModalMapSelectOptionsLabels(filtersDataChoicesGetMinArea(filtersValue, filtersData), t('From')),
             filtersValue[FiltersParametersEnum.maxArea],
             true
           )}
@@ -274,7 +275,7 @@ const widgetRenderMap: Record<string, (props: RenderWidgetPropsInterface) => JSX
           label={t('To')}
           value={filtersValue[FiltersParametersEnum.maxArea]}
           options={filtersToRangeOptions(
-            filtersDataChoicesGetMaxArea(filtersValue, filtersData),
+            filtersModalMapSelectOptionsLabels(filtersDataChoicesGetMaxArea(filtersValue, filtersData), t('To')),
             filtersValue[FiltersParametersEnum.minArea],
             false
           )}

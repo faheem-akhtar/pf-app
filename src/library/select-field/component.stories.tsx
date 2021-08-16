@@ -6,13 +6,6 @@ import { Meta } from '@storybook/react';
 import { SelectFieldTemplate } from './template';
 import { SelectFieldTemplatePropsInterface } from './template-props.interface';
 
-const options = [
-  { value: null, label: '' },
-  { value: 1, label: 'Apple' },
-  { value: 2, label: 'Banana' },
-  { value: 3, label: 'Orange' },
-];
-
 export default {
   title: 'Library/Select Field',
   component: SelectFieldTemplate,
@@ -20,21 +13,28 @@ export default {
     disabled: false,
     dropdownIcon: true,
     className: '',
-    label: 'Select',
-    options,
+    label: 'Fruits',
   },
   argTypes: {
     onChange: { action: 'onChange' },
   },
 } as Meta;
 
-export const SelectField = <V extends number | null>(args: SelectFieldTemplatePropsInterface<V>): JSX.Element => (
+export const Template = (args: SelectFieldTemplatePropsInterface<number | null>): JSX.Element => (
   <div style={{ width: '226px' }}>
-    <SelectFieldTemplate {...args} />
+    <SelectFieldTemplate
+      {...args}
+      options={[
+        { value: null, label: 'Any' },
+        { value: 1, label: 'Apple' },
+        { value: 2, label: 'Banana' },
+        { value: 3, label: 'Orange' },
+      ]}
+    />
   </div>
 );
 
-SelectField.args = {
+Template.args = {
   value: null,
   onChange: action('select field on change'),
 };

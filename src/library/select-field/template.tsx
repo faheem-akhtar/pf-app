@@ -1,5 +1,4 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
-import { numberFormat } from 'helpers/number/format';
 
 import { SelectFieldOptionInterface } from './option.interface';
 import { SelectFieldTemplatePropsInterface } from './template-props.interface';
@@ -8,7 +7,7 @@ import { IconThinChevronDownTemplate } from 'components/icon/thin/chevron-down-t
 
 import styles from './select-field.module.scss';
 
-export const SelectFieldTemplate = <V extends number | null>({
+export const SelectFieldTemplate = <V extends unknown>({
   className,
   dropdownIcon,
   label,
@@ -38,7 +37,7 @@ export const SelectFieldTemplate = <V extends number | null>({
       >
         {options.map((option, index) => (
           <option key={index} value={index}>
-            {option.value ? numberFormat(option.value) : label}
+            {option.label}
           </option>
         ))}
       </select>
