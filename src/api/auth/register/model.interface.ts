@@ -1,4 +1,4 @@
-import { UserModelInterface } from '../../../services/user/model.interface';
+import { UserModelInterface } from 'services/user/model.interface';
 
 export interface ApiAuthRegisterModelInterface {
   /**

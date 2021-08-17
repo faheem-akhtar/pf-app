@@ -33,6 +33,7 @@
       "mocks/*": ["mocks/*"]
     }
   },
+  "types": ["gapi", "gapi.auth2", "FB", "google.maps"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.json"],
   "exclude": ["node_modules", "utils/eslint"]
 }

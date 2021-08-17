@@ -3,7 +3,6 @@ import { ApiAuthChangePasswordRequestInterface } from 'api/auth/change-password/
 import { ApiFactory } from 'api/factory';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiJsonModelInterface } from 'api/json/model.interface';
-import { LocaleEnum } from 'services/locale/enum';
 import { LocaleService } from 'services/locale/service';
 
 const fetcher = ApiFactory<
@@ -23,7 +22,6 @@ export const apiAuthChangePasswordFetcher = (requestParams: {
   password: string;
   repeat_password: string;
   reset_token: string;
-  locale: LocaleEnum;
 }): Promise<ApiFetcherResultType<ApiAuthChangePasswordModelInterface>> => {
   const locale = LocaleService.getLocale();
   return fetcher({

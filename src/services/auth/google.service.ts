@@ -1,0 +1,48 @@
+import { apiAuthSocialLoginGoogleFetcher } from 'api/auth/social-login/google.fetcher';
+import { ApiAuthSocialLoginModelInterface } from 'api/auth/social-login/model.interface';
+import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
+import AuthService from 'services/auth/service';
+import { importScript } from 'helpers/import/script';
+import { WindowService } from 'services/window/service';
+
+const scriptUrl = '//apis.google.com/js/api:client.js';
+
+export const AuthGoogleService = {
+  signIn: (): Promise<ApiAuthSocialLoginModelInterface> => {
+    return new Promise((resolve, reject) => {
+      // Import google script
+      importScript(scriptUrl).then(() => {
+        const gapi = WindowService.getGapi();
+
+        if (!gapi) {
+          reject();
+          return;
+        }
+
+        // Load auth provider
+        gapi.load('auth2', () => {
+          const auth2 = gapi.auth2.init({
+            client_id: process.env.NEXT_PUBLIC_GOOGLE_AUTH,
+          });
+
+          // Logging user in
+          auth2
+            .signIn()
+            .then((response) => {
+              apiAuthSocialLoginGoogleFetcher(response.getAuthResponse(true).id_token)
+                .then((res) => {
+                  if (!res.ok) {
+                    reject(res);
+                  }
+
+                  AuthService.onAuthResolved(res);
+                  resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
+                })
+                .catch(reject);
+            })
+            .catch(reject);
+        });
+      });
+    });
+  },
+};

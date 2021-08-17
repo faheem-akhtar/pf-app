@@ -1,54 +1,53 @@
-import { apiAuthAutoRegisterFetcher } from 'api/auth/auto-register/fetcher';
-import { apiAuthChangePasswordFetcher } from 'api/auth/change-password/fetcher';
-import { apiAuthLogoutFetcher } from 'api/auth/logout/fetcher';
-import { apiAuthRegisterFetcher } from 'api/auth/register/fetcher';
-import { apiAuthResetPasswordFetcher } from 'api/auth/reset-password/fetcher';
-import { apiAuthSignInFetcher } from 'api/auth/sign-in/fetcher';
-
-import { ApiAuthAutoRegisterModelInterface } from 'api/auth/auto-register/model.interface';
-import { ApiAuthAutoRegisterRequestInterface } from 'api/auth/auto-register/request.interface';
-import { ApiAuthChangePasswordRequestInterface } from 'api/auth/change-password/request.interface';
-import { ApiAuthRegisterModelInterface } from 'api/auth/register/model.interface';
-import { ApiAuthRegisterRequestInterface } from 'api/auth/register/request.interface';
-import { ApiAuthResetPasswordModelInterface } from 'api/auth/reset-password/model.interface';
-import { ApiAuthResetPasswordRequestInterface } from 'api/auth/reset-password/request.interface';
-import { ApiAuthSignInRequestInterface } from 'api/auth/sign-in/request.interface';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
-import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
-import { AuthStore } from 'services/auth/store';
-import { AuthSubscriberType } from './subscriber.type';
+import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
+import { AuthModelInterface } from 'services/auth/model.interface';
+import { AuthSubscriberType } from 'services/auth/subscriber.type';
 import { JwtTokenService } from 'services/jwt/token/service';
 import { JwtTokenStore } from 'services/jwt/token/store';
-import { LocaleEnum } from 'services/locale/enum';
-import { LocaleService } from 'services/locale/service';
 import { UserModelInterface } from 'services/user/model.interface';
+import { WindowService } from 'services/window/service';
 
 class Service {
-  // Application locale
-  private readonly locale: LocaleEnum;
+  /**
+   * User key in browser storage
+   */
+  private readonly userKey: string = 'user-authentication-user';
 
-  // Auth store instance
-  private authStore: AuthStore;
+  /**
+   * User authentication provider key in browser storage
+   */
+  private readonly authenticationProviderKey: string = 'user-authentication-provider';
 
-  // Jwt token store store instance
-  private jwtTokenService: JwtTokenStore;
-
-  // Service subscribers
+  /**
+   * Service subscribers
+   */
   private subscribers: AuthSubscriberType[] = [];
 
+  /**
+   * JWT service
+   * @private
+   */
+  private jwtTokenService: JwtTokenStore;
+
   constructor() {
-    this.locale = LocaleService.getLocale();
-    this.authStore = new AuthStore();
     this.jwtTokenService = JwtTokenService;
+
+    if (!this.getUser()) {
+      // Init Google One Tap
+      AuthGoogleOneTapService.signIn();
+    }
   }
 
   /**
-   * Get user data
+   * Update user information
+   * @param userData
    */
-  public getUser(): UserModelInterface | null {
-    return this.authStore.getUser();
-  }
+  public updateUserData = (userData: UserModelInterface | null): void => {
+    this.subscribers.forEach((update) => {
+      update(userData);
+    });
+  };
 
   /**
    * Subscribe to the service update
@@ -62,130 +61,180 @@ class Service {
   };
 
   /**
-   * Register user
+   * Log out ser
    */
-  public register = (
-    model: ApiAuthRegisterRequestInterface
-  ): Promise<UserModelInterface | ApiFetcherResultFailureInterface> =>
-    apiAuthRegisterFetcher({
-      first_name: model.first_name,
-      last_name: model.last_name,
-      email: model.email,
-      password: model.password,
-      opted_in: model.opted_in,
-      captcha_token: model?.captcha_token,
-    })
-      .then((user) => {
-        if (!user.ok) {
-          return this.authStore.onRegistrationRejected(user);
-        }
+  public logOut(): void {
+    this.resetToken();
+    this.signOut();
+  }
 
-        this.updateUserData((user as ApiFetcherResultSuccessInterface<ApiAuthRegisterModelInterface>).data.user);
-        this.jwtTokenService.setRefreshToken(
-          (user as ApiFetcherResultSuccessInterface<ApiAuthRegisterModelInterface>).data.meta.refresh_token
-        );
+  /**
+   * Get user data
+   */
+  public getUser(): UserModelInterface | null {
+    const data = <UserModelInterface>WindowService.localStorage.getItem(this.userKey);
 
-        return user.data.user;
+    if (!data || typeof data !== 'object') {
+      return null;
+    }
+
+    return {
+      userId: data.userId || '',
+      first_name: data.first_name || '',
+      last_name: data.last_name || '',
+      email: data.email || '',
+      image: data.image || '',
+    };
+  }
+
+  /**
+   * Reset token and refresh token
+   */
+  private resetToken(): void {
+    // Clear token
+    this.jwtTokenService.setToken();
+
+    // Clear refresh
+    this.jwtTokenService.setRefreshToken();
+  }
+
+  /**
+   * Sign out user
+   */
+  private signOut(): void {
+    // User is already signed out
+    if (!this.getUser()) {
+      return;
+    }
+
+    this.setUser(null);
+  }
+
+  /**
+   * Set user
+   */
+  private setUser(model: UserModelInterface | null): void {
+    if (!model) {
+      WindowService.localStorage.removeItem(this.userKey);
+      return;
+    }
+
+    WindowService.localStorage.setItem(
+      this.userKey,
+      JSON.stringify({
+        id: model.userId,
+        first_name: model.first_name,
+        last_name: model.last_name,
+        image: model.image,
+        email: model.email,
       })
-      .catch((error: ApiFetcherResultFailureInterface) => {
-        return this.authStore.onRegistrationRejected(error);
-      });
+    );
+  }
 
   /**
-   * Auto register user
-   * @param model
+   * User authn promise resolved
    */
-  public autoRegister = (
-    model: ApiAuthAutoRegisterRequestInterface
-  ): Promise<UserModelInterface | ApiFetcherResultFailureInterface> =>
-    apiAuthAutoRegisterFetcher({
-      first_name: model.first_name,
-      last_name: model.last_name,
-      email: model.email,
-      phone: model.phone,
-    })
-      .then((user) => {
-        if (!user.ok) {
-          return this.authStore.onAutoRegistrationRejected(user);
-        }
+  public onAuthResolved = (response: ApiFetcherResultType<AuthModelInterface>): void => {
+    if (!response.ok) {
+      this.onLoginRejected(response);
+      return;
+    }
 
-        this.updateUserData((user as ApiFetcherResultSuccessInterface<ApiAuthAutoRegisterModelInterface>).data.user);
-        this.jwtTokenService.setRefreshToken(
-          (user as ApiFetcherResultSuccessInterface<ApiAuthAutoRegisterModelInterface>).data.meta.refresh_token
-        );
+    // Update data
+    this.jwtTokenService.setRefreshToken(response.data.meta.refresh_token);
+    this.jwtTokenService.setToken(response.data.meta.token);
 
-        return user.data.user;
-      })
-      .catch((error: ApiFetcherResultFailureInterface) => {
-        return this.authStore.onAutoRegistrationRejected(error);
-      });
-
-  /**
-   * Sign In user
-   * @param model
-   */
-  public signIn = (model: ApiAuthSignInRequestInterface): Promise<void | ApiFetcherResultFailureInterface> =>
-    apiAuthSignInFetcher({
-      email: model.email,
-      password: model.password,
-      captcha_token: model?.captcha_token,
-    })
-      .then((user) => this.updateUserData(this.authStore.onSignInResolved(user)))
-      .catch((error: ApiFetcherResultFailureInterface) => {
-        return this.authStore.onSignInRejected(error) as ApiFetcherResultFailureInterface;
-      });
-
-  /**
-   * Change password
-   * @param model
-   */
-  public changePassword = (
-    model: ApiAuthChangePasswordRequestInterface
-  ): Promise<void | ApiFetcherResultFailureInterface> =>
-    apiAuthChangePasswordFetcher({
-      repeat_password: model.repeat_password,
-      reset_token: model.reset_token,
-      password: model.password,
-      locale: this.locale,
-    })
-      .then((user) => {
-        if (!user.ok) {
-          return this.authStore.onChangePasswordRejected(user) as ApiFetcherResultFailureInterface;
-        }
-      })
-      .catch((error: ApiFetcherResultFailureInterface) => {
-        return this.authStore.onChangePasswordRejected(error) as ApiFetcherResultFailureInterface;
-      });
-
-  /**
-   * Reset password
-   * @param model
-   */
-  public resetPassword = (
-    model: ApiAuthResetPasswordRequestInterface
-  ): Promise<ApiFetcherResultType<ApiAuthResetPasswordModelInterface>> =>
-    apiAuthResetPasswordFetcher({
-      email: model.email,
-      captcha_token: model?.captcha_token,
-    });
-
-  /**
-   * Logout
-   */
-  public logout = (): Promise<void> =>
-    apiAuthLogoutFetcher().then(() => {
-      this.updateUserData(null);
-    });
-
-  /**
-   * Update user information
-   * @param userData
-   */
-  private updateUserData = (userData: UserModelInterface | null): void => {
-    this.subscribers.forEach((update) => {
-      update(userData);
-    });
+    // Update user data in local storage
+    this.setUser(response.data.user);
+    this.updateUserData(response.data.user);
   };
+
+  /**
+   * User login promise rejected
+   * TODO-FE[TPNX-3188] - Update handler
+   */
+  public onLoginRejected = (errors: ApiFetcherResultFailureInterface): ApiFetcherResultFailureInterface => {
+    let errorMessage = '';
+    // If validation error
+    if ([400, 422].indexOf(errors.error.status) !== -1) {
+      this.toUserSignInFieldErrors(errors.error.body);
+    }
+
+    if (errors.error.status === 401) {
+      errorMessage = errors.error.body;
+    }
+
+    // Add translation
+    errorMessage = 'Something went wrong! Please try again later';
+    errors.error.body = errorMessage;
+    return errors;
+  };
+
+  /**
+   * User registration promise rejected
+   * TODO-FE[TPNX-3188] - Update handler
+   */
+  public onRegistrationRejected = (error: ApiFetcherResultFailureInterface): ApiFetcherResultFailureInterface => {
+    let errorMessage = '';
+    // If validation error
+    if ([400, 422].indexOf(error.error.status) !== -1) {
+      this.toUserRegistrationFieldErrors(error.error.body);
+    }
+
+    // Add translation
+    errorMessage = 'Something went wrong! Please try again later';
+    error.error.body = errorMessage;
+    return error;
+  };
+
+  /**
+   * User auto registration promise rejected
+   * TODO-FE[TPNX-3188] - Update handler
+   */
+  public onAutoRegistrationRejected = (
+    response: ApiFetcherResultFailureInterface
+  ): ApiFetcherResultFailureInterface => {
+    return response;
+  };
+
+  /**
+   * Change password rejected
+   * TODO-FE[TPNX-3188] - Update handler
+   */
+  public onChangePasswordRejected = (response: ApiFetcherResultFailureInterface): ApiFetcherResultFailureInterface => {
+    if ([400, 422].indexOf(response.error.status) !== -1) {
+      this.toUserChangePasswordValidationErrors(response.error.body);
+    }
+
+    return response;
+  };
+
+  /**
+   * Transforms api errors to UserRegistrationFieldErrorsInterface
+   * TODO-FE[TPNX-3188] - Update handler
+   */
+  private toUserRegistrationFieldErrors(errors: string): void {
+    // eslint-disable-next-line no-console
+    console.error(errors);
+  }
+
+  /**
+   * Transforms api errors to UserSignInFieldErrorsInterface
+   * TODO-FE[TPNX-3188] - Update handler
+   */
+  private toUserSignInFieldErrors(errors: string): void {
+    // eslint-disable-next-line no-console
+    console.error(errors);
+  }
+
+  /**
+   * Transforms api errors to UserChangePasswordFieldErrorsInterface
+   * TODO-FE[TPNX-3188] - Update handler
+   */
+  private toUserChangePasswordValidationErrors(errors: string): void {
+    // eslint-disable-next-line no-console
+    console.error(errors);
+  }
 }
 
 const AuthService = new Service();
