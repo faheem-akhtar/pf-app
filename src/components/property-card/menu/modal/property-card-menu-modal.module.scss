@@ -1,0 +1,36 @@
+@keyframes show {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: var(--z-index-08);
+}
+
+.overlay {
+  flex: 1;
+  width: 100%;
+}
+
+.content {
+  animation: show 200ms var(--transition-logic);
+  background-color: var(--color-global-white);
+  padding: calc(var(--spacing) * 3);
+  width: 100%;
+}
+
+.closeButton {
+  margin-top: calc(var(--spacing) * 3);
+  width: 100%;
+}

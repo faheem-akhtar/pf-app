@@ -1,0 +1,10 @@
+.button {
+  border: none;
+  justify-content: flex-start;
+  padding-left: 0;
+  width: 100%;
+
+  &:not(:first-child) {
+    margin-top: var(--spacing);
+  }
+}

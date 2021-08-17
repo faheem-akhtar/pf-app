@@ -6,9 +6,13 @@
   top: 0;
   width: 100%;
   z-index: var(--z-index-17);
+
+  &--overlay {
+    background-color: var(--color-global-black-op-70);
+  }
 }
 
 .hide {
-  height: 0;
+  height: 100vh;
   overflow: hidden;
 }

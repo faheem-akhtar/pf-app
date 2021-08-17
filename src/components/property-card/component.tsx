@@ -7,20 +7,25 @@ import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated
 import { propertySerpObfuscatedGetImagesCount } from 'components/property/serp/obfuscated/get/images-count';
 import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfuscated/get/img-url';
 import { useApiPropertyImages } from 'api/property-images/hook';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { CallingAgentModalComponent } from 'components/calling-agent-modal/component';
 import { EmailAgentModalComponent } from 'components/email-agent-modal/component';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { PropertyCardComponentPropsType } from './component-props.type';
+import { PropertyCardMenuContentTemplate } from './menu/content/template';
+import { PropertyCardMenuModalComponent } from './menu/modal/component';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
 
 export const PropertyCardComponent = ({ property, loading }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
   const [galleryHasBeenTouched, setGalleryHasBeenTouched] = useState(false);
+  const { t } = useTranslationHook();
 
   const callingAgentModalOpenRef = useRef<() => void>(functionNoop);
   const emailAgentModalOpenRef = useRef<() => void>(functionNoop);
+  const menuModalOpenRef = useRef<() => void>(functionNoop);
 
   const imagesResponse = useApiPropertyImages(propertySerpObfuscatedGetId(property), 'small', galleryHasBeenTouched);
 
@@ -51,9 +56,6 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   /** TODO-FE[TPNX-3092] remove this and use actual data about saved properties */
   const [saved, setSaved] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [contextMenuOpened, setContextMenuOpened] = useState(false);
-
   const cardTemplateProps: PropertyCardTemplatePropsType = {
     property,
     loading,
@@ -61,16 +63,19 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
     ctaButtons: ctaButtonsProps,
     saved,
     onSaveButtonClick: () => setSaved(!saved),
-    onMenuButtonClick: () => setContextMenuOpened(true),
+    onMenuButtonClick: (): void => {
+      menuModalOpenRef.current();
+    },
   };
-
-  // TODO-FE[TPNX-3178] Implement property card menu
 
   return (
     <div>
       <PropertyCardTemplate {...cardTemplateProps} />
       <EmailAgentModalComponent openRef={emailAgentModalOpenRef} />
       <CallingAgentModalComponent openRef={callingAgentModalOpenRef} />
+      <PropertyCardMenuModalComponent closeButtonLabel={t('cta-cancel')} openRef={menuModalOpenRef}>
+        <PropertyCardMenuContentTemplate />
+      </PropertyCardMenuModalComponent>
     </div>
   );
 };

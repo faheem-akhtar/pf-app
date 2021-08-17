@@ -1,12 +1,19 @@
 import { useConstructorHook } from 'helpers/hook/constructor.hook';
 import { useState } from 'react';
 
-import { ModalComponentPropsInterface } from './component.props.interface';
+import { domClassMerge } from 'helpers/dom/class-merge';
+
+import { ModalComponentPropsInterface } from './component-props.interface';
 import { ModalPortalComponent } from './portal-component';
 
 import styles from './modal.module.scss';
 
-export const ModalComponent = ({ openRef, closeRef, children }: ModalComponentPropsInterface): JSX.Element | null => {
+export const ModalComponent = ({
+  openRef,
+  closeRef,
+  children,
+  overlay = false,
+}: ModalComponentPropsInterface): JSX.Element | null => {
   const [opened, setOpened] = useState(false);
 
   useConstructorHook(() => {
@@ -18,7 +25,13 @@ export const ModalComponent = ({ openRef, closeRef, children }: ModalComponentPr
 
   return (
     <ModalPortalComponent>
-      <div className={styles.container}>{children}</div>
+      <div
+        className={domClassMerge(styles.container, {
+          [styles[`container--overlay`]]: overlay,
+        })}
+      >
+        {children}
+      </div>
     </ModalPortalComponent>
   );
 };
