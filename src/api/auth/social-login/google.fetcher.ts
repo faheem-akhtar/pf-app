@@ -11,7 +11,7 @@ const facebookFetcher = ApiFactory<
   ApiJsonModelInterface<ApiAuthSocialLoginRequestInterface>
 >({
   method: 'POST',
-  url: '/user/b2c-login-social/google',
+  url: 'user/b2c-login-social/google',
   alterHeaders: (headers) => {
     headers['content-type'] = 'application/vnd.api+json';
   },
