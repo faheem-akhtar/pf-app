@@ -15,7 +15,7 @@ export const FiltersModalWidgetBathroomComponent: FiltersModalWidgetType = ({
   changeFiltersValue,
   t,
 }) => (
-  <FiltersModalItemTemplate label={t('Bathrooms')} icon={<IconThickBathroomTemplate class={styles.icon} />}>
+  <FiltersModalItemTemplate label={t('bathrooms')} icon={<IconThickBathroomTemplate class={styles.icon} />}>
     <ChipChoiceTemplate
       containerClassName={styles.list}
       options={filtersDataChoicesGetMinBathroom(filtersValue, filtersData)}

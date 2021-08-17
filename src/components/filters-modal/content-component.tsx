@@ -40,7 +40,7 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
       <div className={styles.header}>
         <div onClick={close} className={styles.headerLeft}>
           <IconThickCloseTemplate class={styles.closeIcon} />
-          <span className={styles.title}>{t('Filters')}</span>
+          <span className={styles.title}>{t('filters')}</span>
         </div>
         <ButtonTemplate
           className={filtersValueIsDefault ? styles.hidden : ''}
@@ -49,7 +49,7 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
           size={ButtonSizeEnum.small}
           onClick={resetFiltersValue}
         >
-          {t('Clear All')}
+          {t('clear-all')}
         </ButtonTemplate>
       </div>
       <div className={styles.content}>

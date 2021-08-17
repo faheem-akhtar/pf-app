@@ -16,8 +16,16 @@ global.React = React;
 setupSwrMock();
 
 jest.mock('next-i18next', () => ({
-  useTranslation: (): { t: (key: string) => string } => ({
+  useTranslation: (): {
+    t: (key: string) => string;
+    i18n: {
+      exists: (key: string) => true;
+    };
+  } => ({
     t: (key: string): string => key,
+    i18n: {
+      exists: (): true => true,
+    },
   }),
 }));
 

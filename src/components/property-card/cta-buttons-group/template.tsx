@@ -18,7 +18,7 @@ export const PropertyCardCtaButtonsGroupTemplate: React.FunctionComponent<Proper
             href={phone.link}
             iconComponent={IconSolidPhoneTemplate}
             onClick={props.onCallClick}
-            labelKey={'Call'}
+            labelKey={'cta-call'}
           />
         )}
         {whatsapp && (
@@ -26,7 +26,7 @@ export const PropertyCardCtaButtonsGroupTemplate: React.FunctionComponent<Proper
             href={whatsapp.link}
             iconComponent={IconSolidWhatsappTemplate}
             onClick={props.onWhatsappClick}
-            labelKey={'WhatsApp'}
+            labelKey={'cta-whatsapp'}
           />
         )}
         {email && (
@@ -34,7 +34,7 @@ export const PropertyCardCtaButtonsGroupTemplate: React.FunctionComponent<Proper
             href='#'
             iconComponent={IconSolidEmailTemplate}
             onClick={props.onEmailClick}
-            labelKey={'Email'}
+            labelKey={'cta-email'}
           />
         )}
       </div>

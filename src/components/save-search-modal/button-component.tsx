@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-import { useTranslation } from 'next-i18next';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
@@ -14,7 +14,7 @@ import styles from './save-search-modal-component.module.scss';
 export const SaveSearchModalButtonComponent = (): JSX.Element => {
   const openFiltersRef = useRef<() => void>(() => null);
   const closeFiltersRef = useRef<() => void>(() => null);
-  const { t } = useTranslation();
+  const { t } = useTranslationHook();
 
   const [isActive, setIsActive] = useState(false);
 
@@ -31,7 +31,7 @@ export const SaveSearchModalButtonComponent = (): JSX.Element => {
           className: isActive ? styles.icon__active : styles.icon__inactive,
         }}
       >
-        {t('save-search-btn')}
+        {t('save-search-cta')}
       </ButtonTemplate>
       <ModalComponent openRef={openFiltersRef} closeRef={closeFiltersRef}>
         TODO-FE[TPNX-3151] Save search

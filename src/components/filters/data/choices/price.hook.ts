@@ -24,7 +24,7 @@ const usePriceChoices = (
     return cache[makeKey(categoryId, pricePeriod)];
   }
 
-  const choices: FiltersValueFieldChoiceInterface<number | null>[] = [{ value: null, label: t('Any') }];
+  const choices: FiltersValueFieldChoiceInterface<number | null>[] = [{ value: null, label: t('any') }];
 
   let config: ConfigPriceChoicesInterface | void;
 

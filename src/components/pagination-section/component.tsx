@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import Router, { NextRouter, useRouter } from 'next/router';
 
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
@@ -16,7 +17,6 @@ import { IconThickChevronRightTemplate } from 'components/icon/thick/chevron-rig
 import { PaginationSectionComponentPropsType } from './component-props.type';
 
 import styles from './pagination-section.module.scss';
-import { useTranslation } from 'next-i18next';
 
 // TODO-FE[TPNX-3064] Proper implementation for pagination section
 Router.events.on('routeChangeStart', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
@@ -56,7 +56,7 @@ export const PaginationSectionComponent = ({
   pagesAvailable,
   loading,
 }: PaginationSectionComponentPropsType): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = useTranslationHook();
   const router = useRouter();
   const {
     value: { [FiltersParametersEnum.pageNumber]: currentPage },
@@ -69,7 +69,7 @@ export const PaginationSectionComponent = ({
         IconThickChevronLeftTemplate,
         currentPage - 1,
         loading || currentPage === 1,
-        t('Prev'),
+        t('prev'),
         ButtonIconPositionEnum.left
       )}
       {renderLink(
@@ -77,7 +77,7 @@ export const PaginationSectionComponent = ({
         IconThickChevronRightTemplate,
         currentPage + 1,
         loading || currentPage === pagesAvailable,
-        t('Next'),
+        t('next'),
         ButtonIconPositionEnum.right
       )}
     </div>

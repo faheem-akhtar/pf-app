@@ -7,17 +7,31 @@ import { ButtonTemplate } from 'library/button/template';
 import { FiltersModalSubmitButtonPropsInterface } from './submit-button-props.interface';
 
 import styles from './filters-modal-component.module.scss';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 export const FiltersModalSubmitButtonComponent = ({
   onSubmit,
   filtersValue,
   forceNumberOfProperties,
 }: FiltersModalSubmitButtonPropsInterface): JSX.Element => {
+  const { t } = useTranslationHook();
+
   const doNotFetch = forceNumberOfProperties !== null;
   let result = useApiPropertySearchCount(filtersValue, doNotFetch);
 
   if (forceNumberOfProperties !== null) {
     result = { ok: true, data: forceNumberOfProperties } as ApiFetcherResultSuccessInterface<number>;
+  }
+
+  // TODO-FE[CX-399] use lokalize plural feature
+  let buttonText = '';
+
+  if (result.ok) {
+    if (result.data === 1) {
+      buttonText = t('show-one-result');
+    } else {
+      buttonText = t('show-n-results').replace('{n}', result.data.toString());
+    }
   }
 
   return (
@@ -30,7 +44,7 @@ export const FiltersModalSubmitButtonComponent = ({
       disabled={!result.ok}
       loading={!result.ok}
     >
-      {result.ok && <span>{result.data ? `Show ${result.data} properties` : 'No results.'}</span>}
+      {result.ok && <span>{result.data ? buttonText : 'TODO-FE[CX-398]'}</span>}
     </ButtonTemplate>
   );
 };

@@ -54,12 +54,12 @@ module.exports = {
         prefixes: [{ prefix: 'backend', ignoreCase: true }],
       },
     ],
-    /*     'pf-rules/forbid-import': [
+    'pf-rules/forbid-import': [
       'error',
       {
         modules: ['next-i18next'],
       },
-    ], */
+    ],
     'react/self-closing-comp': 'warn',
     'prefer-const': 'error',
     'no-unneeded-ternary': 'warn',

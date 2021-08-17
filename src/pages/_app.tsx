@@ -1,8 +1,11 @@
 import 'intersection-observer';
-import type { AppContext, AppProps } from 'next/app';
-import App from 'next/app';
+
+// eslint-disable-next-line pf-rules/forbid-import
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+
+import type { AppContext, AppProps } from 'next/app';
+import App from 'next/app';
 
 import { LocaleEnum } from 'services/locale/enum';
 import { LocaleService } from 'services/locale/service';

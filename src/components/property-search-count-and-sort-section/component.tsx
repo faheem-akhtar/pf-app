@@ -11,11 +11,13 @@ import { ModalComponent } from 'components/modal/component';
 import { PropertySearchCountAndSortSectionComponentPropsType } from './component-props.type';
 
 import styles from './property-search-count-and-sort-section.module.scss';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 export const PropertySearchCountAndSortSectionComponent = ({
   count,
   loading,
 }: PropertySearchCountAndSortSectionComponentPropsType): JSX.Element => {
+  const { t } = useTranslationHook();
   const openFiltersRef = useRef<() => void>(() => null);
   const closeFiltersRef = useRef<() => void>(() => null);
   const filtersCtx = useContext(FiltersContext);
@@ -27,8 +29,7 @@ export const PropertySearchCountAndSortSectionComponent = ({
 
   return (
     <div className={styles.container}>
-      {/* TODO-FE[TPNX-3154] search count and sort section add translations */}
-      <span>{loading ? '...' : count} properties sorted by </span>
+      <span>{t('n-properties-sorted-by').replace('{n}', loading ? '...' : count.toString())} </span>
       <button className={styles.sort_btn} onClick={(): void => openFiltersRef.current()}>
         <span>{choices.find((c) => c.value === filtersCtx.value[FiltersParametersEnum.sort])?.label}</span>
         <IconThickArrowDownTemplate class={styles.sort_icon} />

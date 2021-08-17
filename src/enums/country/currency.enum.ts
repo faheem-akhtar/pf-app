@@ -4,6 +4,6 @@ export enum CountryCurrencyEnum {
   bhd = 'BHD',
   usd = 'USD',
   mad = 'MAD',
-  qad = 'QAD',
+  qar = 'QAR',
   sar = 'SAR',
 }

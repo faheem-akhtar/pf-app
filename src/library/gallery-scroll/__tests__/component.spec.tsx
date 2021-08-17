@@ -106,7 +106,6 @@ describe('AppearOnScrollComponent', () => {
       changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
     });
 
-    expect(touchEventMock.preventDefault).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({
       galleryLeft: 0,

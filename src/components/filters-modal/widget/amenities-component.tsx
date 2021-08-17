@@ -14,7 +14,7 @@ export const FiltersModalWidgetAmenitiesComponent: FiltersModalWidgetType = ({
   changeFiltersValue,
   t,
 }) => (
-  <FiltersModalItemTemplate label={t('Amenities')} icon={<IconThickAmenitiesLuxuryTemplate class={styles.icon} />}>
+  <FiltersModalItemTemplate label={t('amenities')} icon={<IconThickAmenitiesLuxuryTemplate class={styles.icon} />}>
     <ChipsFilterTemplate
       containerClassName={styles.list}
       options={filtersDataChoicesGetAmenities(filtersValue, filtersData)}

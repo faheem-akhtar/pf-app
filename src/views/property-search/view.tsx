@@ -11,11 +11,8 @@ import { PropertySearchViewPropsType } from './view-props.type';
 
 import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
 import { usePageIsLoadingHook } from 'helpers/hook/page-is-loading.hook';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Element => {
-  const { t } = useTranslationHook();
-
   const pageIsLoading = usePageIsLoadingHook();
 
   if (!props.ok) {
@@ -27,7 +24,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
   return (
     <PropertySearchResultsCountForCurrentQueryContext.Provider value={props.searchResult.total}>
       <FiltersContextProvider {...filtersContextProps}>
-        <LayoutComponent pageTitle={t(pageIsLoading ? 'loading' : 'search_title')}>
+        <LayoutComponent pageTitle={'TODO-FE[CX-396]'}>
           <HeaderComponent />
           <FiltersSectionComponent />
           <PropertySearchCountAndSortSectionComponent loading={pageIsLoading} count={props.searchResult.total} />

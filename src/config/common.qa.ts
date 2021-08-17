@@ -5,7 +5,7 @@ import { LanguageCodeEnum } from 'enums/language/code.enum';
 
 export const configCommon: ConfigCommonInterface = {
   areaUnit: CountryAreaUnitEnum.sqm,
-  currencyCode: CountryCurrencyEnum.qad,
+  currencyCode: CountryCurrencyEnum.qar,
   language: {
     current: LanguageCodeEnum.en,
     alternative: LanguageCodeEnum.ar,

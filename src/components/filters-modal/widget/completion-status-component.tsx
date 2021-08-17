@@ -15,7 +15,7 @@ export const FiltersModalWidgetCompletionStatusComponent: FiltersModalWidgetType
   t,
 }) => (
   <FiltersModalItemTemplate
-    label={t('Completeon status')}
+    label={t('completion-status')}
     icon={<IconThickBuildingCompletionTemplate class={styles.icon} />}
   >
     <ChipChoiceTemplate

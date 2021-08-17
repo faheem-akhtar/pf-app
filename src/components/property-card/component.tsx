@@ -51,6 +51,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   /** TODO-FE[TPNX-3092] remove this and use actual data about saved properties */
   const [saved, setSaved] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [contextMenuOpened, setContextMenuOpened] = useState(false);
 
   const cardTemplateProps: PropertyCardTemplatePropsType = {
@@ -64,8 +65,6 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   };
 
   // TODO-FE[TPNX-3178] Implement property card menu
-  // eslint-disable-next-line no-console
-  console.log('contextMenuOpened', contextMenuOpened);
 
   return (
     <div>

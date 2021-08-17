@@ -15,7 +15,7 @@ export const FiltersModalWidgetUtilitiesPriceTypeComponent: FiltersModalWidgetTy
   t,
 }) => (
   <FiltersModalItemTemplate
-    label={t('filters:utilities-price-type:label')}
+    label={t('filters-modal/utilities-price-type-title')}
     icon={<IconThickPriceInclusiveTemplate class={styles.icon} />}
   >
     <ChipChoiceTemplate

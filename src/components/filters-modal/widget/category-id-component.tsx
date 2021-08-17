@@ -44,7 +44,7 @@ export const FiltersModalWidgetCategoryIdComponent: FiltersModalWidgetType = ({
           });
         }}
       >
-        {t('View commercial properties only')}
+        {t('filters-modal/commercial-only')}
       </CheckboxTemplate>
     </>
   </FiltersModalItemTemplate>

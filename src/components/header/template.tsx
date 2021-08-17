@@ -1,9 +1,8 @@
 import { Fragment } from 'react';
 
-import { useTranslation } from 'next-i18next';
-
 import { configCommon } from 'config/common';
 import { configOriginValue } from 'config/origin/value';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
@@ -22,7 +21,7 @@ export const HeaderTemplate = ({
   userProfile,
   onLoginButtonClick,
 }: HeaderTemplatePropsInterface): JSX.Element => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslationHook();
 
   const currentLocaleIsDefault = locale === configCommon.language.current;
   const logo = currentLocaleIsDefault ? <IconLogoCurrentTemplate /> : <IconLogoAlternativeTemplate />;
@@ -64,7 +63,7 @@ export const HeaderTemplate = ({
                   componentType={ButtonComponentTypeEnum.secondary}
                   size={ButtonSizeEnum.small}
                 >
-                  {t('Log in')}
+                  {t('log-in')}
                 </ButtonTemplate>
               ) : (
                 <Fragment>

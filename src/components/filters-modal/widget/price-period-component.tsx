@@ -14,7 +14,7 @@ export const FiltersModalWidgetPricePeriodComponent: FiltersModalWidgetType = ({
   changeFiltersValue,
   t,
 }) => (
-  <FiltersModalItemTemplate label={t('Price period')} icon={<IconThickPriceTemplate class={styles.icon} />}>
+  <FiltersModalItemTemplate label={t('price-period')} icon={<IconThickPriceTemplate class={styles.icon} />}>
     <ChipChoiceTemplate
       containerClassName={styles.list}
       options={filtersDataChoicesGetPricePeriod(filtersValue, filtersData)}

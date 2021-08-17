@@ -1,8 +1,7 @@
-import { useTranslation } from 'react-i18next';
-
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { highlightString } from 'helpers/highlight/string';
 import { multiSelectionAutocompleteComputeInactiveRenderValue } from './compute-inactive-render-value';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { IconThickSearchTemplate } from 'components/icon/thick/search-template';
 import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
@@ -14,7 +13,7 @@ import styles from './multi-selection-autocomplete.module.scss';
 export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
   props: MultiSelectionAutocompleteTemplatePropsInterface<T>
 ): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = useTranslationHook();
 
   const renderInput = (): JSX.Element => (
     <input
@@ -42,7 +41,7 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
           />
         );
       })}
-      <div className={styles.add_label}>{t('+ Add')}</div>
+      <div className={styles.add_label}>{t('multi-location-selector/add')}</div>
     </>
   );
 

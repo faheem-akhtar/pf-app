@@ -1,3 +1,4 @@
+// eslint-disable-next-line pf-rules/forbid-import
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const { NEXT_PUBLIC_COUNTRY_CODE } = process.env;

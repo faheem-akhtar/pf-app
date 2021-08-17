@@ -27,7 +27,7 @@ export const FiltersModalWidgetPaymentMethodComponent: FiltersModalWidgetType = 
         });
       }}
     >
-      {t('filters:payment-method:choice_installments:label')}
+      {t('filters-modal/payment-method-title')}
     </CheckboxTemplate>
   </FiltersModalItemTemplate>
 );

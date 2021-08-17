@@ -19,16 +19,16 @@ export const FiltersModalWidgetAreaComponent: FiltersModalWidgetType = ({
   t,
 }) => (
   <FiltersModalItemTemplate
-    label={t('Property Size ({area_unit})').replace('{area_unit}', t(configCommon.areaUnit))}
+    label={t('filters-modal/property-size-title').replace('{area_unit}', t(`area-unit/${configCommon.areaUnit}`))}
     icon={<IconThickFloorPlanTemplate class={styles.icon} />}
   >
     <div className={styles.split}>
       <SelectFieldTemplate
         dropdownIcon
-        label={t('From')}
+        label={t('from')}
         value={filtersValue[FiltersParametersEnum.minArea]}
         options={filtersToRangeOptions(
-          filtersModalMapSelectOptionsLabels(filtersDataChoicesGetMinArea(filtersValue, filtersData), t('From')),
+          filtersModalMapSelectOptionsLabels(filtersDataChoicesGetMinArea(filtersValue, filtersData), t('from')),
           filtersValue[FiltersParametersEnum.maxArea],
           true
         )}
@@ -41,10 +41,10 @@ export const FiltersModalWidgetAreaComponent: FiltersModalWidgetType = ({
       />
       <SelectFieldTemplate
         dropdownIcon
-        label={t('To')}
+        label={t('to')}
         value={filtersValue[FiltersParametersEnum.maxArea]}
         options={filtersToRangeOptions(
-          filtersModalMapSelectOptionsLabels(filtersDataChoicesGetMaxArea(filtersValue, filtersData), t('To')),
+          filtersModalMapSelectOptionsLabels(filtersDataChoicesGetMaxArea(filtersValue, filtersData), t('to')),
           filtersValue[FiltersParametersEnum.minArea],
           false
         )}

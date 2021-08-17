@@ -14,7 +14,7 @@ export const FiltersModalWidgetPropertyTypeTypeComponent: FiltersModalWidgetType
   changeFiltersValue,
   t,
 }) => (
-  <FiltersModalItemTemplate label={t('Property type')} icon={<IconThickPropertyTemplate class={styles.icon} />}>
+  <FiltersModalItemTemplate label={t('property-type')} icon={<IconThickPropertyTemplate class={styles.icon} />}>
     <ChipChoiceTemplate
       containerClassName={styles.list}
       options={filtersDataChoicesGetPropertyTypeId(filtersValue, filtersData)}

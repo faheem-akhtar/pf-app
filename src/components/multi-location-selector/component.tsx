@@ -1,27 +1,27 @@
 import { useState } from 'react';
 
-import { TFunction, useTranslation } from 'next-i18next';
-
 import { helpersIsClient } from 'helpers/is-client';
 import { LocationService } from 'services/location/service';
 import { multiLocationSelectorGetHistory } from './get-history';
 import { multiLocationSelectorMakeOnAddLocation } from './make-on-add-location';
 import { useConstructorHook } from 'helpers/hook/constructor.hook';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { IconThinMapPinTemplate } from 'components/icon/thin/map-pin-template';
 import { IconThinTimeTemplate } from 'components/icon/thin/time-template';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 import { MultiLocationSelectorComponentPropsInterface } from './component-props.interface';
 import { MultiSelectionAutocompleteComponent } from 'library/multi-selection-autocomplete/component';
-
-import styles from './multi-location-selector.module.scss';
+import { TFunctionType } from 'types/t-function/type';
 import { WindowService } from 'services/window/service';
 
-const renderNoSuggestions = (t: TFunction, inputValue: string): JSX.Element => (
+import styles from './multi-location-selector.module.scss';
+
+const renderNoSuggestions = (t: TFunctionType, inputValue: string): JSX.Element => (
   <span
     // eslint-disable-next-line react/no-danger
     dangerouslySetInnerHTML={{
-      __html: t('multi-location-selector-no-suggestions').replace('{inputValue}', inputValue),
+      __html: t('multi-location-selector/no-suggestions').replace('{inputValue}', inputValue),
     }}
   />
 );
@@ -33,7 +33,7 @@ export const MultiLocationSelectorComponent = ({
   maxHistoryLength = 8,
   maxSearchResults = 8,
 }: MultiLocationSelectorComponentPropsInterface): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = useTranslationHook();
   const [inputValue, setInputValue] = useState('');
 
   useConstructorHook(() => {
@@ -72,7 +72,7 @@ export const MultiLocationSelectorComponent = ({
       getChipTitle={(location): string =>
         `${location.abbreviation ? `${location.abbreviation} - ` : ''}${location.name}`
       }
-      placeholder={t('City, community or building')}
+      placeholder={t('multi-location-selector/placeholder')}
       onInputChange={queryLocations}
       onInputValueChange={setInputValue}
       onFocus={queryLocations}

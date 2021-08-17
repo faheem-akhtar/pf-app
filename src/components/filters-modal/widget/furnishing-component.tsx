@@ -14,7 +14,7 @@ export const FiltersModalWidgetFurnishingComponent: FiltersModalWidgetType = ({
   changeFiltersValue,
   t,
 }) => (
-  <FiltersModalItemTemplate label={t('Furnishing')} icon={<IconThickFurnishingTemplate class={styles.icon} />}>
+  <FiltersModalItemTemplate label={t('furnishing')} icon={<IconThickFurnishingTemplate class={styles.icon} />}>
     <ChipChoiceTemplate
       containerClassName={styles.list}
       options={filtersDataChoicesGetFurnished(filtersValue, filtersData)}

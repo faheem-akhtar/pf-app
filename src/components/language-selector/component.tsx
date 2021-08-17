@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
 
 import { configCommon } from 'config/common';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { LanguageSelectorTemplate } from './template';
 
 export const LanguageSelectorComponent = (): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = useTranslationHook();
   const { asPath, locale } = useRouter();
 
   const renderTemplate = (): JSX.Element =>

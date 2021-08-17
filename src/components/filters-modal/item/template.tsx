@@ -1,6 +1,5 @@
-import { useTranslation } from 'next-i18next';
-
 import { domClassMerge } from 'helpers/dom/class-merge';
+import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { FiltersModalItemTemplatePropsInterface } from './template-props.interface';
 
@@ -14,7 +13,7 @@ export const FiltersModalItemTemplate = ({
   hasBorder = true,
   containerClassName,
 }: FiltersModalItemTemplatePropsInterface): JSX.Element => {
-  const { t } = useTranslation();
+  const { t } = useTranslationHook();
 
   return (
     <section

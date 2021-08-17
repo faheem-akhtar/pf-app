@@ -15,7 +15,7 @@ export const FiltersModalWidgetBedroomComponent: FiltersModalWidgetType = ({
   changeFiltersValue,
   t,
 }) => (
-  <FiltersModalItemTemplate label={t('Bedrooms')} icon={<IconThickBedroomTemplate class={styles.icon} />}>
+  <FiltersModalItemTemplate label={t('bedrooms')} icon={<IconThickBedroomTemplate class={styles.icon} />}>
     <ChipChoiceTemplate
       containerClassName={styles.list}
       options={filtersDataChoicesGetMinBedroom(filtersValue, filtersData)}

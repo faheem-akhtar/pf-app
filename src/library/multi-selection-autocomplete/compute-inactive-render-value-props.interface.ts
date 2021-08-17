@@ -1,10 +1,10 @@
-import { TFunction } from 'next-i18next';
+import { TFunctionType } from 'types/t-function/type';
 
 export interface MultiSelectionAutocompleteComputeInactiveRenderValuePropsInterface<T> {
   /**
    * Translate fn
    */
-  t: TFunction;
+  t: TFunctionType;
   /**
    * MultiSelectionAutocomplete component value
    */

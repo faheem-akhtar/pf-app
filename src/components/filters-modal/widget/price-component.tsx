@@ -22,17 +22,17 @@ export const FiltersModalWidgetPriceComponent: FiltersModalWidgetType = ({
 
   return (
     <FiltersModalItemTemplate
-      label={t('Price ({currency})').replace('{currency}', t(configCommon.currencyCode))}
+      label={t('filters-modal/price-title').replace('{currency}', t(`currency-code/${configCommon.currencyCode}`))}
       icon={<IconThickPriceTemplate class={styles.icon} />}
       hasBorder={!filtersDataChoicesGetPaymentMethod(filtersValue, filtersData).length}
     >
       <div className={styles.split}>
         <SelectFieldTemplate
           dropdownIcon
-          label={t('From')}
+          label={t('from')}
           value={filtersValue[FiltersParametersEnum.minPrice]}
           options={filtersToRangeOptions(
-            filtersModalMapSelectOptionsLabels(options, t('From')),
+            filtersModalMapSelectOptionsLabels(options, t('from')),
             filtersValue[FiltersParametersEnum.maxPrice],
             true
           )}
@@ -42,10 +42,10 @@ export const FiltersModalWidgetPriceComponent: FiltersModalWidgetType = ({
         />
         <SelectFieldTemplate
           dropdownIcon
-          label={t('To')}
+          label={t('to')}
           value={filtersValue[FiltersParametersEnum.maxPrice]}
           options={filtersToRangeOptions(
-            filtersModalMapSelectOptionsLabels(options, t('To')),
+            filtersModalMapSelectOptionsLabels(options, t('to')),
             filtersValue[FiltersParametersEnum.minPrice],
             false
           )}
