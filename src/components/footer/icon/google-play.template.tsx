@@ -22,23 +22,23 @@ export const IconGooglePlayTemplate: FunctionComponent = () => (
       <path d='M.902 15.727c.13 0 .13 0 0 0 .772 0 1.032-.13 1.418-.387l18.176-9.926-4.64-4.64L.901 15.726z' id='l' />
       <path id='o' d='M0 51.563h165V0H0z' />
       <linearGradient x1='29.488%' y1='-6.086%' x2='55.051%' y2='92.166%' id='d'>
-        <stop stop-color='#006783' offset='0%' />
-        <stop stop-color='#89D1CF' offset='100%' />
+        <stop stopColor='#006783' offset='0%' />
+        <stop stopColor='#89D1CF' offset='100%' />
       </linearGradient>
       <linearGradient x1='-7.621%' y1='15.985%' x2='91.444%' y2='86.47%' id='g'>
-        <stop stop-color='#23BAB6' offset='0%' />
-        <stop stop-color='#DBE691' offset='100%' />
+        <stop stopColor='#23BAB6' offset='0%' />
+        <stop stopColor='#DBE691' offset='100%' />
       </linearGradient>
       <linearGradient x1='50%' y1='105.755%' x2='50%' y2='-3.127%' id='j'>
-        <stop stop-color='#FBBF72' offset='0%' />
-        <stop stop-color='#F4895B' offset='100%' />
+        <stop stopColor='#FBBF72' offset='0%' />
+        <stop stopColor='#F4895B' offset='100%' />
       </linearGradient>
       <linearGradient x1='10.955%' y1='117.586%' x2='90.242%' y2='11.852%' id='m'>
-        <stop stop-color='#702A8E' offset='0%' />
-        <stop stop-color='#E91C26' offset='100%' />
+        <stop stopColor='#702A8E' offset='0%' />
+        <stop stopColor='#E91C26' offset='100%' />
       </linearGradient>
     </defs>
-    <g fill='none' fill-rule='evenodd'>
+    <g fill='none' fillRule='evenodd'>
       <g>
         <mask id='b' fill='#fff'>
           <use xlinkHref='#a' />

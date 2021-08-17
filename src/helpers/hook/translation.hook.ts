@@ -12,11 +12,12 @@ const { NEXT_PUBLIC_COUNTRY_CODE } = process.env;
 // TODO-FE[TPNX-3145] update README
 export const useTranslationHook = (): { t: (key: string) => string } => {
   const { t } = useTranslation(NEXT_PUBLIC_COUNTRY_CODE);
+  const commonTranslations = useTranslation('common');
 
   return {
     t: (key: string): string => {
       if (key === t(key)) {
-        return useTranslation('common').t(key);
+        return commonTranslations.t(key);
       }
       return t(key);
     },

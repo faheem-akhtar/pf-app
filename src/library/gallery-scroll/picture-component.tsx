@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { domClassMerge } from 'helpers/dom/class-merge';
-import { helpersIsClient } from 'helpers/is-client';
 
 import { GalleryScrollPictureComponentPropsInterface } from './picture-component-props.interface';
 
@@ -12,7 +11,7 @@ export const GalleryScrollPictureComponent = ({
   sourceUrl,
   isTouched,
 }: GalleryScrollPictureComponentPropsInterface): JSX.Element => {
-  const [loading, setLoading] = useState(helpersIsClient);
+  const [loading, setLoading] = useState(true);
 
   return (
     <picture

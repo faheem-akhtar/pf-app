@@ -10,7 +10,7 @@ export const IconAppStoreTemplate = (): JSX.Element => (
       <path id='a' d='M0 0h165v51.563H0z' />
       <path id='c' d='M0 51.563h165V0H0z' />
     </defs>
-    <g fill='none' fill-rule='evenodd'>
+    <g fill='none' fillRule='evenodd'>
       <mask id='b' fill='#fff'>
         <use xlinkHref='#a' />
       </mask>

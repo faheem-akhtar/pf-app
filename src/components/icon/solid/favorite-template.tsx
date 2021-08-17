@@ -14,8 +14,8 @@ export const IconSolidFavoriteTemplate = (props: IconTemplatePropsInterface): JS
       width={clipped ? undefined : '24'}
     >
       <path
-        fill-rule='evenodd'
-        clip-rule='evenodd'
+        fillRule='evenodd'
+        clipRule='evenodd'
         d='M1.428 8.899l6.232 6.526a1.85 1.85 0 002.688-.008l6.224-6.518c1.931-2.022 1.931-5.488-.168-7.492-2.1-2.004-4.949-1.796-6.825.169L9 2.183l-.58-.607C6.546-.39 3.697-.551 1.597 1.407c-2.1 1.959-2.1 5.47-.168 7.492z'
         fill='currentColor'
       />

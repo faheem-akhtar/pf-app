@@ -58,15 +58,15 @@ export interface TextFieldTemplatePropsBaseInterface {
   /**
    * onChange event handler
    */
-  onChange: React.ChangeEventHandler<HTMLInputElement> & React.ChangeEventHandler<HTMLTextAreaElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 
   /**
    * onBlur event handler
    */
-  onBlur?: React.FocusEventHandler<HTMLInputElement> & React.FocusEventHandler<HTMLTextAreaElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 
   /**
    * onFocus event handler
    */
-  onFocus?: React.FocusEventHandler<HTMLInputElement> & React.FocusEventHandler<HTMLTextAreaElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
