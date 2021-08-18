@@ -1,15 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-import { configure } from 'enzyme';
-
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+// import '@testing-library/jest-dom'
 import React from 'react';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { setupSwrMock } from 'mocks/mock/use-swr';
-
-// Configure Enzyme for the appropriate React adapter
-configure({ adapter: new Adapter() });
 
 global.React = React;
 

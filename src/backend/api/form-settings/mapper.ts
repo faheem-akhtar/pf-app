@@ -453,6 +453,7 @@ const makeCategoryProcessor =
       .forEach(processPropertyType);
   };
 
+// TODO-FE[CX-409] add tests
 /**
  * Map form settings into FiltersDataInterface
  */

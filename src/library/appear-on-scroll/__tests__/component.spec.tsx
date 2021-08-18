@@ -2,13 +2,11 @@
  * @jest-environment jsdom
  */
 
-import { mount, ReactWrapper } from 'enzyme';
+import { render, screen, waitFor } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 
 import { AppearOnScrollComponent } from '../component';
 import { AppearOnScrollComponentPropsInterface } from '../component-props.interface';
-import { AppearOnScrollStatusEnum } from '../status.enum';
-import { AppearOnScrollTemplate } from '../template';
-import { AppearOnScrollTemplatePropsInterface } from '../template-props.interface';
 import { mockDocumentBodyClientHeight } from 'mocks/mock/document-body-client-height';
 import { mockElementGetBoundingClientRect } from 'mocks/mock/element-get-bounding-client-rect';
 import { mockSetTimeout } from 'mocks/mock/set-timeout';
@@ -17,9 +15,8 @@ const BODY_CLIENT_HEIGHT = 10;
 type Observer = (elements: { isIntersecting: boolean }[]) => void;
 
 // TODO-FE[CX-169] enable back
-xdescribe('AppearOnScrollComponent', () => {
+describe('AppearOnScrollComponent', () => {
   let IntersectionObserverCallback: Observer;
-  let wrapper: ReactWrapper;
 
   let defaultProps: AppearOnScrollComponentPropsInterface;
 
@@ -41,9 +38,6 @@ xdescribe('AppearOnScrollComponent', () => {
       },
     });
 
-    mockElementGetBoundingClientRect({ y: 1 });
-    mockDocumentBodyClientHeight(BODY_CLIENT_HEIGHT);
-
     defaultProps = {
       onEntering: jest.fn(),
       onVisible: jest.fn(),
@@ -51,67 +45,57 @@ xdescribe('AppearOnScrollComponent', () => {
       onHidden: jest.fn(),
       children: <div>Some content</div>,
     };
-
-    wrapper = mount(<AppearOnScrollComponent {...defaultProps} />);
+    mockElementGetBoundingClientRect({ y: 1 });
+    mockDocumentBodyClientHeight(BODY_CLIENT_HEIGHT);
   });
 
   describe('animation classes changes', () => {
-    const getTemplate = (): ReactWrapper<AppearOnScrollTemplatePropsInterface> => wrapper.find(AppearOnScrollTemplate);
+    const getTemplate = (): Promise<HTMLElement> => {
+      return screen.findByTestId('AppearOnScrollTemplate');
+    };
+    const assertTemplateStatus: (className: string) => Promise<void> = async (className: string) => {
+      const template = await getTemplate();
+      expect(template.className).toContain(className);
+    };
 
-    const assertTemplateStatus: (status: AppearOnScrollStatusEnum) => void = (status) =>
-      expect((getTemplate().props() as AppearOnScrollTemplatePropsInterface).status).toEqual(status);
+    it('should pass an animation class to the template', async () => {
+      render(<AppearOnScrollComponent {...defaultProps} />);
+      await assertTemplateStatus('appear_on_scroll__hidden');
+    });
 
-    it('should pass an animation class to the template', () => {
-      expect(getTemplate().props() as AppearOnScrollTemplatePropsInterface).toEqual({
-        className: undefined,
-        children: defaultProps.children,
-        status: AppearOnScrollStatusEnum.WRAPPER_IN_VIEW,
+    it('should call onEntering and the onHidden method when wrapper is out of the viewport', async () => {
+      render(<AppearOnScrollComponent {...defaultProps} />);
+
+      await act(async () => {
+        await IntersectionObserverCallback([{ isIntersecting: false }]);
+        await flushSetTimeouts();
+      });
+
+      await waitFor(() => {
+        expect(defaultProps.onEntering).toHaveBeenCalled();
+        expect(defaultProps.onHidden).toHaveBeenCalled();
       });
     });
 
-    it('should call onEntering method when wrapper is out of the viewport', async () => {
-      mockElementGetBoundingClientRect({ y: BODY_CLIENT_HEIGHT });
-      wrapper = mount(<AppearOnScrollComponent {...defaultProps} />);
-
-      assertTemplateStatus(AppearOnScrollStatusEnum.WRAPPER_OUTSIDE_VIEW);
-    });
-
-    fit('should call onEntering method when wrapper is out of the viewport', async () => {
-      assertTemplateStatus(AppearOnScrollStatusEnum.WRAPPER_IN_VIEW);
-      IntersectionObserverCallback([{ isIntersecting: false }]);
-      assertTemplateStatus(AppearOnScrollStatusEnum.ENTERING);
-      flushSetTimeouts();
-      assertTemplateStatus(AppearOnScrollStatusEnum.WRAPPER_OUTSIDE_VIEW);
-      expect(defaultProps.onEntering).toHaveBeenCalled();
-    });
-
-    it('should call onVisible method when wrapper is out of the viewport after the timeout', async () => {
-      assertTemplateStatus(AppearOnScrollStatusEnum.WRAPPER_IN_VIEW);
-      IntersectionObserverCallback([{ isIntersecting: false }]);
-      assertTemplateStatus(AppearOnScrollStatusEnum.ENTERING);
-      flushSetTimeouts();
-      assertTemplateStatus(AppearOnScrollStatusEnum.WRAPPER_OUTSIDE_VIEW);
-      expect(defaultProps.onVisible).toHaveBeenCalled();
-    });
-
     it('should call onExiting when wrapper is in the viewport', async () => {
-      assertTemplateStatus(AppearOnScrollStatusEnum.WRAPPER_IN_VIEW);
-      IntersectionObserverCallback([{ isIntersecting: false }]);
-      assertTemplateStatus(AppearOnScrollStatusEnum.ENTERING);
+      render(<AppearOnScrollComponent {...defaultProps} />);
 
-      flushSetTimeouts();
-      assertTemplateStatus(AppearOnScrollStatusEnum.WRAPPER_OUTSIDE_VIEW);
-      expect(defaultProps.onVisible).toHaveBeenCalled();
+      await act(async () => {
+        await IntersectionObserverCallback([{ isIntersecting: false }]);
+        await flushSetTimeouts();
+        await IntersectionObserverCallback([{ isIntersecting: true }]);
+        await flushSetTimeouts();
+      });
 
-      IntersectionObserverCallback([{ isIntersecting: true }]);
-      assertTemplateStatus(AppearOnScrollStatusEnum.EXITING);
-      flushSetTimeouts();
-      assertTemplateStatus(AppearOnScrollStatusEnum.WRAPPER_IN_VIEW);
-      expect(defaultProps.onExiting).toHaveBeenCalled();
+      await waitFor(() => {
+        expect(defaultProps.onExiting).toHaveBeenCalled();
+        expect(defaultProps.onVisible).toHaveBeenCalled();
+      });
     });
 
     it('should disconnect observer on unmount', () => {
-      wrapper.unmount();
+      const { unmount } = render(<AppearOnScrollComponent {...defaultProps} />);
+      unmount();
       expect(IntersectionObserverDisconnectMock).toHaveBeenCalled();
     });
   });

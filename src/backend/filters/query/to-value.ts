@@ -38,6 +38,7 @@ Object.keys(locationsByLocale).forEach((locale) => {
   );
 });
 
+// TODO-FE[CX-409] add tests
 export const backendFiltersQueryToValue = (
   queryParams: FiltersQueryInterface,
   locale: string

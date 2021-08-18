@@ -2,46 +2,43 @@
  * @jest-environment jsdom
  */
 
+import { render } from '@testing-library/react';
+
 import { appRootElementId } from 'src/constants/app/root-element-id';
-import { shallow } from 'enzyme';
 
 import { ModalPortalComponent } from '../portal-component';
 
 // TODO-FE[CX-169] enable back
-xdescribe('ModalPortalComponent', () => {
-  beforeEach(() => {
-    const getElementByIdSpy = (document.getElementById = jest.fn());
-    getElementByIdSpy.mockReturnValue({
-      classList: {
-        add: jest.fn(),
-        remove: jest.fn(),
-      },
-    });
-  });
-  it('It should add hide classname when opened', () => {
-    const getElementByIdSpy = (document.getElementById = jest.fn());
-    const classList = {
-      add: jest.fn(),
-    };
-    getElementByIdSpy.mockReturnValue({ classList });
-    shallow(<ModalPortalComponent>content</ModalPortalComponent>);
+describe('ModalPortalComponent', () => {
+  let modalRoot: HTMLDivElement;
+  let appRoot: HTMLDivElement;
 
-    expect(getElementByIdSpy).toHaveBeenCalledWith(appRootElementId);
-    expect(classList.add).toHaveBeenCalledTimes(1);
+  beforeEach(() => {
+    modalRoot = document.createElement('div');
+    modalRoot.id = 'modal-root';
+    document.body.appendChild(modalRoot);
+    appRoot = document.createElement('div');
+    appRoot.id = appRootElementId;
+    document.body.appendChild(appRoot);
+  });
+
+  afterEach(() => {
+    modalRoot.remove();
+    appRoot.remove();
+  });
+
+  it('It should add hide classname when opened', async () => {
+    render(<ModalPortalComponent>content</ModalPortalComponent>);
+
+    // expecting undefined because css modules do not export classnames
+    expect(appRoot.className).toMatchInlineSnapshot(`"hide"`);
   });
 
   it('It should remove hide classname on unmount', () => {
-    const getElementByIdSpy = (document.getElementById = jest.fn());
-    const classList = {
-      add: jest.fn(),
-      remove: jest.fn(),
-    };
-    getElementByIdSpy.mockReturnValue({ classList });
-    const wrapper = shallow(<ModalPortalComponent>content</ModalPortalComponent>);
+    const { unmount } = render(<ModalPortalComponent>content</ModalPortalComponent>);
+    unmount();
 
-    wrapper.unmount();
-
-    expect(classList.remove).toHaveBeenCalledTimes(1);
+    expect(appRoot.className).toMatchInlineSnapshot(`""`);
   });
 
   it('It should return scroll top on unmount', () => {
@@ -51,12 +48,10 @@ xdescribe('ModalPortalComponent', () => {
       set: jest.fn(),
     };
     Object.defineProperty(document.documentElement, 'scrollTop', scrollTop);
-    const wrapper = shallow(<ModalPortalComponent>content</ModalPortalComponent>);
+    const { unmount } = render(<ModalPortalComponent>content</ModalPortalComponent>);
 
-    wrapper.unmount();
+    unmount();
 
-    expect(scrollTop.get).toHaveBeenCalledTimes(1);
-    expect(scrollTop.set).toHaveBeenCalledTimes(1);
     expect(scrollTop.set).toHaveBeenCalledWith(expectedScrollTop);
   });
 });

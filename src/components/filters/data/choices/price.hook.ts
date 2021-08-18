@@ -70,6 +70,7 @@ const usePriceChoices = (
   return choices;
 };
 
+// TODO-FE[CX-411] Add tests
 export const useFiltersDataChoicesPrice = (
   value: FiltersValueInterface
 ): FiltersValueFieldChoiceInterface<number | null>[] => {

@@ -26,7 +26,7 @@ module.exports = {
     ...require('jest-module-name-mapper').default(),
     // Mocking static assets
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': 'mocks/fileMock.js',
-    '\\.(css|scss)$': 'mocks/styleMock.js',
+    '\\.(css|scss)$': 'identity-obj-proxy',
   },
   modulePaths: ['<rootDir>'],
   transform: {
@@ -43,8 +43,7 @@ module.exports = {
 
   testEnvironment: 'node',
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)?$',
-  setupFilesAfterEnv: ['<rootDir>/setup-enzyme.ts'],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
+  setupFilesAfterEnv: ['<rootDir>/mocks/setup.ts'],
   moduleDirectories: ['node_modules'],
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\](?!lodash-es/).+\\.js$'],
 };

@@ -8,6 +8,7 @@ import { PropertyContactOptionsListInterface } from 'components/property/contact
 import { PropertySerpInterface } from 'components/property/serp/interface';
 import { PropertySerpSearchResultType } from 'components/property/serp/search-result.type';
 
+// TODO-FE[CX-409] add tests
 export const backendApiPropertySearchMapper = (
   data: BackendApiPropertySearchJsonApiResultType,
   rawJson: BackendApiPropertySearchRawJsonResponseType

@@ -19,6 +19,7 @@ import { AnyValueType } from 'types/any/value.type';
 import { PropertySerpInterface } from 'components/property/serp/interface';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 
+// TODO-FE[CX-409] add tests
 export const backendPropertySerpObfuscate = (property: PropertySerpInterface): PropertySerpObfuscatedType => {
   const obfuscatedProperty: Record<string, AnyValueType> = {};
 

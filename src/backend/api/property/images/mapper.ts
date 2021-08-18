@@ -3,6 +3,7 @@ import { configIsTrace } from 'config/is-trace';
 import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
 import { PropertyImagesResultType } from 'components/property/images-result.type';
 
+// TODO-FE[CX-409] add tests
 export const backendApiPropertyImagesMapper = (
   properties: BackendApiPropertyJsonApiResultType
 ): PropertyImagesResultType => {

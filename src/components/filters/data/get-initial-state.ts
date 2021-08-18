@@ -4,6 +4,7 @@ import { FiltersDataInterface } from './interface';
 import { FiltersValueBaseInterface } from '../value/base-interface';
 import { FiltersValueInterface } from '../value/interface';
 
+// TODO-FE[CX-411] Add tests
 /**
  * Returns initial state for given category and propertyTypeId
  * @param filtersData

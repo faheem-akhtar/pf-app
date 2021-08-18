@@ -17,7 +17,10 @@ export const AppearOnScrollTemplate = ({
   className,
   children,
 }: AppearOnScrollTemplatePropsInterface): JSX.Element => (
-  <div className={domClassMerge(styles.appear_on_scroll, classByStatus[status as AppearOnScrollStatusEnum], className)}>
+  <div
+    data-testid='AppearOnScrollTemplate'
+    className={domClassMerge(styles.appear_on_scroll, classByStatus[status as AppearOnScrollStatusEnum], className)}
+  >
     {children}
   </div>
 );

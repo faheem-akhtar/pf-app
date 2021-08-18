@@ -14,6 +14,7 @@ export const GalleryScrollTemplate: React.FunctionComponent<GalleryScrollTemplat
         onTouchStart={props.onTouchStart}
         onMouseDown={props.onMouseDown}
         onClick={props.onClick}
+        data-testid='GalleryScroll'
       >
         {(props.isTouched ? props.items : props.items.slice(0, 1)).map((item, i) => (
           <GalleryScrollPictureComponent {...item} isTouched={props.isTouched} key={i} />

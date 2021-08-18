@@ -5,6 +5,7 @@ import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-
 import { FiltersQueryInterface } from '../query/interface';
 import { FiltersValueInterface } from './interface';
 
+// TODO-FE[CX-411] Add tests
 export const filtersValueToQuery = (params: FiltersValueInterface): FiltersQueryInterface => {
   return objectFilterNonOrEmptyValue<FiltersQueryInterface>({
     [FiltersQueryParametersEnum.locationsIds]: params[FiltersParametersEnum.locationsIds].map((l) => l.id).join('-'),

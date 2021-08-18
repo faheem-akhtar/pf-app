@@ -6,6 +6,7 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueBaseInterface } from 'components/filters/value/base-interface';
 import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
 
+// TODO-FE[CX-411] Add tests
 export const filtersDataChoicesMakeGetChoices =
   <Choice extends FiltersValueFieldChoiceInterface<string | number>>(filterType: FiltersParametersEnum) =>
   (value: FiltersValueBaseInterface, data: FiltersDataInterface): Choice[] => {

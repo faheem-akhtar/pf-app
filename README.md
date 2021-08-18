@@ -38,7 +38,7 @@ Healtcheck path: /pf-web-app/ping
 
 ## Testing
 
-The app is tested with [jest](https://jestjs.io/) and [enzyme](https://enzymejs.github.io/enzyme/).
+The app is tested with [jest](https://jestjs.io/) and [react-testing-library](https://testing-library.com/docs/react-testing-library).
 
 There are 4 scripts to test the app:
 

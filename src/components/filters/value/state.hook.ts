@@ -42,6 +42,7 @@ type ReturnType = {
   resetFiltersValue: () => FiltersValueInterface;
 };
 
+// TODO-FE[CX-411] Add tests
 export const useFiltersValueState = (
   filtersData: FiltersDataInterface,
   initialState: FiltersValueInterface

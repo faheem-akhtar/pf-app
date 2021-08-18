@@ -2,11 +2,10 @@
  * @jest-environment jsdom
  */
 
-import { shallow } from 'enzyme';
+import { fireEvent, render } from '@testing-library/react';
 
 import { ContactOptionsDisabledMock } from 'mocks/contact-options/disabled-mock';
 import { ContactOptionsMock } from 'mocks/contact-options/mock';
-import { PropertyCardCtaButtonsGroupButtonTemplate } from '../button/template';
 import { PropertyCardCtaButtonsGroupTemplate } from '../template';
 import { PropertyCardCtaButtonsGroupTemplatePropsInterface } from '../template-props.interface';
 
@@ -20,44 +19,37 @@ const makeDefaultProps = (): PropertyCardCtaButtonsGroupTemplatePropsInterface =
 describe('PropertyCardCtaButtonsGroupTemplate', () => {
   it('should call onCallClick prop', () => {
     const defaultProps = makeDefaultProps();
-    const wrapper = shallow(<PropertyCardCtaButtonsGroupTemplate {...defaultProps} />);
+    const { getByText } = render(<PropertyCardCtaButtonsGroupTemplate {...defaultProps} />);
 
-    const callButton = wrapper.find(PropertyCardCtaButtonsGroupButtonTemplate).at(0);
-
-    (callButton.props().onClick as Function)();
+    fireEvent.click(getByText('cta-call'));
 
     expect(defaultProps.onCallClick).toHaveBeenCalled();
   });
 
   it('should call onWhatsappClick prop', () => {
     const defaultProps = makeDefaultProps();
-    const wrapper = shallow(<PropertyCardCtaButtonsGroupTemplate {...defaultProps} />);
+    const { getByText } = render(<PropertyCardCtaButtonsGroupTemplate {...defaultProps} />);
 
-    const waButton = wrapper.find(PropertyCardCtaButtonsGroupButtonTemplate).at(1);
-
-    (waButton.props().onClick as Function)();
+    fireEvent.click(getByText('cta-whatsapp'));
 
     expect(defaultProps.onWhatsappClick).toHaveBeenCalled();
   });
 
   it('should call onEmailClick prop', () => {
     const defaultProps = makeDefaultProps();
-    const wrapper = shallow(<PropertyCardCtaButtonsGroupTemplate {...defaultProps} />);
+    const { getByText } = render(<PropertyCardCtaButtonsGroupTemplate {...defaultProps} />);
 
-    const emailButton = wrapper.find(PropertyCardCtaButtonsGroupButtonTemplate).at(2);
-
-    (emailButton.props().onClick as Function)();
+    fireEvent.click(getByText('cta-email'));
 
     expect(defaultProps.onEmailClick).toHaveBeenCalled();
   });
 
   it('should not render any buttons if options are not there', () => {
     const defaultProps = makeDefaultProps();
-    const wrapper = shallow(
+    const { container } = render(
       <PropertyCardCtaButtonsGroupTemplate {...defaultProps} contactOptions={ContactOptionsDisabledMock} />
     );
-    const buttons = wrapper.find(PropertyCardCtaButtonsGroupButtonTemplate);
 
-    expect(buttons.length).toBe(0);
+    expect(container.innerHTML).toMatchInlineSnapshot(`"<div class=\\"container\\"></div>"`);
   });
 });

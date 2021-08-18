@@ -19,10 +19,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
   useGalleryScrollEffects(state.pointerPositionStart !== null, dispatch);
 
   const onStart = (positionX: number): void => {
-    if (!galleryRef.current) {
-      return;
-    }
-    const galleryRect = galleryRef.current.getBoundingClientRect();
+    const galleryRect = (galleryRef.current as HTMLDivElement).getBoundingClientRect();
 
     dispatch({
       type: 'start',
