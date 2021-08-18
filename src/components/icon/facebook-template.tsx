@@ -3,7 +3,7 @@ import { IconTemplatePropsInterface } from 'components/icon/template-props.inter
 export const IconFacebookTemplate = (props: IconTemplatePropsInterface): JSX.Element => {
   return (
     <svg viewBox='0 0 12 23' className={props.class}>
-      <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+      <g id='Page-1' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
         <g id='Desktop-Log-In--' transform='translate(-190.000000, -198.000000)' fill='#FEFEFE'>
           <g id='Connect-with-Facebook' transform='translate(166.000000, 186.000000)'>
             <g id='Group'>

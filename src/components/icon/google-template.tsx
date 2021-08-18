@@ -4,7 +4,7 @@ export const IconGoogleTemplate = (props: IconTemplatePropsInterface): JSX.Eleme
   return (
     <svg viewBox='0 0 22 22' className={props.class}>
       <g id='svg-google-plus'>
-        <g id='Page-1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+        <g id='Page-1' stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
           <g id='Desktop-Log-In--' transform='translate(-183.000000, -256.000000)'>
             <g id='logo_googleg_48dp' transform='translate(183.000000, 256.000000)'>
               <g id='Group-2-Copy'>

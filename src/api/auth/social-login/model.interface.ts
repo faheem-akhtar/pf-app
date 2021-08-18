@@ -7,16 +7,6 @@ export interface ApiAuthSocialLoginModelInterface {
   email: string;
 
   /**
-   * Password
-   */
-  password: string;
-
-  /**
-   * Remember me?
-   */
-  rememberMe: boolean;
-
-  /**
    * User
    */
   user: UserModelInterface;

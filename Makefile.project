@@ -19,4 +19,4 @@ run-tests: yarn-install
 	@echo "======================"
 	@echo "Running typechecking and tests"
 	@echo "======================"
-	docker-compose -f ${DOCKER_COMPOSE_FILE} run --rm pfwebapp-builder bash -c 'yarn test'
+	docker-compose -f ${DOCKER_COMPOSE_FILE} run --rm pfwebapp-builder bash -c 'yarn download-resources && yarn lint && yarn validate-types && yarn test'
