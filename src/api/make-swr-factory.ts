@@ -41,7 +41,12 @@ export const ApiMakeSwrFactory =
         shouldFetch = false;
       }
       const key = `${locale}-${factoryProps.url}-${factoryProps.method}-${JSON.stringify(props.query)}`;
-      const swrResult = useSWR(shouldFetch ? key : null, () => fetcher({ ...props, locale }));
+      const options = {
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+      };
+
+      const swrResult = useSWR(shouldFetch ? key : null, () => fetcher({ ...props, locale }), options);
 
       return swrResult.isValidating || !swrResult.data ? { ok: null } : swrResult.data;
     };
