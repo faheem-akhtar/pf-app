@@ -10,6 +10,7 @@ import { FiltersModalContentComponent } from './content-component';
 import { IconThinFilterOpenTemplate } from 'components/icon/thin/filter-open-template';
 import { ModalComponent } from 'components/modal/component';
 
+// TODO-FE[CX-423] add tests
 export const FiltersModalButtonComponent = (): JSX.Element => {
   const openFiltersRef = useRef<() => void>(() => null);
   const closeFiltersRef = useRef<() => void>(() => null);

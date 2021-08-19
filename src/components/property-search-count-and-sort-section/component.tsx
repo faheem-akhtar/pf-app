@@ -13,6 +13,7 @@ import { PropertySearchCountAndSortSectionComponentPropsType } from './component
 import styles from './property-search-count-and-sort-section.module.scss';
 import { useTranslationHook } from 'helpers/hook/translation.hook';
 
+// TODO-FE[CX-426] add tests
 export const PropertySearchCountAndSortSectionComponent = ({
   count,
   loading,

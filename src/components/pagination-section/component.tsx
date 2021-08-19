@@ -52,6 +52,7 @@ const renderLink = (
   );
 };
 
+// TODO-FE[CX-425] Add tests
 export const PaginationSectionComponent = ({
   pagesAvailable,
   loading,

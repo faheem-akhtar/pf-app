@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LayoutComponent renders without throwing any errors 1`] = `
+<div>
+  <div
+    class="dropdownLoader"
+  >
+    <div
+      class="container"
+    >
+      <div
+        class="dot"
+      />
+      <div
+        class="dot middle"
+      />
+      <div
+        class="dot last"
+      />
+    </div>
+  </div>
+</div>
+`;

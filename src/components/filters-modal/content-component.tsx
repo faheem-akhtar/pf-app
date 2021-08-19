@@ -21,6 +21,7 @@ import styles from './filters-modal-component.module.scss';
 
 const filtersSequence = Object.keys(filtersModalWidgetRenderMap);
 
+// TODO-FE[CX-423] add tests
 export const FiltersModalContentComponent = ({ close }: { close: () => void }): JSX.Element => {
   const resultsCountForCurrentQuery = useContext(PropertySearchResultsCountForCurrentQueryContext);
   const filtersCtx = useContext(FiltersContext);

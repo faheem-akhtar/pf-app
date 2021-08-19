@@ -9,6 +9,7 @@ import { FiltersModalSubmitButtonPropsInterface } from './submit-button-props.in
 import styles from './filters-modal-component.module.scss';
 import { useTranslationHook } from 'helpers/hook/translation.hook';
 
+// TODO-FE[CX-423] add tests
 export const FiltersModalSubmitButtonComponent = ({
   onSubmit,
   filtersValue,

@@ -21,6 +21,7 @@ const ButtonsRow = ({ className }: { className?: string }): JSX.Element => (
   </div>
 );
 
+// TODO-FE[CX-423] add tests
 export const FiltersSectionComponent = (): JSX.Element => {
   const router = useRouter();
   const filtersCtx = useContext(FiltersContext);

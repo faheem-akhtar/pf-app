@@ -10,6 +10,7 @@ import { PropertySearchView } from 'views/property-search/view';
 import { PropertySearchViewPropsType } from 'views/property-search/view-props.type';
 import { translationGetDefinitions } from 'helpers/translation/get-definitions';
 
+// TODO-FE[CX-429] add tests
 export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType> = async (
   context: GetServerSidePropsContext
 ) => {

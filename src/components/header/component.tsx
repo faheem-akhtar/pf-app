@@ -9,6 +9,7 @@ import { HeaderTemplate } from './template';
 import { ModalComponent } from 'components/modal/component';
 import { UserContext } from 'context/user/context';
 
+// TODO-FE[CX-424] Add tests
 export const HeaderComponent = (): JSX.Element => {
   const locale = useRouter().locale as string;
 
