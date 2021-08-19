@@ -35,7 +35,7 @@ ingress:
     kubernetes.io/ingress.class: 'nginx'
     nginx.ingress.kubernetes.io/use-regex: 'true'
     # kubernetes.io/tls-acme: "true"
-  mobilePath: /(_next|((en|ar|fr)/(search|static|api/location/list|api/location/search|api/property-search/count|api/property-search/images)))(.*)
+  mobilePath: /(_next|((en|ar|fr)/(search|static|api/location/list|api/location/search|api/property-search/count|api/property-search/images|api/property-search/agent)))(.*)
   desktopPath: /pf-web-app\/(.*)
   tls: []
   #  - secretName: chart-example-tls
