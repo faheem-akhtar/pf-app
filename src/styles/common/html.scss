@@ -54,6 +54,9 @@ button {
 
 button {
   background: none;
+
+  /* Ensure that default text color of buttons is brand black */
+  color: var(--color-global-black);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }

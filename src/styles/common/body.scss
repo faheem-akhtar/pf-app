@@ -1,5 +1,9 @@
 body {
   background: var(--color-global-stone-25);
+
+  /* Ensure that default text color and fill is brand black and not rgb(0,0,0) black */
+  color: var(--color-global-black);
+  fill: var(--color-global-black);
   font-family: var(--font-family-default);
 }
 

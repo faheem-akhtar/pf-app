@@ -13,7 +13,12 @@ export const backendApiPropertySearchMapper = (
   data: BackendApiPropertySearchJsonApiResultType,
   rawJson: BackendApiPropertySearchRawJsonResponseType
 ): PropertySerpSearchResultType => {
-  const properties: PropertySerpInterface[] = data.properties.map((property) => {
+  const properties: PropertySerpInterface[] = [
+    ...data.cts,
+    ...data.smart_ads,
+    ...data.direct_from_developer,
+    ...data.properties,
+  ].map((property) => {
     const {
       name,
       links,
