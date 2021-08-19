@@ -37,7 +37,7 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
   const { t } = useTranslationHook();
 
   return (
-    <div className={styles.containter}>
+    <div className={styles.container}>
       <div className={styles.header}>
         <div onClick={close} className={styles.headerLeft}>
           <IconThickCloseTemplate class={styles.closeIcon} />

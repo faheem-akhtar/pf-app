@@ -17,6 +17,7 @@ import { PropertyCardMenuContentTemplate } from './menu/content/template';
 import { PropertyCardMenuModalComponent } from './menu/modal/component';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
+import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
 
 export const PropertyCardComponent = ({ property, loading }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
@@ -74,7 +75,11 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
     <div>
       <PropertyCardTemplate {...cardTemplateProps} />
       <EmailAgentModalComponent openRef={emailAgentModalOpenRef} />
-      <CallingAgentModalComponent openRef={callingAgentModalOpenRef} />
+      <CallingAgentModalComponent
+        propertyId={propertySerpObfuscatedGetId(property)}
+        referenceId={propertySerpObfuscatedGetReference(property)}
+        openRef={callingAgentModalOpenRef}
+      />
       <PropertyCardMenuModalComponent closeButtonLabel={t('cta-cancel')} openRef={menuModalOpenRef}>
         <PropertyCardMenuContentTemplate t={t} />
       </PropertyCardMenuModalComponent>

@@ -25,6 +25,7 @@ export const backendApiPropertySearchMapper = (
       exclusive,
       property_type,
       meta,
+      reference,
     } = property;
 
     const { email, phone, whatsapp } = meta.contact_options.app;
@@ -57,6 +58,7 @@ export const backendApiPropertySearchMapper = (
       contactOptionsList,
       priceText: meta.price_text,
       id: property.id,
+      reference,
     };
 
     if (configIsTrace) {

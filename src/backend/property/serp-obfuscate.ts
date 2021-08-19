@@ -12,6 +12,7 @@ import { propertySerpObfuscatedFieldLocationTreePath } from 'components/property
 import { propertySerpObfuscatedFieldName } from 'components/property/serp/obfuscated/field/name';
 import { propertySerpObfuscatedFieldPriceText } from 'components/property/serp/obfuscated/field/price-text';
 import { propertySerpObfuscatedFieldPropertyTypeName } from 'components/property/serp/obfuscated/field/property-type-name';
+import { propertySerpObfuscatedFieldReference } from 'components/property/serp/obfuscated/field/reference';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
 
@@ -72,6 +73,9 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
         break;
       case 'id':
         obfuscatedProperty[propertySerpObfuscatedFieldId] = value;
+        break;
+      case 'reference':
+        obfuscatedProperty[propertySerpObfuscatedFieldReference] = value;
         break;
       default:
         assertUnreachable(propertyKey);

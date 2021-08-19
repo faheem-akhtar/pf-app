@@ -21,4 +21,9 @@ export interface ModalComponentPropsInterface {
    * @default false
    */
   overlay?: boolean;
+
+  /**
+   * invoked when modal is opened
+   */
+  onOpen?: () => void;
 }

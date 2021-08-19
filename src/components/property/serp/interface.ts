@@ -75,4 +75,9 @@ export interface PropertySerpInterface {
    * Example: 110,000 درهم سنوياً
    */
   priceText: string;
+
+  /**
+   * Property reference ID
+   */
+  reference: string;
 }

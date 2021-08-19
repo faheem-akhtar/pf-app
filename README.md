@@ -4,6 +4,7 @@ Website - rewrite repository
 
 ### Project
 
+Before moving next steps, please be sure installed NodeJS version is `v14.17.1`
 To start container in local, please run scripts in root folder
 
 ```
