@@ -1,4 +1,5 @@
 import { PropertyContactOptionsListInterface } from '../../property/contact-options-list.interface';
+import { TFunctionType } from 'types/t-function/type';
 
 export interface PropertyCardCtaButtonsGroupTemplatePropsInterface {
   /**
@@ -17,4 +18,8 @@ export interface PropertyCardCtaButtonsGroupTemplatePropsInterface {
    * On Email click
    */
   onEmailClick: () => void;
+  /**
+   * Translate function
+   */
+  t: TFunctionType;
 }

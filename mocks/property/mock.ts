@@ -18,12 +18,12 @@ import { ContactOptionsMock } from 'mocks/contact-options/mock';
 
 export const PropertyMock: PropertySerpObfuscatedType = {
   [propertySerpObfuscatedFieldUrl]: 'url',
-  [propertySerpObfuscatedFieldName]: 'name',
+  [propertySerpObfuscatedFieldName]: 'Title from agent',
   [propertySerpObfuscatedFieldVerified]: true,
   [propertySerpObfuscatedFieldListingLevel]: 'premium',
   [propertySerpObfuscatedFieldBathroomValue]: 3,
   [propertySerpObfuscatedFieldBedroomValue]: 2,
-  [propertySerpObfuscatedFieldLocationTreePath]: '3.55',
+  [propertySerpObfuscatedFieldLocationTreePath]: 'Dubai, Marina',
   [propertySerpObfuscatedFieldExclusive]: true,
   [propertySerpObfuscatedFieldImgUrl]: 'img url',
   [propertySerpObfuscatedFieldPropertyTypeName]: 'Villa',

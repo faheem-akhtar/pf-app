@@ -1,16 +1,12 @@
 import { Fragment } from 'react';
 
-import { useTranslationHook } from 'helpers/hook/translation.hook';
-
 import { IconThinEyeHideTemplate } from 'components/icon/thin/eye-hide-template';
 import { IconThinReportTemplate } from 'components/icon/thin/report-template';
 import { IconThinShareTemplate } from 'components/icon/thin/share-template';
-
 import { PropertyCardMenuContentButtonTemplate } from './button/template';
+import { TFunctionType } from 'types/t-function/type';
 
-export const PropertyCardMenuContentTemplate = (): JSX.Element => {
-  const { t } = useTranslationHook();
-
+export const PropertyCardMenuContentTemplate = ({ t }: { t: TFunctionType }): JSX.Element => {
   return (
     <Fragment>
       <PropertyCardMenuContentButtonTemplate

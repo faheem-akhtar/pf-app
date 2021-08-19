@@ -1,5 +1,3 @@
-import { useTranslationHook } from 'helpers/hook/translation.hook';
-
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
@@ -10,8 +8,6 @@ import styles from '../property-cta-buttons.module.scss';
 
 export const PropertyCardCtaButtonsGroupButtonTemplate: React.FunctionComponent<PropertyCardCtaButtonsGroupButtonTemplatePropsInterface> =
   (props) => {
-    const { t } = useTranslationHook();
-
     return (
       <ButtonTemplate
         className={styles.button}
@@ -21,7 +17,7 @@ export const PropertyCardCtaButtonsGroupButtonTemplate: React.FunctionComponent<
         icon={{ component: props.iconComponent, position: ButtonIconPositionEnum.left }}
         onClick={props.onClick}
       >
-        {t(props.labelKey)}
+        {props.label}
       </ButtonTemplate>
     );
   };

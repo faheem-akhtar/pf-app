@@ -27,7 +27,7 @@ export const PropertyCardTemplate = (props: PropertyCardTemplatePropsType): JSX.
         <PropertyCardTitleTemplate {...props} />
         <h2 className={styles.title_from_agent}>{propertySerpObfuscatedGetName(props.property)}</h2>
         <div className={styles.location}>{propertySerpObfuscatedGetLocationTreePath(props.property)}</div>
-        <PropertyCardInfoTemplate property={props.property} />
+        <PropertyCardInfoTemplate property={props.property} t={props.t} />
         <div className={styles.fill_vertical_space} />
         <PropertyCardCtaButtonsGroupTemplate
           {...props.ctaButtons}

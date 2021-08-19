@@ -14,6 +14,7 @@ const makeDefaultProps = (): PropertyCardCtaButtonsGroupTemplatePropsInterface =
   onCallClick: jest.fn(),
   onWhatsappClick: jest.fn(),
   onEmailClick: jest.fn(),
+  t: (x: string): string => x,
 });
 
 describe('PropertyCardCtaButtonsGroupTemplate', () => {
@@ -28,7 +29,19 @@ describe('PropertyCardCtaButtonsGroupTemplate', () => {
 
   it('should call onWhatsappClick prop', () => {
     const defaultProps = makeDefaultProps();
-    const { getByText } = render(<PropertyCardCtaButtonsGroupTemplate {...defaultProps} />);
+    const { getByText } = render(
+      <PropertyCardCtaButtonsGroupTemplate
+        {...defaultProps}
+        contactOptions={{
+          ...defaultProps.contactOptions,
+          whatsapp: {
+            type: 'whatsapp',
+            value: '5555555',
+            link: 'phone://5555555',
+          },
+        }}
+      />
+    );
 
     fireEvent.click(getByText('cta-whatsapp'));
 

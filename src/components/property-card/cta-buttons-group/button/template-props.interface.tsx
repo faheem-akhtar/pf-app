@@ -4,5 +4,5 @@ export type PropertyCardCtaButtonsGroupButtonTemplatePropsInterface = {
   href: string;
   onClick: () => void;
   iconComponent: React.FunctionComponent<IconTemplatePropsInterface>;
-  labelKey: string;
+  label: string;
 };

@@ -51,6 +51,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
       emailAgentModalOpenRef.current();
     },
     loading,
+    t,
   };
 
   /** TODO-FE[TPNX-3092] remove this and use actual data about saved properties */
@@ -66,6 +67,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
     onMenuButtonClick: (): void => {
       menuModalOpenRef.current();
     },
+    t,
   };
 
   return (
@@ -74,7 +76,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
       <EmailAgentModalComponent openRef={emailAgentModalOpenRef} />
       <CallingAgentModalComponent openRef={callingAgentModalOpenRef} />
       <PropertyCardMenuModalComponent closeButtonLabel={t('cta-cancel')} openRef={menuModalOpenRef}>
-        <PropertyCardMenuContentTemplate />
+        <PropertyCardMenuContentTemplate t={t} />
       </PropertyCardMenuModalComponent>
     </div>
   );

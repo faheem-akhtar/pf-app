@@ -8,9 +8,4 @@ export const ContactOptionsMock: PropertyContactOptionsListInterface = {
     link: 'phone://9999999',
     is_did: false,
   },
-  whatsapp: {
-    type: 'whatsapp',
-    value: '5555555',
-    link: 'phone://5555555',
-  },
 };

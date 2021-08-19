@@ -1,6 +1,7 @@
 import { GalleryScrollComponentPropsInterface } from 'library/gallery-scroll/component-props.interface';
 import { PropertyCardCtaButtonsGroupTemplatePropsInterface } from 'components/property-card/cta-buttons-group/template-props.interface';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
+import { TFunctionType } from 'types/t-function/type';
 
 export type PropertyCardTemplatePropsType = {
   /**
@@ -32,4 +33,8 @@ export type PropertyCardTemplatePropsType = {
    * Clicked on the menu button
    */
   onMenuButtonClick: () => void;
+  /**
+   * Translate function
+   */
+  t: TFunctionType;
 };
