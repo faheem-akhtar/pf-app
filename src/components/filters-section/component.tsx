@@ -10,7 +10,7 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 import { MultiLocationSelectorComponent } from 'components/multi-location-selector/component';
-import { SaveSearchModalButtonComponent } from 'components/save-search-modal/button-component';
+import { SaveSearchModalButtonComponent } from 'components/save-search/modal/button-component';
 
 import styles from './filters-section.module.scss';
 

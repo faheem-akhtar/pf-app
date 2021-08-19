@@ -23,7 +23,7 @@ export interface SelectFieldTemplatePropsInterface<V> {
   /**
    * A floating label will be displayed when value is empty
    */
-  label: string;
+  label?: string;
 
   /**
    * onChange event handler
