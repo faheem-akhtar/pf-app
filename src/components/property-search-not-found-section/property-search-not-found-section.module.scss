@@ -1,0 +1,25 @@
+.container {
+  border-bottom: 1px solid var(--color-global-stone-100);
+  border-top: 1px solid var(--color-global-stone-100);
+  padding: calc(var(--spacing) * 2);
+}
+
+.text {
+  font-size: var(--font-size-07);
+  line-height: 2.3rem;
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
+.hint {
+  font-weight: var(--font-weight-02);
+  margin-bottom: calc(var(--spacing) * 2.5);
+}
+
+.options {
+  border-bottom: 1px solid var(--color-global-grey3);
+  border-top: 1px solid var(--color-global-grey3);
+  color: var(--color-global-grey1);
+  font-weight: var(--font-weight-02);
+  margin-bottom: calc(var(--spacing) * 3);
+  padding: var(--spacing) 0;
+}

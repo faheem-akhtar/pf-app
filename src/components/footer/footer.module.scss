@@ -2,6 +2,7 @@
   background-color: var(--color-global-white);
   display: flex;
   flex-direction: column;
+  margin-top: calc(var(--spacing) * 3);
   padding: calc(var(--spacing) * 5) calc(var(--spacing) * 2) 0;
   z-index: var(--z-index-04);
 }

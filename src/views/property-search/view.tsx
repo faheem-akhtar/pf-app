@@ -1,4 +1,6 @@
 import { FiltersContextProvider } from 'components/filters/context-provider';
+import { Fragment } from 'react';
+
 import { FiltersSectionComponent } from 'components/filters-section/component';
 import { FooterComponent } from 'components/footer/component';
 import { HeaderComponent } from 'components/header/component';
@@ -6,6 +8,7 @@ import { LayoutComponent } from 'components/layout/component';
 import { PaginationSectionComponent } from 'components/pagination-section/component';
 import { PropertyCardComponent } from 'components/property-card/component';
 import { PropertySearchCountAndSortSectionComponent } from 'components/property-search-count-and-sort-section/component';
+import { PropertySearchNotFoundSectionTemplate } from 'components/property-search-not-found-section/template';
 import { PropertySearchResultsCountForCurrentQueryContext } from './results-count-for-current-query/context';
 import { PropertySearchViewPropsType } from './view-props.type';
 
@@ -21,21 +24,28 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
 
   const { filtersValueFromQuery, filtersData } = props;
   const filtersContextProps = { filtersValueFromQuery, filtersData };
+
   return (
     <PropertySearchResultsCountForCurrentQueryContext.Provider value={props.searchResult.total}>
       <FiltersContextProvider {...filtersContextProps}>
         <LayoutComponent pageTitle={'TODO-FE[CX-396]'}>
           <HeaderComponent />
           <FiltersSectionComponent />
-          <PropertySearchCountAndSortSectionComponent loading={pageIsLoading} count={props.searchResult.total} />
-          {props.searchResult.properties.map((property) => (
-            <PropertyCardComponent
-              key={propertySerpObfuscatedGetUrl(property)}
-              property={property}
-              loading={pageIsLoading}
-            />
-          ))}
-          <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
+          {props.searchResult.total ? (
+            <Fragment>
+              <PropertySearchCountAndSortSectionComponent loading={pageIsLoading} count={props.searchResult.total} />
+              {props.searchResult.properties.map((property) => (
+                <PropertyCardComponent
+                  key={propertySerpObfuscatedGetUrl(property)}
+                  property={property}
+                  loading={pageIsLoading}
+                />
+              ))}
+              <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
+            </Fragment>
+          ) : (
+            <PropertySearchNotFoundSectionTemplate />
+          )}
           <FooterComponent />
         </LayoutComponent>
       </FiltersContextProvider>
