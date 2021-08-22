@@ -2,6 +2,7 @@ import { backendFiltersValueDefault } from 'backend/filters/value/default';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { functionSelf } from 'helpers/function/self';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 import { SaveSearchFilterAndMapType } from './filter-and-map.type';
 import { SaveSearchFilterAndMapValueType } from './filter-and-map-value.type';
 import { SaveSearchFiltersInterface } from './filters.interface';
@@ -76,7 +77,8 @@ const mapper: {
   },
 
   [FiltersParametersEnum.locationsIds]: {
-    filterAndMap: toArrayOrFalse,
+    filterAndMap: (value) =>
+      !!(value as string[]).length && (value as unknown as LocationCompactInterface[]).map((item) => item.id),
     newKey: SaveSearchPayloadFilterKeysEnum.LOCATION_IDS,
   },
 

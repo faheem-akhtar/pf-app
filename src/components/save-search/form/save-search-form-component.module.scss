@@ -37,8 +37,8 @@
 }
 
 .save-search-form__error--general {
-  background-color: var(--brand-color-51);
-  border: 0.1rem solid var(--brand-color-51);
+  background-color: var(--color-feedback-error-lighter);
+  border: 0.1rem solid var(--color-feedback-error-lighter);
   border-radius: 0.4rem;
   color: var(--color-primary-clay-100);
   display: inline-flex;

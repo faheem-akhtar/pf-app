@@ -6,7 +6,8 @@ import styles from './save-search-modal-component.module.scss';
 export const SaveSearchModalContentComponent = ({ close }: { close: () => void }): JSX.Element => {
   return (
     <div className={styles.content}>
-      <SaveSearchFormComponent onSubmit={close} />
+      {/* TODO-FE[CX-203] - display create success snackbar notification */}
+      <SaveSearchFormComponent onSuccess={close} />
       <div className={styles.close} onClick={close}>
         <IconThickCloseTemplate class={styles.closeIcon} />
       </div>

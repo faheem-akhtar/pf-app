@@ -1,4 +1,5 @@
 import { AnyValueType } from 'types/any/value.type';
+import { ApiHttpMethodType } from './http-method.type';
 import { UrlQueryType } from 'types/url/query.type';
 
 export interface ApiFactoryPropsInterface<Result, Data = AnyValueType, RawJson = AnyValueType> {
@@ -10,7 +11,7 @@ export interface ApiFactoryPropsInterface<Result, Data = AnyValueType, RawJson =
   /**
    * HTTP Method
    */
-  method: 'GET' | 'HEAD' | 'POST';
+  method: ApiHttpMethodType;
   /**
    * Endpoint url /api/${url}
    */

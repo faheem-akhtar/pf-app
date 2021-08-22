@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
+import { apiSaveSearchCreateFetcher } from 'api/save-search/create/fetcher';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
+import { FiltersContext } from 'components/filters/context';
 import { formValidatorMaxLength } from 'helpers/form/validator/max-length';
 import { formValidatorRequired } from 'helpers/form/validator/required';
 import { saveSearchFrequencies } from '../frequencies';
@@ -16,8 +18,9 @@ import styles from './save-search-form-component.module.scss';
 
 const MAX_CHARACTERS_LIMIT = 256;
 
-export const SaveSearchFormComponent = ({ onSubmit }: { onSubmit: () => void }): JSX.Element => {
+export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }): JSX.Element => {
   const { t } = useTranslationHook();
+  const filtersCtx = useContext(FiltersContext);
   const [generalError, setGeneralError] = useState<string>();
   const [isLoading, setIsloading] = useState(false);
   const [name, setName] = useFormField<string>('', [
@@ -86,10 +89,22 @@ export const SaveSearchFormComponent = ({ onSubmit }: { onSubmit: () => void }):
               setName(searchName);
               return;
             }
-            // TODO-FE[CX-410] - save the save search
             setIsloading(true);
-            onSubmit();
-            // onSubmit(searchName, frequency.value, fields.id);
+            apiSaveSearchCreateFetcher({
+              name: searchName,
+              frequency: frequency.value,
+              filters: filtersCtx.value,
+            })
+              .then((response) => {
+                if (response.ok) {
+                  onSuccess();
+                } else {
+                  setGeneralError(t('general-error-message'));
+                }
+              })
+              .finally(() => {
+                setIsloading(false);
+              });
           }}
           disabled={isLoading}
           loading={isLoading}

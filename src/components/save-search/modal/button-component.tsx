@@ -12,7 +12,7 @@ import { ModalComponent } from 'components/modal/component';
 import { saveSearchFilterEquality } from '../filter-equality';
 import { saveSearchFiltersMapper } from '../filters-mapper';
 import { SaveSearchModalContentComponent } from './content-component';
-import { useApiSavedSearch } from 'api/saved-search/hook';
+import { useApiSaveSearch } from 'api/save-search/hook';
 
 import styles from './save-search-modal-component.module.scss';
 
@@ -22,7 +22,7 @@ export const SaveSearchModalButtonComponent = (): JSX.Element => {
   const closeFiltersRef = useRef<() => void>(() => null);
   const filtersCtx = useContext(FiltersContext);
   const filters = saveSearchFiltersMapper(filtersCtx.value);
-  const savedSearchResponse = useApiSavedSearch();
+  const savedSearchResponse = useApiSaveSearch();
   const userSavedSearches = savedSearchResponse.ok
     ? savedSearchResponse.data.filter((item) => saveSearchFilterEquality(item.filters, filters))
     : [];
