@@ -9,10 +9,15 @@ export interface PropertyCardMenuContentButtonTemplatePropsInterface {
   /**
    * The prefix icon for button
    */
-  icon: (props: IconTemplatePropsInterface) => JSX.Element;
+  icon?: (props: IconTemplatePropsInterface) => JSX.Element;
 
   /**
    * Click event when the user press
    */
   onClick: () => void;
+
+  /**
+   * Class name
+   */
+  className?: string;
 }

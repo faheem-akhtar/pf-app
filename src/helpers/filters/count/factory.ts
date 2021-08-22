@@ -6,12 +6,12 @@ import { FiltersValueInterface } from 'components/filters/value/interface';
  * @param fields FiltersParametersEnum[]
  * @returns a function that calculates the count of updated filter fields
  */
-// TODO-FE[CX-446] Add tests
 export const FiltersCountFactory =
-  (fields: Array<Array<keyof FiltersValueInterface>>): ((ctx: FiltersContextInterface) => number) =>
-  ({ value, data }: FiltersContextInterface): number => {
+  (fields: Array<Array<keyof FiltersValueInterface>>) =>
+  ({ value, data }: Pick<FiltersContextInterface, 'value' | 'data'>): number => {
     let filterCount = 0;
     const initialFilterState = filtersDataGetInitialState(value, data);
+
     for (const field of fields) {
       const isFieldUpdated = field.some((key) => {
         if (Array.isArray(value[key])) {

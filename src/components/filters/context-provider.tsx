@@ -1,4 +1,4 @@
-import { NextRouter, Router, useRouter } from 'next/dist/client/router';
+import { NextRouter, useRouter } from 'next/router';
 
 import { filtersValueToQuery } from './value/to-query';
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
@@ -24,11 +24,11 @@ const navigate = (router: NextRouter, filtersValue: FiltersValueInterface): void
   }
 };
 
-export const FiltersContextProvider = ({
+export const FiltersContextProvider: React.FunctionComponent<FiltersContextProviderPropsInterface> = ({
   filtersValueFromQuery,
   filtersData,
   children,
-}: FiltersContextProviderPropsInterface): JSX.Element => {
+}) => {
   const router = useRouter();
 
   const { filtersValue, changeFiltersValue, setFiltersValue, resetFiltersValue, filtersValueIsDefault } =
@@ -65,9 +65,9 @@ export const FiltersContextProvider = ({
       }
     };
 
-    Router.events.on('routeChangeComplete', onRouteChangeComplete);
+    router.events.on('routeChangeComplete', onRouteChangeComplete);
 
-    return (): void => Router.events.off('routeChangeComplete', onRouteChangeComplete);
+    return (): void => router.events.off('routeChangeComplete', onRouteChangeComplete);
   });
 
   return <FiltersContext.Provider value={value}>{children}</FiltersContext.Provider>;

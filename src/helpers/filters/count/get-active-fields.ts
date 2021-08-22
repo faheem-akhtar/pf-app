@@ -1,7 +1,6 @@
 import { FiltersCountFactory } from './factory';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
-// TODO-FE[CX-446] Add tests
 export const filtersCountGetActiveFields = FiltersCountFactory([
   [FiltersParametersEnum.propertyTypeId],
   [FiltersParametersEnum.completionStatus],

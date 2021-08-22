@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-// import '@testing-library/jest-dom'
+import { NextRouter } from 'next/router';
 import React from 'react';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { setupSwrMock } from 'mocks/mock/use-swr';
+import { translationsMap } from './add-translation';
 
 global.React = React;
 
@@ -14,20 +15,26 @@ jest.mock('next-i18next', () => ({
   useTranslation: (): {
     t: (key: string) => string;
     i18n: {
-      exists: (key: string) => true;
+      exists: (key: string) => boolean;
     };
   } => ({
-    t: (key: string): string => key,
+    t: (key: string): string => translationsMap[key] || key,
     i18n: {
-      exists: (): true => true,
+      exists: (key: string): boolean => !!translationsMap[key],
     },
   }),
 }));
 
+const router = {
+  events: { on: jest.fn(), off: jest.fn() },
+  locale: LanguageCodeEnum.en,
+  pathname: 'https://propertyfinder.ae/en/search',
+  asPath: 'https://propertyfinder.ae/en/search?c=4',
+  push: jest.fn(),
+} as unknown as NextRouter;
+
 jest.mock('next/router', () => ({
-  useRouter: (): { locale: string } => ({
-    locale: LanguageCodeEnum.en,
-  }),
+  useRouter: (): NextRouter => router,
 }));
 
 afterEach(() => {

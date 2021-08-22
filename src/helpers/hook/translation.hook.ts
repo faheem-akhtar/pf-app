@@ -1,6 +1,8 @@
 // eslint-disable-next-line pf-rules/forbid-import
 import { useTranslation } from 'next-i18next';
 
+import { helpersIsTest } from 'helpers/is-test';
+
 const { NEXT_PUBLIC_COUNTRY_CODE } = process.env;
 
 /**
@@ -19,7 +21,8 @@ export const useTranslationHook = (namespace: string = 'common'): { t: (key: str
       if (
         key === countrySpecifcTranslations.t(key) &&
         key === commonTranslations.t(key) &&
-        !commonTranslations.i18n.exists(key)
+        !commonTranslations.i18n.exists(key) &&
+        !helpersIsTest
       ) {
         // eslint-disable-next-line no-console
         console.warn(`Translation for key "${key}" not found.`);

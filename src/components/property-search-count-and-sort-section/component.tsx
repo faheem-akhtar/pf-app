@@ -1,26 +1,26 @@
 import { useContext, useRef } from 'react';
 
+import { domClassMerge } from 'helpers/dom/class-merge';
 import { filtersDataChoicesGetSort } from 'components/filters/data/choices/get-sort';
 
-import { DropdownTemplate } from 'components/dropdown/template';
 import { FiltersContext } from 'components/filters/context';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.type';
 import { IconThickArrowDownTemplate } from 'components/icon/thick/arrow-down-template';
-import { ModalComponent } from 'components/modal/component';
+import { PropertyCardMenuContentButtonTemplate } from 'components/property-card/menu/content/button/template';
+import { PropertyCardMenuModalComponent } from 'components/property-card/menu/modal/component';
 import { PropertySearchCountAndSortSectionComponentPropsType } from './component-props.type';
 
 import styles from './property-search-count-and-sort-section.module.scss';
 import { useTranslationHook } from 'helpers/hook/translation.hook';
 
-// TODO-FE[CX-426] add tests
 export const PropertySearchCountAndSortSectionComponent = ({
   count,
   loading,
 }: PropertySearchCountAndSortSectionComponentPropsType): JSX.Element => {
   const { t } = useTranslationHook();
-  const openFiltersRef = useRef<() => void>(() => null);
-  const closeFiltersRef = useRef<() => void>(() => null);
+  const openFiltersRef = useRef<() => void>() as React.MutableRefObject<() => void>;
+  const closeFiltersRef = useRef<() => void>() as React.MutableRefObject<() => void>;
   const filtersCtx = useContext(FiltersContext);
   const choices = filtersDataChoicesGetSort(filtersCtx.value, filtersCtx.data);
   const onChange = (value: FiltersValueFieldSortType): void => {
@@ -36,15 +36,26 @@ export const PropertySearchCountAndSortSectionComponent = ({
         <IconThickArrowDownTemplate class={styles.sort_icon} />
       </button>
 
-      {/* TODO-FE[TPNX-3155] Implement modal */}
-      <ModalComponent openRef={openFiltersRef} closeRef={closeFiltersRef}>
-        <DropdownTemplate
-          title=''
-          value={filtersCtx.value[FiltersParametersEnum.sort] || choices[0].value}
-          choices={choices}
-          onChange={onChange}
-        />
-      </ModalComponent>
+      <PropertyCardMenuModalComponent
+        closeButtonLabel={t('cta-cancel')}
+        openRef={openFiltersRef}
+        closeRef={closeFiltersRef}
+      >
+        {choices.map((sortChoice) => {
+          return (
+            <PropertyCardMenuContentButtonTemplate
+              className={domClassMerge(styles.sort_choice, {
+                [styles.sort_choice__active]: sortChoice.value === filtersCtx.value[FiltersParametersEnum.sort],
+              })}
+              key={sortChoice.value}
+              label={sortChoice.label}
+              onClick={(): void => {
+                onChange(sortChoice.value);
+              }}
+            />
+          );
+        })}
+      </PropertyCardMenuModalComponent>
     </div>
   );
 };

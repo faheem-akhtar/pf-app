@@ -5,4 +5,8 @@ export interface PropertyCardMenuModalComponentPropsInterface extends PropertyCa
    * Ref for modal open
    */
   openRef: React.MutableRefObject<() => void>;
+  /**
+   * Ref for modal close
+   */
+  closeRef?: React.MutableRefObject<() => void>;
 }

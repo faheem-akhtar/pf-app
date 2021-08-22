@@ -7,25 +7,32 @@ import { PropertyCardMenuModalTemplate } from './template';
 
 import { ModalComponent } from 'components/modal/component';
 
+// TODO-FE[CX-440] add tests
 export const PropertyCardMenuModalComponent = ({
   children,
   openRef,
+  closeRef,
   closeButtonLabel,
   onCloseButtonClick = functionNoop,
   onOverlayClick = functionNoop,
 }: PropertyCardMenuModalComponentPropsInterface): JSX.Element => {
-  const closeRef = useRef<() => void>(functionNoop);
+  const internalCloseRef = useRef<() => void>(functionNoop);
+  if (closeRef) {
+    closeRef.current = (): void => {
+      internalCloseRef.current();
+    };
+  }
 
   return (
-    <ModalComponent openRef={openRef} closeRef={closeRef} overlay>
+    <ModalComponent openRef={openRef} closeRef={internalCloseRef} overlay>
       <PropertyCardMenuModalTemplate
         closeButtonLabel={closeButtonLabel}
         onCloseButtonClick={(): void => {
-          closeRef.current();
+          internalCloseRef.current();
           onCloseButtonClick();
         }}
         onOverlayClick={(): void => {
-          closeRef.current();
+          internalCloseRef.current();
           onOverlayClick();
         }}
       >

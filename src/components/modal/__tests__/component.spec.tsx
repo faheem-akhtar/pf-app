@@ -4,30 +4,13 @@
 
 import { render } from '@testing-library/react';
 
-import { appRootElementId } from 'src/constants/app/root-element-id';
-
+import { ModalEnvMock } from 'mocks/modal-env/mock';
 import { ModalPortalComponent } from '../portal-component';
 
 // TODO-FE[CX-169] enable back
 describe('ModalPortalComponent', () => {
-  let modalRoot: HTMLDivElement;
-  let appRoot: HTMLDivElement;
-
-  beforeEach(() => {
-    modalRoot = document.createElement('div');
-    modalRoot.id = 'modal-root';
-    document.body.appendChild(modalRoot);
-    appRoot = document.createElement('div');
-    appRoot.id = appRootElementId;
-    document.body.appendChild(appRoot);
-  });
-
-  afterEach(() => {
-    modalRoot.remove();
-    appRoot.remove();
-  });
-
   it('It should add hide classname when opened', async () => {
+    const { appRoot } = ModalEnvMock();
     render(<ModalPortalComponent>content</ModalPortalComponent>);
 
     // expecting undefined because css modules do not export classnames
@@ -35,6 +18,7 @@ describe('ModalPortalComponent', () => {
   });
 
   it('It should remove hide classname on unmount', () => {
+    const { appRoot } = ModalEnvMock();
     const { unmount } = render(<ModalPortalComponent>content</ModalPortalComponent>);
     unmount();
 
