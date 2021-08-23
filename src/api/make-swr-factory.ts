@@ -11,7 +11,8 @@ import { ApiSwrResultType } from './swr-result-type';
 
 import { useJwtToken } from 'services/jwt/token/hook';
 
-// TODO-FE[TPNX-3009] Add tests
+const getOrigin = (): string => origin;
+
 /**
  * Create a fetcher that can be used as the react hook
  * @param factoryProps define static props for the request
@@ -23,14 +24,11 @@ export const ApiMakeSwrFactory =
   ): ((props: ApiSwrRequestPropsType) => ApiSwrResultType<R>) => {
     const fetcher = makeFactoryProps.requireAuth
       ? ApiMakeFactory({
-          getOrigin: () => origin,
+          getOrigin,
           jwtTokenService: makeFactoryProps.jwtTokenService,
           requireAuth: true,
         })<R, Data, RawJson>(factoryProps)
-      : ApiMakeFactory({
-          getOrigin: () => origin,
-          requireAuth: false,
-        })<R, Data, RawJson>(factoryProps);
+      : ApiMakeFactory({ getOrigin, requireAuth: false })<R, Data, RawJson>(factoryProps);
 
     return (props: ApiSwrRequestPropsType): ApiSwrResultType<R> => {
       const locale = useRouter().locale as string;

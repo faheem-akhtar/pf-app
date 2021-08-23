@@ -8,7 +8,6 @@ import { ApiRequestPropsType } from './request-props.type';
 import { configIsTrace } from 'config/is-trace';
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
 
-// TODO-FE[TPNX-3009] Add tests
 /**
  * Base for all network requsts
  * Not to be used directly
@@ -95,93 +94,95 @@ export const ApiMakeFactory =
       console.log('fetch', finalUrl, payload);
     }
 
-    return fetch(finalUrl, payload).then((response) => {
-      const { headers } = response;
+    return fetch(finalUrl, payload).then(
+      (response): ApiFetcherResultType<Result> | Promise<ApiFetcherResultType<Result>> => {
+        const { headers } = response;
 
-      if (!response.ok) {
-        if (makeFactoryProps.requireAuth && response.status === 401 && shouldRetryOn401) {
-          return makeFactoryProps.jwtTokenService.refreshToken().then((): Promise<ApiFetcherResultType<Result>> => {
-            return ApiMakeFactory(makeFactoryProps)(factoryProps)(props, false);
+        if (!response.ok) {
+          if (makeFactoryProps.requireAuth && response.status === 401 && shouldRetryOn401) {
+            return makeFactoryProps.jwtTokenService.refreshToken().then((): Promise<ApiFetcherResultType<Result>> => {
+              return ApiMakeFactory(makeFactoryProps)(factoryProps)(props, false);
+            });
+          }
+
+          return response.text().then((body) => {
+            return {
+              ok: false,
+              error: {
+                url: finalUrl,
+                status: response.status,
+                body,
+              },
+              headers,
+            };
           });
         }
 
-        return response.text().then((body) => {
-          return {
-            ok: false,
-            error: {
-              url: finalUrl,
-              status: response.status,
-              body,
-            },
-            headers,
-          };
-        });
-      }
-
-      if (factoryProps.method === 'HEAD') {
-        return {
-          ok: true,
-          data: null,
-          headers,
-        };
-      }
-
-      return response
-        .json()
-        .catch((e: Error) => {
-          return {
-            ok: false,
-            error: e.message,
-          };
-        })
-        .then((json) => {
-          let data = json;
-
-          if (makeFactoryProps.dataMapper) {
-            try {
-              data = makeFactoryProps.dataMapper(data);
-            } catch (e) {
-              const error: string = `failed to execute makeFactoryProps.dataMapper for: ${finalUrl}. ${e.message}`;
-              // eslint-disable-next-line no-console
-              console.error(error);
-
-              return {
-                ok: false,
-                error: {
-                  url: finalUrl,
-                  status: response.status,
-                  body: error,
-                },
-                headers,
-              };
-            }
-          }
-
-          if (factoryProps.dataMapper) {
-            try {
-              data = factoryProps.dataMapper(data, json);
-            } catch (e) {
-              const error: string = `failed to execute factoryProps.dataMapper for: ${finalUrl}. ${e.message}`;
-              // eslint-disable-next-line no-console
-              console.error(error);
-
-              return {
-                ok: false,
-                error: {
-                  url: finalUrl,
-                  status: response.status,
-                  body: error,
-                },
-                headers,
-              };
-            }
-          }
-
+        if (factoryProps.method === 'HEAD') {
           return {
             ok: true,
-            data,
+            data: null as unknown as Result,
             headers,
           };
-        });
-    });
+        }
+
+        return response
+          .json()
+          .then((json): ApiFetcherResultType<Result> => {
+            let data = json;
+
+            if (makeFactoryProps.dataMapper) {
+              try {
+                data = makeFactoryProps.dataMapper(data);
+              } catch (e) {
+                const error: string = `failed to execute makeFactoryProps.dataMapper for: ${finalUrl}. ${e.message}`;
+                // eslint-disable-next-line no-console
+                console.error(error);
+
+                return {
+                  ok: false,
+                  error: {
+                    url: finalUrl,
+                    status: response.status,
+                    body: error,
+                  },
+                  headers,
+                };
+              }
+            }
+
+            if (factoryProps.dataMapper) {
+              try {
+                data = factoryProps.dataMapper(data, json);
+              } catch (e) {
+                const error: string = `failed to execute factoryProps.dataMapper for: ${finalUrl}. ${e.message}`;
+                // eslint-disable-next-line no-console
+                console.error(error);
+
+                return {
+                  ok: false,
+                  error: {
+                    url: finalUrl,
+                    status: response.status,
+                    body: error,
+                  },
+                  headers,
+                };
+              }
+            }
+
+            return {
+              ok: true,
+              data,
+              headers,
+            };
+          })
+          .catch((e: Error) => {
+            return {
+              ok: false,
+              error: e.message,
+            };
+          }) as Promise<ApiFetcherResultType<Result>>;
+      }
+    );
   };

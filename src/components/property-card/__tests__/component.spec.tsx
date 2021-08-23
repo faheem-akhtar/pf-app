@@ -34,7 +34,7 @@ describe('PropertyCardComponent', () => {
     const defaultProps = makeDefaultProps();
     const { getByTestId, getAllByTestId } = render(<PropertyCardComponent {...defaultProps} />);
 
-    mockUseSwr(['i1', 'i2', 'i3']);
+    mockUseSwr({ ok: true, data: ['i1', 'i2', 'i3'] });
 
     const gallery = getByTestId('GalleryScroll');
     fireEvent.touchStart(gallery, {

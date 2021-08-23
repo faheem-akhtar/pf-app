@@ -1,3 +1,5 @@
+import { AnyValueType } from 'types/any/value.type';
+
 export type ApiMakeFactoryPropsBaseType = {
   /**
    * Origin of the website. Example: https://propertyfinder.ae
@@ -6,7 +8,7 @@ export type ApiMakeFactoryPropsBaseType = {
   /**
    * Map the data returned from the server
    */
-  dataMapper?: (data: Object | Array<Object>) => Object | Array<Object>;
+  dataMapper?: (data: AnyValueType) => AnyValueType;
   /**
    * Alter headers
    * called on every request letting set custom headers for each request

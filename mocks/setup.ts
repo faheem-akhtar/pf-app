@@ -1,13 +1,18 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 import { NextRouter } from 'next/router';
-import React from 'react';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
+
+import { recoverUseEffect } from './mock/use-effect';
+import { recoverUseReducer } from './mock/use-reducer';
+import { recoverUseState } from './mock/use-state';
+import { recoverWindowAddEventListener } from './mock/window-add-event-listener';
+import { recoverWindowRemoveEventListener } from './mock/window-remove-event-listener';
 import { setupSwrMock } from 'mocks/mock/use-swr';
 import { translationsMap } from './add-translation';
-
-global.React = React;
+import { recoverConsole } from './mock/console';
+import { recoverFetch } from './mock/fetch';
 
 setupSwrMock();
 
@@ -39,8 +44,12 @@ jest.mock('next/router', () => ({
 
 afterEach(() => {
   // clean up global environment after each test
-  require('mocks/mock/use-effect').recoverUseEffect();
-  require('mocks/mock/use-reducer').recoverUseReducer();
-  require('mocks/mock/window-remove-event-listener').recoverWindowRemoveEventListener();
-  require('mocks/mock/window-add-event-listener').recoverWindowAddEventListener();
+  recoverUseEffect();
+  recoverUseReducer();
+  recoverUseState();
+  recoverWindowRemoveEventListener();
+  recoverWindowAddEventListener();
+  recoverConsole();
+  recoverFetch();
+  delete process.env.TRACE;
 });
