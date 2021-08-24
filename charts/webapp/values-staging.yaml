@@ -14,8 +14,8 @@ countries:
       - m.staging.propertyfinder.ae
   bh:
     hosts:
-      - staging.propertyfinder.ae
-      - m.staging.propertyfinder.ae
+      - staging.propertyfinder.bh
+      - m.staging.propertyfinder.bh
   eg:
     hosts:
       - staging.propertyfinder.eg
@@ -32,8 +32,9 @@ countries:
       - m.staging.esimsar.com
   lb:
     hosts:
-      - www.propertyfinder.com.lb
+      - staging.propertyfinder.com.lb
+      - m.staging.propertyfinder.com.lb
   ma:
     hosts:
-      - www.propertyfinder.ma
-      - www.sarouty.ma
+      - staging.sarouty.ma
+      - m.staging.sarouty.ma
