@@ -1,0 +1,28 @@
+.transition-slide-up-appear {
+  opacity: 0;
+  transform: translate3d(0, 9.6rem, 0);
+  transition: opacity 50ms linear 200ms, transform 500ms var(--ease-out-elastic) 200ms;
+}
+
+.transition-slide-up-appear-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.transition-slide-up-appear-done {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.transition-slide-up-exit {
+  opacity: 1;
+  transition: opacity 300ms linear;
+}
+
+.transition-slide-up-exit-active {
+  opacity: 0;
+}
+
+.transition-slide-up-exit-done {
+  opacity: 0;
+}
