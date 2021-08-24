@@ -1,4 +1,4 @@
-import { mockFetch } from './fetch';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 
 import { AnyValueType } from 'types/any/value.type';
 import { ApiSwrResultType } from 'api/swr-result-type';
@@ -7,7 +7,7 @@ import { SWRResponse } from 'swr';
 let resultData: Partial<ApiSwrResultType<AnyValueType>>;
 let isValidating = false;
 
-export const mockUseSwr = (
+export const mockReactUseSwr = (
   swrResultData: Partial<ApiSwrResultType<AnyValueType>>,
   swrIsValidating: boolean = false
 ): void => {
@@ -25,7 +25,7 @@ export const setupSwrMock = (): void => {
       mutate: (): Promise<null> => Promise.resolve(null),
     };
     if (shouldFetch) {
-      mockFetch();
+      mockWindowFetch();
       fetcher();
       return {
         ...baseProps,

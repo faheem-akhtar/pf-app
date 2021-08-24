@@ -8,7 +8,7 @@ const defaultResponse = {
   text: (): Promise<string> => Promise.resolve('response.text'),
 };
 
-export const mockFetch = (response = {}): jest.Mock => {
+export const mockWindowFetch = (response = {}): jest.Mock => {
   response = { ...defaultResponse, ...response };
 
   const fetchMock = jest.fn();
@@ -22,6 +22,6 @@ export const mockFetch = (response = {}): jest.Mock => {
 };
 
 // eslint-disable-next-line pf-rules/export-name-validation
-export const recoverFetch = (): void => {
+export const recoverWindowFetch = (): void => {
   global.fetch = originalFetch;
 };

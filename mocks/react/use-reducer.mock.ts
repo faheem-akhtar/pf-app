@@ -1,6 +1,6 @@
 const original = global.React.useReducer;
 
-export const mockUseReducer = <State>(
+export const mockReactUseReducer = <State>(
   state: State
 ): {
   useReducerMock: jest.Mock<State>;
@@ -18,6 +18,6 @@ export const mockUseReducer = <State>(
 };
 
 // eslint-disable-next-line pf-rules/export-name-validation
-export const recoverUseReducer = (): void => {
+export const recoverReactUseReducer = (): void => {
   global.React.useReducer = original;
 };

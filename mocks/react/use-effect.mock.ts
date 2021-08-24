@@ -4,7 +4,7 @@ const original = global.React.useEffect;
 
 const unmountCallbacks: Function[] = [];
 
-export const mockUseEffect = (): { unmountAll: OnUnmount } => {
+export const mockReactUseEffect = (): { unmountAll: OnUnmount } => {
   jest.spyOn(global.React, 'useEffect').mockImplementation((f) => {
     const onUnmount = f();
     if (onUnmount) {
@@ -21,7 +21,7 @@ export const mockUseEffect = (): { unmountAll: OnUnmount } => {
 };
 
 // eslint-disable-next-line pf-rules/export-name-validation
-export const recoverUseEffect = (): void => {
+export const recoverReactUseEffect = (): void => {
   unmountCallbacks.length = 0;
   global.React.useEffect = original;
 };

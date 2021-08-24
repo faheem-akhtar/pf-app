@@ -6,7 +6,7 @@ const original = TimeService.setTimeout;
  * Mock set timeout and allow to flush them using the returned function
  * @returns flush set timeouts
  */
-export const mockSetTimeout = (): (() => void) => {
+export const mockWindowSetTimeout = (): (() => void) => {
   const setTimeoutCallbacks: Function[] = [];
 
   TimeService.setTimeout = (
@@ -25,6 +25,6 @@ export const mockSetTimeout = (): (() => void) => {
 };
 
 // eslint-disable-next-line pf-rules/export-name-validation
-export const recoverSetTimeout = (): void => {
+export const recoverWindowSetTimeout = (): void => {
   TimeService.setTimeout = original;
 };

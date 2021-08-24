@@ -45,6 +45,10 @@ module.exports = {
             extension: 'hook',
             prefix: 'use',
           },
+          {
+            extension: 'mock',
+            prefix: 'mock',
+          },
         ],
       },
     ],

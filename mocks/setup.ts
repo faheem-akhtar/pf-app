@@ -4,15 +4,19 @@ import { NextRouter } from 'next/router';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 
-import { recoverUseEffect } from './mock/use-effect';
-import { recoverUseReducer } from './mock/use-reducer';
-import { recoverUseState } from './mock/use-state';
-import { recoverWindowAddEventListener } from './mock/window-add-event-listener';
-import { recoverWindowRemoveEventListener } from './mock/window-remove-event-listener';
-import { setupSwrMock } from 'mocks/mock/use-swr';
+import { recoverReactUseEffect } from './react/use-effect.mock';
+import { recoverReactUseReducer } from './react/use-reducer.mock';
+import { recoverReactUseState } from './react/use-state.mock';
+import { recoverWindowAddEventListener } from './window/add-event-listener.mock';
+import { recoverWindowConsole } from './window/console.mock';
+import { recoverWindowFetch } from './window/fetch.mock';
+import { recoverWindowRemoveEventListener } from './window/remove-event-listener.mock';
+import { setupSwrMock } from 'mocks/react/use-swr.mock';
 import { translationsMap } from './add-translation';
-import { recoverConsole } from './mock/console';
-import { recoverFetch } from './mock/fetch';
+
+if (!global.window) {
+  (global as unknown as { window: Window }).window = global as unknown as Window;
+}
 
 setupSwrMock();
 
@@ -44,12 +48,12 @@ jest.mock('next/router', () => ({
 
 afterEach(() => {
   // clean up global environment after each test
-  recoverUseEffect();
-  recoverUseReducer();
-  recoverUseState();
+  recoverReactUseEffect();
+  recoverReactUseReducer();
+  recoverReactUseState();
   recoverWindowRemoveEventListener();
   recoverWindowAddEventListener();
-  recoverConsole();
-  recoverFetch();
+  recoverWindowConsole();
+  recoverWindowFetch();
   delete process.env.TRACE;
 });

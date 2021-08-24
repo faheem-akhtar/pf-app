@@ -1,9 +1,10 @@
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
+
 import { ApiFactory } from 'api/factory';
-import { mockFetch } from 'mocks/mock/fetch';
 
 describe('ApiFactory', () => {
   it('should use origin from window', async () => {
-    const fetchMock = mockFetch();
+    const fetchMock = mockWindowFetch();
     global.origin = 'test.origin';
     const fetcher = ApiFactory({
       method: 'GET',

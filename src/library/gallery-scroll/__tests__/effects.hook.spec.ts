@@ -2,15 +2,15 @@
  * @jest-environment jsdom
  */
 
-import { mockUseEffect } from 'mocks/mock/use-effect';
-import { mockWindowAddEventListener } from 'mocks/mock/window-add-event-listener';
+import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
+import { mockWindowAddEventListener } from 'mocks/window/add-event-listener.mock';
 import { useGalleryScrollEffects } from '../effects.hook';
 
 let dispatchMock: jest.Mock;
 let addEventListenerMock: jest.Mock;
 
 beforeEach(() => {
-  mockUseEffect();
+  mockReactUseEffect();
   dispatchMock = jest.fn();
   addEventListenerMock = mockWindowAddEventListener();
 });

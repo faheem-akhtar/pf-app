@@ -1,6 +1,6 @@
 const originalConsole = global.console;
 
-export const mockConsole = (): Console => {
+export const mockWindowConsole = (): Console => {
   global.console = {
     log: jest.fn(),
     error: jest.fn(),
@@ -12,6 +12,6 @@ export const mockConsole = (): Console => {
 };
 
 // eslint-disable-next-line pf-rules/export-name-validation
-export const recoverConsole = (): void => {
+export const recoverWindowConsole = (): void => {
   global.console = originalConsole;
 };

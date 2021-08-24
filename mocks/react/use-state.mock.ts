@@ -2,7 +2,7 @@ import { AnyValueType } from 'types/any/value.type';
 
 const original = global.React.useState;
 
-export const mockUseState = (): void => {
+export const mockReactUseState = (): void => {
   const useStateMock = (arg1: ((s: AnyValueType) => AnyValueType) | AnyValueType): AnyValueType => [
     typeof arg1 === 'function' ? (arg1 as Function)() : arg1,
     jest.fn(),
@@ -12,6 +12,6 @@ export const mockUseState = (): void => {
 };
 
 // eslint-disable-next-line pf-rules/export-name-validation
-export const recoverUseState = (): void => {
+export const recoverReactUseState = (): void => {
   global.React.useState = original;
 };

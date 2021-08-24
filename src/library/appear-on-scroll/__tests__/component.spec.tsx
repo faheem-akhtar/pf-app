@@ -7,9 +7,9 @@ import { act } from 'react-dom/test-utils';
 
 import { AppearOnScrollComponent } from '../component';
 import { AppearOnScrollComponentPropsInterface } from '../component-props.interface';
-import { mockDocumentBodyClientHeight } from 'mocks/mock/document-body-client-height';
-import { mockElementGetBoundingClientRect } from 'mocks/mock/element-get-bounding-client-rect';
-import { mockSetTimeout } from 'mocks/mock/set-timeout';
+import { mockDocumentBodyClientHeight } from 'mocks/window/document/body-client-height.mock';
+import { mockElementGetBoundingClientRect } from 'mocks/element/get-bounding-client-rect.mock';
+import { mockWindowSetTimeout } from 'mocks/window/set-timeout.mock';
 
 const BODY_CLIENT_HEIGHT = 10;
 type Observer = (elements: { isIntersecting: boolean }[]) => void;
@@ -25,7 +25,7 @@ describe('AppearOnScrollComponent', () => {
 
   beforeEach(() => {
     IntersectionObserverDisconnectMock = jest.fn();
-    flushSetTimeouts = mockSetTimeout();
+    flushSetTimeouts = mockWindowSetTimeout();
     Object.defineProperty(window, 'IntersectionObserver', {
       writable: true,
       configurable: true,

@@ -1,3 +1,4 @@
+import { helpersIsTest } from 'helpers/is-test';
 import { windowLocalStorageDefaultState } from './default-state';
 
 import { AnyValueType } from 'types/any/value.type';
@@ -20,8 +21,10 @@ function storageAvailable(window: Window): boolean {
 
 export const windowLocalStorageMakeWrapper = (window: Window): WindowLocalStorageInterface => {
   if (!storageAvailable(window)) {
-    // eslint-disable-next-line no-console
-    console.warn('Local storage is not available');
+    if (!helpersIsTest) {
+      // eslint-disable-next-line no-console
+      console.warn('Local storage is not available');
+    }
     return windowLocalStorageDefaultState;
   }
 
