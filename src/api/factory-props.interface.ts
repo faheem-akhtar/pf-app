@@ -24,4 +24,8 @@ export interface ApiFactoryPropsInterface<Result, Data = AnyValueType, RawJson =
    * Additional data mapper per instance of fetcher
    */
   dataMapper?: (data: Data, rawJson: RawJson) => Result;
+  /**
+   * Api handler defined in pf-web-app
+   */
+  handledByPfWebApp?: true;
 }

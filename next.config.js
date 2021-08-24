@@ -46,7 +46,7 @@ module.exports = {
       },
       {
         // cache for 10 years
-        source: '/api/location/list',
+        source: '/api/pwa/location/list',
         headers: [
           {
             key: 'Cache-Control',

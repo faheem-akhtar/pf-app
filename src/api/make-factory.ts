@@ -43,7 +43,7 @@ export const ApiMakeFactory =
 
     const getOrigin = props.getOrigin || makeFactoryProps.getOrigin;
 
-    const basePath = `${getOrigin()}/${locale}/api`;
+    const basePath = `${getOrigin()}/${locale}/api${factoryProps.handledByPfWebApp ? '/pwa' : ''}`;
 
     let finalUrl = `${basePath}/${factoryProps.url}`;
 

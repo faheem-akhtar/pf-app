@@ -8,6 +8,32 @@ describe('ApiFactory', () => {
   const origin = 'origin';
   const url = 'url';
 
+  it('should pwa prefix if request is handled by pf-web-app', async () => {
+    const fetchMock = mockWindowFetch();
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+    });
+    const fetcher = apiFactory({
+      method: 'GET',
+      url,
+      handledByPfWebApp: true,
+    });
+
+    await fetcher({
+      locale: 'en',
+    });
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith('origin/en/api/pwa/url', {
+      headers: {
+        locale: 'en',
+      },
+      method: 'GET',
+    });
+  });
+
   it('should be able set headers on every level', async () => {
     const fetchMock = mockWindowFetch();
 

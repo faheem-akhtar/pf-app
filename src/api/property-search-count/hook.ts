@@ -12,4 +12,5 @@ export const useApiPropertySearchCount = (
   ApiSwrFactory<number>({
     method: 'GET',
     url: 'property-search/count',
+    handledByPfWebApp: true,
   })({ query: filtersValueToQuery(filtersValue) as UrlQueryType, swrDoNotFetch: doNotFetch });

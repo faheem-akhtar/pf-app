@@ -10,4 +10,5 @@ export const useApiPropertyImages = (
   ApiSwrFactory<string[]>({
     method: 'GET',
     url: 'property-search/images',
+    handledByPfWebApp: true,
   })({ query: { propertyId, imageType }, swrDoNotFetch: !shouldFetch });

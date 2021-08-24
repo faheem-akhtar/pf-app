@@ -35,20 +35,32 @@ ingress:
     kubernetes.io/ingress.class: 'nginx'
     nginx.ingress.kubernetes.io/use-regex: 'true'
     # kubernetes.io/tls-acme: "true"
-  mobilePath: /(_next|((en|ar|fr)/(search|static|api/location/list|api/location/search|api/property-search/count|api/property-search/images|api/property-search/agent|api/property/report)))(.*)
-  desktopPath: /pf-web-app\/(.*)
   tls: []
   #  - secretName: chart-example-tls
   host: .k8s.propertyfinder.net
 
 countries:
-  ae: {}
-  bh: {}
-  eg: {}
-  qa: {}
-  sa: {}
-  lb: {}
-  ma: {}
+  ae:
+    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    desktopPath: /pf-web-app\/(.*)
+  bh:
+    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    desktopPath: /pf-web-app\/(.*)
+  eg:
+    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    desktopPath: /pf-web-app\/(.*)
+  qa:
+    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    desktopPath: /pf-web-app\/(.*)
+  sa:
+    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    desktopPath: /pf-web-app\/(.*)
+  lb: 
+    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    desktopPath: /pf-web-app\/(.*)
+  ma:
+    mobilePath: /(_next|((ar|fr)/(static|api/pwa|search)))(.*)
+    desktopPath: /pf-web-app\/(.*)
 
 resources:
   limits:

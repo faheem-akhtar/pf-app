@@ -19,16 +19,19 @@ export class LocationStore {
     this.fetchAllLocations = ApiFactory<LocationCompactInterface[]>({
       method: 'GET',
       url: 'location/list',
+      handledByPfWebApp: true,
     });
 
     this.fetchLocationsEtag = ApiFactory<{ etag: string }>({
       method: 'HEAD',
       url: 'location/list',
+      handledByPfWebApp: true,
     });
 
     this.fetchLocationsForQuery = ApiFactory<LocationCompactInterface[]>({
       method: 'GET',
       url: 'location/search',
+      handledByPfWebApp: true,
       queryDefaultParams: {
         'fields[location]': 'name,path,path_name',
       },

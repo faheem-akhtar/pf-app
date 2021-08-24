@@ -6,4 +6,5 @@ export const useApiSaveSearch = (): ApiSwrResultType<SaveSearchLoadResultInterfa
   ApiSwrAuthRequiredFactory<SaveSearchLoadResultInterface[]>({
     method: 'GET',
     url: 'saved-search',
+    handledByPfWebApp: true,
   })({ query: { 'page[limit]': 9999 } });

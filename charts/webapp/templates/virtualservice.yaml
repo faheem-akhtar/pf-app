@@ -31,7 +31,7 @@ spec:
         host:
           prefix: "m.website"
       uri:
-        regex: {{ $root.Values.ingress.mobilePath }}
+        regex: {{ $config.mobilePath }}
     route:
     - destination:
         host: {{ $country }}-{{ $root.Values.service.name }}-mobile
@@ -43,7 +43,7 @@ spec:
   {{- else }}
   - match:
     - uri:
-        regex: {{ $root.Values.ingress.mobilePath }}
+        regex: {{ $config.mobilePath }}
       headers:
         x-akamai-device-characteristics:
           regex: "is_mobile=true(.*)"
@@ -59,7 +59,7 @@ spec:
   # Defaults to desktop
   - match:
     - uri:
-        regex: {{ $root.Values.ingress.desktopPath }}
+        regex: {{ $config.desktopPath }}
     route:
     - destination:
         host: {{ $country }}-{{ $root.Values.service.name }}-desktop

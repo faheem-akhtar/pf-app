@@ -23,14 +23,14 @@ spec:
     - host: website.{{ $releaseName }}-{{ $country }}{{ $data.Values.ingress.host }}
       http:
         paths:
-          - path: {{ $data.Values.ingress.desktopPath }}
+          - path: {{ $config.desktopPath }}
             backend:
               serviceName: {{ $country }}-{{ $name }}
               servicePort: http        
     - host: m.website.{{ $releaseName }}-{{ $country }}{{ $data.Values.ingress.host }}
       http:
         paths:
-          - path: {{ $data.Values.ingress.mobilePath }}
+          - path: {{ $config.mobilePath }}
             backend:
               serviceName: {{ $country }}-{{ $name }}
               servicePort: http
@@ -39,7 +39,7 @@ spec:
     - host: {{ . }}
       http:
         paths:
-          - path: {{ $data.Values.ingress.desktopPath }}
+          - path: {{ $config.desktopPath }}
             backend:
               serviceName: {{ $country }}-{{ $name }}
               servicePort: http

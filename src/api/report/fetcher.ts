@@ -7,9 +7,7 @@ import { ReportAttributesInterface } from 'types/report/attributes-interface';
 const fetcher = ApiFactory<BackendJsonApiModelType, ApiJsonModelInterface<ReportAttributesInterface>>({
   method: 'POST',
   url: 'property/report',
-  alterHeaders: (headers) => {
-    headers['content-type'] = 'application/vnd.api+json';
-  },
+  handledByPfWebApp: true,
 });
 
 export const apiReportFetcher = (propertyId: string, attributes: ReportAttributesInterface): void => {

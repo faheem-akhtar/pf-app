@@ -6,4 +6,5 @@ export const useApiAgent = (propertyId: string, fetchData: boolean): ApiSwrResul
   ApiSwrFactory<PropertyAgentResultType>({
     method: 'GET',
     url: 'property-search/agent',
+    handledByPfWebApp: true,
   })({ query: { propertyId }, swrDoNotFetch: !fetchData });
