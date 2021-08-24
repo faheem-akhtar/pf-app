@@ -18,4 +18,5 @@ export const WindowService = {
   getGapi: (): typeof gapi | null => (helpersIsClient ? window?.gapi : null),
   getFB: (): typeof FB | null => (helpersIsClient ? window?.FB : null),
   getGoogle: (): typeof google | null => (helpersIsClient ? window?.google : null),
+  getGrecaptcha: (): typeof grecaptcha => window.grecaptcha,
 };

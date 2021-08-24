@@ -15,13 +15,11 @@ export const AuthAutoRegisterService = (
     last_name: model.last_name,
     email: model.email,
     phone: model.phone,
-  })
-    .then((model) => {
-      if (!model.ok) {
-        return AuthService.onAutoRegistrationRejected(model);
-      }
+  }).then((model) => {
+    if (!model.ok) {
+      return model;
+    }
 
-      AuthService.onAuthResolved(model);
-      return model.data.user;
-    })
-    .catch(AuthService.onAutoRegistrationRejected);
+    AuthService.onAuthResolved(model.data);
+    return model.data.user;
+  });

@@ -1,41 +1,83 @@
 import { AnyValueType } from 'types/any/value.type';
+import { functionNoop } from 'helpers/function/noop';
+import { importScript } from 'helpers/import/script';
 import { LocaleService } from 'services/locale/service';
+import { WindowService } from 'services/window/service';
 
-const importScript = (src: string): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-
-    // Prepare script
-    script.type = 'text/javascript';
-    script.onerror = (): void => reject();
-    script.onload = (): void => resolve();
-
-    // Load script
-    document.head.appendChild(script);
-    script.src = src;
-  });
-};
 export class GoogleRecaptchaService {
   /**
    * Is recaptcha ready for usage ?
+   * @protected
    */
   protected isReady: boolean = false;
 
   /**
    * Is the script currently loading ?
+   * @protected
    */
   protected isLoading: boolean = false;
 
   /**
    * Queue of Promise.resolve to call once the Recaptcha script will be ready
+   * @protected
    */
   protected promiseQueue: Array<() => void> = [];
 
   /**
-   * Load Recaptcha script
+   * Recaptcha script load promise
+   * @protected
    */
-  public load(): Promise<string> {
-    const loadedPromise = new Promise<void>((resolve) => {
+  protected loadPromise: Promise<string> | undefined;
+
+  /**
+   * Grecapcha instance id
+   * @private
+   */
+  private instanceId: number | undefined = undefined;
+
+  /**
+   * Captcha token
+   */
+  private token: string = '';
+
+  /**
+   * Captcha promise resolver
+   * @private
+   */
+  private resolveCaptcha: (captchaToken: string) => void = functionNoop;
+
+  /**
+   * Execute grecaptcha
+   */
+  public execute(): Promise<string> {
+    if (this.token) {
+      return Promise.resolve(this.token);
+    }
+
+    // If captcha doesnt exist
+    if (!WindowService.getGrecaptcha()) {
+      // Load and render captcha
+      return this.load().then(this.onCaptchaInitialized).then(this.executeRecaptcha);
+    }
+
+    return this.executeRecaptcha();
+  }
+
+  /**
+   * Captcha token resolver
+   */
+  private executeRecaptcha = (): Promise<string> => {
+    return new Promise((resolve) => {
+      this.resolveCaptcha = resolve;
+      WindowService.getGrecaptcha().execute();
+    });
+  };
+
+  /**
+   * Load captcha script and render inside @containerElement
+   */
+  public load(): Promise<void> {
+    return new Promise<void>((resolve) => {
       // Script already ready
       if (this.isReady) {
         resolve();
@@ -59,41 +101,47 @@ export class GoogleRecaptchaService {
 
       this.importScript();
     });
-
-    return loadedPromise.then(() => {
-      const captchaPlaceholder = document.createElement('div');
-      document.querySelector('body')?.appendChild(captchaPlaceholder);
-
-      let resolveCaptcha: (capthaTocken: string) => void;
-      (
-        window as unknown as { grecaptcha: { render: (p1: HTMLDivElement, config: AnyValueType) => void } }
-      ).grecaptcha.render(captchaPlaceholder, {
-        // TODO-FE[CX-249] read from config
-        sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
-        callback: (c: string) => {
-          // eslint-disable-next-line no-console
-          console.log('resolve', c);
-          resolveCaptcha(c);
-        },
-        // eslint-disable-next-line no-console
-        'expired-callback': () => console.log('captcha expired'),
-        size: 'invisible',
-      });
-
-      return new Promise((resolve) => {
-        resolveCaptcha = resolve;
-        (window as unknown as { grecaptcha: { execute: () => void } }).grecaptcha.execute();
-      });
-    });
   }
 
   /**
-   * Returns the script "src" value
+   * Reset grecaptcha
    */
-  public getSrc(): string {
-    const langCode = LocaleService.getLocale();
-    return `https://www.google.com/recaptcha/api.js?render=explicit&onload=onReadyGoogleRecaptcha&hl=${langCode}`;
+  public reset(): void {
+    if (!this.instanceId) {
+      return;
+    }
+
+    WindowService.getGrecaptcha().reset(this.instanceId);
   }
+
+  /**
+   * On captcha is being initialized
+   */
+  private onCaptchaInitialized = (): void => {
+    // Reset captcha
+    this.reset();
+
+    // Create a placeholder for the captcha frame
+    const captchaPlaceholder = document.createElement('div');
+
+    // Append it to the component
+    WindowService.document?.querySelector('body')?.appendChild(captchaPlaceholder);
+
+    // Render inside the placeholder
+    this.instanceId = WindowService.getGrecaptcha().render(captchaPlaceholder, {
+      sitekey: process.env.NEXT_PUBLIC_RECAPTCHA,
+      callback: (c: string) => {
+        // Store captcha token
+        this.token = c;
+        this.resolveCaptcha(c);
+      },
+      'expired-callback': () => {
+        // Reset captcha token
+        this.token = '';
+      },
+      size: 'invisible',
+    });
+  };
 
   /**
    * Google Recaptcha ready for usage
@@ -109,7 +157,15 @@ export class GoogleRecaptchaService {
   /**
    * Import script
    */
-  private importScript(): Promise<void> {
-    return importScript(this.getSrc());
+  private importScript(): void {
+    importScript(this.getSrc());
+  }
+
+  /**
+   * Returns the script "src" value
+   */
+  private getSrc(): string {
+    const langCode = LocaleService.getLocale();
+    return `https://www.google.com/recaptcha/api.js?render=explicit&onload=onReadyGoogleRecaptcha&hl=${langCode}`;
   }
 }

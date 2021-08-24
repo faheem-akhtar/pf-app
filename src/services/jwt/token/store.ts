@@ -83,27 +83,22 @@ export class JwtTokenStore {
     this.refreshTokenPromise = apiAuthRefreshTokenFetcher({
       authToken: token,
       refreshToken,
-    })
-      .then((result: ApiFetcherResultType<ApiAuthRefreshTokenModelInterface>) => {
-        this.refreshTokenPromise = null;
-        if (result.ok) {
-          const tokenValue: string = result.data.data.attributes.payload;
-          this.setToken(tokenValue);
-          this.setRefreshToken(result.data.data.attributes.refresh_token);
+    }).then((result: ApiFetcherResultType<ApiAuthRefreshTokenModelInterface>) => {
+      this.refreshTokenPromise = null;
+      if (result.ok) {
+        const tokenValue: string = result.data.data.attributes.payload;
+        this.setToken(tokenValue);
+        this.setRefreshToken(result.data.data.attributes.refresh_token);
 
-          return tokenValue;
-        }
-
-        // eslint-disable-next-line no-console
-        console.error('Failed to refresh auth token', result.error);
-        return null;
-      })
-      .catch(() => {
-        this.refreshTokenPromise = null;
-        // Remove old token
+        return tokenValue;
+      } else {
         this.setToken();
-        return null;
-      });
+      }
+
+      // eslint-disable-next-line no-console
+      console.error('Failed to refresh auth token', result.error);
+      return null;
+    });
 
     return this.refreshTokenPromise;
   }

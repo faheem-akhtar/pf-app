@@ -1,5 +1,4 @@
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
-import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
 import { AuthModelInterface } from 'services/auth/model.interface';
 import { AuthSubscriberType } from 'services/auth/subscriber.type';
@@ -134,107 +133,39 @@ class Service {
   /**
    * User authn promise resolved
    */
-  public onAuthResolved = (response: ApiFetcherResultType<AuthModelInterface>): void => {
-    if (!response.ok) {
-      this.onLoginRejected(response);
-      return;
-    }
-
+  public onAuthResolved = (data: AuthModelInterface): void => {
     // Update data
-    this.jwtTokenService.setRefreshToken(response.data.meta.refresh_token);
-    this.jwtTokenService.setToken(response.data.meta.token);
+    this.jwtTokenService.setRefreshToken(data.meta.refresh_token);
+    this.jwtTokenService.setToken(data.meta.token);
 
     // Update user data in local storage
-    this.setUser(response.data.user);
-    this.updateUserData(response.data.user);
+    this.setUser(data.user);
+    this.updateUserData(data.user);
   };
 
   /**
    * User login promise rejected
-   * TODO-FE[TPNX-3188] - Update handler
    */
   public onLoginRejected = (errors: ApiFetcherResultFailureInterface): ApiFetcherResultFailureInterface => {
-    let errorMessage = '';
-    // If validation error
-    if ([400, 422].indexOf(errors.error.status) !== -1) {
-      this.toUserSignInFieldErrors(errors.error.body);
+    // If not unauthorized
+    if (errors.error.status !== 401) {
+      errors.error.body = '';
     }
 
-    if (errors.error.status === 401) {
-      errorMessage = errors.error.body;
-    }
-
-    // Add translation
-    errorMessage = 'Something went wrong! Please try again later';
-    errors.error.body = errorMessage;
     return errors;
   };
 
   /**
    * User registration promise rejected
-   * TODO-FE[TPNX-3188] - Update handler
    */
   public onRegistrationRejected = (error: ApiFetcherResultFailureInterface): ApiFetcherResultFailureInterface => {
-    let errorMessage = '';
-    // If validation error
-    if ([400, 422].indexOf(error.error.status) !== -1) {
-      this.toUserRegistrationFieldErrors(error.error.body);
+    // If not a validation error
+    if ([400, 422].indexOf(error.error.status) === -1) {
+      error.error.body = '';
     }
 
-    // Add translation
-    errorMessage = 'Something went wrong! Please try again later';
-    error.error.body = errorMessage;
     return error;
   };
-
-  /**
-   * User auto registration promise rejected
-   * TODO-FE[TPNX-3188] - Update handler
-   */
-  public onAutoRegistrationRejected = (
-    response: ApiFetcherResultFailureInterface
-  ): ApiFetcherResultFailureInterface => {
-    return response;
-  };
-
-  /**
-   * Change password rejected
-   * TODO-FE[TPNX-3188] - Update handler
-   */
-  public onChangePasswordRejected = (response: ApiFetcherResultFailureInterface): ApiFetcherResultFailureInterface => {
-    if ([400, 422].indexOf(response.error.status) !== -1) {
-      this.toUserChangePasswordValidationErrors(response.error.body);
-    }
-
-    return response;
-  };
-
-  /**
-   * Transforms api errors to UserRegistrationFieldErrorsInterface
-   * TODO-FE[TPNX-3188] - Update handler
-   */
-  private toUserRegistrationFieldErrors(errors: string): void {
-    // eslint-disable-next-line no-console
-    console.error(errors);
-  }
-
-  /**
-   * Transforms api errors to UserSignInFieldErrorsInterface
-   * TODO-FE[TPNX-3188] - Update handler
-   */
-  private toUserSignInFieldErrors(errors: string): void {
-    // eslint-disable-next-line no-console
-    console.error(errors);
-  }
-
-  /**
-   * Transforms api errors to UserChangePasswordFieldErrorsInterface
-   * TODO-FE[TPNX-3188] - Update handler
-   */
-  private toUserChangePasswordValidationErrors(errors: string): void {
-    // eslint-disable-next-line no-console
-    console.error(errors);
-  }
 }
 
 const AuthService = new Service();

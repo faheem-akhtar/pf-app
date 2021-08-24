@@ -21,7 +21,7 @@ export const apiAuthRegisterFetcher = (requestParams: {
   first_name: string;
   last_name: string;
   password: string;
-  opted_in: string;
+  opted_in: boolean;
   email: string;
   captcha_token: string | undefined;
 }): Promise<ApiFetcherResultType<ApiAuthRegisterModelInterface>> => {

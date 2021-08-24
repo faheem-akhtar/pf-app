@@ -3,6 +3,6 @@ export interface ApiAuthRegisterRequestInterface {
   last_name: string;
   email: string;
   password: string;
-  opted_in: string;
+  opted_in: boolean;
   captcha_token?: string;
 }

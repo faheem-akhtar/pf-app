@@ -17,13 +17,12 @@ export const AuthRegisterService = (
     password: model.password,
     opted_in: model.opted_in,
     captcha_token: model?.captcha_token,
-  })
-    .then((model) => {
-      if (!model.ok) {
-        return AuthService.onRegistrationRejected(model);
-      }
+  }).then((model) => {
+    if (!model.ok) {
+      return AuthService.onRegistrationRejected(model);
+    }
 
-      AuthService.onAuthResolved(model);
-      return model.data.user;
-    })
-    .catch(AuthService.onRegistrationRejected);
+    AuthService.onAuthResolved(model.data);
+
+    return model.data.user;
+  });

@@ -29,16 +29,15 @@ export const AuthGoogleService = {
           auth2
             .signIn()
             .then((response) => {
-              apiAuthSocialLoginGoogleFetcher(response.getAuthResponse(true).id_token)
-                .then((res) => {
-                  if (!res.ok) {
-                    reject(res);
-                  }
+              apiAuthSocialLoginGoogleFetcher(response.getAuthResponse(true).id_token).then((res) => {
+                if (!res.ok) {
+                  reject(res);
+                  return;
+                }
 
-                  AuthService.onAuthResolved(res);
-                  resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
-                })
-                .catch(reject);
+                AuthService.onAuthResolved(res.data);
+                resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
+              });
             })
             .catch(reject);
         });

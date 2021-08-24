@@ -38,15 +38,14 @@ export const AuthFacebookService = {
           (response) => {
             if (response.authResponse) {
               // Update user data
-              apiAuthSocialLoginFacebookFetcher(response.authResponse.accessToken)
-                .then((res) => {
-                  if (!res.ok) {
-                    reject(res);
-                  }
-                  AuthService.onAuthResolved(res);
-                  resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
-                })
-                .catch(reject);
+              apiAuthSocialLoginFacebookFetcher(response.authResponse.accessToken).then((res) => {
+                if (!res.ok) {
+                  reject(res.error);
+                  return;
+                }
+                AuthService.onAuthResolved(res.data);
+                resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
+              });
             } else {
               reject();
             }

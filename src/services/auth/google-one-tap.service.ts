@@ -19,15 +19,14 @@ export const AuthGoogleOneTapService = {
         google.accounts.id.initialize({
           client_id: process.env.NEXT_PUBLIC_GOOGLE_AUTH,
           callback: (result: { credential: string }) => {
-            apiAuthSocialLoginGoogleFetcher(result.credential)
-              .then((res) => {
-                if (!res.ok) {
-                  reject(res);
-                }
-                AuthService.onAuthResolved(res);
-                resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
-              })
-              .catch(reject);
+            apiAuthSocialLoginGoogleFetcher(result.credential).then((res) => {
+              if (!res.ok) {
+                reject(res);
+                return;
+              }
+              AuthService.onAuthResolved(res.data);
+              resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
+            });
           },
         });
         google.accounts.id.prompt();

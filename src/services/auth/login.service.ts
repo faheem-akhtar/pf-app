@@ -1,26 +1,25 @@
 import { apiAuthSignInFetcher } from 'api/auth/sign-in/fetcher';
 import { ApiAuthSignInRequestInterface } from 'api/auth/sign-in/request.interface';
-import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
+import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import AuthService from 'services/auth/service';
-import { UserModelInterface } from 'services/user/model.interface';
 
 /**
  * Login user
  */
-export const AuthLoginService = (
-  model: ApiAuthSignInRequestInterface
-): Promise<UserModelInterface | ApiFetcherResultFailureInterface> =>
+export const AuthLoginService = (model: ApiAuthSignInRequestInterface): Promise<ApiFetcherResultType<void>> =>
   apiAuthSignInFetcher({
     email: model.email,
     password: model.password,
     captcha_token: model?.captcha_token,
-  })
-    .then((model) => {
-      if (!model.ok) {
-        return AuthService.onLoginRejected(model);
-      }
+  }).then((response) => {
+    if (!response.ok) {
+      return AuthService.onLoginRejected(response);
+    }
 
-      AuthService.onAuthResolved(model);
-      return model.data.user;
-    })
-    .catch(AuthService.onLoginRejected);
+    AuthService.onAuthResolved(response.data);
+
+    return {
+      ...response,
+      data: undefined,
+    };
+  });
