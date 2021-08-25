@@ -1,9 +1,9 @@
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import styles from './property-search-not-found-section.module.scss';
 
 export const PropertySearchNotFoundSectionTemplate = (): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.container}>

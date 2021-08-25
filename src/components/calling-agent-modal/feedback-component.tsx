@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { apiReportFetcher } from 'api/report/fetcher';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
@@ -31,7 +31,7 @@ export const CallingAgentModalFeedbackComponent: React.FunctionComponent<{
 }> = ({ onAnswerClicked, propertyId }) => {
   const filtersCtx = useContext(FiltersContext);
   const user = useContext(UserContext);
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   const onClickAnswer = (option: string) => (): void => {
     if (AnswersNeedToBeReported.includes(option)) {

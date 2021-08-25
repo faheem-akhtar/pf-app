@@ -5,7 +5,7 @@ import { MutableRefObject, useEffect, useRef } from 'react';
  * Use it for initialization that need to be done before rendering
  * @param fn Function to be called once on component initialization
  */
-export const useConstructorHook = (fn: () => void | (() => void)): void => {
+export const useReactConstructor = (fn: () => void | (() => void)): void => {
   const hasBeenCalledRef = useRef(false);
   const unmountRef: MutableRefObject<() => void | (() => void)> = useRef(() => undefined);
 

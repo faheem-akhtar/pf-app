@@ -8,5 +8,5 @@ const { NEXT_PUBLIC_COUNTRY_CODE } = process.env;
  * @returns country-specific and the common translation definitions
  */
 // TODO-FE[TPNX-3016] Add tests
-export const translationGetDefinitions = (locale: string): ReturnType<typeof serverSideTranslations> =>
+export const backendTranslationGetDefinitions = (locale: string): ReturnType<typeof serverSideTranslations> =>
   serverSideTranslations(locale, ['common', <string>NEXT_PUBLIC_COUNTRY_CODE]);

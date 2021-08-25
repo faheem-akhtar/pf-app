@@ -15,7 +15,7 @@ import { filtersDataGetEnabledFilterTypes } from '../filters/data/get-enabled-fi
 import { filtersModalWidgetRenderMap } from './widget/render-map';
 import { filtersValueEquals } from 'components/filters/value/equals';
 import { useFiltersValueState } from 'components/filters/value/state.hook';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import styles from './filters-modal-component.module.scss';
 
@@ -34,7 +34,7 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
   const enabledFiltersInSequence = filtersSequence.filter((k) => enabledFiltersMap[k as keyof FiltersValueInterface]);
 
   const filtersHasNotBeenChanged = filtersValueEquals(filtersValue, filtersCtx.value);
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.container}>

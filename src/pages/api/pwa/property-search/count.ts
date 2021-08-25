@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
-import { backendApiPropertySearchFetcher } from 'backend/api/property/search/fetcher';
+import { backendApiPropertySearchCountFetcher } from 'backend/api/property/search/count-fetcher';
 import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
@@ -9,9 +9,9 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
 
   const filtersValue = backendFiltersQueryToValue(req.query, locale);
 
-  backendApiPropertySearchFetcher(locale, filtersValue).then((response) => {
+  return backendApiPropertySearchCountFetcher(locale, filtersValue).then((response) => {
     if (response.ok) {
-      res.send(response.data.total);
+      res.send(response.data.count);
     } else {
       res.status(500);
       // eslint-disable-next-line no-console

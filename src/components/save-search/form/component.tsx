@@ -12,14 +12,14 @@ import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 import { SelectFieldTemplate } from 'library/select-field/template';
 import { TextFieldComponent } from 'library/text-field/component';
 import { useFormField } from 'helpers/form/field.hook';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import styles from './save-search-form-component.module.scss';
 
 const MAX_CHARACTERS_LIMIT = 256;
 
 export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
   const filtersCtx = useContext(FiltersContext);
   const [generalError, setGeneralError] = useState<string>();
   const [isLoading, setIsloading] = useState(false);

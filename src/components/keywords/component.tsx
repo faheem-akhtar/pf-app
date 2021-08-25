@@ -1,4 +1,4 @@
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { keywordsMakeQueryForInputValue } from './make-query-for-input-value';
 import { keywordsOnInputKeyPress } from './on-input-key-press';
@@ -19,7 +19,7 @@ export const KeywordsComponent = ({
   className,
   chipClassName,
 }: KeywordsComponentPropsInterface): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
   const keywords = value.split(separator).filter((x) => x);
   const keywordsQueryForInputValue = keywordsMakeQueryForInputValue(category);
 

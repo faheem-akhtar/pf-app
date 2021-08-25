@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { AuthLoginFieldEnum } from 'components/auth/login/field.enum';
 import { AuthLoginService } from 'services/auth/login.service';
@@ -8,12 +7,14 @@ import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { formMakeValidator } from 'components/form/make-validator';
 import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
+
 const captchaService = new GoogleRecaptchaService();
 
 export const AuthLoginComponent = ({ close }: { close: () => void }): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   const [email, setEmail] = useState('imagine@me.com');
   const [password, setPassword] = useState('defender12');

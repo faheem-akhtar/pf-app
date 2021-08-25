@@ -7,7 +7,7 @@ import { ButtonTemplate } from 'library/button/template';
 import { FiltersModalSubmitButtonPropsInterface } from './submit-button-props.interface';
 
 import styles from './filters-modal-component.module.scss';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 // TODO-FE[CX-423] add tests
 export const FiltersModalSubmitButtonComponent = ({
@@ -15,7 +15,7 @@ export const FiltersModalSubmitButtonComponent = ({
   filtersValue,
   forceNumberOfProperties,
 }: FiltersModalSubmitButtonPropsInterface): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   const doNotFetch = forceNumberOfProperties !== null;
   let result = useApiPropertySearchCount(filtersValue, doNotFetch);

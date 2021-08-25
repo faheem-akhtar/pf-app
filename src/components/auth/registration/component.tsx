@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
 
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
 import { AuthRegisterService } from 'services/auth/register.service';
@@ -10,13 +9,14 @@ import { ButtonTemplate } from 'library/button/template';
 import { CheckboxTemplate } from 'library/checkbox/template';
 import { formMakeValidator } from 'components/form/make-validator';
 import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
 
 const captchaService = new GoogleRecaptchaService();
 
 export const AuthRegistrationComponent = ({ close }: { close: () => void }): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

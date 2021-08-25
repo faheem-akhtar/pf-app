@@ -1,5 +1,5 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { FiltersModalItemTemplatePropsInterface } from './template-props.interface';
 
@@ -13,7 +13,7 @@ export const FiltersModalItemTemplate = ({
   hasBorder = true,
   containerClassName,
 }: FiltersModalItemTemplatePropsInterface): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   return (
     <section

@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import Router, { NextRouter, useRouter } from 'next/router';
 
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
@@ -57,7 +57,7 @@ export const PaginationSectionComponent = ({
   pagesAvailable,
   loading,
 }: PaginationSectionComponentPropsType): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
   const router = useRouter();
   const {
     value: { [FiltersParametersEnum.pageNumber]: currentPage },

@@ -13,10 +13,10 @@ import { PropertySearchResultsCountForCurrentQueryContext } from './results-coun
 import { PropertySearchViewPropsType } from './view-props.type';
 
 import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
-import { usePageIsLoadingHook } from 'helpers/hook/page-is-loading.hook';
+import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 
 export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Element => {
-  const pageIsLoading = usePageIsLoadingHook();
+  const pageIsLoading = usePageIsLoading();
 
   if (!props.ok) {
     return <div>Error: ${props.error}</div>;

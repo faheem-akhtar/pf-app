@@ -7,7 +7,7 @@ import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated
 import { propertySerpObfuscatedGetImagesCount } from 'components/property/serp/obfuscated/get/images-count';
 import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfuscated/get/img-url';
 import { useApiPropertyImages } from 'api/property-images/hook';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { CallingAgentModalComponent } from 'components/calling-agent-modal/component';
 import { EmailAgentModalComponent } from 'components/email-agent-modal/component';
@@ -22,7 +22,7 @@ import { propertySerpObfuscatedGetReference } from 'components/property/serp/obf
 export const PropertyCardComponent = ({ property, loading }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
   const [galleryHasBeenTouched, setGalleryHasBeenTouched] = useState(false);
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   const callingAgentModalOpenRef = useRef<() => void>(functionNoop);
   const emailAgentModalOpenRef = useRef<() => void>(functionNoop);

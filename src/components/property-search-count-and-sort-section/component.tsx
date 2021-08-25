@@ -12,13 +12,13 @@ import { PropertyCardMenuModalComponent } from 'components/property-card/menu/mo
 import { PropertySearchCountAndSortSectionComponentPropsType } from './component-props.type';
 
 import styles from './property-search-count-and-sort-section.module.scss';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 export const PropertySearchCountAndSortSectionComponent = ({
   count,
   loading,
 }: PropertySearchCountAndSortSectionComponentPropsType): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
   const openFiltersRef = useRef<() => void>() as React.MutableRefObject<() => void>;
   const closeFiltersRef = useRef<() => void>() as React.MutableRefObject<() => void>;
   const filtersCtx = useContext(FiltersContext);

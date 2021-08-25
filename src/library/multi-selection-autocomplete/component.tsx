@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { multiSelectionAutocompleteMakeKeyboardAccessibilityHandler } from './make-keyboard-accessibility-handler';
-import { useWindowMouseDownHook } from 'helpers/hook/window-mouse-down.hook';
+import { useWindowMouseDown } from 'helpers/window/mouse-down.hook';
 
 import { KeyboardKeyEnum } from 'enums/keyboard/key.enum';
 import { MultiSelectionAutocompleteComponentPropsInterface } from './component-props.interface';
@@ -123,7 +123,7 @@ export const MultiSelectionAutocompleteComponent = <T extends unknown>(
 
   /* Effects */
   // deactivate on windows mouse down outside of component
-  useWindowMouseDownHook({
+  useWindowMouseDown({
     shouldListen: isActive,
     ignoreElementRef: rootRef,
     onWindowMouseDown: (e) => {

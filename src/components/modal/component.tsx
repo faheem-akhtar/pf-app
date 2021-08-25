@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
-import { useConstructorHook } from 'helpers/hook/constructor.hook';
 
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { functionNoop } from 'helpers/function/noop';
+import { useReactConstructor } from 'helpers/react/constructor.hook';
 
 import { ModalComponentPropsInterface } from './component-props.interface';
 import { ModalPortalComponent } from './portal-component';
@@ -20,7 +20,7 @@ export const ModalComponent = ({
   const onOpenRef = useRef(onOpen);
   onOpenRef.current = onOpen;
 
-  useConstructorHook(() => {
+  useReactConstructor(() => {
     openRef.current = (): void => {
       setOpened(true);
       onOpenRef.current();

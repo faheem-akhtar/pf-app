@@ -1,7 +1,7 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { highlightString } from 'helpers/highlight/string';
 import { multiSelectionAutocompleteComputeInactiveRenderValue } from './compute-inactive-render-value';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { IconThickSearchTemplate } from 'components/icon/thick/search-template';
 import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
@@ -13,7 +13,7 @@ import styles from './multi-selection-autocomplete.module.scss';
 export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
   props: MultiSelectionAutocompleteTemplatePropsInterface<T>
 ): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   const renderInput = (): JSX.Element => (
     <input

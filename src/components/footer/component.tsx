@@ -7,13 +7,13 @@ import { IconAppStoreTemplate } from './icon/app-store.template';
 import { IconGooglePlayTemplate } from './icon/google-play.template';
 
 import styles from './footer.module.scss';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 /**
  * TODO-FE[TPNX-3016] Add tests
  */
 export const FooterComponent = (): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   return (
     <footer className={styles.footer}>

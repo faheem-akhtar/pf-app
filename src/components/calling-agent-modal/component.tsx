@@ -11,7 +11,7 @@ import styles from './calling-agent-modal.module.scss';
 
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { useApiAgent } from 'api/agent/hook';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { PropertyAgentResultType } from 'components/property/agent-result.type';
 
@@ -21,7 +21,7 @@ const AgentInfoComponent: React.FunctionComponent<{
   avatar?: string;
   languages?: string[];
 }> = ({ referenceId, avatar, languages, name }) => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   return (
     <div className={styles.details}>
@@ -52,7 +52,7 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
   const [isOpened, setIsOpened] = useState(false);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [agentDetail, setAgentDetail] = useState<PropertyAgentResultType>();
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
   const closeRef = useRef<() => void>(functionNoop);
   const agentDetailsResponse = useApiAgent(propertyId, isOpened);
 

@@ -1,6 +1,6 @@
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 export const CopyrightTemplate: React.FunctionComponent = () => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
   return <div>{t('copyright')}</div>;
 };

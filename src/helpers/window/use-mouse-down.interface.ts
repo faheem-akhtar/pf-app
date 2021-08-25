@@ -1,6 +1,6 @@
 import { ReactElement, RefObject } from 'react';
 
-export interface HookWindowMouseDownInterface {
+export interface WindowUseMouseDownInterface {
   /**
    * Should listen to global mouse down event
    */

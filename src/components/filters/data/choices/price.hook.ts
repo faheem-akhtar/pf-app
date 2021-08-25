@@ -8,7 +8,7 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
 import { FiltersValueFieldPricePeriodType } from 'components/filters/value/field/price-period.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 const cache: Record<string, FiltersValueFieldChoiceInterface<number | null>[]> = {};
 const makeKey = (categoryId: FiltersCategoryIdEnum, pricePeriod: FiltersValueFieldPricePeriodType | void): string =>
@@ -18,7 +18,7 @@ const usePriceChoices = (
   categoryId: FiltersCategoryIdEnum,
   pricePeriod: FiltersValueFieldPricePeriodType | void
 ): FiltersValueFieldChoiceInterface<number | null>[] => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   if (cache[makeKey(categoryId, pricePeriod)]) {
     return cache[makeKey(categoryId, pricePeriod)];

@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 
 import { configCommon } from 'config/common';
 import { configOriginValue } from 'config/origin/value';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
@@ -21,7 +21,7 @@ export const HeaderTemplate = ({
   userProfile,
   onLoginButtonClick,
 }: HeaderTemplatePropsInterface): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
 
   const currentLocaleIsDefault = locale === configCommon.language.current;
   const logo = currentLocaleIsDefault ? <IconLogoCurrentTemplate /> : <IconLogoAlternativeTemplate />;

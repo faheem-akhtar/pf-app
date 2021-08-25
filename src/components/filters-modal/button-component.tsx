@@ -1,7 +1,7 @@
 import { useContext, useRef } from 'react';
 
 import { filtersCountGetActiveFields } from 'helpers/filters/count/get-active-fields';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
@@ -16,7 +16,7 @@ import { ModalComponent } from 'components/modal/component';
 export const FiltersModalButtonComponent = (): JSX.Element => {
   const openFiltersRef = useRef<() => void>(() => null);
   const closeFiltersRef = useRef<() => void>(() => null);
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
   const filterCtx = useContext(FiltersContext);
   const nonDefaultFiltersCount = filtersCountGetActiveFields(filterCtx);
 

@@ -3,12 +3,12 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
 import { backendApiPropertySearchFetcher } from 'backend/api/property/search/fetcher';
 import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
+import { backendTranslationGetDefinitions } from 'backend/translation/get-definitions';
 import filtersDataByLocale from '../../public/static/filters-data';
 
 import { FiltersDataInterface } from 'components/filters/data/interface';
 import { PropertySearchView } from 'views/property-search/view';
 import { PropertySearchViewPropsType } from 'views/property-search/view-props.type';
-import { translationGetDefinitions } from 'helpers/translation/get-definitions';
 
 // TODO-FE[CX-429] add tests
 export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType> = async (
@@ -36,7 +36,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       filtersData: (filtersDataByLocale as unknown as Record<string, FiltersDataInterface>)[locale],
       filtersValueFromQuery,
       searchResult: searchResult.data,
-      ...(await translationGetDefinitions(locale)),
+      ...(await backendTranslationGetDefinitions(locale)),
     },
   };
 };

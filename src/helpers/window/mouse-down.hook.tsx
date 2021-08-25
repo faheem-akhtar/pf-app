@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 
-import { HookWindowMouseDownInterface } from './window-mouse-down.interface';
+import { WindowUseMouseDownInterface } from './use-mouse-down.interface';
 
 /**
  * Run callback on window mouse down when shouldListen is true
  * @param props
  */
-export const useWindowMouseDownHook = ({
+export const useWindowMouseDown = ({
   shouldListen,
   onWindowMouseDown,
   ignoreElementRef,
-}: HookWindowMouseDownInterface): void => {
+}: WindowUseMouseDownInterface): void => {
   const onMouseDown = (e: MouseEvent): void => {
     if (ignoreElementRef && e.composedPath().includes(ignoreElementRef.current as unknown as Node)) {
       return;

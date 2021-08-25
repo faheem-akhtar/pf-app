@@ -4,8 +4,8 @@ import { helpersIsClient } from 'helpers/is-client';
 import { LocationService } from 'services/location/service';
 import { multiLocationSelectorGetHistory } from './get-history';
 import { multiLocationSelectorMakeOnAddLocation } from './make-on-add-location';
-import { useConstructorHook } from 'helpers/hook/constructor.hook';
-import { useTranslationHook } from 'helpers/hook/translation.hook';
+import { useReactConstructor } from 'helpers/react/constructor.hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { IconThinMapPinTemplate } from 'components/icon/thin/map-pin-template';
 import { IconThinTimeTemplate } from 'components/icon/thin/time-template';
@@ -33,10 +33,10 @@ export const MultiLocationSelectorComponent = ({
   maxHistoryLength = 8,
   maxSearchResults = 8,
 }: MultiLocationSelectorComponentPropsInterface): JSX.Element => {
-  const { t } = useTranslationHook();
+  const { t } = useTranslation();
   const [inputValue, setInputValue] = useState('');
 
-  useConstructorHook(() => {
+  useReactConstructor(() => {
     if (helpersIsClient) {
       LocationService.init(locale);
     }
