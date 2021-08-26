@@ -3,7 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier', "plugin:react/recommended", "plugin:react-hooks/recommended"],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -61,7 +67,13 @@ module.exports = {
     'pf-rules/forbid-import': [
       'error',
       {
-        modules: ['next-i18next'],
+        modules: [
+          'next-i18next',
+          // {
+          //   moduleName: 'backend',
+          //   whiteListedFilePaths: ['scripts', 'backend', 'pages'],
+          // },
+        ],
       },
     ],
     'react/self-closing-comp': 'warn',
