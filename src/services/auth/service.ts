@@ -148,7 +148,9 @@ class Service {
    */
   public onLoginRejected = (errors: ApiFetcherResultFailureInterface): ApiFetcherResultFailureInterface => {
     // If not unauthorized
-    if (errors.error.status !== 401) {
+    if (errors.error.status === 401) {
+      errors.error.body = JSON.parse(errors.error.body).errors[0].detail || '';
+    } else {
       errors.error.body = '';
     }
 
@@ -158,13 +160,15 @@ class Service {
   /**
    * User registration promise rejected
    */
-  public onRegistrationRejected = (error: ApiFetcherResultFailureInterface): ApiFetcherResultFailureInterface => {
+  public onRequestRejected = (errors: ApiFetcherResultFailureInterface): ApiFetcherResultFailureInterface => {
     // If not a validation error
-    if ([400, 422].indexOf(error.error.status) === -1) {
-      error.error.body = '';
+    if ([400, 422].indexOf(errors.error.status) !== -1) {
+      errors.error.body = JSON.parse(errors.error.body).errors[0].detail || '';
+    } else {
+      errors.error.body = '';
     }
 
-    return error;
+    return errors;
   };
 }
 

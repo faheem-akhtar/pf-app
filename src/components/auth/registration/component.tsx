@@ -1,21 +1,30 @@
 import { useState } from 'react';
 
-import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
+import { AuthLoaderComponent } from 'components/auth/loader/component';
 import { AuthRegisterService } from 'services/auth/register.service';
 import { AuthRegistrationFieldEnum } from 'components/auth/registration/field.enum';
+import { AuthRegistrationPropsInterface } from 'components/auth/registration/props.interface';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { CheckboxTemplate } from 'library/checkbox/template';
+import { domClassMerge } from 'helpers/dom/class-merge';
 import { formMakeValidator } from 'components/form/make-validator';
 import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { ReCaptchaComponent } from 'components/re-captcha/component';
+import { TextFieldComponent } from 'library/text-field/component';
 import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
 
+import { configLinksSecondaryPrivacyPolicy } from 'config/links/secondary/privacy-policy';
+import { configLinksSecondaryTermsConditions } from 'config/links/secondary/terms-conditions';
+
+import styles from 'components/auth/auth.module.scss';
+
 const captchaService = new GoogleRecaptchaService();
 
-export const AuthRegistrationComponent = ({ close }: { close: () => void }): JSX.Element => {
+export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface): JSX.Element => {
   const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
@@ -27,35 +36,41 @@ export const AuthRegistrationComponent = ({ close }: { close: () => void }): JSX
   const [errorMessage, setErrorMessage] = useState('');
   const [validators] = useState(() => ({
     [AuthRegistrationFieldEnum.email]: [
-      validationRequired(t('Enter your email')),
-      validationEmail(t('Please enter a valid email')),
+      validationRequired(t('auth/empty-email')),
+      validationEmail(t('auth/not-valid-email')),
     ],
-    [AuthRegistrationFieldEnum.password]: [validationRequired(t('Please enter a password'))],
-    [AuthRegistrationFieldEnum.firstName]: [validationRequired(t('Please enter a valid first and last name'))],
-    [AuthRegistrationFieldEnum.lastName]: [validationRequired(t('Please enter a valid first and last name'))],
+    [AuthRegistrationFieldEnum.password]: [validationRequired(t('auth/empty-password'))],
+    [AuthRegistrationFieldEnum.firstName]: [validationRequired(t('auth/empty-first-name'))],
+    [AuthRegistrationFieldEnum.lastName]: [validationRequired(t('auth/empty-last-name'))],
   }));
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Generate T&C message
+  const authText = t(`auth/accept-terms-and-conditions`);
+  const authTextParts = authText.split('{link}');
 
   /**
    * Validate form fields
    */
-  const validate = formMakeValidator(setErrors, validators);
+  const validate = formMakeValidator(errors, setErrors, validators);
 
-  // TODO-FE[CX-219] - Update template
   return (
     <>
-      {errorMessage && <div className='authentication__error--general'>{errorMessage}</div>}
+      <div className={styles.heading}>{t('auth/create-account')}</div>
+      <AuthLoaderComponent isEnabled={isLoading} isCentered={true} />
+      {errorMessage && <div className={domClassMerge(styles.error, styles['error-message'])}>{errorMessage}</div>}
       <form
-        className='authentication__form'
         onSubmit={(e): void => {
           e.preventDefault();
           if (
-            validate({
+            !validate({
               [AuthRegistrationFieldEnum.email]: email,
               [AuthRegistrationFieldEnum.password]: password,
               [AuthRegistrationFieldEnum.firstName]: firstName,
               [AuthRegistrationFieldEnum.lastName]: lastName,
             })
           ) {
+            setIsLoading(true);
             captchaService.execute().then((captcha_token) => {
               AuthRegisterService({
                 email,
@@ -64,106 +79,138 @@ export const AuthRegistrationComponent = ({ close }: { close: () => void }): JSX
                 last_name: lastName,
                 opted_in: optedIn,
                 captcha_token,
-              }).then((e) => {
-                if (!(e as ApiFetcherResultFailureInterface).ok) {
-                  setErrorMessage(
-                    (e as ApiFetcherResultFailureInterface).error.body ||
-                      t('Something went wrong! Please try again later')
-                  );
-                  captchaService.reset();
-                } else {
-                  // Reset server error message
-                  setErrorMessage('');
-                  // Close modal
-                  close();
-                }
-              });
+              })
+                .then((e) => {
+                  if (e.ok) {
+                    // Reset server error message
+                    setErrorMessage('');
+
+                    // Close modal
+                    props.onClose();
+                  } else {
+                    setErrorMessage(e.error.body || `${t('auth/something-wrong')}! ${t('auth/try-later')}`);
+
+                    // Reset captcha
+                    captchaService.reset();
+                  }
+                })
+                .finally(() => setIsLoading(false));
             });
           }
           return;
         }}
       >
-        <div className='authentication__input-area'>
-          <div className='authentication__input-label'>{'Enter your email'}</div>
-          <input
+        <div className={styles['input-area']}>
+          <TextFieldComponent
+            placeholder={t('auth/first-name')}
             type='text'
-            className='authentication__input'
+            value={firstName}
+            error={!!errors[AuthRegistrationFieldEnum.firstName]}
+            onChange={(value): void => {
+              !validate({
+                [AuthRegistrationFieldEnum.firstName]: value,
+              });
+              setFirstName(value);
+            }}
+          />
+          <div className={styles.error}>{errors[AuthRegistrationFieldEnum.firstName]}</div>
+        </div>
+
+        <div className={styles['input-area']}>
+          <TextFieldComponent
+            placeholder={t('auth/last-mane')}
+            type='text'
+            value={lastName}
+            error={!!errors[AuthRegistrationFieldEnum.lastName]}
+            onChange={(value): void => {
+              !validate({
+                [AuthRegistrationFieldEnum.lastName]: value,
+              });
+              setLastName(value);
+            }}
+          />
+          <div className={styles.error}>{errors[AuthRegistrationFieldEnum.lastName]}</div>
+        </div>
+        <div className={styles['input-area']}>
+          <TextFieldComponent
+            placeholder={t('email')}
+            type='email'
             value={email}
-            onChange={(e): void => {
-              const value = e.target.value;
+            error={!!errors[AuthRegistrationFieldEnum.email]}
+            onChange={(value): void => {
               validate({
                 [AuthRegistrationFieldEnum.email]: value,
               });
               setEmail(value);
             }}
           />
-          <div className='authentication__error'>{errors[AuthRegistrationFieldEnum.email]}</div>
+          <div className={styles.error}>{errors[AuthRegistrationFieldEnum.email]}</div>
         </div>
-        <div className='authentication__input-area'>
-          <div className='authentication__input-label'>{'Enter your first name'}</div>
-          <input
-            type='text'
-            className='authentication__input'
-            value={email}
-            onChange={(e): void => {
-              const value = e.target.value;
-              validate({
-                [AuthRegistrationFieldEnum.firstName]: value,
-              });
-              setFirstName(value);
-            }}
-          />
-          <div className='authentication__error'>{errors[AuthRegistrationFieldEnum.firstName]}</div>
-        </div>
-        <div className='authentication__input-area'>
-          <div className='authentication__input-label'>{'Enter your last name'}</div>
-          <input
-            type='text'
-            className='authentication__input'
-            value={email}
-            onChange={(e): void => {
-              const value = e.target.value;
-              validate({
-                [AuthRegistrationFieldEnum.lastName]: value,
-              });
-              setLastName(value);
-            }}
-          />
-          <div className='authentication__error'>{errors[AuthRegistrationFieldEnum.lastName]}</div>
-        </div>
-        <div className='authentication__input-area'>
-          <input
+        <div className={styles['input-area']}>
+          <TextFieldComponent
+            placeholder={t('password')}
             type='password'
-            className='authentication__input'
             value={password}
-            onChange={(e): void => {
-              const value = e.target.value;
+            error={!!errors[AuthRegistrationFieldEnum.password]}
+            onChange={(value): void => {
               !validate({
                 [AuthRegistrationFieldEnum.password]: value,
               });
               setPassword(value);
             }}
           />
-          <div className='authentication__error'>{errors[AuthRegistrationFieldEnum.password]}</div>
+          <div className={styles.error}>{errors[AuthRegistrationFieldEnum.password]}</div>
         </div>
-        <div className='authentication__input-area'>
+
+        <div className={styles['input-area']}>
           <CheckboxTemplate
-            id='Opten in'
+            id='opten-in'
             checked={optedIn}
             onChange={(e): void => {
               setOptedIn(!!e.target.value);
             }}
           >
-            {t('filters-modal/commercial-only')}
+            <div className={styles['checkbox-text']}>{t('auth/free-guides')}</div>
           </CheckboxTemplate>
         </div>
 
-        <div className='authentication__form-submit'>
-          <ButtonTemplate type='submit' componentType={ButtonComponentTypeEnum.tertiary} size={ButtonSizeEnum.small}>
-            {'Register'}
+        <div className={styles['input-area']}>
+          <ButtonTemplate
+            className={styles.button}
+            type='submit'
+            componentType={ButtonComponentTypeEnum.primary}
+            size={ButtonSizeEnum.regular}
+          >
+            {t('auth/create-account')}
           </ButtonTemplate>
         </div>
+        <ReCaptchaComponent />
       </form>
+      <div className={domClassMerge(styles.link, styles['create-account'])} onClick={props.onLogin}>
+        {t('auth/already-registered')}?&nbsp;{t('log-in')}
+      </div>
+
+      <div className={styles['policy-check']}>
+        {authTextParts[0]}
+        <a
+          href={configLinksSecondaryTermsConditions.target}
+          target='_blank'
+          className={styles['compliance-link']}
+          rel='noreferrer'
+        >
+          {t(configLinksSecondaryTermsConditions.translationKey)}
+        </a>
+        {authTextParts[1]}
+        <a
+          href={configLinksSecondaryPrivacyPolicy.target}
+          target='_blank'
+          className={styles['compliance-link']}
+          rel='noreferrer'
+        >
+          {t('auth/our-privacy-policy')}
+        </a>
+        {authTextParts[2]}
+      </div>
     </>
   );
 };

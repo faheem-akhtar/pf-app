@@ -2,6 +2,7 @@ import { AnyValueType } from 'types/any/value.type';
 import { functionNoop } from 'helpers/function/noop';
 import { importScript } from 'helpers/import/script';
 import { LocaleService } from 'services/locale/service';
+import { reCaptchaSelector } from 'components/re-captcha/selector';
 import { WindowService } from 'services/window/service';
 
 export class GoogleRecaptchaService {
@@ -54,10 +55,15 @@ export class GoogleRecaptchaService {
       return Promise.resolve(this.token);
     }
 
-    // If captcha doesnt exist
+    // If captcha doesnt exist in window
     if (!WindowService.getGrecaptcha()) {
       // Load and render captcha
-      return this.load().then(this.onCaptchaInitialized).then(this.executeRecaptcha);
+      return this.load().then(this.onCaptchaRender).then(this.executeRecaptcha);
+    }
+
+    // If instance doesn't exist render recaptcha
+    if (!this.instanceId) {
+      this.onCaptchaRender();
     }
 
     return this.executeRecaptcha();
@@ -111,13 +117,14 @@ export class GoogleRecaptchaService {
       return;
     }
 
+    this.token = '';
     WindowService.getGrecaptcha().reset(this.instanceId);
   }
 
   /**
    * On captcha is being initialized
    */
-  private onCaptchaInitialized = (): void => {
+  private onCaptchaRender = (): void => {
     // Reset captcha
     this.reset();
 
@@ -128,7 +135,7 @@ export class GoogleRecaptchaService {
     WindowService.document?.querySelector('body')?.appendChild(captchaPlaceholder);
 
     // Render inside the placeholder
-    this.instanceId = WindowService.getGrecaptcha().render(captchaPlaceholder, {
+    this.instanceId = WindowService.getGrecaptcha().render(reCaptchaSelector, {
       sitekey: process.env.NEXT_PUBLIC_RECAPTCHA,
       callback: (c: string) => {
         // Store captcha token

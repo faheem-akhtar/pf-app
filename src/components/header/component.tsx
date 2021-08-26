@@ -38,7 +38,7 @@ export const HeaderComponent = (): JSX.Element => {
           openAuthRef.current();
         }}
       />
-      <ModalComponent openRef={openAuthRef} closeRef={closeAuthRef}>
+      <ModalComponent openRef={openAuthRef} closeRef={closeAuthRef} overlay>
         <AuthModalComponent close={(): void => closeAuthRef.current()} />
       </ModalComponent>
     </>

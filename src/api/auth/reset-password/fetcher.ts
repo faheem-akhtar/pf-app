@@ -15,7 +15,6 @@ const fetcher = ApiFactory<
   alterHeaders: (headers) => {
     headers['content-type'] = 'application/vnd.api+json';
   },
-  // TODO-FE[TPNX-3188] - Add data adapter if needed
 });
 
 export const apiAuthResetPasswordFetcher = (requestParams: {

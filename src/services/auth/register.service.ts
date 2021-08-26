@@ -1,6 +1,6 @@
 import { apiAuthRegisterFetcher } from 'api/auth/register/fetcher';
 import { ApiAuthRegisterRequestInterface } from 'api/auth/register/request.interface';
-import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
+import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import AuthService from 'services/auth/service';
 import { UserModelInterface } from 'services/user/model.interface';
 
@@ -9,7 +9,7 @@ import { UserModelInterface } from 'services/user/model.interface';
  */
 export const AuthRegisterService = (
   model: ApiAuthRegisterRequestInterface
-): Promise<UserModelInterface | ApiFetcherResultFailureInterface> =>
+): Promise<ApiFetcherResultType<UserModelInterface>> =>
   apiAuthRegisterFetcher({
     first_name: model.first_name,
     last_name: model.last_name,
@@ -17,12 +17,15 @@ export const AuthRegisterService = (
     password: model.password,
     opted_in: model.opted_in,
     captcha_token: model?.captcha_token,
-  }).then((model) => {
-    if (!model.ok) {
-      return AuthService.onRegistrationRejected(model);
+  }).then((response) => {
+    if (!response.ok) {
+      return AuthService.onRequestRejected(response);
     }
 
-    AuthService.onAuthResolved(model.data);
+    AuthService.onAuthResolved(response.data);
 
-    return model.data.user;
+    return {
+      ...response,
+      data: response.data?.user,
+    };
   });

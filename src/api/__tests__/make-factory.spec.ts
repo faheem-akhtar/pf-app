@@ -158,6 +158,26 @@ describe('ApiFactory', () => {
     });
   });
 
+  it('should return success status with empty body on 204', async () => {
+    mockWindowFetch({ ok: true, status: 204 });
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+    });
+
+    const fetcher = apiFactory({ method: 'POST', url });
+
+    const response = await fetcher({ locale: 'en' });
+
+    expect(response).toEqual(
+      expect.objectContaining({
+        data: null,
+        ok: true,
+      })
+    );
+  });
+
   test('if method is POST should add postData', async () => {
     const fetchMock = mockWindowFetch();
 

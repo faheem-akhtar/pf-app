@@ -2,11 +2,14 @@ import { apiAuthSignInFetcher } from 'api/auth/sign-in/fetcher';
 import { ApiAuthSignInRequestInterface } from 'api/auth/sign-in/request.interface';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import AuthService from 'services/auth/service';
+import { UserModelInterface } from 'services/user/model.interface';
 
 /**
  * Login user
  */
-export const AuthLoginService = (model: ApiAuthSignInRequestInterface): Promise<ApiFetcherResultType<void>> =>
+export const AuthLoginService = (
+  model: ApiAuthSignInRequestInterface
+): Promise<ApiFetcherResultType<UserModelInterface>> =>
   apiAuthSignInFetcher({
     email: model.email,
     password: model.password,
@@ -20,6 +23,6 @@ export const AuthLoginService = (model: ApiAuthSignInRequestInterface): Promise<
 
     return {
       ...response,
-      data: undefined,
+      data: response.data?.user,
     };
   });

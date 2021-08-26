@@ -5,6 +5,7 @@
  */
 export const formMakeValidator =
   <T extends string>(
+    error: Record<T, string>,
     setErrors: (errors: Record<T, string>) => void,
     validators: Record<T, Array<(value: string) => string>>
   ) =>
@@ -15,11 +16,16 @@ export const formMakeValidator =
           .map((validator) => validator(inputs[fieldName] as string))
           .filter((message: string) => message)[0] || null;
 
+      // Remove from errors list
+      if (accumulator[fieldName] && !value) {
+        delete accumulator[fieldName];
+      }
+
       return {
         ...accumulator,
         ...(value ? { [fieldName]: value } : {}),
       };
-    }, {} as Record<T, string>);
+    }, error);
 
     // Update error messages
     setErrors(errors);

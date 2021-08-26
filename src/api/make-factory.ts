@@ -118,7 +118,8 @@ export const ApiMakeFactory =
           });
         }
 
-        if (factoryProps.method === 'HEAD') {
+        // If HEAD request or status is 204 - No content
+        if (factoryProps.method === 'HEAD' || response.status === 204) {
           return {
             ok: true,
             data: null as unknown as Result,
