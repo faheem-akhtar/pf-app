@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { Fragment, useRef, useState } from 'react';
 
 import { functionNoop } from 'helpers/function/noop';
 
@@ -34,8 +34,12 @@ const AgentInfoComponent: React.FunctionComponent<{
       <div className={styles.info}>
         <span className={domClassMerge(styles.name, styles.text)}>{name}</span>
         <p className={styles.description}>
-          {t('speaks')} {languages?.length ? languages.join(', ') : null}
-          <br />
+          {languages?.length ? (
+            <Fragment>
+              {`${t('speaks')}: ${languages.join(', ')}`}
+              <br />
+            </Fragment>
+          ) : null}
           {t('reference')}: <span className={styles.text}>{referenceId}</span>
         </p>
       </div>

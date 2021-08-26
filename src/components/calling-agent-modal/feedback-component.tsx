@@ -5,7 +5,6 @@ import { apiReportFetcher } from 'api/report/fetcher';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { CountryCodeEnum } from 'enums/country/code.enum';
 import { FiltersContext } from 'components/filters/context';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { ReportAttributesInterface } from 'types/report/attributes-interface';
@@ -23,8 +22,6 @@ const reportAttributes: Omit<ReportAttributesInterface, 'reporter_type'> = {
   reason_id: 1,
 };
 
-const isCountryAE = process.env.NEXT_PUBLIC_COUNTRY_CODE === CountryCodeEnum.ae;
-
 export const CallingAgentModalFeedbackComponent: React.FunctionComponent<{
   propertyId: string;
   onAnswerClicked: () => void;
@@ -38,7 +35,7 @@ export const CallingAgentModalFeedbackComponent: React.FunctionComponent<{
       apiReportFetcher(propertyId, {
         ...reportAttributes,
         email: user?.email || reportAttributes.email,
-        reporter_type: isCountryAE ? userReportCategory(filtersCtx.value[FiltersParametersEnum.categoryId]) : '',
+        reporter_type: userReportCategory(filtersCtx.value[FiltersParametersEnum.categoryId]),
       });
     }
     onAnswerClicked();
