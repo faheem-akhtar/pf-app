@@ -11,13 +11,14 @@ import { ButtonTemplate } from 'library/button/template';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { formMakeValidator } from 'components/form/make-validator';
 import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { InputBaseComponent } from 'library/input/base/component';
 import { ReCaptchaComponent } from 'components/re-captcha/component';
-import { TextFieldComponent } from 'library/text-field/component';
 import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
 
 import styles from '../auth.module.scss';
+
 const captchaService = new GoogleRecaptchaService();
 
 export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterface): JSX.Element => {
@@ -75,7 +76,7 @@ export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterf
         }}
       >
         <div className={styles['input-area']}>
-          <TextFieldComponent
+          <InputBaseComponent
             placeholder={t('email')}
             type='email'
             value={email}
@@ -86,8 +87,8 @@ export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterf
               });
               setEmail(value);
             }}
+            errorText={errors[AuthForgotPasswordFieldEnum.email]}
           />
-          <div className={styles.error}>{errors[AuthForgotPasswordFieldEnum.email]}</div>
         </div>
         <div className={styles['input-area']}>
           <ButtonTemplate

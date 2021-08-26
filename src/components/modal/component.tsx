@@ -31,7 +31,7 @@ export const ModalComponent = ({
   if (!opened) return null;
 
   return (
-    <ModalPortalComponent>
+    <ModalPortalComponent overlay={overlay}>
       <div
         className={domClassMerge(styles.container, {
           [styles[`container--overlay`]]: overlay,

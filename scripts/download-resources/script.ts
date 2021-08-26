@@ -22,9 +22,9 @@ import { configOriginValue as saOrigin } from 'config/origin/value.sa';
 
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiRequestPropsType } from 'api/request-props.type';
-import { CountryCodeEnum } from 'enums/country/code.enum';
+import { ConfigCommonInterface } from 'types/config/common.interface';
 
-const configByCountry = {
+const configByCountry: Record<string, ConfigCommonInterface> = {
   ae: aeConfig,
   bh: bhConfig,
   eg: egConfig,
@@ -34,7 +34,7 @@ const configByCountry = {
   sa: saConfig,
 };
 
-const originByCountry = {
+const originByCountry: Record<string, string> = {
   ae: aeOrigin,
   bh: bhOrigin,
   eg: egOrigin,
@@ -48,7 +48,7 @@ const makeDownloader = <QueryData, Result>(
   fetcher: (props: ApiRequestPropsType<QueryData>) => Promise<ApiFetcherResultType<Result>>,
   name: string
 ) =>
-  async function (country: CountryCodeEnum) {
+  async function (country: string) {
     const {
       language: { current: mainLang, alternative: altLang },
     } = configByCountry[country];
@@ -80,15 +80,15 @@ const downloadLocations = makeDownloader(backendApiLocationAllFetcher, 'location
 const downloadFiltersData = makeDownloader(backendApiFormSettingsFetcher, 'filters-data');
 
 async function downloadResources() {
-  const downloadForCountry = (country: CountryCodeEnum) => [downloadLocations(country), downloadFiltersData(country)];
+  const downloadForCountry = (country: string) => [downloadLocations(country), downloadFiltersData(country)];
   await Promise.all([
-    ...downloadForCountry(CountryCodeEnum.ae),
-    ...downloadForCountry(CountryCodeEnum.bh),
-    ...downloadForCountry(CountryCodeEnum.eg),
-    ...downloadForCountry(CountryCodeEnum.lb),
-    ...downloadForCountry(CountryCodeEnum.ma),
-    ...downloadForCountry(CountryCodeEnum.qa),
-    ...downloadForCountry(CountryCodeEnum.sa),
+    ...downloadForCountry('ae'),
+    ...downloadForCountry('bh'),
+    ...downloadForCountry('eg'),
+    ...downloadForCountry('lb'),
+    ...downloadForCountry('ma'),
+    ...downloadForCountry('qa'),
+    ...downloadForCountry('sa'),
   ]);
 }
 

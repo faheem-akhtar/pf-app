@@ -5,7 +5,7 @@ export interface PropertyCardMenuModalTemplatePropsBaseInterface {
   closeButtonLabel: string;
 
   /**
-   * Children component
+   * Content wrapped by PropertyCardMenuModalTemplate.
    */
   children: React.ReactNode;
 

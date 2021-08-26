@@ -15,7 +15,10 @@ export const PropertyCardCtaButtonsGroupButtonTemplate: React.FunctionComponent<
         href={props.href}
         componentType={ButtonComponentTypeEnum.tertiary}
         icon={{ component: props.iconComponent, position: ButtonIconPositionEnum.left }}
-        onClick={props.onClick}
+        onClick={(e): void => {
+          e.preventDefault();
+          props.onClick();
+        }}
       >
         {props.label}
       </ButtonTemplate>

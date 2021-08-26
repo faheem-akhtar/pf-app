@@ -17,6 +17,7 @@ import { PropertyCardMenuContentTemplate } from './menu/content/template';
 import { PropertyCardMenuModalComponent } from './menu/modal/component';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
+import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
 
 export const PropertyCardComponent = ({ property, loading }: PropertyCardComponentPropsType): JSX.Element => {
@@ -74,7 +75,11 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   return (
     <div>
       <PropertyCardTemplate {...cardTemplateProps} />
-      <EmailAgentModalComponent openRef={emailAgentModalOpenRef} />
+      <EmailAgentModalComponent
+        openRef={emailAgentModalOpenRef}
+        propertyName={propertySerpObfuscatedGetName(property)}
+        referenceId={propertySerpObfuscatedGetReference(property)}
+      />
       <CallingAgentModalComponent
         propertyId={propertySerpObfuscatedGetId(property)}
         referenceId={propertySerpObfuscatedGetReference(property)}

@@ -20,7 +20,7 @@ export interface FiltersModalItemTemplatePropsInterface {
   hasBorder?: boolean;
 
   /**
-   * Children
+   * Content wrapped by FiltersModelItem.
    */
   children: React.ReactNode;
 

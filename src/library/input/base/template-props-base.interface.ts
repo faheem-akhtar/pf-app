@@ -1,4 +1,4 @@
-export interface TextFieldTemplatePropsBaseInterface {
+export interface InputBaseTemplatePropsBaseInterface {
   /**
    * The type of input
    * @default text
@@ -17,9 +17,14 @@ export interface TextFieldTemplatePropsBaseInterface {
   floatPlaceholder?: boolean;
 
   /**
-   * The input content value.
+   * Input value attribute
    */
-  value?: string;
+  value: string;
+
+  /**
+   * An input helper rendered before and attached to the input field.
+   */
+  prefix?: React.ReactNode;
 
   /**
    * If `true`, the component is TextArea.
@@ -56,17 +61,22 @@ export interface TextFieldTemplatePropsBaseInterface {
   helperText?: React.ReactNode;
 
   /**
-   * onChange event handler
+   * Max number of characters accepted in the input element
+   */
+  maxLength?: number;
+
+  /**
+   * Called when input value is changed
    */
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 
   /**
-   * onBlur event handler
+   * Called the onBlur event triggers.
    */
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
 
   /**
-   * onFocus event handler
+   * Called the onFocus event triggers.
    */
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }

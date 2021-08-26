@@ -47,10 +47,11 @@ export const ButtonTemplate: FunctionComponent<ButtonLinkTemplatePropsInterface 
         styles[componentType],
         styles[props.size],
         {
-          [styles[`${componentType}--loading`]]: !!props.loading,
-          [styles.disabled]: !!props.disabled,
-          [styles.loading]: !!props.loading,
-          [styles[`${componentType}--disabled`]]: !!props.disabled,
+          [styles[`${componentType}--loading`]]: props.loading,
+          [styles.disabled]: props.disabled,
+          [styles.loading]: props.loading,
+          [styles[`${componentType}--disabled`]]: props.disabled,
+          [styles.fullWidth]: props.fullWidth,
         },
         props.className
       )}

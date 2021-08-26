@@ -1,28 +1,36 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { appRootElementId } from 'src/constants/app/root-element-id';
 
 import styles from './modal.module.scss';
 
-export const ModalPortalComponent = ({ children }: { children: ReactNode }): JSX.Element | null => {
+export const ModalPortalComponent: React.FunctionComponent<{ overlay?: boolean }> = (props) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
     const rootElement = document.getElementById(appRootElementId) as HTMLElement;
     const { scrollTop } = document.documentElement;
+    const options: ScrollToOptions = {
+      top: scrollTop,
+      behavior: 'smooth',
+    };
 
     setIsBrowser(true);
-    rootElement.classList.add(styles.hide);
+    if (props.overlay) {
+      rootElement.classList.add(styles.hide);
+    }
 
     return (): void => {
-      rootElement.classList.remove(styles.hide);
-      document.documentElement.scrollTop = scrollTop;
+      if (props.overlay) {
+        rootElement.classList.remove(styles.hide);
+        document.documentElement.scroll(options);
+      }
     };
-  }, []);
+  }, [props.overlay]);
 
   if (isBrowser) {
-    return ReactDOM.createPortal(children, document.getElementById('modal-root') as Element);
+    return ReactDOM.createPortal(props.children, document.getElementById('modal-root') as Element);
   }
   return null;
 };

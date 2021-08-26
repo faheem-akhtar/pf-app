@@ -24,6 +24,11 @@ export interface ButtonTemplatePropsBaseInterface {
   loading?: boolean;
 
   /**
+   * Option to fit button width to its parent width
+   */
+  fullWidth?: boolean;
+
+  /**
    * Icon
    */
   icon?: {

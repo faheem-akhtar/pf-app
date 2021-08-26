@@ -2,7 +2,7 @@ import { PropertyCardMenuModalTemplatePropsBaseInterface } from './template-prop
 
 export interface PropertyCardMenuModalComponentPropsInterface extends PropertyCardMenuModalTemplatePropsBaseInterface {
   /**
-   * Ref for modal open
+   * A ref to access an element
    */
   openRef: React.MutableRefObject<() => void>;
   /**

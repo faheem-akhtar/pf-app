@@ -15,8 +15,8 @@ import { formMakeValidator } from 'components/form/make-validator';
 import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
 import { IconFacebookTemplate } from 'components/icon/facebook-template';
 import { IconGoogleTemplate } from 'components/icon/google-template';
+import { InputBaseComponent } from 'library/input/base/component';
 import { ReCaptchaComponent } from 'components/re-captcha/component';
-import { TextFieldComponent } from 'library/text-field/component';
 import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
@@ -125,7 +125,7 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
         }}
       >
         <div className={styles['input-area']}>
-          <TextFieldComponent
+          <InputBaseComponent
             placeholder={t('email')}
             type='email'
             value={email}
@@ -136,11 +136,11 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
               });
               setEmail(value);
             }}
+            errorText={errors[AuthLoginFieldEnum.email]}
           />
-          <div className={styles.error}>{errors[AuthLoginFieldEnum.email]}</div>
         </div>
         <div className={styles['input-area']}>
-          <TextFieldComponent
+          <InputBaseComponent
             placeholder={t('password')}
             type='password'
             value={password}
@@ -151,8 +151,8 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
               });
               setPassword(value);
             }}
+            errorText={errors[AuthLoginFieldEnum.password]}
           />
-          <div className={styles.error}>{errors[AuthLoginFieldEnum.password]}</div>
         </div>
         <div className={styles['input-area']} onClick={props.onForgotPassword}>
           <div className={domClassMerge(styles.link, styles['forgot-password'])}>{t('auth/forgot-password')}?</div>

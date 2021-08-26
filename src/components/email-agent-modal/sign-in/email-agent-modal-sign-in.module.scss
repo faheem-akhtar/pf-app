@@ -1,0 +1,34 @@
+.container {
+  font-size: var(--font-size-09);
+  margin-bottom: calc(var(--spacing) * -3);
+  margin-top: calc(var(--spacing) * 4);
+}
+
+.title {
+  margin-bottom: calc(var(--spacing) * 4);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.list {
+  margin-bottom: calc(var(--spacing) * 4);
+}
+
+.item {
+  display: flex;
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
+.icon {
+  color: var(--color-primary-clay-100);
+  height: 1.6rem;
+  margin-right: calc(var(--spacing) * 1.5);
+  width: 1.6rem;
+}
+
+.notNowButton {
+  color: var(--color-interaction-1-dark-mode);
+  margin-top: calc(var(--spacing) * 3);
+  text-align: center;
+  width: 100%;
+}

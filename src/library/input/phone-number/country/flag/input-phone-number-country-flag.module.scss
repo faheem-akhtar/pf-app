@@ -1,0 +1,1079 @@
+/*
+  Sprite and supporting css source:
+  https://github.com/jackocnr/intl-tel-input
+*/
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .countryFlag {
+    background-image: url('./flags@2x.png');
+    background-size: 5652px 1.5rem;
+  }
+}
+
+.countryFlag {
+  background-image: url('./flags.png');
+  background-position: 2rem 0;
+  display: inline-block;
+  flex: none;
+  height: 15px;
+  margin-right: calc(var(--spacing) * 1.5);
+  width: 2rem;
+
+  /* special widths */
+  &--be {
+    width: 1.8rem;
+  }
+  &--ch {
+    width: 1.5rem;
+  }
+  &--mc {
+    width: 1.9rem;
+  }
+  &--ne {
+    width: 1.8rem;
+  }
+  &--np {
+    width: 1.3rem;
+  }
+  &--va {
+    width: 1.5rem;
+  }
+
+  /* special bg */
+  &--np {
+    background-color: transparent;
+  }
+
+  /* all flags */
+  &--ac {
+    background-position: 0 0;
+    height: 1rem;
+  }
+  &--ad {
+    background-position: -2.2rem 0;
+    height: 1.4rem;
+  }
+  &--ae {
+    background-position: -4.4rem 0;
+    height: 1rem;
+  }
+  &--af {
+    background-position: -6.6rem 0;
+    height: 1.4rem;
+  }
+  &--ag {
+    background-position: -8.8rem 0;
+    height: 1.4rem;
+  }
+  &--ai {
+    background-position: -11rem 0;
+    height: 1rem;
+  }
+  &--al {
+    background-position: -13.2rem 0;
+    height: 1.5rem;
+  }
+  &--am {
+    background-position: -15.4rem 0;
+    height: 1rem;
+  }
+  &--ao {
+    background-position: -17.6rem 0;
+    height: 1.4rem;
+  }
+  &--aq {
+    background-position: -19.8rem 0;
+    height: 1.4rem;
+  }
+  &--ar {
+    background-position: -22rem 0;
+    height: 1.3rem;
+  }
+  &--as {
+    background-position: -24.2rem 0;
+    height: 1rem;
+  }
+  &--at {
+    background-position: -26.4rem 0;
+    height: 1.4rem;
+  }
+  &--au {
+    background-position: -28.6rem 0;
+    height: 1rem;
+  }
+  &--aw {
+    background-position: -30.8rem 0;
+    height: 1.4rem;
+  }
+  &--ax {
+    background-position: -33rem 0;
+    height: 1.3rem;
+  }
+  &--az {
+    background-position: -35.2rem 0;
+    height: 1rem;
+  }
+  &--ba {
+    background-position: -37.4rem 0;
+    height: 1rem;
+  }
+  &--bb {
+    background-position: -39.6rem 0;
+    height: 1.4rem;
+  }
+  &--bd {
+    background-position: -41.8rem 0;
+    height: 1.2rem;
+  }
+  &--be {
+    background-position: -44rem 0;
+    height: 1.5rem;
+  }
+  &--bf {
+    background-position: -46rem 0;
+    height: 1.4rem;
+  }
+  &--bg {
+    background-position: -48.2rem 0;
+    height: 1.2rem;
+  }
+  &--bh {
+    background-position: -50.4rem 0;
+    height: 1.2rem;
+  }
+  &--bi {
+    background-position: -52.6rem 0;
+    height: 1.2rem;
+  }
+  &--bj {
+    background-position: -54.8rem 0;
+    height: 1.4rem;
+  }
+  &--bl {
+    background-position: -57rem 0;
+    height: 1.4rem;
+  }
+  &--bm {
+    background-position: -59.2rem 0;
+    height: 1rem;
+  }
+  &--bn {
+    background-position: -61.4rem 0;
+    height: 1rem;
+  }
+  &--bo {
+    background-position: -63.6rem 0;
+    height: 1.4rem;
+  }
+  &--bq {
+    background-position: -65.8rem 0;
+    height: 1.4rem;
+  }
+  &--br {
+    background-position: -68rem 0;
+    height: 1.4rem;
+  }
+  &--bs {
+    background-position: -70.2rem 0;
+    height: 1rem;
+  }
+  &--bt {
+    background-position: -72.4rem 0;
+    height: 1.4rem;
+  }
+  &--bv {
+    background-position: -74.6rem 0;
+    height: 1.5rem;
+  }
+  &--bw {
+    background-position: -76.8rem 0;
+    height: 1.4rem;
+  }
+  &--by {
+    background-position: -79rem 0;
+    height: 1rem;
+  }
+  &--bz {
+    background-position: -81.2rem 0;
+    height: 1.4rem;
+  }
+  &--ca {
+    background-position: -83.4rem 0;
+    height: 1rem;
+  }
+  &--cc {
+    background-position: -85.6rem 0;
+    height: 1rem;
+  }
+  &--cd {
+    background-position: -87.8rem 0;
+    height: 1.5rem;
+  }
+  &--cf {
+    background-position: -90 0;
+    height: 1.4rem;
+  }
+  &--cg {
+    background-position: -92.2rem 0;
+    height: 1.4rem;
+  }
+  &--ch {
+    background-position: -94.4rem 0;
+    height: 1.5rem;
+  }
+  &--ci {
+    background-position: -96.1rem 0;
+    height: 1.4rem;
+  }
+  &--ck {
+    background-position: -98.3rem 0;
+    height: 1rem;
+  }
+  &--cl {
+    background-position: -100.5rem 0;
+    height: 1.4rem;
+  }
+  &--cm {
+    background-position: -102.7rem 0;
+    height: 1.4rem;
+  }
+  &--cn {
+    background-position: -104.9rem 0;
+    height: 1.4rem;
+  }
+  &--co {
+    background-position: -107.1rem 0;
+    height: 1.4rem;
+  }
+  &--cp {
+    background-position: -109.3rem 0;
+    height: 1.4rem;
+  }
+  &--cr {
+    background-position: -111.5rem 0;
+    height: 1.2rem;
+  }
+  &--cu {
+    background-position: -113.7rem 0;
+    height: 1rem;
+  }
+  &--cv {
+    background-position: -115.9rem 0;
+    height: 1.2rem;
+  }
+  &--cw {
+    background-position: -118.1rem 0;
+    height: 1.4rem;
+  }
+  &--cx {
+    background-position: -120.3rem 0;
+    height: 1rem;
+  }
+  &--cy {
+    background-position: -122.5rem 0;
+    height: 1.4rem;
+  }
+  &--cz {
+    background-position: -124.7rem 0;
+    height: 1.4rem;
+  }
+  &--de {
+    background-position: -126.9rem 0;
+    height: 1.2rem;
+  }
+  &--dg {
+    background-position: -129.1rem 0;
+    height: 1rem;
+  }
+  &--dj {
+    background-position: -131.3rem 0;
+    height: 1.4rem;
+  }
+  &--dk {
+    background-position: -133.5rem 0;
+    height: 1.5rem;
+  }
+  &--dm {
+    background-position: -135.7rem 0;
+    height: 1rem;
+  }
+  &--do {
+    background-position: -137.9rem 0;
+    height: 1.4rem;
+  }
+  &--dz {
+    background-position: -140.1rem 0;
+    height: 1.4rem;
+  }
+  &--ea {
+    background-position: -142.3rem 0;
+    height: 1.4rem;
+  }
+  &--ec {
+    background-position: -144.5rem 0;
+    height: 1.4rem;
+  }
+  &--ee {
+    background-position: -146.7rem 0;
+    height: 1.3rem;
+  }
+  &--eg {
+    background-position: -148.9rem 0;
+    height: 1.4rem;
+  }
+  &--eh {
+    background-position: -151.1rem 0;
+    height: 1rem;
+  }
+  &--er {
+    background-position: -153.3rem 0;
+    height: 1rem;
+  }
+  &--es {
+    background-position: -155.5rem 0;
+    height: 1.4rem;
+  }
+  &--et {
+    background-position: -157.7rem 0;
+    height: 1rem;
+  }
+  &--eu {
+    background-position: -159.9rem 0;
+    height: 1.4rem;
+  }
+  &--fi {
+    background-position: -162.1rem 0;
+    height: 1.2rem;
+  }
+  &--fj {
+    background-position: -164.3rem 0;
+    height: 1rem;
+  }
+  &--fk {
+    background-position: -166.5rem 0;
+    height: 1rem;
+  }
+  &--fm {
+    background-position: -168.7rem 0;
+    height: 1.1rem;
+  }
+  &--fo {
+    background-position: -170.9rem 0;
+    height: 1.5rem;
+  }
+  &--fr {
+    background-position: -173.1rem 0;
+    height: 1.4rem;
+  }
+  &--ga {
+    background-position: -175.3rem 0;
+    height: 1.5rem;
+  }
+  &--gb {
+    background-position: -177.5rem 0;
+    height: 1rem;
+  }
+  &--gd {
+    background-position: -179.7rem 0;
+    height: 1.2rem;
+  }
+  &--ge {
+    background-position: -181.9rem 0;
+    height: 1.4rem;
+  }
+  &--gf {
+    background-position: -184.1rem 0;
+    height: 1.4rem;
+  }
+  &--gg {
+    background-position: -186.3rem 0;
+    height: 1.4rem;
+  }
+  &--gh {
+    background-position: -188.5rem 0;
+    height: 1.4rem;
+  }
+  &--gi {
+    background-position: -190.7rem 0;
+    height: 1rem;
+  }
+  &--gl {
+    background-position: -192.9rem 0;
+    height: 1.4rem;
+  }
+  &--gm {
+    background-position: -195.1rem 0;
+    height: 1.4rem;
+  }
+  &--gn {
+    background-position: -197.3rem 0;
+    height: 1.4rem;
+  }
+  &--gp {
+    background-position: -199.5rem 0;
+    height: 1.4rem;
+  }
+  &--gq {
+    background-position: -201.7rem 0;
+    height: 1.4rem;
+  }
+  &--gr {
+    background-position: -203.9rem 0;
+    height: 1.4rem;
+  }
+  &--gs {
+    background-position: -206.1rem 0;
+    height: 1rem;
+  }
+  &--gt {
+    background-position: -208.3rem 0;
+    height: 1.3rem;
+  }
+  &--gu {
+    background-position: -210.5rem 0;
+    height: 1.1rem;
+  }
+  &--gw {
+    background-position: -212.7rem 0;
+    height: 1rem;
+  }
+  &--gy {
+    background-position: -214.9rem 0;
+    height: 1.2rem;
+  }
+  &--hk {
+    background-position: -217.1rem 0;
+    height: 1.4rem;
+  }
+  &--hm {
+    background-position: -219.3rem 0;
+    height: 1rem;
+  }
+  &--hn {
+    background-position: -221.5rem 0;
+    height: 1rem;
+  }
+  &--hr {
+    background-position: -223.7rem 0;
+    height: 1rem;
+  }
+  &--ht {
+    background-position: -225.9rem 0;
+    height: 1.2rem;
+  }
+  &--hu {
+    background-position: -228.1rem 0;
+    height: 1rem;
+  }
+  &--ic {
+    background-position: -230.3rem 0;
+    height: 1.4rem;
+  }
+  &--id {
+    background-position: -232.5rem 0;
+    height: 1.4rem;
+  }
+  &--ie {
+    background-position: -234.7rem 0;
+    height: 1rem;
+  }
+  &--il {
+    background-position: -236.9rem 0;
+    height: 1.5rem;
+  }
+  &--im {
+    background-position: -239.1rem 0;
+    height: 1rem;
+  }
+  &--in {
+    background-position: -241.3rem 0;
+    height: 1.4rem;
+  }
+  &--io {
+    background-position: -243.5rem 0;
+    height: 1rem;
+  }
+  &--iq {
+    background-position: -245.7rem 0;
+    height: 1.4rem;
+  }
+  &--ir {
+    background-position: -247.9rem 0;
+    height: 1.2rem;
+  }
+  &--is {
+    background-position: -250.1rem 0;
+    height: 1.5rem;
+  }
+  &--it {
+    background-position: -252.3rem 0;
+    height: 1.4rem;
+  }
+  &--je {
+    background-position: -254.5rem 0;
+    height: 1.2rem;
+  }
+  &--jm {
+    background-position: -256.7rem 0;
+    height: 1rem;
+  }
+  &--jo {
+    background-position: -258.9rem 0;
+    height: 1rem;
+  }
+  &--jp {
+    background-position: -261.1rem 0;
+    height: 1.4rem;
+  }
+  &--ke {
+    background-position: -263.3rem 0;
+    height: 1.4rem;
+  }
+  &--kg {
+    background-position: -265.5rem 0;
+    height: 1.2rem;
+  }
+  &--kh {
+    background-position: -267.7rem 0;
+    height: 1.3rem;
+  }
+  &--ki {
+    background-position: -269.9rem 0;
+    height: 1rem;
+  }
+  &--km {
+    background-position: -272.1rem 0;
+    height: 1.2rem;
+  }
+  &--kn {
+    background-position: -274.3rem 0;
+    height: 1.4rem;
+  }
+  &--kp {
+    background-position: -276.5rem 0;
+    height: 1rem;
+  }
+  &--kr {
+    background-position: -278.7rem 0;
+    height: 1.4rem;
+  }
+  &--kw {
+    background-position: -280.9rem 0;
+    height: 1rem;
+  }
+  &--ky {
+    background-position: -283.1rem 0;
+    height: 1rem;
+  }
+  &--kz {
+    background-position: -285.3rem 0;
+    height: 1rem;
+  }
+  &--la {
+    background-position: -287.5rem 0;
+    height: 1.4rem;
+  }
+  &--lb {
+    background-position: -289.7rem 0;
+    height: 1.4rem;
+  }
+  &--lc {
+    background-position: -291.9rem 0;
+    height: 1rem;
+  }
+  &--li {
+    background-position: -294.1rem 0;
+    height: 1.2rem;
+  }
+  &--lk {
+    background-position: -296.3rem 0;
+    height: 1rem;
+  }
+  &--lr {
+    background-position: -298.5rem 0;
+    height: 1.1rem;
+  }
+  &--ls {
+    background-position: -300.7rem 0;
+    height: 1.4rem;
+  }
+  &--lt {
+    background-position: -302.9rem 0;
+    height: 1.2rem;
+  }
+  &--lu {
+    background-position: -305.1rem 0;
+    height: 1.2rem;
+  }
+  &--lv {
+    background-position: -307.3rem 0;
+    height: 1rem;
+  }
+  &--ly {
+    background-position: -309.5rem 0;
+    height: 1rem;
+  }
+  &--ma {
+    background-position: -311.7rem 0;
+    height: 1.4rem;
+  }
+  &--mc {
+    background-position: -313.9rem 0;
+    height: 1.5rem;
+  }
+  &--md {
+    background-position: -316rem 0;
+    height: 1rem;
+  }
+  &--me {
+    background-position: -318.2rem 0;
+    height: 1rem;
+  }
+  &--mf {
+    background-position: -320.4rem 0;
+    height: 1.4rem;
+  }
+  &--mg {
+    background-position: -322.6rem 0;
+    height: 1.4rem;
+  }
+  &--mh {
+    background-position: -324.8rem 0;
+    height: 1.1rem;
+  }
+  &--mk {
+    background-position: -327rem 0;
+    height: 1rem;
+  }
+  &--ml {
+    background-position: -329.2rem 0;
+    height: 1.4rem;
+  }
+  &--mm {
+    background-position: -331.4rem 0;
+    height: 1.4rem;
+  }
+  &--mn {
+    background-position: -333.6rem 0;
+    height: 1rem;
+  }
+  &--mo {
+    background-position: -335.8rem 0;
+    height: 1.4rem;
+  }
+  &--mp {
+    background-position: -338rem 0;
+    height: 1rem;
+  }
+  &--mq {
+    background-position: -340.2rem 0;
+    height: 1.4rem;
+  }
+  &--mr {
+    background-position: -342.4rem 0;
+    height: 1.4rem;
+  }
+  &--ms {
+    background-position: -344.6rem 0;
+    height: 1rem;
+  }
+  &--mt {
+    background-position: -346.8rem 0;
+    height: 1.4rem;
+  }
+  &--mu {
+    background-position: -349rem 0;
+    height: 1.4rem;
+  }
+  &--mv {
+    background-position: -351.2rem 0;
+    height: 1.4rem;
+  }
+  &--mw {
+    background-position: -353.4rem 0;
+    height: 1.4rem;
+  }
+  &--mx {
+    background-position: -355.6rem 0;
+    height: 1.2rem;
+  }
+  &--my {
+    background-position: -357.8rem 0;
+    height: 1rem;
+  }
+  &--mz {
+    background-position: -360 0;
+    height: 1.4rem;
+  }
+  &--na {
+    background-position: -362.2rem 0;
+    height: 1.4rem;
+  }
+  &--nc {
+    background-position: -364.4rem 0;
+    height: 1rem;
+  }
+  &--ne {
+    background-position: -366.6rem 0;
+    height: 1.5rem;
+  }
+  &--nf {
+    background-position: -368.6rem 0;
+    height: 1rem;
+  }
+  &--ng {
+    background-position: -370.8rem 0;
+    height: 1rem;
+  }
+  &--ni {
+    background-position: -373rem 0;
+    height: 1.2rem;
+  }
+  &--nl {
+    background-position: -375.2rem 0;
+    height: 1.4rem;
+  }
+  &--no {
+    background-position: -377.4rem 0;
+    height: 1.5rem;
+  }
+  &--np {
+    background-position: -379.6rem 0;
+    height: 1.5rem;
+  }
+  &--nr {
+    background-position: -381.1rem 0;
+    height: 1rem;
+  }
+  &--nu {
+    background-position: -383.3rem 0;
+    height: 1rem;
+  }
+  &--nz {
+    background-position: -385.5rem 0;
+    height: 1rem;
+  }
+  &--om {
+    background-position: -387.7rem 0;
+    height: 1rem;
+  }
+  &--pa {
+    background-position: -389.9rem 0;
+    height: 1.4rem;
+  }
+  &--pe {
+    background-position: -392.1rem 0;
+    height: 1.4rem;
+  }
+  &--pf {
+    background-position: -394.3rem 0;
+    height: 1.4rem;
+  }
+  &--pg {
+    background-position: -396.5rem 0;
+    height: 1.5rem;
+  }
+  &--ph {
+    background-position: -398.7rem 0;
+    height: 1rem;
+  }
+  &--pk {
+    background-position: -400.9rem 0;
+    height: 1.4rem;
+  }
+  &--pl {
+    background-position: -403.1rem 0;
+    height: 1.3rem;
+  }
+  &--pm {
+    background-position: -405.3rem 0;
+    height: 1.4rem;
+  }
+  &--pn {
+    background-position: -407.5rem 0;
+    height: 1rem;
+  }
+  &--pr {
+    background-position: -409.7rem 0;
+    height: 1.4rem;
+  }
+  &--ps {
+    background-position: -411.9rem 0;
+    height: 1rem;
+  }
+  &--pt {
+    background-position: -414.1rem 0;
+    height: 1.4rem;
+  }
+  &--pw {
+    background-position: -416.3rem 0;
+    height: 1.3rem;
+  }
+  &--py {
+    background-position: -418.5rem 0;
+    height: 1.1rem;
+  }
+  &--qa {
+    background-position: -420.7rem 0;
+    height: 0.8rem;
+  }
+  &--re {
+    background-position: -422.9rem 0;
+    height: 1.4rem;
+  }
+  &--ro {
+    background-position: -425.1rem 0;
+    height: 1.4rem;
+  }
+  &--rs {
+    background-position: -427.3rem 0;
+    height: 1.4rem;
+  }
+  &--ru {
+    background-position: -429.5rem 0;
+    height: 1.4rem;
+  }
+  &--rw {
+    background-position: -431.7rem 0;
+    height: 1.4rem;
+  }
+  &--sa {
+    background-position: -433.9rem 0;
+    height: 1.4rem;
+  }
+  &--sb {
+    background-position: -436.1rem 0;
+    height: 1rem;
+  }
+  &--sc {
+    background-position: -438.3rem 0;
+    height: 1rem;
+  }
+  &--sd {
+    background-position: -440.5rem 0;
+    height: 1rem;
+  }
+  &--se {
+    background-position: -442.7rem 0;
+    height: 1.3rem;
+  }
+  &--sg {
+    background-position: -444.9rem 0;
+    height: 1.4rem;
+  }
+  &--sh {
+    background-position: -447.1rem 0;
+    height: 1rem;
+  }
+  &--si {
+    background-position: -449.3rem 0;
+    height: 1rem;
+  }
+  &--sj {
+    background-position: -451.5rem 0;
+    height: 1.5rem;
+  }
+  &--sk {
+    background-position: -453.7rem 0;
+    height: 1.4rem;
+  }
+  &--sl {
+    background-position: -455.9rem 0;
+    height: 1.4rem;
+  }
+  &--sm {
+    background-position: -458.1rem 0;
+    height: 1.5rem;
+  }
+  &--sn {
+    background-position: -460.3rem 0;
+    height: 1.4rem;
+  }
+  &--so {
+    background-position: -462.5rem 0;
+    height: 1.4rem;
+  }
+  &--sr {
+    background-position: -464.7rem 0;
+    height: 1.4rem;
+  }
+  &--ss {
+    background-position: -466.9rem 0;
+    height: 1rem;
+  }
+  &--st {
+    background-position: -469.1rem 0;
+    height: 1rem;
+  }
+  &--sv {
+    background-position: -471.3rem 0;
+    height: 1.2rem;
+  }
+  &--sx {
+    background-position: -473.5rem 0;
+    height: 1.4rem;
+  }
+  &--sy {
+    background-position: -475.7rem 0;
+    height: 1.4rem;
+  }
+  &--sz {
+    background-position: -477.9rem 0;
+    height: 1.4rem;
+  }
+  &--ta {
+    background-position: -480.1rem 0;
+    height: 1rem;
+  }
+  &--tc {
+    background-position: -482.3rem 0;
+    height: 1rem;
+  }
+  &--td {
+    background-position: -484.5rem 0;
+    height: 1.4rem;
+  }
+  &--tf {
+    background-position: -486.7rem 0;
+    height: 1.4rem;
+  }
+  &--tg {
+    background-position: -488.9rem 0;
+    height: 1.3rem;
+  }
+  &--th {
+    background-position: -491.1rem 0;
+    height: 1.4rem;
+  }
+  &--tj {
+    background-position: -493.3rem 0;
+    height: 1rem;
+  }
+  &--tk {
+    background-position: -495.5rem 0;
+    height: 1rem;
+  }
+  &--tl {
+    background-position: -497.7rem 0;
+    height: 1rem;
+  }
+  &--tm {
+    background-position: -499.9rem 0;
+    height: 1.4rem;
+  }
+  &--tn {
+    background-position: -502.1rem 0;
+    height: 1.4rem;
+  }
+  &--to {
+    background-position: -504.3rem 0;
+    height: 1rem;
+  }
+  &--tr {
+    background-position: -506.5rem 0;
+    height: 1.4rem;
+  }
+  &--tt {
+    background-position: -508.7rem 0;
+    height: 1.2rem;
+  }
+  &--tv {
+    background-position: -510.9rem 0;
+    height: 1rem;
+  }
+  &--tw {
+    background-position: -513.1rem 0;
+    height: 1.4rem;
+  }
+  &--tz {
+    background-position: -515.3rem 0;
+    height: 1.4rem;
+  }
+  &--ua {
+    background-position: -517.5rem 0;
+    height: 1.4rem;
+  }
+  &--ug {
+    background-position: -519.7rem 0;
+    height: 1.4rem;
+  }
+  &--um {
+    background-position: -521.9rem 0;
+    height: 1.1rem;
+  }
+  &--un {
+    background-position: -524.1rem 0;
+    height: 1.4rem;
+  }
+  &--us {
+    background-position: -526.3rem 0;
+    height: 1.1rem;
+  }
+  &--uy {
+    background-position: -528.5rem 0;
+    height: 1.4rem;
+  }
+  &--uz {
+    background-position: -530.7rem 0;
+    height: 1rem;
+  }
+  &--va {
+    background-position: -532.9rem 0;
+    height: 1.5rem;
+  }
+  &--vc {
+    background-position: -534.6rem 0;
+    height: 1.4rem;
+  }
+  &--ve {
+    background-position: -536.8rem 0;
+    height: 1.4rem;
+  }
+  &--vg {
+    background-position: -539rem 0;
+    height: 1rem;
+  }
+  &--vi {
+    background-position: -541.2rem 0;
+    height: 1.4rem;
+  }
+  &--vn {
+    background-position: -543.4rem 0;
+    height: 1.4rem;
+  }
+  &--vu {
+    background-position: -545.6rem 0;
+    height: 1.2rem;
+  }
+  &--wf {
+    background-position: -547.8rem 0;
+    height: 1.4rem;
+  }
+  &--ws {
+    background-position: -550 0;
+    height: 1rem;
+  }
+  &--xk {
+    background-position: -552.2rem 0;
+    height: 1.5rem;
+  }
+  &--ye {
+    background-position: -554.4rem 0;
+    height: 1.4rem;
+  }
+  &--yt {
+    background-position: -556.6rem 0;
+    height: 1.4rem;
+  }
+  &--za {
+    background-position: -558.8rem 0;
+    height: 1.4rem;
+  }
+  &--zm {
+    background-position: -561rem 0;
+    height: 1.4rem;
+  }
+  &--zw {
+    background-position: -563.2rem 0;
+    height: 1rem;
+  }
+}

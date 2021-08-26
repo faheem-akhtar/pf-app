@@ -1,0 +1,41 @@
+.container {
+  background-color: var(--color-global-white);
+  color: var(--color-global-black);
+  margin: calc(var(--spacing) * 3) auto;
+  max-width: 46rem;
+  min-height: 20%;
+  padding: calc(var(--spacing) * 3);
+  position: relative;
+  width: calc(var(--width-boxed));
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
+.title {
+  font-size: var(--font-size-01);
+  font-weight: var(--font-weight-02);
+  letter-spacing: calc(var(--spacing) / 3);
+  text-transform: uppercase;
+}
+
+.name {
+  font-size: var(--font-size-01);
+  font-weight: var(--font-weight-02);
+  line-height: 2.2rem;
+  margin-bottom: calc(var(--spacing) * 3);
+}
+
+.closeButton {
+  cursor: pointer;
+  display: flex;
+}
+
+.closeIcon {
+  height: 1.2rem;
+  width: 1.2rem;
+}

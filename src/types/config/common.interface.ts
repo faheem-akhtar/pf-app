@@ -14,6 +14,11 @@ export interface ConfigCommonInterface {
   currencyCode: CountryCurrencyEnum;
 
   /**
+   * country code
+   */
+  countryCode: string;
+
+  /**
    * language interface for country
    */
   language: LanguageConfigInterface;

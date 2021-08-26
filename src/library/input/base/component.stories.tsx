@@ -2,13 +2,14 @@
 
 import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { useState } from 'react';
 
-import { TextFieldComponent } from './component';
-import { TextFieldComponentPropsInterface } from './component-props.interface';
+import { InputBaseComponent } from './component';
+import { InputBaseComponentPropsInterface } from './component-props.interface';
 
 export default {
-  title: 'Library/Text Field',
-  component: TextFieldComponent,
+  title: 'Library/Input/Base',
+  component: InputBaseComponent,
   args: {
     type: 'text',
     disabled: false,
@@ -18,19 +19,42 @@ export default {
     floatPlaceholder: true,
     placeholder: 'Search',
     textarea: false,
+    errorText: '',
+    helperText: '',
   },
   argTypes: {
-    onChange: { action: 'onChange' },
-    onFocus: { action: 'onFocus' },
-    onBlur: { action: 'onBlur' },
+    onChange: {
+      table: {
+        disable: true,
+      },
+    },
+    onFocus: {
+      table: {
+        disable: true,
+      },
+    },
+    onBlur: {
+      table: {
+        disable: true,
+      },
+    },
+    value: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as Meta;
 
-const Template: Story<TextFieldComponentPropsInterface & { focus?: boolean }> = (args): JSX.Element => (
-  <div style={{ maxWidth: 226 }}>
-    <TextFieldComponent {...args} />
-  </div>
-);
+const Template: Story<InputBaseComponentPropsInterface & { focus?: boolean }> = (args): JSX.Element => {
+  const [value, setValue] = useState('');
+
+  return (
+    <div style={{ maxWidth: 226 }}>
+      <InputBaseComponent {...args} value={value} onChange={setValue} />
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 

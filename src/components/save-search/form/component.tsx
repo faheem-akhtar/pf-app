@@ -1,18 +1,20 @@
 import { useContext, useState } from 'react';
 
 import { apiSaveSearchCreateFetcher } from 'api/save-search/create/fetcher';
-import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
-import { ButtonSizeEnum } from 'library/button/size.enum';
-import { ButtonTemplate } from 'library/button/template';
+
 import { FiltersContext } from 'components/filters/context';
 import { formValidatorMaxLength } from 'helpers/form/validator/max-length';
 import { formValidatorRequired } from 'helpers/form/validator/required';
 import { saveSearchFrequencies } from '../frequencies';
-import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
-import { SelectFieldTemplate } from 'library/select-field/template';
-import { TextFieldComponent } from 'library/text-field/component';
 import { useFormField } from 'helpers/form/field.hook';
 import { useTranslation } from 'helpers/translation/hook';
+
+import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
+import { ButtonSizeEnum } from 'library/button/size.enum';
+import { ButtonTemplate } from 'library/button/template';
+import { InputBaseComponent } from 'library/input/base/component';
+import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
+import { SelectFieldTemplate } from 'library/select-field/template';
 
 import styles from './save-search-form-component.module.scss';
 
@@ -48,7 +50,7 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
         )}
         <div className={styles['save-search-form__content-row']}>
           <label className={styles['save-search-form__label']}>{t('save_search/name-label')}</label>
-          <TextFieldComponent
+          <InputBaseComponent
             floatPlaceholder={false}
             placeholder={t('save_search/name-placeholder')}
             value={name.value}

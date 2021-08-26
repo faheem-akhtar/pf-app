@@ -11,8 +11,8 @@ import { CheckboxTemplate } from 'library/checkbox/template';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { formMakeValidator } from 'components/form/make-validator';
 import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { InputBaseComponent } from 'library/input/base/component';
 import { ReCaptchaComponent } from 'components/re-captcha/component';
-import { TextFieldComponent } from 'library/text-field/component';
 import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
@@ -101,7 +101,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
         }}
       >
         <div className={styles['input-area']}>
-          <TextFieldComponent
+          <InputBaseComponent
             placeholder={t('auth/first-name')}
             type='text'
             value={firstName}
@@ -112,12 +112,12 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
               });
               setFirstName(value);
             }}
+            errorText={errors[AuthRegistrationFieldEnum.firstName]}
           />
-          <div className={styles.error}>{errors[AuthRegistrationFieldEnum.firstName]}</div>
         </div>
 
         <div className={styles['input-area']}>
-          <TextFieldComponent
+          <InputBaseComponent
             placeholder={t('auth/last-mane')}
             type='text'
             value={lastName}
@@ -128,11 +128,11 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
               });
               setLastName(value);
             }}
+            errorText={errors[AuthRegistrationFieldEnum.lastName]}
           />
-          <div className={styles.error}>{errors[AuthRegistrationFieldEnum.lastName]}</div>
         </div>
         <div className={styles['input-area']}>
-          <TextFieldComponent
+          <InputBaseComponent
             placeholder={t('email')}
             type='email'
             value={email}
@@ -143,11 +143,11 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
               });
               setEmail(value);
             }}
+            errorText={errors[AuthRegistrationFieldEnum.email]}
           />
-          <div className={styles.error}>{errors[AuthRegistrationFieldEnum.email]}</div>
         </div>
         <div className={styles['input-area']}>
-          <TextFieldComponent
+          <InputBaseComponent
             placeholder={t('password')}
             type='password'
             value={password}
@@ -158,8 +158,8 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
               });
               setPassword(value);
             }}
+            errorText={errors[AuthRegistrationFieldEnum.password]}
           />
-          <div className={styles.error}>{errors[AuthRegistrationFieldEnum.password]}</div>
         </div>
 
         <div className={styles['input-area']}>

@@ -14,7 +14,7 @@ describe('ModalPortalComponent', () => {
     render(<ModalPortalComponent>content</ModalPortalComponent>);
 
     // expecting undefined because css modules do not export classnames
-    expect(appRoot.className).toMatchInlineSnapshot(`"hide"`);
+    expect(appRoot.className).toMatchInlineSnapshot(`""`);
   });
 
   it('It should remove hide classname on unmount', () => {
@@ -27,15 +27,21 @@ describe('ModalPortalComponent', () => {
 
   it('It should return scroll top on unmount', () => {
     const expectedScrollTop = 500;
+    const expectedOptions = {
+      top: expectedScrollTop,
+      behavior: 'smooth',
+    };
+
     const scrollTop = {
       get: jest.fn(() => expectedScrollTop),
       set: jest.fn(),
     };
     Object.defineProperty(document.documentElement, 'scrollTop', scrollTop);
-    const { unmount } = render(<ModalPortalComponent>content</ModalPortalComponent>);
+    document.documentElement.scroll = jest.fn();
+    const { unmount } = render(<ModalPortalComponent overlay>content</ModalPortalComponent>);
 
     unmount();
 
-    expect(scrollTop.set).toHaveBeenCalledWith(expectedScrollTop);
+    expect(document.documentElement.scroll).toHaveBeenCalledWith(expectedOptions);
   });
 });

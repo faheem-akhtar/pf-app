@@ -2,17 +2,17 @@ import { MutableRefObject } from 'react';
 
 export interface ModalComponentPropsInterface {
   /**
-   * Ref for modal open
+   * A ref to access an element
    */
   openRef: MutableRefObject<() => void>;
 
   /**
-   * Ref for modal close
+   * A ref to access an element
    */
   closeRef: MutableRefObject<() => void>;
 
   /**
-   * Children component
+   * Content wrapped by ModalComponent.
    */
   children: React.ReactNode;
 

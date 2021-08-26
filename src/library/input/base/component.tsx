@@ -1,10 +1,10 @@
 import { FunctionComponent, useState } from 'react';
 
-import { TextFieldComponentPropsInterface } from './component-props.interface';
-import { TextFieldTemplate } from './template';
-import { TextFieldTemplatePropsBaseInterface } from './template-props-base.interface';
+import { InputBaseComponentPropsInterface } from './component-props.interface';
+import { InputBaseTemplate } from './template';
+import { InputBaseTemplatePropsBaseInterface } from './template-props-base.interface';
 
-export const TextFieldComponent: FunctionComponent<TextFieldComponentPropsInterface> = ({
+export const InputBaseComponent: FunctionComponent<InputBaseComponentPropsInterface> = ({
   onChange,
   onFocus,
   onBlur,
@@ -16,7 +16,7 @@ export const TextFieldComponent: FunctionComponent<TextFieldComponentPropsInterf
   /*
    * Handling input onChange event
    */
-  const handleChange: TextFieldTemplatePropsBaseInterface['onChange'] = (e) => {
+  const handleChange: InputBaseTemplatePropsBaseInterface['onChange'] = (e) => {
     const newValue = (e.target as HTMLInputElement).value;
     onChange(newValue);
   };
@@ -24,7 +24,7 @@ export const TextFieldComponent: FunctionComponent<TextFieldComponentPropsInterf
   /*
    * Handling input onFocus event
    */
-  const handleFocus: TextFieldTemplatePropsBaseInterface['onFocus'] = (e) => {
+  const handleFocus: InputBaseTemplatePropsBaseInterface['onFocus'] = (e) => {
     setIsFocused(true);
 
     if (onFocus) {
@@ -35,7 +35,7 @@ export const TextFieldComponent: FunctionComponent<TextFieldComponentPropsInterf
   /*
    * Handling input onBlur event
    */
-  const handleBlur: TextFieldTemplatePropsBaseInterface['onBlur'] = (e) => {
+  const handleBlur: InputBaseTemplatePropsBaseInterface['onBlur'] = (e) => {
     setIsFocused(false);
 
     if (onBlur) {
@@ -44,7 +44,7 @@ export const TextFieldComponent: FunctionComponent<TextFieldComponentPropsInterf
   };
 
   return (
-    <TextFieldTemplate
+    <InputBaseTemplate
       value={value}
       focus={isFocused}
       onChange={handleChange}
