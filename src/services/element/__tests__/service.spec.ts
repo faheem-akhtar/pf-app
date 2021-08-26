@@ -1,4 +1,4 @@
-import { recoverElementGetBoundingClientRect } from 'mocks/element/get-bounding-client-rect.mock';
+import { recoverElementGetBoundingClientRect } from 'mocks/element/mock-get-bounding-client-rect';
 
 import { ElementService } from '../service';
 

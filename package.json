@@ -40,7 +40,7 @@
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "download-resources": "./scripts/download-resources/run.sh",
     "randomize-obfuscation-keys": "./scripts/randomize-obfuscation-keys.js",
-    "lint": "yarn eslint src --ext .ts,.tsx && yarn stylelint 'src/**/*.{css,scss}'",
+    "lint": "yarn eslint mocks --ext .ts,.tsx && yarn eslint src --ext .ts,.tsx && yarn stylelint 'src/**/*.{css,scss}'",
     "validate-types": "tsc --project ./tsconfig.json",
     "download-i18n": "node ./scripts/download-translations",
     "build-eslint": "rm -rf ./utils/eslint/result && tsc --project ./utils/eslint/tsconfig.json && cp ./utils/eslint/package.json ./utils/eslint/result && yarn add --dev file:./utils/eslint/result"

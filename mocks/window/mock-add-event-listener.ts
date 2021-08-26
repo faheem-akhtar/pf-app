@@ -5,7 +5,7 @@ const original = WindowService.addEventListener;
 /**
  * Mock window add event listener
  */
-export const mockWindowAddEventListener = (): jest.Mock => {
+export const windowMockAddEventListener = (): jest.Mock => {
   const mock = jest.fn();
   WindowService.addEventListener = mock;
   return mock;

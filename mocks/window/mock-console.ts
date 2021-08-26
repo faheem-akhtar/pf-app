@@ -1,6 +1,6 @@
 const originalConsole = global.console;
 
-export const mockWindowConsole = (): Console => {
+export const windowMockConsole = (): Console => {
   global.console = {
     log: jest.fn(),
     error: jest.fn(),

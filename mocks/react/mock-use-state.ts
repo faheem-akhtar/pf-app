@@ -2,7 +2,7 @@ import { AnyValueType } from 'types/any/value.type';
 
 const original = global.React.useState;
 
-export const mockReactUseState = (): void => {
+export const reactMockUseState = (): void => {
   const useStateMock = (arg1: ((s: AnyValueType) => AnyValueType) | AnyValueType): AnyValueType => [
     typeof arg1 === 'function' ? (arg1 as Function)() : arg1,
     jest.fn(),

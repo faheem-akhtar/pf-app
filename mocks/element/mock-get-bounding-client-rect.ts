@@ -5,7 +5,7 @@ const original = ElementService.getBoundingClientRect;
 /**
  * Mock element bounding client rect
  */
-export const mockElementGetBoundingClientRect = (mock: Partial<DOMRect>): void => {
+export const elementMockGetBoundingClientRect = (mock: Partial<DOMRect>): void => {
   ElementService.getBoundingClientRect = (element: Element): DOMRect => ({ ...original(element), ...mock } as DOMRect);
 };
 

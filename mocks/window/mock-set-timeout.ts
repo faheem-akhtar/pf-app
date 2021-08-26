@@ -6,7 +6,7 @@ const original = TimeService.setTimeout;
  * Mock set timeout and allow to flush them using the returned function
  * @returns flush set timeouts
  */
-export const mockWindowSetTimeout = (): (() => void) => {
+export const windowMockSetTimeout = (): (() => void) => {
   const setTimeoutCallbacks: Function[] = [];
 
   TimeService.setTimeout = (

@@ -1,15 +1,15 @@
-import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { windowMockFetch } from 'mocks/window/mock-fetch';
 
 import { ApiMakeFactory } from 'api/make-factory';
 import { JwtTokenStore } from 'services/jwt/token/store';
-import { mockWindowConsole } from 'mocks/window/console.mock';
+import { windowMockConsole } from 'mocks/window/mock-console';
 
 describe('ApiFactory', () => {
   const origin = 'origin';
   const url = 'url';
 
   it('should pwa prefix if request is handled by pf-web-app', async () => {
-    const fetchMock = mockWindowFetch();
+    const fetchMock = windowMockFetch();
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -35,7 +35,7 @@ describe('ApiFactory', () => {
   });
 
   it('should be able set headers on every level', async () => {
-    const fetchMock = mockWindowFetch();
+    const fetchMock = windowMockFetch();
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -72,7 +72,7 @@ describe('ApiFactory', () => {
   });
 
   it('should resolve with error when auth is required but no auth token available', async () => {
-    const fetchMock = mockWindowFetch();
+    const fetchMock = windowMockFetch();
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -97,7 +97,7 @@ describe('ApiFactory', () => {
   });
 
   it('should add the Bearer header when auth is required and authToken is present', async () => {
-    const fetchMock = mockWindowFetch();
+    const fetchMock = windowMockFetch();
 
     const jwtTokenService = new JwtTokenStore();
     jwtTokenService.getToken = jest.fn().mockReturnValue('test-token');
@@ -119,7 +119,7 @@ describe('ApiFactory', () => {
   });
 
   it('should add cache reload when reloadCache is true', async () => {
-    const fetchMock = mockWindowFetch();
+    const fetchMock = windowMockFetch();
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -139,7 +139,7 @@ describe('ApiFactory', () => {
   });
 
   test('if method is HEAD should set no-cache', async () => {
-    const fetchMock = mockWindowFetch();
+    const fetchMock = windowMockFetch();
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -159,7 +159,7 @@ describe('ApiFactory', () => {
   });
 
   it('should return success status with empty body on 204', async () => {
-    mockWindowFetch({ ok: true, status: 204 });
+    windowMockFetch({ ok: true, status: 204 });
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -179,7 +179,7 @@ describe('ApiFactory', () => {
   });
 
   test('if method is POST should add postData', async () => {
-    const fetchMock = mockWindowFetch();
+    const fetchMock = windowMockFetch();
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -200,7 +200,7 @@ describe('ApiFactory', () => {
   });
 
   test('if fetch response is not ok, should return response body as error', async () => {
-    mockWindowFetch({ ok: false, status: 500 });
+    windowMockFetch({ ok: false, status: 500 });
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -223,7 +223,7 @@ describe('ApiFactory', () => {
   });
 
   it('should refresh token on 401', async () => {
-    mockWindowFetch({ ok: false, status: 401 });
+    windowMockFetch({ ok: false, status: 401 });
 
     const jwtTokenService = new JwtTokenStore();
     jwtTokenService.getToken = jest.fn().mockReturnValue('test-token');
@@ -243,7 +243,7 @@ describe('ApiFactory', () => {
   });
 
   it('should return error when failed to parse json', async () => {
-    mockWindowFetch({ json: () => Promise.reject({ message: 'failed to parse json' }) });
+    windowMockFetch({ json: () => Promise.reject({ message: 'failed to parse json' }) });
 
     const jwtTokenService = new JwtTokenStore();
     jwtTokenService.getToken = jest.fn().mockReturnValue('test-token');
@@ -266,7 +266,7 @@ describe('ApiFactory', () => {
   });
 
   it('should use response mapper on make factory level', async () => {
-    mockWindowFetch();
+    windowMockFetch();
 
     const dataMapperResult = { a: 1 };
     const apiFactory = ApiMakeFactory({
@@ -283,8 +283,8 @@ describe('ApiFactory', () => {
   });
 
   it('should handle make factory level mapper error', async () => {
-    mockWindowFetch();
-    mockWindowConsole();
+    windowMockFetch();
+    windowMockConsole();
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -309,7 +309,7 @@ describe('ApiFactory', () => {
   });
 
   it('should use response mapper on factory level', async () => {
-    mockWindowFetch();
+    windowMockFetch();
 
     const dataMapperResult = { b: 1 };
     const apiFactory = ApiMakeFactory({
@@ -325,8 +325,8 @@ describe('ApiFactory', () => {
   });
 
   it('should handle factory level mapper error', async () => {
-    mockWindowFetch();
-    mockWindowConsole();
+    windowMockFetch();
+    windowMockConsole();
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -354,7 +354,7 @@ describe('ApiFactory', () => {
   });
 
   it('should use both dataMappers together when defined', async () => {
-    mockWindowFetch({ json: () => Promise.resolve(5) });
+    windowMockFetch({ json: () => Promise.resolve(5) });
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,

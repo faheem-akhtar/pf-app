@@ -1,7 +1,7 @@
 import { ApiHeaderEnum } from 'enums/api/header.enum';
 import { NextApiRequest } from 'next';
 
-export const mockNextApiRequest = (): NextApiRequest => {
+export const nextApiMockRequest = (): NextApiRequest => {
   return {
     query: {},
     headers: {

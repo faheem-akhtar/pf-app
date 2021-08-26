@@ -8,7 +8,7 @@ const defaultResponse = {
   text: (): Promise<string> => Promise.resolve('response.text'),
 };
 
-export const mockWindowFetch = (response = {}): jest.Mock => {
+export const windowMockFetch = (response = {}): jest.Mock => {
   response = { ...defaultResponse, ...response };
 
   const fetchMock = jest.fn();

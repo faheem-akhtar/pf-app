@@ -4,7 +4,7 @@ const original = global.React.useEffect;
 
 const unmountCallbacks: Function[] = [];
 
-export const mockReactUseEffect = (): { unmountAll: OnUnmount } => {
+export const reactMockUseEffect = (): { unmountAll: OnUnmount } => {
   jest.spyOn(global.React, 'useEffect').mockImplementation((f) => {
     const onUnmount = f();
     if (onUnmount) {

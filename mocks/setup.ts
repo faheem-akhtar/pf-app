@@ -4,14 +4,14 @@ import { NextRouter } from 'next/router';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 
-import { recoverReactUseEffect } from './react/use-effect.mock';
-import { recoverReactUseReducer } from './react/use-reducer.mock';
-import { recoverReactUseState } from './react/use-state.mock';
-import { recoverWindowAddEventListener } from './window/add-event-listener.mock';
-import { recoverWindowConsole } from './window/console.mock';
-import { recoverWindowFetch } from './window/fetch.mock';
-import { recoverWindowRemoveEventListener } from './window/remove-event-listener.mock';
-import { setupSwrMock } from 'mocks/react/use-swr.mock';
+import { recoverReactUseEffect } from './react/mock-use-effect';
+import { recoverReactUseReducer } from './react/mock-use-reducer';
+import { recoverReactUseState } from './react/mock-use-state';
+import { recoverWindowAddEventListener } from './window/mock-add-event-listener';
+import { recoverWindowConsole } from './window/mock-console';
+import { recoverWindowFetch } from './window/mock-fetch';
+import { recoverWindowRemoveEventListener } from './window/mock-remove-event-listener';
+import { setupSwrMock } from 'mocks/react/mock-use-swr';
 import { translationsMap } from './add-translation';
 
 if (!global.window) {
