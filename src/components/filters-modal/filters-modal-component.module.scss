@@ -56,3 +56,18 @@
   padding: var(--spacing);
   width: 18rem;
 }
+
+.notFound {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.notFoundButton {
+  background-color: transparent;
+  color: var(--color-global-black);
+  font-weight: var(--font-weight-04);
+  padding: 0;
+  pointer-events: none;
+}

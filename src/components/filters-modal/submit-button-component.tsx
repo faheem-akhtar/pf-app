@@ -1,4 +1,6 @@
+import { domClassMerge } from 'helpers/dom/class-merge';
 import { useApiPropertySearchCount } from 'api/property-search-count/hook';
+import { useTranslation } from 'helpers/translation/hook';
 
 import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
@@ -7,7 +9,6 @@ import { ButtonTemplate } from 'library/button/template';
 import { FiltersModalSubmitButtonPropsInterface } from './submit-button-props.interface';
 
 import styles from './filters-modal-component.module.scss';
-import { useTranslation } from 'helpers/translation/hook';
 
 // TODO-FE[CX-423] add tests
 export const FiltersModalSubmitButtonComponent = ({
@@ -40,12 +41,21 @@ export const FiltersModalSubmitButtonComponent = ({
       type='button'
       componentType={ButtonComponentTypeEnum.primary}
       size={ButtonSizeEnum.regular}
-      className={styles.submit_btn}
+      className={domClassMerge(styles.submit_btn, {
+        [styles.notFoundButton]: result.ok && !result.data,
+      })}
       onClick={onSubmit}
       disabled={!result.ok}
       loading={!result.ok}
     >
-      {result.ok && <span>{result.data ? buttonText : 'TODO-FE[CX-398]'}</span>}
+      {result.ok && result.data ? (
+        buttonText
+      ) : (
+        <div className={styles.notFound}>
+          <strong>{t('filters/no-properties-found')}</strong>
+          {t('filters/clear-or-change-filters')}
+        </div>
+      )}
     </ButtonTemplate>
   );
 };
