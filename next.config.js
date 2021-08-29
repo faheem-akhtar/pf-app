@@ -35,16 +35,6 @@ module.exports = {
   async headers() {
     return [
       {
-        // to enable 30 min akamai cache:
-        source: '/search',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=1800, s-maxage=1800, stale-while-revalidate=1800',
-          },
-        ],
-      },
-      {
         // cache for 10 years
         source: '/api/pwa/location/list',
         headers: [

@@ -12,6 +12,8 @@ export const backendApiPropertySearchFetcher = (
     locale,
     query: objectFilterNonOrEmptyValue({
       ...filtersValue,
+      // TODO-FE[CX-512] remove break_thru_cache workaround
+      break_thru_cache: Math.random(),
       [FiltersParametersEnum.locationsIds]: filtersValue[FiltersParametersEnum.locationsIds].map((l) => l.id),
     }),
   });
