@@ -5,12 +5,13 @@
 import { fireEvent, render } from '@testing-library/react';
 
 import { galleryScrollMakeInitialState } from '../make-initial-state';
+import { reactMockUseReducer } from 'mocks/react/mock-use-reducer';
 import { windowMockRemoveEventListener } from 'mocks/window/mock-remove-event-listener';
 
 import { GalleryScrollComponent } from '../component';
 import { GalleryScrollComponentPropsInterface } from '../component-props.interface';
 import { GalleryScrollItemInterface } from '../item.interface';
-import { reactMockUseReducer } from 'mocks/react/mock-use-reducer';
+import { TouchEventMock } from 'mocks/touch-event/mock';
 
 const image1: GalleryScrollItemInterface = { sourceUrl: '1' };
 const image2: GalleryScrollItemInterface = { sourceUrl: '2' };
@@ -67,13 +68,16 @@ describe('AppearOnScrollComponent', () => {
 
     const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} />);
 
-    fireEvent.mouseDown(getByTestId('GalleryScroll'));
+    fireEvent.touchStart(getByTestId('GalleryScroll'), {
+      ...TouchEventMock(),
+      changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
+    });
 
     expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({
       galleryLeft: 0,
       galleryRight: 0,
-      positionX: 0,
+      positionX: 5,
       type: 'start',
     });
   });

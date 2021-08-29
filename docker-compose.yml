@@ -6,14 +6,14 @@ services:
   datadog:
     image: gcr.io/datadoghq/agent:latest
     links:
-     - redis
+      - redis
     environment:
-     - DD_API_KEY=pub5955fb7c2154ba29aaf74c9773d47363
-     - DD_SITE=datadoghq.com
+      - DD_API_KEY=pub5955fb7c2154ba29aaf74c9773d47363
+      - DD_SITE=datadoghq.com
     volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
-     - /proc/:/host/proc/:ro
-     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
     ports:
       - '8126:8126'
   pfwebapp-builder:

@@ -39,7 +39,7 @@ describe('PropertyCardComponent', () => {
 
     const gallery = getByTestId('GalleryScroll');
     fireEvent.touchStart(gallery, {
-      ...TouchEventMock,
+      ...TouchEventMock(),
       changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
     });
 

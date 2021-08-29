@@ -96,10 +96,12 @@ describe('useGalleryScrollEffects', () => {
 
     const callbackProps = {
       stopPropagation: jest.fn(),
+      preventDefault: jest.fn(),
     };
     callback(callbackProps);
 
     expect(callbackProps.stopPropagation).toBeCalledTimes(1);
+    expect(callbackProps.preventDefault).toBeCalledTimes(1);
     expect(dispatchMock).toBeCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({ type: 'end' });
   });

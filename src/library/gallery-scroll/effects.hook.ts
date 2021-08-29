@@ -36,7 +36,11 @@ export const useGalleryScrollEffects = (
     WindowService.addEventListener('mousemove', onMouseMove);
     WindowService.addEventListener('touchmove', onTouchMove);
     WindowService.addEventListener('mouseup', onEnd);
-    WindowService.addEventListener('touchend', onEnd);
+    WindowService.addEventListener('touchend', (e) => {
+      // we should prevent default because otherwise it will trigger mouse down right after touchend
+      e.preventDefault();
+      onEnd(e);
+    });
 
     return (): void => {
       WindowService.removeEventListener('contextmenu', disableContextMenu);
