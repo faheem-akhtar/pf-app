@@ -303,7 +303,6 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
     | FiltersParametersEnum.maxBedroom
     | FiltersParametersEnum.minBathroom
     | FiltersParametersEnum.maxBathroom
-    | FiltersParametersEnum.furnishing
     | FiltersParametersEnum.completionStatus
     | FiltersParametersEnum.paymentMethod
     | FiltersParametersEnum.utilitiesPriceType
@@ -314,7 +313,6 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
     FiltersParametersEnum.maxBedroom,
     FiltersParametersEnum.minBathroom,
     FiltersParametersEnum.maxBathroom,
-    FiltersParametersEnum.furnishing,
     FiltersParametersEnum.completionStatus,
     FiltersParametersEnum.paymentMethod,
     FiltersParametersEnum.utilitiesPriceType,

@@ -16,6 +16,7 @@ export const FiltersModalWidgetVirtualViewingsComponent: FiltersModalWidgetType 
 }) => (
   <FiltersModalItemTemplate label={t('virtual-viewings')} icon={<IconThickPlayTemplate class={styles.icon} />} isNew>
     <ChipChoiceTemplate
+      placeholder={t('all-virtual-viewings')}
       containerClassName={styles.list}
       options={filtersDataChoicesGetVirtualViewing(filtersValue, filtersData)}
       selected={filtersValue[FiltersParametersEnum.virtualViewings]}

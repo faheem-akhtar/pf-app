@@ -8,7 +8,7 @@ import { IconThickPropertyTemplate } from 'components/icon/thick/property-templa
 
 import styles from './filters-modal-widget-component.module.scss';
 
-export const FiltersModalWidgetPropertyTypeTypeComponent: FiltersModalWidgetType = ({
+export const FiltersModalWidgetPropertyTypeComponent: FiltersModalWidgetType = ({
   filtersValue,
   filtersData,
   changeFiltersValue,

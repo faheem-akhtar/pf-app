@@ -9,7 +9,7 @@ import { FiltersModalWidgetKeywordsComponent } from './keywords-component';
 import { FiltersModalWidgetPaymentMethodComponent } from './payment-method-component';
 import { FiltersModalWidgetPriceComponent } from './price-component';
 import { FiltersModalWidgetPricePeriodComponent } from './price-period-component';
-import { FiltersModalWidgetPropertyTypeTypeComponent } from './property-type-type-component';
+import { FiltersModalWidgetPropertyTypeComponent } from './property-type-component';
 import { FiltersModalWidgetType } from './type';
 import { FiltersModalWidgetUtilitiesPriceTypeComponent } from './utilities-price-type-component';
 import { FiltersModalWidgetVirtualViewingsComponent } from './virtual-viewings-component';
@@ -17,7 +17,7 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
 export const filtersModalWidgetRenderMap: Record<string, FiltersModalWidgetType> = {
   [FiltersParametersEnum.categoryId]: FiltersModalWidgetCategoryIdComponent,
-  [FiltersParametersEnum.propertyTypeId]: FiltersModalWidgetPropertyTypeTypeComponent,
+  [FiltersParametersEnum.propertyTypeId]: FiltersModalWidgetPropertyTypeComponent,
   [FiltersParametersEnum.virtualViewings]: FiltersModalWidgetVirtualViewingsComponent,
   [FiltersParametersEnum.pricePeriod]: FiltersModalWidgetPricePeriodComponent,
   [FiltersParametersEnum.minPrice]: FiltersModalWidgetPriceComponent,
