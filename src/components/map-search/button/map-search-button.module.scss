@@ -1,0 +1,10 @@
+.button {
+  background-color: var(--color-global-black);
+  border: none;
+  bottom: calc(var(--spacing) * 4);
+  color: var(--color-global-white);
+  font-weight: var(--font-weight-02);
+  position: fixed;
+  right: calc(var(--spacing) * 2);
+  z-index: var(--z-index-01);
+}

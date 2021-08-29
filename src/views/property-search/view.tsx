@@ -5,6 +5,7 @@ import { FiltersSectionComponent } from 'components/filters-section/component';
 import { FooterComponent } from 'components/footer/component';
 import { HeadComponent } from 'components/head/component';
 import { HeaderComponent } from 'components/header/component';
+import { MapSearchButtonComponent } from 'components/map-search/button/component';
 import { PaginationSectionComponent } from 'components/pagination-section/component';
 import { PropertyCardComponent } from 'components/property-card/component';
 import { PropertySearchCountAndSortSectionComponent } from 'components/property-search-count-and-sort-section/component';
@@ -46,6 +47,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
         ) : (
           <PropertySearchNotFoundSectionTemplate />
         )}
+        <MapSearchButtonComponent />
         <FooterComponent />
       </FiltersContextProvider>
     </PropertySearchResultsCountForCurrentQueryContext.Provider>

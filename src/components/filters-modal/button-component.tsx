@@ -11,6 +11,7 @@ import { FiltersContext } from 'components/filters/context';
 import { FiltersModalContentComponent } from './content-component';
 import { IconThinFilterOpenTemplate } from 'components/icon/thin/filter-open-template';
 import { ModalComponent } from 'components/modal/component';
+import styles from './filters-modal-component.module.scss';
 
 // TODO-FE[CX-423] add tests
 export const FiltersModalButtonComponent = (): JSX.Element => {
@@ -27,6 +28,7 @@ export const FiltersModalButtonComponent = (): JSX.Element => {
         componentType={ButtonComponentTypeEnum.tertiary}
         size={ButtonSizeEnum.small}
         onClick={(): void => openFiltersRef.current()}
+        className={styles.filter_button}
         icon={{ component: IconThinFilterOpenTemplate, position: ButtonIconPositionEnum.left }}
       >
         {t('filters')} <span>{nonDefaultFiltersCount ? `(${nonDefaultFiltersCount})` : ''}</span>

@@ -20,7 +20,7 @@ import { validationRequired } from 'helpers/validation/required';
 import { configLinksSecondaryPrivacyPolicy } from 'config/links/secondary/privacy-policy';
 import { configLinksSecondaryTermsConditions } from 'config/links/secondary/terms-conditions';
 
-import styles from 'components/auth/auth.module.scss';
+import styles from '../auth.module.scss';
 
 const captchaService = new GoogleRecaptchaService();
 

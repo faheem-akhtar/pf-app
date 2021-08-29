@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 
 import { configCommon } from 'config/common';
-import { configOriginValue } from 'config/origin/value';
+import { localeGetHref } from 'helpers/locale/get-href';
 import { useTranslation } from 'helpers/translation/hook';
 
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
@@ -25,9 +25,6 @@ export const HeaderTemplate = ({
 
   const currentLocaleIsDefault = locale === configCommon.language.current;
   const logo = currentLocaleIsDefault ? <IconLogoCurrentTemplate /> : <IconLogoAlternativeTemplate />;
-  const userAccountPath = `${configOriginValue}/${
-    locale === configCommon.language.current ? configCommon.language.current : configCommon.language.alternative
-  }/user`;
 
   return (
     <header className={styles.container}>
@@ -47,7 +44,10 @@ export const HeaderTemplate = ({
             {userProfile?.user && (
               <div className={styles.savedProperties}>
                 <span className={styles.spacer} />
-                <a href={`${userAccountPath}/saved-properties`} className={styles.savedPropertiesButton}>
+                <a
+                  href={localeGetHref(locale as string, '/user/saved-properties')}
+                  className={styles.savedPropertiesButton}
+                >
                   <IconThinFavoriteTemplate class={styles.savedPropertiesIcon} clipped />
                   <div className={styles.notificationDot} />
                   <div className={styles.notificationBadge}>{userProfile.savedPropertiesCount}</div>
