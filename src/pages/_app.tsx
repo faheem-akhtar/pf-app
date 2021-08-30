@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 import type { AppContext, AppProps } from 'next/app';
 import App from 'next/app';
 
+import { useEffect } from 'react';
+
 import { LocaleEnum } from 'services/locale/enum';
 import { LocaleService } from 'services/locale/service';
 import { UserContextProvider } from 'context/user/context-provider';
@@ -17,8 +19,13 @@ import '../styles/index.scss';
 import { appRootElementId } from 'src/constants/app/root-element-id';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
-  // Init locale service
-  LocaleService.setLocale(useRouter().locale as LocaleEnum);
+  const { locale } = useRouter();
+
+  useEffect(() => {
+    // Init locale service
+    LocaleService.setLocale(locale as LocaleEnum);
+    document.documentElement.dir = locale === LocaleEnum.ar ? 'rtl' : 'ltr';
+  }, [locale]);
 
   return (
     <UserContextProvider>

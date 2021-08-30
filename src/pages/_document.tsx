@@ -9,7 +9,7 @@ class MainDocument extends Document {
 
   render(): JSX.Element {
     return (
-      <Html>
+      <Html dir={this.props.locale === 'ar' ? 'rtl' : 'ltr'}>
         <Head />
         <body>
           <Main />
