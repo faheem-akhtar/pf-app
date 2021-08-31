@@ -2,6 +2,10 @@ import { Rule } from 'eslint';
 
 import { ExportNameOptionInterface } from './option.interface';
 
+function filterFolderFromSuggestions(list: string[], folderName: string): string[] {
+  return list.map((current) => current.replace(new RegExp(folderName, 'i'), ''));
+}
+
 function getPossibleNames(context: Rule.RuleContext): {
   filename: string;
   camelCaseSuggestions: string[];
@@ -16,6 +20,7 @@ function getPossibleNames(context: Rule.RuleContext): {
   const {
     enforcePrefixOnExtension = [],
     ignoreCustomExtensionInNameOn = [],
+    ignoreFolderInNameOnExtension = [],
     rootFolder = 'src',
   } = (context.options[0] || {}) as ExportNameOptionInterface;
 
@@ -35,7 +40,7 @@ function getPossibleNames(context: Rule.RuleContext): {
     counter++;
   }
 
-  const pascalCaseSuggestions = possibleNameGroups.map((current) =>
+  let pascalCaseSuggestions = possibleNameGroups.map((current) =>
     current
       // Split by - / .
       .split(/[/.-]/g)
@@ -43,6 +48,12 @@ function getPossibleNames(context: Rule.RuleContext): {
       .map((section) => `${section[0].toUpperCase()}${section.substr(1)}`)
       .join('')
   );
+
+  ignoreFolderInNameOnExtension.forEach(({ extension, folderName }) => {
+    if (new RegExp(extension).test(nameWithoutIgnoredExtensions)) {
+      pascalCaseSuggestions = filterFolderFromSuggestions(pascalCaseSuggestions, folderName);
+    }
+  });
 
   return {
     filename: nameWithoutIgnoredExtensions,

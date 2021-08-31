@@ -23,13 +23,16 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.exportNameRule = void 0;
+function filterFolderFromSuggestions(list, folderName) {
+    return list.map(function (current) { return current.replace(new RegExp(folderName, 'i'), ''); });
+}
 function getPossibleNames(context) {
     var fileName = context.getFilename();
     var extension = "." + fileName.split('.').pop();
     // Get filename and remove extension, then split
     var pathArray = fileName.replace(extension, '').split('/');
     // Get Options
-    var _a = (context.options[0] || {}), _b = _a.enforcePrefixOnExtension, enforcePrefixOnExtension = _b === void 0 ? [] : _b, _c = _a.ignoreCustomExtensionInNameOn, ignoreCustomExtensionInNameOn = _c === void 0 ? [] : _c, _d = _a.rootFolder, rootFolder = _d === void 0 ? 'src' : _d;
+    var _a = (context.options[0] || {}), _b = _a.enforcePrefixOnExtension, enforcePrefixOnExtension = _b === void 0 ? [] : _b, _c = _a.ignoreCustomExtensionInNameOn, ignoreCustomExtensionInNameOn = _c === void 0 ? [] : _c, _d = _a.ignoreFolderInNameOnExtension, ignoreFolderInNameOnExtension = _d === void 0 ? [] : _d, _e = _a.rootFolder, rootFolder = _e === void 0 ? 'src' : _e;
     // Name of the file without path and extension and custom extensions
     var nameWithoutIgnoredExtensions = ignoreCustomExtensionInNameOn.reduce(function (result, current) {
         var ignoreRegex = new RegExp(current.replace('.', '\\.'));
@@ -50,6 +53,12 @@ function getPossibleNames(context) {
             // Transforms first letters to uppercase
             .map(function (section) { return "" + section[0].toUpperCase() + section.substr(1); })
             .join('');
+    });
+    ignoreFolderInNameOnExtension.forEach(function (_a) {
+        var extension = _a.extension, folderName = _a.folderName;
+        if (new RegExp(extension).test(nameWithoutIgnoredExtensions)) {
+            pascalCaseSuggestions = filterFolderFromSuggestions(pascalCaseSuggestions, folderName);
+        }
     });
     return {
         filename: nameWithoutIgnoredExtensions,

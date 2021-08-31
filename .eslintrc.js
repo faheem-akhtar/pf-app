@@ -52,6 +52,12 @@ module.exports = {
             prefix: 'use',
           },
         ],
+        // ignoreFolderInNameOnExtension: [
+        //   {
+        //     extension: 'hook',
+        //     folderName: 'hooks',
+        //   },
+        // ],
       },
     ],
     'pf-rules/must-prefix': [

@@ -72,7 +72,7 @@ Example:
   - `ComponentsFilterComponent`
   - `SrcComponentsFilterComponent`
 
-- Without the rule, accepted names would be:
+- Without the option, accepted names would be:
   - `filterComponent`
   - `componentsFilterComponent`
   - `srcComponentsFilterComponent`
@@ -106,7 +106,7 @@ Example:
   - `useHelpersObjectCompare`
   - `useSrcHelpersObjectCompare`
 
-- Without the rule, accepted names would be:
+- Without the option, accepted names would be:
   - `ObjectCompareHook`
   - `HelpersObjectCompareHook`
   - `SrcHelpersObjectCompareHook`
@@ -135,7 +135,37 @@ Example:
   - `objectCompare`
   - `helpersObjectCompare`
   - `srcHelpersObjectCompare`
-- Without the rule, accepted names would be:
+- Without the option, accepted names would be:
   - `objectCompareDesktop`
   - `helpersObjectCompareDesktop`
   - `srcHelpersObjectCompareDesktop`
+
+### ignoreFolderInNameOnExtension
+
+Removes folder from enforced name based on extension
+
+Example:
+
+- Given a file at this path `src/hooks/constructor.ts`.
+- Given this configuration:
+  ```js
+  {
+      "pf-rules/export-name-validation": [
+          "error",
+          {
+              ignoreFolderInNameOnExtension: [
+                {
+                  extension: 'hook',
+                  folderName: 'hooks',
+                },
+              ],
+          }
+      ]
+  }
+  ```
+- Accepted names will be:
+  - `ConstructorHook`
+  - `SrcConstructorHook`
+- Without the option, accepted names would be:
+  - `HooksConstructorHook`
+  - `SrcHooksConstructorHook`

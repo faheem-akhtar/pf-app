@@ -1,6 +1,13 @@
-interface ExtensionAndPrefix {
+interface Extension {
   extension: string;
+}
+
+interface ExtensionAndPrefix extends Extension {
   prefix: string;
+}
+
+interface ExtensionAndFolder extends Extension {
+  folderName: string;
 }
 
 export interface ExportNameOptionInterface {
@@ -20,4 +27,8 @@ export interface ExportNameOptionInterface {
    * List of extensions to ignore in the module name
    */
   ignoreCustomExtensionInNameOn?: string[];
+  /**
+   * Ignore a certain folder in the naming when extension is present
+   */
+  ignoreFolderInNameOnExtension?: ExtensionAndFolder[];
 }
