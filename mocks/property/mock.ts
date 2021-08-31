@@ -16,19 +16,20 @@ import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/
 
 import { ContactOptionsMock } from 'mocks/contact-options/mock';
 
-export const PropertyMock: PropertySerpObfuscatedType = {
-  [propertySerpObfuscatedFieldUrl]: 'url',
-  [propertySerpObfuscatedFieldName]: 'Title from agent',
-  [propertySerpObfuscatedFieldVerified]: true,
-  [propertySerpObfuscatedFieldListingLevel]: 'premium',
-  [propertySerpObfuscatedFieldBathroomValue]: 3,
-  [propertySerpObfuscatedFieldBedroomValue]: 2,
-  [propertySerpObfuscatedFieldLocationTreePath]: 'Dubai, Marina',
-  [propertySerpObfuscatedFieldExclusive]: true,
-  [propertySerpObfuscatedFieldImgUrl]: 'img url',
-  [propertySerpObfuscatedFieldPropertyTypeName]: 'Villa',
-  [propertySerpObfuscatedFieldContactOptionsList]: ContactOptionsMock,
-  [propertySerpObfuscatedFieldPriceText]: '555,555 AED',
-  [propertySerpObfuscatedFieldImagesCount]: 3,
-  [propertySerpObfuscatedFieldId]: '198023',
-} as PropertySerpObfuscatedType;
+export const PropertyMock = (): PropertySerpObfuscatedType =>
+  ({
+    [propertySerpObfuscatedFieldUrl]: 'url',
+    [propertySerpObfuscatedFieldName]: 'Title from agent',
+    [propertySerpObfuscatedFieldVerified]: true,
+    [propertySerpObfuscatedFieldListingLevel]: 'premium',
+    [propertySerpObfuscatedFieldBathroomValue]: 3,
+    [propertySerpObfuscatedFieldBedroomValue]: 2,
+    [propertySerpObfuscatedFieldLocationTreePath]: 'Dubai, Marina',
+    [propertySerpObfuscatedFieldExclusive]: true,
+    [propertySerpObfuscatedFieldImgUrl]: 'img url',
+    [propertySerpObfuscatedFieldPropertyTypeName]: 'Villa',
+    [propertySerpObfuscatedFieldContactOptionsList]: ContactOptionsMock,
+    [propertySerpObfuscatedFieldPriceText]: '555,555 AED',
+    [propertySerpObfuscatedFieldImagesCount]: 3,
+    [propertySerpObfuscatedFieldId]: '198023',
+  } as PropertySerpObfuscatedType);

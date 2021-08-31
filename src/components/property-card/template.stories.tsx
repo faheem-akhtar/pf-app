@@ -18,7 +18,7 @@ export const PropertyCard: Story<PropertyCardTemplatePropsType> = (args): JSX.El
 );
 
 PropertyCard.args = {
-  property: PropertyMock,
+  property: PropertyMock(),
   gallery: {
     onTouch: (): null => null,
     items: [

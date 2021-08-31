@@ -11,21 +11,24 @@ export const ModalPortalComponent: React.FunctionComponent<{ overlay?: boolean }
   useEffect(() => {
     const rootElement = document.getElementById(appRootElementId) as HTMLElement;
     const { scrollTop } = document.documentElement;
-    const options: ScrollToOptions = {
-      top: scrollTop,
-      behavior: 'smooth',
-    };
 
     setIsBrowser(true);
-    if (props.overlay) {
+    if (!props.overlay) {
       rootElement.classList.add(styles.hide);
     }
 
+    document.documentElement.querySelectorAll('[data-ad]').forEach((element) => {
+      (element as HTMLDivElement).style.display = 'none';
+    });
+
     return (): void => {
-      if (props.overlay) {
+      if (!props.overlay) {
         rootElement.classList.remove(styles.hide);
-        document.documentElement.scroll(options);
+        document.documentElement.scroll({ top: scrollTop });
       }
+      document.documentElement.querySelectorAll('[data-ad]').forEach((element) => {
+        (element as HTMLDivElement).style.display = '';
+      });
     };
   }, [props.overlay]);
 

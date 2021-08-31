@@ -1,3 +1,4 @@
+import { AdConfigInterface } from 'types/ad/config.interface';
 import { PropertySerpObfuscatedType } from './obfuscated/type';
 
 export type PropertySerpSearchResultType = {
@@ -5,6 +6,10 @@ export type PropertySerpSearchResultType = {
    * Array of property cards
    */
   properties: PropertySerpObfuscatedType[];
+  /**
+   * Ads config for current search
+   */
+  adConfig: AdConfigInterface;
   /**
    * Total number of properties available for this search parameters
    */

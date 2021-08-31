@@ -1,3 +1,4 @@
+import { backendApiXAkamaiDeviceCharacteristicsHeaderValue } from './x-akamai-device-characteristics-header-value';
 import { backendJsonApiSync } from 'backend/json-api/sync';
 import { configOriginValue } from 'config/origin/value';
 
@@ -15,6 +16,9 @@ export const BackendApiFactory = ApiMakeFactory({
   dataMapper: (json) => backendJsonApiSync(json as BackendJsonApiPayloadInterface),
   alterHeaders: (headers) => {
     headers['user-agent'] = SECRET_PF_USER_AGENT;
+    if (backendApiXAkamaiDeviceCharacteristicsHeaderValue) {
+      headers['x-akamai-device-characteristics'] = backendApiXAkamaiDeviceCharacteristicsHeaderValue;
+    }
   },
   requireAuth: false,
 });

@@ -12,7 +12,7 @@ import { PropertyMock } from 'mocks/property/mock';
 import { TouchEventMock } from 'mocks/touch-event/mock';
 
 const makeDefaultProps = (): PropertyCardComponentPropsType => ({
-  property: PropertyMock,
+  property: PropertyMock(),
   loading: false,
 });
 

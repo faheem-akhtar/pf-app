@@ -14,7 +14,6 @@ import { windowMockSetTimeout } from 'mocks/window/mock-set-timeout';
 const BODY_CLIENT_HEIGHT = 10;
 type Observer = (elements: { isIntersecting: boolean }[]) => void;
 
-// TODO-FE[CX-169] enable back
 describe('AppearOnScrollComponent', () => {
   let IntersectionObserverCallback: Observer;
 

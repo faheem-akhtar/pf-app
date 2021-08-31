@@ -7,13 +7,12 @@ import { HeadComponent } from 'components/head/component';
 import { HeaderComponent } from 'components/header/component';
 import { MapSearchButtonComponent } from 'components/map-search/button/component';
 import { PaginationSectionComponent } from 'components/pagination-section/component';
-import { PropertyCardComponent } from 'components/property-card/component';
+import { PropertyListComponent } from 'components/property/list/component';
 import { PropertySearchCountAndSortSectionComponent } from 'components/property-search-count-and-sort-section/component';
 import { PropertySearchNotFoundSectionTemplate } from 'components/property-search-not-found-section/template';
 import { PropertySearchResultsCountForCurrentQueryContext } from './results-count-for-current-query/context';
 import { PropertySearchViewPropsType } from './view-props.type';
 
-import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 
 export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Element => {
@@ -35,13 +34,11 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
         {props.searchResult.total ? (
           <Fragment>
             <PropertySearchCountAndSortSectionComponent loading={pageIsLoading} count={props.searchResult.total} />
-            {props.searchResult.properties.map((property) => (
-              <PropertyCardComponent
-                key={propertySerpObfuscatedGetUrl(property)}
-                property={property}
-                loading={pageIsLoading}
-              />
-            ))}
+            <PropertyListComponent
+              properties={props.searchResult.properties}
+              adConfig={props.searchResult.adConfig}
+              pageIsLoading={pageIsLoading}
+            />
             <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
           </Fragment>
         ) : (

@@ -73,7 +73,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   };
 
   return (
-    <div>
+    <div data-testid='list-item'>
       <PropertyCardTemplate {...cardTemplateProps} />
       <EmailAgentModalComponent
         openRef={emailAgentModalOpenRef}

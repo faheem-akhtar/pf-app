@@ -6,10 +6,12 @@ import { LanguageCodeEnum } from 'enums/language/code.enum';
 
 import { recoverReactUseEffect } from './react/mock-use-effect';
 import { recoverReactUseReducer } from './react/mock-use-reducer';
+import { recoverReactUseRef } from './react/mock-use-ref';
 import { recoverReactUseState } from './react/mock-use-state';
 import { recoverWindowAddEventListener } from './window/mock-add-event-listener';
 import { recoverWindowConsole } from './window/mock-console';
 import { recoverWindowFetch } from './window/mock-fetch';
+import { recoverWindowMockImportScript } from './window/mock-import-script';
 import { recoverWindowRemoveEventListener } from './window/mock-remove-event-listener';
 import { setupSwrMock } from 'mocks/react/mock-use-swr';
 import { translationsMap } from './add-translation';
@@ -55,5 +57,8 @@ afterEach(() => {
   recoverWindowAddEventListener();
   recoverWindowConsole();
   recoverWindowFetch();
+  recoverReactUseRef();
+  recoverWindowMockImportScript();
+
   delete process.env.TRACE;
 });
