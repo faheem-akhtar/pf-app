@@ -7,6 +7,7 @@ import { propertySerpObfuscatedFieldExclusive } from 'components/property/serp/o
 import { propertySerpObfuscatedFieldId } from 'components/property/serp/obfuscated/field/id';
 import { propertySerpObfuscatedFieldImagesCount } from 'components/property/serp/obfuscated/field/images-count';
 import { propertySerpObfuscatedFieldImgUrl } from 'components/property/serp/obfuscated/field/img-url';
+import { propertySerpObfuscatedFieldImgUrlSmall } from 'components/property/serp/obfuscated/field/img-url-small';
 import { propertySerpObfuscatedFieldListingLevel } from 'components/property/serp/obfuscated/field/listing-level';
 import { propertySerpObfuscatedFieldLocationTreePath } from 'components/property/serp/obfuscated/field/location-tree-path';
 import { propertySerpObfuscatedFieldName } from 'components/property/serp/obfuscated/field/name';
@@ -58,6 +59,10 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
         break;
       case 'imgUrl':
         obfuscatedProperty[propertySerpObfuscatedFieldImgUrl] = value;
+        break;
+      //TODO-FE[CX-373] Remove imgUrlSmall
+      case 'imgUrlSmall':
+        obfuscatedProperty[propertySerpObfuscatedFieldImgUrlSmall] = value;
         break;
       case 'propertyTypeName':
         obfuscatedProperty[propertySerpObfuscatedFieldPropertyTypeName] = value;

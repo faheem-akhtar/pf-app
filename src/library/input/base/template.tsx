@@ -26,6 +26,7 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
     prefix,
     maxLength,
     onChange,
+    inputClassName,
     onFocus,
     onBlur,
   } = props;
@@ -53,7 +54,7 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
             onChange={onChange}
             onFocus={onFocus}
             onBlur={onBlur}
-            className={domClassMerge(styles.input, {
+            className={domClassMerge(styles.input, inputClassName, {
               [styles[`input--floating`]]: isPlaceholderFloating || (floatPlaceholder && focus),
               [styles[`input--textarea`]]: textarea,
             })}

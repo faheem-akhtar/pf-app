@@ -158,6 +158,22 @@ describe('ApiFactory', () => {
     });
   });
 
+  it('should return success status for empty response', async () => {
+    const headerGetMock = jest.fn().mockReturnValue('0');
+    windowMockFetch({ ok: true, status: 202, headers: { get: headerGetMock } });
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+    });
+
+    const fetcher = apiFactory({ method: 'GET', url });
+    const response = await fetcher({ locale: 'en' });
+
+    expect(headerGetMock).toHaveBeenCalledWith('content-length');
+    expect(response).toEqual(expect.objectContaining({ ok: true, data: {} }));
+  });
+
   it('should return success status with empty body on 204', async () => {
     windowMockFetch({ ok: true, status: 204 });
 
@@ -262,6 +278,27 @@ describe('ApiFactory', () => {
     expect(result).toEqual({
       error: 'failed to parse json',
       ok: false,
+    });
+  });
+
+  it('should overwrite the initally given url', () => {
+    const fetchMock = windowMockFetch();
+    const jwtTokenService = new JwtTokenStore();
+    jwtTokenService.getToken = jest.fn().mockReturnValue('test-token');
+    jwtTokenService.refreshToken = jest.fn().mockReturnValue(Promise.resolve({}));
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: true,
+      jwtTokenService,
+    });
+
+    const fetcher = apiFactory({ method: 'GET', url });
+    fetcher({ url: 'last-url', locale: 'en' });
+
+    expect(fetchMock).toHaveBeenCalledWith('origin/en/api/last-url', {
+      headers: { locale: 'en', 'x-pf-jwt': 'Bearer test-token' },
+      method: 'GET',
     });
   });
 

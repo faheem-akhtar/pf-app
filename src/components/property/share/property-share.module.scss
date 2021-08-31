@@ -1,0 +1,73 @@
+.container {
+  background-color: var(--color-global-white);
+  margin: calc(var(--spacing) * 3.5) calc(var(--spacing) * 2);
+  padding: calc(var(--spacing) * 2.5);
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: calc(var(--spacing) * 2.5);
+  &--right {
+    justify-content: flex-end;
+  }
+}
+
+.emailTitle {
+  color: var(--color-global-grey1);
+  font-size: var(--font-size-05);
+  font-weight: var(--font-weight-02);
+  text-transform: uppercase;
+}
+
+.close {
+  color: var(--color-interaction-1-dark-mode);
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  font-size: var(--font-size-08);
+  font-weight: var(--font-weight-02);
+  height: 5rem;
+  justify-content: center;
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: calc(var(--spacing) * 3.5);
+}
+
+.link {
+  display: inherit;
+}
+
+.icon {
+  height: 2.7em;
+  width: 2.7em;
+}
+
+.facebook {
+  fill: var(--color-facebook);
+}
+
+.whatsapp {
+  fill: var(--color-whatsapp);
+}
+
+.twitter {
+  fill: var(--color-twitter);
+}
+
+.email {
+  fill: var(--color-global-grey1);
+}
+
+.overlay {
+  background-color: var(--color-global-black-op-80);
+  :global {
+    animation: opacity-up var(--transition-duration);
+  }
+}

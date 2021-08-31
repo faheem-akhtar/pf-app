@@ -45,7 +45,7 @@ export const ApiMakeFactory =
 
     const basePath = `${getOrigin()}/${locale}/api${factoryProps.handledByPfWebApp ? '/pwa' : ''}`;
 
-    let finalUrl = `${basePath}/${factoryProps.url}`;
+    let finalUrl = `${basePath}/${props.url || factoryProps.url}`;
 
     if (makeFactoryProps.requireAuth) {
       const token = makeFactoryProps.jwtTokenService.getToken();
@@ -124,6 +124,17 @@ export const ApiMakeFactory =
             ok: true,
             data: null as unknown as Result,
             headers,
+          };
+        }
+
+        const contentLength = response.headers.get('content-length');
+
+        if (contentLength && !parseInt(contentLength, 10)) {
+          // response is empty
+          return {
+            ok: true,
+            headers: response.headers,
+            data: {} as Result,
           };
         }
 

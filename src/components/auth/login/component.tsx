@@ -32,7 +32,10 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
   const [errors, setErrors] = useState<Partial<Record<AuthLoginFieldEnum, string>>>({});
   const [errorMessage, setErrorMessage] = useState('');
   const [validators] = useState(() => ({
-    [AuthLoginFieldEnum.email]: [validationRequired(t('auth/empty-email')), validationEmail(t('auth/not-valid-email'))],
+    [AuthLoginFieldEnum.email]: [
+      validationRequired(t('validation/empty-email')),
+      validationEmail(t('validation/not-valid-email')),
+    ],
     [AuthLoginFieldEnum.password]: [validationRequired(t('auth/empty-password'))],
   }));
   const [isLoading, setIsLoading] = useState(false);

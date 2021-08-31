@@ -55,6 +55,11 @@ export interface PropertySerpInterface {
   imgUrl: string;
 
   /**
+   * Image url small
+   */
+  imgUrlSmall: string;
+
+  /**
    * Images count
    */
   imagesCount: number;

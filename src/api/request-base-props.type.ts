@@ -23,4 +23,9 @@ export type ApiRequestBasePropsType<Query = UrlQueryType, PostData = AnyValueTyp
    * called on every request letting set custom headers for each request
    */
   alterHeaders?: (headers: Record<string, string>) => void;
+
+  /**
+   *
+   */
+  url?: string;
 };

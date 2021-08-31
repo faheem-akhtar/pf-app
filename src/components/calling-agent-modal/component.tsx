@@ -13,8 +13,6 @@ import { domClassMerge } from 'helpers/dom/class-merge';
 import { useApiAgent } from 'api/agent/hook';
 import { useTranslation } from 'helpers/translation/hook';
 
-import { PropertyAgentResultType } from 'components/property/agent-result.type';
-
 const AgentInfoComponent: React.FunctionComponent<{
   name?: string;
   referenceId: string;
@@ -55,14 +53,9 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
 }) => {
   const [isOpened, setIsOpened] = useState(false);
   const [currentStep, setCurrentStep] = useState<number>(0);
-  const [agentDetail, setAgentDetail] = useState<PropertyAgentResultType>();
   const { t } = useTranslation();
   const closeRef = useRef<() => void>(functionNoop);
   const agentDetailsResponse = useApiAgent(propertyId, isOpened);
-
-  if (!agentDetail && agentDetailsResponse.ok) {
-    setAgentDetail(agentDetailsResponse.data);
-  }
 
   const closeModal = (): void => {
     setCurrentStep(0);
@@ -97,15 +90,19 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
             <IconThickCrossTemplate class={styles.closeIcon} />
           </div>
         </div>
-        {isAgentInfoShown ? (
-          <AgentInfoComponent
-            avatar={agentDetail?.imageSrc}
-            name={agentDetail?.name}
-            languages={agentDetail?.languages}
-            referenceId={referenceId}
-          />
-        ) : (
-          <CallingAgentModalFeedbackComponent propertyId={propertyId} onAnswerClicked={closeModal} />
+        {agentDetailsResponse.ok && (
+          <Fragment>
+            {isAgentInfoShown ? (
+              <AgentInfoComponent
+                avatar={agentDetailsResponse.data.imageSrc}
+                name={agentDetailsResponse.data.name}
+                languages={agentDetailsResponse.data.languages}
+                referenceId={referenceId}
+              />
+            ) : (
+              <CallingAgentModalFeedbackComponent propertyId={propertyId} onAnswerClicked={closeModal} />
+            )}
+          </Fragment>
         )}
       </div>
     </ModalComponent>

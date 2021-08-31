@@ -5,7 +5,9 @@ import { arrayFromRange } from 'helpers/array/from-range';
 import { functionNoop } from 'helpers/function/noop';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { propertySerpObfuscatedGetImagesCount } from 'components/property/serp/obfuscated/get/images-count';
-import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfuscated/get/img-url';
+import { propertySerpObfuscatedGetImgUrlSmall } from 'components/property/serp/obfuscated/get/img-url-small';
+import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
+import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
 import { useApiPropertyImages } from 'api/property-images/hook';
 import { useTranslation } from 'helpers/translation/hook';
 
@@ -17,8 +19,7 @@ import { PropertyCardMenuContentTemplate } from './menu/content/template';
 import { PropertyCardMenuModalComponent } from './menu/modal/component';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
-import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
-import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
+import { PropertyShareComponent } from '../property/share/component';
 
 export const PropertyCardComponent = ({ property, loading }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
@@ -28,6 +29,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   const callingAgentModalOpenRef = useRef<() => void>(functionNoop);
   const emailAgentModalOpenRef = useRef<() => void>(functionNoop);
   const menuModalOpenRef = useRef<() => void>(functionNoop);
+  const socialShareOpenRef = useRef<() => void>(functionNoop);
 
   const imagesResponse = useApiPropertyImages(propertySerpObfuscatedGetId(property), 'small', galleryHasBeenTouched);
 
@@ -35,7 +37,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
     items: imagesResponse.ok
       ? imagesResponse.data.map((sourceUrl) => ({ sourceUrl }))
       : [
-          { sourceUrl: propertySerpObfuscatedGetImgUrl(property) },
+          { sourceUrl: propertySerpObfuscatedGetImgUrlSmall(property) },
           ...arrayFromRange(0, propertySerpObfuscatedGetImagesCount(property) - 1).map(() => ({
             sourceUrl: '',
           })),
@@ -86,7 +88,8 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
         openRef={callingAgentModalOpenRef}
       />
       <PropertyCardMenuModalComponent closeButtonLabel={t('cta-cancel')} openRef={menuModalOpenRef}>
-        <PropertyCardMenuContentTemplate t={t} />
+        <PropertyCardMenuContentTemplate t={t} socialShareOpenRef={socialShareOpenRef} />
+        <PropertyShareComponent property={property} t={t} openRef={socialShareOpenRef} />
       </PropertyCardMenuModalComponent>
     </div>
   );

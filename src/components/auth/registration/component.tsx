@@ -36,8 +36,8 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
   const [errorMessage, setErrorMessage] = useState('');
   const [validators] = useState(() => ({
     [AuthRegistrationFieldEnum.email]: [
-      validationRequired(t('auth/empty-email')),
-      validationEmail(t('auth/not-valid-email')),
+      validationRequired(t('validation/empty-email')),
+      validationEmail(t('validation/not-valid-email')),
     ],
     [AuthRegistrationFieldEnum.password]: [validationRequired(t('auth/empty-password'))],
     [AuthRegistrationFieldEnum.firstName]: [validationRequired(t('auth/empty-first-name'))],

@@ -28,7 +28,10 @@ export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterf
   const [errors, setErrors] = useState<Partial<Record<AuthLoginFieldEnum, string>>>({});
   const [errorMessage, setErrorMessage] = useState('');
   const [validators] = useState(() => ({
-    [AuthLoginFieldEnum.email]: [validationRequired(t('auth/empty-email')), validationEmail(t('auth/not-valid-email'))],
+    [AuthLoginFieldEnum.email]: [
+      validationRequired(t('validation/empty-email')),
+      validationEmail(t('validation/not-valid-email')),
+    ],
   }));
   const [isLoading, setIsLoading] = useState(false);
 

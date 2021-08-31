@@ -81,8 +81,14 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
 
     /**
      * BackendModelProperty image small (for serp pages)
+     * TODO-FE[CX-373] remove image_property_small usage
      */
     image_property_small: string;
+
+    /**
+     * BackendModelProperty image medium
+     */
+    image_property_medium: string;
 
     /**
      * BackendModelProperty image on home page

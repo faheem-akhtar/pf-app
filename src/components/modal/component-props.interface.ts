@@ -23,7 +23,17 @@ export interface ModalComponentPropsInterface {
   overlay?: boolean;
 
   /**
+   * container css class
+   */
+  containerClassName?: string;
+
+  /**
    * invoked when modal is opened
    */
   onOpen?: () => void;
+
+  /**
+   * invoked when overlay is clicked
+   */
+  onOverlayClick?: () => void;
 }

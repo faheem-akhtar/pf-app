@@ -13,7 +13,9 @@ export const ModalComponent = ({
   openRef,
   closeRef,
   children,
+  containerClassName,
   onOpen = functionNoop,
+  onOverlayClick = functionNoop,
   overlay = false,
 }: ModalComponentPropsInterface): JSX.Element | null => {
   const [opened, setOpened] = useState(false);
@@ -33,9 +35,10 @@ export const ModalComponent = ({
   return (
     <ModalPortalComponent overlay={overlay}>
       <div
-        className={domClassMerge(styles.container, {
+        className={domClassMerge(styles.container, containerClassName, {
           [styles[`container--overlay`]]: overlay,
         })}
+        onClick={overlay ? onOverlayClick : functionNoop}
       >
         {children}
       </div>

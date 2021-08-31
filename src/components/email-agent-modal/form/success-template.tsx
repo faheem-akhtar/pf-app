@@ -11,7 +11,7 @@ export const EmailAgentModalFormSuccessTemplate = (props: EmailAgentModalSignInT
 
     <div className={styles.successContent}>
       <p>{props.t('thank-you')}</p>
-      <p>{props.t('agent-modal/email-sending-message-text')}</p>
+      <p>{props.t('your-message-is-sent')}</p>
     </div>
 
     <EmailAgentModalSignInTemplate {...props} />

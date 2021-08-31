@@ -57,7 +57,9 @@ export const backendApiPropertySearchMapper = (
       locationTreePath: location_tree_path,
       exclusive,
       url: links.self,
-      imgUrl: links.image_property_small,
+      imgUrl: links.image_property_medium,
+      // TODO-FE[CX-373] remove imgUrlSmall
+      imgUrlSmall: links.image_property_small,
       imagesCount: meta.images_count,
       propertyTypeName: property_type.name,
       contactOptionsList,

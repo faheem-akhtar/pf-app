@@ -1,0 +1,44 @@
+.info {
+  margin-bottom: calc(var(--spacing) * 3.5);
+  min-height: 5rem;
+  position: relative;
+}
+
+.imageContainer {
+  overflow: hidden;
+}
+
+.image {
+  height: auto;
+  margin: calc(var(--spacing) * -4.5) 0;
+  width: 100%;
+}
+
+.title {
+  background-image: linear-gradient(to bottom, transparent, var(--color-global-black-op-70));
+  bottom: 0;
+  color: var(--color-global-white);
+  font-weight: var(--font-weight-02);
+  left: 0;
+  line-height: 2.2rem; /* 22px */
+  padding: calc(var(--spacing) * 1.5);
+  position: absolute;
+  text-shadow: 0.1rem 0.1rem 0.4rem var(--color-global-black); /* 10px */
+  width: 100%;
+}
+
+.success {
+  padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 6);
+  text-align: center;
+}
+
+.successContent {
+  font-weight: var(--font-weight-02);
+  margin-bottom: calc(var(--spacing) * 3.5);
+}
+
+.successIcon {
+  color: var(--color-feedback-success-base);
+  height: 5.6rem;
+  width: 5.6rem;
+}

@@ -1,8 +1,9 @@
 import { BackendApiFactory } from 'backend/api/factory';
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-import { ReportAttributesInterface } from 'types/report/attributes-interface';
+import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
+import { EmailShareAttributesInterface } from 'types/email-share/attributes-interface';
 
-const fetcher = BackendApiFactory<BackendJsonApiModelType, BackendJsonApiModelType>({
+const fetcher = BackendApiFactory<null, BackendJsonApiModelType>({
   method: 'POST',
   url: '',
   alterHeaders: (headers) => {
@@ -10,17 +11,18 @@ const fetcher = BackendApiFactory<BackendJsonApiModelType, BackendJsonApiModelTy
   },
 });
 
-export const backendApiPropertyReportFetcher = (
+export const backendApiPropertyShareFetcher = (
   locale: string,
   propertyId: string,
-  attributes: ReportAttributesInterface
+  attributes: EmailShareAttributesInterface
 ): ReturnType<ReturnType<typeof BackendApiFactory>> => {
   return fetcher({
     locale,
-    url: `property/${propertyId}/report`,
+    getOrigin: configOriginIfDevUseStagingValue,
+    url: `property/${propertyId}/share`,
     postData: {
       data: {
-        type: 'property_report',
+        type: 'property_share',
         attributes,
       },
     },
