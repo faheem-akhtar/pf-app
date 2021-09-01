@@ -1,26 +1,20 @@
 {
-    "projects": [
-      "jest.config.default.js",
-      "jest.config.desktop.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 75,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
-      }
-    },
-    "coveragePathIgnorePatterns": [
-      "src/components/icon/*",
-      "mocks/*",
-      ".enum.ts",
-      ".interface.ts",
-      ".type.ts",
-      ".stories.ts"
-    ],
-    "coverageReporters": [
-      "text",
-      "html"
-    ]
+  "projects": ["jest.config.default.js", "jest.config.desktop.js"],
+  "coverageThreshold": {
+    "global": {
+      "branches": 75,
+      "functions": 90,
+      "lines": 90,
+      "statements": 90
+    }
+  },
+  "coveragePathIgnorePatterns": [
+    "src/components/icon/*",
+    "mocks/*",
+    ".enum.ts",
+    ".interface.ts",
+    ".type.ts",
+    ".stories.ts"
+  ],
+  "coverageReporters": ["text", "html"]
 }

@@ -21,7 +21,8 @@ export const BackendApiFactory = ApiMakeFactory({
       headers['x-akamai-device-characteristics'] = backendApiXAkamaiDeviceCharacteristicsHeaderValue;
     }
 
-    headers['Host'] = configOriginValue;
+    headers['Host'] =
+      process.env.ENVIRONMENT === 'staging' ? configOriginValue.replace('www.', 'staging.') : configOriginValue;
   },
   requireAuth: false,
 });
