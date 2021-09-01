@@ -36,7 +36,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:update": "jest -u",
-    "test:coverage": "jest --coverage=true --collectCoverageFrom=$1",
+    "test:coverage": "jest --coverage=true",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "download-resources": "./scripts/download-resources/run.sh",
     "randomize-obfuscation-keys": "./scripts/randomize-obfuscation-keys.js",

@@ -1,1 +1,1 @@
-export const configOriginValue: string = 'https://www.sarouty.ma';
+export const configOriginValue: string = 'www.sarouty.ma';
