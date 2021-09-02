@@ -1,4 +1,4 @@
-{{- if and .Values.ingress.enabled (or (eq .Values.ingress.kind "istio") (eq .Values.ingress.kind "both")) }}
+{{- if .Values.ingress.enabled }}
 {{- $root := . }}
 {{- $releaseName := include "web-app.fullname" . -}}
 {{- range $country, $config := .Values.countries }}
