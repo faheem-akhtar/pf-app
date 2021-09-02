@@ -2,26 +2,7 @@
 const dotenv = require('dotenv');
 dotenv.config({ path: `${__dirname}/.env` });
 
-module.exports = {
-  // Coverage information
-  collectCoverageFrom: ['./src/**/*.ts', './src/**/*.tsx'],
-  coveragePathIgnorePatterns: [
-    'src/components/icon/*',
-    'mocks/*',
-    '.enum.ts',
-    '.interface.ts',
-    '.type.ts',
-    '.stories.ts',
-  ],
-  coverageThreshold: {
-    global: {
-      branches: 75,
-      functions: 90,
-      lines: 90,
-      statements: 90,
-    },
-  },
-  coverageReporters: ['text', 'html'],
+module.exports = ({ testRegex, moduleFileExtensions }) => ({
   moduleNameMapper: {
     ...require('jest-module-name-mapper').default(),
     // Mocking static assets
@@ -29,6 +10,7 @@ module.exports = {
     '\\.(css|scss)$': 'identity-obj-proxy',
   },
   modulePaths: ['<rootDir>'],
+  moduleFileExtensions,
   transform: {
     '^.+\\.(ts|tsx)$': [
       '@swc/jest',
@@ -42,8 +24,8 @@ module.exports = {
   },
 
   testEnvironment: 'node',
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)?$',
+  testRegex,
   setupFilesAfterEnv: ['<rootDir>/mocks/global-react.ts', '<rootDir>/mocks/setup.ts'],
   moduleDirectories: ['node_modules'],
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\](?!lodash-es/).+\\.js$'],
-};
+});

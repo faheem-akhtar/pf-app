@@ -15,7 +15,7 @@ export interface AdUnitInterface {
   /**
    * Position
    */
-  position: number;
+  position?: number;
 
   /**
    * Ad size

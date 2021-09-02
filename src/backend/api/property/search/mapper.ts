@@ -78,7 +78,6 @@ export const backendApiPropertySearchMapper = (
   const result: PropertySerpSearchResultType = {
     properties: properties.map(backendPropertySerpObfuscate),
     adConfig: {
-      ad_units: data.meta.ad_units,
       ad_targeting: data.meta.ad_targeting,
       ad_placeholders: data.meta.ad_placeholders,
     },

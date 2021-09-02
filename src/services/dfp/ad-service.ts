@@ -1,5 +1,6 @@
 import * as Googletag from 'Googletag';
 
+import { configAdsGptUnits } from 'config/ads/gpt/units';
 import { importScript } from 'helpers/import/script';
 
 import { AdConfigInterface } from 'types/ad/config.interface';
@@ -139,7 +140,7 @@ export class DfpAdService implements AdStrategyInterface {
     this.googletag = (window as unknown as { googletag: Googletag.Googletag }).googletag || {};
     this.googletag.cmd = this.googletag.cmd || [];
 
-    this.config.ad_units.forEach((adUnit) => this.registerAdUnit(adUnit, adUnit.id));
+    configAdsGptUnits.forEach((adUnit) => this.registerAdUnit(adUnit, adUnit.id));
   }
 
   /**

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 
+import { configAdsGptUnits } from 'config/ads/gpt/units';
 import { propertySerpObfuscatedGetImgUrl } from '../serp/obfuscated/get/img-url';
 import { useServicesDfpAds } from 'services/dfp/ads.hook';
 
@@ -21,8 +22,10 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
     property,
   }));
 
-  adConfig.ad_units.forEach((unit) => {
-    items.splice(unit.position, 0, { type: PropertyListItemTypeEnum.ad, id: unit.id });
+  configAdsGptUnits.forEach((unit) => {
+    if (unit.position !== undefined) {
+      items.splice(unit.position, 0, { type: PropertyListItemTypeEnum.ad, id: unit.id });
+    }
   });
 
   useServicesDfpAds(adConfig);

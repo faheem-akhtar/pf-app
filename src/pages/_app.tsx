@@ -4,7 +4,7 @@ import 'intersection-observer';
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 
-import type { AppContext, AppProps } from 'next/app';
+import type { AppContext, AppProps, NextWebVitalsMetric } from 'next/app';
 import App from 'next/app';
 
 import { useEffect } from 'react';
@@ -35,6 +35,12 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     </UserContextProvider>
   );
 };
+
+// eslint-disable-next-line pf-rules/export-name-validation
+export function reportWebVitals(metric: NextWebVitalsMetric): void {
+  // eslint-disable-next-line no-console
+  console.log(`CWV-${metric.name.replace('Next.js-', '')}:${Math.round(metric.value)}:${Math.round(metric.startTime)}`);
+}
 
 MyApp.getInitialProps = async (appContext: AppContext): Promise<{ pageProps: unknown }> => ({
   ...(await App.getInitialProps(appContext)),
