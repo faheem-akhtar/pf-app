@@ -17,7 +17,6 @@ export const BackendApiFactory = ApiMakeFactory({
   dataMapper: (json) => backendJsonApiSync(json as BackendJsonApiPayloadInterface),
   alterHeaders: (headers) => {
     headers['user-agent'] = backendApiSecretPfWebAppUserAgent;
-    headers['x-forwarded-proto'] = 'https';
     if (backendApiXAkamaiDeviceCharacteristicsHeaderValue) {
       headers['x-akamai-device-characteristics'] = backendApiXAkamaiDeviceCharacteristicsHeaderValue;
     }

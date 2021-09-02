@@ -22,7 +22,6 @@ describe('BackendApiFactory', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock).toHaveBeenCalledWith('http://www.propertyfinder.ae/en/api/testurl', {
       headers: {
-        'x-forwarded-proto': 'https',
         Host: 'www.propertyfinder.ae',
         locale: 'en',
         'user-agent': 'pf-web-app-74f9c3382b2516b2e826762e13dfa3ea05d84396',

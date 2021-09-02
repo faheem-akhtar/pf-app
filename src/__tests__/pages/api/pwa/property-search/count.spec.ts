@@ -1,7 +1,6 @@
 import countHandler from 'pages/api/pwa/property-search/count';
 import { nextApiMockRequest } from 'mocks/next-api/mock-request';
 import { nextApiMockResponse } from 'mocks/next-api/mock-response';
-import { windowMockConsole } from 'mocks/window/mock-console';
 import { windowMockFetch } from 'mocks/window/mock-fetch';
 
 describe('pages/api/property-search/count', () => {
@@ -18,7 +17,6 @@ describe('pages/api/property-search/count', () => {
   });
 
   it('should return 500 if request fails', async () => {
-    const consoleMock = windowMockConsole();
     windowMockFetch({ ok: false });
     const reqMock = nextApiMockRequest();
     const resMock = nextApiMockResponse();
@@ -28,10 +26,5 @@ describe('pages/api/property-search/count', () => {
     expect(resMock.end).toHaveBeenCalledTimes(1);
     expect(resMock.status).toHaveBeenCalledTimes(1);
     expect(resMock.status).toHaveBeenCalledWith(500);
-    expect(consoleMock.error).toHaveBeenCalledWith('property search count failed', {
-      body: 'response.text',
-      status: 200,
-      url: 'http://website-pf-local/en/api/search/count?filter%5Bcategory_id%5D=2&filter%5Bprice_type%5D=y&sort=mr&page%5Bnumber%5D=1',
-    });
   });
 });
