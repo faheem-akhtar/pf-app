@@ -4,7 +4,7 @@ import { helpersIsDevelopment } from 'helpers/is-development';
 
 export const configOriginIfDevUseStagingValue = (): string => {
   if (helpersIsDevelopment) {
-    return configOriginValue.replace('www.', 'staging.');
+    return `https://${configOriginValue.replace('www.', 'staging.')}`;
   }
   return `http://${backendApiPfWebsiteInternalOrigin}`;
 };
