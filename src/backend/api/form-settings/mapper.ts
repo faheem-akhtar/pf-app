@@ -130,9 +130,12 @@ const extractParams = (settings: SettingsType, params: ParamsType, fieldsToReset
           return true;
         }
 
-        // Create the list of filters that is present in default list but
-        // should be removed from final result
-        fieldsToReset.push(...FilterFormSettingsParametersMapping[relationship]);
+        if (FilterFormSettingsParametersMapping[relationship]) {
+          // Create the list of filters that is present in default list but
+          // should be removed from final result
+          fieldsToReset.push(...FilterFormSettingsParametersMapping[relationship]);
+        }
+
         return;
       })
     : [];
