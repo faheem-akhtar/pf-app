@@ -12,9 +12,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
   try {
     if (isDevelopment) {
       httpProxyMiddleware(req, res, {
-        target: `${configOriginValue.replace('https://www.', 'https://staging.')}/${backendApiGetLocaleFromReq(
-          req
-        )}/api`,
+        target: `${configOriginValue.replace('www.', 'https://staging.')}/${backendApiGetLocaleFromReq(req)}/api`,
         pathRewrite: {
           '^/api': '',
         },

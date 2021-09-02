@@ -6,5 +6,5 @@ export const configOriginIfDevUseStagingValue = (): string => {
   if (helpersIsDevelopment) {
     return configOriginValue.replace('www.', 'staging.');
   }
-  return backendApiPfWebsiteInternalOrigin;
+  return `http://${backendApiPfWebsiteInternalOrigin}`;
 };
