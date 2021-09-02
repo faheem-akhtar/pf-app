@@ -1,1 +1,1 @@
-export const configOriginValue: string = 'www.propertyfinder.bh';
+export const configOriginValue: string = 'https://www.propertyfinder.bh';

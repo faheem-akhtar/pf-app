@@ -9,4 +9,3 @@ coverage
 npm-debug.log
 yarn-error.log
 newrelic_agent.log
-.env.local
