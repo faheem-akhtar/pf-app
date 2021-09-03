@@ -11,6 +11,7 @@ import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { domClassMerge } from 'helpers/dom/class-merge';
+import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
 import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
 import { IconFacebookTemplate } from 'components/icon/facebook-template';
@@ -92,7 +93,7 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
         <span className={styles.text}>{t('auth/or')}</span>
       </div>
       <AuthLoaderComponent isEnabled={isLoading} isCentered={true} />
-      {errorMessage && <div className={domClassMerge(styles.error, styles['error-message'])}>{errorMessage}</div>}
+      {errorMessage && <ErrorMessageComponent message={errorMessage} />}
       <form
         onSubmit={(e): void => {
           e.preventDefault();

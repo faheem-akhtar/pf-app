@@ -1,13 +1,13 @@
 import { FormEvent, useState } from 'react';
 
 import { apiShareFetcher } from 'api/share/fetcher';
-import { domClassMerge } from 'helpers/dom/class-merge';
 import { formMakeValidator } from 'components/form/make-validator';
 
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { configSiteNameValue } from 'config/site-name/value';
+import { ErrorMessageComponent } from 'components/error-message/component';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
 
@@ -75,6 +75,7 @@ export const PropertyShareEmailFormComponent = ({
         onFormSubmitted();
       } else {
         setRequestErrorMessage(t('something-wrong-try-again'));
+        setIsLoading(false);
         captchaService.reset();
       }
     }
@@ -124,9 +125,7 @@ export const PropertyShareEmailFormComponent = ({
         />
       </div>
       <div className={styles.field}>
-        {requestErrorMessage && (
-          <div className={domClassMerge(styles.error, styles['error-message'])}>{requestErrorMessage}</div>
-        )}
+        {requestErrorMessage && <ErrorMessageComponent message={requestErrorMessage} />}
         <ButtonTemplate
           type='submit'
           loading={isLoading}

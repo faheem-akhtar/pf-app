@@ -13,6 +13,8 @@ export default {
     disabled: false,
     dropdownIcon: true,
     className: '',
+    error: false,
+    errorText: '',
     label: 'Fruits',
   },
   argTypes: {

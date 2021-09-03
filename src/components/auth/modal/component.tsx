@@ -10,7 +10,12 @@ import styles from './auth-modal-component.module.scss';
 export const AuthModalComponent = ({ close }: { close: () => void }): JSX.Element => {
   const [authScreen, setAuthScreen] = useState(AuthScreenEnum.login);
   return (
-    <div className={styles.content}>
+    <div
+      className={styles.content}
+      onClick={(e): void => {
+        e.stopPropagation();
+      }}
+    >
       <div className={styles.header}>
         <div onClick={close}>
           <IconThickCrossTemplate class={styles.closeIcon} />

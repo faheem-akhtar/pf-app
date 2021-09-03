@@ -7,6 +7,7 @@ import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { FiltersContext } from 'components/filters/context';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { PropertyReportReasonEnum } from 'enums/property/report/reason.enum';
 import { ReportAttributesInterface } from 'types/report/attributes-interface';
 import { UserContext } from 'context/user/context';
 
@@ -19,7 +20,7 @@ const AnswersNeedToBeReported = ['no'];
 const reportAttributes: Omit<ReportAttributesInterface, 'reporter_type'> = {
   email: 'report@report.com',
   message: 'Property Not Available - Call Lead Pop-up',
-  reason_id: 1,
+  reason_id: PropertyReportReasonEnum.notAvailable,
 };
 
 export const CallingAgentModalFeedbackComponent: React.FunctionComponent<{
@@ -33,6 +34,7 @@ export const CallingAgentModalFeedbackComponent: React.FunctionComponent<{
   const onClickAnswer = (option: string) => (): void => {
     if (AnswersNeedToBeReported.includes(option)) {
       apiReportFetcher(propertyId, {
+        // TODO-FE[CX-180] implement Datadog logging
         ...reportAttributes,
         email: user?.email || reportAttributes.email,
         reporter_type: userReportCategory(filtersCtx.value[FiltersParametersEnum.categoryId]),

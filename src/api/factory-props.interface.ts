@@ -28,4 +28,8 @@ export interface ApiFactoryPropsInterface<Result, Data = AnyValueType, RawJson =
    * Api handler defined in pf-web-app
    */
   handledByPfWebApp?: true;
+  /**
+   * Payload is formdata
+   */
+  formData?: boolean;
 }

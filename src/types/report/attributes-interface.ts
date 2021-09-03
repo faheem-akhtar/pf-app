@@ -1,4 +1,5 @@
-import { PropertyReportUserTypeEnum } from 'enums/property/report-user-type.enum';
+import { PropertyReportReasonEnum } from 'enums/property/report/reason.enum';
+import { PropertyReportUserTypeEnum } from 'enums/property/report/user-type.enum';
 
 export interface ReportAttributesInterface {
   /**
@@ -15,7 +16,7 @@ export interface ReportAttributesInterface {
    * reason id
    * selected dropdown index
    */
-  reason_id: number;
+  reason_id: PropertyReportReasonEnum;
 
   /**
    * renter if user is in rent

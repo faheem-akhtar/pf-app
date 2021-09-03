@@ -194,6 +194,41 @@ describe('ApiFactory', () => {
     );
   });
 
+  it('should pass the body to payload if type is formData', async () => {
+    const fetchMock = windowMockFetch();
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+    });
+
+    const fetcher = apiFactory({ method: 'POST', url, formData: true });
+    const samplePayload = { lorem: 'ipsum' };
+    await fetcher({ locale: 'en', postData: samplePayload });
+
+    expect(fetchMock).toHaveBeenLastCalledWith(
+      'origin/en/api/url',
+      expect.objectContaining({ body: { lorem: 'ipsum' } })
+    );
+  });
+
+  it('should convert string the given payload for not form-data payloads', async () => {
+    const fetchMock = windowMockFetch();
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+    });
+
+    const fetcher = apiFactory({ method: 'POST', url });
+    const samplePayload = { lorem: 'ipsum' };
+    await fetcher({ locale: 'en', postData: samplePayload });
+    expect(fetchMock).toHaveBeenLastCalledWith(
+      'origin/en/api/url',
+      expect.objectContaining({
+        body: '{"lorem":"ipsum"}',
+      })
+    );
+  });
+
   test('if method is POST should add postData', async () => {
     const fetchMock = windowMockFetch();
 

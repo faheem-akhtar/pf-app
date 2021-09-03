@@ -79,7 +79,7 @@ export const ApiMakeFactory =
     }
 
     if (factoryProps.method === 'POST') {
-      payload.body = JSON.stringify(postData);
+      payload.body = !factoryProps.formData ? JSON.stringify(postData) : (postData as Record<string, string>);
     }
 
     if (factoryProps.queryDefaultParams || props.query) {

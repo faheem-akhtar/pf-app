@@ -8,6 +8,7 @@ const fetcher = BackendApiFactory<null, BackendJsonApiModelType>({
   url: '',
   alterHeaders: (headers) => {
     headers['content-type'] = 'application/vnd.api+json';
+    delete headers['Host'];
   },
 });
 

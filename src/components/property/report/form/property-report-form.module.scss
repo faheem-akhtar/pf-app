@@ -1,0 +1,25 @@
+.field {
+  margin-top: calc(var(--spacing) * 3);
+  select,
+  .text {
+    font-size: var(--font-size-08);
+  }
+}
+
+.messageContainer {
+  margin-top: calc(var(--spacing) * 3);
+}
+
+.message {
+  margin-top: calc(var(--spacing) * 2);
+  textarea {
+    border-width: var(--spacing) calc(var(--spacing) * 3);
+    font-size: var(--font-size-08);
+  }
+}
+
+.send {
+  height: 4rem;
+  margin: calc(var(--spacing) * 3) auto 0 auto;
+  text-transform: capitalize;
+}

@@ -10,18 +10,16 @@ const fetcher = ApiFactory<BackendJsonApiModelType, ApiJsonModelInterface<Report
   handledByPfWebApp: true,
 });
 
-export const apiReportFetcher = (propertyId: string, attributes: ReportAttributesInterface): void => {
+export const apiReportFetcher = (
+  propertyId: string,
+  attributes: ReportAttributesInterface
+): ReturnType<typeof fetcher> => {
   const locale = LocaleService.getLocale();
-  fetcher({
+  return fetcher({
     locale,
     postData: {
       propertyId,
       attributes,
     },
-  }).then((response) => {
-    if (!response.ok) {
-      // TODO-FE[CX-180] implement Datadog logging
-      // const errorMessage = `Call Lead Pop-up - ${isCountryAE ? 'Report ae' : 'International Report'} property failed`;
-    }
   });
 };

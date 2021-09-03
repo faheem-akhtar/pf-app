@@ -86,22 +86,6 @@
   text-align: center;
 }
 
-.error {
-  color: var(--color-primary-clay-100);
-  margin-top: var(--spacing);
-
-  &.error-message {
-    background-color: var(--color-primary-clay-25);
-    border: 0.1rem solid var(--color-primary-clay-25);
-    border-radius: 0.4rem;
-    display: inline-flex;
-    font-size: var(--font-size-08);
-    margin-bottom: calc(var(--spacing) * 2);
-    padding: var(--spacing) calc(var(--spacing) * 3);
-    width: 100%;
-  }
-}
-
 .checkbox-text {
   color: var(--color-global-black);
   font-size: var(--font-size-09);

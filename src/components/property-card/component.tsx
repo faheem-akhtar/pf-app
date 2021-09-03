@@ -19,7 +19,8 @@ import { PropertyCardMenuContentTemplate } from './menu/content/template';
 import { PropertyCardMenuModalComponent } from './menu/modal/component';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
-import { PropertyShareComponent } from '../property/share/component';
+import { PropertyReportComponent } from 'components/property/report/component';
+import { PropertyShareComponent } from 'components/property/share/component';
 
 export const PropertyCardComponent = ({ property, loading }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
@@ -30,6 +31,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   const emailAgentModalOpenRef = useRef<() => void>(functionNoop);
   const menuModalOpenRef = useRef<() => void>(functionNoop);
   const socialShareOpenRef = useRef<() => void>(functionNoop);
+  const propertyReportOpenRef = useRef<() => void>(functionNoop);
 
   const imagesResponse = useApiPropertyImages(propertySerpObfuscatedGetId(property), 'small', galleryHasBeenTouched);
 
@@ -88,8 +90,17 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
         openRef={callingAgentModalOpenRef}
       />
       <PropertyCardMenuModalComponent closeButtonLabel={t('cta-cancel')} openRef={menuModalOpenRef}>
-        <PropertyCardMenuContentTemplate t={t} socialShareOpenRef={socialShareOpenRef} />
+        <PropertyCardMenuContentTemplate
+          t={t}
+          reportOpenRef={propertyReportOpenRef}
+          socialShareOpenRef={socialShareOpenRef}
+        />
         <PropertyShareComponent property={property} t={t} openRef={socialShareOpenRef} />
+        <PropertyReportComponent
+          propertyId={propertySerpObfuscatedGetId(property)}
+          t={t}
+          openRef={propertyReportOpenRef}
+        />
       </PropertyCardMenuModalComponent>
     </div>
   );

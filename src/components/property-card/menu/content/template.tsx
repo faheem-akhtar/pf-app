@@ -8,17 +8,18 @@ import { TFunctionType } from 'types/t-function/type';
 
 export const PropertyCardMenuContentTemplate = ({
   socialShareOpenRef,
+  reportOpenRef,
   t,
 }: {
   t: TFunctionType;
   socialShareOpenRef: MutableRefObject<() => void>;
+  reportOpenRef: MutableRefObject<() => void>;
 }): JSX.Element => {
   return (
     <Fragment>
       <PropertyCardMenuContentButtonTemplate
         label={t('cta-share')}
         icon={IconThinShareTemplate}
-        // TODO[CX-370] - Implement share property modal
         onClick={(): void => {
           socialShareOpenRef.current();
         }}
@@ -34,8 +35,9 @@ export const PropertyCardMenuContentTemplate = ({
       <PropertyCardMenuContentButtonTemplate
         label={t('cta-report')}
         icon={IconThinReportTemplate}
-        // TODO[CX-371] - Implement report property modal
-        onClick={(): void => undefined}
+        onClick={(): void => {
+          reportOpenRef.current();
+        }}
       />
     </Fragment>
   );

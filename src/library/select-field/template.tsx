@@ -15,6 +15,8 @@ export const SelectFieldTemplate = <V extends unknown>({
   value,
   disabled,
   options,
+  error = false,
+  errorText,
 }: SelectFieldTemplatePropsInterface<V>): JSX.Element => {
   const isEmpty = !value && value !== 0;
   const selectedOption = options.find((option) => option.value === value) as SelectFieldOptionInterface<V>;
@@ -28,6 +30,7 @@ export const SelectFieldTemplate = <V extends unknown>({
           [styles.fieldEmpty]: isEmpty,
           [styles.fieldWithIcon]: dropdownIcon,
           [styles.fieldFloating]: !!label && !isEmpty,
+          [styles['field--error']]: error,
         })}
         onChange={(e): void => {
           const newIndex = Number((e.target as HTMLSelectElement).value);
@@ -43,6 +46,7 @@ export const SelectFieldTemplate = <V extends unknown>({
       </select>
 
       {dropdownIcon && <IconThinChevronDownTemplate class={styles.icon} />}
+      {error && <span className={styles.errorText}>{errorText}</span>}
     </div>
   );
 };

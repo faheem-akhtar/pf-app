@@ -25,8 +25,9 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
     helperText,
     prefix,
     maxLength,
-    onChange,
+    className,
     inputClassName,
+    onChange,
     onFocus,
     onBlur,
   } = props;
@@ -36,7 +37,7 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
   return (
     <Fragment>
       <div
-        className={domClassMerge(styles.container, {
+        className={domClassMerge(styles.container, className, {
           [styles[`container--disabled`]]: disabled,
           [styles[`container--error`]]: error,
           [styles[`container--focused`]]: focus,

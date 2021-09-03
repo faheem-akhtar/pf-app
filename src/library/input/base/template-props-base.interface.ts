@@ -11,9 +11,14 @@ export interface InputBaseTemplatePropsBaseInterface {
   placeholder?: string;
 
   /**
-   * extra css class
+   * extra css class for input
    */
   inputClassName?: string;
+
+  /**
+   * extra css class
+   */
+  className?: string;
 
   /**
    * Whether placeholder is floatable or not

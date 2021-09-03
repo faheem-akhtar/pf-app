@@ -34,4 +34,15 @@ export interface SelectFieldTemplatePropsInterface<V> {
    * Options
    */
   options: SelectFieldOptionInterface<V>[];
+
+  /**
+   * If `true`, the label is displayed in an error state.
+   * @default false
+   */
+  error?: boolean;
+
+  /**
+   * The error text content.
+   */
+  errorText?: string;
 }

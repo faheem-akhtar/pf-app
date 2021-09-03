@@ -9,6 +9,7 @@ import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { CheckboxTemplate } from 'library/checkbox/template';
 import { domClassMerge } from 'helpers/dom/class-merge';
+import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
 import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
 import { InputBaseComponent } from 'library/input/base/component';
@@ -58,7 +59,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
     <>
       <div className={styles.heading}>{t('auth/create-account')}</div>
       <AuthLoaderComponent isEnabled={isLoading} isCentered={true} />
-      {errorMessage && <div className={domClassMerge(styles.error, styles['error-message'])}>{errorMessage}</div>}
+      {errorMessage && <ErrorMessageComponent message={errorMessage} />}
       <form
         onSubmit={(e): void => {
           e.preventDefault();
