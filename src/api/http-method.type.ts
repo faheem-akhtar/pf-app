@@ -1,1 +1,1 @@
-export type ApiHttpMethodType = 'GET' | 'HEAD' | 'POST';
+export type ApiHttpMethodType = 'GET' | 'HEAD' | 'POST' | 'DELETE';

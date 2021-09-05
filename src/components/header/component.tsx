@@ -2,11 +2,11 @@ import { useContext, useRef } from 'react';
 import { useRouter } from 'next/router';
 
 import { useApiContactedProperties } from 'api/contacted-properties/hook';
-import { useApiSavedProperties } from 'api/saved-properties/hook';
 
 import { AuthModalComponent } from 'components/auth/modal/component';
 import { HeaderTemplate } from './template';
 import { ModalComponent } from 'components/modal/component';
+import { SavePropertyContext } from 'components/save-property/context';
 import { UserContext } from 'context/user/context';
 
 // TODO-FE[CX-424] Add tests
@@ -14,8 +14,7 @@ export const HeaderComponent = (): JSX.Element => {
   const locale = useRouter().locale as string;
 
   const user = useContext(UserContext);
-  const savedPropertiesCountResponse = useApiSavedProperties();
-  const savedPropertiesCount = savedPropertiesCountResponse.ok ? savedPropertiesCountResponse.data.length : 0;
+  const saveProperty = useContext(SavePropertyContext);
   const contactedPropertiesResponse = useApiContactedProperties();
 
   const openAuthRef = useRef<() => void>(() => null);
@@ -32,7 +31,7 @@ export const HeaderComponent = (): JSX.Element => {
         locale={locale}
         userProfile={{
           user,
-          savedPropertiesCount,
+          savedPropertiesCount: saveProperty.propertyIds.length,
         }}
         onLoginButtonClick={(): void => {
           openAuthRef.current();

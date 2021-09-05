@@ -42,7 +42,7 @@ export const windowLocalStorageMakeWrapper = (window: Window): WindowLocalStorag
     getItem: <R>(key: string): R | null => {
       const value = window.localStorage.getItem(key);
 
-      if (typeof value === 'string' && value.match(/^({.+})|(\[.+\])$/g) !== null) {
+      if (typeof value === 'string' && value.match(/^({.*})|(\[.*\])$/g) !== null) {
         try {
           return JSON.parse(value);
         } catch (e) {
