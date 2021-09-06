@@ -10,6 +10,7 @@ import { propertySerpObfuscatedFieldLocationTreePath } from 'components/property
 import { propertySerpObfuscatedFieldName } from 'components/property/serp/obfuscated/field/name';
 import { propertySerpObfuscatedFieldPriceText } from 'components/property/serp/obfuscated/field/price-text';
 import { propertySerpObfuscatedFieldPropertyTypeName } from 'components/property/serp/obfuscated/field/property-type-name';
+import { propertySerpObfuscatedFieldReference } from 'components/property/serp/obfuscated/field/reference';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
@@ -27,6 +28,7 @@ export const PropertyMock = (): PropertySerpObfuscatedType =>
     [propertySerpObfuscatedFieldLocationTreePath]: 'Dubai, Marina',
     [propertySerpObfuscatedFieldExclusive]: true,
     [propertySerpObfuscatedFieldImgUrl]: 'img url',
+    [propertySerpObfuscatedFieldReference]: '123',
     [propertySerpObfuscatedFieldPropertyTypeName]: 'Villa',
     [propertySerpObfuscatedFieldContactOptionsList]: ContactOptionsMock,
     [propertySerpObfuscatedFieldPriceText]: '555,555 AED',

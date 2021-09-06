@@ -31,7 +31,6 @@ export const ModalComponent = ({
   });
 
   if (!opened) return null;
-
   return (
     <ModalPortalComponent overlay={overlay}>
       <div

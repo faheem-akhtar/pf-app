@@ -22,7 +22,7 @@ const AgentInfoComponent: React.FunctionComponent<{
   const { t } = useTranslation();
 
   return (
-    <div className={styles.details}>
+    <div className={styles.details} data-testid='AgentInfoComponentDetails'>
       <div className={styles.avatarContainer}>
         <picture className={styles.avatar}>
           <source srcSet={avatar} type='image/jpeg' />
@@ -45,21 +45,21 @@ const AgentInfoComponent: React.FunctionComponent<{
   );
 };
 
-// TODO-FE[CX-431] Add unit tests for CallingAgentModalComponent
 export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentModalComponentPropsInterface> = ({
   propertyId,
   referenceId,
   openRef,
+  closeRef,
 }) => {
-  const [isOpened, setIsOpened] = useState(false);
+  const [modalIsOpened, setModalIsOpened] = useState(false);
   const [currentStep, setCurrentStep] = useState<number>(0);
   const { t } = useTranslation();
-  const closeRef = useRef<() => void>(functionNoop);
-  const agentDetailsResponse = useApiAgent(propertyId, isOpened);
+  const internalCloseRef = useRef<() => void>(closeRef?.current || functionNoop);
+  const agentDetailsResponse = useApiAgent(propertyId, modalIsOpened);
 
   const closeModal = (): void => {
     setCurrentStep(0);
-    closeRef.current();
+    internalCloseRef.current();
   };
 
   const onCloseClick = (): void => {
@@ -75,18 +75,18 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
   return (
     <ModalComponent
       openRef={openRef}
-      closeRef={closeRef}
+      closeRef={internalCloseRef}
       overlay
       onOpen={(): void => {
-        setIsOpened(true);
+        setModalIsOpened(true);
       }}
     >
-      <div className={styles.content}>
+      <div className={styles.content} data-testid='CallingAgentModalContent'>
         <div className={styles.header}>
-          <span className={styles.text}>
+          <span className={styles.text} data-testid='CallingAgentModalTitle'>
             {t(isAgentInfoShown ? 'agent-modal/title' : 'agent-modal/property-availability')}
           </span>
-          <div onClick={onCloseClick}>
+          <div onClick={onCloseClick} data-testid='CallingAgentModalCloseButton'>
             <IconThickCrossTemplate class={styles.closeIcon} />
           </div>
         </div>

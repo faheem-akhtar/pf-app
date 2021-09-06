@@ -10,8 +10,8 @@ export const reactMockUseRef = <T>(initialValue?: T): React.MutableRefObject<T> 
     }
     return mock;
   };
-  jest.spyOn(global.React, 'useRef').mockImplementation(mockImpl);
 
+  jest.spyOn(global.React, 'useRef').mockImplementation(mockImpl);
   return mock;
 };
 
