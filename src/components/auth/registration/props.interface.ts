@@ -5,6 +5,11 @@ export interface AuthRegistrationPropsInterface {
   onClose: () => void;
 
   /**
+   * On success
+   */
+  onSuccess: () => void;
+
+  /**
    * On login link clicked
    */
   onLogin: () => void;

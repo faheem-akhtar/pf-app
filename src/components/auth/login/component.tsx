@@ -58,7 +58,10 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
         onClick={(): void => {
           setIsLoading(true);
           AuthFacebookService.signIn()
-            .then(props.onClose)
+            .then(() => {
+              props.onSuccess();
+              props.onClose();
+            })
             .catch(() => {
               setErrorMessage(`${t('auth/something-wrong')}! ${t('auth/try-later')}`);
               props.onClose();
@@ -78,7 +81,10 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
         onClick={(): void => {
           setIsLoading(true);
           AuthGoogleService.signIn()
-            .then(props.onClose)
+            .then(() => {
+              props.onSuccess();
+              props.onClose();
+            })
             .catch(() => {
               setErrorMessage(`${t('auth/something-wrong')}! ${t('auth/try-later')}`);
               props.onClose();
@@ -117,6 +123,7 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
                     setErrorMessage('');
                     // Close modal
                     props.onClose();
+                    props.onSuccess();
                   } else {
                     setErrorMessage(e.error.body || `${t('auth/something-wrong')}! ${t('auth/try-later')}`);
                     captchaService.reset();

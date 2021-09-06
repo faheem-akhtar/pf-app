@@ -5,6 +5,11 @@ export interface AuthForgotPasswordPropsInterface {
   onClose: () => void;
 
   /**
+   * On success
+   */
+  onSuccess: () => void;
+
+  /**
    * On registration link clicked
    */
   onRegister: () => void;

@@ -15,6 +15,7 @@ class MainDocument extends Document {
           <Main />
           <NextScript />
           <div id='modal-root' />
+          <div id='snackbar-root' />
         </body>
       </Html>
     );

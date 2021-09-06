@@ -1,31 +1,53 @@
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { useTranslation } from 'helpers/translation/hook';
 
+import { AuthModalComponent } from 'components/auth/modal/component';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { FiltersContext } from 'components/filters/context';
 import { IconThinStarTemplate } from 'components/icon/thin/star-template';
 import { ModalComponent } from 'components/modal/component';
-import { saveSearchFilterEquality } from '../filter-equality';
-import { saveSearchFiltersMapper } from '../filters-mapper';
+import { SaveSearchContext } from '../context';
 import { SaveSearchModalContentComponent } from './content-component';
-import { useApiSaveSearch } from 'api/save-search/hook';
+import { SnackbarContext } from 'components/snackbar/context';
+import { UserContext } from 'context/user/context';
 
 import styles from './save-search-modal-component.module.scss';
 
 export const SaveSearchModalButtonComponent = (): JSX.Element => {
   const { t } = useTranslation();
+  const user = useContext(UserContext);
+  const snackbar = useContext(SnackbarContext);
+  const saveSearch = useContext(SaveSearchContext);
+  const [autoOpenDialog, setAutoOpenDialog] = useState(false);
   const openFiltersRef = useRef<() => void>(() => null);
   const closeFiltersRef = useRef<() => void>(() => null);
-  const filtersCtx = useContext(FiltersContext);
-  const filters = saveSearchFiltersMapper(filtersCtx.value);
-  const savedSearchResponse = useApiSaveSearch();
-  const userSavedSearches = savedSearchResponse.ok
-    ? savedSearchResponse.data.filter((item) => saveSearchFilterEquality(item.filters, filters))
-    : [];
+  const openLoginRef = useRef<() => void>(() => null);
+  const closeLoginRef = useRef<() => void>(() => null);
+
+  const openDialog = (): void => {
+    if (user) {
+      openFiltersRef.current();
+    } else {
+      openLoginRef.current();
+      setAutoOpenDialog(true);
+    }
+  };
+
+  useEffect(() => {
+    if (autoOpenDialog && user) {
+      closeLoginRef.current();
+      if (saveSearch.filtered.length === 0) {
+        openDialog();
+      } else {
+        snackbar.alert({ message: t('save_search/exist-notification') });
+      }
+      setAutoOpenDialog(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoOpenDialog, user, saveSearch.filtered]);
 
   return (
     <>
@@ -34,21 +56,28 @@ export const SaveSearchModalButtonComponent = (): JSX.Element => {
         componentType={ButtonComponentTypeEnum.tertiary}
         size={ButtonSizeEnum.small}
         onClick={(): void => {
-          if (savedSearchResponse.ok && userSavedSearches.length == 0) {
-            openFiltersRef.current();
+          if (saveSearch.filtered.length === 0) {
+            openDialog();
           }
         }}
         icon={{
           component: IconThinStarTemplate,
           position: ButtonIconPositionEnum.left,
-          className: userSavedSearches.length > 0 ? styles.icon__active : styles.icon__inactive,
+          className: saveSearch.filtered.length ? styles.icon__active : styles.icon__inactive,
         }}
       >
         {t('save-search/cta-label')}
       </ButtonTemplate>
       <ModalComponent openRef={openFiltersRef} closeRef={closeFiltersRef}>
-        {/* TODO-FE[CX-420] - display login dialog to the guest */}
         <SaveSearchModalContentComponent close={(): void => closeFiltersRef.current()} />
+      </ModalComponent>
+      <ModalComponent openRef={openLoginRef} closeRef={closeLoginRef} overlay>
+        <AuthModalComponent
+          cancel={(): void => {
+            closeLoginRef.current();
+            setAutoOpenDialog(false);
+          }}
+        />
       </ModalComponent>
     </>
   );

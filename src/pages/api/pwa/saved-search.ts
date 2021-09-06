@@ -5,6 +5,7 @@ import { ApiHttpMethodType } from 'api/http-method.type';
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
 import { backendApiSaveSearchFetcher } from 'backend/api/save-search/fetcher';
 import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
+import { configOriginValue } from 'config/origin/value';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const locale = backendApiGetLocaleFromReq(req);
@@ -14,6 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     alterHeaders: (headers) => {
       headers[ApiHeaderEnum.auth] = req.headers[ApiHeaderEnum.auth] as string;
       headers['content-type'] = 'application/vnd.api+json';
+      headers['Host'] = configOriginValue.replace('www.', 'staging.');
     },
     getOrigin: configOriginIfDevUseStagingValue,
     query: req.query,

@@ -10,6 +10,7 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 import { MultiLocationSelectorComponent } from 'components/multi-location-selector/component';
+import { SaveSearchContextProvider } from 'components/save-search/context-provider';
 import { SaveSearchModalButtonComponent } from 'components/save-search/modal/button-component';
 
 import styles from './filters-section.module.scss';
@@ -40,7 +41,9 @@ export const FiltersSectionComponent = (): JSX.Element => {
           });
         }}
       />
-      <ButtonsRow />
+      <SaveSearchContextProvider>
+        <ButtonsRow />
+      </SaveSearchContextProvider>
       <AppearOnScrollComponent>
         <ButtonsRow className={styles.buttons_row__appear_on_scroll} />
       </AppearOnScrollComponent>

@@ -1,8 +1,5 @@
 import { useContext, useState } from 'react';
 
-import { apiSaveSearchCreateFetcher } from 'api/save-search/create/fetcher';
-
-import { FiltersContext } from 'components/filters/context';
 import { formValidatorMaxLength } from 'helpers/form/validator/max-length';
 import { formValidatorRequired } from 'helpers/form/validator/required';
 import { saveSearchFrequencies } from '../frequencies';
@@ -13,6 +10,7 @@ import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { InputBaseComponent } from 'library/input/base/component';
+import { SaveSearchContext } from '../context';
 import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 import { SelectFieldTemplate } from 'library/select-field/template';
 
@@ -22,7 +20,7 @@ const MAX_CHARACTERS_LIMIT = 256;
 
 export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }): JSX.Element => {
   const { t } = useTranslation();
-  const filtersCtx = useContext(FiltersContext);
+  const saveSearch = useContext(SaveSearchContext);
   const [generalError, setGeneralError] = useState<string>();
   const [isLoading, setIsloading] = useState(false);
   const [name, setName] = useFormField<string>('', [
@@ -92,20 +90,18 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
               return;
             }
             setIsloading(true);
-            apiSaveSearchCreateFetcher({
-              name: searchName,
-              frequency: frequency.value,
-              filters: filtersCtx.value,
-            })
+            saveSearch
+              .create({
+                name: searchName,
+                frequency: frequency.value,
+              })
               .then((response) => {
+                setIsloading(false);
                 if (response.ok) {
                   onSuccess();
                 } else {
                   setGeneralError(t('general-error-message'));
                 }
-              })
-              .finally(() => {
-                setIsloading(false);
               });
           }}
           disabled={isLoading}
