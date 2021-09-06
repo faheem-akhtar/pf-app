@@ -9,7 +9,6 @@ import { ModalComponent } from 'components/modal/component';
 import { SavePropertyContext } from 'components/save-property/context';
 import { UserContext } from 'context/user/context';
 
-// TODO-FE[CX-424] Add tests
 export const HeaderComponent = (): JSX.Element => {
   const locale = useRouter().locale as string;
 
@@ -20,6 +19,7 @@ export const HeaderComponent = (): JSX.Element => {
   const openAuthRef = useRef<() => void>(() => null);
   const closeAuthRef = useRef<() => void>(() => null);
 
+  // TODO-FE[CX-556] Implement contacted properties and tests
   if (contactedPropertiesResponse.ok) {
     // eslint-disable-next-line no-console
     console.log('contacted properties', contactedPropertiesResponse.data);

@@ -48,7 +48,7 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
 
   return (
     <div>
-      <div className={styles.heading}>{t('sign-in')}</div>
+      <h1 className={styles.heading}>{t('sign-in')}</h1>
       {/* Facebook */}
       <ButtonTemplate
         type='button'

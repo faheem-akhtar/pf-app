@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+import '@testing-library/jest-dom';
+
 import { NextRouter } from 'next/router';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
