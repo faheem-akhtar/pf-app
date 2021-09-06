@@ -96,7 +96,7 @@ export const PropertyReportFormComponent = ({
         ]}
       />
       <SelectFieldTemplate
-        label={t('report-modal/select-reason')}
+        label={t('report-modal/select-user-type')}
         onChange={(value): void => {
           validate({ [PropertyReportFormFieldsEnum.user]: value });
           setUserType(value as PropertyReportUserTypeEnum);
