@@ -1,17 +1,13 @@
-import { TFunctionType } from 'types/t-function/type';
-export interface EmailAgentModalSignInTemplatePropsInterface {
+import { EmailAgentModalSignInTemplatePropsBaseInterface } from './template-props-base.interface';
+
+export interface EmailAgentModalSignInTemplatePropsInterface extends EmailAgentModalSignInTemplatePropsBaseInterface {
   /**
-   * Called when the sign in button clicked.
+   * A ref to access an element
    */
-  onClickSignIn: () => void;
+  openAuthRef: React.MutableRefObject<() => void>;
 
   /**
-   * Called when the not now button clicked.
+   * A ref to access an element
    */
-  onClickNotNow: () => void;
-
-  /**
-   * Translate function
-   */
-  t: TFunctionType;
+  closeAuthRef: React.MutableRefObject<() => void>;
 }

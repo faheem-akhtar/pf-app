@@ -109,6 +109,7 @@ export const ApiMakeFactory =
             return {
               ok: false,
               error: {
+                payload,
                 url: finalUrl,
                 status: response.status,
                 body,
@@ -190,10 +191,20 @@ export const ApiMakeFactory =
             };
           })
           .catch((e: Error) => {
-            return {
-              ok: false,
-              error: e.message,
-            };
+            return response
+              .text()
+              .then((body) => {
+                return {
+                  ok: false,
+                  error: `${e.message}. ${body}`,
+                };
+              })
+              .catch(() => {
+                return {
+                  ok: false,
+                  error: e.message,
+                };
+              });
           }) as Promise<ApiFetcherResultType<Result>>;
       }
     );

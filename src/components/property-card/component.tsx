@@ -15,7 +15,6 @@ import { PropertyReportComponent } from 'components/property/report/component';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { propertySerpObfuscatedGetImagesCount } from 'components/property/serp/obfuscated/get/images-count';
 import { propertySerpObfuscatedGetImgUrlSmall } from 'components/property/serp/obfuscated/get/img-url-small';
-import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
 import { PropertyShareComponent } from '../property/share/component';
 import { SavePropertyContext } from 'components/save-property/context';
@@ -78,11 +77,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   return (
     <div data-testid='list-item'>
       <PropertyCardTemplate {...cardTemplateProps} />
-      <EmailAgentModalComponent
-        openRef={emailAgentModalOpenRef}
-        propertyName={propertySerpObfuscatedGetName(property)}
-        referenceId={propertySerpObfuscatedGetReference(property)}
-      />
+      <EmailAgentModalComponent openRef={emailAgentModalOpenRef} property={property} />
       <CallingAgentModalComponent
         propertyId={propertyId}
         referenceId={propertySerpObfuscatedGetReference(property)}

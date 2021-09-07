@@ -3,18 +3,15 @@ import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-t
 import { EmailAgentModalFormErrorMessageTemplate } from './form/error-message-template';
 import { EmailAgentModalFormSuccessTemplate } from './form/success-template';
 import { EmailAgentModalFormTemplate } from './form/template';
+import { EmailAgentModalStatusEnum } from './status.enum';
 import { EmailAgentModalTemplatePropsInterface } from './template-props.interface';
 
 import styles from './email-agent-modal.module.scss';
 
 export const EmailAgentModalTemplate = (props: EmailAgentModalTemplatePropsInterface): JSX.Element => {
   const body =
-    props.status === 'submitted' ? (
-      <EmailAgentModalFormSuccessTemplate
-        onClickNotNow={props.onClickNotNow}
-        onClickSignIn={props.onClickSignIn}
-        t={props.t}
-      />
+    props.status === EmailAgentModalStatusEnum.submitted ? (
+      <EmailAgentModalFormSuccessTemplate closeModal={props.closeModal} t={props.t} />
     ) : (
       <>
         <h2 className={styles.name}>{props.propertyName}</h2>
@@ -23,15 +20,22 @@ export const EmailAgentModalTemplate = (props: EmailAgentModalTemplatePropsInter
           setFieldsValue={props.setFieldsValue}
           onSubmit={props.onSubmit}
           t={props.t}
+          errors={props.errors}
+          loading={props.loading}
         />
       </>
     );
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      onClick={(e): void => {
+        e.stopPropagation();
+      }}
+    >
       <header className={styles.header}>
         <h1 className={styles.title}>{props.t('agent-modal/email-form-title')}</h1>
-        <div className={styles.closeButton} onClick={props.onCloseButtonClick}>
+        <div className={styles.closeButton} onClick={props.closeModal}>
           <IconThickSmallCloseTemplate class={styles.closeIcon} clipped />
         </div>
       </header>

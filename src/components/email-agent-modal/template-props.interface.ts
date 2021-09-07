@@ -1,8 +1,8 @@
 import { EmailAgentModalFormTemplatePropsInterface } from './form/template-props.interface';
-import { EmailAgentModalSignInTemplatePropsInterface } from './sign-in/template-props.interface';
+import { EmailAgentModalSignInComponentPropsInterface } from './sign-in/component-props.interface';
 
 export interface EmailAgentModalTemplatePropsInterface
-  extends EmailAgentModalSignInTemplatePropsInterface,
+  extends EmailAgentModalSignInComponentPropsInterface,
     EmailAgentModalFormTemplatePropsInterface {
   /**
    * The property name
@@ -12,12 +12,12 @@ export interface EmailAgentModalTemplatePropsInterface
   /**
    * General error return from API
    */
-  error?: string;
+  error: string;
 
   /**
    * Called when the close icon clicked.
    */
-  onCloseButtonClick: () => void;
+  closeModal: () => void;
 
   /**
    * Status

@@ -44,6 +44,7 @@
 }
 
 .link {
+  &,
   &:hover,
   &:focus,
   &:active,
@@ -53,5 +54,9 @@
     color: var(--color-interaction-1-dark-mode);
     cursor: pointer;
     text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 }

@@ -1,3 +1,5 @@
+import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
+
 export interface EmailAgentModalComponentPropsInterface {
   /**
    * A ref to access an element
@@ -7,10 +9,5 @@ export interface EmailAgentModalComponentPropsInterface {
   /**
    * Property
    */
-  propertyName: string;
-
-  /**
-   * Property
-   */
-  referenceId: string;
+  property: PropertySerpObfuscatedType;
 }

@@ -1,1 +1,1 @@
-export const emailAgentMustAcceptTerms = true;
+export const configEmailAgentMustAcceptTerms = true;

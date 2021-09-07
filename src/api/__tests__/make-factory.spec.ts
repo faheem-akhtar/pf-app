@@ -311,7 +311,7 @@ describe('ApiFactory', () => {
     const result = await fetcher({ locale: 'en' });
 
     expect(result).toEqual({
-      error: 'failed to parse json',
+      error: 'failed to parse json. response.text',
       ok: false,
     });
   });

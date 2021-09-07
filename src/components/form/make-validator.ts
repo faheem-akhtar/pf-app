@@ -9,7 +9,7 @@ export const formMakeValidator =
     setErrors: (errors: Record<T, string>) => void,
     validators: Record<T, Array<(value: string) => string>>
   ) =>
-  (inputs: Record<T, string>): boolean => {
+  (inputs: Record<T, string | boolean>): boolean => {
     const errors: Record<T, string> = (Object.keys(inputs) as T[]).reduce((accumulator, fieldName) => {
       const value =
         validators[fieldName]

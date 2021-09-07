@@ -1,11 +1,13 @@
 import { IconThinCheckmarkCircleTemplate } from 'components/icon/thin/checkmark-circle-template';
 
-import { EmailAgentModalSignInTemplate } from '../sign-in/template';
-import { EmailAgentModalSignInTemplatePropsInterface } from '../sign-in/template-props.interface';
+import { EmailAgentModalSignInComponent } from '../sign-in/component';
+import { EmailAgentModalSignInComponentPropsInterface } from '../sign-in/component-props.interface';
 
 import styles from './email-agent-modal-form.module.scss';
 
-export const EmailAgentModalFormSuccessTemplate = (props: EmailAgentModalSignInTemplatePropsInterface): JSX.Element => (
+export const EmailAgentModalFormSuccessTemplate = (
+  props: EmailAgentModalSignInComponentPropsInterface
+): JSX.Element => (
   <div className={styles.success}>
     <IconThinCheckmarkCircleTemplate class={styles.successIcon} />
 
@@ -14,6 +16,6 @@ export const EmailAgentModalFormSuccessTemplate = (props: EmailAgentModalSignInT
       <p>{props.t('your-message-is-sent')}</p>
     </div>
 
-    <EmailAgentModalSignInTemplate {...props} />
+    <EmailAgentModalSignInComponent {...props} />
   </div>
 );
