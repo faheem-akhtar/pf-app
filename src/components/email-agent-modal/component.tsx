@@ -1,5 +1,6 @@
 import { FunctionComponent, useContext, useRef, useState } from 'react';
 
+import { AuthModalComponent } from 'components/auth/modal/component';
 import { EmailAgentAttributesInterface } from 'types/email-agent/attributes.interface';
 import { EmailAgentModalComponentPropsInterface } from './component-props.interface';
 import { EmailAgentModalFormTemplatePropsInterface } from './form/template-props.interface';
@@ -35,7 +36,10 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
   const { t } = useTranslation();
   const user = useContext(UserContext);
 
+  const openAuthRef = useRef<() => void>(functionNoop);
+  const closeAuthRef = useRef<() => void>(functionNoop);
   const closeRef = useRef<() => void>(functionNoop);
+
   const getInitialFieldsValue = (): FormFieldsValueType => ({
     name: user ? `${user.first_name} ${user.last_name}` : '',
     email: user ? user.email : '',
@@ -45,7 +49,6 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
     acceptTerms: false,
     receiveAdvertising: false,
   });
-
   const [fieldsValue, setFieldsValue] = useState<FormFieldsValueType>(getInitialFieldsValue());
   const [errors, setErrors] = useState<Partial<Record<FormFieldsEnum, string>>>({});
   const [error, setError] = useState('');
@@ -121,6 +124,7 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
         ...formFields,
         emailAlert: fieldsValue.emailAlert,
         [FormFieldsEnum.captchaToken]: captcha_token,
+        autoRegister: !!user,
       } as EmailAgentAttributesInterface);
 
       setStatus(EmailAgentModalStatusEnum.submitted);
@@ -143,17 +147,27 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
     status,
     error,
     loading: isLoading,
+    openAuthRef,
   };
 
   return (
-    <ModalComponent
-      onOpen={onOpen}
-      openRef={openRef}
-      closeRef={closeRef}
-      overlay
-      onOverlayClick={(): void => closeRef.current()}
-    >
-      <EmailAgentModalTemplate {...templateProps} />
-    </ModalComponent>
+    <>
+      <ModalComponent
+        onOpen={onOpen}
+        openRef={openRef}
+        closeRef={closeRef}
+        overlay
+        onOverlayClick={(): void => closeRef.current()}
+      >
+        <EmailAgentModalTemplate {...templateProps} />
+      </ModalComponent>
+      <ModalComponent openRef={openAuthRef} closeRef={closeAuthRef} overlay>
+        <AuthModalComponent
+          close={(): void => {
+            closeAuthRef.current();
+          }}
+        />
+      </ModalComponent>
+    </>
   );
 };

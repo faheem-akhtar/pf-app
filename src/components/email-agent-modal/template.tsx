@@ -11,7 +11,7 @@ import styles from './email-agent-modal.module.scss';
 export const EmailAgentModalTemplate = (props: EmailAgentModalTemplatePropsInterface): JSX.Element => {
   const body =
     props.status === EmailAgentModalStatusEnum.submitted ? (
-      <EmailAgentModalFormSuccessTemplate closeModal={props.closeModal} t={props.t} />
+      <EmailAgentModalFormSuccessTemplate closeModal={props.closeModal} t={props.t} openAuthRef={props.openAuthRef} />
     ) : (
       <>
         <h2 className={styles.name}>{props.propertyName}</h2>

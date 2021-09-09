@@ -10,4 +10,9 @@ export interface EmailAgentAttributesInterface extends PropertyLeadAttributesInt
    * Email alert
    */
   emailAlert: boolean;
+
+  /**
+   * Whether the auto-register is needed or not
+   */
+  autoRegister: boolean;
 }

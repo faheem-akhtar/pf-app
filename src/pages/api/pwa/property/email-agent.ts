@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 
+import { backendApiAuthAutoRegisterFetcher } from 'backend/api/auth/auto-register/fetcher';
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
 import { backendApiPropertyEmailAlertFetcher } from 'backend/api/property/email-alert/fetcher';
 import { backendApiPropertyLeadFetcher } from 'backend/api/property/lead/fetcher';
@@ -9,8 +10,17 @@ import { backendApiPropertySearchEmailAgentDataFetcher } from 'backend/api/prope
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const locale = backendApiGetLocaleFromReq(req);
   const {
-    attributes: { propertyId, email, emailAlert, ...formFields },
+    attributes: { propertyId, email, emailAlert, autoRegister, ...formFields },
   } = JSON.parse(req.body);
+
+  if (!autoRegister) {
+    await backendApiAuthAutoRegisterFetcher(locale, {
+      first_name: formFields.name,
+      last_name: '',
+      email,
+      phone: formFields.phone,
+    });
+  }
 
   const requests = [
     (): Promise<ApiFetcherResultType<unknown>> =>
