@@ -17,8 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       backendApiPropertyLeadFetcher(locale, propertyId, { email, ...formFields }),
   ];
 
-  // Consider email alert is checked
-  if (emailAlert) {
+  if (emailAlert /* True if email alert is checked */) {
     const emailAgentDataResponse = await backendApiPropertySearchEmailAgentDataFetcher(locale, propertyId);
 
     if (!emailAgentDataResponse.ok) {

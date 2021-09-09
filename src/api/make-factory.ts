@@ -2,6 +2,7 @@ import { AnyValueType } from 'types/any/value.type';
 import { ApiFactoryPropsInterface } from './factory-props.interface';
 import { ApiFetcherResultType } from './fetcher-result-type';
 import { ApiHeaderEnum } from 'enums/api/header.enum';
+import { ApiHttpStatusCodeEnum } from './http-status-code.enum';
 import { ApiMakeFactoryPropsType } from './make-factory-props.type';
 import { ApiRequestPropsType } from './request-props.type';
 
@@ -119,8 +120,11 @@ export const ApiMakeFactory =
           });
         }
 
-        // If HEAD request or status is 204 - No content
-        if (factoryProps.method === 'HEAD' || response.status === 204) {
+        if (
+          factoryProps.method === 'HEAD' ||
+          response.status === ApiHttpStatusCodeEnum.ACCEPTED ||
+          response.status === ApiHttpStatusCodeEnum.NO_CONTENT
+        ) {
           return {
             ok: true,
             data: null as unknown as Result,

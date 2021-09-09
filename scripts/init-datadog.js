@@ -25,12 +25,15 @@ const headersToRecord = [
 datadogTracer.use('http', {
   headers: headersToRecord,
   hooks: {
-    request: (span, req) => {
+    request: (span, req, res) => {
       if (req.path) {
         span.setTag('req.path', req.path);
       }
       if (req._header) {
         span.setTag('req._header', req._header);
+      }
+      if (res && res._header) {
+        span.setTag('res._header', res._header);
       }
     },
   },
@@ -39,9 +42,10 @@ datadogTracer.use('http', {
 datadogTracer.use('next', {
   headers: headersToRecord,
   hooks: {
-    request: (span, req) => {
+    request: (span, req, res) => {
       span.setTag('req.url', req.url);
       span.setTag('req.cookies', req.cookies);
+      span.setTag('res._header', res._header);
     },
   },
 });

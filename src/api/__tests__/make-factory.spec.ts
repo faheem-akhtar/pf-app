@@ -160,7 +160,7 @@ describe('ApiFactory', () => {
 
   it('should return success status for empty response', async () => {
     const headerGetMock = jest.fn().mockReturnValue('0');
-    windowMockFetch({ ok: true, status: 202, headers: { get: headerGetMock } });
+    windowMockFetch({ ok: true, status: 200, headers: { get: headerGetMock } });
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -172,6 +172,21 @@ describe('ApiFactory', () => {
 
     expect(headerGetMock).toHaveBeenCalledWith('content-length');
     expect(response).toEqual(expect.objectContaining({ ok: true, data: {} }));
+  });
+
+  it('should return success status for 202 accepted response', async () => {
+    const headerGetMock = jest.fn().mockReturnValue('0');
+    windowMockFetch({ ok: true, status: 202, headers: { get: headerGetMock } });
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+    });
+
+    const fetcher = apiFactory({ method: 'GET', url });
+    const response = await fetcher({ locale: 'en' });
+
+    expect(response).toEqual(expect.objectContaining({ ok: true, data: null }));
   });
 
   it('should return success status with empty body on 204', async () => {
