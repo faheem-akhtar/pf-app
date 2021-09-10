@@ -97,6 +97,7 @@
     "@typescript-eslint/parser": "^4.28.2",
     "autoprefixer": "^10.3.2",
     "babel-loader": "^8.2.2",
+    "bunyan": "^1.8.15",
     "css-loader": "^5.0.1",
     "esbuild": "^0.12.17",
     "eslint": "^7.30.0",

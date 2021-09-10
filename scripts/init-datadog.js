@@ -1,6 +1,20 @@
 const ddTrace = require('dd-trace');
+const bunyan = require('bunyan');
 
-const datadogTracer = ddTrace.init({});
+const logger = bunyan.createLogger({
+  name: 'dd-trace',
+  level: 'trace',
+});
+
+const tracer = ddTrace.init({
+  logInjection: true,
+  logger: {
+    log: (err) => logger.log(err),
+    info: (err) => logger.info(err),
+    debug: (err) => logger.debug(err),
+    warn: (err) => logger.warn(err),
+  },
+});
 
 const headersToRecord = [
   'host',
@@ -22,7 +36,7 @@ const headersToRecord = [
   'x-akamai-device-characteristics',
 ];
 
-datadogTracer.use('http', {
+tracer.use('http', {
   headers: headersToRecord,
   hooks: {
     request: (span, req, res) => {
@@ -39,7 +53,7 @@ datadogTracer.use('http', {
   },
 });
 
-datadogTracer.use('next', {
+tracer.use('next', {
   headers: headersToRecord,
   hooks: {
     request: (span, req, res) => {
