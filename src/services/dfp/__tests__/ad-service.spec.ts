@@ -1,22 +1,22 @@
 import * as Googletag from 'Googletag';
 
-import { windowMockImportScript } from 'mocks/window/mock-import-script';
+import { mockWindowImportScript } from 'mocks/window/import-script.mock';
 
-import { AdConfigMock } from 'mocks/ad-config/mock';
+import { adConfigStub } from 'stubs/ad/config.stub';
 import { AdUnitInterface } from 'types/ad/unit.interface';
 import { DfpAdService } from '../ad-service';
 
 describe('DfpAdService', () => {
   it('should load gpt tag in constructor', () => {
-    const importScriptMock = windowMockImportScript();
-    new DfpAdService(AdConfigMock());
+    const importScriptMock = mockWindowImportScript();
+    new DfpAdService(adConfigStub());
 
     expect(importScriptMock.spy).toHaveBeenCalledWith('https://securepubads.g.doubleclick.net/tag/js/gpt.js');
   });
 
   it('should enable pubads', async () => {
-    const importScriptMock = windowMockImportScript();
-    const service = new DfpAdService(AdConfigMock());
+    const importScriptMock = mockWindowImportScript();
+    const service = new DfpAdService(adConfigStub());
 
     await importScriptMock.promise;
 
@@ -45,8 +45,8 @@ describe('DfpAdService', () => {
   });
 
   it('should refresh all ads on refreshAllAds()', async () => {
-    const importScriptMock = windowMockImportScript();
-    const service = new DfpAdService(AdConfigMock());
+    const importScriptMock = mockWindowImportScript();
+    const service = new DfpAdService(adConfigStub());
 
     await importScriptMock.promise;
     service['googletag'].cmd.length = 0;
@@ -65,8 +65,8 @@ describe('DfpAdService', () => {
   });
 
   it('should set pubads targetting on setTargeting()', async () => {
-    const importScriptMock = windowMockImportScript();
-    const service = new DfpAdService(AdConfigMock());
+    const importScriptMock = mockWindowImportScript();
+    const service = new DfpAdService(adConfigStub());
 
     await importScriptMock.promise;
     service['googletag'].cmd.length = 0;
@@ -89,8 +89,8 @@ describe('DfpAdService', () => {
   });
 
   it('should call clearTargetting is targeting is set on setTargeting()', async () => {
-    const importScriptMock = windowMockImportScript();
-    const service = new DfpAdService(AdConfigMock());
+    const importScriptMock = mockWindowImportScript();
+    const service = new DfpAdService(adConfigStub());
 
     await importScriptMock.promise;
     service['googletag'].cmd.length = 0;
@@ -111,7 +111,7 @@ describe('DfpAdService', () => {
   });
 
   it('should return existing slot on createAdSlot() if defined', () => {
-    const service = new DfpAdService(AdConfigMock());
+    const service = new DfpAdService(adConfigStub());
 
     service['adSlots'] = { container: {} as Googletag.Slot };
     const result = service['createAdSlot']({} as AdUnitInterface, 'container');
@@ -120,7 +120,7 @@ describe('DfpAdService', () => {
   });
 
   it('should call defineSlot on createAdSlot()', () => {
-    const service = new DfpAdService(AdConfigMock());
+    const service = new DfpAdService(adConfigStub());
 
     const slotMock = { defineSizeMapping: jest.fn(), addService: jest.fn() };
     const addSizeMock = jest.fn();

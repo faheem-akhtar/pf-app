@@ -1,4 +1,4 @@
-import { windowMockFetch } from 'mocks/window/mock-fetch';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 
 import { BackendApiFactory } from '../factory';
 
@@ -11,7 +11,7 @@ describe('BackendApiFactory', () => {
   });
 
   it('should use staging endpoints on staging', async () => {
-    const fetchMock = windowMockFetch();
+    const fetchMock = mockWindowFetch();
 
     const fetcher = BackendApiFactory({
       method: 'GET',

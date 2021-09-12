@@ -4,7 +4,7 @@
 
 import { render, waitFor } from '@testing-library/react';
 
-import { ModalEnvMock } from 'mocks/modal-env/mock';
+import { mockModalEnv } from 'mocks/modal-env/mock';
 import { ModalPortalComponent } from '../portal-component';
 
 describe('ModalPortalComponent', () => {
@@ -14,14 +14,14 @@ describe('ModalPortalComponent', () => {
   });
 
   it('It should add hide classname when opened', async () => {
-    const { appRoot } = ModalEnvMock();
+    const { appRoot } = mockModalEnv();
     render(<ModalPortalComponent>content</ModalPortalComponent>);
 
     expect(appRoot.className).toMatchInlineSnapshot(`"hide"`);
   });
 
   it('It should not add hide classname when opened in overlay mode', async () => {
-    const { appRoot } = ModalEnvMock();
+    const { appRoot } = mockModalEnv();
     render(<ModalPortalComponent overlay>content</ModalPortalComponent>);
 
     expect(appRoot.className).toMatchInlineSnapshot(`""`);
@@ -31,7 +31,7 @@ describe('ModalPortalComponent', () => {
     const adElement = document.createElement('div');
     adElement.setAttribute('data-ad', '1');
     document.body.append(adElement);
-    ModalEnvMock();
+    mockModalEnv();
     render(<ModalPortalComponent>content</ModalPortalComponent>);
 
     expect(adElement.style.display).toEqual('none');
@@ -41,7 +41,7 @@ describe('ModalPortalComponent', () => {
     const adElement = document.createElement('div');
     adElement.setAttribute('data-ad', '1');
     document.body.append(adElement);
-    ModalEnvMock();
+    mockModalEnv();
     const { unmount } = render(<ModalPortalComponent overlay>content</ModalPortalComponent>);
     unmount();
 
@@ -51,7 +51,7 @@ describe('ModalPortalComponent', () => {
   });
 
   it('It should remove hide classname on unmount', () => {
-    const { appRoot } = ModalEnvMock();
+    const { appRoot } = mockModalEnv();
     const { unmount } = render(<ModalPortalComponent>content</ModalPortalComponent>);
     unmount();
 
@@ -59,7 +59,7 @@ describe('ModalPortalComponent', () => {
   });
 
   it('It should return scroll top on unmount', () => {
-    ModalEnvMock();
+    mockModalEnv();
     const expectedScrollTop = 500;
     const expectedOptions = {
       top: expectedScrollTop,

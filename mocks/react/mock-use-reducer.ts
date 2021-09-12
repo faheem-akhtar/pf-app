@@ -1,6 +1,6 @@
 const original = global.React.useReducer;
 
-export const reactMockUseReducer = <State>(
+export const mockReactUseReducer = <State>(
   state: State
 ): {
   useReducerMock: jest.Mock<State>;

@@ -1,7 +1,7 @@
 /* eslint pf-rules/export-name-validation: 0 */
 
-import { windowMockConsole } from 'mocks/window/mock-console';
-import { windowMockFetch } from 'mocks/window/mock-fetch';
+import { mockWindowConsole } from 'mocks/window/console.mock';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 
 describe('ApiFactory', () => {
   const origin = 'origin';
@@ -9,7 +9,7 @@ describe('ApiFactory', () => {
 
   it('should print to console if configIsTrace is true', async () => {
     process.env.TRACE = '1';
-    windowMockFetch();
+    mockWindowFetch();
 
     const apiFactory = (await import('api/make-factory')).ApiMakeFactory({
       getOrigin: () => origin,
@@ -17,7 +17,7 @@ describe('ApiFactory', () => {
     });
 
     const fetcher = apiFactory({ method: 'GET', url });
-    const consoleMock = windowMockConsole();
+    const consoleMock = mockWindowConsole();
     await fetcher({ locale: 'en' });
 
     expect(consoleMock.log).toHaveBeenCalledTimes(1);

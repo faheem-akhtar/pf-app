@@ -4,15 +4,15 @@
 
 import { fireEvent, render } from '@testing-library/react';
 
-import { reactMockUseSwr } from 'mocks/react/mock-use-swr';
+import { mockReactUseSwr } from 'mocks/react/mock-use-swr';
 
 import { PropertyCardComponent } from '../component';
 import { PropertyCardComponentPropsType } from '../component-props.type';
-import { PropertyMock } from 'mocks/property/mock';
-import { TouchEventMock } from 'mocks/touch-event/mock';
+import { propertyStub } from 'stubs/property/stub';
+import { touchEventStub } from 'stubs/touch/event.stub';
 
 const makeDefaultProps = (): PropertyCardComponentPropsType => ({
-  property: PropertyMock(),
+  property: propertyStub(),
   loading: false,
 });
 
@@ -35,11 +35,11 @@ describe('PropertyCardComponent', () => {
     const defaultProps = makeDefaultProps();
     const { getByTestId, getAllByTestId } = render(<PropertyCardComponent {...defaultProps} />);
 
-    reactMockUseSwr({ ok: true, data: ['i1', 'i2', 'i3'] });
+    mockReactUseSwr({ ok: true, data: ['i1', 'i2', 'i3'] });
 
     const gallery = getByTestId('GalleryScroll');
     fireEvent.touchStart(gallery, {
-      ...TouchEventMock(),
+      ...touchEventStub(),
       changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
     });
 

@@ -30,7 +30,8 @@
       "context/*": ["src/context/*"],
       "services/*": ["src/services/*"],
       "constants/*": ["src/constants/*"],
-      "mocks/*": ["mocks/*"]
+      "mocks/*": ["mocks/*"],
+      "stubs/*": ["stubs/*"],
     }
   },
   "types": ["gapi", "gapi.auth2", "FB", "google.maps"],

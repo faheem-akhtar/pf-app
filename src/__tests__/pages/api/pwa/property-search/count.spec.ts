@@ -1,16 +1,15 @@
+import { nextApiRequestStub, nextApiResponseStub } from 'stubs/next/api';
 import countHandler from 'pages/api/pwa/property-search/count';
-import { nextApiMockRequest } from 'mocks/next-api/mock-request';
-import { nextApiMockResponse } from 'mocks/next-api/mock-response';
-import { windowMockConsole } from 'mocks/window/mock-console';
-import { windowMockFetch } from 'mocks/window/mock-fetch';
+import { mockWindowConsole } from 'mocks/window/console.mock';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 
 describe('pages/api/property-search/count', () => {
   it('should return the count of properties for the search', async () => {
-    windowMockFetch({
+    mockWindowFetch({
       json: () => Promise.resolve({ data: { id: '0', attributes: { count: 5 } } }),
     });
-    const reqMock = nextApiMockRequest();
-    const resMock = nextApiMockResponse();
+    const reqMock = nextApiRequestStub();
+    const resMock = nextApiResponseStub();
     await countHandler(reqMock, resMock);
 
     expect(resMock.send).toHaveBeenCalledTimes(1);
@@ -18,10 +17,10 @@ describe('pages/api/property-search/count', () => {
   });
 
   it('should return 500 if request fails', async () => {
-    const consoleMock = windowMockConsole();
-    windowMockFetch({ ok: false });
-    const reqMock = nextApiMockRequest();
-    const resMock = nextApiMockResponse();
+    const consoleMock = mockWindowConsole();
+    mockWindowFetch({ ok: false });
+    const reqMock = nextApiRequestStub();
+    const resMock = nextApiResponseStub();
     await countHandler(reqMock, resMock);
 
     expect(resMock.send).toHaveBeenCalledTimes(0);

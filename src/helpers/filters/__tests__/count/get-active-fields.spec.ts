@@ -1,22 +1,22 @@
 import { filtersCountGetActiveFields } from 'helpers/filters/count/get-active-fields';
-import { FiltersDataMock } from 'mocks/filters/data.mock';
+import { filtersDataStub } from 'stubs/filters/data.stub';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueFieldAmenitiesType } from 'components/filters/value/field/amenities.type';
 import { FiltersValueFieldFurnishedType } from 'components/filters/value/field/furnished.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { FiltersValueMock } from 'mocks/filters/value.mock';
+import { filtersValueStub } from 'stubs/filters/value.stub';
 
 describe('filtersCountGetActiveFields()', () => {
   let sampleFilterValues: FiltersValueInterface;
   beforeEach(() => {
-    sampleFilterValues = FiltersValueMock();
+    sampleFilterValues = filtersValueStub();
   });
 
   it('should return 0 for initial filters', () => {
     expect(
       filtersCountGetActiveFields({
         value: sampleFilterValues,
-        data: FiltersDataMock,
+        data: filtersDataStub,
       })
     ).toBe(0);
   });
@@ -27,7 +27,7 @@ describe('filtersCountGetActiveFields()', () => {
     expect(
       filtersCountGetActiveFields({
         value: sampleFilterValues,
-        data: FiltersDataMock,
+        data: filtersDataStub,
       })
     ).toBe(2);
   });
@@ -39,7 +39,7 @@ describe('filtersCountGetActiveFields()', () => {
     expect(
       filtersCountGetActiveFields({
         value: sampleFilterValues,
-        data: FiltersDataMock,
+        data: filtersDataStub,
       })
     ).toBe(2);
   });

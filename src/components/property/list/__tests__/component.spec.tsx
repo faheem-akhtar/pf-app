@@ -4,9 +4,9 @@
 
 import { render } from '@testing-library/react';
 
-import { AdConfigMock } from 'mocks/ad-config/mock';
+import { adConfigStub } from 'stubs/ad/config.stub';
 import { PropertyListComponent } from '../component';
-import { PropertyMock } from 'mocks/property/mock';
+import { propertyStub } from 'stubs/property/stub';
 
 import { arrayFromRange } from 'helpers/array/from-range';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
@@ -19,9 +19,9 @@ describe('PropertyListComponent', () => {
   it('should render 3 ad placeholders in 0, 5, 21 positions', () => {
     const { getAllByTestId } = render(
       <PropertyListComponent
-        adConfig={AdConfigMock()}
+        adConfig={adConfigStub()}
         properties={arrayFromRange(0, 25).map((i, index) => ({
-          ...PropertyMock(),
+          ...propertyStub(),
           [propertySerpObfuscatedFieldUrl]: `url-${index}`,
         }))}
         pageIsLoading={false}
@@ -43,7 +43,7 @@ describe('PropertyListComponent', () => {
   });
 
   it('should inject google tag script', () => {
-    render(<PropertyListComponent adConfig={AdConfigMock()} properties={[]} pageIsLoading={false} />);
+    render(<PropertyListComponent adConfig={adConfigStub()} properties={[]} pageIsLoading={false} />);
 
     const gptScript =
       '<script type="text/javascript" src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>';

@@ -7,9 +7,9 @@ import { act } from 'react-dom/test-utils';
 
 import { AppearOnScrollComponent } from '../component';
 import { AppearOnScrollComponentPropsInterface } from '../component-props.interface';
-import { documentMockBodyClientHeight } from 'mocks/window/document/mock-body-client-height';
-import { elementMockGetBoundingClientRect } from 'mocks/element/mock-get-bounding-client-rect';
-import { windowMockSetTimeout } from 'mocks/window/mock-set-timeout';
+import { mockDocumentBodyClientHeight } from 'mocks/window/document/body-client-height.mock';
+import { mockElementGetBoundingClientRect } from 'mocks/element/get-bounding-client-rect.mock';
+import { mockWindowSetTimeout } from 'mocks/window/set-timeout.mock';
 
 const BODY_CLIENT_HEIGHT = 10;
 type Observer = (elements: { isIntersecting: boolean }[]) => void;
@@ -24,7 +24,7 @@ describe('AppearOnScrollComponent', () => {
 
   beforeEach(() => {
     IntersectionObserverDisconnectMock = jest.fn();
-    flushSetTimeouts = windowMockSetTimeout();
+    flushSetTimeouts = mockWindowSetTimeout();
     Object.defineProperty(window, 'IntersectionObserver', {
       writable: true,
       configurable: true,
@@ -44,8 +44,8 @@ describe('AppearOnScrollComponent', () => {
       onHidden: jest.fn(),
       children: <div>Some content</div>,
     };
-    elementMockGetBoundingClientRect({ y: 1 });
-    documentMockBodyClientHeight(BODY_CLIENT_HEIGHT);
+    mockElementGetBoundingClientRect({ y: 1 });
+    mockDocumentBodyClientHeight(BODY_CLIENT_HEIGHT);
   });
 
   describe('animation classes changes', () => {

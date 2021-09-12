@@ -1,5 +1,5 @@
 import * as isDevelopmentModule from 'helpers/is-development';
-import { windowMockFetch } from 'mocks/window/mock-fetch';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 
 (isDevelopmentModule as { helpersIsDevelopment: boolean })['helpersIsDevelopment'] = true;
 
@@ -10,7 +10,7 @@ describe('BackendApiFactory', () => {
     (isDevelopmentModule as { helpersIsDevelopment: boolean })['helpersIsDevelopment'] = false;
   });
   it('should use production endpoints in development', async () => {
-    const fetchMock = windowMockFetch();
+    const fetchMock = mockWindowFetch();
 
     const fetcher = BackendApiFactory({
       method: 'GET',

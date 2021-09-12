@@ -5,13 +5,13 @@
 import { fireEvent, render } from '@testing-library/react';
 
 import { galleryScrollMakeInitialState } from '../make-initial-state';
-import { reactMockUseReducer } from 'mocks/react/mock-use-reducer';
-import { windowMockRemoveEventListener } from 'mocks/window/mock-remove-event-listener';
+import { mockReactUseReducer } from 'mocks/react/mock-use-reducer';
+import { mockWindowRemoveEventListener } from 'mocks/window/remove-event-listener.mock';
 
 import { GalleryScrollComponent } from '../component';
 import { GalleryScrollComponentPropsInterface } from '../component-props.interface';
 import { GalleryScrollItemInterface } from '../item.interface';
-import { TouchEventMock } from 'mocks/touch-event/mock';
+import { touchEventStub } from 'stubs/touch/event.stub';
 
 const image1: GalleryScrollItemInterface = { sourceUrl: '1' };
 const image2: GalleryScrollItemInterface = { sourceUrl: '2' };
@@ -23,7 +23,7 @@ describe('AppearOnScrollComponent', () => {
   let removeEventListenerMock: jest.Mock;
 
   beforeEach(() => {
-    removeEventListenerMock = windowMockRemoveEventListener();
+    removeEventListenerMock = mockWindowRemoveEventListener();
 
     defaultProps = {
       className: 'custom-class-name',
@@ -34,7 +34,7 @@ describe('AppearOnScrollComponent', () => {
   });
 
   it('should disconnect observer on unmount', async () => {
-    reactMockUseReducer({ ...initialState3Images, pointerPositionStart: 20 });
+    mockReactUseReducer({ ...initialState3Images, pointerPositionStart: 20 });
     const { unmount } = render(<GalleryScrollComponent {...defaultProps} />);
 
     unmount();
@@ -48,7 +48,7 @@ describe('AppearOnScrollComponent', () => {
   });
 
   it('should dispatch start on mouse down', () => {
-    const { dispatchMock } = reactMockUseReducer({ ...initialState3Images, pointerPositionStart: 20 });
+    const { dispatchMock } = mockReactUseReducer({ ...initialState3Images, pointerPositionStart: 20 });
 
     const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} />);
 
@@ -64,12 +64,12 @@ describe('AppearOnScrollComponent', () => {
   });
 
   it('should dispatch start on touch start', () => {
-    const { dispatchMock } = reactMockUseReducer({ ...initialState3Images, pointerPositionStart: 20 });
+    const { dispatchMock } = mockReactUseReducer({ ...initialState3Images, pointerPositionStart: 20 });
 
     const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} />);
 
     fireEvent.touchStart(getByTestId('GalleryScroll'), {
-      ...TouchEventMock(),
+      ...touchEventStub(),
       changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
     });
 

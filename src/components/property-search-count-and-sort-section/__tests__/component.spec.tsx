@@ -5,17 +5,17 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { useRouter } from 'next/router';
 
-import { mocksAddTranslation } from 'mocks/add-translation';
+import { mockMiscAddTranslation } from 'mocks/misc/add-translation.mock';
 
-import { FiltersContextPropsMock } from 'mocks/filters/context-props.mock';
+import { filtersContextPropsStub } from 'stubs/filters/context-props.stub';
 import { FiltersContextProvider } from 'components/filters/context-provider';
-import { ModalEnvMock } from 'mocks/modal-env/mock';
+import { mockModalEnv } from 'mocks/modal-env/mock';
 import { PropertySearchCountAndSortSectionComponent } from '../component';
 
 describe('PropertySearchCountAndSortSectionComponent', () => {
   beforeAll(() => {
-    ModalEnvMock();
-    mocksAddTranslation('n-properties-sorted-by', '{n} properties sorted by');
+    mockModalEnv();
+    mockMiscAddTranslation('n-properties-sorted-by', '{n} properties sorted by');
   });
 
   it('should change the route when new sorting is picked', () => {
@@ -23,7 +23,7 @@ describe('PropertySearchCountAndSortSectionComponent', () => {
     useRouter().push = routerPushSpy;
 
     const { getByText } = render(
-      <FiltersContextProvider {...FiltersContextPropsMock()}>
+      <FiltersContextProvider {...filtersContextPropsStub()}>
         <PropertySearchCountAndSortSectionComponent count={5} loading={false} />
       </FiltersContextProvider>
     );
@@ -37,7 +37,7 @@ describe('PropertySearchCountAndSortSectionComponent', () => {
 
   it('should render ... when loading', () => {
     const { getByText } = render(
-      <FiltersContextProvider {...FiltersContextPropsMock()}>
+      <FiltersContextProvider {...filtersContextPropsStub()}>
         <PropertySearchCountAndSortSectionComponent count={5} loading />
       </FiltersContextProvider>
     );
@@ -47,7 +47,7 @@ describe('PropertySearchCountAndSortSectionComponent', () => {
 
   it('should render N properties sorted by when not loading', () => {
     const { getByText } = render(
-      <FiltersContextProvider {...FiltersContextPropsMock()}>
+      <FiltersContextProvider {...filtersContextPropsStub()}>
         <PropertySearchCountAndSortSectionComponent count={5} loading={false} />
       </FiltersContextProvider>
     );

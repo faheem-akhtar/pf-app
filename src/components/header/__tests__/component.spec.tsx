@@ -6,7 +6,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { HeaderComponent } from '../component';
-import { ModalEnvMock } from 'mocks/modal-env/mock';
+import { mockModalEnv } from 'mocks/modal-env/mock';
 import { UserContextProvider } from 'context/user/context-provider';
 
 const HeaderComponentWithContext = (): JSX.Element => (
@@ -17,7 +17,7 @@ const HeaderComponentWithContext = (): JSX.Element => (
 
 describe('HeaderComponent', () => {
   beforeAll(() => {
-    ModalEnvMock();
+    mockModalEnv();
   });
 
   it('should render correctly', () => {

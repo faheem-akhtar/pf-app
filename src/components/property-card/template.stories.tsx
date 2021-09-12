@@ -4,7 +4,7 @@ import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
-import { PropertyMock } from 'mocks/property/mock';
+import { propertyStub } from 'stubs/property/stub';
 
 export default {
   title: 'MDOT/Property card',
@@ -18,7 +18,7 @@ export const PropertyCard: Story<PropertyCardTemplatePropsType> = (args): JSX.El
 );
 
 PropertyCard.args = {
-  property: PropertyMock(),
+  property: propertyStub(),
   gallery: {
     onTouch: (): null => null,
     items: [

@@ -1,16 +1,15 @@
-import { LocationCompactJltMock } from 'mocks/location/compact-jlt.mock';
-import { LocationCompactKcMock } from 'mocks/location/compact-kc.mock';
 import { multiLocationSelectorMakeOnAddLocation } from '../make-on-add-location';
 
+import { locationCompactJltStub, locationCompactKcStub } from 'stubs/location';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';
+import { mockWindowLocalStorage } from 'mocks/window/local-storage.mock';
 import { MultiLocationSelectorMakeOnAddLocationPropsInterface } from '../make-on-add-location-props.interface';
 import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
-import { WindowLocalStorageMock } from 'mocks/window/local-storage.mock';
 
-const location1 = { ...LocationCompactKcMock, id: '1', path: '1' };
-const location3 = { ...LocationCompactKcMock, id: '3', path: '3' };
-const location1_2 = { ...LocationCompactKcMock, id: '2', path: '1.2' };
+const location1 = { ...locationCompactKcStub, id: '1', path: '1' };
+const location3 = { ...locationCompactKcStub, id: '3', path: '3' };
+const location1_2 = { ...locationCompactKcStub, id: '2', path: '1.2' };
 
 describe('multiLocationSelectorMakeOnAddLocation', () => {
   let onNewLocationsSpy: jest.Mock;
@@ -20,7 +19,7 @@ describe('multiLocationSelectorMakeOnAddLocation', () => {
 
   beforeEach(() => {
     onNewLocationsSpy = jest.fn();
-    windowLocalStorageMock = WindowLocalStorageMock();
+    windowLocalStorageMock = mockWindowLocalStorage();
 
     baseProps = {
       locations: [],
@@ -34,10 +33,10 @@ describe('multiLocationSelectorMakeOnAddLocation', () => {
   it('should do nothing if location is already exist in value', () => {
     const onAddLocation = multiLocationSelectorMakeOnAddLocation({
       ...baseProps,
-      locations: [LocationCompactKcMock],
+      locations: [locationCompactKcStub],
     });
 
-    onAddLocation({ ...LocationCompactKcMock });
+    onAddLocation({ ...locationCompactKcStub });
 
     expect(onNewLocationsSpy).not.toHaveBeenCalled();
     expect(windowLocalStorageMock.setItem).not.toHaveBeenCalled();
@@ -46,18 +45,18 @@ describe('multiLocationSelectorMakeOnAddLocation', () => {
   it('should add location if it does not exist in value', () => {
     const onAddLocation = multiLocationSelectorMakeOnAddLocation({
       ...baseProps,
-      locations: [LocationCompactKcMock],
+      locations: [locationCompactKcStub],
     });
 
-    windowLocalStorageMock.getItem = (): LocationCompactInterface[] => [LocationCompactKcMock];
+    windowLocalStorageMock.getItem = (): LocationCompactInterface[] => [locationCompactKcStub];
 
-    onAddLocation(LocationCompactJltMock);
+    onAddLocation(locationCompactJltStub);
 
-    expect(onNewLocationsSpy).toHaveBeenCalledWith([LocationCompactKcMock, LocationCompactJltMock]);
+    expect(onNewLocationsSpy).toHaveBeenCalledWith([locationCompactKcStub, locationCompactJltStub]);
 
     expect(windowLocalStorageMock.setItem).toHaveBeenCalledWith('multi-location-selector-history-en', [
-      LocationCompactJltMock,
-      LocationCompactKcMock,
+      locationCompactJltStub,
+      locationCompactKcStub,
     ]);
   });
 

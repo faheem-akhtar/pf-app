@@ -1,4 +1,4 @@
-import { KeyboardEventMock } from 'mocks/keyboard-event/mock';
+import { keyboardEventStub } from 'stubs/keyboard/event.stub';
 import { KeyboardKeyEnum } from 'enums/keyboard/key.enum';
 import { keywordsOnInputKeyPress } from '../on-input-key-press';
 
@@ -11,7 +11,7 @@ describe('keywordsOnInputKeyPress', () => {
       addItem: addItemSpy,
       deactivate: deactivateSpy,
       clearInput: jest.fn,
-      e: { ...KeyboardEventMock(), key: KeyboardKeyEnum.enter },
+      e: { ...keyboardEventStub(), key: KeyboardKeyEnum.enter },
     });
 
     expect(addItemSpy).toHaveBeenCalledWith('1');
@@ -33,7 +33,7 @@ describe('keywordsOnInputKeyPress', () => {
         addItem: addItemSpy,
         deactivate: deactivateSpy,
         clearInput: clearInputSpy,
-        e: { ...KeyboardEventMock(), key: triggerKey, preventDefault: preventDefaultSpy },
+        e: { ...keyboardEventStub(), key: triggerKey, preventDefault: preventDefaultSpy },
       });
 
       expect(addItemSpy).toHaveBeenCalledWith('1');

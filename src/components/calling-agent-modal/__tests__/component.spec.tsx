@@ -6,21 +6,21 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { CallingAgentModalComponent } from '../component';
 import { CallingAgentModalComponentPropsInterface } from '../component-props.interface';
 import { CallingAgentModalFeedbackComponent } from '../feedback-component';
-import { FiltersContextPropsMock } from 'mocks/filters/context-props.mock';
+import { filtersContextPropsStub } from 'stubs/filters/context-props.stub';
 import { FiltersContextProvider } from 'components/filters/context-provider';
 import { fireEvent as fireDOMEvent } from '@testing-library/dom';
-import { ModalEnvMock } from 'mocks/modal-env/mock';
-import { PropertyMock } from 'mocks/property/mock';
+import { mockModalEnv } from 'mocks/modal-env/mock';
+import { mockReactUseSwr } from 'mocks/react/mock-use-swr';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { PropertyReportReasonEnum } from 'enums/property/report/reason.enum';
 import { PropertyReportUserTypeEnum } from 'enums/property/report/user-type.enum';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
-import { reactMockUseSwr } from 'mocks/react/mock-use-swr';
-import { windowMockFetch } from 'mocks/window/mock-fetch';
+import { propertyStub } from 'stubs/property/stub';
 
 describe('CallingAgentModalComponent', () => {
-  const property: PropertySerpObfuscatedType = PropertyMock();
+  const property: PropertySerpObfuscatedType = propertyStub();
   let props: CallingAgentModalComponentPropsInterface;
   let referenceId: string;
   let propertyId: string;
@@ -38,7 +38,7 @@ describe('CallingAgentModalComponent', () => {
       closeRef,
     };
 
-    ModalEnvMock();
+    mockModalEnv();
   });
 
   it('should render without throwing any errors', () => {
@@ -66,7 +66,7 @@ describe('CallingAgentModalComponent', () => {
   });
 
   test('if agent info is shown properly', async () => {
-    reactMockUseSwr({ ok: true, data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' } });
+    mockReactUseSwr({ ok: true, data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' } });
     const { getByTestId } = render(<CallingAgentModalComponent {...props} />);
     act(openRef.current);
     await waitFor(() => expect(getByTestId('AgentInfoComponentDetails')).toMatchSnapshot());
@@ -76,10 +76,10 @@ describe('CallingAgentModalComponent', () => {
     const { getByTestId, getByText } = render(<CallingAgentModalComponent {...props} />);
     act(openRef.current);
     const titleElement = getByTestId('CallingAgentModalTitle');
-    reactMockUseSwr({ ok: true, data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' } });
+    mockReactUseSwr({ ok: true, data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' } });
 
     fireDOMEvent(titleElement.nextSibling as HTMLElement, new MouseEvent('click', { bubbles: true }));
-    reactMockUseSwr({ ok: true, data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' } });
+    mockReactUseSwr({ ok: true, data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' } });
     await waitFor(() => expect(getByText('agent-modal/agent-not-answered')).toBeTruthy());
   });
 
@@ -95,9 +95,9 @@ describe('CallingAgentModalComponent', () => {
   });
 
   it('should make request if clicked answer is no', async () => {
-    const fetchMock = windowMockFetch();
+    const fetchMock = mockWindowFetch();
     const { getByText } = render(
-      <FiltersContextProvider {...FiltersContextPropsMock()}>
+      <FiltersContextProvider {...filtersContextPropsStub()}>
         <CallingAgentModalFeedbackComponent onAnswerClicked={jest.fn()} propertyId={propertyId} />
       </FiltersContextProvider>
     );

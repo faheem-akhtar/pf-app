@@ -4,13 +4,13 @@
 
 import { fireEvent, render } from '@testing-library/react';
 
-import { ContactOptionsDisabledMock } from 'mocks/contact-options/disabled-mock';
-import { ContactOptionsMock } from 'mocks/contact-options/mock';
+import { contactOptionsDisabledStub } from 'stubs/contact-options/disabled.stub';
+import { contactOptionsEnabledStub } from 'stubs/contact-options/enabled.stub';
 import { PropertyCardCtaButtonsGroupTemplate } from '../template';
 import { PropertyCardCtaButtonsGroupTemplatePropsInterface } from '../template-props.interface';
 
 const makeDefaultProps = (): PropertyCardCtaButtonsGroupTemplatePropsInterface => ({
-  contactOptions: ContactOptionsMock,
+  contactOptions: contactOptionsEnabledStub,
   onCallClick: jest.fn(),
   onWhatsappClick: jest.fn(),
   onEmailClick: jest.fn(),
@@ -60,7 +60,7 @@ describe('PropertyCardCtaButtonsGroupTemplate', () => {
   it('should not render any buttons if options are not there', () => {
     const defaultProps = makeDefaultProps();
     const { container } = render(
-      <PropertyCardCtaButtonsGroupTemplate {...defaultProps} contactOptions={ContactOptionsDisabledMock} />
+      <PropertyCardCtaButtonsGroupTemplate {...defaultProps} contactOptions={contactOptionsDisabledStub} />
     );
 
     expect(container.innerHTML).toMatchInlineSnapshot(`"<div class=\\"container\\"></div>"`);

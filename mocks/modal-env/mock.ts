@@ -1,6 +1,6 @@
 import { appRootElementId } from 'constants/app/root-element-id';
 
-export const ModalEnvMock = (): { modalRoot: HTMLDivElement; appRoot: HTMLDivElement } => {
+export const mockModalEnv = (): { modalRoot: HTMLDivElement; appRoot: HTMLDivElement } => {
   const modalRoot = document.createElement('div');
   modalRoot.id = 'modal-root';
   document.body.appendChild(modalRoot);

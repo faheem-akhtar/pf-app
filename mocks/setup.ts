@@ -10,13 +10,13 @@ import { recoverReactUseEffect } from './react/mock-use-effect';
 import { recoverReactUseReducer } from './react/mock-use-reducer';
 import { recoverReactUseRef } from './react/mock-use-ref';
 import { recoverReactUseState } from './react/mock-use-state';
-import { recoverWindowAddEventListener } from './window/mock-add-event-listener';
-import { recoverWindowConsole } from './window/mock-console';
-import { recoverWindowFetch } from './window/mock-fetch';
-import { recoverWindowMockImportScript } from './window/mock-import-script';
-import { recoverWindowRemoveEventListener } from './window/mock-remove-event-listener';
+import { recoverWindowAddEventListener } from './window/add-event-listener.mock';
+import { recoverWindowConsole } from './window/console.mock';
+import { recoverWindowFetch } from './window/fetch.mock';
+import { recoverWindowMockImportScript } from './window/import-script.mock';
+import { recoverWindowRemoveEventListener } from './window/remove-event-listener.mock';
 import { setupSwrMock } from 'mocks/react/mock-use-swr';
-import { translationsMap } from './add-translation';
+import { translationsMap } from './misc/add-translation.mock';
 
 if (!global.window) {
   (global as unknown as { window: Window }).window = global as unknown as Window;

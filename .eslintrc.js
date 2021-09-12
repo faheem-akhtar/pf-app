@@ -1,3 +1,5 @@
+// eslint-disable pf-rules/export-name-validation
+
 module.exports = {
   env: {
     browser: true,
@@ -11,53 +13,52 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 12,
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.jest.json'],
-    tsconfigRootDir: __dirname,
-  },
   plugins: ['@typescript-eslint', 'pf-rules'],
   root: true,
   rules: {
-    'new-cap': ['warn', { newIsCap: true, capIsNew: false }],
-    'no-console': 'warn',
-    'object-shorthand': ['warn', 'properties'],
-    'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true }],
+    'new-cap': ['error', { newIsCap: true, capIsNew: false }],
+    'no-console': 'error',
+    'object-shorthand': ['error', 'properties'],
+    'sort-imports': ['error', { allowSeparatedGroups: true, ignoreCase: true }],
     '@typescript-eslint/no-var-requires': 0,
     'no-irregular-whitespace': 'off',
     // TODO-FE[TPNX-2309] - Remove these once fixed
-    'no-lonely-if': 'warn',
-    'react-hooks/rules-of-hooks': 'warn',
-    'react/no-did-update-set-state': 'warn',
-    'react/no-did-mount-set-state': 'warn',
-    'react/jsx-no-target-blank': 'warn',
+    'no-lonely-if': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react/no-did-update-set-state': 'error',
+    'react/no-did-mount-set-state': 'error',
+    'react/jsx-no-target-blank': 'error',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
-    'no-extra-boolean-cast': 'warn',
-    'no-prototype-builtins': 'warn',
-    'no-global-assign': 'warn',
+    'no-extra-boolean-cast': 'error',
+    'no-prototype-builtins': 'error',
+    'no-global-assign': 'error',
     'pf-rules/export-name-validation': [
       'error',
       {
-        enforcePascalCaseOn:
-          '(enum|component|store|factory|type|interface|template|provider|context|view|service|mock)$',
+        rootFolder: __dirname.split('/').pop(),
+        enforcePascalCaseOn: '(enum|component|store|factory|type|interface|template|provider|context|view|service)$',
         ignoreCustomExtensionInNameOn: ['.desktop', '.ae', '.bh', '.eg', '.lb', '.ma', '.qa', '.sa'],
         enforcePrefixOnExtension: [
           {
             extension: 'hook',
             prefix: 'use',
           },
+          {
+            extension: 'mock',
+            prefix: 'mock',
+          },
         ],
-        // ignoreFolderInNameOnExtension: [
-        //   {
-        //     extension: 'hook',
-        //     folderName: 'hooks',
-        //   },
-        // ],
+        ignoreFolderInNameOnExtension: [
+          {
+            extension: 'hook',
+            folderName: 'hooks',
+          },
+          {
+            extension: 'stub',
+            folderName: 'stubs',
+          },
+        ],
       },
     ],
     'pf-rules/must-prefix': [
@@ -78,30 +79,39 @@ module.exports = {
         ],
       },
     ],
-    'react/self-closing-comp': 'warn',
+    'react/self-closing-comp': 'error',
     'prefer-const': 'error',
-    'no-unneeded-ternary': 'warn',
+    'no-unneeded-ternary': 'error',
   },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+        ecmaVersion: 12,
+        sourceType: 'module',
+        project: ['./tsconfig.json'],
+        tsconfigRootDir: __dirname,
+      },
       rules: {
-        '@typescript-eslint/explicit-function-return-type': ['warn'],
+        '@typescript-eslint/explicit-function-return-type': ['error'],
         'no-duplicate-imports': 'off',
         '@typescript-eslint/no-inferrable-types': 0,
         // TODO-FE[TPNX-2309] - Remove these once fixed
         '@typescript-eslint/no-empty-interface': [
-          'warn',
+          'error',
           {
             allowSingleExtends: true,
           },
         ],
-        '@typescript-eslint/no-duplicate-imports': ['warn'],
+        '@typescript-eslint/no-duplicate-imports': ['error'],
         '@typescript-eslint/no-var-requires': 1,
-        'no-console': 'warn',
+        'no-console': 'error',
         '@typescript-eslint/ban-types': 'off',
-        '@typescript-eslint/ban-ts-comment': 'warn',
-        '@typescript-eslint/triple-slash-reference': 'warn',
+        '@typescript-eslint/ban-ts-comment': 'error',
+        '@typescript-eslint/triple-slash-reference': 'error',
         '@typescript-eslint/naming-convention': [
           'error',
           {
@@ -118,11 +128,3 @@ module.exports = {
     },
   ],
 };
-/* TS LINT RULES
-Rules without equivalent:
-- "interface-name": [true, "never-prefix"],
-- "no-angle-bracket-type-assertion": false,
-- "object-literal-sort-keys": false,
-Rules removed because of styling purposes
-- whitespace
-*/

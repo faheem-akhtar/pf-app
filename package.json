@@ -45,9 +45,9 @@
     "build-eslint": "rm -rf ./utils/eslint/result && tsc --project ./utils/eslint/tsconfig.json && cp ./utils/eslint/package.json ./utils/eslint/result && yarn add --dev file:./utils/eslint/result"
   },
   "lint-staged": {
-    "src/**/*.{js,ts,tsx,css,scss,md}": "prettier --check",
+    "*.{js,ts,tsx,css,scss,md}": "prettier --check",
     "src/**/*.{css,scss}": "stylelint --quiet",
-    "src/**/*.{js,ts,tsx}": "eslint --max-warnings=0",
+    "*.{js,ts,tsx}": "eslint",
     "src/**/*spec.{js,ts,tsx}": "yarn test"
   },
   "dependencies": {

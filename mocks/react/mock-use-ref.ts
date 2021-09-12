@@ -2,7 +2,7 @@ const original = global.React.useRef;
 
 const unmountCallbacks: Function[] = [];
 
-export const reactMockUseRef = <T>(initialValue?: T): React.MutableRefObject<T> => {
+export const mockReactUseRef = <T>(initialValue?: T): React.MutableRefObject<T> => {
   const mock = { current: initialValue } as React.MutableRefObject<T>;
   const mockImpl: any = (initial: T) => {
     if (initialValue === undefined) {

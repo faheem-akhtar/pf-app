@@ -1,10 +1,10 @@
-import { windowMockFetch } from 'mocks/window/mock-fetch';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 
 import { BackendApiFactory } from '../factory';
 
 describe('BackendApiFactory', () => {
   it('should add user agend and akamai device characteristics headers', async () => {
-    const fetchMock = windowMockFetch();
+    const fetchMock = mockWindowFetch();
 
     const fetcher = BackendApiFactory({
       method: 'GET',
@@ -27,7 +27,7 @@ describe('BackendApiFactory', () => {
   });
 
   it('should add not add device characteristics header for desktop', async () => {
-    const fetchMock = windowMockFetch();
+    const fetchMock = mockWindowFetch();
 
     const fetcher = BackendApiFactory({
       method: 'GET',
