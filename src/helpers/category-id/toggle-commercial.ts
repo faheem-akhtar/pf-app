@@ -6,7 +6,7 @@ import { categoryIdIsRent } from './is-rent';
 /**
  * Replaces categoryId with the reversed corresponding value
  *
- * @param categoryId FiltersCategoryIdEnum
+ * @param categoryId
  */
 export const categoryIdToggleCommercial = (categoryId: FiltersCategoryIdEnum): FiltersCategoryIdEnum => {
   if (categoryIdIsCommercial(categoryId)) {

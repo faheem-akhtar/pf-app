@@ -1,4 +1,3 @@
-// TODO-FE[TPNX-3016] Move tests
 /**
  * Create a space-separated list of HTML class names from given arguments.
  *

@@ -1,8 +1,9 @@
 /**
  * Check whether arrays contain the same values
  *
+ * @param arr1 An array of list
+ * @param arr2 An array of list
  * @param comparator - A comparator function to determine the equality and priority of two items
- * TODO[CX-544] - add unit tests
  */
 export function arrayAreEqual<T>(
   arr1: T[],

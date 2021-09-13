@@ -3,9 +3,9 @@ import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field
 /**
  * Filters all options ​​based on the value
  *
- * @param options FiltersValueFieldChoiceInterface<V>[]
- * @param value number | null
- * @param isMinimum boolean
+ * @param options The list of available options
+ * @param value A value to compare against options
+ * @param isMinimum Whether the value is minimum or maximum
  */
 export function filtersToRangeOptions<V extends number | null>(
   options: FiltersValueFieldChoiceInterface<V>[],

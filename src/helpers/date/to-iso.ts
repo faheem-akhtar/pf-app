@@ -1,8 +1,7 @@
 /**
  * Returns date string in ISO 8601 format WITH UTC OFFSET
  *
- * @example
- * output: 2018-05-02T08:57:07+04:00
+ * @param date A single moment in time
  */
 export function dateToIso(date: Date): string {
   const tzo = -date.getTimezoneOffset();

@@ -16,8 +16,8 @@ export const HeaderComponent = (): JSX.Element => {
   const saveProperty = useContext(SavePropertyContext);
   const contactedPropertiesResponse = useApiContactedProperties();
 
-  const openAuthRef = useRef<() => void>(() => null);
-  const closeAuthRef = useRef<() => void>(() => null);
+  const openAuthRef = useRef<() => void>(null) as React.MutableRefObject<() => void>;
+  const closeAuthRef = useRef<() => void>(null) as React.MutableRefObject<() => void>;
 
   // TODO-FE[CX-556] Implement contacted properties and tests
   if (contactedPropertiesResponse.ok) {
