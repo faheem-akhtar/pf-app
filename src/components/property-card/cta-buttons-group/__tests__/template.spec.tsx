@@ -6,6 +6,7 @@ import { fireEvent, render } from '@testing-library/react';
 
 import { contactOptionsDisabledStub } from 'stubs/contact-options/disabled.stub';
 import { contactOptionsEnabledStub } from 'stubs/contact-options/enabled.stub';
+
 import { PropertyCardCtaButtonsGroupTemplate } from '../template';
 import { PropertyCardCtaButtonsGroupTemplatePropsInterface } from '../template-props.interface';
 

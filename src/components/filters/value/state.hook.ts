@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { filtersDataGetInitialState } from '../data/get-initial-state';
-import { filtersValueEquals } from './equals';
-
-import { FiltersDataInterface } from '../data/interface';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+
+import { filtersDataGetInitialState } from '../data/get-initial-state';
+import { FiltersDataInterface } from '../data/interface';
+import { filtersValueEquals } from './equals';
 import { FiltersValueInterface } from './interface';
 
 const getInitialStateForCategory = (

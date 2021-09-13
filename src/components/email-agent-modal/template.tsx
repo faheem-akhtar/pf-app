@@ -1,12 +1,11 @@
 import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
 
+import styles from './email-agent-modal.module.scss';
 import { EmailAgentModalFormErrorMessageTemplate } from './form/error-message-template';
 import { EmailAgentModalFormSuccessTemplate } from './form/success-template';
 import { EmailAgentModalFormTemplate } from './form/template';
 import { EmailAgentModalStatusEnum } from './status.enum';
 import { EmailAgentModalTemplatePropsInterface } from './template-props.interface';
-
-import styles from './email-agent-modal.module.scss';
 
 export const EmailAgentModalTemplate = (props: EmailAgentModalTemplatePropsInterface): JSX.Element => {
   const body =

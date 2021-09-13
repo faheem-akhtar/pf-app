@@ -2,9 +2,8 @@ import { Fragment } from 'react';
 
 import { domClassMerge } from 'helpers/dom/class-merge';
 
-import { InputBaseTemplatePropsBaseInterface } from './template-props-base.interface';
-
 import styles from './input-base.module.scss';
+import { InputBaseTemplatePropsBaseInterface } from './template-props-base.interface';
 
 /**
  * Text fields let users enter and edit text.

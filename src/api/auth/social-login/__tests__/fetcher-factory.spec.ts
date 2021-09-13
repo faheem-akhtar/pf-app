@@ -1,5 +1,6 @@
-import { ApiAuthSocialLoginFetcherFactory } from '../fetcher-factory';
 import { ApiFactory } from 'api/factory';
+
+import { ApiAuthSocialLoginFetcherFactory } from '../fetcher-factory';
 
 jest.mock('api/factory');
 

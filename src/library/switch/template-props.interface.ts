@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SwitchOptionInterface } from './option.interface';
 
 export interface SwitchTemplatePropsInterface<V> {

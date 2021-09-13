@@ -1,8 +1,7 @@
-import { filtersDataMakeInitialStateKey } from './make-initial-state-key';
-
-import { FiltersDataInterface } from './interface';
 import { FiltersValueBaseInterface } from '../value/base-interface';
 import { FiltersValueInterface } from '../value/interface';
+import { FiltersDataInterface } from './interface';
+import { filtersDataMakeInitialStateKey } from './make-initial-state-key';
 
 // TODO-FE[CX-411] Add tests
 /**

@@ -1,6 +1,7 @@
-import { FiltersDataChoicesKeyType } from './choices/key.type';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+
 import { FiltersValueBaseInterface } from '../value/base-interface';
+import { FiltersDataChoicesKeyType } from './choices/key.type';
 
 // TODO-FE[CX-411] Add tests
 export const filtersDataMakeChoicesIndexesKey = (

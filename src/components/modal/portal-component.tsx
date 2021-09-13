@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-
 import { appRootElementId } from 'src/constants/app/root-element-id';
 
 import styles from './modal.module.scss';

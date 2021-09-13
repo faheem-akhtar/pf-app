@@ -1,19 +1,19 @@
 import { Fragment, MutableRefObject, useContext, useRef, useState } from 'react';
+
 import { apiReportAttachmentsFetcher } from 'api/report/attachments/fetcher';
 import { apiReportFetcher } from 'api/report/fetcher';
-import { functionNoop } from 'helpers/function/noop';
-
 import { AuthModalComponent } from 'components/auth/modal/component';
-import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { IconSolidWarningTemplate } from 'components/icon/solid/warning-template';
 import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
 import { IconThinCheckmarkCircleTemplate } from 'components/icon/thin/checkmark-circle-template';
 import { ModalComponent } from 'components/modal/component';
+import { UserContext } from 'context/user/context';
+import { functionNoop } from 'helpers/function/noop';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
+import { TFunctionType } from 'types/t-function/type';
+
 import { PropertyReportFormComponent } from './form/component';
 import { PropertyReportFormSubmitPayloadInterface } from './form/submit-payload.interface';
-import { TFunctionType } from 'types/t-function/type';
-import { UserContext } from 'context/user/context';
-
 import styles from './property-report.module.scss';
 
 const captchaService = GoogleRecaptchaService();

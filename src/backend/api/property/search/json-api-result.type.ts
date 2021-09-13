@@ -1,5 +1,5 @@
-import { AdTargetingInterface } from 'types/ad/targeting.interface';
 import { BackendModelPropertyInterface } from 'backend/model/property/interface';
+import { AdTargetingInterface } from 'types/ad/targeting.interface';
 
 export type BackendApiPropertySearchJsonApiResultType = {
   /**

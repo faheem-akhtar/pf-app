@@ -1,12 +1,11 @@
+import { stringSanitizeSimple } from 'helpers/string/sanitize-simple';
 import { useTranslation } from 'helpers/translation/hook';
+import { MultiSelectionAutocompleteComponent } from 'library/multi-selection-autocomplete/component';
 
+import { KeywordsComponentPropsInterface } from './component-props.interface';
 import { keywordsMakeQueryForInputValue } from './make-query-for-input-value';
 import { keywordsOnInputKeyPress } from './on-input-key-press';
 import { keywordsTryAddItem } from './try-add-item';
-
-import { KeywordsComponentPropsInterface } from './component-props.interface';
-import { MultiSelectionAutocompleteComponent } from 'library/multi-selection-autocomplete/component';
-import { stringSanitizeSimple } from 'helpers/string/sanitize-simple';
 
 const separator = ',';
 

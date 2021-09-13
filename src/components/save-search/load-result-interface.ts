@@ -1,5 +1,6 @@
-import { SaveSearchFiltersInterface } from './filters.interface';
 import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
+
+import { SaveSearchFiltersInterface } from './filters.interface';
 
 export type SaveSearchLoadResultInterface = {
   /**

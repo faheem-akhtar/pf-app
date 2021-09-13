@@ -3,8 +3,9 @@ import { Fragment, MutableRefObject } from 'react';
 import { IconThinEyeHideTemplate } from 'components/icon/thin/eye-hide-template';
 import { IconThinReportTemplate } from 'components/icon/thin/report-template';
 import { IconThinShareTemplate } from 'components/icon/thin/share-template';
-import { PropertyCardMenuContentButtonTemplate } from './button/template';
 import { TFunctionType } from 'types/t-function/type';
+
+import { PropertyCardMenuContentButtonTemplate } from './button/template';
 
 export const PropertyCardMenuContentTemplate = ({
   socialShareOpenRef,

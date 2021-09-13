@@ -1,6 +1,7 @@
 import { AnyValueType } from 'types/any/value.type';
-import { ApiRequestBasePropsType } from './request-base-props.type';
 import { UrlQueryType } from 'types/url/query.type';
+
+import { ApiRequestBasePropsType } from './request-base-props.type';
 
 export type ApiSwrRequestPropsType<Query = UrlQueryType, PostData = AnyValueType> = ApiRequestBasePropsType<
   Query,

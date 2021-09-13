@@ -1,7 +1,7 @@
 import { ApiFactory } from 'api/factory';
 import { ApiJsonModelInterface } from 'api/json/model.interface';
-import { EmailShareAttributesInterface } from 'types/email-share/attributes-interface';
 import { LocaleService } from 'services/locale/service';
+import { EmailShareAttributesInterface } from 'types/email-share/attributes-interface';
 
 type getFetcherReturnType = ReturnType<typeof ApiFactory>;
 

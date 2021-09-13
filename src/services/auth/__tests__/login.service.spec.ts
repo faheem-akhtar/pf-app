@@ -1,10 +1,11 @@
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
+
 import { ApiAuthRegisterResponseInterface } from 'api/auth/register/response.interface';
 import { ApiAuthSignInRequestInterface } from 'api/auth/sign-in/request.interface';
 import { ApiAuthSignInResponseInterface } from 'api/auth/sign-in/response.interface';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
 import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
 import { AuthLoginService } from 'services/auth/login.service';
-import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { UserModelInterface } from 'services/user/model.interface';
 
 describe('AuthLoginService', () => {

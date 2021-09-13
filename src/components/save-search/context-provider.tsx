@@ -1,8 +1,8 @@
 import { FunctionComponent, useContext, useEffect, useState } from 'react';
 
 import { apiSaveSearchCreateFetcher } from 'api/save-search/create/fetcher';
-import { FiltersContext } from 'components/filters/context';
 import { useApiSaveSearch } from 'api/save-search/hook';
+import { FiltersContext } from 'components/filters/context';
 import { UserContext } from 'context/user/context';
 
 import { SaveSearchContext } from './context';

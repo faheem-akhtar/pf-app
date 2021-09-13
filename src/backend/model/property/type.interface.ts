@@ -1,4 +1,5 @@
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
+
 import { BackendModelAmenityInterface } from '../amenity/interface';
 import { BackendModelGenericNameLabelInterface } from '../generic/name-label.interface';
 

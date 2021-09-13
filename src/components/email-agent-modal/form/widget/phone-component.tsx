@@ -1,6 +1,7 @@
+import { InputPhoneNumberComponent } from 'library/input/phone-number/component';
+
 import { EmailAgentModalFormFieldTemplate } from '../field-template';
 import { EmailAgentModalFormWidgetPropsType } from './props.type';
-import { InputPhoneNumberComponent } from 'library/input/phone-number/component';
 
 export const EmailAgentModalFormWidgetPhoneComponent: React.FunctionComponent<
   EmailAgentModalFormWidgetPropsType<string>

@@ -1,10 +1,12 @@
 /* eslint-disable pf-rules/export-name-validation */
 
-import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { Meta, Story } from '@storybook/react';
+
+import { propertyStub } from 'stubs/property/stub';
+
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
-import { propertyStub } from 'stubs/property/stub';
 
 export default {
   title: 'MDOT/Property card',

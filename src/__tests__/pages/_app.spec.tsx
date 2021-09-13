@@ -3,9 +3,9 @@
  */
 
 import { render, waitFor } from '@testing-library/react';
-import MyApp from 'pages/_app';
 import React from 'react';
 
+import MyApp from 'pages/_app';
 import { LocaleService } from 'services/locale/service';
 
 jest.mock('next-i18next', () => ({

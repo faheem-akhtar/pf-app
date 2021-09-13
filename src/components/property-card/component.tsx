@@ -1,25 +1,26 @@
-import { useContext, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useContext, useRef, useState } from 'react';
 
-import { arrayFromRange } from 'helpers/array/from-range';
+import { useApiPropertyImages } from 'api/property-images/hook';
 import { CallingAgentModalComponent } from 'components/calling-agent-modal/component';
 import { EmailAgentModalComponent } from 'components/email-agent-modal/component';
-import { functionNoop } from 'helpers/function/noop';
-import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { PropertyCardComponentPropsType } from './component-props.type';
-import { PropertyCardMenuContentTemplate } from './menu/content/template';
-import { PropertyCardMenuModalComponent } from './menu/modal/component';
-import { PropertyCardTemplate } from './template';
-import { PropertyCardTemplatePropsType } from './template-props.type';
 import { PropertyReportComponent } from 'components/property/report/component';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { propertySerpObfuscatedGetImagesCount } from 'components/property/serp/obfuscated/get/images-count';
 import { propertySerpObfuscatedGetImgUrlSmall } from 'components/property/serp/obfuscated/get/img-url-small';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
-import { PropertyShareComponent } from '../property/share/component';
 import { SavePropertyContext } from 'components/save-property/context';
-import { useApiPropertyImages } from 'api/property-images/hook';
+import { LanguageCodeEnum } from 'enums/language/code.enum';
+import { arrayFromRange } from 'helpers/array/from-range';
+import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
+
+import { PropertyShareComponent } from '../property/share/component';
+import { PropertyCardComponentPropsType } from './component-props.type';
+import { PropertyCardMenuContentTemplate } from './menu/content/template';
+import { PropertyCardMenuModalComponent } from './menu/modal/component';
+import { PropertyCardTemplate } from './template';
+import { PropertyCardTemplatePropsType } from './template-props.type';
 
 export const PropertyCardComponent = ({ property, loading }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();

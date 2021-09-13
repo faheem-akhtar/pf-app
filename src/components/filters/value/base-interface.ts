@@ -1,4 +1,5 @@
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+
 import { FiltersValueFieldCategoryIdType } from './field/category-id.type';
 import { FiltersValueFieldPropertyTypeIdType } from './field/property-type-id.type';
 

@@ -1,25 +1,24 @@
 import { useState } from 'react';
 
 import { AuthLoaderComponent } from 'components/auth/loader/component';
-import { AuthRegisterService } from 'services/auth/register.service';
 import { AuthRegistrationFieldEnum } from 'components/auth/registration/field.enum';
 import { AuthRegistrationPropsInterface } from 'components/auth/registration/props.interface';
+import { ErrorMessageComponent } from 'components/error-message/component';
+import { formMakeValidator } from 'components/form/make-validator';
+import { ReCaptchaComponent } from 'components/re-captcha/component';
+import { configLinksSecondaryPrivacyPolicy } from 'config/links/secondary/privacy-policy';
+import { configLinksSecondaryTermsConditions } from 'config/links/secondary/terms-conditions';
+import { domClassMerge } from 'helpers/dom/class-merge';
+import { useTranslation } from 'helpers/translation/hook';
+import { validationEmail } from 'helpers/validation/email';
+import { validationRequired } from 'helpers/validation/required';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { CheckboxTemplate } from 'library/checkbox/template';
-import { domClassMerge } from 'helpers/dom/class-merge';
-import { ErrorMessageComponent } from 'components/error-message/component';
-import { formMakeValidator } from 'components/form/make-validator';
-import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { InputBaseComponent } from 'library/input/base/component';
-import { ReCaptchaComponent } from 'components/re-captcha/component';
-import { useTranslation } from 'helpers/translation/hook';
-import { validationEmail } from 'helpers/validation/email';
-import { validationRequired } from 'helpers/validation/required';
-
-import { configLinksSecondaryPrivacyPolicy } from 'config/links/secondary/privacy-policy';
-import { configLinksSecondaryTermsConditions } from 'config/links/secondary/terms-conditions';
+import { AuthRegisterService } from 'services/auth/register.service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 
 import styles from '../auth.module.scss';
 

@@ -1,5 +1,6 @@
-import { ApiMakeFactoryPropsBaseType } from './make-factory-props-base.type';
 import { JwtTokenStore } from 'services/jwt/token/store';
+
+import { ApiMakeFactoryPropsBaseType } from './make-factory-props-base.type';
 
 export type ApiMakeFactoryPropsRequireAuthType = ApiMakeFactoryPropsBaseType & {
   /**

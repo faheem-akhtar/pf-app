@@ -1,10 +1,9 @@
-import { CheckboxTemplate } from 'library/checkbox/template';
-import { EmailAgentModalFormFieldTemplate } from '../field-template';
-import { EmailAgentModalFormWidgetPropsType } from './props.type';
-
 import { configLinksSecondaryTermsConditions } from 'config/links/secondary/terms-conditions';
+import { CheckboxTemplate } from 'library/checkbox/template';
 
 import styles from '../email-agent-modal-form.module.scss';
+import { EmailAgentModalFormFieldTemplate } from '../field-template';
+import { EmailAgentModalFormWidgetPropsType } from './props.type';
 
 export const EmailAgentModalFormWidgetAcceptTermsComponent: React.FunctionComponent<
   EmailAgentModalFormWidgetPropsType<boolean>

@@ -1,5 +1,4 @@
 import { propertySerpObfuscatedFieldName } from '../field/name';
-
 import { PropertySerpObfuscatedType } from '../type';
 
 export const propertySerpObfuscatedGetName = (property: PropertySerpObfuscatedType): string => {

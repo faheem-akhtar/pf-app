@@ -1,8 +1,8 @@
 import { apiAuthSocialLoginGoogleFetcher } from 'api/auth/social-login/google.fetcher';
 import { ApiAuthSocialLoginModelInterface } from 'api/auth/social-login/model.interface';
 import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
-import { AuthService } from 'services/auth/service';
 import { importScript } from 'helpers/import/script';
+import { AuthService } from 'services/auth/service';
 import { WindowService } from 'services/window/service';
 
 const scriptUrl = '//apis.google.com/js/api:client.js';

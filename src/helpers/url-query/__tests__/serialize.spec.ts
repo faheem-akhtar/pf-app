@@ -1,6 +1,5 @@
-import { UrlQueryType } from 'types/url/query.type';
-
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
+import { UrlQueryType } from 'types/url/query.type';
 
 describe('urlQuerySerialize', () => {
   const query: UrlQueryType = { l: '3092', c: '2', fu: '0', rp: 'y', am: [] };

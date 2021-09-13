@@ -1,6 +1,5 @@
 import { configCommon } from 'config/common';
 import { configOriginValue } from 'config/origin/value';
-
 import { localeGetHref } from 'helpers/locale/get-href';
 
 describe('localeGetHref', () => {

@@ -1,5 +1,6 @@
-import { AuthChangePasswordService } from 'services/auth/change-password.service';
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
+
+import { AuthChangePasswordService } from 'services/auth/change-password.service';
 
 describe('AuthChangePasswordService', () => {
   beforeEach(() => {

@@ -1,22 +1,22 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 import '@testing-library/jest-dom';
-
 import { NextRouter } from 'next/router';
+
+import { setupSwrMock } from 'mocks/react/use-swr.mock';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 
-import { recoverReactUseEffect } from './react/mock-use-effect';
-import { recoverReactUseReducer } from './react/mock-use-reducer';
-import { recoverReactUseRef } from './react/mock-use-ref';
-import { recoverReactUseState } from './react/mock-use-state';
+import { translationsMap } from './misc/add-translation.mock';
+import { recoverReactUseEffect } from './react/use-effect.mock';
+import { recoverReactUseReducer } from './react/use-reducer.mock';
+import { recoverReactUseRef } from './react/use-ref.mock';
+import { recoverReactUseState } from './react/use-state.mock';
 import { recoverWindowAddEventListener } from './window/add-event-listener.mock';
 import { recoverWindowConsole } from './window/console.mock';
 import { recoverWindowFetch } from './window/fetch.mock';
 import { recoverWindowMockImportScript } from './window/import-script.mock';
 import { recoverWindowRemoveEventListener } from './window/remove-event-listener.mock';
-import { setupSwrMock } from 'mocks/react/mock-use-swr';
-import { translationsMap } from './misc/add-translation.mock';
 
 if (!global.window) {
   (global as unknown as { window: Window }).window = global as unknown as Window;

@@ -1,4 +1,5 @@
 import { MutableRefObject } from 'react';
+
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 import { TFunctionType } from 'types/t-function/type';
 

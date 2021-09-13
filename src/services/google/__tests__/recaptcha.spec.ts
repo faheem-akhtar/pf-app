@@ -1,8 +1,9 @@
-import * as importScriptModule from 'helpers/import/script';
-import { functionNoop } from 'helpers/function/noop';
-import { GoogleRecaptcha } from '../recaptcha';
 import { reCaptchaSelector } from 'components/re-captcha/selector';
+import { functionNoop } from 'helpers/function/noop';
+import * as importScriptModule from 'helpers/import/script';
 import { WindowService } from 'services/window/service';
+
+import { GoogleRecaptcha } from '../recaptcha';
 
 describe('GoogleRecaptcha', () => {
   let googleRecaptcha: GoogleRecaptcha;

@@ -5,6 +5,7 @@
 import { render, waitFor } from '@testing-library/react';
 
 import { mockModalEnv } from 'mocks/modal-env/mock';
+
 import { ModalPortalComponent } from '../portal-component';
 
 describe('ModalPortalComponent', () => {

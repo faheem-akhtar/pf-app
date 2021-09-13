@@ -1,5 +1,7 @@
 import google from 'google-one-tap';
+
 import { helpersIsClient } from 'helpers/is-client';
+
 import { windowLocalStorageDefaultState } from './local-storage/default-state';
 import { windowLocalStorageMakeWrapper } from './local-storage/make-wrapper';
 

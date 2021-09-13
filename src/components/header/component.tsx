@@ -1,13 +1,13 @@
-import { useContext, useRef } from 'react';
 import { useRouter } from 'next/router';
+import { useContext, useRef } from 'react';
 
 import { useApiContactedProperties } from 'api/contacted-properties/hook';
-
 import { AuthModalComponent } from 'components/auth/modal/component';
-import { HeaderTemplate } from './template';
 import { ModalComponent } from 'components/modal/component';
 import { SavePropertyContext } from 'components/save-property/context';
 import { UserContext } from 'context/user/context';
+
+import { HeaderTemplate } from './template';
 
 export const HeaderComponent = (): JSX.Element => {
   const locale = useRouter().locale as string;

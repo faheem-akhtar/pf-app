@@ -1,13 +1,12 @@
-import { domClassMerge } from 'helpers/dom/class-merge';
-import { propertySerpObfuscatedGetPriceText } from 'components/property/serp/obfuscated/get/price-text';
-import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
-
 import { IconSolidFavoriteTemplate } from 'components/icon/solid/favorite-template';
 import { IconThinFavoriteTemplate } from 'components/icon/thin/favorite-template';
 import { IconThinMenuTemplate } from 'components/icon/thin/menu-template';
-import { PropertyCardTitleTemplatePropsInterface } from './template-props.interface';
+import { propertySerpObfuscatedGetPriceText } from 'components/property/serp/obfuscated/get/price-text';
+import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
+import { domClassMerge } from 'helpers/dom/class-merge';
 
 import styles from './property-card-title.module.scss';
+import { PropertyCardTitleTemplatePropsInterface } from './template-props.interface';
 
 export const PropertyCardTitleTemplate: React.FunctionComponent<PropertyCardTitleTemplatePropsInterface> = ({
   property,

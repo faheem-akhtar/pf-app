@@ -1,8 +1,9 @@
-import { AnyValueType } from 'types/any/value.type';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
+
 import { ApiAuthAutoRegisterRequestInterface } from 'api/auth/auto-register/request.interface';
 import { ApiAuthRegisterResponseInterface } from 'api/auth/register/response.interface';
 import { AuthAutoRegisterService } from 'services/auth/auto-register.service';
-import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { AnyValueType } from 'types/any/value.type';
 
 describe('AuthAutoRegisterService', () => {
   const model: ApiAuthAutoRegisterRequestInterface = {

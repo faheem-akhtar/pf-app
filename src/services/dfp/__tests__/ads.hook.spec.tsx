@@ -1,9 +1,8 @@
+import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
+import { mockReactUseRef } from 'mocks/react/use-ref.mock';
 import { adConfigStub } from 'stubs/ad/config.stub';
 
 import { DfpAdService } from '../ad-service';
-
-import { mockReactUseEffect } from 'mocks/react/mock-use-effect';
-import { mockReactUseRef } from 'mocks/react/mock-use-ref';
 import { useServicesDfpAds } from '../ads.hook';
 
 describe('useServicesDfpAds', () => {

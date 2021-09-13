@@ -1,7 +1,8 @@
-import { nextApiRequestStub, nextApiResponseStub } from 'stubs/next/api';
-import countHandler from 'pages/api/pwa/property-search/count';
 import { mockWindowConsole } from 'mocks/window/console.mock';
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { nextApiRequestStub, nextApiResponseStub } from 'stubs/next/api';
+
+import countHandler from 'pages/api/pwa/property-search/count';
 
 describe('pages/api/property-search/count', () => {
   it('should return the count of properties for the search', async () => {

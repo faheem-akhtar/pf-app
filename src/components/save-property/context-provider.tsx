@@ -1,8 +1,9 @@
 import { FunctionComponent } from 'react';
 
+import { useSavedPropertiesState } from 'components/saved-properties/state.hook';
+
 import { SavePropertyContext } from './context';
 import { SavePropertyContextInterface } from './context.interface';
-import { useSavedPropertiesState } from 'components/saved-properties/state.hook';
 
 export const SavePropertyContextProvider: FunctionComponent = ({ children }) => {
   const [savedProperties, setSavedProperty, removeSavedProperty] = useSavedPropertiesState();

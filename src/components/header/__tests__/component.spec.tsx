@@ -5,9 +5,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { HeaderComponent } from '../component';
 import { mockModalEnv } from 'mocks/modal-env/mock';
+
 import { UserContextProvider } from 'context/user/context-provider';
+
+import { HeaderComponent } from '../component';
 
 const HeaderComponentWithContext = (): JSX.Element => (
   <UserContextProvider>

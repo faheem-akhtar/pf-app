@@ -1,16 +1,16 @@
 import Head from 'next/head';
 
+import { PropertyCardComponent } from 'components/property-card/component';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
-import { propertySerpObfuscatedGetImgUrl } from '../serp/obfuscated/get/img-url';
 import { useServicesDfpAds } from 'services/dfp/ads.hook';
 
-import { PropertyCardComponent } from 'components/property-card/component';
+import { propertySerpObfuscatedGetImgUrl } from '../serp/obfuscated/get/img-url';
+import { propertySerpObfuscatedGetUrl } from '../serp/obfuscated/get/url';
+import { PropertySerpObfuscatedType } from '../serp/obfuscated/type';
 import { PropertyListAdPlaceholderTemplate } from './ad-placeholder-template';
 import { PropertyListComponentPropsInterface } from './component-props.interface';
 import { PropertyListItemType } from './item/type';
 import { PropertyListItemTypeEnum } from './item/type.enum';
-import { propertySerpObfuscatedGetUrl } from '../serp/obfuscated/get/url';
-import { PropertySerpObfuscatedType } from '../serp/obfuscated/type';
 
 const NUMBER_OF_IMAGES_TO_PRELOAD = 3;
 

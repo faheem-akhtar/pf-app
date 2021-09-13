@@ -1,5 +1,6 @@
-import { AppearOnScrollStatusEnum } from './status.enum';
 import { TimeService } from 'services/time/service';
+
+import { AppearOnScrollStatusEnum } from './status.enum';
 
 export const appearOnScrollMakeStatusUpdater =
   (props: {

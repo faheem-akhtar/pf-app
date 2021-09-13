@@ -1,4 +1,5 @@
 import { KeyboardKeyEnum } from 'enums/keyboard/key.enum';
+
 import { MultiSelectionAutocompleteMakeKeyboardAccesibilityHandlerPropsInterface } from './make-keyboard-accesibility-handler-props.interface';
 
 /**

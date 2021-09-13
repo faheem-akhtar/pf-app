@@ -1,14 +1,13 @@
 import { Fragment } from 'react';
 
-import { domClassMerge } from 'helpers/dom/class-merge';
-
 import { IconShareEmailTemplate } from 'components/icon/share/email-template';
 import { IconShareFacebookTemplate } from 'components/icon/share/facebook-template';
 import { IconShareTwitterTemplate } from 'components/icon/share/twitter-template';
 import { IconShareWhatsappTemplate } from 'components/icon/share/whatsapp-template';
+import { domClassMerge } from 'helpers/dom/class-merge';
 
-import { PropertyShareSocialComponentPropsInterface } from './component-props.interface';
 import styles from '../property-share.module.scss';
+import { PropertyShareSocialComponentPropsInterface } from './component-props.interface';
 
 const socialGetShareLinkUtmPlatform = (url: string, platform: string): string =>
   `${url}?utm_source=${platform}&utm_medium=social&utm_campaign=share_property`;

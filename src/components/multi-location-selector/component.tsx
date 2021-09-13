@@ -1,20 +1,19 @@
 import { useState } from 'react';
 
-import { helpersIsClient } from 'helpers/is-client';
-import { LocationService } from 'services/location/service';
-import { multiLocationSelectorGetHistory } from './get-history';
-import { multiLocationSelectorMakeOnAddLocation } from './make-on-add-location';
-import { useReactConstructor } from 'helpers/react/constructor.hook';
-import { useTranslation } from 'helpers/translation/hook';
-
 import { IconThinMapPinTemplate } from 'components/icon/thin/map-pin-template';
 import { IconThinTimeTemplate } from 'components/icon/thin/time-template';
-import { LocationCompactInterface } from 'types/location/compact.interface';
-import { MultiLocationSelectorComponentPropsInterface } from './component-props.interface';
+import { helpersIsClient } from 'helpers/is-client';
+import { useReactConstructor } from 'helpers/react/constructor.hook';
+import { useTranslation } from 'helpers/translation/hook';
 import { MultiSelectionAutocompleteComponent } from 'library/multi-selection-autocomplete/component';
-import { TFunctionType } from 'types/t-function/type';
+import { LocationService } from 'services/location/service';
 import { WindowService } from 'services/window/service';
+import { LocationCompactInterface } from 'types/location/compact.interface';
+import { TFunctionType } from 'types/t-function/type';
 
+import { MultiLocationSelectorComponentPropsInterface } from './component-props.interface';
+import { multiLocationSelectorGetHistory } from './get-history';
+import { multiLocationSelectorMakeOnAddLocation } from './make-on-add-location';
 import styles from './multi-location-selector.module.scss';
 
 const renderNoSuggestions = (t: TFunctionType, inputValue: string): JSX.Element => (

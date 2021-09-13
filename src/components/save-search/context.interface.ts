@@ -1,5 +1,6 @@
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiSaveSearchCreateRequestInterface } from 'api/save-search/create/request.interface';
+
 import { SaveSearchLoadResultInterface } from './load-result-interface';
 
 export interface SaveSearchContextInterface {

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 import { AdConfigInterface } from 'types/ad/config.interface';
+
 import { DfpAdService } from './ad-service';
 
 export const useServicesDfpAds = (adConfig: AdConfigInterface): void => {

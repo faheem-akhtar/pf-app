@@ -1,5 +1,4 @@
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
-
 import { categoryIdIsRent } from 'helpers/category-id/is-rent';
 
 describe('categoryIdIsRent', () => {

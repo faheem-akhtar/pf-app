@@ -1,10 +1,10 @@
 import { IconSolidEmailTemplate } from 'components/icon/solid/email-template';
 import { IconSolidPhoneTemplate } from 'components/icon/solid/phone-template';
 import { IconSolidWhatsappTemplate } from 'components/icon/solid/whatsapp-template';
-import { PropertyCardCtaButtonsGroupButtonTemplate } from './button/template';
-import { PropertyCardCtaButtonsGroupTemplatePropsInterface } from './template-props.interface';
 
+import { PropertyCardCtaButtonsGroupButtonTemplate } from './button/template';
 import styles from './property-cta-buttons.module.scss';
+import { PropertyCardCtaButtonsGroupTemplatePropsInterface } from './template-props.interface';
 
 export const PropertyCardCtaButtonsGroupTemplate: React.FunctionComponent<PropertyCardCtaButtonsGroupTemplatePropsInterface> =
   (props) => {

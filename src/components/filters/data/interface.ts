@@ -1,4 +1,5 @@
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+
 import { FiltersValueFieldChoiceInterface } from '../value/field/choice.interface';
 import { FiltersValueInterface } from '../value/interface';
 

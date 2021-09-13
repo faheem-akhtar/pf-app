@@ -1,9 +1,8 @@
-import { ApiFetcherResultType } from 'api/fetcher-result-type';
-import { WindowService } from 'services/window/service';
-
 import { apiAuthRefreshTokenFetcher } from 'api/auth/refresh-token/fetcher';
 import { ApiAuthRefreshTokenModelInterface } from 'api/auth/refresh-token/model.interface';
+import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
+import { WindowService } from 'services/window/service';
 
 export class JwtTokenStore {
   /**

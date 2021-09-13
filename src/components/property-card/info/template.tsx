@@ -1,12 +1,11 @@
-import { componentsPropertyCardGetBathroomsString } from '../get-bathrooms-string';
-import { propertyCardGetBedroomsString } from '../get-bedrooms-string';
 import { propertySerpObfuscatedGetBathroomValue } from 'components/property/serp/obfuscated/get/bathroom-value';
 import { propertySerpObfuscatedGetBedroomValue } from 'components/property/serp/obfuscated/get/bedroom-value';
 import { propertySerpObfuscatedGetPropertyTypeName } from 'components/property/serp/obfuscated/get/property-type-name';
 
-import { PropertyCardInfoTemplatePropsInterface } from './template-props.interface';
-
+import { componentsPropertyCardGetBathroomsString } from '../get-bathrooms-string';
+import { propertyCardGetBedroomsString } from '../get-bedrooms-string';
 import styles from './property-card-info.module.scss';
+import { PropertyCardInfoTemplatePropsInterface } from './template-props.interface';
 
 export const PropertyCardInfoTemplate: React.FunctionComponent<PropertyCardInfoTemplatePropsInterface> = (props) => {
   const propertyType = propertySerpObfuscatedGetPropertyTypeName(props.property);

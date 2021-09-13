@@ -1,7 +1,6 @@
 import { keywordsByCategory } from 'config/keywords/by-category';
-import { stringMakeCaseInsensitiveTester } from 'helpers/string/make-case-insensitive-tester';
-
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
+import { stringMakeCaseInsensitiveTester } from 'helpers/string/make-case-insensitive-tester';
 
 const MAX_NUMBER_OF_KEYWORDS = 8;
 

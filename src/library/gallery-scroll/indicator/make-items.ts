@@ -1,4 +1,5 @@
 import { arrayFromRange } from 'helpers/array/from-range';
+
 import { GalleryScrollIndicatorItemInterface } from './item.interface';
 import { galleryScrollIndicatorVisibleItemsCount } from './visible-items-count';
 

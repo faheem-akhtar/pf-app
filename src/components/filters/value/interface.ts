@@ -1,4 +1,6 @@
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { LocationCompactInterface } from 'types/location/compact.interface';
+
 import { FiltersValueBaseInterface } from './base-interface';
 import { FiltersValueFieldAmenitiesType } from './field/amenities.type';
 import { FiltersValueFieldCompletionStatusType } from './field/completion-status.type';
@@ -12,7 +14,6 @@ import { FiltersValueFieldPricePeriodType } from './field/price-period.type';
 import { FiltersValueFieldSortType } from './field/sort.type';
 import { FiltersValueFieldUtilitiesPriceTypeType } from './field/utilities-price-type.type';
 import { FiltersValueFieldVirtualViewingType } from './field/virtual-viewing.type';
-import { LocationCompactInterface } from 'types/location/compact.interface';
 
 export interface FiltersValueInterface extends FiltersValueBaseInterface {
   /**

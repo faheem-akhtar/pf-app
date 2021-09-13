@@ -1,7 +1,8 @@
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
+
 import { AuthLogoutService } from 'services/auth/logout.service';
 import { AuthService } from 'services/auth/service';
 import { JwtTokenService } from 'services/jwt/token/service';
-import { mockWindowFetch } from 'mocks/window/fetch.mock';
 
 describe('AuthLogoutService', () => {
   beforeEach(() => {

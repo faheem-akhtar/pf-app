@@ -1,9 +1,8 @@
 import { useTranslation } from 'helpers/translation/hook';
 
-import { ChipChoiceTemplatePropsInterface } from './template-props.interface';
 import { ChipTemplate } from '../chip/template';
-
 import styles from './chip-choice.module.scss';
+import { ChipChoiceTemplatePropsInterface } from './template-props.interface';
 
 /**
  * Chip choice allows users to make selections from a list of values.

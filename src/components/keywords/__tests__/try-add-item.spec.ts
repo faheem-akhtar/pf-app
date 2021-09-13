@@ -1,6 +1,6 @@
-import { keywordsTryAddItem } from '../try-add-item';
-
 import { MultiSelectionAutocompleteExtensionInterface } from 'library/multi-selection-autocomplete/extension.interface';
+
+import { keywordsTryAddItem } from '../try-add-item';
 
 describe('keywordsTryAddItem', () => {
   it('should add item when the value is not empty', () => {

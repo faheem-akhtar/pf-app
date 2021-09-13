@@ -1,9 +1,10 @@
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
+
 import { BackendModelAgentInterface } from '../agent/interface';
 import { BackendModelBrokerInterface } from '../broker/interface';
 import { BackendModelLocationInterface } from '../location/interface';
-import { BackendModelPropertyCategoryIdentifierEnum } from './category-identifier.enum';
 import { BackendModelPropertyCategoryInterface } from './category.interface';
+import { BackendModelPropertyCategoryIdentifierEnum } from './category-identifier.enum';
 import { BackendModelPropertyImageInterface } from './image.interface';
 import { BackendModelPropertyLiveEventMetadateInterface } from './live-event/metadate.interface';
 import { BackendModelPropertyPriceInterface } from './price.interface';

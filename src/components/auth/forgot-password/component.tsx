@@ -4,19 +4,19 @@ import { AuthForgotPasswordFieldEnum } from 'components/auth/forgot-password/fie
 import { AuthForgotPasswordPropsInterface } from 'components/auth/forgot-password/props.interface';
 import { AuthLoaderComponent } from 'components/auth/loader/component';
 import { AuthLoginFieldEnum } from 'components/auth/login/field.enum';
-import { AuthResetPasswordService } from 'services/auth/reset-password.service';
-import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
-import { ButtonSizeEnum } from 'library/button/size.enum';
-import { ButtonTemplate } from 'library/button/template';
-import { domClassMerge } from 'helpers/dom/class-merge';
 import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
-import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
-import { InputBaseComponent } from 'library/input/base/component';
 import { ReCaptchaComponent } from 'components/re-captcha/component';
+import { domClassMerge } from 'helpers/dom/class-merge';
 import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
+import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
+import { ButtonSizeEnum } from 'library/button/size.enum';
+import { ButtonTemplate } from 'library/button/template';
+import { InputBaseComponent } from 'library/input/base/component';
+import { AuthResetPasswordService } from 'services/auth/reset-password.service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 
 import styles from '../auth.module.scss';
 

@@ -1,3 +1,5 @@
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+
 import { FiltersModalWidgetAmenitiesComponent } from './amenities-component';
 import { FiltersModalWidgetAreaComponent } from './area-component';
 import { FiltersModalWidgetBathroomComponent } from './bathroom-component';
@@ -13,7 +15,6 @@ import { FiltersModalWidgetPropertyTypeComponent } from './property-type-compone
 import { FiltersModalWidgetType } from './type';
 import { FiltersModalWidgetUtilitiesPriceTypeComponent } from './utilities-price-type-component';
 import { FiltersModalWidgetVirtualViewingsComponent } from './virtual-viewings-component';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
 export const filtersModalWidgetRenderMap: Record<string, FiltersModalWidgetType> = {
   [FiltersParametersEnum.categoryId]: FiltersModalWidgetCategoryIdComponent,

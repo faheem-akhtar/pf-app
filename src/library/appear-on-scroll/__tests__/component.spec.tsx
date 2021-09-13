@@ -5,11 +5,12 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
+import { mockElementGetBoundingClientRect } from 'mocks/element/get-bounding-client-rect.mock';
+import { mockDocumentBodyClientHeight } from 'mocks/window/document/body-client-height.mock';
+import { mockWindowSetTimeout } from 'mocks/window/set-timeout.mock';
+
 import { AppearOnScrollComponent } from '../component';
 import { AppearOnScrollComponentPropsInterface } from '../component-props.interface';
-import { mockDocumentBodyClientHeight } from 'mocks/window/document/body-client-height.mock';
-import { mockElementGetBoundingClientRect } from 'mocks/element/get-bounding-client-rect.mock';
-import { mockWindowSetTimeout } from 'mocks/window/set-timeout.mock';
 
 const BODY_CLIENT_HEIGHT = 10;
 type Observer = (elements: { isIntersecting: boolean }[]) => void;

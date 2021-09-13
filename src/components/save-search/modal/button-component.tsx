@@ -1,19 +1,18 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 
-import { useTranslation } from 'helpers/translation/hook';
-
 import { AuthModalComponent } from 'components/auth/modal/component';
+import { IconThinStarTemplate } from 'components/icon/thin/star-template';
+import { ModalComponent } from 'components/modal/component';
+import { SnackbarContext } from 'components/snackbar/context';
+import { UserContext } from 'context/user/context';
+import { useTranslation } from 'helpers/translation/hook';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { IconThinStarTemplate } from 'components/icon/thin/star-template';
-import { ModalComponent } from 'components/modal/component';
+
 import { SaveSearchContext } from '../context';
 import { SaveSearchModalContentComponent } from './content-component';
-import { SnackbarContext } from 'components/snackbar/context';
-import { UserContext } from 'context/user/context';
-
 import styles from './save-search-modal-component.module.scss';
 
 export const SaveSearchModalButtonComponent = (): JSX.Element => {

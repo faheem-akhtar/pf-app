@@ -5,11 +5,12 @@
 import { render } from '@testing-library/react';
 
 import { adConfigStub } from 'stubs/ad/config.stub';
-import { PropertyListComponent } from '../component';
 import { propertyStub } from 'stubs/property/stub';
 
-import { arrayFromRange } from 'helpers/array/from-range';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
+import { arrayFromRange } from 'helpers/array/from-range';
+
+import { PropertyListComponent } from '../component';
 
 describe('PropertyListComponent', () => {
   beforeEach(() => {

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
+import { functionSelf } from 'helpers/function/self';
+
 import { FormFieldInterface } from './field.interface';
 import { FormFieldValidatorType } from './field-validator.type';
-import { functionSelf } from 'helpers/function/self';
 
 function getError(input: string | number | boolean, validators: FormFieldValidatorType[]): string {
   const errors = validators

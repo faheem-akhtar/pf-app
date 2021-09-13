@@ -3,7 +3,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
 import { backendApiPropertyImagesFetcher } from 'backend/api/property/images/fetcher';
 import { imageAllowedTypes } from 'components/image/allowed-types';
-
 import { ImageFormatType } from 'components/image/format-type';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {

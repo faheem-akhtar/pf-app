@@ -1,6 +1,8 @@
 import { Dispatch, useEffect } from 'react';
-import { GalleryScrollActionType } from './action.type';
+
 import { WindowService } from 'services/window/service';
+
+import { GalleryScrollActionType } from './action.type';
 
 export const useGalleryScrollEffects = (
   isMouseOrTouchDown: boolean,

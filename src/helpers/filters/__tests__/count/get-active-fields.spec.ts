@@ -1,10 +1,11 @@
-import { filtersCountGetActiveFields } from 'helpers/filters/count/get-active-fields';
 import { filtersDataStub } from 'stubs/filters/data.stub';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { filtersValueStub } from 'stubs/filters/value.stub';
+
 import { FiltersValueFieldAmenitiesType } from 'components/filters/value/field/amenities.type';
 import { FiltersValueFieldFurnishedType } from 'components/filters/value/field/furnished.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { filtersValueStub } from 'stubs/filters/value.stub';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { filtersCountGetActiveFields } from 'helpers/filters/count/get-active-fields';
 
 describe('filtersCountGetActiveFields()', () => {
   let sampleFilterValues: FiltersValueInterface;

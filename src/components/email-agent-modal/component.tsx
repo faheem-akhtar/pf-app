@@ -1,31 +1,31 @@
 import { FunctionComponent, useContext, useRef, useState } from 'react';
 
-import { AuthModalComponent } from 'components/auth/modal/component';
-import { EmailAgentAttributesInterface } from 'types/email-agent/attributes.interface';
-import { EmailAgentModalComponentPropsInterface } from './component-props.interface';
-import { EmailAgentModalFormTemplatePropsInterface } from './form/template-props.interface';
-import { EmailAgentModalStatusEnum } from './status.enum';
-import { EmailAgentModalTemplate } from './template';
-import { EmailAgentModalTemplatePropsInterface } from './template-props.interface';
-import { FormFieldsEnum } from './form/fields.enum';
-import { FormFieldsValueType } from './form/fields-value.type';
-import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
-import { ModalComponent } from 'components/modal/component';
-import { UserContext } from 'context/user/context';
-
 import { apiEmailAgentFetcher } from 'api/email-agent/fetcher';
-import { configEmailAgentEmailAlertCheckedByDefault } from 'config/email-agent/email-alert-checked-by-default';
-import { configEmailAgentMustAcceptTerms } from 'config/email-agent/must-accept-terms';
-import { configEmailAgentReceiveAdsEnabled } from 'config/email-agent/receive-ads-enabled';
+import { AuthModalComponent } from 'components/auth/modal/component';
 import { formMakeValidator } from 'components/form/make-validator';
-import { functionNoop } from 'helpers/function/noop';
+import { ModalComponent } from 'components/modal/component';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
+import { configEmailAgentEmailAlertCheckedByDefault } from 'config/email-agent/email-alert-checked-by-default';
+import { configEmailAgentMustAcceptTerms } from 'config/email-agent/must-accept-terms';
+import { configEmailAgentReceiveAdsEnabled } from 'config/email-agent/receive-ads-enabled';
+import { UserContext } from 'context/user/context';
+import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
 import { validationPhone } from 'helpers/validation/phone';
 import { validationRequired } from 'helpers/validation/required';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
+import { EmailAgentAttributesInterface } from 'types/email-agent/attributes.interface';
+
+import { EmailAgentModalComponentPropsInterface } from './component-props.interface';
+import { FormFieldsEnum } from './form/fields.enum';
+import { FormFieldsValueType } from './form/fields-value.type';
+import { EmailAgentModalFormTemplatePropsInterface } from './form/template-props.interface';
+import { EmailAgentModalStatusEnum } from './status.enum';
+import { EmailAgentModalTemplate } from './template';
+import { EmailAgentModalTemplatePropsInterface } from './template-props.interface';
 
 const captchaService = GoogleRecaptchaService();
 

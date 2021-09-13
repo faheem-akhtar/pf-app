@@ -3,13 +3,15 @@
  */
 import { fireEvent, render, RenderResult, waitFor } from '@testing-library/react';
 
+import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
+
 import * as AuthRegisterServiceModule from 'services/auth/register.service';
+import { GoogleRecaptcha } from 'services/google/recaptcha';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
+import { UserModelInterface } from 'services/user/model.interface';
+
 import { AuthRegistrationComponent } from '../component';
 import { AuthRegistrationPropsInterface } from '../props.interface';
-import { GoogleRecaptcha } from 'services/google/recaptcha';
-import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
-import { UserModelInterface } from 'services/user/model.interface';
 
 describe('AuthRegistrationComponent', () => {
   let props: AuthRegistrationPropsInterface;

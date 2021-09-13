@@ -1,8 +1,7 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 
-import { ChipTemplatePropsInterface } from './template-props.interface';
-
 import styles from './chip.module.scss';
+import { ChipTemplatePropsInterface } from './template-props.interface';
 
 export const ChipTemplate = (props: ChipTemplatePropsInterface): JSX.Element => {
   return (

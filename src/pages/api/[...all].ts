@@ -1,10 +1,10 @@
 /* eslint pf-rules/export-name-validation: 0 */
 
 import { NextApiRequest, NextApiResponse } from 'next';
+import httpProxyMiddleware from 'next-http-proxy-middleware';
 
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
 import { configOriginValue } from 'config/origin/value';
-import httpProxyMiddleware from 'next-http-proxy-middleware';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 

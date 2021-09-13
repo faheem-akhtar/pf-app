@@ -1,5 +1,6 @@
-import { PropertyContactOptionsListInterface } from '../../property/contact-options-list.interface';
 import { TFunctionType } from 'types/t-function/type';
+
+import { PropertyContactOptionsListInterface } from '../../property/contact-options-list.interface';
 
 export interface PropertyCardCtaButtonsGroupTemplatePropsInterface {
   /**

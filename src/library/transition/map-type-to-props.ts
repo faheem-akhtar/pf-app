@@ -1,7 +1,7 @@
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
-import { TransitionTypeEnum } from './type.enum';
 
 import styles from './transition.module.scss';
+import { TransitionTypeEnum } from './type.enum';
 
 /**
  * Map the transition types to the props

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+
 import { AuthForgotPasswordComponent } from 'components/auth/forgot-password/component';
 import { AuthLoginComponent } from 'components/auth/login/component';
-import { AuthModalPropsInterface } from './props.interface';
 import { AuthRegistrationComponent } from 'components/auth/registration/component';
 import { AuthScreenEnum } from 'components/auth/screen.enum';
-import { functionNoop } from 'helpers/function/noop';
 import { IconThickCrossTemplate } from 'components/icon/thick/cross-template';
+import { functionNoop } from 'helpers/function/noop';
 
 import styles from './auth-modal-component.module.scss';
+import { AuthModalPropsInterface } from './props.interface';
 
 export const AuthModalComponent = ({
   close = functionNoop,

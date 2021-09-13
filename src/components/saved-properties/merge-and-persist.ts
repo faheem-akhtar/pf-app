@@ -2,6 +2,7 @@ import { apiSavedPropertiesCreateFetcher } from 'api/saved-properties/create/fet
 import { arrayAreEqual } from 'helpers/array/are-equal';
 import { arrayRemoveDuplicates } from 'helpers/array/remove-duplicates';
 import { dateToIso } from 'helpers/date/to-iso';
+
 import { savedPropertiesFromCached } from './from-cached';
 import { savedPropertiesPersist } from './persist';
 

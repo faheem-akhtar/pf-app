@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { ApiHeaderEnum } from 'enums/api/header.enum';
 import { ApiHttpMethodType } from 'api/http-method.type';
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
 import { backendApiSaveSearchFetcher } from 'backend/api/save-search/fetcher';
 import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
 import { configOriginValue } from 'config/origin/value';
+import { ApiHeaderEnum } from 'enums/api/header.enum';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const locale = backendApiGetLocaleFromReq(req);

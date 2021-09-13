@@ -1,8 +1,8 @@
-import { AnyValueType } from 'types/any/value.type';
 import { ApiAuthRequiredFactory } from 'api/auth-required-factory';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiRequestPropsType } from 'api/request-props.type';
 import { LocaleService } from 'services/locale/service';
+import { AnyValueType } from 'types/any/value.type';
 
 const fetcher = (
   propertyId: string

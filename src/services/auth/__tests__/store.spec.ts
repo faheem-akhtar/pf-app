@@ -1,11 +1,13 @@
-import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
-import { AuthModelInterface } from '../model.interface';
-import { AuthStore } from '../store';
-import { JwtTokenService } from 'services/jwt/token/service';
 import { mockWindowLocalStorage } from 'mocks/window/local-storage.mock';
+
+import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
+import { JwtTokenService } from 'services/jwt/token/service';
 import { UserModelInterface } from 'services/user/model.interface';
 import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
 import { WindowService } from 'services/window/service';
+
+import { AuthModelInterface } from '../model.interface';
+import { AuthStore } from '../store';
 
 jest.mock('services/jwt/token/service');
 

@@ -1,10 +1,9 @@
-import { ChipsFilterIconPositionEnum } from './icon-position.enum';
-import { ChipsFilterTemplatePropsInterface } from './template-props.interface';
+import { IconThinCheckmarkTemplate } from 'components/icon/thin/checkmark-template';
 import { ChipTemplate } from 'library/chip/template';
 
-import { IconThinCheckmarkTemplate } from 'components/icon/thin/checkmark-template';
-
 import styles from './chips-filter.module.scss';
+import { ChipsFilterIconPositionEnum } from './icon-position.enum';
+import { ChipsFilterTemplatePropsInterface } from './template-props.interface';
 
 /**
  * Chip filter allow users to make multiple selections from a list of values.

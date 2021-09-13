@@ -1,5 +1,6 @@
 import { objectCompare } from 'helpers/object/compare';
 import { objectReduce } from 'helpers/object/reduce';
+
 import { SaveSearchFiltersInterface } from './filters.interface';
 
 function stringValuesToLowerCase<T extends Partial<SaveSearchFiltersInterface>>(filters: T): T {

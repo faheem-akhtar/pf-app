@@ -1,5 +1,6 @@
-import { ApiHeaderEnum } from 'enums/api/header.enum';
 import { NextApiRequest } from 'next';
+
+import { ApiHeaderEnum } from 'enums/api/header.enum';
 
 // TODO-FE[CX-409] add tests
 export const backendApiGetLocaleFromReq = (req: NextApiRequest): string => {

@@ -1,7 +1,7 @@
-import { BackendApiPropertySearchEmailAgentDataResultType } from './result-type';
 import { LocationTypeEnum } from 'enums/location/type.enum';
 
 import { BackendApiPropertySearchJsonApiResultType } from '../json-api-result.type';
+import { BackendApiPropertySearchEmailAgentDataResultType } from './result-type';
 
 export const backendApiPropertySearchEmailAgentDataMapper = ({
   properties,

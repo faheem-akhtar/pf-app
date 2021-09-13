@@ -1,4 +1,5 @@
 import { AdConfigInterface } from 'types/ad/config.interface';
+
 import { PropertySerpObfuscatedType } from './obfuscated/type';
 
 export type PropertySerpSearchResultType = {

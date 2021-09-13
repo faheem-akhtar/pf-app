@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import { SnackbarHandlerOptionsInterface } from '../handler-options.interface';
 
 export interface SnackbarContentPropsInterface {

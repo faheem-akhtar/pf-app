@@ -1,10 +1,10 @@
-import { FiltersModalItemTemplate } from '../item/template';
-import { FiltersModalWidgetType } from './type';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { IconThickMagnifierTemplate } from 'components/icon/thick/magnifier-template';
 import { KeywordsComponent } from 'components/keywords/component';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
+import { FiltersModalItemTemplate } from '../item/template';
 import styles from './filters-modal-widget-component.module.scss';
+import { FiltersModalWidgetType } from './type';
 
 export const FiltersModalWidgetKeywordsComponent: FiltersModalWidgetType = ({
   t,

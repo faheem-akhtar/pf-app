@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
-
 import { CSSTransition } from 'react-transition-group';
+
 import { transitionMapTypeToProps } from './map-type-to-props';
 import { TransitionPropsInterface } from './props.interface';
 

@@ -1,9 +1,12 @@
 import { configEmailAgentMustAcceptTerms } from 'config/email-agent/must-accept-terms';
 import { configEmailAgentReceiveAdsEnabled } from 'config/email-agent/receive-ads-enabled';
-
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
+
+import { EmailAgentModalFormAcceptConditionsErrorMessageTemplate } from './accept-conditions-error-message-template';
+import styles from './email-agent-modal-form.module.scss';
+import { FormFieldsEnum } from './fields.enum';
 import { EmailAgentModalFormTemplatePropsInterface } from './template-props.interface';
 import { EmailAgentModalFormWidgetAcceptTermsComponent } from './widget/accept-terms-component';
 import { EmailAgentModalFormWidgetEmailAlertComponent } from './widget/email-alert-component';
@@ -13,11 +16,6 @@ import { EmailAgentModalFormWidgetNameComponent } from './widget/name-component'
 import { EmailAgentModalFormWidgetPhoneComponent } from './widget/phone-component';
 import { EmailAgentModalFormWidgetReCaptchaComponent } from './widget/re-captcha-component';
 import { EmailAgentModalFormWidgetReceiveAdvertisingComponent } from './widget/receive-advertising-component';
-import { FormFieldsEnum } from './fields.enum';
-
-import { EmailAgentModalFormAcceptConditionsErrorMessageTemplate } from './accept-conditions-error-message-template';
-
-import styles from './email-agent-modal-form.module.scss';
 
 export const EmailAgentModalFormTemplate = ({
   fieldsValue,

@@ -1,16 +1,15 @@
-import { configCommon } from 'config/common';
 import { filtersDataChoicesGetMaxArea } from 'components/filters/data/choices/get-max-area';
 import { filtersDataChoicesGetMinArea } from 'components/filters/data/choices/get-min-area';
-import { filtersModalMapSelectOptionsLabels } from '../map-select-options-labels';
-import { filtersToRangeOptions } from 'helpers/filters/to-range-options';
-
-import { FiltersModalItemTemplate } from '../item/template';
-import { FiltersModalWidgetType } from './type';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { IconThickFloorPlanTemplate } from 'components/icon/thick/floor-plan-template';
+import { configCommon } from 'config/common';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { filtersToRangeOptions } from 'helpers/filters/to-range-options';
 import { SelectFieldTemplate } from 'library/select-field/template';
 
+import { FiltersModalItemTemplate } from '../item/template';
+import { filtersModalMapSelectOptionsLabels } from '../map-select-options-labels';
 import styles from './filters-modal-widget-component.module.scss';
+import { FiltersModalWidgetType } from './type';
 
 export const FiltersModalWidgetAreaComponent: FiltersModalWidgetType = ({
   filtersValue,

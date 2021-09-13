@@ -1,9 +1,9 @@
 import { BackendApiFactory } from 'backend/api/factory';
-import { backendApiPropertySearchMapper } from './mapper';
+import { PropertySerpSearchResultType } from 'components/property/serp/search-result.type';
 
 import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
+import { backendApiPropertySearchMapper } from './mapper';
 import { BackendApiPropertySearchRawJsonResponseType } from './raw-json-response-type';
-import { PropertySerpSearchResultType } from 'components/property/serp/search-result.type';
 
 const include = ['properties', 'smart_ads', 'cts', 'direct_from_developer']
   .reduce((acc, key) => {

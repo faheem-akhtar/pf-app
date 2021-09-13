@@ -1,11 +1,12 @@
 /**
  * @jest-environment jsdom
  */
+import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
+import { mockReactUseState } from 'mocks/react/use-state.mock';
+
 import { AuthService } from 'services/auth/service';
-import { JwtTokenService } from 'services/jwt/token/service';
-import { mockReactUseEffect } from 'mocks/react/mock-use-effect';
-import { mockReactUseState } from 'mocks/react/mock-use-state';
 import { useJwtToken } from 'services/jwt/token/hook';
+import { JwtTokenService } from 'services/jwt/token/service';
 import { UserModelInterface } from 'services/user/model.interface';
 
 describe('useGalleryScrollEffects', () => {

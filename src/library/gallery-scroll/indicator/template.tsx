@@ -1,13 +1,11 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 
-import { galleryScrollIndicatorGetTransform } from './get-transform';
-import { galleryScrollIndicatorMakeItems } from './make-items';
-import { galleryScrollIndicatorVisibleItemsCount } from './visible-items-count';
-
-import { GalleryScrollIndicatorItemInterface } from './item.interface';
-import { GalleryScrollIndicatorPropsInterface } from './props.interface';
-
 import styles from './gallery-scroll-indicator.module.scss';
+import { galleryScrollIndicatorGetTransform } from './get-transform';
+import { GalleryScrollIndicatorItemInterface } from './item.interface';
+import { galleryScrollIndicatorMakeItems } from './make-items';
+import { GalleryScrollIndicatorPropsInterface } from './props.interface';
+import { galleryScrollIndicatorVisibleItemsCount } from './visible-items-count';
 
 export const GalleryScrollIndicatorTemplate = (props: GalleryScrollIndicatorPropsInterface): JSX.Element | null => {
   if (props.itemsCount <= 1) return null;

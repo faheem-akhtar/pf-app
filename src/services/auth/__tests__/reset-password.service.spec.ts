@@ -1,10 +1,11 @@
-import { AnyValueType } from 'types/any/value.type';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
+
 import { ApiAuthRegisterResponseInterface } from 'api/auth/register/response.interface';
 import { ApiAuthResetPasswordModelInterface } from 'api/auth/reset-password/model.interface';
 import { ApiAuthResetPasswordRequestInterface } from 'api/auth/reset-password/request.interface';
 import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
 import { AuthResetPasswordService } from 'services/auth/reset-password.service';
-import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { AnyValueType } from 'types/any/value.type';
 
 describe('AuthResetPasswordService', () => {
   const model: ApiAuthResetPasswordRequestInterface = {

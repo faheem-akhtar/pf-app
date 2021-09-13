@@ -1,10 +1,9 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 
+import styles from './gallery-scroll.module.scss';
 import { GalleryScrollIndicatorTemplate } from './indicator/template';
 import { GalleryScrollPictureComponent } from './picture-component';
 import { GalleryScrollTemplatePropsInterface } from './template-props.interface';
-
-import styles from './gallery-scroll.module.scss';
 
 export const GalleryScrollTemplate: React.FunctionComponent<GalleryScrollTemplatePropsInterface> = (props) => {
   return (

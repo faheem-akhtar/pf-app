@@ -1,13 +1,13 @@
+import { configIsTrace } from 'config/is-trace';
+import { ApiHeaderEnum } from 'enums/api/header.enum';
+import { urlQuerySerialize } from 'helpers/url-query/serialize';
 import { AnyValueType } from 'types/any/value.type';
+
 import { ApiFactoryPropsInterface } from './factory-props.interface';
 import { ApiFetcherResultType } from './fetcher-result-type';
-import { ApiHeaderEnum } from 'enums/api/header.enum';
 import { ApiHttpStatusCodeEnum } from './http-status-code.enum';
 import { ApiMakeFactoryPropsType } from './make-factory-props.type';
 import { ApiRequestPropsType } from './request-props.type';
-
-import { configIsTrace } from 'config/is-trace';
-import { urlQuerySerialize } from 'helpers/url-query/serialize';
 
 /**
  * Base for all network requsts

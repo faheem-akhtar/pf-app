@@ -1,5 +1,4 @@
 import { propertySerpObfuscatedFieldBathroomValue } from '../field/bathroom-value';
-
 import { PropertySerpObfuscatedType } from '../type';
 
 export const propertySerpObfuscatedGetBathroomValue = (property: PropertySerpObfuscatedType): number => {

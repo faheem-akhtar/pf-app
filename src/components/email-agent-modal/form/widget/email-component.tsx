@@ -1,6 +1,7 @@
+import { InputBaseComponent } from 'library/input/base/component';
+
 import { EmailAgentModalFormFieldTemplate } from '../field-template';
 import { EmailAgentModalFormWidgetPropsType } from './props.type';
-import { InputBaseComponent } from 'library/input/base/component';
 
 export const EmailAgentModalFormWidgetEmailComponent: React.FunctionComponent<
   EmailAgentModalFormWidgetPropsType<string>

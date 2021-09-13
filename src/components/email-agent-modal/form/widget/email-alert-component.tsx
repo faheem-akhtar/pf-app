@@ -1,4 +1,5 @@
 import { CheckboxTemplate } from 'library/checkbox/template';
+
 import { EmailAgentModalFormFieldTemplate } from '../field-template';
 import { EmailAgentModalFormWidgetPropsType } from './props.type';
 

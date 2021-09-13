@@ -1,12 +1,11 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
-
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { PropertyCardMenuContentButtonTemplatePropsInterface } from './template-props.interface';
 
 import styles from '../property-card-menu-content.module.scss';
+import { PropertyCardMenuContentButtonTemplatePropsInterface } from './template-props.interface';
 
 export const PropertyCardMenuContentButtonTemplate = ({
   icon,

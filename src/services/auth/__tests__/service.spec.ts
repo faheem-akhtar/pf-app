@@ -2,11 +2,13 @@
  * @jest-environment jsdom
  */
 
+import { UserModelStub } from 'stubs/user-model.stub';
+
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
 import { AuthModelInterface } from 'services/auth/model.interface';
-import { AuthService } from '../service';
 import { JwtTokenService } from 'services/jwt/token/service';
-import { UserModelStub } from 'stubs/user-model.stub';
+
+import { AuthService } from '../service';
 
 describe('AuthService', () => {
   describe('updateUserData', () => {

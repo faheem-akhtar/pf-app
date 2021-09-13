@@ -1,4 +1,5 @@
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
+
 import { BackendModelPropertyContactedTypeEnum } from './contacted-type.enum';
 
 export interface BackendModelPropertyContactedInterface extends BackendJsonApiModelType {

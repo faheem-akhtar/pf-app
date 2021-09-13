@@ -1,9 +1,8 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { useTranslation } from 'helpers/translation/hook';
 
-import { FiltersModalItemTemplatePropsInterface } from './template-props.interface';
-
 import styles from './filters-modal-item-template.module.scss';
+import { FiltersModalItemTemplatePropsInterface } from './template-props.interface';
 
 export const FiltersModalItemTemplate = ({
   icon,

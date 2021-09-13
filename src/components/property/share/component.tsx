@@ -1,14 +1,14 @@
 import { useRef, useState } from 'react';
 
+import { ModalComponent } from 'components/modal/component';
+import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { functionNoop } from 'helpers/function/noop';
-import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
 
-import { ModalComponent } from 'components/modal/component';
 import { PropertyShareComponentPropsInterface } from './component-props.interface';
 import { PropertyShareEmailComponent } from './email/component';
-import { PropertyShareSocialComponent } from './social/component';
 import styles from './property-share.module.scss';
+import { PropertyShareSocialComponent } from './social/component';
 
 export const PropertyShareComponent = ({ t, openRef, property }: PropertyShareComponentPropsInterface): JSX.Element => {
   const [shareViaEmail, setShareViaEmail] = useState(false);

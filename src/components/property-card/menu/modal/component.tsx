@@ -1,11 +1,10 @@
 import { useRef } from 'react';
 
+import { ModalComponent } from 'components/modal/component';
 import { functionNoop } from 'helpers/function/noop';
 
 import { PropertyCardMenuModalComponentPropsInterface } from './component-props.interface';
 import { PropertyCardMenuModalTemplate } from './template';
-
-import { ModalComponent } from 'components/modal/component';
 
 // TODO-FE[CX-440] add tests
 export const PropertyCardMenuModalComponent = ({

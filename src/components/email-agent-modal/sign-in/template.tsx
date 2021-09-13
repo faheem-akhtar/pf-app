@@ -1,14 +1,13 @@
 import { IconSolidEnvelopeOpenTemplate } from 'components/icon/solid/envelope-open-template';
 import { IconSolidFavoriteTemplate } from 'components/icon/solid/favorite-template';
 import { IconThinSyncTemplate } from 'components/icon/thin/sync-template';
-
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { EmailAgentModalSignInItemTemplate } from './item-template';
-import { EmailAgentModalSignInTemplatePropsInterface } from './template-props.interface';
 
 import styles from './email-agent-modal-sign-in.module.scss';
+import { EmailAgentModalSignInItemTemplate } from './item-template';
+import { EmailAgentModalSignInTemplatePropsInterface } from './template-props.interface';
 
 export const EmailAgentModalSignInTemplate = ({
   t,

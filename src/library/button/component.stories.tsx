@@ -1,7 +1,9 @@
 /* eslint-disable pf-rules/export-name-validation */
 
-import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { Meta, Story } from '@storybook/react';
+
+import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
 
 import { ButtonComponentTypeEnum } from './component-type.enum';
 import { ButtonIconPositionEnum } from './icon-position.enum';
@@ -9,8 +11,6 @@ import { ButtonLinkTemplatePropsInterface } from './link-template-props.interfac
 import { ButtonSizeEnum } from './size.enum';
 import { ButtonTemplate } from './template';
 import { ButtonTemplatePropsInterface } from './template-props.interface';
-
-import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
 
 export default {
   title: 'Library/Button',

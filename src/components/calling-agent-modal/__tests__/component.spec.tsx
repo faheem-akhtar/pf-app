@@ -1,23 +1,25 @@
 /**
  * @jest-environment jsdom
  */
+import { fireEvent as fireDOMEvent } from '@testing-library/dom';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
+
+import { mockModalEnv } from 'mocks/modal-env/mock';
+import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { filtersContextPropsStub } from 'stubs/filters/context-props.stub';
+import { propertyStub } from 'stubs/property/stub';
+
+import { FiltersContextProvider } from 'components/filters/context-provider';
+import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
+import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
+import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
+import { PropertyReportReasonEnum } from 'enums/property/report/reason.enum';
+import { PropertyReportUserTypeEnum } from 'enums/property/report/user-type.enum';
 
 import { CallingAgentModalComponent } from '../component';
 import { CallingAgentModalComponentPropsInterface } from '../component-props.interface';
 import { CallingAgentModalFeedbackComponent } from '../feedback-component';
-import { filtersContextPropsStub } from 'stubs/filters/context-props.stub';
-import { FiltersContextProvider } from 'components/filters/context-provider';
-import { fireEvent as fireDOMEvent } from '@testing-library/dom';
-import { mockModalEnv } from 'mocks/modal-env/mock';
-import { mockReactUseSwr } from 'mocks/react/mock-use-swr';
-import { mockWindowFetch } from 'mocks/window/fetch.mock';
-import { PropertyReportReasonEnum } from 'enums/property/report/reason.enum';
-import { PropertyReportUserTypeEnum } from 'enums/property/report/user-type.enum';
-import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
-import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
-import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
-import { propertyStub } from 'stubs/property/stub';
 
 describe('CallingAgentModalComponent', () => {
   const property: PropertySerpObfuscatedType = propertyStub();

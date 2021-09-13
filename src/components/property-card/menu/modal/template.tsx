@@ -2,9 +2,8 @@ import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 
-import { PropertyCardMenuModalTemplatePropsBaseInterface } from './template-props-base.interface';
-
 import styles from './property-card-menu-modal.module.scss';
+import { PropertyCardMenuModalTemplatePropsBaseInterface } from './template-props-base.interface';
 
 export const PropertyCardMenuModalTemplate = ({
   children,

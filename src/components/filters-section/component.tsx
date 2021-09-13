@@ -1,17 +1,16 @@
-import { useContext } from 'react';
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
 
-import { domClassMerge } from 'helpers/dom/class-merge';
-
-import { AppearOnScrollComponent } from 'library/appear-on-scroll/component';
 import { FiltersContext } from 'components/filters/context';
 import { FiltersModalButtonComponent } from 'components/filters-modal/button-component';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { LocationCompactInterface } from 'types/location/compact.interface';
 import { MultiLocationSelectorComponent } from 'components/multi-location-selector/component';
 import { SaveSearchContextProvider } from 'components/save-search/context-provider';
 import { SaveSearchModalButtonComponent } from 'components/save-search/modal/button-component';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { LanguageCodeEnum } from 'enums/language/code.enum';
+import { domClassMerge } from 'helpers/dom/class-merge';
+import { AppearOnScrollComponent } from 'library/appear-on-scroll/component';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import styles from './filters-section.module.scss';
 

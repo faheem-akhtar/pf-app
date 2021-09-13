@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 
 import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
-import { SaveSearchFormComponent } from '../form/component';
 import { SnackbarContext } from 'components/snackbar/context';
 import { useTranslation } from 'helpers/translation/hook';
 
+import { SaveSearchFormComponent } from '../form/component';
 import styles from './save-search-modal-component.module.scss';
 
 export const SaveSearchModalContentComponent = ({ close }: { close: () => void }): JSX.Element => {

@@ -1,5 +1,6 @@
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { PropertyReportUserTypeEnum } from 'enums/property/report/user-type.enum';
+
 import { userReportCategory } from '../report-category';
 
 describe('userReportCategory()', () => {

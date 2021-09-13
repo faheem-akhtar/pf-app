@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
-import { useTranslation } from 'helpers/translation/hook';
 
 import { apiReportFetcher } from 'api/report/fetcher';
+import { FiltersContext } from 'components/filters/context';
+import { UserContext } from 'context/user/context';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { PropertyReportReasonEnum } from 'enums/property/report/reason.enum';
+import { useTranslation } from 'helpers/translation/hook';
+import { userReportCategory } from 'helpers/user/report-category';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { FiltersContext } from 'components/filters/context';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { PropertyReportReasonEnum } from 'enums/property/report/reason.enum';
 import { ReportAttributesInterface } from 'types/report/attributes-interface';
-import { UserContext } from 'context/user/context';
 
 import styles from './calling-agent-modal.module.scss';
-import { userReportCategory } from 'helpers/user/report-category';
 
 const FeedbackAnswerKeysInOrder = ['yes', 'no', 'agent-modal/agent-not-answered', 'agent-modal/not-called'];
 const AnswersNeedToBeReported = ['no'];

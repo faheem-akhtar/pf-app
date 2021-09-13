@@ -1,4 +1,5 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
+
 import styles from './auth-loader.module.scss';
 
 export const AuthLoaderComponent = ({

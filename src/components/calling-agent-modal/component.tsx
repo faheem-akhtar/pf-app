@@ -1,17 +1,15 @@
 import React, { Fragment, useRef, useState } from 'react';
 
-import { functionNoop } from 'helpers/function/noop';
-
-import { CallingAgentModalComponentPropsInterface } from './component-props.interface';
-import { CallingAgentModalFeedbackComponent } from './feedback-component';
-
+import { useApiAgent } from 'api/agent/hook';
 import { IconThickCrossTemplate } from 'components/icon/thick/cross-template';
 import { ModalComponent } from 'components/modal/component';
-import styles from './calling-agent-modal.module.scss';
-
 import { domClassMerge } from 'helpers/dom/class-merge';
-import { useApiAgent } from 'api/agent/hook';
+import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
+
+import styles from './calling-agent-modal.module.scss';
+import { CallingAgentModalComponentPropsInterface } from './component-props.interface';
+import { CallingAgentModalFeedbackComponent } from './feedback-component';
 
 const AgentInfoComponent: React.FunctionComponent<{
   name?: string;

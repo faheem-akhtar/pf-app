@@ -4,12 +4,12 @@
 
 import { fireEvent, render } from '@testing-library/react';
 
-import { mockReactUseSwr } from 'mocks/react/mock-use-swr';
+import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
+import { propertyStub } from 'stubs/property/stub';
+import { touchEventStub } from 'stubs/touch/event.stub';
 
 import { PropertyCardComponent } from '../component';
 import { PropertyCardComponentPropsType } from '../component-props.type';
-import { propertyStub } from 'stubs/property/stub';
-import { touchEventStub } from 'stubs/touch/event.stub';
 
 const makeDefaultProps = (): PropertyCardComponentPropsType => ({
   property: propertyStub(),

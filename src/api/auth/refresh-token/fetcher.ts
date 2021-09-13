@@ -1,8 +1,9 @@
-import { ApiAuthRefreshTokenModelInterface } from './model.interface';
 import { ApiFactory } from 'api/factory';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiHeaderEnum } from 'enums/api/header.enum';
 import { LocaleService } from 'services/locale/service';
+
+import { ApiAuthRefreshTokenModelInterface } from './model.interface';
 
 const fetcher = ApiFactory<ApiAuthRefreshTokenModelInterface>({
   method: 'POST',

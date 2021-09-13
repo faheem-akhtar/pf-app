@@ -1,9 +1,8 @@
 import { ApiFactory } from 'api/factory';
-
 import { ApiJsonModelInterface } from 'api/json/model.interface';
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-import { EmailAgentAttributesInterface } from 'types/email-agent/attributes.interface';
 import { LocaleService } from 'services/locale/service';
+import { EmailAgentAttributesInterface } from 'types/email-agent/attributes.interface';
 
 const fetcher = ApiFactory<BackendJsonApiModelType, ApiJsonModelInterface<EmailAgentAttributesInterface>>({
   method: 'POST',

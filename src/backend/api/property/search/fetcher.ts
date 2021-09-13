@@ -1,8 +1,8 @@
-import { backendApiPropertySearchRawFetcher } from './raw-fetcher';
+import { FiltersValueInterface } from 'components/filters/value/interface';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-value';
 
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { FiltersValueInterface } from 'components/filters/value/interface';
+import { backendApiPropertySearchRawFetcher } from './raw-fetcher';
 
 export const backendApiPropertySearchFetcher = (
   locale: string,

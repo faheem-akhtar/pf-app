@@ -1,7 +1,8 @@
-import { ApiAuthRefreshTokenModelInterface } from 'api/auth/refresh-token/model.interface';
-import { JwtTokenStore } from 'services/jwt/token/store';
 import { mockWindowConsole } from 'mocks/window/console.mock';
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
+
+import { ApiAuthRefreshTokenModelInterface } from 'api/auth/refresh-token/model.interface';
+import { JwtTokenStore } from 'services/jwt/token/store';
 
 describe('JwtTokenStore', () => {
   let store: JwtTokenStore;

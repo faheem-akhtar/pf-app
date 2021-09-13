@@ -6,10 +6,11 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { useRouter } from 'next/router';
 
 import { mockMiscAddTranslation } from 'mocks/misc/add-translation.mock';
-
-import { filtersContextPropsStub } from 'stubs/filters/context-props.stub';
-import { FiltersContextProvider } from 'components/filters/context-provider';
 import { mockModalEnv } from 'mocks/modal-env/mock';
+import { filtersContextPropsStub } from 'stubs/filters/context-props.stub';
+
+import { FiltersContextProvider } from 'components/filters/context-provider';
+
 import { PropertySearchCountAndSortSectionComponent } from '../component';
 
 describe('PropertySearchCountAndSortSectionComponent', () => {

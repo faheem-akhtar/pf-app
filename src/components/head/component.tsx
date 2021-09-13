@@ -1,4 +1,5 @@
 import Head from 'next/head';
+
 import { HeadComponentPropsInterface } from './component-props.interface';
 import { HeadGtmScriptTemplate } from './gtm-script-template';
 

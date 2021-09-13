@@ -1,8 +1,7 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 
-import { LoaderTemplatePropsInterface } from './template-props.interface';
-
 import styles from './loader.module.scss';
+import { LoaderTemplatePropsInterface } from './template-props.interface';
 
 // TODO-FE[TPNX-2931] move it to the library, it's used in Button
 export const LoaderTemplate = (props: LoaderTemplatePropsInterface): JSX.Element => (

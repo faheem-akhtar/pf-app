@@ -4,14 +4,14 @@
 
 import { fireEvent, render } from '@testing-library/react';
 
-import { galleryScrollMakeInitialState } from '../make-initial-state';
-import { mockReactUseReducer } from 'mocks/react/mock-use-reducer';
+import { mockReactUseReducer } from 'mocks/react/use-reducer.mock';
 import { mockWindowRemoveEventListener } from 'mocks/window/remove-event-listener.mock';
+import { touchEventStub } from 'stubs/touch/event.stub';
 
 import { GalleryScrollComponent } from '../component';
 import { GalleryScrollComponentPropsInterface } from '../component-props.interface';
 import { GalleryScrollItemInterface } from '../item.interface';
-import { touchEventStub } from 'stubs/touch/event.stub';
+import { galleryScrollMakeInitialState } from '../make-initial-state';
 
 const image1: GalleryScrollItemInterface = { sourceUrl: '1' };
 const image2: GalleryScrollItemInterface = { sourceUrl: '2' };

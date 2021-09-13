@@ -2,8 +2,9 @@
  * @jest-environment jsdom
  */
 
-import { mockReactUseEffect } from 'mocks/react/mock-use-effect';
+import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
 import { mockWindowAddEventListener } from 'mocks/window/add-event-listener.mock';
+
 import { useGalleryScrollEffects } from '../effects.hook';
 
 let dispatchMock: jest.Mock;

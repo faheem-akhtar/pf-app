@@ -1,5 +1,4 @@
 import { propertySerpObfuscatedFieldExclusive } from '../field/exclusive';
-
 import { PropertySerpObfuscatedType } from '../type';
 
 export const propertySerpObfuscatedGetExclusive = (property: PropertySerpObfuscatedType): boolean => {

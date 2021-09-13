@@ -1,8 +1,8 @@
-import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueFieldPricePeriodType } from 'components/filters/value/field/price-period.type';
 import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
+import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
 export const filtersValueStub = (): FiltersValueInterface => ({
   [FiltersParametersEnum.locationsIds]: [],

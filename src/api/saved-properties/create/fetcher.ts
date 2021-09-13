@@ -1,9 +1,10 @@
 import { ApiAuthRequiredFactory } from 'api/auth-required-factory';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiJsonModelInterface } from 'api/json/model.interface';
+import { LocaleService } from 'services/locale/service';
+
 import { ApiSavedPropertiesCreateRequestInterface } from './request.interface';
 import { ApiSavedPropertiesCreateResponseInterface } from './response.interface';
-import { LocaleService } from 'services/locale/service';
 
 const fetcher = ApiAuthRequiredFactory<
   null,

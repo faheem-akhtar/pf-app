@@ -1,7 +1,7 @@
-import { keywordsTryAddItem } from './try-add-item';
-
 import { KeyboardKeyEnum } from 'enums/keyboard/key.enum';
 import { MultiSelectionAutocompleteInputKeyPressExtensionPropsInterface } from 'library/multi-selection-autocomplete/input-key-press-extension-props.interface';
+
+import { keywordsTryAddItem } from './try-add-item';
 
 export const keywordsOnInputKeyPress = (
   props: MultiSelectionAutocompleteInputKeyPressExtensionPropsInterface<string>

@@ -1,11 +1,9 @@
+import { IconThinChevronDownTemplate } from 'components/icon/thin/chevron-down-template';
 import { domClassMerge } from 'helpers/dom/class-merge';
 
 import { SelectFieldOptionInterface } from './option.interface';
-import { SelectFieldTemplatePropsInterface } from './template-props.interface';
-
-import { IconThinChevronDownTemplate } from 'components/icon/thin/chevron-down-template';
-
 import styles from './select-field.module.scss';
+import { SelectFieldTemplatePropsInterface } from './template-props.interface';
 
 export const SelectFieldTemplate = <V extends unknown>({
   className,

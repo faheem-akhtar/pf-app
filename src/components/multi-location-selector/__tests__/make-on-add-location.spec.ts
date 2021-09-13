@@ -1,11 +1,12 @@
-import { multiLocationSelectorMakeOnAddLocation } from '../make-on-add-location';
-
-import { locationCompactJltStub, locationCompactKcStub } from 'stubs/location';
-import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { LocationCompactInterface } from 'types/location/compact.interface';
 import { mockWindowLocalStorage } from 'mocks/window/local-storage.mock';
-import { MultiLocationSelectorMakeOnAddLocationPropsInterface } from '../make-on-add-location-props.interface';
+import { locationCompactJltStub, locationCompactKcStub } from 'stubs/location';
+
+import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
+import { LocationCompactInterface } from 'types/location/compact.interface';
+
+import { multiLocationSelectorMakeOnAddLocation } from '../make-on-add-location';
+import { MultiLocationSelectorMakeOnAddLocationPropsInterface } from '../make-on-add-location-props.interface';
 
 const location1 = { ...locationCompactKcStub, id: '1', path: '1' };
 const location3 = { ...locationCompactKcStub, id: '3', path: '3' };

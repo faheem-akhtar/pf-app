@@ -1,11 +1,10 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
-
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { SwitchTemplatePropsInterface } from './template-props.interface';
 
 import styles from './switch.module.scss';
+import { SwitchTemplatePropsInterface } from './template-props.interface';
 
 /**
  * Switch allows users to make selections from a list of values.

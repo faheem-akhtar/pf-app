@@ -1,20 +1,19 @@
 import { Fragment } from 'react';
 
-import { configCommon } from 'config/common';
-import { localeGetHref } from 'helpers/locale/get-href';
-import { useTranslation } from 'helpers/translation/hook';
-
-import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
-import { ButtonSizeEnum } from 'library/button/size.enum';
-import { ButtonTemplate } from 'library/button/template';
-import { HeaderTemplatePropsInterface } from './template.props.interface';
 import { IconLogoAlternativeTemplate } from 'components/icon/logo/alternative-template';
 import { IconLogoCurrentTemplate } from 'components/icon/logo/current-template';
 import { IconThinFavoriteTemplate } from 'components/icon/thin/favorite-template';
 import { IconThinUserTemplate } from 'components/icon/thin/user-template';
 import { LanguageSelectorComponent } from 'components/language-selector/component';
+import { configCommon } from 'config/common';
+import { localeGetHref } from 'helpers/locale/get-href';
+import { useTranslation } from 'helpers/translation/hook';
+import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
+import { ButtonSizeEnum } from 'library/button/size.enum';
+import { ButtonTemplate } from 'library/button/template';
 
 import styles from './header.module.scss';
+import { HeaderTemplatePropsInterface } from './template.props.interface';
 
 export const HeaderTemplate = ({
   locale,

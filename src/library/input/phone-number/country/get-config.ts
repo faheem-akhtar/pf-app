@@ -1,5 +1,4 @@
 import { configCommon } from 'config/common';
-
 import { CountryPhoneCodesInterface } from 'types/country-phone-codes/interface';
 
 /**

@@ -3,11 +3,13 @@
  */
 import { fireEvent, render, waitFor } from '@testing-library/react';
 
+import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
+
+import { AuthForgotPasswordComponent } from 'components/auth/forgot-password/component';
 import * as AuthResetPasswordServiceModule from 'services/auth/reset-password.service';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
-import { AuthForgotPasswordComponent } from 'components/auth/forgot-password/component';
+
 import { AuthForgotPasswordPropsInterface } from '../props.interface';
-import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
 
 describe('AuthForgotPasswordComponent', () => {
   let props: AuthForgotPasswordPropsInterface;

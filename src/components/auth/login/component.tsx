@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 
-import { AuthFacebookService } from 'services/auth/facebook.service';
-import { AuthGoogleService } from 'services/auth/google.service';
 import { AuthLoaderComponent } from 'components/auth/loader/component';
 import { AuthLoginFieldEnum } from 'components/auth/login/field.enum';
 import { AuthLoginPropsInterface } from 'components/auth/login/props.interface';
-import { AuthLoginService } from 'services/auth/login.service';
+import { ErrorMessageComponent } from 'components/error-message/component';
+import { formMakeValidator } from 'components/form/make-validator';
+import { IconFacebookTemplate } from 'components/icon/facebook-template';
+import { IconGoogleTemplate } from 'components/icon/google-template';
+import { ReCaptchaComponent } from 'components/re-captcha/component';
+import { domClassMerge } from 'helpers/dom/class-merge';
+import { useTranslation } from 'helpers/translation/hook';
+import { validationEmail } from 'helpers/validation/email';
+import { validationRequired } from 'helpers/validation/required';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { domClassMerge } from 'helpers/dom/class-merge';
-import { ErrorMessageComponent } from 'components/error-message/component';
-import { formMakeValidator } from 'components/form/make-validator';
-import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
-import { IconFacebookTemplate } from 'components/icon/facebook-template';
-import { IconGoogleTemplate } from 'components/icon/google-template';
 import { InputBaseComponent } from 'library/input/base/component';
-import { ReCaptchaComponent } from 'components/re-captcha/component';
-import { useTranslation } from 'helpers/translation/hook';
-import { validationEmail } from 'helpers/validation/email';
-import { validationRequired } from 'helpers/validation/required';
+import { AuthFacebookService } from 'services/auth/facebook.service';
+import { AuthGoogleService } from 'services/auth/google.service';
+import { AuthLoginService } from 'services/auth/login.service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 
 import styles from '../auth.module.scss';
 

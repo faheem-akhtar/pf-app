@@ -1,7 +1,7 @@
-import { multiLocationSelectorUpdateHistory } from './update-history';
-
 import { LocationCompactInterface } from 'types/location/compact.interface';
+
 import { MultiLocationSelectorMakeOnAddLocationPropsInterface } from './make-on-add-location-props.interface';
+import { multiLocationSelectorUpdateHistory } from './update-history';
 
 export const multiLocationSelectorMakeOnAddLocation =
   ({

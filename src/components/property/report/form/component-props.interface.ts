@@ -1,5 +1,6 @@
-import { PropertyReportFormSubmitPayloadInterface } from './submit-payload.interface';
 import { TFunctionType } from 'types/t-function/type';
+
+import { PropertyReportFormSubmitPayloadInterface } from './submit-payload.interface';
 
 export interface PropertyReportFormComponentPropsInterface {
   t: TFunctionType;

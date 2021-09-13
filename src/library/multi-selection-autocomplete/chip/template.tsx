@@ -1,10 +1,9 @@
-import { domClassMerge } from 'helpers/dom/class-merge';
-
-import { ChipTemplate } from 'library/chip/template';
 import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
-import { MultiSelectionAutocompleteChipTemplatePropsInterface } from './template-props.interface';
+import { domClassMerge } from 'helpers/dom/class-merge';
+import { ChipTemplate } from 'library/chip/template';
 
 import styles from './multi-selection-autocomplete-chip.module.scss';
+import { MultiSelectionAutocompleteChipTemplatePropsInterface } from './template-props.interface';
 
 export const MultiSelectionAutocompleteChipTemplate = ({
   title,

@@ -6,6 +6,7 @@ import { fireEvent, render, RenderResult } from '@testing-library/react';
 import * as AuthForgotPasswordComponentModule from 'components/auth/forgot-password/component';
 import * as AuthLoginComponentModule from 'components/auth/login/component';
 import * as AuthRegistrationComponentModule from 'components/auth/registration/component';
+
 import { AuthModalComponent } from '../component';
 import { AuthModalPropsInterface } from '../props.interface';
 

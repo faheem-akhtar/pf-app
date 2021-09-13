@@ -2,9 +2,8 @@ import { useState } from 'react';
 
 import { domClassMerge } from 'helpers/dom/class-merge';
 
-import { GalleryScrollPictureComponentPropsInterface } from './picture-component-props.interface';
-
 import styles from './gallery-scroll.module.scss';
+import { GalleryScrollPictureComponentPropsInterface } from './picture-component-props.interface';
 
 export const GalleryScrollPictureComponent = ({
   style,

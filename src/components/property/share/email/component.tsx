@@ -1,16 +1,15 @@
 import { Fragment, useState } from 'react';
-import { IconThinCheckmarkCircleTemplate } from 'components/icon/thin/checkmark-circle-template';
-import { PropertyShareEmailComponentPropsInterface } from './component-props.interface';
-import { PropertyShareEmailFormComponent } from './form/component';
 
+import { IconThinCheckmarkCircleTemplate } from 'components/icon/thin/checkmark-circle-template';
+import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
+import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfuscated/get/img-url';
+import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 
-import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
-import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfuscated/get/img-url';
-import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
-
+import { PropertyShareEmailComponentPropsInterface } from './component-props.interface';
+import { PropertyShareEmailFormComponent } from './form/component';
 import styles from './property-share-email.module.scss';
 
 export const PropertyShareEmailComponent = ({

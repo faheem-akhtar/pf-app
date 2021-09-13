@@ -1,6 +1,7 @@
 import { AnyValueType } from 'types/any/value.type';
-import { ApiHttpMethodType } from './http-method.type';
 import { UrlQueryType } from 'types/url/query.type';
+
+import { ApiHttpMethodType } from './http-method.type';
 
 export interface ApiFactoryPropsInterface<Result, Data = AnyValueType, RawJson = AnyValueType> {
   /**

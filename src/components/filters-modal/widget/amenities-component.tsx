@@ -1,12 +1,11 @@
 import { filtersDataChoicesGetAmenities } from 'components/filters/data/choices/get-amenities';
-
-import { ChipsFilterTemplate } from 'library/chips-filter/template';
-import { FiltersModalItemTemplate } from '../item/template';
-import { FiltersModalWidgetType } from './type';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { IconThickAmenitiesLuxuryTemplate } from 'components/icon/thick/amenities-luxury-template';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { ChipsFilterTemplate } from 'library/chips-filter/template';
 
+import { FiltersModalItemTemplate } from '../item/template';
 import styles from './filters-modal-widget-component.module.scss';
+import { FiltersModalWidgetType } from './type';
 
 export const FiltersModalWidgetAmenitiesComponent: FiltersModalWidgetType = ({
   filtersValue,

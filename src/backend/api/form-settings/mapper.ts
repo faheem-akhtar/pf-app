@@ -1,16 +1,16 @@
-import { BackendApiFormSettingsJsonApiResultType } from './json-api-result.type';
-import { BackendApiFormSettingsSettingType } from './setting.type';
-import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
+import { backendFiltersValueDefault } from 'backend/filters/value/default';
 import { FiltersDataInterface } from 'components/filters/data/interface';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { filtersDataMakeChoicesIndexesKey } from 'components/filters/data/make-choices-indexes-key';
+import { filtersDataMakeInitialStateKey } from 'components/filters/data/make-initial-state-key';
 import { FiltersValueFieldCategoryIdType } from 'components/filters/value/field/category-id.type';
 import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
 import { FiltersValueFieldPropertyTypeIdType } from 'components/filters/value/field/property-type-id.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
+import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
-import { backendFiltersValueDefault } from 'backend/filters/value/default';
-import { filtersDataMakeChoicesIndexesKey } from 'components/filters/data/make-choices-indexes-key';
-import { filtersDataMakeInitialStateKey } from 'components/filters/data/make-initial-state-key';
+import { BackendApiFormSettingsJsonApiResultType } from './json-api-result.type';
+import { BackendApiFormSettingsSettingType } from './setting.type';
 
 const FilterFormSettingsParametersMapping: Record<string, Array<string>> = {
   query: [FiltersParametersEnum.query],

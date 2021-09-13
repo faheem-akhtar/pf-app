@@ -1,19 +1,18 @@
 import { useContext, useState } from 'react';
 
+import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
+import { useFormField } from 'helpers/form/field.hook';
 import { formValidatorMaxLength } from 'helpers/form/validator/max-length';
 import { formValidatorRequired } from 'helpers/form/validator/required';
-import { saveSearchFrequencies } from '../frequencies';
-import { useFormField } from 'helpers/form/field.hook';
 import { useTranslation } from 'helpers/translation/hook';
-
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { InputBaseComponent } from 'library/input/base/component';
-import { SaveSearchContext } from '../context';
-import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 import { SelectFieldTemplate } from 'library/select-field/template';
 
+import { SaveSearchContext } from '../context';
+import { saveSearchFrequencies } from '../frequencies';
 import styles from './save-search-form-component.module.scss';
 
 const MAX_CHARACTERS_LIMIT = 256;

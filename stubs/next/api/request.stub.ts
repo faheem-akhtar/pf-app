@@ -1,5 +1,6 @@
-import { ApiHeaderEnum } from 'enums/api/header.enum';
 import { NextApiRequest } from 'next';
+
+import { ApiHeaderEnum } from 'enums/api/header.enum';
 
 export const nextApiRequestStub = (): NextApiRequest => {
   return {

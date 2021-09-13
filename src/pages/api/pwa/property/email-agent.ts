@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ApiFetcherResultType } from 'api/fetcher-result-type';
 
+import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { backendApiAuthAutoRegisterFetcher } from 'backend/api/auth/auto-register/fetcher';
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
 import { backendApiPropertyEmailAlertFetcher } from 'backend/api/property/email-alert/fetcher';

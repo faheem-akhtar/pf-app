@@ -3,9 +3,9 @@ import { FunctionComponent, useEffect, useRef } from 'react';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { domToChildArray } from 'helpers/dom/to-child-array';
 import { functionNoop } from 'helpers/function/noop';
-import { SnackbarContentPropsInterface } from './props.interface';
 
 import styles from '../snackbar.module.scss';
+import { SnackbarContentPropsInterface } from './props.interface';
 
 const MAX_NUMBER_OF_ACTIONS = 2;
 const MAX_NUMBER_OF_ACTIONS_INLINE = 1;

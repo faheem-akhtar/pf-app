@@ -1,12 +1,12 @@
 import { FunctionComponent, ReactNode, useEffect, useRef, useState } from 'react';
 
 import { functionNoop } from 'helpers/function/noop';
+import { TransitionTypeEnum } from 'library/transition/type.enum';
+
+import { TransitionComponent } from '../transition/component';
 import { SnackbarContentComponent } from './content/component';
 import { SnackbarContentPropsInterface } from './content/props.interface';
 import { SnackbarPropsInterface } from './props.interface';
-import { TransitionComponent } from '../transition/component';
-import { TransitionTypeEnum } from 'library/transition/type.enum';
-
 import styles from './snackbar.module.scss';
 
 const DEFAULT_AUTO_HIDE_DURATION = 5;

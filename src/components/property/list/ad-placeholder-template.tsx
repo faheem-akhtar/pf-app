@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './property-list.module.scss';
 
 export const PropertyListAdPlaceholderTemplate: React.FunctionComponent<{ id: string }> = ({ id }) => (

@@ -1,8 +1,8 @@
+import { mockWindowConsole } from 'mocks/window/console.mock';
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
 
 import { ApiMakeFactory } from 'api/make-factory';
 import { JwtTokenStore } from 'services/jwt/token/store';
-import { mockWindowConsole } from 'mocks/window/console.mock';
 
 describe('ApiFactory', () => {
   const origin = 'origin';

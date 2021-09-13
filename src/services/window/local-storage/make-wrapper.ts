@@ -1,7 +1,7 @@
 import { helpersIsTest } from 'helpers/is-test';
-import { windowLocalStorageDefaultState } from './default-state';
-
 import { AnyValueType } from 'types/any/value.type';
+
+import { windowLocalStorageDefaultState } from './default-state';
 import { WindowLocalStorageInterface } from './interface';
 
 function storageAvailable(window: Window): boolean {

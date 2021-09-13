@@ -1,4 +1,5 @@
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
+
 import { BackendModelPropertyPriceTypeInterface } from './price-type.interface';
 
 export interface BackendModelPropertyPriceInterface extends BackendJsonApiModelType {

@@ -1,6 +1,7 @@
 import { ApiSavedPropertiesCreateRequestInterface } from 'api/saved-properties/create/request.interface';
-import { savedPropertiesStorageKey } from './storage-key';
 import { WindowService } from 'services/window/service';
+
+import { savedPropertiesStorageKey } from './storage-key';
 
 export const savedPropertiesRemove = (propertyId: number): void => {
   const savedSearches = (

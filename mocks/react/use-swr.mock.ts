@@ -1,8 +1,9 @@
+import { SWRResponse } from 'swr';
+
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
 
-import { AnyValueType } from 'types/any/value.type';
 import { ApiSwrResultType } from 'api/swr-result-type';
-import { SWRResponse } from 'swr';
+import { AnyValueType } from 'types/any/value.type';
 
 let resultData: Partial<ApiSwrResultType<AnyValueType>>;
 let isValidating = false;

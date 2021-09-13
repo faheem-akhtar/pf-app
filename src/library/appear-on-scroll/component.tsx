@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { ElementService } from 'services/element/service';
+
+import { AppearOnScrollComponentPropsInterface } from './component-props.interface';
 import { appearOnScrollObserve } from './observe';
 import { appearOnScrollOnStatusChange } from './on-status-change';
 import { appearOnScrollOnVisibilityChange } from './on-visibility-change';
-
-import { AppearOnScrollComponentPropsInterface } from './component-props.interface';
 import { AppearOnScrollStatusEnum } from './status.enum';
 import { AppearOnScrollTemplate } from './template';
-import { ElementService } from 'services/element/service';
 
 export const AppearOnScrollComponent = (props: AppearOnScrollComponentPropsInterface): JSX.Element => {
   const wrapper = useRef<HTMLDivElement>(null);

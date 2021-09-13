@@ -1,12 +1,12 @@
 import { backendPropertySerpObfuscate } from 'backend/property/serp-obfuscate';
+import { PropertyContactOptionsListInterface } from 'components/property/contact-options-list.interface';
+import { PropertySerpInterface } from 'components/property/serp/interface';
+import { PropertySerpSearchResultType } from 'components/property/serp/search-result.type';
 import { configIsTrace } from 'config/is-trace';
 import { configPropertyHideEmailIfWhatsappPresent } from 'config/property/hide-email-if-whatsapp-present';
 
 import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
 import { BackendApiPropertySearchRawJsonResponseType } from './raw-json-response-type';
-import { PropertyContactOptionsListInterface } from 'components/property/contact-options-list.interface';
-import { PropertySerpInterface } from 'components/property/serp/interface';
-import { PropertySerpSearchResultType } from 'components/property/serp/search-result.type';
 
 // TODO-FE[CX-409] add tests
 export const backendApiPropertySearchMapper = (

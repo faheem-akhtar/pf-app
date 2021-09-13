@@ -1,5 +1,6 @@
-import { PropertyListItemTypeEnum } from './type.enum';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
+
+import { PropertyListItemTypeEnum } from './type.enum';
 
 export type PropertyListItemPropertyType = {
   type: PropertyListItemTypeEnum.property;

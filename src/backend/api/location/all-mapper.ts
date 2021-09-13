@@ -1,6 +1,6 @@
-import { backendApiLocationMapToCompact } from './map-to-compact';
-
 import { LocationCompactInterface } from 'types/location/compact.interface';
+
+import { backendApiLocationMapToCompact } from './map-to-compact';
 
 // TODO-FE[CX-409] add tests
 /**

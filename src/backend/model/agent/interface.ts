@@ -1,4 +1,5 @@
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
+
 import { BackendModelBrokerInterface } from '../broker/interface';
 
 export interface BackendModelAgentInterface extends BackendJsonApiModelType {

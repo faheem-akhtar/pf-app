@@ -2,14 +2,14 @@
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
+import { useJwtToken } from 'services/jwt/token/hook';
 import { AnyValueType } from 'types/any/value.type';
+
 import { ApiFactoryPropsInterface } from './factory-props.interface';
 import { ApiMakeFactory } from './make-factory';
 import { ApiMakeSwrFactoryPropsType } from './make-swr-factory-props.type';
 import { ApiSwrRequestPropsType } from './swr-request-props.type';
 import { ApiSwrResultType } from './swr-result-type';
-
-import { useJwtToken } from 'services/jwt/token/hook';
 
 const getOrigin = (): string => origin;
 

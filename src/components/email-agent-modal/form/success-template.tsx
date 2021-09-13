@@ -2,7 +2,6 @@ import { IconThinCheckmarkCircleTemplate } from 'components/icon/thin/checkmark-
 
 import { EmailAgentModalSignInComponent } from '../sign-in/component';
 import { EmailAgentModalSignInComponentPropsInterface } from '../sign-in/component-props.interface';
-
 import styles from './email-agent-modal-form.module.scss';
 
 export const EmailAgentModalFormSuccessTemplate = (

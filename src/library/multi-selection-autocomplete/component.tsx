@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { multiSelectionAutocompleteMakeKeyboardAccessibilityHandler } from './make-keyboard-accessibility-handler';
+import { KeyboardKeyEnum } from 'enums/keyboard/key.enum';
 import { useWindowMouseDown } from 'helpers/window/mouse-down.hook';
 
-import { KeyboardKeyEnum } from 'enums/keyboard/key.enum';
 import { MultiSelectionAutocompleteComponentPropsInterface } from './component-props.interface';
 import { MultiSelectionAutocompleteExtensionInterface } from './extension.interface';
+import { multiSelectionAutocompleteMakeKeyboardAccessibilityHandler } from './make-keyboard-accessibility-handler';
 import { MultiSelectionAutocompleteTemplate } from './template';
 
 // TODO-FE[TPNX-1968] Test MultiSelectionAutocompleteComponent

@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
 import { backendApiPropertyAgentFetcher } from 'backend/api/property/agent/fetcher';
 import { backendApiPropertyBrokerFetcher } from 'backend/api/property/broker/fetcher';

@@ -1,5 +1,6 @@
-import { FiltersCountFactory } from './factory';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+
+import { FiltersCountFactory } from './factory';
 
 export const filtersCountGetActiveFields = FiltersCountFactory([
   [FiltersParametersEnum.propertyTypeId],

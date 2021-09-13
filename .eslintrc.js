@@ -4,6 +4,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: [
     'eslint:recommended',
@@ -13,13 +14,12 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'pf-rules'],
+  plugins: ['@typescript-eslint', 'pf-rules', 'simple-import-sort'],
   root: true,
   rules: {
     'new-cap': ['error', { newIsCap: true, capIsNew: false }],
     'no-console': 'error',
     'object-shorthand': ['error', 'properties'],
-    'sort-imports': ['error', { allowSeparatedGroups: true, ignoreCase: true }],
     '@typescript-eslint/no-var-requires': 0,
     'no-irregular-whitespace': 'off',
     // TODO-FE[TPNX-2309] - Remove these once fixed
@@ -82,6 +82,20 @@ module.exports = {
     'react/self-closing-comp': 'error',
     'prefer-const': 'error',
     'no-unneeded-ternary': 'error',
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          ['^\\u0000', '^@?\\w'],
+          ['^(mocks|stubs)'],
+          [
+            '^(api|backend|components|constants|config|context|enums|feature|helpers|library|pages|services|styles|types|views)',
+          ],
+          ['^'],
+          ['^\\.'],
+        ],
+      },
+    ],
   },
   overrides: [
     {
@@ -97,7 +111,7 @@ module.exports = {
       },
       rules: {
         '@typescript-eslint/explicit-function-return-type': ['error'],
-        'no-duplicate-imports': 'off',
+        'no-duplicate-imports': 'error',
         '@typescript-eslint/no-inferrable-types': 0,
         // TODO-FE[TPNX-2309] - Remove these once fixed
         '@typescript-eslint/no-empty-interface': [

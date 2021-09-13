@@ -1,15 +1,14 @@
 import { propertySerpObfuscatedGetContactOptionsList } from 'components/property/serp/obfuscated/get/contact-options-list';
 import { propertySerpObfuscatedGetLocationTreePath } from 'components/property/serp/obfuscated/get/location-tree-path';
 import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
-
 import { GalleryScrollComponent } from 'library/gallery-scroll/component';
+
 import { PropertyCardCtaButtonsGroupTemplate } from './cta-buttons-group/template';
 import { PropertyCardInfoTemplate } from './info/template';
 import { PropertyCardLoadingSkeletonTemplate } from './loading-skeleton/template';
+import styles from './property-card.module.scss';
 import { PropertyCardTemplatePropsType } from './template-props.type';
 import { PropertyCardTitleTemplate } from './title/template';
-
-import styles from './property-card.module.scss';
 
 export const PropertyCardTemplate = (props: PropertyCardTemplatePropsType): JSX.Element => {
   const { loading } = props;

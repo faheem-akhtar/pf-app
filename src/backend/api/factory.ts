@@ -1,12 +1,12 @@
+import { ApiMakeFactory } from 'api/make-factory';
+import { BackendJsonApiPayloadInterface } from 'backend/json-api/payload.interface';
+import { backendJsonApiSync } from 'backend/json-api/sync';
+import { configOriginValue } from 'config/origin/value';
+import { helpersIsDevelopment } from 'helpers/is-development';
+
 import { backendApiPfWebsiteInternalOrigin } from './pf-website-internal-origin';
 import { backendApiSecretPfWebAppUserAgent } from './secret-pf-web-app-user-agent';
 import { backendApiXAkamaiDeviceCharacteristicsHeaderValue } from './x-akamai-device-characteristics-header-value';
-import { backendJsonApiSync } from 'backend/json-api/sync';
-import { configOriginValue } from 'config/origin/value';
-
-import { ApiMakeFactory } from 'api/make-factory';
-import { BackendJsonApiPayloadInterface } from 'backend/json-api/payload.interface';
-import { helpersIsDevelopment } from 'helpers/is-development';
 
 /**
  * Backend api factory

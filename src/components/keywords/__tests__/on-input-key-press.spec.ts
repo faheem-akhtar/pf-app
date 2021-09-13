@@ -1,5 +1,7 @@
 import { keyboardEventStub } from 'stubs/keyboard/event.stub';
+
 import { KeyboardKeyEnum } from 'enums/keyboard/key.enum';
+
 import { keywordsOnInputKeyPress } from '../on-input-key-press';
 
 describe('keywordsOnInputKeyPress', () => {

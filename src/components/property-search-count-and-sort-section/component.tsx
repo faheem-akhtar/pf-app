@@ -1,18 +1,17 @@
 import { useContext, useRef } from 'react';
 
-import { domClassMerge } from 'helpers/dom/class-merge';
-import { filtersDataChoicesGetSort } from 'components/filters/data/choices/get-sort';
-
 import { FiltersContext } from 'components/filters/context';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { filtersDataChoicesGetSort } from 'components/filters/data/choices/get-sort';
 import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.type';
 import { IconThickArrowDownTemplate } from 'components/icon/thick/arrow-down-template';
 import { PropertyCardMenuContentButtonTemplate } from 'components/property-card/menu/content/button/template';
 import { PropertyCardMenuModalComponent } from 'components/property-card/menu/modal/component';
-import { PropertySearchCountAndSortSectionComponentPropsType } from './component-props.type';
-
-import styles from './property-search-count-and-sort-section.module.scss';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { domClassMerge } from 'helpers/dom/class-merge';
 import { useTranslation } from 'helpers/translation/hook';
+
+import { PropertySearchCountAndSortSectionComponentPropsType } from './component-props.type';
+import styles from './property-search-count-and-sort-section.module.scss';
 
 export const PropertySearchCountAndSortSectionComponent = ({
   count,

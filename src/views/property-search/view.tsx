@@ -1,6 +1,6 @@
-import { FiltersContextProvider } from 'components/filters/context-provider';
 import { Fragment } from 'react';
 
+import { FiltersContextProvider } from 'components/filters/context-provider';
 import { FiltersSectionComponent } from 'components/filters-section/component';
 import { FooterComponent } from 'components/footer/component';
 import { HeadComponent } from 'components/head/component';
@@ -10,11 +10,12 @@ import { PaginationSectionComponent } from 'components/pagination-section/compon
 import { PropertyListComponent } from 'components/property/list/component';
 import { PropertySearchCountAndSortSectionComponent } from 'components/property-search-count-and-sort-section/component';
 import { PropertySearchNotFoundSectionTemplate } from 'components/property-search-not-found-section/template';
-import { PropertySearchResultsCountForCurrentQueryContext } from './results-count-for-current-query/context';
-import { PropertySearchViewPropsType } from './view-props.type';
 import { SavePropertyContextProvider } from 'components/save-property/context-provider';
 import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
+
+import { PropertySearchResultsCountForCurrentQueryContext } from './results-count-for-current-query/context';
+import { PropertySearchViewPropsType } from './view-props.type';
 
 export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Element => {
   const pageIsLoading = usePageIsLoading();

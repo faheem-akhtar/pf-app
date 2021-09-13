@@ -1,12 +1,12 @@
 import { useReducer, useRef, useState } from 'react';
 
 import { functionNoop } from 'helpers/function/noop';
+
+import { GalleryScrollComponentPropsInterface } from './component-props.interface';
+import { useGalleryScrollEffects } from './effects.hook';
 import { galleryScrollGetSlidingStyles } from './get-sliding-styles';
 import { galleryScrollMakeInitialState } from './make-initial-state';
 import { galleryScrollMakeReducer } from './make-reducer';
-import { useGalleryScrollEffects } from './effects.hook';
-
-import { GalleryScrollComponentPropsInterface } from './component-props.interface';
 import { GalleryScrollTemplate } from './template';
 
 export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterface): JSX.Element => {

@@ -1,9 +1,9 @@
-import { AnyValueType } from 'types/any/value.type';
+import { reCaptchaSelector } from 'components/re-captcha/selector';
 import { functionNoop } from 'helpers/function/noop';
 import { importScript } from 'helpers/import/script';
 import { LocaleService } from 'services/locale/service';
-import { reCaptchaSelector } from 'components/re-captcha/selector';
 import { WindowService } from 'services/window/service';
+import { AnyValueType } from 'types/any/value.type';
 
 // eslint-disable-next-line pf-rules/export-name-validation
 export class GoogleRecaptcha {

@@ -1,5 +1,6 @@
-import * as isDevelopmentModule from 'helpers/is-development';
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
+
+import * as isDevelopmentModule from 'helpers/is-development';
 
 (isDevelopmentModule as { helpersIsDevelopment: boolean })['helpersIsDevelopment'] = true;
 

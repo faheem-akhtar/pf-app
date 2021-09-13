@@ -2,9 +2,9 @@ import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { PropertyCardCtaButtonsGroupButtonTemplatePropsInterface } from './template-props.interface';
 
 import styles from '../property-cta-buttons.module.scss';
+import { PropertyCardCtaButtonsGroupButtonTemplatePropsInterface } from './template-props.interface';
 
 export const PropertyCardCtaButtonsGroupButtonTemplate: React.FunctionComponent<PropertyCardCtaButtonsGroupButtonTemplatePropsInterface> =
   (props) => {

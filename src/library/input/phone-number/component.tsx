@@ -1,13 +1,13 @@
 import React, { FunctionComponent, useRef, useState } from 'react';
 
+import { useApiCountryPhoneCodes } from 'api/country-phone-codes/hook';
 import { CountrySortEnum } from 'enums/country/sort.enum';
+import { useWindowMouseDown } from 'helpers/window/mouse-down.hook';
+import { SkeletonTemplate } from 'library/skeleton/template';
+
 import { InputBaseTemplatePropsBaseInterface } from '../base/template-props-base.interface';
 import { InputPhoneNumberComponentPropsInterface } from './component-props.interface';
 import { InputPhoneNumberTemplate } from './template';
-import { SkeletonTemplate } from 'library/skeleton/template';
-
-import { useApiCountryPhoneCodes } from 'api/country-phone-codes/hook';
-import { useWindowMouseDown } from 'helpers/window/mouse-down.hook';
 
 export const InputPhoneNumberComponent: FunctionComponent<InputPhoneNumberComponentPropsInterface> = ({
   onBlur,

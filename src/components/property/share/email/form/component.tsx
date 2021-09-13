@@ -1,22 +1,20 @@
 import { FormEvent, useState } from 'react';
 
 import { apiShareFetcher } from 'api/share/fetcher';
+import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
-
+import { ReCaptchaComponent } from 'components/re-captcha/component';
+import { configSiteNameValue } from 'config/site-name/value';
+import { validationEmail } from 'helpers/validation/email';
+import { validationRequired } from 'helpers/validation/required';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { configSiteNameValue } from 'config/site-name/value';
-import { ErrorMessageComponent } from 'components/error-message/component';
-import { validationEmail } from 'helpers/validation/email';
-import { validationRequired } from 'helpers/validation/required';
-
-import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { InputBaseComponent } from 'library/input/base/component';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
+
 import { PropertyShareEmailFieldsEnum } from '../fields.enum';
 import { PropertyShareEmailFormComponentPropsInterface } from './component-props.interface';
-import { ReCaptchaComponent } from 'components/re-captcha/component';
-
 import styles from './property-share-email-form.module.scss';
 
 const captchaService = GoogleRecaptchaService();

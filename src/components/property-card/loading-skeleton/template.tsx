@@ -1,4 +1,5 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
+
 import styles from './property-card-loading-skeleton.module.scss';
 
 export const PropertyCardLoadingSkeletonTemplate: React.FunctionComponent = () => (

@@ -1,5 +1,4 @@
 import { propertySerpObfuscatedFieldUrl } from '../field/url';
-
 import { PropertySerpObfuscatedType } from '../type';
 
 export const propertySerpObfuscatedGetUrl = (property: PropertySerpObfuscatedType): string => {

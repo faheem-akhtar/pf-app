@@ -1,7 +1,7 @@
 import { BackendApiFactory } from 'backend/api/factory';
-import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
 import { PropertyAgentResultType } from 'components/property/agent-result.type';
 
+import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
 import { backendApiPropertyBrokerMapper } from './mapper';
 
 const fetcher = BackendApiFactory<PropertyAgentResultType, BackendApiPropertyJsonApiResultType>({

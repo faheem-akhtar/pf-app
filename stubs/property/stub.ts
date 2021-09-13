@@ -1,3 +1,5 @@
+import { contactOptionsEnabledStub } from 'stubs/contact-options/enabled.stub';
+
 import { propertySerpObfuscatedFieldBathroomValue } from 'components/property/serp/obfuscated/field/bathroom-value';
 import { propertySerpObfuscatedFieldBedroomValue } from 'components/property/serp/obfuscated/field/bedroom-value';
 import { propertySerpObfuscatedFieldContactOptionsList } from 'components/property/serp/obfuscated/field/contact-options-list';
@@ -14,8 +16,6 @@ import { propertySerpObfuscatedFieldReference } from 'components/property/serp/o
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
-
-import { contactOptionsEnabledStub } from 'stubs/contact-options/enabled.stub';
 
 export const propertyStub = (): PropertySerpObfuscatedType =>
   ({

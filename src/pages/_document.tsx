@@ -1,5 +1,5 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { DocumentContext, DocumentInitialProps } from 'next/dist/next-server/lib/utils';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 
 class MainDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {

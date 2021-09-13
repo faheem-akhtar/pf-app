@@ -1,13 +1,12 @@
 import { Fragment, FunctionComponent } from 'react';
 
+import { LoaderTemplate } from 'components/loader/template';
 import { domClassMerge } from 'helpers/dom/class-merge';
 
+import styles from './button.module.scss';
 import { ButtonIconPositionEnum } from './icon-position.enum';
 import { ButtonLinkTemplatePropsInterface } from './link-template-props.interface';
 import { ButtonTemplatePropsInterface } from './template-props.interface';
-import { LoaderTemplate } from 'components/loader/template';
-
-import styles from './button.module.scss';
 
 // TODO-FE[TPNX-3016] add tests
 /**

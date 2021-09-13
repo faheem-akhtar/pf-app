@@ -1,5 +1,4 @@
 import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
-
 import { filtersToRangeOptions } from 'helpers/filters/to-range-options';
 
 describe('arrayFilterNonValue', () => {

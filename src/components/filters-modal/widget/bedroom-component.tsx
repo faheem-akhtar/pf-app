@@ -1,13 +1,12 @@
 import { filtersDataChoicesGetMinBedroom } from 'components/filters/data/choices/get-min-bedroom';
-
-import { ChipChoiceTemplate } from 'library/chip-choice/template';
-import { FiltersModalItemTemplate } from '../item/template';
-import { FiltersModalWidgetType } from './type';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueFieldMaxBedroomType } from 'components/filters/value/field/max-bedroom.type';
 import { IconThickBedroomTemplate } from 'components/icon/thick/bedroom-template';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { ChipChoiceTemplate } from 'library/chip-choice/template';
 
+import { FiltersModalItemTemplate } from '../item/template';
 import styles from './filters-modal-widget-component.module.scss';
+import { FiltersModalWidgetType } from './type';
 
 export const FiltersModalWidgetBedroomComponent: FiltersModalWidgetType = ({
   filtersValue,

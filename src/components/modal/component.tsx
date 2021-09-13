@@ -5,9 +5,8 @@ import { functionNoop } from 'helpers/function/noop';
 import { useReactConstructor } from 'helpers/react/constructor.hook';
 
 import { ModalComponentPropsInterface } from './component-props.interface';
-import { ModalPortalComponent } from './portal-component';
-
 import styles from './modal.module.scss';
+import { ModalPortalComponent } from './portal-component';
 
 export const ModalComponent = ({
   openRef,

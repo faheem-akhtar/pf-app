@@ -1,14 +1,13 @@
-import { domClassMerge } from 'helpers/dom/class-merge';
-import { highlightString } from 'helpers/highlight/string';
-import { multiSelectionAutocompleteComputeInactiveRenderValue } from './compute-inactive-render-value';
-import { useTranslation } from 'helpers/translation/hook';
-
 import { IconThickSearchTemplate } from 'components/icon/thick/search-template';
 import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
-import { MultiSelectionAutocompleteChipTemplate } from './chip/template';
-import { MultiSelectionAutocompleteTemplatePropsInterface } from './template-props.interface';
+import { domClassMerge } from 'helpers/dom/class-merge';
+import { highlightString } from 'helpers/highlight/string';
+import { useTranslation } from 'helpers/translation/hook';
 
+import { MultiSelectionAutocompleteChipTemplate } from './chip/template';
+import { multiSelectionAutocompleteComputeInactiveRenderValue } from './compute-inactive-render-value';
 import styles from './multi-selection-autocomplete.module.scss';
+import { MultiSelectionAutocompleteTemplatePropsInterface } from './template-props.interface';
 
 export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
   props: MultiSelectionAutocompleteTemplatePropsInterface<T>

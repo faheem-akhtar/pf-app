@@ -1,6 +1,7 @@
+import { TFunctionType } from 'types/t-function/type';
+
 import { FormFieldsEnum } from './fields.enum';
 import { FormFieldsValueType } from './fields-value.type';
-import { TFunctionType } from 'types/t-function/type';
 
 export interface EmailAgentModalFormTemplatePropsInterface {
   /**

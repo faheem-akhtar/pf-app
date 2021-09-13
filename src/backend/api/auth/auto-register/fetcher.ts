@@ -1,7 +1,6 @@
 import { ApiAuthAutoRegisterRequestInterface } from 'api/auth/auto-register/request.interface';
 import { BackendApiFactory } from 'backend/api/factory';
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-
 import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
 
 const fetcher = BackendApiFactory<BackendJsonApiModelType, BackendJsonApiModelType>({

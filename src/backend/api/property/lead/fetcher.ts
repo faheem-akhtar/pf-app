@@ -1,8 +1,7 @@
 import { BackendApiFactory } from 'backend/api/factory';
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-import { PropertyLeadAttributesInterface } from 'types/property/lead/attributes.interface';
-
 import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
+import { PropertyLeadAttributesInterface } from 'types/property/lead/attributes.interface';
 
 type getFetcherReturnType = ReturnType<typeof BackendApiFactory>;
 

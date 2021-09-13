@@ -1,13 +1,12 @@
-import { categoryIdIsSale } from 'helpers/category-id/is-sale';
-import { configPriceChoicesDefinition } from 'config/price-choices/definition';
-import { numberFormat } from 'helpers/number/format';
-
-import { ConfigPriceChoicesInterface } from 'config/price-choices/interface';
-import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
 import { FiltersValueFieldPricePeriodType } from 'components/filters/value/field/price-period.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
+import { configPriceChoicesDefinition } from 'config/price-choices/definition';
+import { ConfigPriceChoicesInterface } from 'config/price-choices/interface';
+import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { categoryIdIsSale } from 'helpers/category-id/is-sale';
+import { numberFormat } from 'helpers/number/format';
 import { useTranslation } from 'helpers/translation/hook';
 
 const cache: Record<string, FiltersValueFieldChoiceInterface<number | null>[]> = {};

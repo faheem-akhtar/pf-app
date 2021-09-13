@@ -1,8 +1,7 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 
-import { CheckboxTemplatePropsInterface } from './template-props.interface';
-
 import styles from './checkbox.module.scss';
+import { CheckboxTemplatePropsInterface } from './template-props.interface';
 
 /**
  * Checkbox allows users to select one or more options from the given options.

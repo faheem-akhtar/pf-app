@@ -1,16 +1,16 @@
 import { useContext, useRef } from 'react';
 
+import { FiltersContext } from 'components/filters/context';
+import { IconThinFilterOpenTemplate } from 'components/icon/thin/filter-open-template';
+import { ModalComponent } from 'components/modal/component';
 import { filtersCountGetActiveFields } from 'helpers/filters/count/get-active-fields';
 import { useTranslation } from 'helpers/translation/hook';
-
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { FiltersContext } from 'components/filters/context';
+
 import { FiltersModalContentComponent } from './content-component';
-import { IconThinFilterOpenTemplate } from 'components/icon/thin/filter-open-template';
-import { ModalComponent } from 'components/modal/component';
 import styles from './filters-modal-component.module.scss';
 
 // TODO-FE[CX-423] add tests

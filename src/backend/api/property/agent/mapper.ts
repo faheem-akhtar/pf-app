@@ -1,7 +1,7 @@
+import { PropertyAgentResultType } from 'components/property/agent-result.type';
 import { configIsTrace } from 'config/is-trace';
 
 import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
-import { PropertyAgentResultType } from 'components/property/agent-result.type';
 
 // TODO-FE[CX-431] Add unit tests for backendApiPropertyAgentMapper
 export const backendApiPropertyAgentMapper = ([

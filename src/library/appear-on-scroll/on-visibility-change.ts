@@ -1,5 +1,4 @@
 import { appearOnScrollMakeStatusUpdater } from './make-status-updater';
-
 import { AppearOnScrollStatusEnum } from './status.enum';
 
 export const appearOnScrollOnVisibilityChange = (

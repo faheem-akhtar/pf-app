@@ -1,16 +1,16 @@
 import { NextRouter, useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-import { filtersValueToQuery } from './value/to-query';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { urlQuerySerialize } from 'helpers/url-query/serialize';
-import { useFiltersValueState } from './value/state.hook';
+import { UrlQueryType } from 'types/url/query.type';
 
 import { FiltersContext } from './context';
 import { FiltersContextInterface } from './context.interface';
 import { FiltersContextProviderPropsInterface } from './context-provider-props.interface';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersValueInterface } from './value/interface';
-import { UrlQueryType } from 'types/url/query.type';
-import { useEffect } from 'react';
+import { useFiltersValueState } from './value/state.hook';
+import { filtersValueToQuery } from './value/to-query';
 
 /**
  * Change browser url path

@@ -1,29 +1,29 @@
 import { useContext, useRef, useState } from 'react';
-import { configPropertyReportAttachmentSizeLimit } from 'config/property/report-attachment-size-limit';
-import { formMakeValidator } from 'components/form/make-validator';
-import { SelectFieldTemplate } from 'library/select-field/template';
 
-import styles from './property-report-form.module.scss';
-
-import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
-import { ButtonSizeEnum } from 'library/button/size.enum';
-import { ButtonTemplate } from 'library/button/template';
-import { categoryIdIsSale } from 'helpers/category-id/is-sale';
-import { configPropertyReportMessageMinCharCount } from 'config/property/report-message-min-char-count';
 import { ErrorMessageComponent } from 'components/error-message/component';
 import { FiltersContext } from 'components/filters/context';
+import { formMakeValidator } from 'components/form/make-validator';
+import { ReCaptchaComponent } from 'components/re-captcha/component';
+import { configPropertyReportAttachmentSizeLimit } from 'config/property/report-attachment-size-limit';
+import { configPropertyReportMessageMinCharCount } from 'config/property/report-message-min-char-count';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { InputBaseComponent } from 'library/input/base/component';
-import { propertyReportFormAdditionalUserTypes } from './additional-user-types';
-import { PropertyReportFormComponentPropsInterface } from './component-props.interface';
-import { PropertyReportFormFieldsEnum } from './fields.enum';
-import { propertyReportFormReasons } from './reasons';
 import { PropertyReportReasonEnum } from 'enums/property/report/reason.enum';
 import { PropertyReportUserTypeEnum } from 'enums/property/report/user-type.enum';
-import { ReCaptchaComponent } from 'components/re-captcha/component';
+import { categoryIdIsSale } from 'helpers/category-id/is-sale';
 import { userReportCategory } from 'helpers/user/report-category';
 import { validationMinLength } from 'helpers/validation/min-length';
 import { validationRequired } from 'helpers/validation/required';
+import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
+import { ButtonSizeEnum } from 'library/button/size.enum';
+import { ButtonTemplate } from 'library/button/template';
+import { InputBaseComponent } from 'library/input/base/component';
+import { SelectFieldTemplate } from 'library/select-field/template';
+
+import { propertyReportFormAdditionalUserTypes } from './additional-user-types';
+import { PropertyReportFormComponentPropsInterface } from './component-props.interface';
+import { PropertyReportFormFieldsEnum } from './fields.enum';
+import styles from './property-report-form.module.scss';
+import { propertyReportFormReasons } from './reasons';
 
 export const PropertyReportFormComponent = ({
   t,

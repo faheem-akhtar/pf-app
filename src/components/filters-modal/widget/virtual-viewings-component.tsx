@@ -1,12 +1,11 @@
 import { filtersDataChoicesGetVirtualViewing } from 'components/filters/data/choices/get-virtual-viewing';
-
-import { ChipChoiceTemplate } from 'library/chip-choice/template';
-import { FiltersModalItemTemplate } from '../item/template';
-import { FiltersModalWidgetType } from './type';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { IconThickPlayTemplate } from 'components/icon/thick/play-template';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { ChipChoiceTemplate } from 'library/chip-choice/template';
 
+import { FiltersModalItemTemplate } from '../item/template';
 import styles from './filters-modal-widget-component.module.scss';
+import { FiltersModalWidgetType } from './type';
 
 export const FiltersModalWidgetVirtualViewingsComponent: FiltersModalWidgetType = ({
   filtersValue,

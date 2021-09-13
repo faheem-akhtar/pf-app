@@ -1,6 +1,6 @@
-import { mockReactUseEffect } from 'mocks/react/mock-use-effect';
-import { mockReactUseState } from 'mocks/react/mock-use-state';
-import { mockReactUseSwr } from 'mocks/react/mock-use-swr';
+import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
+import { mockReactUseState } from 'mocks/react/use-state.mock';
+import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
 
 import { ApiMakeSwrFactory } from 'api/make-swr-factory';
 import { JwtTokenStore } from 'services/jwt/token/store';

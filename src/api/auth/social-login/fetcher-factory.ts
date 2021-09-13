@@ -1,4 +1,3 @@
-import { AnyValueType } from 'types/any/value.type';
 import { ApiAuthSocialLoginModelInterface } from 'api/auth/social-login/model.interface';
 import { ApiAuthSocialLoginRequestInterface } from 'api/auth/social-login/request.interface';
 import { ApiAuthSocialLoginResponseInterface } from 'api/auth/social-login/response.interface';
@@ -6,6 +5,7 @@ import { ApiFactory } from 'api/factory';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiJsonModelInterface } from 'api/json/model.interface';
 import { ApiRequestPropsType } from 'api/request-props.type';
+import { AnyValueType } from 'types/any/value.type';
 
 export const ApiAuthSocialLoginFetcherFactory = ({
   url,

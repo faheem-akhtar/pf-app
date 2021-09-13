@@ -1,4 +1,5 @@
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
+
 import { keywordsMakeQueryForInputValue } from '../make-query-for-input-value';
 
 describe('keywordsMakeQueryForInputValue', () => {

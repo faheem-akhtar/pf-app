@@ -1,5 +1,4 @@
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
-
 import { categoryIdToggleCommercial } from 'helpers/category-id/toggle-commercial';
 
 describe('categoryIdToggleCommercial', () => {

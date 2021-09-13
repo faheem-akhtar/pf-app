@@ -1,10 +1,11 @@
 import { FunctionComponent, useState } from 'react';
 
 import { SnackbarComponent } from 'library/snackbar/component';
+import { SnackbarPropsInterface } from 'library/snackbar/props.interface';
+
 import { SnackbarContext } from './context';
 import { SnackbarContextInterface } from './context.interface';
 import { SnackbarPortalComponent } from './portal-component';
-import { SnackbarPropsInterface } from 'library/snackbar/props.interface';
 
 const AUTO_HIDE_DEFAULT_DURATION_WITH_ACTIONS: number = 8;
 

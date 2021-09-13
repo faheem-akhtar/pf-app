@@ -1,12 +1,5 @@
-import locationsByLocale from '../../../../public/static/locations';
-
 import { backendFiltersValueDefault } from 'backend/filters/value/default';
-import { categoryIdIsRent } from 'helpers/category-id/is-rent';
-import { configPriceChoicesDefinition } from 'config/price-choices/definition';
-
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersQueryInterface } from 'components/filters/query/interface';
-import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 import { FiltersValueFieldAmenitiesType } from 'components/filters/value/field/amenities.type';
 import { FiltersValueFieldCategoryIdType } from 'components/filters/value/field/category-id.type';
 import { FiltersValueFieldCompletionStatusType } from 'components/filters/value/field/completion-status.type';
@@ -22,8 +15,14 @@ import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.t
 import { FiltersValueFieldUtilitiesPriceTypeType } from 'components/filters/value/field/utilities-price-type.type';
 import { FiltersValueFieldVirtualViewingType } from 'components/filters/value/field/virtual-viewing.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
+import { configPriceChoicesDefinition } from 'config/price-choices/definition';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
+import { categoryIdIsRent } from 'helpers/category-id/is-rent';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 import { LocationCompactMapType } from 'types/location/compact-map.type';
+
+import locationsByLocale from '../../../../public/static/locations';
 
 const locationsMapByLocale: Record<string, LocationCompactMapType> = {};
 

@@ -2,22 +2,21 @@
 
 import { useContext } from 'react';
 
+import { filtersValueEquals } from 'components/filters/value/equals';
+import { useFiltersValueState } from 'components/filters/value/state.hook';
+import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
+import { useTranslation } from 'helpers/translation/hook';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
-import { FiltersContext } from '../filters/context';
-import { FiltersModalSubmitButtonComponent } from './submit-button-component';
-import { FiltersValueInterface } from '../filters/value/interface';
-import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
 import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
 
+import { FiltersContext } from '../filters/context';
 import { filtersDataGetEnabledFilterTypes } from '../filters/data/get-enabled-filter-types';
-import { filtersModalWidgetRenderMap } from './widget/render-map';
-import { filtersValueEquals } from 'components/filters/value/equals';
-import { useFiltersValueState } from 'components/filters/value/state.hook';
-import { useTranslation } from 'helpers/translation/hook';
-
+import { FiltersValueInterface } from '../filters/value/interface';
 import styles from './filters-modal-component.module.scss';
+import { FiltersModalSubmitButtonComponent } from './submit-button-component';
+import { filtersModalWidgetRenderMap } from './widget/render-map';
 
 const filtersSequence = Object.keys(filtersModalWidgetRenderMap);
 

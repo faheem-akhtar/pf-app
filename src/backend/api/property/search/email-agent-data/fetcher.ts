@@ -1,8 +1,8 @@
 import { BackendApiFactory } from 'backend/api/factory';
-import { BackendApiPropertySearchEmailAgentDataResultType } from './result-type';
-import { BackendApiPropertySearchJsonApiResultType } from '../json-api-result.type';
 
+import { BackendApiPropertySearchJsonApiResultType } from '../json-api-result.type';
 import { backendApiPropertySearchEmailAgentDataMapper } from './mapper';
+import { BackendApiPropertySearchEmailAgentDataResultType } from './result-type';
 
 const fetcher = BackendApiFactory<
   BackendApiPropertySearchEmailAgentDataResultType,

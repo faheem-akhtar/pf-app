@@ -2,7 +2,6 @@ import * as Googletag from 'Googletag';
 
 import { configAdsGptUnits } from 'config/ads/gpt/units';
 import { importScript } from 'helpers/import/script';
-
 import { AdConfigInterface } from 'types/ad/config.interface';
 import { AdStrategyInterface } from 'types/ad/strategy.interface';
 import { AdTargetingInterface } from 'types/ad/targeting.interface';

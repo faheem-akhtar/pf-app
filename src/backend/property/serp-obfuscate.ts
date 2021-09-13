@@ -1,5 +1,4 @@
-import { assertUnreachable } from 'helpers/assert/unreachable';
-import { configIsTrace } from 'config/is-trace';
+import { PropertySerpInterface } from 'components/property/serp/interface';
 import { propertySerpObfuscatedFieldBathroomValue } from 'components/property/serp/obfuscated/field/bathroom-value';
 import { propertySerpObfuscatedFieldBedroomValue } from 'components/property/serp/obfuscated/field/bedroom-value';
 import { propertySerpObfuscatedFieldContactOptionsList } from 'components/property/serp/obfuscated/field/contact-options-list';
@@ -16,10 +15,10 @@ import { propertySerpObfuscatedFieldPropertyTypeName } from 'components/property
 import { propertySerpObfuscatedFieldReference } from 'components/property/serp/obfuscated/field/reference';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
-
-import { AnyValueType } from 'types/any/value.type';
-import { PropertySerpInterface } from 'components/property/serp/interface';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
+import { configIsTrace } from 'config/is-trace';
+import { assertUnreachable } from 'helpers/assert/unreachable';
+import { AnyValueType } from 'types/any/value.type';
 
 // TODO-FE[CX-409] add tests
 export const backendPropertySerpObfuscate = (property: PropertySerpInterface): PropertySerpObfuscatedType => {

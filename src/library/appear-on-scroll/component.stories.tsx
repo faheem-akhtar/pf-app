@@ -1,9 +1,8 @@
 /* eslint-disable pf-rules/export-name-validation */
 
 import { AppearOnScrollComponent } from './component';
-import { AppearOnScrollComponentPropsInterface } from './component-props.interface';
-
 import styles from './component.stories.module.scss';
+import { AppearOnScrollComponentPropsInterface } from './component-props.interface';
 
 export default {
   title: 'Library/Appear on scroll',

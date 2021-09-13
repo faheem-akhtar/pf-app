@@ -1,5 +1,4 @@
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
-
 import { categoryIdIsSale } from 'helpers/category-id/is-sale';
 
 describe('categoryIdIsSale', () => {

@@ -1,13 +1,12 @@
-import { configLinksDefinition } from 'config/links/definition';
-import { domClassMerge } from 'helpers/dom/class-merge';
-import { featureCopyrightEnabled } from 'feature/copyright/enabled';
-
 import { CopyrightTemplate } from 'components/copyright/template';
-import { IconAppStoreTemplate } from './icon/app-store.template';
-import { IconGooglePlayTemplate } from './icon/google-play.template';
+import { configLinksDefinition } from 'config/links/definition';
+import { featureCopyrightEnabled } from 'feature/copyright/enabled';
+import { domClassMerge } from 'helpers/dom/class-merge';
+import { useTranslation } from 'helpers/translation/hook';
 
 import styles from './footer.module.scss';
-import { useTranslation } from 'helpers/translation/hook';
+import { IconAppStoreTemplate } from './icon/app-store.template';
+import { IconGooglePlayTemplate } from './icon/google-play.template';
 
 /**
  * TODO-FE[TPNX-3016] Add tests

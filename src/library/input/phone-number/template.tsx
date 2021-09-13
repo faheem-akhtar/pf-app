@@ -1,14 +1,12 @@
-import { domClassMerge } from 'helpers/dom/class-merge';
-import { phoneNumberCountryGetConfig } from './country/get-config';
-
 import { IconThinChevronDownTemplate } from 'components/icon/thin/chevron-down-template';
-
-import { CountryPhoneCodesInterface } from 'types/country-phone-codes/interface';
+import { domClassMerge } from 'helpers/dom/class-merge';
 import { InputBaseComponent } from 'library/input/base/component';
-import { InputPhoneNumberCountryFlagTemplate } from './country/flag/template';
-import { InputPhoneNumberTemplatePropsInterface } from './template-props.interface';
+import { CountryPhoneCodesInterface } from 'types/country-phone-codes/interface';
 
+import { InputPhoneNumberCountryFlagTemplate } from './country/flag/template';
+import { phoneNumberCountryGetConfig } from './country/get-config';
 import styles from './input-phone-number.module.scss';
+import { InputPhoneNumberTemplatePropsInterface } from './template-props.interface';
 
 export const InputPhoneNumberTemplate = (props: InputPhoneNumberTemplatePropsInterface): JSX.Element => {
   const config = phoneNumberCountryGetConfig(props.value, props.countryList);

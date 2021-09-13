@@ -1,9 +1,8 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 
+import styles from './appear-on-scroll.module.scss';
 import { AppearOnScrollStatusEnum } from './status.enum';
 import { AppearOnScrollTemplatePropsInterface } from './template-props.interface';
-
-import styles from './appear-on-scroll.module.scss';
 
 const classByStatus = {
   [AppearOnScrollStatusEnum.ENTERING]: styles.appear_on_scroll__entering,

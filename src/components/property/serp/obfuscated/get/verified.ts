@@ -1,5 +1,4 @@
 import { propertySerpObfuscatedFieldVerified } from '../field/verified';
-
 import { PropertySerpObfuscatedType } from '../type';
 
 export const propertySerpObfuscatedGetVerified = (property: PropertySerpObfuscatedType): string => {
