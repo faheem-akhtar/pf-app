@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import AuthService from 'services/auth/service';
+import { AuthService } from 'services/auth/service';
 import { UserContext } from './context';
 
 export const UserContextProvider = ({ children }: React.PropsWithChildren<{}>): JSX.Element => {

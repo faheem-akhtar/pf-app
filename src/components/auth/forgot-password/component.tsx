@@ -11,7 +11,7 @@ import { ButtonTemplate } from 'library/button/template';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
-import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { InputBaseComponent } from 'library/input/base/component';
 import { ReCaptchaComponent } from 'components/re-captcha/component';
 import { useTranslation } from 'helpers/translation/hook';
@@ -20,11 +20,9 @@ import { validationRequired } from 'helpers/validation/required';
 
 import styles from '../auth.module.scss';
 
-const captchaService = new GoogleRecaptchaService();
-
 export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterface): JSX.Element => {
+  const captchaService = GoogleRecaptchaService();
   const { t } = useTranslation();
-
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<Partial<Record<AuthLoginFieldEnum, string>>>({});
   const [errorMessage, setErrorMessage] = useState('');
@@ -43,7 +41,7 @@ export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterf
 
   // TODO-FE[CX-499] - Add success message
   return (
-    <div>
+    <div data-testid='AuthForgotPasswordComponent'>
       <div className={styles.heading}>{t('auth/forgot-password')}?</div>
       <AuthLoaderComponent isEnabled={isLoading} isCentered={true} />
       {errorMessage && <ErrorMessageComponent message={errorMessage} />}

@@ -1,7 +1,7 @@
 import { apiAuthSocialLoginGoogleFetcher } from 'api/auth/social-login/google.fetcher';
 import { ApiAuthSocialLoginModelInterface } from 'api/auth/social-login/model.interface';
 import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
-import AuthService from 'services/auth/service';
+import { AuthService } from 'services/auth/service';
 import { importScript } from 'helpers/import/script';
 import { WindowService } from 'services/window/service';
 
@@ -24,6 +24,7 @@ export const AuthGoogleOneTapService = {
                 reject(res);
                 return;
               }
+
               AuthService.onAuthResolved(res.data);
               resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
             });

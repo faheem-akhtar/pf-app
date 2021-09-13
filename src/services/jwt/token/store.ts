@@ -3,6 +3,7 @@ import { WindowService } from 'services/window/service';
 
 import { apiAuthRefreshTokenFetcher } from 'api/auth/refresh-token/fetcher';
 import { ApiAuthRefreshTokenModelInterface } from 'api/auth/refresh-token/model.interface';
+import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
 
 export class JwtTokenStore {
   /**
@@ -27,9 +28,16 @@ export class JwtTokenStore {
   private refreshTokenPromise: Promise<string | null> | null = null;
 
   /**
+   * Window local storage
+   * @private
+   */
+  private windowLocalStorage: WindowLocalStorageInterface;
+
+  /**
    * Constructor
    */
   constructor() {
+    this.windowLocalStorage = WindowService.localStorage;
     this.initToken();
   }
 
@@ -38,7 +46,7 @@ export class JwtTokenStore {
    */
   public setToken(token?: string | null): void {
     // Remove old token from local storage
-    WindowService.localStorage.removeItem(this.tokenKey);
+    this.windowLocalStorage.removeItem(this.tokenKey);
 
     if (!token) {
       this.token = null;
@@ -49,7 +57,7 @@ export class JwtTokenStore {
     this.token = token;
 
     // Store token in localStorage
-    WindowService.localStorage.setItem(this.tokenKey, this.token);
+    this.windowLocalStorage.setItem(this.tokenKey, this.token);
   }
 
   /**
@@ -108,20 +116,20 @@ export class JwtTokenStore {
    */
   public setRefreshToken(token?: string): void {
     // Remove old token from local storage
-    WindowService.localStorage.removeItem(this.refreshTokenKey);
+    this.windowLocalStorage.removeItem(this.refreshTokenKey);
 
     if (!token) {
       return;
     }
 
-    WindowService.localStorage.setItem(this.refreshTokenKey, token);
+    this.windowLocalStorage.setItem(this.refreshTokenKey, token);
   }
 
   /**
    * @inheritDoc
    */
   public getRefreshToken(): string | null {
-    const storageData = WindowService.localStorage.getItem(this.refreshTokenKey);
+    const storageData = this.windowLocalStorage.getItem(this.refreshTokenKey);
 
     if (!storageData) {
       return null;
@@ -134,7 +142,7 @@ export class JwtTokenStore {
    * Initialize token
    */
   private initToken(): void {
-    const token = WindowService.localStorage.getItem(this.tokenKey);
+    const token = this.windowLocalStorage.getItem(this.tokenKey);
 
     if (!token) {
       return;

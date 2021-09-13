@@ -76,6 +76,11 @@ export interface InputBaseTemplatePropsBaseInterface {
   maxLength?: number;
 
   /**
+   * The name of the input
+   */
+  name?: string;
+
+  /**
    * Called when input value is changed
    */
   onChange: React.ChangeEventHandler<HTMLInputElement>;

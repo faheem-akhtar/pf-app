@@ -13,7 +13,7 @@ import { ButtonTemplate } from 'library/button/template';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
-import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { IconFacebookTemplate } from 'components/icon/facebook-template';
 import { IconGoogleTemplate } from 'components/icon/google-template';
 import { InputBaseComponent } from 'library/input/base/component';
@@ -23,9 +23,9 @@ import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
 
 import styles from '../auth.module.scss';
-const captchaService = new GoogleRecaptchaService();
 
 export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element => {
+  const captchaService = GoogleRecaptchaService();
   const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
@@ -47,7 +47,7 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
   const validate = formMakeValidator(errors, setErrors, validators);
 
   return (
-    <div>
+    <div data-testid='AuthLoginComponent'>
       <h1 className={styles.heading}>{t('sign-in')}</h1>
       {/* Facebook */}
       <ButtonTemplate

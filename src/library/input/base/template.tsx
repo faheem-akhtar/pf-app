@@ -27,6 +27,7 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
     maxLength,
     className,
     inputClassName,
+    name,
     onChange,
     onFocus,
     onBlur,
@@ -48,6 +49,7 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
 
         <div className={styles.content}>
           <InputElement
+            name={name}
             type={type}
             value={value}
             maxLength={maxLength}

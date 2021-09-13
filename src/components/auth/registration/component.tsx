@@ -11,7 +11,7 @@ import { CheckboxTemplate } from 'library/checkbox/template';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
-import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { InputBaseComponent } from 'library/input/base/component';
 import { ReCaptchaComponent } from 'components/re-captcha/component';
 import { useTranslation } from 'helpers/translation/hook';
@@ -23,9 +23,8 @@ import { configLinksSecondaryTermsConditions } from 'config/links/secondary/term
 
 import styles from '../auth.module.scss';
 
-const captchaService = new GoogleRecaptchaService();
-
 export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface): JSX.Element => {
+  const captchaService = GoogleRecaptchaService();
   const { t } = useTranslation();
 
   const [email, setEmail] = useState('');
@@ -56,7 +55,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
   const validate = formMakeValidator(errors, setErrors, validators);
 
   return (
-    <>
+    <div data-testid='AuthRegistrationComponent'>
       <div className={styles.heading}>{t('auth/create-account')}</div>
       <AuthLoaderComponent isEnabled={isLoading} isCentered={true} />
       {errorMessage && <ErrorMessageComponent message={errorMessage} />}
@@ -106,6 +105,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
           <InputBaseComponent
             placeholder={t('auth/first-name')}
             type='text'
+            name='first-name'
             value={firstName}
             error={!!errors[AuthRegistrationFieldEnum.firstName]}
             onChange={(value): void => {
@@ -120,8 +120,9 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
 
         <div className={styles['input-area']}>
           <InputBaseComponent
-            placeholder={t('auth/last-mane')}
+            placeholder={t('auth/last-name')}
             type='text'
+            name='last-name'
             value={lastName}
             error={!!errors[AuthRegistrationFieldEnum.lastName]}
             onChange={(value): void => {
@@ -137,6 +138,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
           <InputBaseComponent
             placeholder={t('email')}
             type='email'
+            name='email'
             value={email}
             error={!!errors[AuthRegistrationFieldEnum.email]}
             onChange={(value): void => {
@@ -152,6 +154,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
           <InputBaseComponent
             placeholder={t('password')}
             type='password'
+            name='password'
             value={password}
             error={!!errors[AuthRegistrationFieldEnum.password]}
             onChange={(value): void => {
@@ -213,6 +216,6 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
         </a>
         {authTextParts[2]}
       </div>
-    </>
+    </div>
   );
 };

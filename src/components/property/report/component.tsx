@@ -4,7 +4,7 @@ import { apiReportFetcher } from 'api/report/fetcher';
 import { functionNoop } from 'helpers/function/noop';
 
 import { AuthModalComponent } from 'components/auth/modal/component';
-import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { IconSolidWarningTemplate } from 'components/icon/solid/warning-template';
 import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
 import { IconThinCheckmarkCircleTemplate } from 'components/icon/thin/checkmark-circle-template';
@@ -16,7 +16,7 @@ import { UserContext } from 'context/user/context';
 
 import styles from './property-report.module.scss';
 
-const captchaService = new GoogleRecaptchaService();
+const captchaService = GoogleRecaptchaService();
 
 export const PropertyReportComponent = ({
   openRef,

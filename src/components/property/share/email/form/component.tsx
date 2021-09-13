@@ -11,7 +11,7 @@ import { ErrorMessageComponent } from 'components/error-message/component';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
 
-import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { InputBaseComponent } from 'library/input/base/component';
 import { PropertyShareEmailFieldsEnum } from '../fields.enum';
 import { PropertyShareEmailFormComponentPropsInterface } from './component-props.interface';
@@ -19,7 +19,7 @@ import { ReCaptchaComponent } from 'components/re-captcha/component';
 
 import styles from './property-share-email-form.module.scss';
 
-const captchaService = new GoogleRecaptchaService();
+const captchaService = GoogleRecaptchaService();
 
 export const PropertyShareEmailFormComponent = ({
   propertyId,

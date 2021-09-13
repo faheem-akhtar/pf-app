@@ -9,7 +9,7 @@ import { EmailAgentModalTemplate } from './template';
 import { EmailAgentModalTemplatePropsInterface } from './template-props.interface';
 import { FormFieldsEnum } from './form/fields.enum';
 import { FormFieldsValueType } from './form/fields-value.type';
-import { GoogleRecaptchaService } from 'services/google-recaptcha/service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { ModalComponent } from 'components/modal/component';
 import { UserContext } from 'context/user/context';
 
@@ -27,7 +27,7 @@ import { validationEmail } from 'helpers/validation/email';
 import { validationPhone } from 'helpers/validation/phone';
 import { validationRequired } from 'helpers/validation/required';
 
-const captchaService = new GoogleRecaptchaService();
+const captchaService = GoogleRecaptchaService();
 
 export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponentPropsInterface> = ({
   openRef,

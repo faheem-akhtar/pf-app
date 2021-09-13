@@ -1,7 +1,7 @@
 import { apiAuthRegisterFetcher } from 'api/auth/register/fetcher';
 import { ApiAuthRegisterRequestInterface } from 'api/auth/register/request.interface';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
-import AuthService from 'services/auth/service';
+import { AuthService } from 'services/auth/service';
 import { UserModelInterface } from 'services/user/model.interface';
 
 /**
@@ -19,7 +19,7 @@ export const AuthRegisterService = (
     captcha_token: model?.captcha_token,
   }).then((response) => {
     if (!response.ok) {
-      return AuthService.onRequestRejected(response);
+      return AuthService.onAuthRejected(response);
     }
 
     AuthService.onAuthResolved(response.data);

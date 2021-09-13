@@ -1,11 +1,12 @@
 import { AnyValueType } from 'types/any/value.type';
+import Mock = jest.Mock;
 
 const original = global.React.useState;
 
-export const mockReactUseState = (): void => {
+export const mockReactUseState = (setState?: Mock): void => {
   const useStateMock = (arg1: ((s: AnyValueType) => AnyValueType) | AnyValueType): AnyValueType => [
     typeof arg1 === 'function' ? (arg1 as Function)() : arg1,
-    jest.fn(),
+    setState ? setState : jest.fn(),
   ];
 
   jest.spyOn(global.React, 'useState').mockImplementation(useStateMock as jest.Mock);

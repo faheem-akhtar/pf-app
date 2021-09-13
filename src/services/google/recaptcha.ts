@@ -5,7 +5,8 @@ import { LocaleService } from 'services/locale/service';
 import { reCaptchaSelector } from 'components/re-captcha/selector';
 import { WindowService } from 'services/window/service';
 
-export class GoogleRecaptchaService {
+// eslint-disable-next-line pf-rules/export-name-validation
+export class GoogleRecaptcha {
   /**
    * Is recaptcha ready for usage ?
    * @protected
@@ -129,10 +130,10 @@ export class GoogleRecaptchaService {
     this.reset();
 
     // Create a placeholder for the captcha frame
-    const captchaPlaceholder = document.createElement('div');
+    const captchaPlaceholder = WindowService.document?.createElement('div');
 
     // Append it to the component
-    WindowService.document?.querySelector('body')?.appendChild(captchaPlaceholder);
+    WindowService.document?.querySelector('body')?.appendChild(captchaPlaceholder as Node);
 
     // Render inside the placeholder
     this.instanceId = WindowService.getGrecaptcha().render(reCaptchaSelector, {

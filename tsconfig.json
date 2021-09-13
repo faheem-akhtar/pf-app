@@ -31,7 +31,7 @@
       "services/*": ["src/services/*"],
       "constants/*": ["src/constants/*"],
       "mocks/*": ["mocks/*"],
-      "stubs/*": ["stubs/*"],
+      "stubs/*": ["stubs/*"]
     }
   },
   "types": ["gapi", "gapi.auth2", "FB", "google.maps"],
