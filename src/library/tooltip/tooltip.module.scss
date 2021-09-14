@@ -1,0 +1,114 @@
+.tooltip {
+  display: none;
+  font-size: var(--font-size-08);
+  left: 50%;
+  position: absolute;
+  text-transform: none;
+  transform: translateX(-50%);
+  width: auto;
+  z-index: var(--z-index-04);
+
+  &--visible {
+    display: block;
+  }
+
+  &--top {
+    bottom: 100%;
+    margin-bottom: var(--spacing);
+
+    .content {
+      margin-bottom: var(--spacing);
+
+      &::before {
+        border-color: var(--color-global-black) transparent transparent transparent;
+        top: 100%;
+      }
+    }
+  }
+
+  &--bottom {
+    margin-top: var(--spacing);
+    top: 100%;
+
+    .content {
+      margin-top: var(--spacing);
+
+      &::before {
+        border-color: transparent transparent var(--color-global-black) transparent;
+        bottom: 100%;
+      }
+    }
+  }
+
+  &--right {
+    right: 50%;
+
+    .content {
+      margin-left: var(--spacing);
+
+      &::before {
+        border-color: var(--color-global-black) transparent transparent transparent;
+        left: calc(var(--spacing) * -2);
+        top: 50%;
+        transform: translateY(-50%) rotate(90deg);
+      }
+    }
+  }
+
+  &--left {
+    left: 50%;
+
+    .content {
+      margin-right: var(--spacing);
+
+      &::before {
+        border-color: var(--color-global-black) transparent transparent transparent;
+        left: auto;
+        right: calc(var(--spacing) * -2);
+        top: 50%;
+        transform: translateY(-50%) rotate(-90deg);
+      }
+    }
+  }
+}
+
+.content {
+  background-color: var(--color-global-black);
+  border-radius: var(--spacing);
+  color: var(--color-global-white);
+  display: flex;
+  justify-content: space-between;
+  max-width: 25rem;
+  min-width: 25rem;
+  padding: calc(var(--spacing) * 2);
+  position: relative;
+
+  &::before {
+    border-style: solid;
+    border-width: 0.6rem;
+    content: ' ';
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+}
+
+.text {
+  flex: 1;
+  text-align: left;
+  white-space: normal;
+}
+
+.action {
+  align-items: center;
+  display: flex;
+  height: 2.4rem;
+  justify-content: center;
+  margin-left: var(--spacing);
+  width: 2.4rem;
+}
+
+.icon {
+  height: 1rem;
+  width: 1rem;
+}
