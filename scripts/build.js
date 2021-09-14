@@ -31,7 +31,12 @@ function promiseFromChildProcess(child, name) {
   });
 }
 
-let availableWorkers = cpuCount;
+// We need to limit the number of maximum workers to 4
+// because on the jenkins we have 8 cores machines shared between projects
+// and consuming all 8 cores interupting other build processes.
+const MAX_ALLOWED_WORKERS = 4;
+
+let availableWorkers = Math.min(MAX_ALLOWED_WORKERS, cpuCount);
 
 const lockWorker = () => {
   availableWorkers -= 1;
