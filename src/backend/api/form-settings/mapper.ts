@@ -30,6 +30,8 @@ const FilterFormSettingsParametersMapping: Record<string, Array<string>> = {
   'property-type': [FiltersParametersEnum.propertyTypeId],
   category_id: [FiltersParametersEnum.categoryId],
   location_ids: [FiltersParametersEnum.locationsIds],
+  is_developer_property: [FiltersParametersEnum.isDeveloperProperty],
+  'installment-years': [FiltersParametersEnum.minInstallmentYears, FiltersParametersEnum.maxInstallmentYears],
 };
 
 type SettingsType = BackendApiFormSettingsSettingType[];
@@ -269,10 +271,22 @@ const cleanUp = (value: ValidateSettingsResultType): void => {
   if (value[FiltersParametersEnum.maxArea]?.value === '') {
     value[FiltersParametersEnum.maxArea].value = null;
   }
+  if (value[FiltersParametersEnum.minInstallmentYears]?.value === '') {
+    value[FiltersParametersEnum.minInstallmentYears].value = null;
+  }
+  if (value[FiltersParametersEnum.maxInstallmentYears]?.value === '') {
+    value[FiltersParametersEnum.maxInstallmentYears].value = null;
+  }
   value[FiltersParametersEnum.minArea]?.choices.forEach((choice) => {
     choice.value = Number(choice.value);
   });
   value[FiltersParametersEnum.maxArea]?.choices.forEach((choice) => {
+    choice.value = Number(choice.value);
+  });
+  value[FiltersParametersEnum.minInstallmentYears]?.choices.forEach((choice) => {
+    choice.value = Number(choice.value);
+  });
+  value[FiltersParametersEnum.maxInstallmentYears]?.choices.forEach((choice) => {
     choice.value = Number(choice.value);
   });
 };
@@ -292,11 +306,15 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
     | FiltersParametersEnum.maxArea
     | FiltersParametersEnum.minPrice
     | FiltersParametersEnum.maxPrice
+    | FiltersParametersEnum.minInstallmentYears
+    | FiltersParametersEnum.maxInstallmentYears
   > = [
     FiltersParametersEnum.minArea,
     FiltersParametersEnum.maxArea,
     FiltersParametersEnum.minPrice,
     FiltersParametersEnum.maxPrice,
+    FiltersParametersEnum.minInstallmentYears,
+    FiltersParametersEnum.maxInstallmentYears,
   ];
 
   const filterTypesToAddAnyOption: Array<
@@ -427,7 +445,6 @@ const makePropertyTypeProcessor =
 const makeCategoryProcessor =
   (
     formSettings: BackendApiFormSettingsJsonApiResultType,
-
     allChoices: AllChoicesType,
     choicesIndexes: ChoicesIndexesType,
     initialStateByCategoryAndPropertyTypeMap: InitialStateMap

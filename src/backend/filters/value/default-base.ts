@@ -29,5 +29,8 @@ export const backendFiltersValueDefaultBase: FiltersValueInterface = {
   [FiltersParametersEnum.paymentMethod]: '',
   [FiltersParametersEnum.utilitiesPriceType]: '',
   [FiltersParametersEnum.virtualViewings]: '',
+  [FiltersParametersEnum.isDeveloperProperty]: false,
+  [FiltersParametersEnum.minInstallmentYears]: null,
+  [FiltersParametersEnum.maxInstallmentYears]: null,
   [FiltersParametersEnum.pageNumber]: 1,
 };

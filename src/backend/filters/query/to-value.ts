@@ -89,6 +89,14 @@ export const backendFiltersQueryToValue = (
       (queryParams[FiltersQueryParametersEnum.utilitiesPriceType] as FiltersValueFieldUtilitiesPriceTypeType) || '',
     [FiltersParametersEnum.virtualViewings]:
       (queryParams[FiltersQueryParametersEnum.virtualViewings] as FiltersValueFieldVirtualViewingType) || '',
+    [FiltersParametersEnum.isDeveloperProperty]: queryParams[FiltersQueryParametersEnum.isDeveloperProperty] === '1',
+    [FiltersParametersEnum.minInstallmentYears]: queryParams[FiltersQueryParametersEnum.minInstallmentYears]
+      ? parseInt(queryParams[FiltersQueryParametersEnum.minInstallmentYears] as string, 10)
+      : null,
+    [FiltersParametersEnum.maxInstallmentYears]: queryParams[FiltersQueryParametersEnum.maxInstallmentYears]
+      ? parseInt(queryParams[FiltersQueryParametersEnum.maxInstallmentYears] as string, 10)
+      : null,
+
     [FiltersParametersEnum.sort]: (queryParams[FiltersQueryParametersEnum.sort] || 'mr') as FiltersValueFieldSortType,
     [FiltersParametersEnum.pageNumber]: parseInt(queryParams[FiltersQueryParametersEnum.pageNumber] || '1', 10),
   };

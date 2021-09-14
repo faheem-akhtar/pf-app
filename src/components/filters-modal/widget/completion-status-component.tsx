@@ -1,4 +1,4 @@
-import { filtersDataChoicesGetCompleteonStatus } from 'components/filters/data/choices/get-completeon-status';
+import { filtersDataChoicesGetCompletionStatus } from 'components/filters/data/choices/get-completion-status';
 import { IconThickBuildingCompletionTemplate } from 'components/icon/thick/building-completion-template';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { ChipChoiceTemplate } from 'library/chip-choice/template';
@@ -19,7 +19,7 @@ export const FiltersModalWidgetCompletionStatusComponent: FiltersModalWidgetType
   >
     <ChipChoiceTemplate
       containerClassName={styles.list}
-      options={filtersDataChoicesGetCompleteonStatus(filtersValue, filtersData)}
+      options={filtersDataChoicesGetCompletionStatus(filtersValue, filtersData)}
       selected={filtersValue[FiltersParametersEnum.completionStatus]}
       onCheck={(selectedOption): void => {
         changeFiltersValue({

@@ -27,6 +27,9 @@ export const filtersValueToQuery = (params: FiltersValueInterface): FiltersQuery
     [FiltersQueryParametersEnum.paymentMethod]: params[FiltersParametersEnum.paymentMethod],
     [FiltersQueryParametersEnum.utilitiesPriceType]: params[FiltersParametersEnum.utilitiesPriceType],
     [FiltersQueryParametersEnum.virtualViewings]: params[FiltersParametersEnum.virtualViewings],
+    [FiltersQueryParametersEnum.isDeveloperProperty]: params[FiltersParametersEnum.isDeveloperProperty] ? '1' : '',
+    [FiltersQueryParametersEnum.minInstallmentYears]: String(params[FiltersParametersEnum.minInstallmentYears] || ''),
+    [FiltersQueryParametersEnum.maxInstallmentYears]: String(params[FiltersParametersEnum.maxInstallmentYears] || ''),
     [FiltersQueryParametersEnum.sort]: params[FiltersParametersEnum.sort],
   });
 };

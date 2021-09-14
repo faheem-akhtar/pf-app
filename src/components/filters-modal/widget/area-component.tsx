@@ -28,8 +28,8 @@ export const FiltersModalWidgetAreaComponent: FiltersModalWidgetType = ({
         value={filtersValue[FiltersParametersEnum.minArea]}
         options={filtersToRangeOptions(
           filtersModalMapSelectOptionsLabels(filtersDataChoicesGetMinArea(filtersValue, filtersData), t('from')),
-          filtersValue[FiltersParametersEnum.maxArea],
-          true
+          true,
+          filtersValue[FiltersParametersEnum.maxArea]
         )}
         onChange={(value): void => {
           changeFiltersValue({
@@ -44,8 +44,8 @@ export const FiltersModalWidgetAreaComponent: FiltersModalWidgetType = ({
         value={filtersValue[FiltersParametersEnum.maxArea]}
         options={filtersToRangeOptions(
           filtersModalMapSelectOptionsLabels(filtersDataChoicesGetMaxArea(filtersValue, filtersData), t('to')),
-          filtersValue[FiltersParametersEnum.minArea],
-          false
+          false,
+          filtersValue[FiltersParametersEnum.minArea]
         )}
         onChange={(value): void => {
           changeFiltersValue({

@@ -110,6 +110,21 @@ export interface FiltersQueryInterface {
   [FiltersQueryParametersEnum.virtualViewings]?: string;
 
   /**
+   * Is developer property
+   */
+  [FiltersQueryParametersEnum.isDeveloperProperty]?: string;
+
+  /**
+   * Min installment years
+   */
+  [FiltersQueryParametersEnum.minInstallmentYears]?: string;
+
+  /**
+   * Max installment years
+   */
+  [FiltersQueryParametersEnum.maxInstallmentYears]?: string;
+
+  /**
    * Pagination page to request
    */
   [FiltersQueryParametersEnum.pageNumber]?: string;

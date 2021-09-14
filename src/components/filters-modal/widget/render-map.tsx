@@ -7,6 +7,8 @@ import { FiltersModalWidgetBedroomComponent } from './bedroom-component';
 import { FiltersModalWidgetCategoryIdComponent } from './category-id-component';
 import { FiltersModalWidgetCompletionStatusComponent } from './completion-status-component';
 import { FiltersModalWidgetFurnishingComponent } from './furnishing-component';
+import { FiltersModalWidgetInstallmentYearsComponent } from './installment-years-component';
+import { FiltersModalWidgetIsDeveloperPropertyComponent } from './is-developer-property-component';
 import { FiltersModalWidgetKeywordsComponent } from './keywords-component';
 import { FiltersModalWidgetPaymentMethodComponent } from './payment-method-component';
 import { FiltersModalWidgetPriceComponent } from './price-component';
@@ -26,6 +28,8 @@ export const filtersModalWidgetRenderMap: Record<string, FiltersModalWidgetType>
   [FiltersParametersEnum.utilitiesPriceType]: FiltersModalWidgetUtilitiesPriceTypeComponent,
   [FiltersParametersEnum.maxBedroom]: FiltersModalWidgetBedroomComponent,
   [FiltersParametersEnum.maxBathroom]: FiltersModalWidgetBathroomComponent,
+  [FiltersParametersEnum.isDeveloperProperty]: FiltersModalWidgetIsDeveloperPropertyComponent,
+  [FiltersParametersEnum.minInstallmentYears]: FiltersModalWidgetInstallmentYearsComponent,
   [FiltersParametersEnum.minArea]: FiltersModalWidgetAreaComponent,
   [FiltersParametersEnum.completionStatus]: FiltersModalWidgetCompletionStatusComponent,
   [FiltersParametersEnum.amenities]: FiltersModalWidgetAmenitiesComponent,

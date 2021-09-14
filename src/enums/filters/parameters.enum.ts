@@ -133,6 +133,21 @@ export enum FiltersParametersEnum {
   virtualViewings = 'filter[virtual_viewings]',
 
   /**
+   * Is developer property
+   */
+  isDeveloperProperty = 'filter[is_developer_property]',
+
+  /**
+   * Min installment years
+   */
+  minInstallmentYears = 'filter[min_installment_years]',
+
+  /**
+   * Max installment years
+   */
+  maxInstallmentYears = 'filter[max_installment_years]',
+
+  /**
    * Page number
    */
   pageNumber = 'page[number]',

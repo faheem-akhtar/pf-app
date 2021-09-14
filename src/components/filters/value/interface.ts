@@ -102,14 +102,24 @@ export interface FiltersValueInterface extends FiltersValueBaseInterface {
   [FiltersParametersEnum.furnishing]?: FiltersValueFieldFurnishedType | '';
 
   /**
+   * Is developer property
+   */
+  [FiltersParametersEnum.isDeveloperProperty]?: boolean;
+
+  /**
+   * Min installment years
+   */
+  [FiltersParametersEnum.minInstallmentYears]?: number | null;
+
+  /**
+   * Max installment years
+   */
+  [FiltersParametersEnum.maxInstallmentYears]?: number | null;
+
+  /**
    * How to order the results
    */
   [FiltersParametersEnum.sort]: FiltersValueFieldSortType | '';
-
-  /**
-   * Furnishing
-   */
-  [FiltersParametersEnum.furnishing]?: FiltersValueFieldFurnishedType | '';
 
   /**
    * Page number

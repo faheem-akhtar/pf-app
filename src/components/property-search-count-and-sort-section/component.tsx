@@ -51,6 +51,8 @@ export const PropertySearchCountAndSortSectionComponent = ({
               onClick={(): void => {
                 onChange(sortChoice.value);
               }}
+              isNew={['da', 'dd'].includes(sortChoice.value)}
+              tag={t('new')}
             />
           );
         })}

@@ -24,6 +24,9 @@ export const filtersValueStub = (): FiltersValueInterface => ({
   [FiltersParametersEnum.paymentMethod]: '',
   [FiltersParametersEnum.utilitiesPriceType]: '',
   [FiltersParametersEnum.virtualViewings]: '',
+  [FiltersParametersEnum.isDeveloperProperty]: false,
+  [FiltersParametersEnum.minInstallmentYears]: null,
+  [FiltersParametersEnum.maxInstallmentYears]: null,
   [FiltersParametersEnum.sort]: 'mr' as FiltersValueFieldSortType,
   [FiltersParametersEnum.pageNumber]: 1,
 });

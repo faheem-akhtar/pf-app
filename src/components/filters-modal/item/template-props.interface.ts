@@ -28,4 +28,9 @@ export interface FiltersModalItemTemplatePropsInterface {
    * Additional container css class
    */
   containerClassName?: string;
+
+  /**
+   * Whether the list item is visible or not
+   */
+  visible?: boolean;
 }

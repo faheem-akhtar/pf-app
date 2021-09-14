@@ -1,7 +1,6 @@
 import { BackendApiFactory } from 'backend/api/factory';
+import { filtersToSearchQuery } from 'components/filters/to-search-query';
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-value';
 
 import { BackendApiPropertySearchCountResultType } from './count-result.type';
 
@@ -16,9 +15,6 @@ export const backendApiPropertySearchCountFetcher = (
 ): ReturnType<typeof fetcher> => {
   return fetcher({
     locale,
-    query: objectFilterNonOrEmptyValue({
-      ...filtersValue,
-      [FiltersParametersEnum.locationsIds]: filtersValue[FiltersParametersEnum.locationsIds].map((l) => l.id),
-    }),
+    query: filtersToSearchQuery(filtersValue),
   });
 };

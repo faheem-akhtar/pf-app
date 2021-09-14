@@ -32,8 +32,8 @@ export const FiltersModalWidgetPriceComponent: FiltersModalWidgetType = ({
           value={filtersValue[FiltersParametersEnum.minPrice]}
           options={filtersToRangeOptions(
             filtersModalMapSelectOptionsLabels(options, t('from')),
-            filtersValue[FiltersParametersEnum.maxPrice],
-            true
+            true,
+            filtersValue[FiltersParametersEnum.maxPrice]
           )}
           onChange={(value): void => {
             changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.minPrice]: value });
@@ -45,8 +45,8 @@ export const FiltersModalWidgetPriceComponent: FiltersModalWidgetType = ({
           value={filtersValue[FiltersParametersEnum.maxPrice]}
           options={filtersToRangeOptions(
             filtersModalMapSelectOptionsLabels(options, t('to')),
-            filtersValue[FiltersParametersEnum.minPrice],
-            false
+            false,
+            filtersValue[FiltersParametersEnum.minPrice]
           )}
           onChange={(value): void => {
             changeFiltersValue({ ...filtersValue, [FiltersParametersEnum.maxPrice]: value });

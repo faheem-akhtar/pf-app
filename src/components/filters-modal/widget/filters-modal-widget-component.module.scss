@@ -11,7 +11,8 @@
   margin-right: calc(var(--spacing) * 1.5);
 }
 
-.payment_method {
+.payment_method,
+.installment_years {
   border-bottom: 0.1rem solid var(--color-global-grey3);
   margin-top: calc(var(--spacing) * 4);
 }

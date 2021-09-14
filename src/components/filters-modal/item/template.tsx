@@ -1,5 +1,6 @@
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { useTranslation } from 'helpers/translation/hook';
+import { TagTemplate } from 'library/tag/template';
 
 import styles from './filters-modal-item-template.module.scss';
 import { FiltersModalItemTemplatePropsInterface } from './template-props.interface';
@@ -10,6 +11,7 @@ export const FiltersModalItemTemplate = ({
   isNew,
   children,
   hasBorder = true,
+  visible = true,
   containerClassName,
 }: FiltersModalItemTemplatePropsInterface): JSX.Element => {
   const { t } = useTranslation();
@@ -17,7 +19,11 @@ export const FiltersModalItemTemplate = ({
   return (
     <section
       className={domClassMerge(
-        { [styles.container]: hasBorder, [styles.containerWithIcon]: icon && hasBorder },
+        {
+          [styles.container]: hasBorder,
+          [styles.containerWithIcon]: icon && hasBorder,
+          [styles.containerHidden]: !visible,
+        },
         containerClassName
       )}
     >
@@ -25,7 +31,7 @@ export const FiltersModalItemTemplate = ({
         <div className={styles.headline}>
           {icon}
           {label}
-          {isNew && <div className={styles.tag}>{t('new')}</div>}
+          {isNew && <TagTemplate>{t('new')}</TagTemplate>}
         </div>
       )}
 

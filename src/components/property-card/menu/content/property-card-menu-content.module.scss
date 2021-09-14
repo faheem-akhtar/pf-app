@@ -8,3 +8,10 @@
     margin-top: var(--spacing);
   }
 }
+
+.content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

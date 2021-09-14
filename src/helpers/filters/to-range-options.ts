@@ -3,14 +3,14 @@ import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field
 /**
  * Filters all options ​​based on the value
  *
- * @param options The list of available options
- * @param value A value to compare against options
- * @param isMinimum Whether the value is minimum or maximum
+ * @param options Options to be displayed in the dropdown
+ * @param value A current selected value
+ * @param isMinimum Whether the comparison is based on the minimum value
  */
 export function filtersToRangeOptions<V extends number | null>(
   options: FiltersValueFieldChoiceInterface<V>[],
-  value: number | null,
-  isMinimum: boolean
+  isMinimum: boolean,
+  value?: number | null
 ): FiltersValueFieldChoiceInterface<V>[] {
   if (!value) {
     return options;

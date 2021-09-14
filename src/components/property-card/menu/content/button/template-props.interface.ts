@@ -20,4 +20,14 @@ export interface PropertyCardMenuContentButtonTemplatePropsInterface {
    * Class name
    */
   className?: string;
+
+  /**
+   * Whether the sort item is new
+   */
+  isNew?: boolean;
+
+  /**
+   * The tag for categorizing
+   */
+  tag?: string;
 }

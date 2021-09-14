@@ -1,1 +1,1 @@
-export type UrlQueryType = Record<string, number | boolean | string | string[] | number[] | void>;
+export type UrlQueryType = Record<string, number | boolean | string | string[] | number[] | null | void>;

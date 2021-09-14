@@ -105,6 +105,21 @@ export enum FiltersQueryParametersEnum {
   virtualViewings = 'vv',
 
   /**
+   * Is developer property
+   */
+  isDeveloperProperty = 'dp',
+
+  /**
+   * Min installment years
+   */
+  minInstallmentYears = 'iyf',
+
+  /**
+   * Max installment years
+   */
+  maxInstallmentYears = 'iyt',
+
+  /**
    * Pagination page to request
    */
   pageNumber = 'page',

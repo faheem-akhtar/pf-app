@@ -116,6 +116,21 @@ const mapper: {
     newKey: SaveSearchPayloadFilterKeysEnum.VIRTUAL_VIEWING,
   },
 
+  [FiltersParametersEnum.isDeveloperProperty]: {
+    filterAndMap: functionSelf,
+    newKey: SaveSearchPayloadFilterKeysEnum.IS_DEVELOPER_PROPERTY,
+  },
+
+  [FiltersParametersEnum.minInstallmentYears]: {
+    filterAndMap: toNumberOrFalse,
+    newKey: SaveSearchPayloadFilterKeysEnum.MIN_INSTALLMENT_YEARS,
+  },
+
+  [FiltersParametersEnum.maxInstallmentYears]: {
+    filterAndMap: toNumberOrFalse,
+    newKey: SaveSearchPayloadFilterKeysEnum.MAX_INSTALLMENT_YEARS,
+  },
+
   [FiltersParametersEnum.paymentMethod]: {
     filterAndMap: valueOfFalse,
     newKey: SaveSearchPayloadFilterKeysEnum.PAYMENT_METHOD,

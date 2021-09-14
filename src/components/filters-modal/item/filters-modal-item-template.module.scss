@@ -7,23 +7,14 @@
   border-bottom: 1px solid var(--color-global-grey3);
 }
 
+.containerHidden {
+  display: none;
+}
+
 .headline {
   align-items: center;
   display: flex;
   font-weight: var(--font-weight-02);
   margin-bottom: calc(var(--spacing) * 2.5);
   text-transform: capitalize;
-}
-
-.tag {
-  align-items: center;
-  background-color: var(--color-interaction-1-light-mode);
-  border-radius: calc(var(--spacing) / 2);
-  color: var(--color-global-white);
-  display: flex;
-  font-size: var(--font-size-09);
-  justify-content: center;
-  margin-left: calc(var(--spacing) * 2);
-  padding: calc(var(--spacing) / 2) var(--spacing);
-  text-transform: uppercase;
 }
