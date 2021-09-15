@@ -30,6 +30,9 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     };
   }
 
+  // eslint-disable-next-line no-console
+  console.log('TESTING');
+
   return {
     props: {
       ok: true,

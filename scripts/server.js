@@ -1,11 +1,11 @@
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
+const isEnvDevelopment = require('./is-env-development');
 
-const isEnvDev = process.env.NODE_ENV === 'development';
 const [PORT] = process.argv.slice(3);
 
-const app = next({ dev: isEnvDev });
+const app = next({ dev: isEnvDevelopment() });
 const handle = app.getRequestHandler();
 
 console.info('Initializing nextJS server');

@@ -1,20 +1,20 @@
 const ddTrace = require('dd-trace');
-const bunyan = require('bunyan');
+const logger = require('./logger');
 
-const logger = bunyan.createLogger({
-  name: 'dd-trace',
-  level: 'trace',
-});
+const isEnvDevelopment = require('./is-env-development');
 
 const tracer = ddTrace.init({
   logInjection: true,
   logger: {
-    log: (err) => logger.log(err),
-    info: (err) => logger.info(err),
-    debug: (err) => logger.debug(err),
-    warn: (err) => logger.warn(err),
+    info: (message) => logger.info(message),
+    warn: (message) => logger.warn(message),
+    debug: (message) => logger.trace(message),
+    error: (err) => logger.error(err),
   },
+  debug: isEnvDevelopment(),
 });
+
+global.console.log = (...args) => logger.info(...args);
 
 const headersToRecord = [
   'host',
@@ -42,12 +42,15 @@ tracer.use('http', {
     request: (span, req, res) => {
       if (req.path) {
         span.setTag('req.path', req.path);
+        logger.info(req.path);
       }
       if (req._header) {
         span.setTag('req._header', req._header);
+        logger.info(req._header);
       }
       if (res && res._header) {
         span.setTag('res._header', res._header);
+        logger.info(res._header);
       }
     },
   },
