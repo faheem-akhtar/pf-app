@@ -6,8 +6,10 @@ import { ReportAttributesInterface } from 'types/report/attributes-interface';
 
 const fetcher = ApiFactory<BackendJsonApiModelType, ApiJsonModelInterface<ReportAttributesInterface>>({
   method: 'POST',
-  url: 'property/report',
-  handledByPfWebApp: true,
+  url: '',
+  alterHeaders: (headers) => {
+    headers['content-type'] = 'application/vnd.api+json';
+  },
 });
 
 export const apiReportFetcher = (
@@ -17,9 +19,12 @@ export const apiReportFetcher = (
   const locale = LocaleService.getLocale();
   return fetcher({
     locale,
+    url: `property/${propertyId}/report`,
     postData: {
-      propertyId,
-      attributes,
+      data: {
+        type: 'property_report',
+        attributes,
+      },
     },
   });
 };

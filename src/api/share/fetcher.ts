@@ -7,12 +7,10 @@ type getFetcherReturnType = ReturnType<typeof ApiFactory>;
 
 const fetcher = ApiFactory<undefined, ApiJsonModelInterface<EmailShareAttributesInterface>>({
   method: 'POST',
-  url: 'property/share',
-  handledByPfWebApp: true,
+  url: '',
   alterHeaders: (headers) => {
     headers['content-type'] = 'application/vnd.api+json';
   },
-  dataMapper: () => undefined,
 });
 
 export const apiShareFetcher = (
@@ -22,9 +20,12 @@ export const apiShareFetcher = (
   const locale = LocaleService.getLocale();
   return fetcher({
     locale,
+    url: `property/${propertyId}/share`,
     postData: {
-      propertyId,
-      attributes,
+      data: {
+        type: 'property_share',
+        attributes,
+      },
     },
   });
 };

@@ -1,10 +1,11 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 
 import { apiShareFetcher } from 'api/share/fetcher';
 import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
 import { ReCaptchaComponent } from 'components/re-captcha/component';
 import { configSiteNameValue } from 'config/site-name/value';
+import { UserContext } from 'context/user/context';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
@@ -24,7 +25,8 @@ export const PropertyShareEmailFormComponent = ({
   onFormSubmitted,
   t,
 }: PropertyShareEmailFormComponentPropsInterface): JSX.Element => {
-  const [email, setEmail] = useState<string>('');
+  const user = useContext(UserContext);
+  const [email, setEmail] = useState<string>(user?.email || '');
   const [friendEmail, setFriendEmail] = useState<string>('');
   const [message, setMessage] = useState<string>(
     t('social-share/default-message').replace('{sitename}', t(configSiteNameValue))

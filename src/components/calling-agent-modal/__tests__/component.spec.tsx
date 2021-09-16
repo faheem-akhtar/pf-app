@@ -111,12 +111,14 @@ describe('CallingAgentModalComponent', () => {
         expect.anything(),
         expect.objectContaining({
           body: JSON.stringify({
-            propertyId,
-            attributes: {
-              email: 'report@report.com',
-              message: 'Property Not Available - Call Lead Pop-up',
-              reason_id: PropertyReportReasonEnum.notAvailable,
-              reporter_type: PropertyReportUserTypeEnum.renter,
+            data: {
+              type: 'property_report',
+              attributes: {
+                email: 'report@report.com',
+                message: 'Property Not Available - Call Lead Pop-up',
+                reason_id: PropertyReportReasonEnum.notAvailable,
+                reporter_type: PropertyReportUserTypeEnum.renter,
+              },
             },
           }),
         })
