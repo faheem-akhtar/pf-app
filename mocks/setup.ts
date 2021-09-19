@@ -3,7 +3,7 @@
 import '@testing-library/jest-dom';
 import { NextRouter } from 'next/router';
 
-import { setupSwrMock } from 'mocks/react/use-swr.mock';
+import { mockReactUseSwrRecover, setupSwrMock } from 'mocks/react/use-swr.mock';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 
@@ -61,6 +61,7 @@ afterEach(() => {
   recoverWindowFetch();
   recoverReactUseRef();
   recoverWindowMockImportScript();
+  mockReactUseSwrRecover();
 
   delete process.env.TRACE;
 });

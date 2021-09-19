@@ -10,7 +10,7 @@ describe('ApiMakeSwrFactory', () => {
     mockReactUseState();
     mockReactUseEffect();
     const swrResult = { ok: true, data: { a: 1 } };
-    mockReactUseSwr(swrResult);
+    mockReactUseSwr('en-testurl-GET', swrResult);
     global.origin = 'test.origin';
     const swrFactory = ApiMakeSwrFactory({ requireAuth: false });
     const hook = swrFactory({
@@ -27,7 +27,7 @@ describe('ApiMakeSwrFactory', () => {
     mockReactUseState();
     mockReactUseEffect();
     const swrResult = { ok: true, data: { a: 1 } };
-    mockReactUseSwr(swrResult);
+    mockReactUseSwr('en-testurl-GET', swrResult);
     global.origin = 'test.origin';
     const swrFactory = ApiMakeSwrFactory({ requireAuth: true, jwtTokenService: new JwtTokenStore() });
     const hook = swrFactory({

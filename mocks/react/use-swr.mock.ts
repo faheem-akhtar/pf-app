@@ -1,39 +1,43 @@
 import { SWRResponse } from 'swr';
 
-import { mockWindowFetch } from 'mocks/window/fetch.mock';
-
 import { ApiSwrResultType } from 'api/swr-result-type';
 import { AnyValueType } from 'types/any/value.type';
 
-let resultData: Partial<ApiSwrResultType<AnyValueType>>;
-let isValidating = false;
+let mocksMap: Record<string, { swrResultData: Partial<ApiSwrResultType<AnyValueType>>; swrIsValidating: boolean }> = {};
 
 export const mockReactUseSwr = (
+  key: string,
   swrResultData: Partial<ApiSwrResultType<AnyValueType>>,
   swrIsValidating: boolean = false
 ): void => {
-  resultData = swrResultData;
-  isValidating = swrIsValidating;
+  mocksMap[key] = { swrResultData, swrIsValidating };
 };
 
 // eslint-disable-next-line pf-rules/export-name-validation
 export const setupSwrMock = (): void => {
-  jest.mock('swr', () => (shouldFetch: boolean, fetcher: Function): SWRResponse<AnyValueType, AnyValueType> => {
+  jest.mock('swr', () => (key: string | void): SWRResponse<AnyValueType, AnyValueType> => {
     const baseProps = {
       data: null,
       isValidating: true,
       revalidate: (): Promise<boolean> => Promise.resolve(true),
       mutate: (): Promise<null> => Promise.resolve(null),
     };
-    if (shouldFetch) {
-      mockWindowFetch();
-      fetcher();
+    if (key) {
+      if (!mocksMap[key]) {
+        throw new Error(`Swr with key ${key} is not mocked`);
+      }
+
       return {
         ...baseProps,
-        data: resultData,
-        isValidating,
+        data: mocksMap[key].swrResultData,
+        isValidating: mocksMap[key].swrIsValidating,
       };
     }
     return baseProps;
   });
+};
+
+// eslint-disable-next-line pf-rules/export-name-validation
+export const mockReactUseSwrRecover = (): void => {
+  mocksMap = {};
 };

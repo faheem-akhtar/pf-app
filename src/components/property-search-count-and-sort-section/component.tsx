@@ -6,9 +6,13 @@ import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.t
 import { IconThickArrowDownTemplate } from 'components/icon/thick/arrow-down-template';
 import { PropertyCardMenuContentButtonTemplate } from 'components/property-card/menu/content/button/template';
 import { PropertyCardMenuModalComponent } from 'components/property-card/menu/modal/component';
+import { onBoardingEnabledFeaturedTooltip } from 'config/on-boarding/enabled-featured-tooltip';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { domClassMerge } from 'helpers/dom/class-merge';
+import { stringMakeBoldWord } from 'helpers/string/make-bold-word';
 import { useTranslation } from 'helpers/translation/hook';
+import { OnBoardingComponent } from 'library/on-boarding/component';
+import { OnBoardingTypeEnum } from 'library/on-boarding/type.enum';
 
 import { PropertySearchCountAndSortSectionComponentPropsType } from './component-props.type';
 import styles from './property-search-count-and-sort-section.module.scss';
@@ -26,14 +30,34 @@ export const PropertySearchCountAndSortSectionComponent = ({
     filtersCtx.change((filtersValue) => ({ ...filtersValue, [FiltersParametersEnum.sort]: value }));
     closeFiltersRef.current();
   };
+  const shouldRenderTooltip =
+    onBoardingEnabledFeaturedTooltip && filtersCtx.value[FiltersParametersEnum.isDeveloperProperty];
 
   return (
     <div className={styles.container}>
       <span>{t('n-properties-sorted-by').replace('{n}', loading ? '...' : count.toString())} </span>
-      <button className={styles.sort_btn} onClick={(): void => openFiltersRef.current()}>
-        <span>{choices.find((c) => c.value === filtersCtx.value[FiltersParametersEnum.sort])?.label}</span>
-        <IconThickArrowDownTemplate class={styles.sort_icon} />
-      </button>
+      <div className={styles.tooltipWrapper}>
+        <button className={styles.sort_btn} onClick={(): void => openFiltersRef.current()}>
+          <span>{choices.find((c) => c.value === filtersCtx.value[FiltersParametersEnum.sort])?.label}</span>
+          <IconThickArrowDownTemplate class={styles.sort_icon} />
+        </button>
+
+        {shouldRenderTooltip && (
+          <OnBoardingComponent
+            name={OnBoardingTypeEnum.featuredTooltip}
+            prerequisiteName={OnBoardingTypeEnum.filterTooltip}
+          >
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('on-boarding/featured-description').replace(
+                  '{suffix}',
+                  stringMakeBoldWord(t('on-boarding/featured-description-suffix'))
+                ),
+              }}
+            />
+          </OnBoardingComponent>
+        )}
+      </div>
 
       <PropertyCardMenuModalComponent
         closeButtonLabel={t('cta-cancel')}

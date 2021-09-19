@@ -38,7 +38,9 @@ export const ApiMakeSwrFactory =
       if (shouldFetch && makeFactoryProps.requireAuth && !authToken) {
         shouldFetch = false;
       }
-      const key = `${locale}-${factoryProps.url}-${factoryProps.method}-${JSON.stringify(props.query)}`;
+      const key = `${locale}-${factoryProps.url}-${factoryProps.method}${
+        props.query ? '-' + JSON.stringify(props.query) : ''
+      }`;
       const options = {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,

@@ -1,4 +1,4 @@
-export enum TooltipPlacementEnum {
+export enum OnBoardingPlacementEnum {
   top = 'top',
   left = 'left',
   bottom = 'bottom',

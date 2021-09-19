@@ -2,7 +2,8 @@
  * @jest-environment jsdom
  */
 
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { useRouter } from 'next/router';
 
 import { mockMiscAddTranslation } from 'mocks/misc/add-translation.mock';
@@ -19,40 +20,41 @@ describe('PropertySearchCountAndSortSectionComponent', () => {
     mockMiscAddTranslation('n-properties-sorted-by', '{n} properties sorted by');
   });
 
-  it('should change the route when new sorting is picked', () => {
+  it('should change the route when new sorting is picked', async () => {
     const routerPushSpy = jest.fn();
     useRouter().push = routerPushSpy;
 
-    const { getByText } = render(
+    render(
       <FiltersContextProvider {...filtersContextPropsStub()}>
         <PropertySearchCountAndSortSectionComponent count={5} loading={false} />
       </FiltersContextProvider>
     );
 
-    fireEvent.click(getByText('Featured'));
-    fireEvent.click(screen.getByText('Beds (most)'));
+    userEvent.click(screen.getByText(/^Featured$/));
+    await waitFor(() => expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument());
+    userEvent.click(screen.getByText('Beds (most)'));
 
     expect(routerPushSpy).toHaveBeenCalledTimes(1);
     expect(routerPushSpy).toHaveBeenCalledWith('https://propertyfinder.ae/en/search?c=2&rp=y&ob=bd');
   });
 
   it('should render ... when loading', () => {
-    const { getByText } = render(
+    render(
       <FiltersContextProvider {...filtersContextPropsStub()}>
         <PropertySearchCountAndSortSectionComponent count={5} loading />
       </FiltersContextProvider>
     );
 
-    expect(getByText('... properties sorted by')).toBeTruthy();
+    expect(screen.getByText('... properties sorted by')).toBeInTheDocument();
   });
 
   it('should render N properties sorted by when not loading', () => {
-    const { getByText } = render(
+    render(
       <FiltersContextProvider {...filtersContextPropsStub()}>
         <PropertySearchCountAndSortSectionComponent count={5} loading={false} />
       </FiltersContextProvider>
     );
 
-    expect(getByText('5 properties sorted by')).toBeTruthy();
+    expect(screen.getByText('5 properties sorted by')).toBeInTheDocument();
   });
 });

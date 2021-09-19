@@ -32,3 +32,29 @@
   height: 1.8rem;
   width: 1.8rem;
 }
+
+.tooltipWrapper {
+  flex: 1;
+  margin-left: calc(var(--spacing) * 1.5);
+  position: relative;
+}
+
+.tooltip {
+  left: auto;
+  max-width: 90vw;
+  right: 0;
+  transform: none;
+  width: 30rem;
+}
+
+.tooltipArrow {
+  left: auto;
+  right: calc(var(--spacing) * 2);
+  transform: rotate(135deg);
+}
+
+.tooltipTitle {
+  font-size: var(--font-size-01);
+  font-weight: var(--font-weight-02);
+  margin-bottom: calc(var(--spacing) * 2);
+}

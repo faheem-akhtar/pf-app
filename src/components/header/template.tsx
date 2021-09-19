@@ -7,6 +7,7 @@ import { IconThinUserTemplate } from 'components/icon/thin/user-template';
 import { LanguageSelectorComponent } from 'components/language-selector/component';
 import { configCommon } from 'config/common';
 import { localeGetHref } from 'helpers/locale/get-href';
+import { localeIsDefault } from 'helpers/locale/is-default';
 import { useTranslation } from 'helpers/translation/hook';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
@@ -22,8 +23,7 @@ export const HeaderTemplate = ({
 }: HeaderTemplatePropsInterface): JSX.Element => {
   const { t } = useTranslation();
 
-  const currentLocaleIsDefault = locale === configCommon.language.current;
-  const logo = currentLocaleIsDefault ? <IconLogoCurrentTemplate /> : <IconLogoAlternativeTemplate />;
+  const logo = localeIsDefault(locale as string) ? <IconLogoCurrentTemplate /> : <IconLogoAlternativeTemplate />;
 
   return (
     <header className={styles.container}>
@@ -31,7 +31,7 @@ export const HeaderTemplate = ({
         <div className={styles.section}>
           <div className={styles.sectionLeft}>
             <a
-              href={currentLocaleIsDefault ? '/' : `/${configCommon.language.alternative}`}
+              href={localeIsDefault(locale as string) ? '/' : `/${configCommon.language.alternative}`}
               className={styles.logoLink}
             >
               {logo}

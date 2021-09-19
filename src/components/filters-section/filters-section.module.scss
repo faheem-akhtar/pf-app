@@ -22,8 +22,5 @@
   border-radius: 1rem;
   flex: 1;
   font-size: var(--font-size-08);
-}
-
-.buttons_row button:last-child {
-  margin-left: calc(var(--spacing) * 1.5);
+  width: 100%;
 }

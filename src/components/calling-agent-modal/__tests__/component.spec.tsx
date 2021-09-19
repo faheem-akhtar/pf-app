@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { fireEvent as fireDOMEvent } from '@testing-library/dom';
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { mockModalEnv } from 'mocks/modal-env/mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
@@ -44,66 +44,96 @@ describe('CallingAgentModalComponent', () => {
   });
 
   it('should render without throwing any errors', () => {
-    const { getByTestId } = render(<CallingAgentModalComponent {...props} />);
+    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+      ok: false,
+    });
+    render(<CallingAgentModalComponent {...props} />);
     act(openRef.current);
-    expect(getByTestId('CallingAgentModalContent')).toMatchSnapshot();
+
+    expect(screen.getByTestId('CallingAgentModalContent')).toMatchSnapshot();
   });
 
   it('should update title when close is clicked first time', async () => {
-    const { getByTestId } = render(<CallingAgentModalComponent {...props} />);
+    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+      ok: true,
+      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+    });
+    render(<CallingAgentModalComponent {...props} />);
     act(openRef.current);
-    const titleElement = getByTestId('CallingAgentModalTitle');
+
+    const titleElement = screen.getByTestId('CallingAgentModalTitle');
     fireDOMEvent(titleElement.nextSibling as HTMLElement, new MouseEvent('click', { bubbles: true }));
+
     await waitFor(() => expect(titleElement.textContent).toBe('agent-modal/property-availability'));
   });
 
   it('should close modal when close is clicked second time', async () => {
-    const { getByTestId, queryAllByTestId } = render(<CallingAgentModalComponent {...props} />);
+    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+      ok: true,
+      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+    });
+    render(<CallingAgentModalComponent {...props} />);
     act(openRef.current);
-    const closeButtonElement = getByTestId('CallingAgentModalCloseButton');
 
+    const closeButtonElement = screen.getByTestId('CallingAgentModalCloseButton');
     fireDOMEvent(closeButtonElement, new MouseEvent('click', { bubbles: true }));
     fireDOMEvent(closeButtonElement, new MouseEvent('click', { bubbles: true }));
-    await waitFor(() => expect(queryAllByTestId('CallingAgentModalCloseButton').length).toEqual(0));
+
+    await waitFor(() => expect(screen.queryAllByTestId('CallingAgentModalCloseButton').length).toEqual(0));
   });
 
-  test('if agent info is shown properly', async () => {
-    mockReactUseSwr({ ok: true, data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' } });
-    const { getByTestId } = render(<CallingAgentModalComponent {...props} />);
+  it('if agent info is shown properly', async () => {
+    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+      ok: true,
+      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+    });
+    render(<CallingAgentModalComponent {...props} />);
     act(openRef.current);
-    await waitFor(() => expect(getByTestId('AgentInfoComponentDetails')).toMatchSnapshot());
+
+    await waitFor(() => expect(screen.getByTestId('AgentInfoComponentDetails')).toMatchSnapshot());
   });
 
-  it('should render feedback component when agen data exists and close is clicked first time', async () => {
-    const { getByTestId, getByText } = render(<CallingAgentModalComponent {...props} />);
+  it('should render feedback component when agent data exists and close is clicked first time', async () => {
+    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+      ok: true,
+      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+    });
+    render(<CallingAgentModalComponent {...props} />);
     act(openRef.current);
-    const titleElement = getByTestId('CallingAgentModalTitle');
-    mockReactUseSwr({ ok: true, data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' } });
 
+    const titleElement = screen.getByTestId('CallingAgentModalTitle');
     fireDOMEvent(titleElement.nextSibling as HTMLElement, new MouseEvent('click', { bubbles: true }));
-    mockReactUseSwr({ ok: true, data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' } });
-    await waitFor(() => expect(getByText('agent-modal/agent-not-answered')).toBeTruthy());
+
+    await waitFor(() => expect(screen.getByText('agent-modal/agent-not-answered')).toBeTruthy());
   });
 
   it('should call onAnswerClicked callback when a feedback button is clicked', async () => {
+    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+      ok: true,
+      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+    });
     const onAnswerClickedSpy = jest.fn();
-    const { getAllByRole } = render(
-      <CallingAgentModalFeedbackComponent onAnswerClicked={onAnswerClickedSpy} propertyId={propertyId} />
-    );
+    render(<CallingAgentModalFeedbackComponent onAnswerClicked={onAnswerClickedSpy} propertyId={propertyId} />);
     act(openRef.current);
-    const [answerButton] = getAllByRole('button');
+
+    const [answerButton] = screen.getAllByRole('button');
     fireEvent.click(answerButton);
     await waitFor(() => expect(onAnswerClickedSpy).toHaveBeenCalledTimes(1));
   });
 
   it('should make request if clicked answer is no', async () => {
+    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+      ok: true,
+      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+    });
+
     const fetchMock = mockWindowFetch();
-    const { getByText } = render(
+    render(
       <FiltersContextProvider {...filtersContextPropsStub()}>
         <CallingAgentModalFeedbackComponent onAnswerClicked={jest.fn()} propertyId={propertyId} />
       </FiltersContextProvider>
     );
-    const answerButton = getByText('no');
+    const answerButton = screen.getByText('no');
 
     fireEvent.click(answerButton);
     await waitFor(() =>

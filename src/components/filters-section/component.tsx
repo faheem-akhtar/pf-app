@@ -14,10 +14,16 @@ import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import styles from './filters-section.module.scss';
 
-const ButtonsRow = ({ className }: { className?: string }): JSX.Element => (
+const ButtonsRow = ({
+  className,
+  visibleTooltip = false,
+}: {
+  className?: string;
+  visibleTooltip?: boolean;
+}): JSX.Element => (
   <div className={domClassMerge(styles.buttons_row, className)}>
-    <FiltersModalButtonComponent />
-    <SaveSearchModalButtonComponent />
+    <FiltersModalButtonComponent visibleTooltip={visibleTooltip} />
+    <SaveSearchModalButtonComponent visibleTooltip={visibleTooltip} />
   </div>
 );
 
@@ -41,7 +47,7 @@ export const FiltersSectionComponent = (): JSX.Element => {
         }}
       />
       <SaveSearchContextProvider>
-        <ButtonsRow />
+        <ButtonsRow visibleTooltip />
       </SaveSearchContextProvider>
       <AppearOnScrollComponent>
         <ButtonsRow className={styles.buttons_row__appear_on_scroll} />

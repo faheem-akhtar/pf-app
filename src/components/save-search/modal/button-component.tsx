@@ -10,12 +10,14 @@ import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
+import { OnBoardingComponent } from 'library/on-boarding/component';
+import { OnBoardingTypeEnum } from 'library/on-boarding/type.enum';
 
 import { SaveSearchContext } from '../context';
 import { SaveSearchModalContentComponent } from './content-component';
 import styles from './save-search-modal-component.module.scss';
 
-export const SaveSearchModalButtonComponent = (): JSX.Element => {
+export const SaveSearchModalButtonComponent = ({ visibleTooltip }: { visibleTooltip: boolean }): JSX.Element => {
   const { t } = useTranslation();
   const user = useContext(UserContext);
   const snackbar = useContext(SnackbarContext);
@@ -50,23 +52,37 @@ export const SaveSearchModalButtonComponent = (): JSX.Element => {
 
   return (
     <>
-      <ButtonTemplate
-        type='button'
-        componentType={ButtonComponentTypeEnum.tertiary}
-        size={ButtonSizeEnum.small}
-        onClick={(): void => {
-          if (saveSearch.filtered.length === 0) {
-            openDialog();
-          }
-        }}
-        icon={{
-          component: IconThinStarTemplate,
-          position: ButtonIconPositionEnum.left,
-          className: saveSearch.filtered.length ? styles.icon__active : styles.icon__inactive,
-        }}
-      >
-        {t('save-search/cta-label')}
-      </ButtonTemplate>
+      <div className={styles.tooltipWrapper}>
+        <ButtonTemplate
+          type='button'
+          componentType={ButtonComponentTypeEnum.tertiary}
+          size={ButtonSizeEnum.small}
+          onClick={(): void => {
+            if (saveSearch.filtered.length === 0) {
+              openDialog();
+            }
+          }}
+          icon={{
+            component: IconThinStarTemplate,
+            position: ButtonIconPositionEnum.left,
+            className: saveSearch.filtered.length ? styles.icon__active : styles.icon__inactive,
+          }}
+        >
+          {t('save-search/cta-label')}
+        </ButtonTemplate>
+        {visibleTooltip && (
+          <OnBoardingComponent
+            name={OnBoardingTypeEnum.saveSearchTooltip}
+            className={styles.tooltip}
+            arrowClassName={styles.tooltipArrow}
+          >
+            <>
+              <p className={styles.tooltipTitle}>{t('on-boarding/save-search-title')}</p>
+              {t('on-boarding/save-search-description')}
+            </>
+          </OnBoardingComponent>
+        )}
+      </div>
       <ModalComponent openRef={openFiltersRef} closeRef={closeFiltersRef}>
         <SaveSearchModalContentComponent close={(): void => closeFiltersRef.current()} />
       </ModalComponent>

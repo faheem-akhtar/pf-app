@@ -75,3 +75,13 @@
 .filter_button {
   white-space: pre;
 }
+
+.tooltipWrapper {
+  flex: 1;
+  position: relative;
+}
+
+.tooltip {
+  left: 0;
+  transform: none;
+}
