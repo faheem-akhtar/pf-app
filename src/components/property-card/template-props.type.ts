@@ -25,6 +25,12 @@ export type PropertyCardTemplatePropsType = {
    * Has property has been short listed by the user
    */
   saved: boolean;
+
+  /**
+   * Last contacted date
+   */
+  contactDate?: string;
+
   /**
    * Clicked on the saved button
    */

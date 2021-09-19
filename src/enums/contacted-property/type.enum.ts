@@ -1,4 +1,4 @@
-export enum BackendModelPropertyContactedTypeEnum {
+export enum ContactedPropertyTypeEnum {
   call = 'CALL',
   whatsApp = 'WHATSAPP',
   sms = 'SMS',

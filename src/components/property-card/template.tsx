@@ -1,7 +1,9 @@
 import { propertySerpObfuscatedGetContactOptionsList } from 'components/property/serp/obfuscated/get/contact-options-list';
 import { propertySerpObfuscatedGetLocationTreePath } from 'components/property/serp/obfuscated/get/location-tree-path';
 import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
+import { dateToLocale } from 'helpers/date/to-locale';
 import { GalleryScrollComponent } from 'library/gallery-scroll/component';
+import { LocaleService } from 'services/locale/service';
 
 import { PropertyCardCtaButtonsGroupTemplate } from './cta-buttons-group/template';
 import { PropertyCardInfoTemplate } from './info/template';
@@ -11,7 +13,7 @@ import { PropertyCardTemplatePropsType } from './template-props.type';
 import { PropertyCardTitleTemplate } from './title/template';
 
 export const PropertyCardTemplate = (props: PropertyCardTemplatePropsType): JSX.Element => {
-  const { loading } = props;
+  const { loading, contactDate, t } = props;
 
   if (loading) {
     return <PropertyCardLoadingSkeletonTemplate />;
@@ -33,6 +35,13 @@ export const PropertyCardTemplate = (props: PropertyCardTemplatePropsType): JSX.
           contactOptions={propertySerpObfuscatedGetContactOptionsList(props.property)}
         />
       </div>
+      {contactDate && (
+        <div className={styles.footer}>
+          {t('contacted_properties/property-card-label', {
+            date: dateToLocale(contactDate, LocaleService.getLocale()),
+          })}
+        </div>
+      )}
     </div>
   );
 };

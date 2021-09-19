@@ -1,15 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { ApiHttpMethodType } from 'api/http-method.type';
+import { backendApiContactedPropertyFetcher } from 'backend/api/contacted-property/fetcher';
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
-import { backendApiSaveSearchFetcher } from 'backend/api/save-search/fetcher';
 import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
 import { ApiHeaderEnum } from 'enums/api/header.enum';
 
 export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const locale = backendApiGetLocaleFromReq(req);
 
-  backendApiSaveSearchFetcher(req.method as ApiHttpMethodType)({
+  backendApiContactedPropertyFetcher(req.method as ApiHttpMethodType)({
     locale,
     alterHeaders: (headers) => {
       headers[ApiHeaderEnum.auth] = req.headers[ApiHeaderEnum.auth] as string;
@@ -24,7 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     } else {
       res.status(500);
       // eslint-disable-next-line no-console
-      console.error('save search api failed', response.error);
+      console.error('contacted property api failed', response.error);
       res.end();
     }
   });

@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 
+import { ContactedPropertyContextProvider } from 'components/contacted-property/context-provider';
 import { FiltersContextProvider } from 'components/filters/context-provider';
 import { FiltersSectionComponent } from 'components/filters-section/component';
 import { FooterComponent } from 'components/footer/component';
@@ -33,21 +34,26 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
         <HeadComponent pageTitle={'TODO-FE[CX-396]'} />
         <FiltersContextProvider {...filtersContextProps}>
           <SavePropertyContextProvider>
-            <HeaderComponent />
-            <FiltersSectionComponent />
-            {props.searchResult.total ? (
-              <Fragment>
-                <PropertySearchCountAndSortSectionComponent loading={pageIsLoading} count={props.searchResult.total} />
-                <PropertyListComponent
-                  properties={props.searchResult.properties}
-                  adConfig={props.searchResult.adConfig}
-                  pageIsLoading={pageIsLoading}
-                />
-                <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
-              </Fragment>
-            ) : (
-              <PropertySearchNotFoundSectionTemplate />
-            )}
+            <ContactedPropertyContextProvider>
+              <HeaderComponent />
+              <FiltersSectionComponent />
+              {props.searchResult.total ? (
+                <Fragment>
+                  <PropertySearchCountAndSortSectionComponent
+                    loading={pageIsLoading}
+                    count={props.searchResult.total}
+                  />
+                  <PropertyListComponent
+                    properties={props.searchResult.properties}
+                    adConfig={props.searchResult.adConfig}
+                    pageIsLoading={pageIsLoading}
+                  />
+                  <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
+                </Fragment>
+              ) : (
+                <PropertySearchNotFoundSectionTemplate />
+              )}
+            </ContactedPropertyContextProvider>
           </SavePropertyContextProvider>
           <MapSearchButtonComponent />
           <FooterComponent />

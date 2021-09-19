@@ -3,6 +3,7 @@ import { useContext, useRef, useState } from 'react';
 
 import { useApiPropertyImages } from 'api/property-images/hook';
 import { CallingAgentModalComponent } from 'components/calling-agent-modal/component';
+import { ContactedPropertyContext } from 'components/contacted-property/context';
 import { EmailAgentModalComponent } from 'components/email-agent-modal/component';
 import { PropertyReportComponent } from 'components/property/report/component';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
@@ -10,6 +11,7 @@ import { propertySerpObfuscatedGetImagesCount } from 'components/property/serp/o
 import { propertySerpObfuscatedGetImgUrlSmall } from 'components/property/serp/obfuscated/get/img-url-small';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
 import { SavePropertyContext } from 'components/save-property/context';
+import { ContactedPropertyTypeEnum } from 'enums/contacted-property/type.enum';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { arrayFromRange } from 'helpers/array/from-range';
 import { functionNoop } from 'helpers/function/noop';
@@ -28,6 +30,10 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   const { t } = useTranslation();
   const propertyId = propertySerpObfuscatedGetId(property);
   const saveProperty = useContext(SavePropertyContext);
+  const contactedProperty = useContext(ContactedPropertyContext);
+  const contactDate = contactedProperty.data.find(
+    (property) => property.propertyId === parseInt(propertyId, 10)
+  )?.contactDate;
 
   const callingAgentModalOpenRef = useRef<() => void>(functionNoop);
   const emailAgentModalOpenRef = useRef<() => void>(functionNoop);
@@ -53,10 +59,14 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   const ctaButtonsProps = {
     onCallClick: (): void => {
       callingAgentModalOpenRef.current();
+      contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.call);
     },
-    onWhatsappClick: (): void => undefined,
+    onWhatsappClick: (): void => {
+      contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.whatsApp);
+    },
     onEmailClick: (): void => {
       emailAgentModalOpenRef.current();
+      contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.email);
     },
     loading,
     t,
@@ -68,6 +78,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
     gallery: galleryProps,
     ctaButtons: ctaButtonsProps,
     saved: saveProperty.propertyIds.includes(parseInt(propertyId, 10)),
+    contactDate,
     onSaveButtonClick: (): void => saveProperty.toggle(propertyId),
     onMenuButtonClick: (): void => {
       menuModalOpenRef.current();
