@@ -1,5 +1,5 @@
 import { filtersDataStub } from 'stubs/filters/data.stub';
-import { filtersValueStub } from 'stubs/filters/value.stub';
+import { filtersValueStub } from 'stubs/filters/value/stub';
 
 import { FiltersValueFieldAmenitiesType } from 'components/filters/value/field/amenities.type';
 import { FiltersValueFieldFurnishedType } from 'components/filters/value/field/furnished.type';

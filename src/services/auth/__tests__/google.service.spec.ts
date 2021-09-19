@@ -1,14 +1,14 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { mockWindowImportScript } from 'mocks/window/import-script.mock';
 import { googleGapiStub } from 'stubs/google/gapi.stub';
-import { socialLoginResponseStub } from 'stubs/response-social-login';
+import { responseSocialLoginStub } from 'stubs/response/social-login.stub';
 
 import { AuthGoogleService } from 'services/auth/google.service';
 import { AuthService } from 'services/auth/service';
 import { WindowService } from 'services/window/service';
 
 describe('AuthGoogleService', () => {
-  const data = socialLoginResponseStub();
+  const data = responseSocialLoginStub();
 
   beforeEach(() => {
     global.origin = 'test.origin';

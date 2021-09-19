@@ -6,7 +6,7 @@ export const mockReactUseRef = <T>(initialValue?: T): React.MutableRefObject<T> 
   const mock = { current: initialValue } as React.MutableRefObject<T>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mockImpl: any = (initial: T) => {
-    if (initialValue === undefined) {
+    if (initialValue === undefined && mock.current === undefined) {
       mock.current = initial;
     }
     return mock;

@@ -82,7 +82,7 @@ export enum FiltersQueryParametersEnum {
   /**
    * Amenities
    */
-  amenities = 'am',
+  amenities = 'am[]',
 
   /**
    * Completion status

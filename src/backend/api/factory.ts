@@ -5,7 +5,7 @@ import { configOriginValue } from 'config/origin/value';
 import { helpersIsDevelopment } from 'helpers/is-development';
 
 import { backendApiPfWebsiteInternalOrigin } from './pf-website-internal-origin';
-import { backendApiSecretPfWebAppUserAgent } from './secret-pf-web-app-user-agent';
+import { backendApiSecretUserAgent } from './secret-user-agent';
 import { backendApiXAkamaiDeviceCharacteristicsHeaderValue } from './x-akamai-device-characteristics-header-value';
 
 /**
@@ -16,7 +16,7 @@ export const BackendApiFactory = ApiMakeFactory({
   getOrigin: () => `http://${helpersIsDevelopment ? configOriginValue : backendApiPfWebsiteInternalOrigin}`,
   dataMapper: (json) => backendJsonApiSync(json as BackendJsonApiPayloadInterface),
   alterHeaders: (headers) => {
-    headers['user-agent'] = backendApiSecretPfWebAppUserAgent;
+    headers['user-agent'] = backendApiSecretUserAgent;
 
     if (backendApiXAkamaiDeviceCharacteristicsHeaderValue) {
       headers['x-akamai-device-characteristics'] = backendApiXAkamaiDeviceCharacteristicsHeaderValue;

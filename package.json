@@ -39,7 +39,8 @@
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "download-resources": "./scripts/download-resources/run.sh",
     "randomize-obfuscation-keys": "./scripts/randomize-obfuscation-keys.js",
-    "lint": "yarn eslint mocks --ext .ts,.tsx && yarn eslint src --ext .ts,.tsx && yarn stylelint 'src/**/*.{css,scss}'",
+    "lint": "yarn eslint stubs --ext .ts,.tsx && yarn eslint mocks --ext .ts,.tsx && yarn eslint src --ext .ts,.tsx && yarn stylelint 'src/**/*.{css,scss}'",
+    "lint-fix": "yarn eslint stubs --ext .ts,.tsx --fix && yarn eslint mocks --ext .ts,.tsx --fix && yarn eslint src --ext .ts,.tsx --fix && yarn stylelint 'src/**/*.{css,scss}' --fix",
     "validate-types": "tsc --project ./tsconfig.json",
     "download-i18n": "node ./scripts/download-translations",
     "build-eslint": "rm -rf ./utils/eslint/result && tsc --project ./utils/eslint/tsconfig.json && cp ./utils/eslint/package.json ./utils/eslint/result && yarn add --dev file:./utils/eslint/result"
@@ -51,6 +52,8 @@
     "src/**/*spec.{js,ts,tsx}": "yarn test"
   },
   "dependencies": {
+    "@propertyfinder/pf-fe-logger": "^2.0.0",
+    "@propertyfinder/pf-frontend-common": "^28.0.4",
     "@types/grecaptcha": "^3.0.3",
     "comlink": "^4.3.1",
     "dd-trace": "^1.2.1",

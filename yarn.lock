@@ -1734,6 +1734,21 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.3.tgz#8b68da1ebd7fc603999cf6ebee34a4899a14b88e"
   integrity sha512-xDu17cEfh7Kid/d95kB6tZsLOmSWKCZKtprnhVepjsSaCij+lM3mItSJDuuHDMbCWTh8Ejmebwb+KONcCJ0eXQ==
 
+"@propertyfinder/pf-fe-logger@^2.0.0":
+  version "2.0.1"
+  resolved "https://npm.pkg.github.com/download/@propertyfinder/pf-fe-logger/2.0.1/be0ba4f96477d9142706d3bde1c15167e9a9977252bd699fa5bedeabd2994115#8d412e630dc368c0898bc12d13af43ebeb957c72"
+  integrity sha512-AkLodsMkeYWo4XzcVdHe76LtQ8awF+lAQBqSSdbvT2iea67A8c2r7MkceV1zQmYL0WMJMObAHXxwi5t0SZWZDg==
+
+"@propertyfinder/pf-frontend-common@^28.0.4":
+  version "28.0.4"
+  resolved "https://npm.pkg.github.com/download/@propertyfinder/pf-frontend-common/28.0.4/fdfa403b213f9bae860e34f0f165f0f2601073140f55a6e97e4c6cc795f15dc7#ca5572634747e5b4d981736d8493a314b80d8bf3"
+  integrity sha512-SEyrRIiThsKamDjg83Rxapo51wCBf4BFZmynmWESu2npR7drPkvEHmAo1/UWOSz2GTljD4ePkVgXL2qeSKkCtQ==
+  dependencies:
+    "@types/mustache" "0.8.29"
+    "@types/node" "7.0.31"
+    mustache "2.3.0"
+    typescript "2.5.3"
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -3116,6 +3131,11 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
+"@types/mustache@0.8.29":
+  version "0.8.29"
+  resolved "https://registry.yarnpkg.com/@types/mustache/-/mustache-0.8.29.tgz#7a6f13e8f23ff5bcbaaec484888400b2a4427b41"
+  integrity sha1-em8T6PI/9by6rsSEiIQAsqRCe0E=
+
 "@types/node-fetch@^2.5.7":
   version "2.5.12"
   resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.5.12.tgz#8a6f779b1d4e60b7a57fb6fd48d84fb545b9cc66"
@@ -3128,6 +3148,11 @@
   version "16.4.13"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.13.tgz#7dfd9c14661edc65cccd43a29eb454174642370d"
   integrity sha512-bLL69sKtd25w7p1nvg9pigE4gtKVpGTPojBFLMkGHXuUgap2sLqQt2qUnqmVCDfzGUL0DRNZP+1prIZJbMeAXg==
+
+"@types/node@7.0.31":
+  version "7.0.31"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.31.tgz#80ea4d175599b2a00149c29a10a4eb2dff592e86"
+  integrity sha512-+KrE1LDddn97ip+gXZAnzNQ0pupKH/6tcKwTpo96BDVNpzmhIKGHug0Wd3H0dN4WEqYB1tXYI5m2mZuIZNI8tg==
 
 "@types/node@>=13.7.0":
   version "16.7.1"
@@ -10094,6 +10119,11 @@ multer@^1.4.2:
     type-is "^1.6.4"
     xtend "^4.0.0"
 
+mustache@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/mustache/-/mustache-2.3.0.tgz#4028f7778b17708a489930a6e52ac3bca0da41d0"
+  integrity sha1-QCj3d4sXcIpImTCm5SrDvKDaQdA=
+
 mv@~2:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/mv/-/mv-2.1.1.tgz#ae6ce0d6f6d5e0a4f7d893798d03c1ea9559b6a2"
@@ -13914,6 +13944,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typescript@2.5.3:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.5.3.tgz#df3dcdc38f3beb800d4bc322646b04a3f6ca7f0d"
+  integrity sha512-ptLSQs2S4QuS6/OD1eAKG+S5G8QQtrU5RT32JULdZQtM1L3WTi34Wsu48Yndzi8xsObRAB9RPt/KhA9wlpEF6w==
 
 typescript@^4.3.5:
   version "4.3.5"

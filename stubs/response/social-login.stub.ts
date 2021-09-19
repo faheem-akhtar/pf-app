@@ -1,6 +1,6 @@
 import { ApiAuthSocialLoginResponseInterface } from 'api/auth/social-login/response.interface';
 
-export const socialLoginResponseStub = (): ApiAuthSocialLoginResponseInterface => ({
+export const responseSocialLoginStub = (): ApiAuthSocialLoginResponseInterface => ({
   data: {
     id: '1',
     meta: {

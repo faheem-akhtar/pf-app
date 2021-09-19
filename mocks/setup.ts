@@ -13,7 +13,7 @@ import { recoverReactUseReducer } from './react/use-reducer.mock';
 import { recoverReactUseRef } from './react/use-ref.mock';
 import { recoverReactUseState } from './react/use-state.mock';
 import { recoverWindowAddEventListener } from './window/add-event-listener.mock';
-import { recoverWindowConsole } from './window/console.mock';
+import { mockWindowConsole, recoverWindowConsole } from './window/console.mock';
 import { recoverWindowFetch } from './window/fetch.mock';
 import { recoverWindowMockImportScript } from './window/import-script.mock';
 import { recoverWindowRemoveEventListener } from './window/remove-event-listener.mock';
@@ -21,7 +21,6 @@ import { recoverWindowRemoveEventListener } from './window/remove-event-listener
 if (!global.window) {
   (global as unknown as { window: Window }).window = global as unknown as Window;
 }
-
 setupSwrMock();
 
 jest.mock('next-i18next', () => ({
@@ -50,7 +49,13 @@ jest.mock('next/router', () => ({
   useRouter: (): NextRouter => router,
 }));
 
-afterEach(() => {
+global.origin = 'default-origin';
+(global as unknown as { snowplow: Function }).snowplow = jest.fn();
+
+// we need to mock the window console before pf-frontend-common aquire a reference to it (because after that it is not possible to mock it and we will have all the spam from analytics)
+mockWindowConsole();
+
+beforeEach(() => {
   // clean up global environment after each test
   recoverReactUseEffect();
   recoverReactUseReducer();

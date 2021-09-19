@@ -3,6 +3,7 @@ Dockerfile*
 Makefile*
 dist
 yarn.lock
+yarn-error.log
 result/
 public/static/locations
 public/static/filters-data

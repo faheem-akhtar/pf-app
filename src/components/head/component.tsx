@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import { HeadComponentPropsInterface } from './component-props.interface';
-import { HeadGtmScriptTemplate } from './gtm-script-template';
+import { HeadTrackersTemplate } from './trackers-template';
 
 export const HeadComponent = ({ pageTitle }: HeadComponentPropsInterface): JSX.Element => {
   return (
@@ -12,7 +12,7 @@ export const HeadComponent = ({ pageTitle }: HeadComponentPropsInterface): JSX.E
       <link rel='icon' type='image/png' sizes='16x16' href='static/favicon/16x16.png' />
       {/* Do not render telephone numbers as links */}
       <meta name='format-detection' content='telephone=no' />
-      <HeadGtmScriptTemplate />
+      <HeadTrackersTemplate />
     </Head>
   );
 };

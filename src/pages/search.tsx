@@ -5,6 +5,7 @@ import { backendApiPropertySearchFetcher } from 'backend/api/property/search/fet
 import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
 import { backendTranslationGetDefinitions } from 'backend/translation/get-definitions';
 import { FiltersDataInterface } from 'components/filters/data/interface';
+import { PageTypeEnum } from 'enums/page-type/enum';
 import { PropertySearchView } from 'views/property-search/view';
 import { PropertySearchViewPropsType } from 'views/property-search/view-props.type';
 
@@ -40,6 +41,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       filtersValueFromQuery,
       searchResult: searchResult.data,
       ...(await backendTranslationGetDefinitions(locale)),
+      pageType: PageTypeEnum.propertySerp,
     },
   };
 };

@@ -8,13 +8,5 @@
       "statements": 90
     }
   },
-  "coveragePathIgnorePatterns": [
-    "src/components/icon/*",
-    "mocks/*",
-    ".enum.ts",
-    ".interface.ts",
-    ".type.ts",
-    ".stories.ts"
-  ],
   "coverageReporters": ["text", "html"]
 }

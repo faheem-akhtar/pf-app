@@ -1,3 +1,4 @@
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { mockWindowLocalStorage } from 'mocks/window/local-storage.mock';
 
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
@@ -58,7 +59,7 @@ describe('AuthStore', () => {
       const updateMock = jest.fn();
       store['subscribers'] = [updateMock];
 
-      store.updateUserData(userMock);
+      store['updateUserData'](userMock);
 
       expect(updateMock).toHaveBeenCalledTimes(1);
       expect(updateMock).toHaveBeenCalledWith(userMock);
@@ -91,8 +92,11 @@ describe('AuthStore', () => {
   });
 
   describe('logOut()', () => {
-    it('should remove token', () => {
-      store.logOut();
+    beforeEach(() => {
+      mockWindowFetch();
+    });
+    it('should remove token', async () => {
+      await store.logOut();
 
       expect(JwtTokenService.setToken).toHaveBeenCalledTimes(1);
       expect(JwtTokenService.setToken).toHaveBeenCalledWith();
@@ -101,7 +105,7 @@ describe('AuthStore', () => {
       expect(JwtTokenService.setRefreshToken).toHaveBeenCalledWith();
     });
 
-    it('should sign out', () => {
+    it('should sign out', async () => {
       localStorageMock = mockWindowLocalStorage(userMock);
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
@@ -109,21 +113,11 @@ describe('AuthStore', () => {
       (store['windowLocalStorage'].setItem as jest.Mock).mockClear();
       (store['windowLocalStorage'].removeItem as jest.Mock).mockClear();
 
-      store.logOut();
+      await store.logOut();
 
       expect(store['windowLocalStorage'].removeItem).toHaveBeenCalledTimes(1);
       expect(store['windowLocalStorage'].removeItem).toHaveBeenCalledWith('user-authentication-user');
 
-      expect(store['windowLocalStorage'].setItem).not.toHaveBeenCalled();
-    });
-
-    it('should do nothing if user is already sign out', () => {
-      (store['windowLocalStorage'].setItem as jest.Mock).mockClear();
-      (store['windowLocalStorage'].removeItem as jest.Mock).mockClear();
-
-      store.logOut();
-
-      expect(store['windowLocalStorage'].removeItem).not.toHaveBeenCalled();
       expect(store['windowLocalStorage'].setItem).not.toHaveBeenCalled();
     });
   });
@@ -288,16 +282,6 @@ describe('AuthStore', () => {
       expect(store['windowLocalStorage'].removeItem).toHaveBeenCalledTimes(1);
       expect(store['windowLocalStorage'].removeItem).toHaveBeenCalledWith('user-authentication-user');
 
-      expect(store['windowLocalStorage'].setItem).not.toHaveBeenCalled();
-    });
-
-    it('should do nothing if user is already sign out', () => {
-      (store['windowLocalStorage'].setItem as jest.Mock).mockClear();
-      (store['windowLocalStorage'].removeItem as jest.Mock).mockClear();
-
-      store['signOut']();
-
-      expect(store['windowLocalStorage'].removeItem).not.toHaveBeenCalled();
       expect(store['windowLocalStorage'].setItem).not.toHaveBeenCalled();
     });
   });

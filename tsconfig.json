@@ -31,7 +31,7 @@
       "stubs/*": ["stubs/*"],
       "styles/*": ["src/styles/*"],
       "types/*": ["src/types/*"],
-      "views/*": ["src/views/*"],
+      "views/*": ["src/views/*"]
     }
   },
   "types": ["gapi", "gapi.auth2", "FB", "google.maps"],

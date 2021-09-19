@@ -23,7 +23,7 @@ import { configOriginValue as saOrigin } from 'config/origin/value.sa';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiRequestPropsType } from 'api/request-props.type';
 import { ConfigCommonInterface } from 'types/config/common.interface';
-import { backendApiSecretPfWebAppUserAgent } from 'backend/api/secret-pf-web-app-user-agent';
+import { backendApiSecretUserAgent } from 'backend/api/secret-user-agent';
 
 const configByCountry: Record<string, ConfigCommonInterface> = {
   ae: aeConfig,
@@ -61,7 +61,7 @@ const makeDownloader = <QueryData, Result>(
           locale,
           getOrigin: () => `http://${origin}`,
           alterHeaders: (headers) => {
-            headers['user-agent'] = backendApiSecretPfWebAppUserAgent;
+            headers['user-agent'] = backendApiSecretUserAgent;
             delete headers['Host'];
           },
         })

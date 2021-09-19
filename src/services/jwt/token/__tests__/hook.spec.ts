@@ -19,14 +19,14 @@ describe('useGalleryScrollEffects', () => {
   it('should reset token', () => {
     jest.spyOn(JwtTokenService, 'getToken').mockReturnValue('token');
     useJwtToken();
-    AuthService.updateUserData(null);
+    AuthService['updateUserData'](null);
     expect(setState).toHaveBeenCalledWith(null);
   });
 
   it('should update token', () => {
     jest.spyOn(JwtTokenService, 'getToken').mockReturnValue('new token');
     useJwtToken();
-    AuthService.updateUserData({} as UserModelInterface);
+    AuthService['updateUserData']({} as UserModelInterface);
     expect(setState).toHaveBeenCalledWith('new token');
   });
 

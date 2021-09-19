@@ -4,15 +4,30 @@ const original = global.React.useEffect;
 
 const unmountCallbacks: Function[] = [];
 
-export const mockReactUseEffect = (): { unmountAll: OnUnmount } => {
+type Props = {
+  callImmediately: boolean;
+};
+
+export const mockReactUseEffect = (props?: Props): { trigger: () => void; unmountAll: OnUnmount } => {
+  const { callImmediately = true } = props || {};
+
+  let trigger: () => void;
+
   jest.spyOn(global.React, 'useEffect').mockImplementation((f) => {
-    const onUnmount = f();
-    if (onUnmount) {
-      unmountCallbacks.push(onUnmount);
+    trigger = (): void => {
+      const onUnmount = f();
+      if (onUnmount) {
+        unmountCallbacks.push(onUnmount);
+      }
+    };
+
+    if (callImmediately) {
+      trigger();
     }
   });
 
   return {
+    trigger: (): void => trigger && trigger(),
     unmountAll: (): void => {
       unmountCallbacks.forEach((cb) => cb());
       unmountCallbacks.length = 0;

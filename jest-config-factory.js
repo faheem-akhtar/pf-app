@@ -3,6 +3,15 @@ const dotenv = require('dotenv');
 dotenv.config({ path: `${__dirname}/.env` });
 
 module.exports = ({ testRegex, moduleFileExtensions }) => ({
+  coveragePathIgnorePatterns: [
+    'src/components/icon/*',
+    'mocks/*',
+    'stubs/*',
+    '.enum.ts',
+    '.interface.ts',
+    '.type.ts',
+    '.stories.ts',
+  ],
   moduleNameMapper: {
     ...require('jest-module-name-mapper').default(),
     // Mocking static assets

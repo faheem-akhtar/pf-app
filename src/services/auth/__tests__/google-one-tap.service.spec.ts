@@ -1,7 +1,7 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { mockWindowImportScript } from 'mocks/window/import-script.mock';
 import { googleOneTapStub } from 'stubs/google/one-tap.stub';
-import { socialLoginResponseStub } from 'stubs/response-social-login';
+import { responseSocialLoginStub } from 'stubs/response/social-login.stub';
 
 import { ApiAuthSocialLoginResponseInterface } from 'api/auth/social-login/response.interface';
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
@@ -11,7 +11,7 @@ import { WindowService } from 'services/window/service';
 jest.mock('services/auth/service');
 
 describe('AuthGoogleOneTapService', () => {
-  const data: ApiAuthSocialLoginResponseInterface = socialLoginResponseStub();
+  const data: ApiAuthSocialLoginResponseInterface = responseSocialLoginStub();
 
   beforeEach(() => {
     global.origin = 'test.origin';

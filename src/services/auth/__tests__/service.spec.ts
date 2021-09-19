@@ -2,7 +2,8 @@
  * @jest-environment jsdom
  */
 
-import { UserModelStub } from 'stubs/user-model.stub';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { userModelStub } from 'stubs/user/model.stub';
 
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
 import { AuthModelInterface } from 'services/auth/model.interface';
@@ -17,8 +18,8 @@ describe('AuthService', () => {
 
       AuthService.subscribe(subscribersSpy);
 
-      const userStub = UserModelStub();
-      AuthService.updateUserData(UserModelStub());
+      const userStub = userModelStub();
+      AuthService['updateUserData'](userModelStub());
 
       expect(subscribersSpy).toBeCalledWith(userStub);
     });
@@ -34,8 +35,8 @@ describe('AuthService', () => {
     });
 
     it('should return user data', () => {
-      AuthService['windowLocalStorage'].getItem = jest.fn().mockReturnValue(UserModelStub());
-      expect(AuthService.getUser()).toEqual(UserModelStub());
+      AuthService['windowLocalStorage'].getItem = jest.fn().mockReturnValue(userModelStub());
+      expect(AuthService.getUser()).toEqual(userModelStub());
     });
   });
 
@@ -44,7 +45,7 @@ describe('AuthService', () => {
       AuthService['windowLocalStorage'].setItem = jest.fn();
       const setTokenSpy = jest.spyOn(JwtTokenService, 'setToken');
       const setRefreshTokenSpy = jest.spyOn(JwtTokenService, 'setRefreshToken');
-      const user = UserModelStub();
+      const user = userModelStub();
       const subscribersSpy = jest.fn();
       AuthService.subscribe(subscribersSpy);
       const data: AuthModelInterface = {
@@ -81,28 +82,26 @@ describe('AuthService', () => {
 
       expect(AuthService['setUser']).toBeCalledWith(null);
     });
-
-    it('should not reset user data', () => {
-      AuthService['setUser'] = jest.fn();
-      AuthService['getUser'] = jest.fn().mockReturnValue(null);
-
-      AuthService['signOut']();
-
-      expect(AuthService['setUser']).not.toBeCalled();
-    });
   });
 
   describe('logOut', () => {
-    it('should clear token and reset token', () => {
+    it('should clear token and reset token and notify server', async () => {
+      const fetchMock = mockWindowFetch();
+      JwtTokenService['token'] = 'user_authenticated';
       const setTokenSpy = jest.spyOn(JwtTokenService, 'setToken');
       const setRefreshTokenSpy = jest.spyOn(JwtTokenService, 'setRefreshToken');
       AuthService['signOut'] = jest.fn();
 
-      AuthService.logOut();
+      await AuthService.logOut();
 
       expect(setTokenSpy).toBeCalled();
       expect(setRefreshTokenSpy).toBeCalled();
       expect(AuthService['signOut']).toBeCalled();
+      expect(fetchMock).toHaveBeenCalledWith('default-origin/en/api/user/logout', {
+        body: undefined,
+        headers: { 'content-type': 'application/vnd.api+json', locale: 'en', 'x-pf-jwt': 'Bearer user_authenticated' },
+        method: 'POST',
+      });
     });
   });
 

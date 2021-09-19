@@ -1,7 +1,7 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { mockWindowImportScript } from 'mocks/window/import-script.mock';
 import { facebookStub } from 'stubs/facebook/stub';
-import { socialLoginResponseStub } from 'stubs/response-social-login';
+import { responseSocialLoginStub } from 'stubs/response/social-login.stub';
 
 import * as apiAuthSocialLoginFacebookFetcherModule from 'api/auth/social-login/facebook.fetcher';
 import { ApiAuthSocialLoginModelInterface } from 'api/auth/social-login/model.interface';
@@ -11,7 +11,7 @@ import { AuthService } from 'services/auth/service';
 import { WindowService } from 'services/window/service';
 
 describe('AuthFacebookService', () => {
-  const data: ApiAuthSocialLoginResponseInterface = socialLoginResponseStub();
+  const data: ApiAuthSocialLoginResponseInterface = responseSocialLoginStub();
 
   beforeEach(() => {
     global.origin = 'test.origin';

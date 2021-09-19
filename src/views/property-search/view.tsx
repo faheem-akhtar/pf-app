@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { usePrevious } from 'src/hooks/previous.hook';
 
 import { ContactedPropertyContextProvider } from 'components/contacted-property/context-provider';
 import { FiltersContextProvider } from 'components/filters/context-provider';
@@ -16,9 +17,13 @@ import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 
 import { PropertySearchResultsCountForCurrentQueryContext } from './results-count-for-current-query/context';
+import { usePropertySearchTrackPageView } from './track-page-view.hook';
 import { PropertySearchViewPropsType } from './view-props.type';
 
+// TODO-FE[CX-433] add tests
 export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Element => {
+  const prevProps = usePrevious(props);
+  usePropertySearchTrackPageView(prevProps, props);
   const pageIsLoading = usePageIsLoading();
 
   if (!props.ok) {

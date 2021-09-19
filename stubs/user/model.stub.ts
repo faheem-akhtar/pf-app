@@ -1,6 +1,6 @@
 import { UserModelInterface } from 'services/user/model.interface';
 
-export const UserModelStub = (): UserModelInterface => ({
+export const userModelStub = (): UserModelInterface => ({
   userId: '1',
   image: 'https://lh3.googleusercontent.com/a-/AOh14GgAjybktYwQWEFDSAPrQ7yC3KC6l1I1BDyyisoH5Sb=s50',
   email: 'test@propertyfinder.ae',

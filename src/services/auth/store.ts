@@ -1,3 +1,4 @@
+import { apiAuthLogoutFetcher } from 'api/auth/logout/fetcher';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
 import { AuthModelInterface } from 'services/auth/model.interface';
@@ -45,7 +46,7 @@ export class AuthStore {
    * Update user information
    * @param userData
    */
-  public updateUserData = (userData: UserModelInterface | null): void => {
+  private updateUserData = (userData: UserModelInterface | null): void => {
     this.subscribers.forEach((update) => {
       update(userData);
     });
@@ -65,9 +66,12 @@ export class AuthStore {
   /**
    * Log out ser
    */
-  public logOut(): void {
-    this.resetToken();
-    this.signOut();
+  public logOut(): Promise<void> {
+    return apiAuthLogoutFetcher().then(() => {
+      this.updateUserData(null);
+      this.resetToken();
+      this.signOut();
+    });
   }
 
   /**
@@ -145,11 +149,6 @@ export class AuthStore {
    * Sign out user
    */
   private signOut(): void {
-    // User is already signed out
-    if (!this.getUser()) {
-      return;
-    }
-
     this.setUser(null);
   }
 
