@@ -10,7 +10,7 @@ import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated
 import { propertySerpObfuscatedGetImagesCount } from 'components/property/serp/obfuscated/get/images-count';
 import { propertySerpObfuscatedGetImgUrlSmall } from 'components/property/serp/obfuscated/get/img-url-small';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
-import { SavePropertyContext } from 'components/save-property/context';
+import { SavedPropertyContext } from 'components/saved-property/context';
 import { ContactedPropertyTypeEnum } from 'enums/contacted-property/type.enum';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { arrayFromRange } from 'helpers/array/from-range';
@@ -29,7 +29,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
   const [galleryHasBeenTouched, setGalleryHasBeenTouched] = useState(false);
   const { t } = useTranslation();
   const propertyId = propertySerpObfuscatedGetId(property);
-  const saveProperty = useContext(SavePropertyContext);
+  const savedProperties = useContext(SavedPropertyContext);
   const contactedProperty = useContext(ContactedPropertyContext);
   const contactDate = contactedProperty.data.find(
     (property) => property.propertyId === parseInt(propertyId, 10)
@@ -77,9 +77,9 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
     loading,
     gallery: galleryProps,
     ctaButtons: ctaButtonsProps,
-    saved: saveProperty.propertyIds.includes(parseInt(propertyId, 10)),
+    saved: !!savedProperties.data.find((property) => property.propertyId === parseInt(propertyId, 10)),
     contactDate,
-    onSaveButtonClick: (): void => saveProperty.toggle(propertyId),
+    onSaveButtonClick: (): void => savedProperties.toggle(propertyId),
     onMenuButtonClick: (): void => {
       menuModalOpenRef.current();
     },

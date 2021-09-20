@@ -12,7 +12,7 @@ import { PaginationSectionComponent } from 'components/pagination-section/compon
 import { PropertyListComponent } from 'components/property/list/component';
 import { PropertySearchCountAndSortSectionComponent } from 'components/property-search-count-and-sort-section/component';
 import { PropertySearchNotFoundSectionTemplate } from 'components/property-search-not-found-section/template';
-import { SavePropertyContextProvider } from 'components/save-property/context-provider';
+import { SavedPropertyContextProvider } from 'components/saved-property/context-provider';
 import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 
@@ -38,7 +38,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
       <SnackbarContextProvider>
         <HeadComponent pageTitle={'TODO-FE[CX-396]'} />
         <FiltersContextProvider {...filtersContextProps}>
-          <SavePropertyContextProvider>
+          <SavedPropertyContextProvider>
             <ContactedPropertyContextProvider>
               <HeaderComponent />
               <FiltersSectionComponent />
@@ -59,7 +59,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
                 <PropertySearchNotFoundSectionTemplate />
               )}
             </ContactedPropertyContextProvider>
-          </SavePropertyContextProvider>
+          </SavedPropertyContextProvider>
           <MapSearchButtonComponent />
           <FooterComponent />
         </FiltersContextProvider>

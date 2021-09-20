@@ -9,7 +9,8 @@ const fetcher = (
 ): (<QueryData>(props: ApiRequestPropsType<QueryData, AnyValueType>) => Promise<ApiFetcherResultType<null>>) =>
   ApiAuthRequiredFactory<null>({
     method: 'DELETE',
-    url: `user/saved-property/${propertyId}`,
+    url: `saved-property/${propertyId}`,
+    handledByPfWebApp: true,
   });
 
 export const apiSavedPropertiesRemoveFetcher = (requestParams: {

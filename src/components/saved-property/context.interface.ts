@@ -1,8 +1,10 @@
-export interface SavePropertyContextInterface {
+import { SavedPropertyInterface } from './interface';
+
+export interface SavedPropertyContextInterface {
   /**
    * Array of saved properties ids
    */
-  propertyIds: number[];
+  data: SavedPropertyInterface[];
 
   /**
    * Made the property saved or unsaved
