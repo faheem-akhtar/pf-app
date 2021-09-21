@@ -1,22 +1,39 @@
 import { FunctionComponent } from 'react';
 
-import { useSavedPropertyState } from 'components/saved-property/state.hook';
+import { apiSavedPropertiesCreateFetcher } from 'api/saved-properties/create-fetcher';
+import { useApiSavedProperties } from 'api/saved-properties/hook';
+import { apiSavedPropertiesRemoveFetcher } from 'api/saved-properties/remove-fetcher';
+import { useUserPropertyState } from 'components/user-property/state.hook';
+import { dateToIso } from 'helpers/date/to-iso';
 
 import { SavedPropertyContext } from './context';
 import { SavedPropertyContextInterface } from './context.interface';
+import { SavedPropertyInterface } from './interface';
+import { savedPropertyStorageKey } from './storage-key';
 
 export const SavedPropertyContextProvider: FunctionComponent = ({ children }) => {
-  const [savedProperties, setSavedProperty, removeSavedProperty] = useSavedPropertyState();
+  const savedPropertiesResponse = useApiSavedProperties();
+  const [savedProperties, setSavedProperty, removeSavedProperty] = useUserPropertyState<SavedPropertyInterface>(
+    savedPropertyStorageKey,
+    savedPropertiesResponse,
+    ({ propertyId, saveDate }) => ({ propertyId, saveDate } as SavedPropertyInterface),
+    apiSavedPropertiesCreateFetcher,
+    apiSavedPropertiesRemoveFetcher
+  );
 
   const value: SavedPropertyContextInterface = {
     data: savedProperties,
     toggle: (propertyId) => {
-      const propId = parseInt(propertyId, 10);
-      const isSaved = !!savedProperties.find((property) => property.propertyId === propId);
+      const property = {
+        propertyId: parseInt(propertyId, 10),
+        saveDate: dateToIso(new Date()),
+      } as SavedPropertyInterface;
+      const isSaved = !!savedProperties.find((item) => item.propertyId === property.propertyId);
+
       if (isSaved) {
-        removeSavedProperty(propId);
+        removeSavedProperty(property);
       } else {
-        setSavedProperty(propId);
+        setSavedProperty(property);
       }
     },
   };

@@ -13,10 +13,12 @@ const fetcher = (
     handledByPfWebApp: true,
   });
 
-export const apiSavedPropertiesRemoveFetcher = (requestParams: {
-  propertyId: string;
+export const apiSavedPropertiesRemoveFetcher = ({
+  propertyId,
+}: {
+  propertyId: number;
 }): Promise<ApiFetcherResultType<null>> => {
   const locale = LocaleService.getLocale();
 
-  return fetcher(requestParams.propertyId)({ locale });
+  return fetcher(propertyId.toString())({ locale });
 };

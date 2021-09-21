@@ -16,7 +16,7 @@ describe('apiSavedPropertiesRemoveFetcher', () => {
     const factoryMock = mockWindowFetch();
 
     await apiSavedPropertiesRemoveFetcher({
-      propertyId: '1',
+      propertyId: 1,
     });
 
     expect(factoryMock).toHaveBeenCalledTimes(1);
