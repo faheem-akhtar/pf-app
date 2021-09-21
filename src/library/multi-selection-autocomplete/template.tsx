@@ -18,6 +18,7 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
     <input
       value={props.inputValue}
       className={domClassMerge(styles.input, { [styles.input_not_empty]: !!props.inputValue })}
+      data-testid='MultiSelectionInput'
       placeholder={props.placeholder}
       ref={props.inputRef}
       onInput={props.onInputChange}
