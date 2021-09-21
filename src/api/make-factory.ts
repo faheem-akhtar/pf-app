@@ -152,7 +152,9 @@ export const ApiMakeFactory =
               try {
                 data = makeFactoryProps.dataMapper(data);
               } catch (e) {
-                const error: string = `failed to execute makeFactoryProps.dataMapper for: ${finalUrl}. ${e.message}`;
+                const error: string = `failed to execute makeFactoryProps.dataMapper for: ${finalUrl}. ${
+                  (e as Error).message
+                }`;
                 // eslint-disable-next-line no-console
                 console.error(error);
 
@@ -172,7 +174,29 @@ export const ApiMakeFactory =
               try {
                 data = factoryProps.dataMapper(data, json);
               } catch (e) {
-                const error: string = `failed to execute factoryProps.dataMapper for: ${finalUrl}. ${e.message}`;
+                const error: string = `failed to execute factoryProps.dataMapper for: ${finalUrl}. ${
+                  (e as Error).message
+                }`;
+                // eslint-disable-next-line no-console
+                console.error(error);
+
+                return {
+                  ok: false,
+                  error: {
+                    url: finalUrl,
+                    status: response.status,
+                    body: error,
+                  },
+                  headers,
+                };
+              }
+            }
+
+            if (props.dataMapper) {
+              try {
+                data = props.dataMapper(data, json);
+              } catch (e) {
+                const error: string = `failed to execute props.dataMapper for: ${finalUrl}. ${(e as Error).message}`;
                 // eslint-disable-next-line no-console
                 console.error(error);
 
@@ -194,19 +218,19 @@ export const ApiMakeFactory =
               headers,
             };
           })
-          .catch((e: Error) => {
+          .catch((responseJsonError: Error) => {
             return response
               .text()
               .then((body) => {
                 return {
                   ok: false,
-                  error: `${e.message}. ${body}`,
+                  error: `Error:"${responseJsonError.message}"". Response.text():"${body}"`,
                 };
               })
-              .catch(() => {
+              .catch((responsTextError) => {
                 return {
                   ok: false,
-                  error: e.message,
+                  error: `responseJsonError: ${responseJsonError.message}, responsTextError: ${responsTextError.message}`,
                 };
               });
           }) as Promise<ApiFetcherResultType<Result>>;

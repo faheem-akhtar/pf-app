@@ -2,6 +2,9 @@
  * @jest-environment jsdom
  */
 
+import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
+import { mockReactUseState } from 'mocks/react/use-state.mock';
+import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
 import { filtersValueStub } from 'stubs/filters/value/stub';
 
 import { StatsContexterService } from 'services/stats/contexter.service';
@@ -11,6 +14,11 @@ import { usePropertySearchTrackPageView } from '../track-page-view.hook';
 import { PropertySearchViewPropsType } from '../view-props.type';
 
 describe('usePropertySearchTrackPageView', () => {
+  beforeEach(() => {
+    mockReactUseState();
+    mockReactUseEffect();
+  });
+
   it('should do nothing if page failed to load', () => {
     usePropertySearchTrackPageView(undefined, {
       ok: false,
@@ -23,6 +31,8 @@ describe('usePropertySearchTrackPageView', () => {
   });
 
   it('should do nothing if prev page pageprops failed to load', () => {
+    const filtersValueFromQuery = {};
+
     usePropertySearchTrackPageView(
       {
         ok: false,
@@ -30,6 +40,8 @@ describe('usePropertySearchTrackPageView', () => {
       },
       {
         ok: true,
+        filtersValueFromQuery,
+        searchResult: { properties: [{}] },
       } as PropertySearchViewPropsType
     );
 
@@ -39,14 +51,18 @@ describe('usePropertySearchTrackPageView', () => {
   });
 
   it('should do nothing if props has not been changed', () => {
+    mockReactUseSwr('en-property-search/stats-data-GET-{"propertiesIds":[null]}', {});
+
     const filtersValueFromQuery = {};
     usePropertySearchTrackPageView(
       {
         ok: true,
+        searchResult: { properties: [{}] },
         filtersValueFromQuery,
       } as PropertySearchViewPropsType,
       {
         ok: true,
+        searchResult: { properties: [{}] },
         filtersValueFromQuery,
       } as PropertySearchViewPropsType
     );
@@ -57,6 +73,8 @@ describe('usePropertySearchTrackPageView', () => {
   });
 
   it('should send pageview events', () => {
+    mockReactUseSwr('en-property-search/stats-data-GET-{"propertiesIds":[null],"pageNumber":1}', {});
+
     const filtersValueFromQuery = filtersValueStub();
 
     const setAbTestsSpy = jest.spyOn(StatsContexterService(), 'setAbTests');
@@ -71,7 +89,7 @@ describe('usePropertySearchTrackPageView', () => {
     usePropertySearchTrackPageView(undefined, {
       ok: true,
       filtersValueFromQuery,
-      searchResult: { total: 5 },
+      searchResult: { total: 5, properties: [{}] },
     } as PropertySearchViewPropsType);
 
     expect(setAbTestsSpy).toHaveBeenCalledTimes(1);

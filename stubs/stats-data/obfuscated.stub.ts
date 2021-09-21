@@ -1,0 +1,63 @@
+import { PropertyObfuscatedStatsDataResultType } from 'components/property/obfuscated-stats-data-result.type';
+
+export const statsDataObfuscatedStub = (): { properties: PropertyObfuscatedStatsDataResultType[] } => ({
+  properties: [
+    {
+      '0e55427444016e': 7943452,
+      '312334745f000806001c1e170c211b4009000b74': '278311',
+      '392b3c744f000a111d161d0769': '7',
+      '22322b744f041a0b00161f191a6f': '7',
+      '150710744c020b0d0679': {
+        '1701167444016e': 163458,
+        '130d1a744304030672': 'Hometown Holiday Homes',
+        '05170074441638060010161d0c0b6e': false,
+      },
+      '031d0a744f170108170b70': {
+        '0d1f437444016e': 2199,
+        '465647744304030672': 'Hometown Holiday Homes',
+      },
+      '435d4a74590c1a0f1779': 'Kite Palace Lavish 7Bed villa Kite Beach',
+      '3527307458170263':
+        'https://www.propertyfinder.ae/en/rent/villa-for-rent-dubai-umm-suqeim-umm-suqeim-1-7943452.html',
+      '32223b7444080f041779':
+        'https://www.propertyfinder.ae/property/8162fd8dfa312ca79397a956060a1561/500/356/MODE/8db99e/7943452-d7008o.jpg?ctr=ae',
+      '25372074410c0d061c0a15260c1d0f2d': '',
+      '170116744203080600101e133d161e486b': 'rent',
+      '1a0a0374450a1b101b171720101f0b2d': 'villa',
+      '44544174450a1b101b171720101f0b640f65': 35,
+      '30203574410c1d171b1717271d0e1a581865': 'premium',
+      '2e041174410c1d171b1717271d0e1a5818211007151f1554000a63': 'premium',
+      '18081d745f000017131520111b0601496b': 'Monthly',
+      '0e5542745f000017131520111b060149220179': 'monthly',
+      '475146745e0c140672': 16000,
+      '312334744c020b0d062c03111b260a2d': 0,
+      '392b3c745b001c0a1410151069': 'Not verified',
+      '3b3522745c166e': 95.75,
+      '263627745f161e63': 84.68,
+      '213324745f161d63': 60.17,
+      '100015744b101c0d1b0a18110d6f': 'YES',
+      '1e0e1f7444080f04170a70': 30,
+      '07110674410a0d0206101f1a1a6f': {
+        '001005741d65': 1,
+        '011304741c65': 98,
+        '02120b741f65': 1296,
+      },
+      '4c5c32744a001a330010131126012f5d1b65': false,
+      '302035745d1707001779': 217000,
+      '38283d745d170700172d080069': '217,000 AED/month',
+      '203025744e101c111717130d69': 'AED',
+      '160617745e100c171b0d1c1169': 'Villa for Rent in Umm Suqeim 1, Umm Suqeim',
+      '1a0a0374400a1c17151817113b0a00596b': false,
+      '02120b74400a18062116050569': false,
+      '475146745d0a1d0a06101f1a69': 1,
+      '32223b745d0a1d0a06101f1a390e09486b': 1,
+      '3b35227444163d0e130b04350d6f': 0,
+      '1606177444162d170129021b190a1c591265': 0,
+      '0e55427444162f11171823040c0c074c070c0a0035011b5d001c170b79': 0,
+      '32223b744e0a03131e1c041d06013d590a110c0765': null,
+      '2537207444162b1b1115050700190b2d': false,
+      '1507107445041d504449261d0c186e': true,
+      '18081d744300193300161a110a1b1d2d': false,
+    } as unknown as PropertyObfuscatedStatsDataResultType,
+  ],
+});

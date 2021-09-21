@@ -1,9 +1,7 @@
-import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-
 import { BackendModelAmenityInterface } from '../amenity/interface';
 import { BackendModelGenericNameLabelInterface } from '../generic/name-label.interface';
 
-export interface BackendModelPropertyTypeInterface extends BackendJsonApiModelType {
+export interface BackendModelPropertyTypeInterface {
   /**
    * BackendModelProperty type ID
    */
@@ -17,25 +15,25 @@ export interface BackendModelPropertyTypeInterface extends BackendJsonApiModelTy
   /**
    * BackendModelProperty type label
    */
-  label: string;
+  label?: string;
 
   /**
    * BackendModelProperty type bedroom
    */
-  bedroom: BackendModelGenericNameLabelInterface[];
+  bedroom?: BackendModelGenericNameLabelInterface[];
 
   /**
    * BackendModelProperty type amenities
    */
-  amenities: BackendModelAmenityInterface[];
+  amenities?: BackendModelAmenityInterface[];
 
   /**
    * BackendModelProperty type bathroom
    */
-  bathroom: BackendModelGenericNameLabelInterface[];
+  bathroom?: BackendModelGenericNameLabelInterface[];
 
   /**
    * BackendModelProperty type area
    */
-  area: BackendModelGenericNameLabelInterface[];
+  area?: BackendModelGenericNameLabelInterface[];
 }

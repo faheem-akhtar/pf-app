@@ -1,6 +1,4 @@
-import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-
-export interface BackendModelPropertyImageInterface extends BackendJsonApiModelType {
+export interface BackendModelPropertyImageInterface {
   /**
    * BackendModelProperty image ID
    */
@@ -33,7 +31,7 @@ export interface BackendModelPropertyImageInterface extends BackendJsonApiModelT
     /**
      * Default image size
      */
-    default: string;
+    default?: string;
 
     /**
      * Format for home page

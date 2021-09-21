@@ -5,6 +5,7 @@ import { NextRouter } from 'next/router';
 
 import { mockReactUseSwrRecover, setupSwrMock } from 'mocks/react/use-swr.mock';
 
+import { configStatsDataEncryptionKey } from 'config/stats-data-encryption-key';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 
 import { translationsMap } from './misc/add-translation.mock';
@@ -54,6 +55,12 @@ global.origin = 'default-origin';
 
 // we need to mock the window console before pf-frontend-common aquire a reference to it (because after that it is not possible to mock it and we will have all the spam from analytics)
 mockWindowConsole();
+
+// We do not want the test to fail because we updated the encryption key, so all the tests will see this key instead of the real one
+jest.spyOn(configStatsDataEncryptionKey, 'get').mockReturnValue('test-encryption-key');
+
+// We do not want anything random in the tests
+jest.spyOn(Math, 'random').mockReturnValue(0.2);
 
 beforeEach(() => {
   // clean up global environment after each test

@@ -1,8 +1,6 @@
-import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-
 import { BackendModelBrokerInterface } from '../broker/interface';
 
-export interface BackendModelAgentInterface extends BackendJsonApiModelType {
+export interface BackendModelAgentInterface {
   /**
    * ID
    */
@@ -16,7 +14,7 @@ export interface BackendModelAgentInterface extends BackendJsonApiModelType {
   /**
    * Email
    */
-  email: string;
+  email?: string;
 
   /**
    * Phone
@@ -31,7 +29,7 @@ export interface BackendModelAgentInterface extends BackendJsonApiModelType {
   /**
    * Phone number assigned by PF (to track calls) - should be used instead of publicPhone
    */
-  phone_did?: string;
+  phone_did?: string | null;
 
   /**
    * Job position
@@ -70,7 +68,7 @@ export interface BackendModelAgentInterface extends BackendJsonApiModelType {
     /**
      * Image URL
      */
-    image_desktop: string;
+    image_desktop?: string;
   };
 
   /**
@@ -122,12 +120,12 @@ export interface BackendModelAgentInterface extends BackendJsonApiModelType {
   /**
    * User id
    */
-  user_id: number;
+  user_id: string;
 
   /**
    * Listing level
    */
-  listing_level: string;
+  listing_level: number;
 
   /**
    * Whether is smart ad
@@ -142,5 +140,5 @@ export interface BackendModelAgentInterface extends BackendJsonApiModelType {
   /**
    * Years of experience
    */
-  years_of_experience: number;
+  years_of_experience: number | null;
 }

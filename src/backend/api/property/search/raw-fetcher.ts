@@ -1,5 +1,6 @@
 import { BackendApiFactory } from 'backend/api/factory';
 import { PropertySerpSearchResultType } from 'components/property/serp/search-result.type';
+import { propertySerpItemsPerPage } from 'constants/property/serp/items-per-page';
 
 import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
 import { backendApiPropertySearchMapper } from './mapper';
@@ -22,7 +23,7 @@ export const backendApiPropertySearchRawFetcher = BackendApiFactory<
   url: 'search',
   queryDefaultParams: {
     include,
-    'page[limit]': 25,
+    'page[limit]': propertySerpItemsPerPage,
     sort: 'mr',
   },
   dataMapper: backendApiPropertySearchMapper,

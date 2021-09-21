@@ -1,5 +1,3 @@
-import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-
 import { BackendModelAgentInterface } from '../agent/interface';
 import { BackendModelBrokerInterface } from '../broker/interface';
 import { BackendModelLocationInterface } from '../location/interface';
@@ -10,7 +8,7 @@ import { BackendModelPropertyLiveEventMetadateInterface } from './live-event/met
 import { BackendModelPropertyPriceInterface } from './price.interface';
 import { BackendModelPropertyTypeInterface } from './type.interface';
 
-export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
+export interface BackendModelPropertyInterface {
   /**
    * BackendModelProperty ID
    */
@@ -49,7 +47,7 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
   /**
    * Path to the property image
    */
-  image: string;
+  image?: string;
 
   /**
    * BackendModelProperty's area with dimensions
@@ -180,7 +178,7 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
     /**
      * Video tour metadata
      */
-    video_metadata: {
+    video_metadata?: {
       /**
        * Video url
        */
@@ -200,7 +198,12 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
     /**
      * Live event metadata
      */
-    live_event_metadata: BackendModelPropertyLiveEventMetadateInterface;
+    live_event_metadata: BackendModelPropertyLiveEventMetadateInterface | null;
+
+    /**
+     * When listing was listed
+     */
+    listed_at_message: string;
   };
 
   /**
@@ -231,7 +234,7 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
    * WARNING: two ways of doing the same thing...
    * What's the point of propertyType relationship then ?
    */
-  type_id: number;
+  type_id: string;
 
   /**
    * BackendModelProperty's location
@@ -286,7 +289,7 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
   /**
    * Offering type ID
    */
-  offering_type_id: number;
+  offering_type_id: string;
 
   /**
    * Size
@@ -311,7 +314,7 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
   /**
    * Price on application
    */
-  price_on_application: number;
+  price_on_application: number | false;
 
   /**
    * Whether is smart ad
@@ -326,7 +329,7 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
   /**
    * Area specialist property
    */
-  areaSpecialistBackendModelProperty: boolean;
+  areaSpecialistBackendModelProperty?: boolean;
 
   /**
    * Reference number
@@ -361,7 +364,7 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
   /**
    * The completion status of the property
    */
-  completion_status: string;
+  completion_status: string | null;
 
   /**
    * The utilities price type (inclusive/exclusive)
@@ -416,15 +419,25 @@ export interface BackendModelPropertyInterface extends BackendJsonApiModelType {
   /**
    * Community
    */
-  community: BackendModelLocationInterface;
+  community?: BackendModelLocationInterface;
 
   /**
    * Location
    */
-  location: BackendModelLocationInterface;
+  location?: BackendModelLocationInterface;
 
   /**
    * Url of the property
    */
   share_url: string;
+
+  /**
+   * Area specialist property
+   */
+  areaSpecialistProperty?: boolean;
+
+  /**
+   * New projects
+   */
+  new_projects?: boolean;
 }

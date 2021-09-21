@@ -25,7 +25,12 @@ export type ApiRequestBasePropsType<Query = UrlQueryType, PostData = AnyValueTyp
   alterHeaders?: (headers: Record<string, string>) => void;
 
   /**
-   *
+   * Url
    */
   url?: string;
+
+  /**
+   * Data mapper
+   */
+  dataMapper?: (input: AnyValueType, rawData: AnyValueType) => AnyValueType;
 };

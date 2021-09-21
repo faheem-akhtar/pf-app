@@ -1,3 +1,6 @@
+import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
+import { mockReactUseState } from 'mocks/react/use-state.mock';
+
 import * as helpersIsClientModule from 'helpers/is-client';
 import * as statsServiceModule from 'services/stats/service';
 
@@ -8,8 +11,13 @@ Object.defineProperty(helpersIsClientModule, 'helpersIsClient', { value: false }
 
 describe('usePropertySearchTrackPageView on server', () => {
   it('should do nothing event if load is sucess', () => {
+    mockReactUseState();
+    mockReactUseEffect();
+
     usePropertySearchTrackPageView(undefined, {
       ok: true,
+      searchResult: { properties: [{}] },
+      filtersValueFromQuery: {},
     } as PropertySearchViewPropsType);
 
     const statsService = jest.spyOn(statsServiceModule, 'StatsService');

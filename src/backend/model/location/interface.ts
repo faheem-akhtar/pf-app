@@ -1,5 +1,10 @@
 export interface BackendModelLocationInterface {
   /**
+   * Number of reviews
+   */
+  reviews_count: number;
+
+  /**
    * Additional links
    */
   links: {
@@ -59,5 +64,25 @@ export interface BackendModelLocationInterface {
   /**
    * Location review score
    */
-  review_score: string;
+  review_score: number;
+
+  /**
+   * Coordinates
+   */
+  coordinates: {
+    /**
+     * Longitude
+     */
+    lon: number;
+
+    /**
+     * Latitude
+     */
+    lat: number;
+  };
+
+  /**
+   * Url slug
+   */
+  url_slug: string;
 }

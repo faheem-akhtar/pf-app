@@ -326,7 +326,33 @@ describe('ApiFactory', () => {
     const result = await fetcher({ locale: 'en' });
 
     expect(result).toEqual({
-      error: 'failed to parse json. response.text',
+      error: 'Error:"failed to parse json"". Response.text():"response.text"',
+      ok: false,
+    });
+  });
+
+  it('should return error when failed to parse json and parse response text', async () => {
+    mockWindowFetch({
+      json: () => Promise.reject({ message: 'failed to parse json' }),
+      text: () => Promise.reject({ message: 'failed to read text' }),
+    });
+
+    const jwtTokenService = new JwtTokenStore();
+    jwtTokenService.getToken = jest.fn().mockReturnValue('test-token');
+    jwtTokenService.refreshToken = jest.fn().mockReturnValue(Promise.resolve({}));
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: true,
+      jwtTokenService,
+    });
+
+    const fetcher = apiFactory({ method: 'GET', url });
+
+    const result = await fetcher({ locale: 'en' });
+
+    expect(result).toEqual({
+      error: 'responseJsonError: failed to parse json, responsTextError: failed to read text',
       ok: false,
     });
   });
@@ -454,5 +480,67 @@ describe('ApiFactory', () => {
     const result = await fetcher({ locale: 'en' });
 
     expect(result).toEqual(expect.objectContaining({ data: 1500 }));
+  });
+
+  it('should handle fetcher level mapper error', async () => {
+    mockWindowFetch();
+    mockWindowConsole();
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+    });
+
+    const fetcher = apiFactory({
+      method: 'GET',
+      url,
+    });
+
+    const result = await fetcher({
+      locale: 'en',
+      dataMapper: () => {
+        throw new Error('mapping error');
+      },
+    });
+
+    expect(result).toEqual(
+      expect.objectContaining({
+        error: expect.objectContaining({
+          body: 'failed to execute props.dataMapper for: origin/en/api/url. mapping error',
+        }),
+        ok: false,
+      })
+    );
+  });
+
+  it('should use all dataMappers together when defined', async () => {
+    mockWindowFetch({ json: () => Promise.resolve(5) });
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+      dataMapper: (n) => (n as number) + 10,
+    });
+
+    const fetcher = apiFactory({ method: 'GET', url, dataMapper: (n) => (n as number) * 100 });
+
+    const result = await fetcher({ locale: 'en', dataMapper: (n) => (n as number) + 77 });
+
+    expect(result).toEqual(expect.objectContaining({ data: 1577 }));
+  });
+
+  it('should merge default query and fetcher query', async () => {
+    const fetchMock = mockWindowFetch({ json: () => Promise.resolve(5) });
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+    });
+
+    const fetcher = apiFactory({ method: 'GET', url, queryDefaultParams: { a: 1, b: 2 } });
+
+    await fetcher({ locale: 'en', query: { a: 5, c: 3 } });
+
+    expect(fetchMock).toHaveBeenCalledWith('origin/en/api/url?a=5&b=2&c=3', expect.anything());
   });
 });

@@ -16,6 +16,7 @@ import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { arrayFromRange } from 'helpers/array/from-range';
 import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
+import { StatsService } from 'services/stats/service';
 
 import { PropertyShareComponent } from '../property/share/component';
 import { PropertyCardComponentPropsType } from './component-props.type';
@@ -58,13 +59,16 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
 
   const ctaButtonsProps = {
     onCallClick: (): void => {
+      StatsService().propertyLeadClick(parseInt(propertyId), { lead: { medium: 'phone', cta: 'button' } });
       callingAgentModalOpenRef.current();
       contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.call);
     },
     onWhatsappClick: (): void => {
       contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.whatsApp);
+      StatsService().propertyLeadClick(parseInt(propertyId), { lead: { medium: 'whatsapp', cta: 'button' } });
     },
     onEmailClick: (): void => {
+      StatsService().propertyLeadClick(parseInt(propertyId), { lead: { medium: 'email', cta: 'button' } });
       emailAgentModalOpenRef.current();
       contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.email);
     },
