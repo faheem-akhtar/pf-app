@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { useApiPropertyImages } from 'api/property-images/hook';
 import { CallingAgentModalComponent } from 'components/calling-agent-modal/component';
@@ -28,6 +28,7 @@ import { PropertyCardTemplatePropsType } from './template-props.type';
 export const PropertyCardComponent = ({ property, loading }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
   const [galleryHasBeenTouched, setGalleryHasBeenTouched] = useState(false);
+  const [isPropertySaved, setIsPropertySaved] = useState(false);
   const { t } = useTranslation();
   const propertyId = propertySerpObfuscatedGetId(property);
   const savedProperties = useContext(SavedPropertyContext);
@@ -81,7 +82,7 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
     loading,
     gallery: galleryProps,
     ctaButtons: ctaButtonsProps,
-    saved: !!savedProperties.data.find((property) => property.propertyId === parseInt(propertyId, 10)),
+    saved: isPropertySaved,
     contactDate,
     onSaveButtonClick: (): void => savedProperties.toggle(propertyId),
     onMenuButtonClick: (): void => {
@@ -89,6 +90,10 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
     },
     t,
   };
+
+  useEffect(() => {
+    setIsPropertySaved(!!savedProperties.data.find((property) => property.propertyId === parseInt(propertyId, 10)));
+  }, [savedProperties.data, propertyId]);
 
   return (
     <div data-testid='list-item'>
