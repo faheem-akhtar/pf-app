@@ -38,6 +38,10 @@ jest.mock('next-i18next', () => ({
   }),
 }));
 
+jest.mock('next-i18next/serverSideTranslations', () => ({
+  serverSideTranslations: (): Promise<{ _nextI18Next: null }> => Promise.resolve({ _nextI18Next: null }),
+}));
+
 const router = {
   events: { on: jest.fn(), off: jest.fn() },
   locale: LanguageCodeEnum.en,

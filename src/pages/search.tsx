@@ -11,7 +11,6 @@ import { PropertySearchViewPropsType } from 'views/property-search/view-props.ty
 
 import filtersDataByLocale from '../../public/static/filters-data';
 
-// TODO-FE[CX-429] add tests
 export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType> = async (
   context: GetServerSidePropsContext
 ) => {
@@ -30,9 +29,6 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       },
     };
   }
-
-  // eslint-disable-next-line no-console
-  console.log('TESTING');
 
   return {
     props: {

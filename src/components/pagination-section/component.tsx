@@ -17,7 +17,7 @@ import { PaginationSectionComponentPropsType } from './component-props.type';
 import styles from './pagination-section.module.scss';
 
 // TODO-FE[TPNX-3064] Proper implementation for pagination section
-Router.events.on('routeChangeStart', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+Router.events?.on('routeChangeStart', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 const renderLink = (
   router: NextRouter,
