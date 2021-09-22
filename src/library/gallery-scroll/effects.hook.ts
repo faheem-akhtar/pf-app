@@ -33,23 +33,24 @@ export const useGalleryScrollEffects = (
     const onTouchMove = (e: TouchEvent): void => {
       onMove(e.changedTouches[0].pageX);
     };
+    const onTouchEnd = (e: TouchEvent): void => {
+      // we should prevent default because otherwise it will trigger mouse down right after touchend
+      e.preventDefault();
+      onEnd(e);
+    };
 
     WindowService.addEventListener('contextmenu', disableContextMenu);
     WindowService.addEventListener('mousemove', onMouseMove);
     WindowService.addEventListener('touchmove', onTouchMove);
     WindowService.addEventListener('mouseup', onEnd);
-    WindowService.addEventListener('touchend', (e) => {
-      // we should prevent default because otherwise it will trigger mouse down right after touchend
-      e.preventDefault();
-      onEnd(e);
-    });
+    WindowService.addEventListener('touchend', onTouchEnd);
 
     return (): void => {
       WindowService.removeEventListener('contextmenu', disableContextMenu);
       WindowService.removeEventListener('mousemove', onMouseMove);
       WindowService.removeEventListener('touchmove', onTouchMove);
       WindowService.removeEventListener('mouseup', onEnd);
-      WindowService.removeEventListener('touchend', onEnd);
+      WindowService.removeEventListener('touchend', onTouchEnd);
     };
   });
 };

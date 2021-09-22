@@ -5,6 +5,8 @@
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
 import { mockWindowAddEventListener } from 'mocks/window/add-event-listener.mock';
 
+import { WindowService } from 'services/window/service';
+
 import { useGalleryScrollEffects } from '../effects.hook';
 
 let dispatchMock: jest.Mock;
@@ -105,5 +107,31 @@ describe('useGalleryScrollEffects', () => {
     expect(callbackProps.preventDefault).toBeCalledTimes(1);
     expect(dispatchMock).toBeCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({ type: 'end' });
+  });
+
+  it('should not prevent events after unmount', () => {
+    const { unmountAll } = mockReactUseEffect();
+
+    const eventListeners: Function[] = [];
+
+    WindowService.addEventListener = (eventName: string, callback: Function): void => {
+      eventListeners.push(callback);
+    };
+    WindowService.removeEventListener = (eventName: string, callback: Function): void => {
+      eventListeners.splice(eventListeners.indexOf(callback));
+    };
+
+    useGalleryScrollEffects(true, dispatchMock);
+    unmountAll();
+    const eventMock = {
+      preventDefault: jest.fn(),
+      stopPropagation: jest.fn(),
+      changedTouches: [{ pageX: 4 }],
+    };
+
+    eventListeners.forEach((listener: Function) => listener(eventMock));
+
+    expect(eventMock.preventDefault).not.toHaveBeenCalled();
+    expect(eventMock.stopPropagation).not.toHaveBeenCalled();
   });
 });
