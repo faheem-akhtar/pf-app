@@ -31,5 +31,10 @@ export type BackendApiPropertySearchJsonApiResultType = {
      * Ad placeholders
      */
     ad_placeholders?: boolean;
+
+    /**
+     * Page title
+     */
+    meta_title: string;
   };
 };

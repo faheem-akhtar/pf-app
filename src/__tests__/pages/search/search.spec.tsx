@@ -25,7 +25,7 @@ describe('Pages/search', () => {
       json: () => Promise.reject(propertiesRawBackendStub()),
     });
 
-    const { props } = (await getServerSideProps(context)) as { props: PropertySearchViewPropsType };
+    const { props } = (await getServerSideProps(context)) as unknown as { props: PropertySearchViewPropsType };
     expect(props.ok).toBe(false);
   });
 
@@ -34,7 +34,7 @@ describe('Pages/search', () => {
       json: () => Promise.resolve(propertiesRawBackendStub()),
     });
 
-    const { props } = (await getServerSideProps(context)) as {
+    const { props } = (await getServerSideProps(context)) as unknown as {
       props: {
         ok: true;
         filtersData: object;

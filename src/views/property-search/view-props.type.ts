@@ -8,6 +8,7 @@ export type PropertySearchViewPropsType =
       filtersData: FiltersDataInterface;
       filtersValueFromQuery: FiltersValueInterface;
       searchResult: PropertySerpSearchResultType;
+      documentTitle: string;
     }
   | {
       ok: false;

@@ -7,7 +7,7 @@ export const HomeView: React.FunctionComponent<HomeViewPropsInterface> = () => {
   return (
     <>
       <HeaderComponent />
-      {'TODO-FE[CX-396]'}
+      {'TODO-FE[CX-???]'}
       <FooterComponent />
     </>
   );

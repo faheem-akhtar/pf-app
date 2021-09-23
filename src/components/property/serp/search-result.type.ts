@@ -19,4 +19,9 @@ export type PropertySerpSearchResultType = {
    * Total number of pages available (backend may not allow to access page number above certain threshold)
    */
   pages: number;
+
+  /**
+   * Page title
+   */
+  title: string;
 };

@@ -36,7 +36,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
   return (
     <PropertySearchResultsCountForCurrentQueryContext.Provider value={props.searchResult.total}>
       <SnackbarContextProvider>
-        <HeadComponent pageTitle={'TODO-FE[CX-396]'} />
+        <HeadComponent pageTitle={props.documentTitle} />
         <FiltersContextProvider {...filtersContextProps}>
           <SavedPropertyContextProvider>
             <ContactedPropertyContextProvider>

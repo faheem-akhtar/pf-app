@@ -36,6 +36,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       filtersData: (filtersDataByLocale as unknown as Record<string, FiltersDataInterface>)[locale],
       filtersValueFromQuery,
       searchResult: searchResult.data,
+      documentTitle: searchResult.data.title,
       ...(await backendTranslationGetDefinitions(locale)),
       pageType: PageTypeEnum.propertySerp,
     },
