@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render, RenderResult } from '@testing-library/react';
+import { fireEvent, render, RenderResult, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import * as AuthForgotPasswordComponentModule from 'components/auth/forgot-password/component';
 import * as AuthLoginComponentModule from 'components/auth/login/component';
@@ -30,17 +31,17 @@ describe('AuthModalComponent', () => {
 
   describe('login screen', () => {
     it('should render login by default', () => {
-      expect(renderResult.getByTestId('AuthLoginComponent')).toBeTruthy();
+      expect(screen.getByRole('heading', { level: 1, name: 'sign-in' })).toBeInTheDocument();
     });
 
     it('should display registration screen', () => {
-      fireEvent.click(renderResult.container.querySelector('.link.create-account') as HTMLDivElement);
-      expect(renderResult.getByTestId('AuthRegistrationComponent')).toBeTruthy();
+      userEvent.click(screen.getByText('auth/not-registered-yet', { exact: false }));
+      expect(screen.getByRole('heading', { level: 1, name: 'auth/create-account' })).toBeInTheDocument();
     });
 
     it('should display forgot password screen', () => {
-      fireEvent.click(renderResult.container.querySelector('.link.forgot-password') as HTMLDivElement);
-      expect(renderResult.getByTestId('AuthForgotPasswordComponent')).toBeTruthy();
+      userEvent.click(screen.getByText('auth/forgot-password?'));
+      expect(screen.getByRole('heading', { level: 1, name: 'auth/forgot-password?' })).toBeInTheDocument();
     });
 
     it('should call close', () => {
@@ -49,7 +50,7 @@ describe('AuthModalComponent', () => {
         .mockImplementationOnce(({ onClose }) => <p onClick={onClose} />);
       renderResult = render(<AuthModalComponent {...props} />);
 
-      fireEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
+      userEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
       expect(props.close).toHaveBeenCalledTimes(1);
     });
 
@@ -59,7 +60,7 @@ describe('AuthModalComponent', () => {
         .mockImplementationOnce(({ onSuccess }) => <p onClick={onSuccess} />);
       renderResult = render(<AuthModalComponent {...props} />);
 
-      fireEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
+      userEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
       expect(props.success).toHaveBeenCalledTimes(1);
     });
   });
@@ -67,12 +68,13 @@ describe('AuthModalComponent', () => {
   describe('registration screen', () => {
     beforeEach(() => {
       // switch to registration screen
-      fireEvent.click(renderResult.container.querySelector('.link.create-account') as HTMLDivElement);
+      userEvent.click(screen.getByText('auth/not-registered-yet? auth/create-account'));
     });
 
     it('should switch to login screen', () => {
-      fireEvent.click(renderResult.container.querySelector('.link.create-account') as HTMLDivElement);
-      expect(renderResult.getByTestId('AuthLoginComponent')).toBeTruthy();
+      userEvent.click(screen.getByText('auth/already-registered? log-in'));
+
+      expect(screen.getByRole('heading', { level: 1, name: 'sign-in' })).toBeInTheDocument();
     });
 
     it('should call close', () => {
@@ -105,12 +107,13 @@ describe('AuthModalComponent', () => {
   describe('forgot password screen', () => {
     beforeEach(() => {
       // switch to forgot password screen
-      fireEvent.click(renderResult.container.querySelector('.link.forgot-password') as HTMLDivElement);
+      userEvent.click(screen.getByText('auth/forgot-password?'));
     });
 
     it('should switch to registration screen', () => {
-      fireEvent.click(renderResult.container.querySelector('.link.create-account') as HTMLDivElement);
-      expect(renderResult.getByTestId('AuthRegistrationComponent')).toBeTruthy();
+      userEvent.click(screen.getByText('auth/not-registered-yet? auth/create-account'));
+
+      expect(screen.getByRole('heading', { level: 1, name: 'auth/create-account' })).toBeInTheDocument();
     });
 
     it('should call close', () => {

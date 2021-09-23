@@ -1,8 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent as fireDOMEvent } from '@testing-library/dom';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+
+import { act, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { mockModalEnv } from 'mocks/modal-env/mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
@@ -50,109 +51,92 @@ describe('CallingAgentModalComponent', () => {
     render(<CallingAgentModalComponent {...props} />);
     act(openRef.current);
 
-    expect(screen.getByTestId('CallingAgentModalContent')).toMatchSnapshot();
+    expect(screen.getByTestId('calling-agent-modal-content')).toMatchSnapshot();
   });
 
-  it('should update title when close is clicked first time', async () => {
-    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
-      ok: true,
-      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
-    });
-    render(<CallingAgentModalComponent {...props} />);
-    act(openRef.current);
-
-    const titleElement = screen.getByTestId('CallingAgentModalTitle');
-    fireDOMEvent(titleElement.nextSibling as HTMLElement, new MouseEvent('click', { bubbles: true }));
-
-    await waitFor(() => expect(titleElement.textContent).toBe('agent-modal/property-availability'));
-  });
-
-  it('should close modal when close is clicked second time', async () => {
-    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
-      ok: true,
-      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
-    });
-    render(<CallingAgentModalComponent {...props} />);
-    act(openRef.current);
-
-    const closeButtonElement = screen.getByTestId('CallingAgentModalCloseButton');
-    fireDOMEvent(closeButtonElement, new MouseEvent('click', { bubbles: true }));
-    fireDOMEvent(closeButtonElement, new MouseEvent('click', { bubbles: true }));
-
-    await waitFor(() => expect(screen.queryAllByTestId('CallingAgentModalCloseButton').length).toEqual(0));
-  });
-
-  it('if agent info is shown properly', async () => {
-    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
-      ok: true,
-      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
-    });
-    render(<CallingAgentModalComponent {...props} />);
-    act(openRef.current);
-
-    await waitFor(() => expect(screen.getByTestId('AgentInfoComponentDetails')).toMatchSnapshot());
-  });
-
-  it('should render feedback component when agent data exists and close is clicked first time', async () => {
-    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
-      ok: true,
-      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
-    });
-    render(<CallingAgentModalComponent {...props} />);
-    act(openRef.current);
-
-    const titleElement = screen.getByTestId('CallingAgentModalTitle');
-    fireDOMEvent(titleElement.nextSibling as HTMLElement, new MouseEvent('click', { bubbles: true }));
-
-    await waitFor(() => expect(screen.getByText('agent-modal/agent-not-answered')).toBeTruthy());
-  });
-
-  it('should call onAnswerClicked callback when a feedback button is clicked', async () => {
-    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
-      ok: true,
-      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
-    });
-    const onAnswerClickedSpy = jest.fn();
-    render(<CallingAgentModalFeedbackComponent onAnswerClicked={onAnswerClickedSpy} propertyId={propertyId} />);
-    act(openRef.current);
-
-    const [answerButton] = screen.getAllByRole('button');
-    fireEvent.click(answerButton);
-    await waitFor(() => expect(onAnswerClickedSpy).toHaveBeenCalledTimes(1));
-  });
-
-  it('should make request if clicked answer is no', async () => {
-    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
-      ok: true,
-      data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+  describe('FeedbackComponent', () => {
+    beforeEach(() => {
+      mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+        ok: true,
+        data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+      });
     });
 
-    const fetchMock = mockWindowFetch();
-    render(
-      <FiltersContextProvider {...filtersContextPropsStub()}>
-        <CallingAgentModalFeedbackComponent onAnswerClicked={jest.fn()} propertyId={propertyId} />
-      </FiltersContextProvider>
-    );
-    const answerButton = screen.getByText('no');
+    it('should call onAnswerClicked callback when a feedback button is clicked', async () => {
+      const onAnswerClickedSpy = jest.fn();
+      render(<CallingAgentModalFeedbackComponent onAnswerClicked={onAnswerClickedSpy} propertyId={propertyId} />);
+      act(openRef.current);
 
-    fireEvent.click(answerButton);
-    await waitFor(() =>
-      expect(fetchMock).toHaveBeenCalledWith(
-        expect.anything(),
-        expect.objectContaining({
-          body: JSON.stringify({
-            data: {
-              type: 'property_report',
-              attributes: {
-                email: 'report@report.com',
-                message: 'Property Not Available - Call Lead Pop-up',
-                reason_id: PropertyReportReasonEnum.notAvailable,
-                reporter_type: PropertyReportUserTypeEnum.renter,
+      const [answerButton] = screen.getAllByRole('button');
+      userEvent.click(answerButton);
+
+      expect(onAnswerClickedSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should make request if clicked answer is no', async () => {
+      const fetchMock = mockWindowFetch();
+      render(
+        <FiltersContextProvider {...filtersContextPropsStub()}>
+          <CallingAgentModalFeedbackComponent onAnswerClicked={jest.fn()} propertyId={propertyId} />
+        </FiltersContextProvider>
+      );
+      const answerButton = screen.getByText('no');
+      userEvent.click(answerButton);
+
+      await waitFor(() =>
+        expect(fetchMock).toHaveBeenCalledWith(
+          expect.anything(),
+          expect.objectContaining({
+            body: JSON.stringify({
+              data: {
+                type: 'property_report',
+                attributes: {
+                  email: 'report@report.com',
+                  message: 'Property Not Available - Call Lead Pop-up',
+                  reason_id: PropertyReportReasonEnum.notAvailable,
+                  reporter_type: PropertyReportUserTypeEnum.renter,
+                },
               },
-            },
-          }),
-        })
-      )
-    );
+            }),
+          })
+        )
+      );
+    });
+  });
+
+  describe('when agent modal informations is loaded', () => {
+    beforeEach(() => {
+      mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+        ok: true,
+        data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+      });
+
+      render(<CallingAgentModalComponent {...props} />);
+      act(openRef.current);
+    });
+
+    it('should update title when close is clicked first time', () => {
+      userEvent.click(screen.getByRole('button', { name: /cross/i }));
+
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('agent-modal/property-availability');
+    });
+
+    it('should close modal when close is clicked second time', () => {
+      const closeButton = screen.getByRole('button', { name: /cross/i });
+
+      userEvent.dblClick(closeButton);
+
+      expect(closeButton).not.toBeInTheDocument();
+    });
+
+    it('if agent info is shown properly', () => {
+      expect(screen.getByTestId('agent-info-component-details')).toMatchSnapshot();
+    });
+
+    it('should render feedback component when agent data exists and close is clicked first time', () => {
+      userEvent.click(screen.getByRole('button', { name: /cross/i }));
+
+      expect(screen.getByText('agent-modal/agent-not-answered')).toBeInTheDocument();
+    });
   });
 });

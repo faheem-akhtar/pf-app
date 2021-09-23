@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { FunctionComponent, useRef, useState } from 'react';
 
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { functionNoop } from 'helpers/function/noop';
@@ -8,7 +8,7 @@ import { ModalComponentPropsInterface } from './component-props.interface';
 import styles from './modal.module.scss';
 import { ModalPortalComponent } from './portal-component';
 
-export const ModalComponent = ({
+export const ModalComponent: FunctionComponent<ModalComponentPropsInterface> = ({
   openRef,
   closeRef,
   children,
@@ -16,7 +16,7 @@ export const ModalComponent = ({
   onOpen = functionNoop,
   onOverlayClick = functionNoop,
   overlay = false,
-}: ModalComponentPropsInterface): JSX.Element | null => {
+}): JSX.Element | null => {
   const [opened, setOpened] = useState(false);
   const onOpenRef = useRef(onOpen);
   onOpenRef.current = onOpen;
@@ -37,6 +37,7 @@ export const ModalComponent = ({
           [styles[`container--overlay`]]: overlay,
         })}
         onClick={overlay ? onOverlayClick : functionNoop}
+        role='document'
       >
         {children}
       </div>

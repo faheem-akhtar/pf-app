@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render, RenderResult, waitFor } from '@testing-library/react';
+import { render, RenderResult, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
 
@@ -43,7 +44,7 @@ describe('AuthRegistrationComponent', () => {
   });
 
   it('should call onLogin when click on the login', () => {
-    fireEvent.click(renderResult.container.querySelector('.link.create-account') as HTMLDivElement);
+    userEvent.click(screen.getByText('auth/already-registered', { exact: false }));
     expect(props.onLogin).toHaveBeenCalledTimes(1);
   });
 
@@ -55,18 +56,13 @@ describe('AuthRegistrationComponent', () => {
         headers: {} as Headers,
       })
     );
-    const formElem = renderResult.container.querySelector('form') as HTMLFormElement;
-    const firstNameInput = renderResult.container.querySelector('input[name="first-name"]') as HTMLInputElement;
-    const lastNameInput = renderResult.container.querySelector('input[name="last-name"]') as HTMLInputElement;
-    const emailInput = renderResult.container.querySelector('input[name="email"]') as HTMLInputElement;
-    const passwordInput = renderResult.container.querySelector('input[name="password"]') as HTMLInputElement;
 
-    fireEvent.change(firstNameInput, { target: { value: 'first name' } });
-    fireEvent.change(lastNameInput, { target: { value: 'last name' } });
-    fireEvent.change(emailInput, { target: { value: 'email@example.com' } });
-    fireEvent.change(passwordInput, { target: { value: 'password' } });
+    userEvent.type(screen.getByLabelText('auth/first-name'), 'first name');
+    userEvent.type(screen.getByLabelText('auth/last-name'), 'last name');
+    userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+    userEvent.type(screen.getByLabelText('password'), 'password');
 
-    fireEvent.submit(formElem);
+    userEvent.click(screen.getByRole('button', { name: 'auth/create-account' }));
 
     await waitFor(() => expect(renderResult.container.querySelector('.loader1')));
 
@@ -90,18 +86,12 @@ describe('AuthRegistrationComponent', () => {
   });
 
   it('should not do anything if email is invalid', () => {
-    const formElem = renderResult.container.querySelector('form') as HTMLFormElement;
-    const firstNameInput = renderResult.container.querySelector('input[name="first-name"]') as HTMLInputElement;
-    const lastNameInput = renderResult.container.querySelector('input[name="last-name"]') as HTMLInputElement;
-    const emailInput = renderResult.container.querySelector('input[name="email"]') as HTMLInputElement;
-    const passwordInput = renderResult.container.querySelector('input[name="password"]') as HTMLInputElement;
+    userEvent.type(screen.getByLabelText('auth/first-name'), 'first name');
+    userEvent.type(screen.getByLabelText('auth/last-name'), 'last name');
+    userEvent.type(screen.getByLabelText('email'), 'in valid email');
+    userEvent.type(screen.getByLabelText('password'), 'password');
 
-    fireEvent.change(firstNameInput, { target: { value: 'first name' } });
-    fireEvent.change(lastNameInput, { target: { value: 'last name' } });
-    fireEvent.change(emailInput, { target: { value: 'in valid email' } });
-    fireEvent.change(passwordInput, { target: { value: 'password' } });
-
-    fireEvent.submit(formElem);
+    userEvent.click(screen.getByRole('button', { name: 'auth/create-account' }));
 
     expect(googleRecaptchaMock.execute).not.toHaveBeenCalled();
     expect(props.onClose).not.toHaveBeenCalled();
@@ -117,18 +107,12 @@ describe('AuthRegistrationComponent', () => {
       })
     );
 
-    const formElem = renderResult.container.querySelector('form') as HTMLFormElement;
-    const firstNameInput = renderResult.container.querySelector('input[name="first-name"]') as HTMLInputElement;
-    const lastNameInput = renderResult.container.querySelector('input[name="last-name"]') as HTMLInputElement;
-    const emailInput = renderResult.container.querySelector('input[name="email"]') as HTMLInputElement;
-    const passwordInput = renderResult.container.querySelector('input[name="password"]') as HTMLInputElement;
+    userEvent.type(screen.getByLabelText('auth/first-name'), 'first name');
+    userEvent.type(screen.getByLabelText('auth/last-name'), 'last name');
+    userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+    userEvent.type(screen.getByLabelText('password'), 'password');
 
-    fireEvent.change(firstNameInput, { target: { value: 'first name' } });
-    fireEvent.change(lastNameInput, { target: { value: 'last name' } });
-    fireEvent.change(emailInput, { target: { value: 'email@example.com' } });
-    fireEvent.change(passwordInput, { target: { value: 'password' } });
-
-    fireEvent.submit(formElem);
+    userEvent.click(screen.getByRole('button', { name: 'auth/create-account' }));
 
     await waitFor(() => expect(googleRecaptchaMock.reset).toHaveBeenCalledTimes(1));
 
@@ -146,23 +130,19 @@ describe('AuthRegistrationComponent', () => {
         headers: {} as Headers,
       })
     );
-    const formElem = renderResult.container.querySelector('form') as HTMLFormElement;
-    const firstNameInput = renderResult.container.querySelector('input[name="first-name"]') as HTMLInputElement;
-    const lastNameInput = renderResult.container.querySelector('input[name="last-name"]') as HTMLInputElement;
-    const emailInput = renderResult.container.querySelector('input[name="email"]') as HTMLInputElement;
-    const passwordInput = renderResult.container.querySelector('input[name="password"]') as HTMLInputElement;
-    const optedInCheckbox = renderResult.container.querySelector('#opten-in') as HTMLInputElement;
 
-    fireEvent.change(firstNameInput, { target: { value: 'first name' } });
-    fireEvent.change(lastNameInput, { target: { value: 'last name' } });
-    fireEvent.change(emailInput, { target: { value: 'email@example.com' } });
-    fireEvent.change(passwordInput, { target: { value: 'password' } });
+    const optedInCheckbox = screen.getByRole('checkbox', { name: 'auth/free-guides' });
 
-    expect(optedInCheckbox.checked).toBeFalsy();
-    fireEvent.click(optedInCheckbox);
-    expect(optedInCheckbox.checked).toBeTruthy();
+    userEvent.type(screen.getByLabelText('auth/first-name'), 'first name');
+    userEvent.type(screen.getByLabelText('auth/last-name'), 'last name');
+    userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+    userEvent.type(screen.getByLabelText('password'), 'password');
 
-    fireEvent.submit(formElem);
+    expect(optedInCheckbox).not.toBeChecked();
+    userEvent.click(optedInCheckbox);
+    expect(optedInCheckbox).toBeChecked();
+
+    userEvent.click(screen.getByRole('button', { name: 'auth/create-account' }));
 
     await waitFor(() => expect(AuthRegisterServiceMock).toHaveBeenCalledTimes(1));
 

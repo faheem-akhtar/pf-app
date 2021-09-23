@@ -4,49 +4,54 @@
 
 import { render, screen } from '@testing-library/react';
 
-import { HeaderTemplate } from '../template';
+import { userModelStub } from 'stubs/user/model.stub';
 
-const props = {
-  locale: 'en',
-  onLoginButtonClick: jest.fn(),
-  userProfile: {
-    user: null,
-    savedPropertiesCount: 1,
-  },
-};
+import { HeaderTemplate } from '../template';
+import { HeaderTemplatePropsInterface } from '../template.props.interface';
 
 describe('HeaderTemplate', () => {
+  let props: HeaderTemplatePropsInterface;
+
+  beforeAll(() => {
+    props = {
+      locale: 'en',
+      onLoginButtonClick: jest.fn(),
+      userProfile: {
+        user: null,
+        savedPropertiesCount: 1,
+      },
+    };
+  });
+
   it('should appear log in button when the user is not exist', () => {
-    const { container } = render(<HeaderTemplate {...props} />);
+    render(<HeaderTemplate {...props} />);
 
     expect(screen.getByRole('button', { name: /log-in/i })).toBeInTheDocument();
-    expect(container.querySelector('.userPhoto')).not.toBeInTheDocument();
+    expect(screen.queryByAltText(/user photo/i)).not.toBeInTheDocument();
   });
 
   it('should appear user related contents when the user is exist', () => {
     const userProfile = {
-      user: {
-        userId: '1',
-        first_name: 'John',
-        last_name: 'Doe',
-        email: 'john@doe.com',
-        image: 'none.jpg',
-      },
+      user: userModelStub(),
       savedPropertiesCount: 2,
     };
-    const { container } = render(<HeaderTemplate {...props} userProfile={userProfile} />);
+    render(<HeaderTemplate {...props} userProfile={userProfile} />);
 
-    expect(container.querySelector('.userPhoto')).toHaveAttribute('src', 'none.jpg');
-    expect(container.querySelector('.notificationBadge')).toHaveTextContent('2');
+    expect(screen.getByAltText(/user photo/i)).toHaveAttribute(
+      'src',
+      'https://lh3.googleusercontent.com/a-/AOh14GgAjybktYwQWEFDSAPrQ7yC3KC6l1I1BDyyisoH5Sb=s50'
+    );
+
+    expect(screen.getByTestId('notification-badge')).toHaveTextContent('2');
     expect(screen.queryByRole('button', { name: /log-in/i })).not.toBeInTheDocument();
-    expect(screen.getByTestId('logo-en')).toBeInTheDocument();
-    expect(container.querySelector('.logoLink')).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: /logo-en/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /logo-en/i })).toHaveAttribute('href', '/');
   });
 
   it('should show alternative locale content', () => {
-    const { container } = render(<HeaderTemplate {...props} locale='ar' />);
+    render(<HeaderTemplate {...props} locale='ar' />);
 
-    expect(screen.getByTestId('logo-ar')).toBeInTheDocument();
-    expect(container.querySelector('.logoLink')).toHaveAttribute('href', '/ar');
+    expect(screen.getByRole('link', { name: /logo-ar/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /logo-ar/i })).toHaveAttribute('href', '/ar');
   });
 });

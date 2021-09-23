@@ -2,9 +2,7 @@
 
 exports[`AuthLoginComponent renders without throwing any errors 1`] = `
 <div>
-  <div
-    data-testid="AuthLoginComponent"
-  >
+  <div>
     <h1
       class="heading"
     >
@@ -124,14 +122,20 @@ exports[`AuthLoginComponent renders without throwing any errors 1`] = `
             class="content"
           >
             <input
+              aria-invalid="false"
+              aria-label="email"
               class="input"
+              id="email"
+              name="email"
               type="email"
               value=""
             />
             <div
               class="placeholder"
             >
-              <label>
+              <label
+                for="email"
+              >
                 email
               </label>
             </div>
@@ -148,14 +152,20 @@ exports[`AuthLoginComponent renders without throwing any errors 1`] = `
             class="content"
           >
             <input
+              aria-invalid="false"
+              aria-label="password"
               class="input"
+              id="password"
+              name="password"
               type="password"
               value=""
             />
             <div
               class="placeholder"
             >
-              <label>
+              <label
+                for="password"
+              >
                 password
               </label>
             </div>

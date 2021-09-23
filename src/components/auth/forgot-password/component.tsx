@@ -41,8 +41,8 @@ export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterf
 
   // TODO-FE[CX-499] - Add success message
   return (
-    <div data-testid='AuthForgotPasswordComponent'>
-      <div className={styles.heading}>{t('auth/forgot-password')}?</div>
+    <div>
+      <h1 className={styles.heading}>{t('auth/forgot-password')}?</h1>
       <AuthLoaderComponent isEnabled={isLoading} isCentered={true} />
       {errorMessage && <ErrorMessageComponent message={errorMessage} />}
       <form
@@ -80,6 +80,8 @@ export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterf
       >
         <div className={styles['input-area']}>
           <InputBaseComponent
+            id='email'
+            name='email'
             placeholder={t('email')}
             type='email'
             value={email}

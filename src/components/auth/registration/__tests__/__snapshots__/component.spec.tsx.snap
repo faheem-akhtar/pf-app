@@ -2,14 +2,12 @@
 
 exports[`AuthRegistrationComponent renders without throwing any errors 1`] = `
 <div>
-  <div
-    data-testid="AuthRegistrationComponent"
-  >
-    <div
+  <div>
+    <h1
       class="heading"
     >
       auth/create-account
-    </div>
+    </h1>
     
     <form>
       <div
@@ -22,15 +20,20 @@ exports[`AuthRegistrationComponent renders without throwing any errors 1`] = `
             class="content"
           >
             <input
+              aria-invalid="false"
+              aria-label="firstName"
               class="input"
-              name="first-name"
+              id="first-name"
+              name="firstName"
               type="text"
               value=""
             />
             <div
               class="placeholder"
             >
-              <label>
+              <label
+                for="first-name"
+              >
                 auth/first-name
               </label>
             </div>
@@ -47,15 +50,20 @@ exports[`AuthRegistrationComponent renders without throwing any errors 1`] = `
             class="content"
           >
             <input
+              aria-invalid="false"
+              aria-label="lastName"
               class="input"
-              name="last-name"
+              id="last-name"
+              name="lastName"
               type="text"
               value=""
             />
             <div
               class="placeholder"
             >
-              <label>
+              <label
+                for="last-name"
+              >
                 auth/last-name
               </label>
             </div>
@@ -72,7 +80,10 @@ exports[`AuthRegistrationComponent renders without throwing any errors 1`] = `
             class="content"
           >
             <input
+              aria-invalid="false"
+              aria-label="email"
               class="input"
+              id="email"
               name="email"
               type="email"
               value=""
@@ -80,7 +91,9 @@ exports[`AuthRegistrationComponent renders without throwing any errors 1`] = `
             <div
               class="placeholder"
             >
-              <label>
+              <label
+                for="email"
+              >
                 email
               </label>
             </div>
@@ -97,7 +110,10 @@ exports[`AuthRegistrationComponent renders without throwing any errors 1`] = `
             class="content"
           >
             <input
+              aria-invalid="false"
+              aria-label="password"
               class="input"
+              id="password"
               name="password"
               type="password"
               value=""
@@ -105,7 +121,9 @@ exports[`AuthRegistrationComponent renders without throwing any errors 1`] = `
             <div
               class="placeholder"
             >
-              <label>
+              <label
+                for="password"
+              >
                 password
               </label>
             </div>
@@ -119,8 +137,10 @@ exports[`AuthRegistrationComponent renders without throwing any errors 1`] = `
           class="container"
         >
           <input
+            aria-labelledby="optenIn"
             class="input"
             id="opten-in"
+            name="optenIn"
             type="checkbox"
           />
           <label

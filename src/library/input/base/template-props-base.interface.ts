@@ -1,5 +1,15 @@
 export interface InputBaseTemplatePropsBaseInterface {
   /**
+   * Id attribute value to be added to the input element and as a label's for attribute value.
+   */
+  id?: string;
+
+  /**
+   * Name attribute
+   */
+  name?: string;
+
+  /**
    * The type of input
    * @default text
    */
@@ -74,11 +84,6 @@ export interface InputBaseTemplatePropsBaseInterface {
    * Max number of characters accepted in the input element
    */
   maxLength?: number;
-
-  /**
-   * The name of the input
-   */
-  name?: string;
 
   /**
    * Called when input value is changed

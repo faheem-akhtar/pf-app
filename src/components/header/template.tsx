@@ -49,7 +49,9 @@ export const HeaderTemplate = ({
                 >
                   <IconThinFavoriteTemplate class={styles.savedPropertiesIcon} clipped />
                   <div className={styles.notificationDot} />
-                  <div className={styles.notificationBadge}>{userProfile.savedPropertiesCount}</div>
+                  <div className={styles.notificationBadge} data-testid='notification-badge'>
+                    {userProfile.savedPropertiesCount}
+                  </div>
                 </a>
               </div>
             )}
@@ -67,7 +69,7 @@ export const HeaderTemplate = ({
               ) : (
                 <Fragment>
                   {userProfile?.user.image ? (
-                    <img src={userProfile?.user.image} className={styles.userPhoto} />
+                    <img src={userProfile?.user.image} alt='User Photo' className={styles.userPhoto} />
                   ) : (
                     <IconThinUserTemplate class={styles.userIcon} />
                   )}

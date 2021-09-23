@@ -8,6 +8,8 @@ export const EmailAgentModalFormWidgetMessageComponent: React.FunctionComponent<
 > = ({ onChange, value, error, t }): JSX.Element => (
   <EmailAgentModalFormFieldTemplate>
     <InputBaseComponent
+      id='message'
+      name='message'
       onChange={onChange}
       value={value}
       placeholder={t('message')}

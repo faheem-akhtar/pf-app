@@ -11,6 +11,7 @@ export const EmailAgentModalFormWidgetAcceptTermsComponent: React.FunctionCompon
   <EmailAgentModalFormFieldTemplate>
     <CheckboxTemplate
       id='accept-terms'
+      name='acceptTerms'
       checked={value}
       onChange={(e): void => {
         const target = e.target as HTMLInputElement;

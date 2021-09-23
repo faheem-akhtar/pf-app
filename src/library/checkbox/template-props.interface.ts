@@ -1,25 +1,18 @@
-import React from 'react';
-
 export interface CheckboxTemplatePropsInterface {
   /**
-   * Id for the input
+   * Id attribute value to be added to the input element and as a label's for attribute value.
    */
-  id: string;
+  id?: string;
 
   /**
-   * Checked status
+   * Name attribute
+   */
+  name?: string;
+
+  /**
+   * Renders component in checked state.
    */
   checked: boolean;
-
-  /**
-   * onChange event handler
-   */
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-
-  /**
-   * Children
-   */
-  children: React.ReactNode;
 
   /**
    * Additional css classes for for the container
@@ -35,4 +28,9 @@ export interface CheckboxTemplatePropsInterface {
    * Additional css classes for for the label
    */
   labelClassName?: string;
+
+  /**
+   * Called when checkbox value is changed.
+   */
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 }

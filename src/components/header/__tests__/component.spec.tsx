@@ -7,34 +7,36 @@ import userEvent from '@testing-library/user-event';
 
 import { mockModalEnv } from 'mocks/modal-env/mock';
 
-import { UserContextProvider } from 'context/user/context-provider';
+import { UserContext } from 'context/user/context';
 
 import { HeaderComponent } from '../component';
 
-const HeaderComponentWithContext = (): JSX.Element => (
-  <UserContextProvider>
-    <HeaderComponent />
-  </UserContextProvider>
-);
-
 describe('HeaderComponent', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     mockModalEnv();
   });
 
-  it('should render correctly', () => {
-    const { container } = render(<HeaderComponentWithContext />);
+  it('should render without throwing any errors when no user', () => {
+    const { container } = render(
+      <UserContext.Provider value={null}>
+        <HeaderComponent />
+      </UserContext.Provider>
+    );
 
     expect(container).toMatchSnapshot();
   });
 
-  it('should work auth pop-up workflow', async () => {
-    render(<HeaderComponentWithContext />);
+  it('should work auth pop-up properly', async () => {
+    render(
+      <UserContext.Provider value={null}>
+        <HeaderComponent />
+      </UserContext.Provider>
+    );
 
     userEvent.click(screen.getByRole('button', { name: /log-in/i }));
     await waitFor(() => expect(screen.queryByRole('heading', { name: /sign-in/i })).toBeInTheDocument());
 
-    userEvent.click(screen.getByTestId('auth-close-icon'));
+    userEvent.click(screen.getByRole('button', { name: /cross/i }));
     await waitFor(() => expect(screen.queryByRole('heading', { name: /sign-in/i })).not.toBeInTheDocument());
   });
 });

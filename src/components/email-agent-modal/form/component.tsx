@@ -5,9 +5,9 @@ import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 
 import { EmailAgentModalFormAcceptConditionsErrorMessageTemplate } from './accept-conditions-error-message-template';
+import { EmailAgentModalFormComponentPropsInterface } from './component-props.interface';
 import styles from './email-agent-modal-form.module.scss';
 import { FormFieldsEnum } from './fields.enum';
-import { EmailAgentModalFormTemplatePropsInterface } from './template-props.interface';
 import { EmailAgentModalFormWidgetAcceptTermsComponent } from './widget/accept-terms-component';
 import { EmailAgentModalFormWidgetEmailAlertComponent } from './widget/email-alert-component';
 import { EmailAgentModalFormWidgetEmailComponent } from './widget/email-component';
@@ -17,18 +17,18 @@ import { EmailAgentModalFormWidgetPhoneComponent } from './widget/phone-componen
 import { EmailAgentModalFormWidgetReCaptchaComponent } from './widget/re-captcha-component';
 import { EmailAgentModalFormWidgetReceiveAdvertisingComponent } from './widget/receive-advertising-component';
 
-export const EmailAgentModalFormTemplate = ({
+export const EmailAgentModalFormComponent = ({
   fieldsValue,
   setFieldsValue,
   onSubmit,
   errors,
   loading,
   t,
-}: EmailAgentModalFormTemplatePropsInterface): JSX.Element => {
+}: EmailAgentModalFormComponentPropsInterface): JSX.Element => {
   const hasTermsConditionError = !!errors[FormFieldsEnum.acceptTerms] || !!errors[FormFieldsEnum.receiveAdvertising];
 
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <form data-testid='email-agent-form' className={styles.form} onSubmit={onSubmit}>
       <EmailAgentModalFormWidgetNameComponent
         t={t}
         value={fieldsValue.name}
@@ -85,6 +85,7 @@ export const EmailAgentModalFormTemplate = ({
         componentType={ButtonComponentTypeEnum.primary}
         className={styles.button}
         loading={loading}
+        data-testid='email-agent-modal-submit-button'
       >
         {t('agent-modal/cta-send-message')}
       </ButtonTemplate>

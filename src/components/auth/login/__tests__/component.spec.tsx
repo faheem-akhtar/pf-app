@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render, RenderResult, waitFor } from '@testing-library/react';
+import { render, RenderResult, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
 
@@ -44,7 +45,7 @@ describe('AuthLoginComponent', () => {
     const registrationButton = renderResult.container.querySelector('.create-account') as HTMLDivElement;
 
     expect(props.onRegister).not.toHaveBeenCalled();
-    fireEvent.click(registrationButton);
+    userEvent.click(registrationButton);
 
     expect(props.onRegister).toHaveBeenCalledTimes(1);
   });
@@ -61,9 +62,8 @@ describe('AuthLoginComponent', () => {
           },
         })
       );
-      const facebookButton = renderResult.container.querySelector('button.facebook') as HTMLButtonElement;
 
-      fireEvent.click(facebookButton);
+      userEvent.click(screen.getByRole('button', { name: 'auth/sign-in-facebook' }));
 
       await waitFor(() => expect(renderResult.container.querySelector('.loader1')));
 
@@ -73,9 +73,7 @@ describe('AuthLoginComponent', () => {
 
     it('should handle the error while login with facebook', async () => {
       jest.spyOn(AuthFacebookService, 'signIn').mockReturnValue(Promise.reject());
-      const facebookButton = renderResult.container.querySelector('button.facebook') as HTMLButtonElement;
-
-      fireEvent.click(facebookButton);
+      userEvent.click(screen.getByRole('button', { name: 'auth/sign-in-facebook' }));
 
       await waitFor(() => expect(props.onClose).toHaveBeenCalledTimes(1));
 
@@ -102,9 +100,8 @@ describe('AuthLoginComponent', () => {
           },
         })
       );
-      const googleButton = renderResult.container.querySelector('button.google') as HTMLButtonElement;
 
-      fireEvent.click(googleButton);
+      userEvent.click(screen.getByRole('button', { name: 'auth/sign-in-google' }));
 
       await waitFor(() => expect(renderResult.container.querySelector('.loader1')));
 
@@ -114,9 +111,7 @@ describe('AuthLoginComponent', () => {
 
     it('should handle the error while login with google', async () => {
       jest.spyOn(AuthGoogleService, 'signIn').mockReturnValue(Promise.reject());
-      const googleButton = renderResult.container.querySelector('button.google') as HTMLButtonElement;
-
-      fireEvent.click(googleButton);
+      userEvent.click(screen.getByRole('button', { name: 'auth/sign-in-google' }));
 
       await waitFor(() => expect(props.onClose).toHaveBeenCalledTimes(1));
 
@@ -138,14 +133,9 @@ describe('AuthLoginComponent', () => {
         })
       );
 
-      const emailInput = renderResult.container.querySelector('input[type=email]') as HTMLInputElement;
-      const passwordInput = renderResult.container.querySelector('input[type=password]') as HTMLInputElement;
-      const formElem = renderResult.container.querySelector('form') as HTMLFormElement;
-
-      fireEvent.change(emailInput, { target: { value: 'email@example.com' } });
-      fireEvent.change(passwordInput, { target: { value: 'mypassword' } });
-
-      fireEvent.submit(formElem);
+      userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+      userEvent.type(screen.getByLabelText('password'), 'mypassword');
+      userEvent.click(screen.getByRole('button', { name: 'log-in' }));
 
       await waitFor(() => expect(renderResult.container.querySelector('.loader1')));
 
@@ -160,14 +150,9 @@ describe('AuthLoginComponent', () => {
       const googleRecaptchaMock = googleRecaptchaStub();
       jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
 
-      const emailInput = renderResult.container.querySelector('input[type=email]') as HTMLInputElement;
-      const passwordInput = renderResult.container.querySelector('input[type=password]') as HTMLInputElement;
-      const formElem = renderResult.container.querySelector('form') as HTMLFormElement;
-
-      fireEvent.change(emailInput, { target: { value: 'invalid email' } });
-      fireEvent.change(passwordInput, { target: { value: 'mypassword' } });
-
-      fireEvent.submit(formElem);
+      userEvent.type(screen.getByLabelText('email'), 'invalid email');
+      userEvent.type(screen.getByLabelText('password'), 'mypassword');
+      userEvent.click(screen.getByRole('button', { name: 'log-in' }));
 
       expect(googleRecaptchaMock.execute).not.toHaveBeenCalled();
       expect(props.onClose).not.toHaveBeenCalled();
@@ -178,12 +163,8 @@ describe('AuthLoginComponent', () => {
       const googleRecaptchaMock = googleRecaptchaStub();
       jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
 
-      const emailInput = renderResult.container.querySelector('input[type=email]') as HTMLInputElement;
-      const formElem = renderResult.container.querySelector('form') as HTMLFormElement;
-
-      fireEvent.change(emailInput, { target: { value: 'email@example.com' } });
-
-      fireEvent.submit(formElem);
+      userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+      userEvent.click(screen.getByRole('button', { name: 'log-in' }));
 
       expect(googleRecaptchaMock.execute).not.toHaveBeenCalled();
       expect(props.onClose).not.toHaveBeenCalled();
@@ -202,14 +183,9 @@ describe('AuthLoginComponent', () => {
       const googleRecaptchaMock = googleRecaptchaStub();
       jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
 
-      const emailInput = renderResult.container.querySelector('input[type=email]') as HTMLInputElement;
-      const passwordInput = renderResult.container.querySelector('input[type=password]') as HTMLInputElement;
-      const formElem = renderResult.container.querySelector('form') as HTMLFormElement;
-
-      fireEvent.change(emailInput, { target: { value: 'email@example.com' } });
-      fireEvent.change(passwordInput, { target: { value: 'mypassword' } });
-
-      fireEvent.submit(formElem);
+      userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+      userEvent.type(screen.getByLabelText('password'), 'mypassword');
+      userEvent.click(screen.getByRole('button', { name: 'log-in' }));
 
       await waitFor(() => expect(googleRecaptchaMock.reset).toHaveBeenCalledTimes(1));
 

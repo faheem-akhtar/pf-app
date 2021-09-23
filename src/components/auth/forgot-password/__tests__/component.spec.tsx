@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
 
@@ -41,12 +42,8 @@ describe('AuthForgotPasswordComponent', () => {
     jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
 
     const { container } = render(<AuthForgotPasswordComponent {...props} />);
-    const emailInput = container.querySelector('input[type=email]') as HTMLInputElement;
-    const formElem = container.querySelector('form') as HTMLFormElement;
-
-    fireEvent.change(emailInput, { target: { value: 'email@example.com' } });
-
-    fireEvent.submit(formElem);
+    userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+    userEvent.click(screen.getByRole('button', { name: 'auth/reset-password' }));
 
     await waitFor(() => expect(container.querySelector('.loader1')));
 
@@ -61,13 +58,9 @@ describe('AuthForgotPasswordComponent', () => {
     const googleRecaptchaMock = googleRecaptchaStub();
     jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
 
-    const { container } = render(<AuthForgotPasswordComponent {...props} />);
-    const emailInput = container.querySelector('input[type=email]') as HTMLInputElement;
-    const formElem = container.querySelector('form') as HTMLFormElement;
-
-    fireEvent.change(emailInput, { target: { value: 'invalid email' } });
-
-    fireEvent.submit(formElem);
+    render(<AuthForgotPasswordComponent {...props} />);
+    userEvent.type(screen.getByLabelText('email'), 'invalid email');
+    userEvent.click(screen.getByRole('button', { name: 'auth/reset-password' }));
 
     expect(googleRecaptchaMock.execute).not.toHaveBeenCalled();
     expect(props.onClose).not.toHaveBeenCalled();
@@ -86,13 +79,9 @@ describe('AuthForgotPasswordComponent', () => {
     const googleRecaptchaMock = googleRecaptchaStub();
     jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
 
-    const { container } = render(<AuthForgotPasswordComponent {...props} />);
-    const emailInput = container.querySelector('input[type=email]') as HTMLInputElement;
-    const formElem = container.querySelector('form') as HTMLFormElement;
-
-    fireEvent.change(emailInput, { target: { value: 'email@example.com' } });
-
-    fireEvent.submit(formElem);
+    render(<AuthForgotPasswordComponent {...props} />);
+    userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+    userEvent.click(screen.getByRole('button', { name: 'auth/reset-password' }));
 
     await waitFor(() => expect(googleRecaptchaMock.reset).toHaveBeenCalledTimes(1));
 

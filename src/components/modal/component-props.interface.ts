@@ -12,11 +12,6 @@ export interface ModalComponentPropsInterface {
   closeRef: MutableRefObject<() => void>;
 
   /**
-   * Content wrapped by ModalComponent.
-   */
-  children: React.ReactNode;
-
-  /**
    * If 'true', the modal background will be overlay
    * @default false
    */

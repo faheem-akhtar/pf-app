@@ -1,7 +1,8 @@
 import { IconTemplatePropsInterface } from '../template-props.interface';
 
 export const IconLogoArTemplate = (props: IconTemplatePropsInterface): JSX.Element => (
-  <svg className={props.class} viewBox='0 0 1044 478' data-testid='logo-ar'>
+  <svg className={props.class} viewBox='0 0 1044 478'>
+    <title>Logo-Ar</title>
     <path
       fill='#EF5E4E'
       fillRule='nonzero'

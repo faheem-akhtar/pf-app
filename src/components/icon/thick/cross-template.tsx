@@ -9,6 +9,7 @@ export const IconThickCrossTemplate = (props: IconTemplatePropsInterface): JSX.E
       width={clipped ? undefined : '24'}
       className={props.class}
     >
+      <title>Cross</title>
       <path
         fillRule='evenodd'
         clipRule='evenodd'

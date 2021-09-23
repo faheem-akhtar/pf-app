@@ -13,41 +13,39 @@ export const EmailAgentModalSignInTemplate = ({
   t,
   closeModal,
   openAuthRef,
-}: EmailAgentModalSignInTemplatePropsInterface): JSX.Element => {
-  return (
-    <div className={styles.container}>
-      <p className={styles.title}>{t('agent-modal/sign-in-title')}</p>
+}: EmailAgentModalSignInTemplatePropsInterface): JSX.Element => (
+  <div className={styles.container}>
+    <p className={styles.title}>{t('agent-modal/sign-in-title')}</p>
 
-      <ul className={styles.list}>
-        <EmailAgentModalSignInItemTemplate icon={<IconSolidFavoriteTemplate class={styles.icon} clipped />}>
-          {t('agent-modal/sign-in/saved-properties-label')}
-        </EmailAgentModalSignInItemTemplate>
+    <ul className={styles.list}>
+      <EmailAgentModalSignInItemTemplate icon={<IconSolidFavoriteTemplate class={styles.icon} clipped />}>
+        {t('agent-modal/sign-in/saved-properties-label')}
+      </EmailAgentModalSignInItemTemplate>
 
-        <EmailAgentModalSignInItemTemplate icon={<IconSolidEnvelopeOpenTemplate class={styles.icon} />}>
-          {t('agent-modal/sign-in/agent-communication-label')}
-        </EmailAgentModalSignInItemTemplate>
+      <EmailAgentModalSignInItemTemplate icon={<IconSolidEnvelopeOpenTemplate class={styles.icon} />}>
+        {t('agent-modal/sign-in/agent-communication-label')}
+      </EmailAgentModalSignInItemTemplate>
 
-        <EmailAgentModalSignInItemTemplate icon={<IconThinSyncTemplate class={styles.icon} />}>
-          {t('agent-modal/sign-in/sync-all-devices-label')}
-        </EmailAgentModalSignInItemTemplate>
-      </ul>
+      <EmailAgentModalSignInItemTemplate icon={<IconThinSyncTemplate class={styles.icon} />}>
+        {t('agent-modal/sign-in/sync-all-devices-label')}
+      </EmailAgentModalSignInItemTemplate>
+    </ul>
 
-      <ButtonTemplate
-        type='button'
-        size={ButtonSizeEnum.regular}
-        componentType={ButtonComponentTypeEnum.primary}
-        onClick={(): void => {
-          closeModal();
-          openAuthRef.current();
-        }}
-        fullWidth
-      >
-        {t('sign-in')}
-      </ButtonTemplate>
+    <ButtonTemplate
+      type='button'
+      size={ButtonSizeEnum.regular}
+      componentType={ButtonComponentTypeEnum.primary}
+      onClick={(): void => {
+        closeModal();
+        openAuthRef.current();
+      }}
+      fullWidth
+    >
+      {t('sign-in')}
+    </ButtonTemplate>
 
-      <button className={styles.notNowButton} onClick={closeModal}>
-        {t('not-now')}
-      </button>
-    </div>
-  );
-};
+    <button className={styles.notNowButton} onClick={closeModal}>
+      {t('not-now')}
+    </button>
+  </div>
+);

@@ -3,7 +3,7 @@ import { TFunctionType } from 'types/t-function/type';
 import { FormFieldsEnum } from './fields.enum';
 import { FormFieldsValueType } from './fields-value.type';
 
-export interface EmailAgentModalFormTemplatePropsInterface {
+export interface EmailAgentModalFormComponentPropsInterface {
   /**
    * Fields value
    */
@@ -22,7 +22,7 @@ export interface EmailAgentModalFormTemplatePropsInterface {
   /**
    * The onsubmit event occurs when a form is submitted.
    */
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (e: React.FormEvent) => Promise<void>;
 
   /**
    * Translate function

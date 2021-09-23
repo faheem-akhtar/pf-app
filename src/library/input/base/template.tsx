@@ -26,7 +26,6 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
     maxLength,
     className,
     inputClassName,
-    name,
     onChange,
     onFocus,
     onBlur,
@@ -48,7 +47,11 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
 
         <div className={styles.content}>
           <InputElement
-            name={name}
+            id={props.id}
+            name={props.name}
+            aria-label={props.name}
+            aria-invalid={error}
+            aria-errormessage={errorText}
             type={type}
             value={value}
             maxLength={maxLength}
@@ -68,14 +71,18 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
                 [styles[`placeholder--floating`]]: isPlaceholderFloating || (floatPlaceholder && focus),
               })}
             >
-              <label>{placeholder}</label>
+              <label htmlFor={props.id}>{placeholder}</label>
             </div>
           )}
         </div>
       </div>
 
       {helperText && <p className={styles.helperText}>{helperText}</p>}
-      {error && errorText && <p className={styles.errorText}>{errorText}</p>}
+      {error && errorText && (
+        <p id={errorText} className={styles.errorText}>
+          {errorText}
+        </p>
+      )}
     </Fragment>
   );
 };

@@ -49,9 +49,11 @@ export const InputPhoneNumberTemplate = (props: InputPhoneNumberTemplatePropsInt
             className={domClassMerge(styles.list, {
               [styles[`list--visible`]]: props.visible,
             })}
+            role='list'
           >
             {props.countryList.map((option: CountryPhoneCodesInterface, i) => (
               <li
+                role='listitem'
                 key={i}
                 className={styles.item}
                 onClick={(): void => {

@@ -2,15 +2,13 @@
 
 exports[`AuthForgotPasswordComponent renders without throwing any errors 1`] = `
 <div>
-  <div
-    data-testid="AuthForgotPasswordComponent"
-  >
-    <div
+  <div>
+    <h1
       class="heading"
     >
       auth/forgot-password
       ?
-    </div>
+    </h1>
     
     <form>
       <div
@@ -23,14 +21,20 @@ exports[`AuthForgotPasswordComponent renders without throwing any errors 1`] = `
             class="content"
           >
             <input
+              aria-invalid="false"
+              aria-label="email"
               class="input"
+              id="email"
+              name="email"
               type="email"
               value=""
             />
             <div
               class="placeholder"
             >
-              <label>
+              <label
+                for="email"
+              >
                 email
               </label>
             </div>

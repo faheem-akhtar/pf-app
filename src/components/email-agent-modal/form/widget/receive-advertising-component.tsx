@@ -9,6 +9,7 @@ export const EmailAgentModalFormWidgetReceiveAdvertisingComponent: React.Functio
   <EmailAgentModalFormFieldTemplate>
     <CheckboxTemplate
       id='receive-advertising'
+      name='receiveAdvertising'
       checked={value}
       onChange={(e): void => {
         const target = e.target as HTMLInputElement;

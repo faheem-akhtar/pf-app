@@ -47,7 +47,7 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
   const validate = formMakeValidator(errors, setErrors, validators);
 
   return (
-    <div data-testid='AuthLoginComponent'>
+    <div>
       <h1 className={styles.heading}>{t('sign-in')}</h1>
       {/* Facebook */}
       <ButtonTemplate
@@ -137,6 +137,8 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
       >
         <div className={styles['input-area']}>
           <InputBaseComponent
+            id='email'
+            name='email'
             placeholder={t('email')}
             type='email'
             value={email}
@@ -152,6 +154,8 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
         </div>
         <div className={styles['input-area']}>
           <InputBaseComponent
+            id='password'
+            name='password'
             placeholder={t('password')}
             type='password'
             value={password}

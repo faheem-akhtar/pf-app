@@ -1,0 +1,391 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmailAgentModalComponent when the user is not exist form submission should form successfully submitted 1`] = `
+<div
+  class="container"
+  data-testid="email-agent-modal-content"
+>
+  <header
+    class="header"
+  >
+    <h1
+      class="title"
+    >
+      agent-modal/email-form-title
+    </h1>
+    <div
+      class="closeButton"
+    >
+      <svg
+        class="closeIcon"
+        viewBox="3 3 10 10"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M4.34408 3.17475C4.01717 2.92057 3.54448 2.94367 3.24408 3.24408C2.91864 3.56951 2.91864 4.09715 3.24408 4.42259L6.82149 8L3.24408 11.5774C2.91864 11.9028 2.91864 12.4305 3.24408 12.7559C3.54448 13.0563 4.01717 13.0794 4.34408 12.8252L4.42259 12.7559L8 9.17851L11.5774 12.7559L11.6559 12.8252C11.9828 13.0794 12.4555 13.0563 12.7559 12.7559C13.0814 12.4305 13.0814 11.9028 12.7559 11.5774L9.17851 8L12.7559 4.42259C13.0814 4.09715 13.0814 3.56951 12.7559 3.24408C12.4555 2.94367 11.9828 2.92057 11.6559 3.17475L11.5774 3.24408L8 6.82149L4.42259 3.24408L4.34408 3.17475Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+  </header>
+  
+  <div
+    class="success"
+  >
+    <svg
+      class="successIcon"
+      viewBox="0 0 32 32"
+    >
+      <path
+        d="M16,0C7.2,0,0,7.2,0,16c0,8.8,7.2,16,16,16s16-7.2,16-16C32,7.2,24.8,0,16,0z M16,30.7C7.9,30.7,1.3,24.1,1.3,16S7.9,1.3,16,1.3c8.1,0,14.7,6.6,14.7,14.7C30.7,24.1,24.1,30.7,16,30.7z"
+        fill="currentColor"
+      />
+      <polygon
+        fill="currentColor"
+        points="13.5,20.5 7.8,14.7 6.9,15.7 13.5,22.3 25.1,10.6 24.2,9.7"
+      />
+    </svg>
+    <div
+      class="successContent"
+    >
+      <p>
+        thank-you
+      </p>
+      <p>
+        your-message-is-sent
+      </p>
+    </div>
+    <div
+      class="container"
+    >
+      <p
+        class="title"
+      >
+        agent-modal/sign-in-title
+      </p>
+      <ul
+        class="list"
+      >
+        <li
+          class="item"
+        >
+          <svg
+            class="icon"
+            viewBox="0 0 18 16"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M1.428 8.899l6.232 6.526a1.85 1.85 0 002.688-.008l6.224-6.518c1.931-2.022 1.931-5.488-.168-7.492-2.1-2.004-4.949-1.796-6.825.169L9 2.183l-.58-.607C6.546-.39 3.697-.551 1.597 1.407c-2.1 1.959-2.1 5.47-.168 7.492z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <p>
+            agent-modal/sign-in/saved-properties-label
+          </p>
+        </li>
+        <li
+          class="item"
+        >
+          <svg
+            class="icon"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 5.841v8.736c0 .395-.138.731-.415 1.008a1.373 1.373 0 0 1-1.008.416H1.425c-.384 0-.72-.138-1.008-.416A1.296 1.296 0 0 1 0 14.577V5.841c0-.085.029-.152.088-.2.058-.048.178-.157.36-.328.18-.17.304-.277.368-.32.064-.042.202-.154.416-.336.213-.181.42-.346.624-.496l.848-.64c.362-.277.789-.597 1.28-.96l1.728-1.264c.02-.021.176-.138.464-.352.288-.213.5-.368.64-.464.138-.096.33-.202.576-.32.245-.117.448-.17.608-.16.16.011.368.064.624.16s.448.203.576.32c.128.118.336.272.624.464s.442.31.464.352l1.728 1.264c.49.363.917.683 1.28.96.362.278.65.491.864.64.213.15.42.315.624.496.202.182.336.294.4.336.064.043.186.15.368.32.18.171.3.28.36.328a.244.244 0 0 1 .088.2zm-5.04 5.216a414.344 414.344 0 0 0 3.089-2.24.3.3 0 0 0 .112-.192.257.257 0 0 0-.064-.208l-.336-.464a.256.256 0 0 0-.192-.112.237.237 0 0 0-.208.064 441.619 441.619 0 0 1-3.072 2.224c-.022.022-.176.139-.464.352l-.624.464a3.27 3.27 0 0 1-.576.32c-.256.118-.464.171-.624.16a2.145 2.145 0 0 1-.608-.16 2.05 2.05 0 0 1-.576-.32 7.475 7.475 0 0 0-.64-.464c-.288-.192-.443-.309-.464-.352C4.603 9.34 3.579 8.6 2.64 7.905a.257.257 0 0 0-.208-.064.3.3 0 0 0-.192.112l-.336.464a.257.257 0 0 0-.064.208.3.3 0 0 0 .112.192c.49.363 1.52 1.11 3.088 2.24.053.054.202.171.448.352.245.182.437.32.576.416.138.096.33.214.576.352.245.139.474.24.688.304.213.064.437.096.672.096.234 0 .458-.032.672-.096.213-.064.448-.17.704-.32.256-.149.448-.266.576-.352.128-.085.325-.224.592-.416.266-.192.405-.304.416-.336z"
+              fill="currentColor"
+            />
+          </svg>
+          <p>
+            agent-modal/sign-in/agent-communication-label
+          </p>
+        </li>
+        <li
+          class="item"
+        >
+          <svg
+            class="icon"
+            viewBox="0 0 12 16"
+          >
+            <path
+              d="M5.714 2.179c1.572 0 2.917.571 4.036 1.714C10.87 5.036 11.429 6.405 11.429 8c0 1.143-.298 2.179-.893 3.107L9.5 10.036c.333-.62.5-1.298.5-2.036 0-1.19-.423-2.214-1.268-3.071-.845-.858-1.851-1.286-3.018-1.286V5.82L2.857 2.893 5.714 0v2.179zm0 10.178V10.18l2.857 2.928L5.714 16v-2.179c-1.571 0-2.916-.571-4.035-1.714C.559 10.964 0 9.595 0 8c0-1.19.298-2.226.893-3.107l1.036 1.071c-.334.62-.5 1.298-.5 2.036 0 1.19.422 2.214 1.267 3.071.846.858 1.852 1.286 3.018 1.286z"
+              fill="currentColor"
+            />
+          </svg>
+          <p>
+            agent-modal/sign-in/sync-all-devices-label
+          </p>
+        </li>
+      </ul>
+      <button
+        class="button primary regular fullWidth"
+      >
+        sign-in
+      </button>
+      <button
+        class="notNowButton"
+      >
+        not-now
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EmailAgentModalComponent when the user is not exist should render without throwing any errors 1`] = `
+<div
+  class="container"
+  data-testid="email-agent-modal-content"
+>
+  <header
+    class="header"
+  >
+    <h1
+      class="title"
+    >
+      agent-modal/email-form-title
+    </h1>
+    <div
+      class="closeButton"
+    >
+      <svg
+        class="closeIcon"
+        viewBox="3 3 10 10"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M4.34408 3.17475C4.01717 2.92057 3.54448 2.94367 3.24408 3.24408C2.91864 3.56951 2.91864 4.09715 3.24408 4.42259L6.82149 8L3.24408 11.5774C2.91864 11.9028 2.91864 12.4305 3.24408 12.7559C3.54448 13.0563 4.01717 13.0794 4.34408 12.8252L4.42259 12.7559L8 9.17851L11.5774 12.7559L11.6559 12.8252C11.9828 13.0794 12.4555 13.0563 12.7559 12.7559C13.0814 12.4305 13.0814 11.9028 12.7559 11.5774L9.17851 8L12.7559 4.42259C13.0814 4.09715 13.0814 3.56951 12.7559 3.24408C12.4555 2.94367 11.9828 2.92057 11.6559 3.17475L11.5774 3.24408L8 6.82149L4.42259 3.24408L4.34408 3.17475Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+  </header>
+  
+  <h2
+    class="name"
+  >
+    Title from agent
+  </h2>
+  <form
+    class="form"
+    data-testid="email-agent-form"
+  >
+    <div
+      class="fieldContainer"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="content"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="name"
+            class="input"
+            id="name"
+            name="name"
+            type="text"
+            value=""
+          />
+          <div
+            class="placeholder"
+          >
+            <label
+              for="name"
+            >
+              name
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="fieldContainer"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="content"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="email"
+            class="input"
+            id="email"
+            name="email"
+            type="email"
+            value=""
+          />
+          <div
+            class="placeholder"
+          >
+            <label
+              for="email"
+            >
+              email
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="fieldContainer"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="container"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="body"
+          >
+            <div
+              class="content"
+            >
+              <div
+                class="countryFlag countryFlag--ae"
+              />
+              <span>
+                +971
+              </span>
+            </div>
+            <svg
+              class="icon"
+              viewBox="4.5 8 16 8"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M4.64645 8.14645C4.47288 8.32001 4.4536 8.58944 4.58859 8.78431L4.64645 8.85355L11.6464 15.8536C11.82 16.0271 12.0894 16.0464 12.2843 15.9114L12.3536 15.8536L19.3536 8.85355C19.5488 8.65829 19.5488 8.34171 19.3536 8.14645C19.18 7.97288 18.9106 7.9536 18.7157 8.08859L18.6464 8.14645L12 14.793L5.35355 8.14645C5.17999 7.97288 4.91056 7.9536 4.71569 8.08859L4.64645 8.14645Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <ul
+            class="list"
+            role="list"
+          >
+            <li
+              class="item"
+              role="listitem"
+            >
+              <div
+                class="countryFlag countryFlag--ae"
+              />
+              United Arab Emirates
+               
+              <span
+                class="phoneCode"
+              >
+                (
+                +971
+                )
+              </span>
+            </li>
+            <li
+              class="item"
+              role="listitem"
+            >
+              <div
+                class="countryFlag countryFlag--tr"
+              />
+              Turkey
+               
+              <span
+                class="phoneCode"
+              >
+                (
+                +90
+                )
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="content"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="phone"
+            class="input"
+            id="phone-number"
+            maxlength="12"
+            name="phone"
+            placeholder="phone"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      class="fieldContainer"
+    >
+      <div
+        class="container container--textarea"
+      >
+        <div
+          class="content"
+        >
+          <textarea
+            aria-invalid="false"
+            aria-label="message"
+            class="input input--floating input--textarea"
+            id="message"
+            name="message"
+            type="text"
+          >
+            Hi, I found your property with ref: 123 on Property Finder. Please contact me. Thank you.
+          </textarea>
+          <div
+            class="placeholder placeholder--floating"
+          >
+            <label
+              for="message"
+            >
+              message
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      id="recaptcha"
+    />
+    <div
+      class="fieldContainer"
+    >
+      <div
+        class="container"
+      >
+        <input
+          aria-labelledby="emailAlert"
+          checked=""
+          class="input"
+          id="email-alert"
+          name="emailAlert"
+          type="checkbox"
+        />
+        <label
+          class="label"
+          for="email-alert"
+        >
+          agent-modal/email-alert-message
+        </label>
+      </div>
+    </div>
+    <button
+      class="button primary regular button"
+    >
+      agent-modal/cta-send-message
+    </button>
+  </form>
+</div>
+`;

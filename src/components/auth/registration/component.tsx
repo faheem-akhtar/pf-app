@@ -54,8 +54,8 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
   const validate = formMakeValidator(errors, setErrors, validators);
 
   return (
-    <div data-testid='AuthRegistrationComponent'>
-      <div className={styles.heading}>{t('auth/create-account')}</div>
+    <div>
+      <h1 className={styles.heading}>{t('auth/create-account')}</h1>
       <AuthLoaderComponent isEnabled={isLoading} isCentered={true} />
       {errorMessage && <ErrorMessageComponent message={errorMessage} />}
       <form
@@ -102,9 +102,10 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
       >
         <div className={styles['input-area']}>
           <InputBaseComponent
+            id='first-name'
+            name='firstName'
             placeholder={t('auth/first-name')}
             type='text'
-            name='first-name'
             value={firstName}
             error={!!errors[AuthRegistrationFieldEnum.firstName]}
             onChange={(value): void => {
@@ -119,9 +120,10 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
 
         <div className={styles['input-area']}>
           <InputBaseComponent
+            id='last-name'
+            name='lastName'
             placeholder={t('auth/last-name')}
             type='text'
-            name='last-name'
             value={lastName}
             error={!!errors[AuthRegistrationFieldEnum.lastName]}
             onChange={(value): void => {
@@ -135,9 +137,10 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
         </div>
         <div className={styles['input-area']}>
           <InputBaseComponent
-            placeholder={t('email')}
-            type='email'
+            id='email'
             name='email'
+            type='email'
+            placeholder={t('email')}
             value={email}
             error={!!errors[AuthRegistrationFieldEnum.email]}
             onChange={(value): void => {
@@ -151,9 +154,10 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
         </div>
         <div className={styles['input-area']}>
           <InputBaseComponent
-            placeholder={t('password')}
-            type='password'
+            id='password'
             name='password'
+            type='password'
+            placeholder={t('password')}
             value={password}
             error={!!errors[AuthRegistrationFieldEnum.password]}
             onChange={(value): void => {
@@ -169,6 +173,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
         <div className={styles['input-area']}>
           <CheckboxTemplate
             id='opten-in'
+            name='optenIn'
             checked={optedIn}
             onChange={(e): void => {
               setOptedIn(!!e.target.value);

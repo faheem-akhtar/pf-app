@@ -9,6 +9,7 @@ export const EmailAgentModalFormWidgetEmailAlertComponent: React.FunctionCompone
   <EmailAgentModalFormFieldTemplate>
     <CheckboxTemplate
       id='email-alert'
+      name='emailAlert'
       checked={value}
       onChange={(e): void => {
         const target = e.target as HTMLInputElement;

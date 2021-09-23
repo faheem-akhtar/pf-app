@@ -3,6 +3,7 @@ import { FunctionComponent, useContext, useRef, useState } from 'react';
 import { apiEmailAgentFetcher } from 'api/email-agent/fetcher';
 import { AuthModalComponent } from 'components/auth/modal/component';
 import { formMakeValidator } from 'components/form/make-validator';
+import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
 import { ModalComponent } from 'components/modal/component';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
@@ -20,12 +21,14 @@ import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { EmailAgentAttributesInterface } from 'types/email-agent/attributes.interface';
 
 import { EmailAgentModalComponentPropsInterface } from './component-props.interface';
+import styles from './email-agent-modal.module.scss';
+import { EmailAgentModalFormComponent } from './form/component';
+import { EmailAgentModalFormComponentPropsInterface } from './form/component-props.interface';
+import { EmailAgentModalFormErrorMessageTemplate } from './form/error-message-template';
 import { FormFieldsEnum } from './form/fields.enum';
 import { FormFieldsValueType } from './form/fields-value.type';
-import { EmailAgentModalFormTemplatePropsInterface } from './form/template-props.interface';
+import { EmailAgentModalFormSuccessTemplate } from './form/success-template';
 import { EmailAgentModalStatusEnum } from './status.enum';
-import { EmailAgentModalTemplate } from './template';
-import { EmailAgentModalTemplatePropsInterface } from './template-props.interface';
 
 const captchaService = GoogleRecaptchaService();
 
@@ -88,7 +91,7 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
     closeRef.current();
   };
 
-  const onSubmit: EmailAgentModalFormTemplatePropsInterface['onSubmit'] = async (e) => {
+  const onSubmit: EmailAgentModalFormComponentPropsInterface['onSubmit'] = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
@@ -116,9 +119,9 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
     setStatus(EmailAgentModalStatusEnum.submitting);
     setError('');
 
-    const captcha_token = await captchaService.execute();
-
     try {
+      const captcha_token = await captchaService.execute();
+
       await apiEmailAgentFetcher({
         propertyId: parseInt(propertySerpObfuscatedGetId(property), 10),
         ...formFields,
@@ -136,19 +139,22 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
     }
   };
 
-  const templateProps: EmailAgentModalTemplatePropsInterface = {
-    propertyName: propertySerpObfuscatedGetName(property),
-    onSubmit,
-    closeModal,
-    fieldsValue,
-    setFieldsValue,
-    errors,
-    t,
-    status,
-    error,
-    loading: isLoading,
-    openAuthRef,
-  };
+  const body =
+    status === EmailAgentModalStatusEnum.submitted ? (
+      <EmailAgentModalFormSuccessTemplate closeModal={closeModal} t={t} openAuthRef={openAuthRef} />
+    ) : (
+      <>
+        <h2 className={styles.name}>{propertySerpObfuscatedGetName(property)}</h2>
+        <EmailAgentModalFormComponent
+          fieldsValue={fieldsValue}
+          setFieldsValue={setFieldsValue}
+          onSubmit={onSubmit}
+          t={t}
+          errors={errors}
+          loading={isLoading}
+        />
+      </>
+    );
 
   return (
     <>
@@ -159,7 +165,23 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
         overlay
         onOverlayClick={(): void => closeRef.current()}
       >
-        <EmailAgentModalTemplate {...templateProps} />
+        <div
+          data-testid='email-agent-modal-content'
+          className={styles.container}
+          onClick={(e): void => {
+            e.stopPropagation();
+          }}
+        >
+          <header className={styles.header}>
+            <h1 className={styles.title}>{t('agent-modal/email-form-title')}</h1>
+            <div className={styles.closeButton} onClick={closeModal}>
+              <IconThickSmallCloseTemplate class={styles.closeIcon} clipped />
+            </div>
+          </header>
+
+          {error && <EmailAgentModalFormErrorMessageTemplate error={error} />}
+          {body}
+        </div>
       </ModalComponent>
       <ModalComponent openRef={openAuthRef} closeRef={closeAuthRef} overlay>
         <AuthModalComponent

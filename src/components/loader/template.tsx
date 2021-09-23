@@ -5,7 +5,7 @@ import { LoaderTemplatePropsInterface } from './template-props.interface';
 
 // TODO-FE[TPNX-2931] move it to the library, it's used in Button
 export const LoaderTemplate = (props: LoaderTemplatePropsInterface): JSX.Element => (
-  <div className={domClassMerge(styles.dropdownLoader, props.containerCssClass)}>
+  <div data-testid='loader-template' className={domClassMerge(styles.dropdownLoader, props.containerCssClass)}>
     <div className={styles.container}>
       <div className={domClassMerge(styles.dot, { [styles.inverted]: !!props.isInverted }, props.dotCssClass)} />
       <div

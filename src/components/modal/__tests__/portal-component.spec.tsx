@@ -18,14 +18,14 @@ describe('ModalPortalComponent', () => {
     const { appRoot } = mockModalEnv();
     render(<ModalPortalComponent>content</ModalPortalComponent>);
 
-    expect(appRoot.className).toMatchInlineSnapshot(`"hide"`);
+    expect(appRoot).toHaveClass('hide');
   });
 
   it('It should not add hide classname when opened in overlay mode', async () => {
     const { appRoot } = mockModalEnv();
     render(<ModalPortalComponent overlay>content</ModalPortalComponent>);
 
-    expect(appRoot.className).toMatchInlineSnapshot(`""`);
+    expect(appRoot).not.toHaveClass();
   });
 
   it('It should hide ads on mount', async () => {
@@ -35,7 +35,9 @@ describe('ModalPortalComponent', () => {
     mockModalEnv();
     render(<ModalPortalComponent>content</ModalPortalComponent>);
 
-    expect(adElement.style.display).toEqual('none');
+    expect(adElement).toHaveStyle({
+      display: 'none',
+    });
   });
 
   it('It should show ads on unmount', async () => {
@@ -47,7 +49,9 @@ describe('ModalPortalComponent', () => {
     unmount();
 
     await waitFor(() => {
-      expect(adElement.style.display).toEqual('');
+      expect(adElement).not.toHaveStyle({
+        display: 'none',
+      });
     });
   });
 
@@ -56,7 +60,7 @@ describe('ModalPortalComponent', () => {
     const { unmount } = render(<ModalPortalComponent>content</ModalPortalComponent>);
     unmount();
 
-    expect(appRoot.className).toMatchInlineSnapshot(`""`);
+    expect(appRoot).not.toHaveClass();
   });
 
   it('It should return scroll top on unmount', () => {
@@ -71,7 +75,6 @@ describe('ModalPortalComponent', () => {
       set: jest.fn(),
     };
     Object.defineProperty(document.documentElement, 'scrollTop', scrollTop);
-    document.documentElement.scroll = jest.fn();
     const { unmount } = render(<ModalPortalComponent>content</ModalPortalComponent>);
 
     unmount();

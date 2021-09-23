@@ -7,6 +7,14 @@ export const EmailAgentModalFormWidgetNameComponent: React.FunctionComponent<
   EmailAgentModalFormWidgetPropsType<string>
 > = ({ onChange, value, error, t }): JSX.Element => (
   <EmailAgentModalFormFieldTemplate>
-    <InputBaseComponent onChange={onChange} value={value} placeholder={t('name')} error={!!error} errorText={error} />
+    <InputBaseComponent
+      id='name'
+      name='name'
+      onChange={onChange}
+      value={value}
+      placeholder={t('name')}
+      error={!!error}
+      errorText={error}
+    />
   </EmailAgentModalFormFieldTemplate>
 );

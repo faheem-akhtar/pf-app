@@ -20,7 +20,7 @@ const AgentInfoComponent: React.FunctionComponent<{
   const { t } = useTranslation();
 
   return (
-    <div className={styles.details} data-testid='AgentInfoComponentDetails'>
+    <div className={styles.details} data-testid='agent-info-component-details'>
       <div className={styles.avatarContainer}>
         <picture className={styles.avatar}>
           <source srcSet={avatar} type='image/jpeg' />
@@ -79,14 +79,14 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
         setModalIsOpened(true);
       }}
     >
-      <div className={styles.content} data-testid='CallingAgentModalContent'>
+      <div className={styles.content} data-testid='calling-agent-modal-content'>
         <div className={styles.header}>
-          <span className={styles.text} data-testid='CallingAgentModalTitle'>
+          <h1 className={styles.text}>
             {t(isAgentInfoShown ? 'agent-modal/title' : 'agent-modal/property-availability')}
-          </span>
-          <div onClick={onCloseClick} data-testid='CallingAgentModalCloseButton'>
+          </h1>
+          <button onClick={onCloseClick}>
             <IconThickCrossTemplate class={styles.closeIcon} />
-          </div>
+          </button>
         </div>
         {agentDetailsResponse.ok && (
           <Fragment>

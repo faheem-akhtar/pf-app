@@ -8,6 +8,8 @@ export const EmailAgentModalFormWidgetPhoneComponent: React.FunctionComponent<
 > = ({ onChange, value, error, t }): JSX.Element => (
   <EmailAgentModalFormFieldTemplate>
     <InputPhoneNumberComponent
+      id='phone-number'
+      name='phone'
       onChange={onChange}
       value={value}
       placeholder={t('phone')}

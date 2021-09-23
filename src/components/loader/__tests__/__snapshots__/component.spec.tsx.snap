@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LayoutComponent renders without throwing any errors 1`] = `
+exports[`LoaderTemplate renders without throwing any errors 1`] = `
 <div>
   <div
     class="dropdownLoader"
+    data-testid="loader-template"
   >
     <div
       class="container"
