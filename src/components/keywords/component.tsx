@@ -9,7 +9,6 @@ import { keywordsTryAddItem } from './try-add-item';
 
 const separator = ',';
 
-// TODO-FE[TPNX-2625] add unit tests
 export const KeywordsComponent = ({
   onChange,
   value,
@@ -17,10 +16,11 @@ export const KeywordsComponent = ({
   chipsOnTheBottom,
   className,
   chipClassName,
+  keywordsMapping,
 }: KeywordsComponentPropsInterface): JSX.Element => {
   const { t } = useTranslation();
   const keywords = value.split(separator).filter((x) => x);
-  const keywordsQueryForInputValue = keywordsMakeQueryForInputValue(category);
+  const keywordsQueryForInputValue = keywordsMakeQueryForInputValue(category, keywordsMapping);
 
   return (
     <MultiSelectionAutocompleteComponent

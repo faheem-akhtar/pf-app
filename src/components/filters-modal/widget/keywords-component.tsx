@@ -1,5 +1,6 @@
 import { IconThickMagnifierTemplate } from 'components/icon/thick/magnifier-template';
 import { KeywordsComponent } from 'components/keywords/component';
+import { keywordsByCategory } from 'config/keywords/by-category';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
 import { FiltersModalItemTemplate } from '../item/template';
@@ -18,6 +19,7 @@ export const FiltersModalWidgetKeywordsComponent: FiltersModalWidgetType = ({
     >
       <KeywordsComponent
         chipsOnTheBottom
+        keywordsMapping={keywordsByCategory}
         className={styles.keywords}
         chipClassName={styles.keywords_chip}
         category={filtersValue[FiltersParametersEnum.categoryId]}

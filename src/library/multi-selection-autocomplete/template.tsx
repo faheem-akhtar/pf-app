@@ -18,7 +18,7 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
     <input
       value={props.inputValue}
       className={domClassMerge(styles.input, { [styles.input_not_empty]: !!props.inputValue })}
-      data-testid='MultiSelectionInput'
+      data-testid='multi-selection-autocomplete-template-input'
       placeholder={props.placeholder}
       ref={props.inputRef}
       onInput={props.onInputChange}
@@ -75,7 +75,7 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
     }
 
     return (
-      <div className={styles.suggestions_container}>
+      <div className={styles.suggestions_container} data-testid='multi-selection-autocomplete-template-suggestions'>
         {shouldRenderNoSuggestions ? (
           <div className={styles.no_suggestions}>{props.renderNoSuggestions(props.inputValue)}</div>
         ) : null}
@@ -125,7 +125,10 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
     }
 
     return (
-      <div className={styles.selected_value_container_on_the_bottom}>
+      <div
+        className={styles.selected_value_container_on_the_bottom}
+        data-testid='multi-selection-autocomplete-template-chips'
+      >
         {props.value.map((item, index) => {
           return (
             <div
@@ -169,7 +172,13 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
   };
 
   return (
-    <div ref={props.rootRef} onClick={props.onRootClick} onKeyDown={props.onRootKeyDown} className={styles.root}>
+    <div
+      data-testid='multi-selection-autocomplete-template'
+      ref={props.rootRef}
+      onClick={props.onRootClick}
+      onKeyDown={props.onRootKeyDown}
+      className={styles.root}
+    >
       <div className={domClassMerge(styles.container, props.className, ...calcContainerExtraClasses())}>
         {isActiveOrNoValue && !props.chipsOnTheBottom && <IconThickSearchTemplate class={styles.search_icon} />}
         {(isActiveOrNoValue || props.chipsOnTheBottom ? renderInput : renderChips)()}

@@ -1,9 +1,13 @@
+import { keywordsByCategory } from 'config/keywords/by-category';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 
 import { keywordsMakeQueryForInputValue } from '../make-query-for-input-value';
 
 describe('keywordsMakeQueryForInputValue', () => {
-  const keywordsQueryForInputValue = keywordsMakeQueryForInputValue(FiltersCategoryIdEnum.residentialForRent);
+  const keywordsQueryForInputValue = keywordsMakeQueryForInputValue(
+    FiltersCategoryIdEnum.residentialForRent,
+    keywordsByCategory
+  );
 
   it('returns 0 suggestions for empty string', async () => {
     const result = await keywordsQueryForInputValue('');

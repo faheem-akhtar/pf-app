@@ -25,4 +25,8 @@ export interface KeywordsComponentPropsInterface {
    * additional css classes for chips
    */
   chipClassName?: string;
+  /**
+   * keywords-category mapping
+   */
+  keywordsMapping: Record<FiltersCategoryIdEnum, string[]>;
 }

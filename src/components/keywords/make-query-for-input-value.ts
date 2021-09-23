@@ -1,19 +1,17 @@
-import { keywordsByCategory } from 'config/keywords/by-category';
+import { configKeywordsMaxWordLimit } from 'config/keywords/max-word-limit';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { stringMakeCaseInsensitiveTester } from 'helpers/string/make-case-insensitive-tester';
 
-const MAX_NUMBER_OF_KEYWORDS = 8;
-
 export const keywordsMakeQueryForInputValue =
-  (category: FiltersCategoryIdEnum) =>
+  (category: FiltersCategoryIdEnum, keywords: Record<FiltersCategoryIdEnum, string[]>) =>
   (inputValue: string): Promise<string[]> => {
     const searchResults = [];
     const matchesInputValueCaseInsensitive = stringMakeCaseInsensitiveTester(inputValue);
 
-    for (const keyword of keywordsByCategory[category]) {
+    for (const keyword of keywords[category]) {
       if (matchesInputValueCaseInsensitive(keyword)) {
         searchResults.push(keyword);
-        if (searchResults.length === MAX_NUMBER_OF_KEYWORDS) {
+        if (searchResults.length === configKeywordsMaxWordLimit) {
           break;
         }
       }
