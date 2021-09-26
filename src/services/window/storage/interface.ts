@@ -1,6 +1,6 @@
 import { AnyValueType } from 'types/any/value.type';
 
-export interface WindowLocalStorageInterface {
+export interface WindowStorageInterface {
   /**
    * Store @value identified by @key
    */
@@ -15,4 +15,9 @@ export interface WindowLocalStorageInterface {
    * Removes the data identified by @key
    */
   removeItem(key: string): void;
+
+  /**
+   * Remove all saved data
+   */
+  clear(): void;
 }

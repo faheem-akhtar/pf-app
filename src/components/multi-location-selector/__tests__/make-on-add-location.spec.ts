@@ -1,8 +1,8 @@
-import { mockWindowLocalStorage } from 'mocks/window/local-storage.mock';
+import { mockWindowStorage } from 'mocks/window/storage.mock';
 import { locationCompactJltStub, locationCompactKcStub } from 'stubs/location';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
+import { WindowStorageInterface } from 'services/window/storage/interface';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import { multiLocationSelectorMakeOnAddLocation } from '../make-on-add-location';
@@ -14,13 +14,13 @@ const location1_2 = { ...locationCompactKcStub, id: '2', path: '1.2' };
 
 describe('multiLocationSelectorMakeOnAddLocation', () => {
   let onNewLocationsSpy: jest.Mock;
-  let windowLocalStorageMock: WindowLocalStorageInterface;
+  let windowLocalStorageMock: WindowStorageInterface;
 
   let baseProps: MultiLocationSelectorMakeOnAddLocationPropsInterface;
 
   beforeEach(() => {
     onNewLocationsSpy = jest.fn();
-    windowLocalStorageMock = mockWindowLocalStorage();
+    windowLocalStorageMock = mockWindowStorage();
 
     baseProps = {
       locations: [],

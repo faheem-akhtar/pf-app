@@ -24,7 +24,9 @@ exports[`AuthModalComponent renders without throwing any errors 1`] = `
         </svg>
       </button>
     </div>
-    <div>
+    <div
+      data-testid="AuthLoginComponent"
+    >
       <h1
         class="heading"
       >

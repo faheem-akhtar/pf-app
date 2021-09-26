@@ -14,6 +14,7 @@ import { PropertyCardComponentPropsType } from '../component-props.type';
 const makeDefaultProps = (): PropertyCardComponentPropsType => ({
   property: propertyStub(),
   loading: false,
+  onSaveButtonClick: jest.fn(),
 });
 
 /**

@@ -1,8 +1,14 @@
 import Head from 'next/head';
+import { useRef } from 'react';
 
+import { ModalComponent } from 'components/modal/component';
 import { PropertyCardComponent } from 'components/property-card/component';
+import { SavedPropertyAuthModalComponent } from 'components/saved-property/auth/modal/component';
+import { savedPropertyAuthModalStorageKey } from 'components/saved-property/auth/modal/storage-key';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
+import { functionNoop } from 'helpers/function/noop';
 import { useServicesDfpAds } from 'services/dfp/ads.hook';
+import { WindowService } from 'services/window/service';
 
 import { propertySerpObfuscatedGetImgUrl } from '../serp/obfuscated/get/img-url';
 import { propertySerpObfuscatedGetUrl } from '../serp/obfuscated/get/url';
@@ -16,6 +22,10 @@ const NUMBER_OF_IMAGES_TO_PRELOAD = 3;
 
 export const PropertyListComponent: React.FunctionComponent<PropertyListComponentPropsInterface> = (props) => {
   const { properties, adConfig, pageIsLoading } = props;
+  const { sessionStorage } = WindowService;
+
+  const authModalOpenRef = useRef<() => void>(functionNoop);
+  const authModalCloseRef = useRef<() => void>(functionNoop);
 
   const items: PropertyListItemType[] = properties.map((property: PropertySerpObfuscatedType) => ({
     type: PropertyListItemTypeEnum.property,
@@ -52,9 +62,18 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
               key={propertySerpObfuscatedGetUrl(item.property)}
               property={item.property}
               loading={pageIsLoading}
+              onSaveButtonClick={(propertyId, isSaved): void => {
+                if (isSaved && !sessionStorage.getItem(savedPropertyAuthModalStorageKey)) {
+                  authModalOpenRef.current();
+                  sessionStorage.setItem(savedPropertyAuthModalStorageKey, { propertyId });
+                }
+              }}
             />
           );
         })}
+        <ModalComponent openRef={authModalOpenRef} closeRef={authModalCloseRef} overlay>
+          <SavedPropertyAuthModalComponent onClose={(): void => authModalCloseRef.current()} />
+        </ModalComponent>
       </div>
     </>
   );

@@ -25,7 +25,11 @@ import { PropertyCardMenuModalComponent } from './menu/modal/component';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
 
-export const PropertyCardComponent = ({ property, loading }: PropertyCardComponentPropsType): JSX.Element => {
+export const PropertyCardComponent = ({
+  property,
+  loading,
+  onSaveButtonClick,
+}: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
   const [galleryHasBeenTouched, setGalleryHasBeenTouched] = useState(false);
   const [isPropertySaved, setIsPropertySaved] = useState(false);
@@ -84,7 +88,13 @@ export const PropertyCardComponent = ({ property, loading }: PropertyCardCompone
     ctaButtons: ctaButtonsProps,
     saved: isPropertySaved,
     contactDate,
-    onSaveButtonClick: (): void => savedProperties.toggle(propertyId),
+    onSaveButtonClick: (): void => {
+      onSaveButtonClick(
+        propertyId,
+        !savedProperties.data.find((property) => property.propertyId === parseInt(propertyId, 10))
+      );
+      savedProperties.toggle(propertyId);
+    },
     onMenuButtonClick: (): void => {
       menuModalOpenRef.current();
     },

@@ -6,8 +6,8 @@ import { AuthSubscriberType } from 'services/auth/subscriber.type';
 import { JwtTokenService } from 'services/jwt/token/service';
 import { JwtTokenStore } from 'services/jwt/token/store';
 import { UserModelInterface } from 'services/user/model.interface';
-import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
 import { WindowService } from 'services/window/service';
+import { WindowStorageInterface } from 'services/window/storage/interface';
 
 import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
 
@@ -32,7 +32,7 @@ export class AuthStore {
    * Window local storage
    * @private
    */
-  private windowLocalStorage: WindowLocalStorageInterface;
+  private windowLocalStorage: WindowStorageInterface;
 
   constructor() {
     this.jwtTokenService = JwtTokenService;

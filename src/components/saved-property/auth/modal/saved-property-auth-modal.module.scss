@@ -1,0 +1,18 @@
+.content {
+  background-color: var(--color-global-white);
+  margin: calc(var(--spacing) * 2);
+  padding: calc(var(--spacing) * 3);
+  position: relative;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  line-height: 2.2rem;
+}
+
+.closeIcon {
+  height: 1.2rem;
+  width: 1.2rem;
+}

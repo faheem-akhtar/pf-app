@@ -1,11 +1,11 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
-import { mockWindowLocalStorage } from 'mocks/window/local-storage.mock';
+import { mockWindowStorage } from 'mocks/window/storage.mock';
 
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
 import { JwtTokenService } from 'services/jwt/token/service';
 import { UserModelInterface } from 'services/user/model.interface';
-import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
 import { WindowService } from 'services/window/service';
+import { WindowStorageInterface } from 'services/window/storage/interface';
 
 import { AuthModelInterface } from '../model.interface';
 import { AuthStore } from '../store';
@@ -16,7 +16,7 @@ jest.mock('services/jwt/token/service');
 describe('AuthStore', () => {
   let store: AuthStore;
   let signInSpy: jest.SpyInstance;
-  let localStorageMock: WindowLocalStorageInterface;
+  let localStorageMock: WindowStorageInterface;
 
   const userMock: UserModelInterface = {
     email: 'email@example.com',
@@ -29,7 +29,7 @@ describe('AuthStore', () => {
   beforeEach(() => {
     signInSpy = jest.spyOn(AuthGoogleOneTapService, 'signIn');
 
-    localStorageMock = mockWindowLocalStorage();
+    localStorageMock = mockWindowStorage();
 
     WindowService.localStorage = localStorageMock;
 
@@ -46,7 +46,7 @@ describe('AuthStore', () => {
 
     it('should not call signIn if user is already there', () => {
       signInSpy.mockReset();
-      localStorageMock = mockWindowLocalStorage(userMock);
+      localStorageMock = mockWindowStorage(userMock);
       WindowService.localStorage = localStorageMock;
 
       store = new AuthStore();
@@ -117,7 +117,7 @@ describe('AuthStore', () => {
     });
 
     it('should sign out', async () => {
-      localStorageMock = mockWindowLocalStorage(userMock);
+      localStorageMock = mockWindowStorage(userMock);
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -135,7 +135,7 @@ describe('AuthStore', () => {
 
   describe('getUser()', () => {
     it('should return null if data is not there', () => {
-      localStorageMock = mockWindowLocalStorage();
+      localStorageMock = mockWindowStorage();
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -143,7 +143,7 @@ describe('AuthStore', () => {
     });
 
     it('should return null if data is not an object', () => {
-      localStorageMock = mockWindowLocalStorage('not an object');
+      localStorageMock = mockWindowStorage('not an object');
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -151,7 +151,7 @@ describe('AuthStore', () => {
     });
 
     it('should return the user', () => {
-      localStorageMock = mockWindowLocalStorage(userMock);
+      localStorageMock = mockWindowStorage(userMock);
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -281,7 +281,7 @@ describe('AuthStore', () => {
 
   describe('signOut()', () => {
     it('should sign out', () => {
-      localStorageMock = mockWindowLocalStorage(userMock);
+      localStorageMock = mockWindowStorage(userMock);
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
