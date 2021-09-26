@@ -5,7 +5,10 @@
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
 import { mockReactUseState } from 'mocks/react/use-state.mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { filtersValueStub } from 'stubs/filters/value/stub';
+import { propertyStub } from 'stubs/property/stub';
+import { statsDataObfuscatedStub } from 'stubs/stats-data/obfuscated.stub';
 
 import { StatsContexterService } from 'services/stats/contexter.service';
 import { StatsService } from 'services/stats/service';
@@ -25,9 +28,9 @@ describe('usePropertySearchTrackPageView', () => {
       error: '',
     });
 
-    const resetSpy = jest.spyOn(StatsService(), 'reset');
+    StatsService().reset = jest.fn();
 
-    expect(resetSpy).not.toHaveBeenCalled();
+    expect(StatsService().reset).not.toHaveBeenCalled();
   });
 
   it('should do nothing if prev page pageprops failed to load', () => {
@@ -45,9 +48,9 @@ describe('usePropertySearchTrackPageView', () => {
       } as PropertySearchViewPropsType
     );
 
-    const resetSpy = jest.spyOn(StatsService(), 'reset');
+    StatsService().reset = jest.fn();
 
-    expect(resetSpy).not.toHaveBeenCalled();
+    expect(StatsService().reset).not.toHaveBeenCalled();
   });
 
   it('should do nothing if props has not been changed', () => {
@@ -67,14 +70,13 @@ describe('usePropertySearchTrackPageView', () => {
       } as PropertySearchViewPropsType
     );
 
-    const resetSpy = jest.spyOn(StatsService(), 'reset');
+    StatsService().reset = jest.fn();
 
-    expect(resetSpy).not.toHaveBeenCalled();
+    expect(StatsService().reset).not.toHaveBeenCalled();
   });
 
   it('should send pageview events', () => {
-    mockReactUseSwr('en-property-search/stats-data-GET-{"propertiesIds":[null],"pageNumber":1}', {});
-
+    const fetchMock = mockWindowFetch({ ok: false });
     const filtersValueFromQuery = filtersValueStub();
 
     const setAbTestsSpy = jest.spyOn(StatsContexterService(), 'setAbTests');
@@ -82,14 +84,14 @@ describe('usePropertySearchTrackPageView', () => {
     const setPropertyCategoryIdentifierSpy = jest.spyOn(StatsContexterService(), 'setPropertyCategoryIdentifier');
     const setPropertySerpSpy = jest.spyOn(StatsContexterService(), 'setPropertySerp');
 
-    const resetSpy = jest.spyOn(StatsService(), 'reset');
-    const pageViewSpy = jest.spyOn(StatsService(), 'pageView');
-    const propertySerpSpy = jest.spyOn(StatsService(), 'propertySerp');
+    StatsService().reset = jest.fn();
+    StatsService().pageView = jest.fn();
+    StatsService().propertySerp = jest.fn();
 
     usePropertySearchTrackPageView(undefined, {
       ok: true,
       filtersValueFromQuery,
-      searchResult: { total: 5, properties: [{}] },
+      searchResult: { total: 5, properties: [propertyStub()] },
     } as PropertySearchViewPropsType);
 
     expect(setAbTestsSpy).toHaveBeenCalledTimes(1);
@@ -109,10 +111,47 @@ describe('usePropertySearchTrackPageView', () => {
     expect(setPropertyCategoryIdentifierSpy).toHaveBeenCalledWith('rent');
     expect(setPropertySerpSpy).toHaveBeenCalledWith(true);
 
-    expect(resetSpy).toHaveBeenCalledTimes(1);
-    expect(pageViewSpy).toHaveBeenCalledTimes(1);
-    expect(propertySerpSpy).toHaveBeenCalledTimes(1);
+    expect(StatsService().reset).toHaveBeenCalledTimes(1);
+    expect(StatsService().pageView).toHaveBeenCalledTimes(1);
+    expect(StatsService().propertySerp).toHaveBeenCalledTimes(1);
 
-    expect(propertySerpSpy).toHaveBeenCalledWith({ pagination: { itemPerPage: 25, itemTotal: 5, pageCurrent: 1 } });
+    expect(StatsService().propertySerp).toHaveBeenCalledWith({
+      pagination: { itemPerPage: 25, itemTotal: 5, pageCurrent: 1 },
+    });
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith(
+      'default-origin/en/api/pwa/property-search/stats-data?propertiesIds%5B%5D=198023&pageNumber=1',
+      { headers: { locale: 'en' }, method: 'GET' }
+    );
+  });
+
+  it('should send listing loaded event', async () => {
+    mockWindowFetch({ json: () => Promise.resolve(statsDataObfuscatedStub()) });
+    const filtersValueFromQuery = filtersValueStub();
+
+    StatsContexterService().setAbTests = jest.fn();
+    StatsContexterService().setPropertySearch = jest.fn();
+    StatsContexterService().setPropertyCategoryIdentifier = jest.fn();
+    StatsContexterService().setPropertySerp = jest.fn();
+
+    StatsService().reset = jest.fn();
+    StatsService().pageView = jest.fn();
+    StatsService().propertySerp = jest.fn();
+
+    const statsService = StatsService();
+    statsService.propertyLoad = jest.fn();
+
+    const { statsDataPromise } = usePropertySearchTrackPageView(undefined, {
+      ok: true,
+      filtersValueFromQuery,
+      searchResult: { total: 5, properties: [propertyStub()] },
+    } as PropertySearchViewPropsType);
+
+    await statsDataPromise;
+
+    expect(statsService.propertyLoad).toHaveBeenCalledWith(198023, {
+      pagination: { itemPerPage: 25, itemTotal: 5, pageCurrent: 1 },
+    });
   });
 });

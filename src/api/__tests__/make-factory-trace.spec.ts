@@ -8,6 +8,8 @@ describe('ApiFactory', () => {
   const url = 'url';
 
   it('should print to console if configIsTrace is true', async () => {
+    // eslint-disable-next-line no-console
+    console.log = jest.fn();
     process.env.TRACE = '1';
     mockWindowFetch();
 
@@ -27,5 +29,3 @@ describe('ApiFactory', () => {
     });
   });
 });
-
-export {};

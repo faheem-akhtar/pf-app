@@ -1,5 +1,5 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
-import { mockWindowStorage } from 'mocks/window/storage.mock';
+import { windowStorageStub } from 'stubs/window/storage.stub';
 
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
 import { JwtTokenService } from 'services/jwt/token/service';
@@ -29,7 +29,7 @@ describe('AuthStore', () => {
   beforeEach(() => {
     signInSpy = jest.spyOn(AuthGoogleOneTapService, 'signIn');
 
-    localStorageMock = mockWindowStorage();
+    localStorageMock = windowStorageStub();
 
     WindowService.localStorage = localStorageMock;
 
@@ -46,7 +46,7 @@ describe('AuthStore', () => {
 
     it('should not call signIn if user is already there', () => {
       signInSpy.mockReset();
-      localStorageMock = mockWindowStorage(userMock);
+      localStorageMock = windowStorageStub(userMock);
       WindowService.localStorage = localStorageMock;
 
       store = new AuthStore();
@@ -117,7 +117,7 @@ describe('AuthStore', () => {
     });
 
     it('should sign out', async () => {
-      localStorageMock = mockWindowStorage(userMock);
+      localStorageMock = windowStorageStub(userMock);
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -135,7 +135,7 @@ describe('AuthStore', () => {
 
   describe('getUser()', () => {
     it('should return null if data is not there', () => {
-      localStorageMock = mockWindowStorage();
+      localStorageMock = windowStorageStub();
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -143,7 +143,7 @@ describe('AuthStore', () => {
     });
 
     it('should return null if data is not an object', () => {
-      localStorageMock = mockWindowStorage('not an object');
+      localStorageMock = windowStorageStub('not an object');
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -151,7 +151,7 @@ describe('AuthStore', () => {
     });
 
     it('should return the user', () => {
-      localStorageMock = mockWindowStorage(userMock);
+      localStorageMock = windowStorageStub(userMock);
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -281,7 +281,7 @@ describe('AuthStore', () => {
 
   describe('signOut()', () => {
     it('should sign out', () => {
-      localStorageMock = mockWindowStorage(userMock);
+      localStorageMock = windowStorageStub(userMock);
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 

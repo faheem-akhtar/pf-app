@@ -2,10 +2,10 @@ const originalConsole = global.console;
 
 export const mockWindowConsole = (): Console => {
   global.console = {
-    log: jest.fn(),
+    log: jest.spyOn(global.console, 'log'),
     error: jest.fn(),
-    warn: jest.fn(),
-    info: jest.fn(),
+    warn: jest.spyOn(global.console, 'warn'),
+    info: jest.spyOn(global.console, 'info'),
   } as unknown as Console;
 
   return global.console;

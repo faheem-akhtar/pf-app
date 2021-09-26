@@ -1,7 +1,7 @@
 import { WindowStorageInterface } from 'services/window/storage/interface';
 import { AnyValueType } from 'types/any/value.type';
 
-export const mockWindowStorage = (getItemMockValue: AnyValueType = undefined): WindowStorageInterface => ({
+export const windowStorageStub = (getItemMockValue: AnyValueType = undefined): WindowStorageInterface => ({
   setItem: jest.fn(),
   getItem: jest.fn().mockReturnValue(getItemMockValue),
   removeItem: jest.fn(),

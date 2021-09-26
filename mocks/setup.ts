@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 import '@testing-library/jest-dom';
+import { StatsEmitter } from '@propertyfinder/pf-frontend-common/dist/module/stats/emitter';
 import { NextRouter } from 'next/router';
 
 import { mockReactUseSwrRecover, setupSwrMock } from 'mocks/react/use-swr.mock';
 
 import { configStatsDataEncryptionKey } from 'config/stats-data-encryption-key';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
+import * as StatsServiceModule from 'services/stats/service';
 
 import { translationsMap } from './misc/add-translation.mock';
 import { recoverReactUseEffect } from './react/use-effect.mock';
@@ -14,10 +16,13 @@ import { recoverReactUseReducer } from './react/use-reducer.mock';
 import { recoverReactUseRef } from './react/use-ref.mock';
 import { recoverReactUseState } from './react/use-state.mock';
 import { recoverWindowAddEventListener } from './window/add-event-listener.mock';
-import { mockWindowConsole, recoverWindowConsole } from './window/console.mock';
+import { recoverWindowConsole } from './window/console.mock';
 import { recoverWindowFetch } from './window/fetch.mock';
 import { recoverWindowMockImportScript } from './window/import-script.mock';
 import { recoverWindowRemoveEventListener } from './window/remove-event-listener.mock';
+
+jest.mock('services/stats/service');
+jest.spyOn(StatsServiceModule, 'StatsService').mockReturnValue(jest.fn() as unknown as StatsEmitter);
 
 if (!global.window) {
   (global as unknown as { window: Window }).window = global as unknown as Window;
@@ -56,9 +61,6 @@ jest.mock('next/router', () => ({
 
 global.origin = 'default-origin';
 (global as unknown as { snowplow: Function }).snowplow = jest.fn();
-
-// we need to mock the window console before pf-frontend-common aquire a reference to it (because after that it is not possible to mock it and we will have all the spam from analytics)
-mockWindowConsole();
 
 // We do not want the test to fail because we updated the encryption key, so all the tests will see this key instead of the real one
 jest.spyOn(configStatsDataEncryptionKey, 'get').mockReturnValue('test-encryption-key');

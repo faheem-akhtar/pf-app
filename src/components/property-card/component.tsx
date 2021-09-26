@@ -1,3 +1,4 @@
+import { LeadMediumType } from '@propertyfinder/pf-frontend-common/dist/module/stats/types';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef, useState } from 'react';
 
@@ -17,6 +18,7 @@ import { arrayFromRange } from 'helpers/array/from-range';
 import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
 import { StatsService } from 'services/stats/service';
+import { PropertySearchStatsDataPromiseForCurrentQueryContext } from 'views/property-search/stats-data-promise-for-current-query/context';
 
 import { PropertyShareComponent } from '../property/share/component';
 import { PropertyCardComponentPropsType } from './component-props.type';
@@ -24,6 +26,7 @@ import { PropertyCardMenuContentTemplate } from './menu/content/template';
 import { PropertyCardMenuModalComponent } from './menu/modal/component';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
+import { usePropertyCardTrackVisibilityOnScreen } from './track-visibility-on-screen.hook';
 
 export const PropertyCardComponent = ({
   property,
@@ -31,8 +34,10 @@ export const PropertyCardComponent = ({
   onSaveButtonClick,
 }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
+  const containerRef = useRef<HTMLDivElement>(null);
   const [galleryHasBeenTouched, setGalleryHasBeenTouched] = useState(false);
   const [isPropertySaved, setIsPropertySaved] = useState(false);
+  const statsDataPromise = useContext(PropertySearchStatsDataPromiseForCurrentQueryContext);
   const { t } = useTranslation();
   const propertyId = propertySerpObfuscatedGetId(property);
   const savedProperties = useContext(SavedPropertyContext);
@@ -62,18 +67,29 @@ export const PropertyCardComponent = ({
     onTouch: (): void => setGalleryHasBeenTouched(true),
   };
 
+  const sendLead = (medium: LeadMediumType): void => {
+    statsDataPromise.then((result) => {
+      if (result.ok) {
+        StatsService().propertyLeadClick(parseInt(propertyId), { lead: { medium, cta: 'button' } });
+      } else {
+        // eslint-disable-next-line no-console
+        console.error('Unable to send lead because stats data failed to load');
+      }
+    });
+  };
+
   const ctaButtonsProps = {
     onCallClick: (): void => {
-      StatsService().propertyLeadClick(parseInt(propertyId), { lead: { medium: 'phone', cta: 'button' } });
+      sendLead('phone');
       callingAgentModalOpenRef.current();
       contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.call);
     },
     onWhatsappClick: (): void => {
+      sendLead('whatsapp');
       contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.whatsApp);
-      StatsService().propertyLeadClick(parseInt(propertyId), { lead: { medium: 'whatsapp', cta: 'button' } });
     },
     onEmailClick: (): void => {
-      StatsService().propertyLeadClick(parseInt(propertyId), { lead: { medium: 'email', cta: 'button' } });
+      sendLead('email');
       emailAgentModalOpenRef.current();
       contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.email);
     },
@@ -105,8 +121,10 @@ export const PropertyCardComponent = ({
     setIsPropertySaved(!!savedProperties.data.find((property) => property.propertyId === parseInt(propertyId, 10)));
   }, [savedProperties.data, propertyId]);
 
+  usePropertyCardTrackVisibilityOnScreen(statsDataPromise, propertyId, containerRef);
+
   return (
-    <div data-testid='list-item'>
+    <div data-testid='list-item' ref={containerRef}>
       <PropertyCardTemplate {...cardTemplateProps} />
       <EmailAgentModalComponent openRef={emailAgentModalOpenRef} property={property} />
       <CallingAgentModalComponent

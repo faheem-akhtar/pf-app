@@ -3,13 +3,22 @@
  */
 
 import { fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
+import { mockWindowConsole } from 'mocks/window/console.mock';
 import { propertyStub } from 'stubs/property/stub';
 import { touchEventStub } from 'stubs/touch/event.stub';
 
+import { propertySerpObfuscatedGetContactOptionsList } from 'components/property/serp/obfuscated/get/contact-options-list';
+import { StatsService } from 'services/stats/service';
+import { PropertySearchStatsDataPromiseForCurrentQueryContext } from 'views/property-search/stats-data-promise-for-current-query/context';
+
 import { PropertyCardComponent } from '../component';
 import { PropertyCardComponentPropsType } from '../component-props.type';
+import * as usePropertyCardTrackVisibilityOnScreenModule from '../track-visibility-on-screen.hook';
+
+jest.mock('../track-visibility-on-screen.hook');
 
 const makeDefaultProps = (): PropertyCardComponentPropsType => ({
   property: propertyStub(),
@@ -49,4 +58,75 @@ describe('PropertyCardComponent', () => {
 
     expect(getAllByTestId('GalleryScrollPicture').length).toBe(3);
   });
+
+  it('should call usePropertyCardTrackVisibilityOnScreen hook', async () => {
+    const statsDataPromise = Promise.resolve({ ok: true });
+    const defaultProps = makeDefaultProps();
+
+    render(
+      <PropertySearchStatsDataPromiseForCurrentQueryContext.Provider value={statsDataPromise}>
+        <PropertyCardComponent {...defaultProps} />
+      </PropertySearchStatsDataPromiseForCurrentQueryContext.Provider>
+    );
+
+    await statsDataPromise;
+
+    expect(usePropertyCardTrackVisibilityOnScreenModule.usePropertyCardTrackVisibilityOnScreen).toHaveBeenCalledWith(
+      statsDataPromise,
+      '198023',
+      expect.objectContaining({ current: expect.anything() })
+    );
+  });
+  /**
+   * CTA buttons
+   */
+  it('should print error if can not send lead', async () => {
+    StatsService().propertyLeadClick = jest.fn();
+    const statsDataPromise = Promise.resolve({ ok: false });
+
+    mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {});
+    const defaultProps = makeDefaultProps();
+    const { getByText } = render(
+      <PropertySearchStatsDataPromiseForCurrentQueryContext.Provider value={statsDataPromise}>
+        <PropertyCardComponent {...defaultProps} />
+      </PropertySearchStatsDataPromiseForCurrentQueryContext.Provider>
+    );
+
+    const callButton = getByText('cta-call');
+
+    const { error: errorMock } = mockWindowConsole();
+    userEvent.click(callButton);
+
+    await statsDataPromise;
+
+    expect(errorMock).toHaveBeenCalledTimes(1);
+    expect(errorMock).toHaveBeenCalledWith('Unable to send lead because stats data failed to load');
+  });
+
+  const makeCtaClickTest = (ctaType: string, medium: string): void => {
+    it(`should send lead on ${ctaType}`, async () => {
+      StatsService().propertyLeadClick = jest.fn();
+      const statsDataPromise = Promise.resolve({ ok: true });
+      mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {});
+      const defaultProps = makeDefaultProps();
+      propertySerpObfuscatedGetContactOptionsList(defaultProps.property).whatsapp = { type: '', value: '', link: '' };
+      const { getByText } = render(
+        <PropertySearchStatsDataPromiseForCurrentQueryContext.Provider value={statsDataPromise}>
+          <PropertyCardComponent {...defaultProps} />
+        </PropertySearchStatsDataPromiseForCurrentQueryContext.Provider>
+      );
+
+      const callButton = getByText(`cta-${ctaType}`);
+
+      userEvent.click(callButton);
+      await statsDataPromise;
+
+      expect(StatsService().propertyLeadClick).toHaveBeenCalledTimes(1);
+      expect(StatsService().propertyLeadClick).toHaveBeenCalledWith(198023, { lead: { cta: 'button', medium } });
+    });
+  };
+
+  makeCtaClickTest('call', 'phone');
+  makeCtaClickTest('email', 'email');
+  makeCtaClickTest('whatsapp', 'whatsapp');
 });

@@ -17,13 +17,14 @@ import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 
 import { PropertySearchResultsCountForCurrentQueryContext } from './results-count-for-current-query/context';
+import { PropertySearchStatsDataPromiseForCurrentQueryContext } from './stats-data-promise-for-current-query/context';
 import { usePropertySearchTrackPageView } from './track-page-view.hook';
 import { PropertySearchViewPropsType } from './view-props.type';
 
 // TODO-FE[CX-433] add tests
 export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Element => {
   const prevProps = usePrevious(props);
-  usePropertySearchTrackPageView(prevProps, props);
+  const { statsDataPromise } = usePropertySearchTrackPageView(prevProps, props);
   const pageIsLoading = usePageIsLoading();
 
   if (!props.ok) {
@@ -34,36 +35,38 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
   const filtersContextProps = { filtersValueFromQuery, filtersData };
 
   return (
-    <PropertySearchResultsCountForCurrentQueryContext.Provider value={props.searchResult.total}>
-      <SnackbarContextProvider>
-        <HeadComponent pageTitle={props.documentTitle} />
-        <FiltersContextProvider {...filtersContextProps}>
-          <SavedPropertyContextProvider>
-            <ContactedPropertyContextProvider>
-              <HeaderComponent />
-              <FiltersSectionComponent />
-              {props.searchResult.total ? (
-                <Fragment>
-                  <PropertySearchCountAndSortSectionComponent
-                    loading={pageIsLoading}
-                    count={props.searchResult.total}
-                  />
-                  <PropertyListComponent
-                    properties={props.searchResult.properties}
-                    adConfig={props.searchResult.adConfig}
-                    pageIsLoading={pageIsLoading}
-                  />
-                  <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
-                </Fragment>
-              ) : (
-                <PropertySearchNotFoundSectionTemplate />
-              )}
-            </ContactedPropertyContextProvider>
-          </SavedPropertyContextProvider>
-          <MapSearchButtonComponent />
-          <FooterComponent />
-        </FiltersContextProvider>
-      </SnackbarContextProvider>
-    </PropertySearchResultsCountForCurrentQueryContext.Provider>
+    <PropertySearchStatsDataPromiseForCurrentQueryContext.Provider value={statsDataPromise}>
+      <PropertySearchResultsCountForCurrentQueryContext.Provider value={props.searchResult.total}>
+        <SnackbarContextProvider>
+          <HeadComponent pageTitle={props.documentTitle} />
+          <FiltersContextProvider {...filtersContextProps}>
+            <SavedPropertyContextProvider>
+              <ContactedPropertyContextProvider>
+                <HeaderComponent />
+                <FiltersSectionComponent />
+                {props.searchResult.total ? (
+                  <Fragment>
+                    <PropertySearchCountAndSortSectionComponent
+                      loading={pageIsLoading}
+                      count={props.searchResult.total}
+                    />
+                    <PropertyListComponent
+                      properties={props.searchResult.properties}
+                      adConfig={props.searchResult.adConfig}
+                      pageIsLoading={pageIsLoading}
+                    />
+                    <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
+                  </Fragment>
+                ) : (
+                  <PropertySearchNotFoundSectionTemplate />
+                )}
+              </ContactedPropertyContextProvider>
+            </SavedPropertyContextProvider>
+            <MapSearchButtonComponent />
+            <FooterComponent />
+          </FiltersContextProvider>
+        </SnackbarContextProvider>
+      </PropertySearchResultsCountForCurrentQueryContext.Provider>
+    </PropertySearchStatsDataPromiseForCurrentQueryContext.Provider>
   );
 };

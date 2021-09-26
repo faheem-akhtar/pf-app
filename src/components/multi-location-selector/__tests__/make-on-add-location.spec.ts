@@ -1,5 +1,5 @@
-import { mockWindowStorage } from 'mocks/window/storage.mock';
 import { locationCompactJltStub, locationCompactKcStub } from 'stubs/location';
+import { windowStorageStub } from 'stubs/window/storage.stub';
 
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { WindowStorageInterface } from 'services/window/storage/interface';
@@ -14,18 +14,18 @@ const location1_2 = { ...locationCompactKcStub, id: '2', path: '1.2' };
 
 describe('multiLocationSelectorMakeOnAddLocation', () => {
   let onNewLocationsSpy: jest.Mock;
-  let windowLocalStorageMock: WindowStorageInterface;
+  let localStorageStub: WindowStorageInterface;
 
   let baseProps: MultiLocationSelectorMakeOnAddLocationPropsInterface;
 
   beforeEach(() => {
     onNewLocationsSpy = jest.fn();
-    windowLocalStorageMock = mockWindowStorage();
+    localStorageStub = windowStorageStub();
 
     baseProps = {
       locations: [],
       onNewLocations: onNewLocationsSpy,
-      localStorage: windowLocalStorageMock,
+      localStorage: localStorageStub,
       locale: LanguageCodeEnum.en,
       maxHistoryLength: 3,
     };
@@ -40,7 +40,7 @@ describe('multiLocationSelectorMakeOnAddLocation', () => {
     onAddLocation({ ...locationCompactKcStub });
 
     expect(onNewLocationsSpy).not.toHaveBeenCalled();
-    expect(windowLocalStorageMock.setItem).not.toHaveBeenCalled();
+    expect(localStorageStub.setItem).not.toHaveBeenCalled();
   });
 
   it('should add location if it does not exist in value', () => {
@@ -49,13 +49,13 @@ describe('multiLocationSelectorMakeOnAddLocation', () => {
       locations: [locationCompactKcStub],
     });
 
-    windowLocalStorageMock.getItem = (): LocationCompactInterface[] => [locationCompactKcStub];
+    localStorageStub.getItem = (): LocationCompactInterface[] => [locationCompactKcStub];
 
     onAddLocation(locationCompactJltStub);
 
     expect(onNewLocationsSpy).toHaveBeenCalledWith([locationCompactKcStub, locationCompactJltStub]);
 
-    expect(windowLocalStorageMock.setItem).toHaveBeenCalledWith('multi-location-selector-history-en', [
+    expect(localStorageStub.setItem).toHaveBeenCalledWith('multi-location-selector-history-en', [
       locationCompactJltStub,
       locationCompactKcStub,
     ]);

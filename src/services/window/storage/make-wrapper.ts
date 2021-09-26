@@ -1,4 +1,3 @@
-import { helpersIsTest } from 'helpers/is-test';
 import { AnyValueType } from 'types/any/value.type';
 
 import { windowStorageDefaultState } from './default-state';
@@ -21,10 +20,6 @@ function storageAvailable(storage: Storage): boolean {
 
 export const windowStorageMakeWrapper = (storage: Storage): WindowStorageInterface => {
   if (!storageAvailable(storage)) {
-    if (!helpersIsTest) {
-      // eslint-disable-next-line no-console
-      console.warn('Session storage is not available');
-    }
     return windowStorageDefaultState;
   }
 

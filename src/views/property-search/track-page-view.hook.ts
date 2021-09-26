@@ -1,6 +1,6 @@
 import { StatsDataService } from '@propertyfinder/pf-frontend-common/dist/service/stats-data/service';
 
-import { useApiPropertyStatsData } from 'api/property-stats-data/hook';
+import { apiPropertyStatsDataFetcher } from 'api/property-stats-data/fetcher';
 import { filtersMapCategoryIdToStats } from 'components/filters/map-category-id-to-stats';
 import { filtersMapFiltersValueToStatsContextPropertySearch } from 'components/filters/map-filters-value-to-stats-context-property-search';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
@@ -15,20 +15,13 @@ import { PropertySearchViewPropsType } from './view-props.type';
 export const usePropertySearchTrackPageView = (
   prevProps: PropertySearchViewPropsType | void,
   props: PropertySearchViewPropsType
-): void => {
+): {
+  /**
+   * Promise to load required stats data. only after this data is loaded listing impressions and leads can be fired
+   */
+  statsDataPromise: Promise<{ ok: boolean }>;
+} => {
   const pageFailedToLoad = !props.ok || (prevProps && !prevProps.ok);
-  const shouldLoadStatsData = !pageFailedToLoad && helpersIsClient;
-  const statsDataResult = useApiPropertyStatsData(
-    props.ok ? props.searchResult.properties.map(propertySerpObfuscatedGetId) : [],
-    props.ok ? props.filtersValueFromQuery[FiltersParametersEnum.pageNumber] : 1,
-    shouldLoadStatsData
-  );
-
-  if (statsDataResult.ok) {
-    statsDataResult.data.forEach((propertyStatsData) => {
-      StatsDataService().getPropertyStore().add(propertyStatsData);
-    });
-  }
 
   if (
     pageFailedToLoad ||
@@ -37,27 +30,55 @@ export const usePropertySearchTrackPageView = (
     (prevProps && !prevProps.ok) ||
     (prevProps && prevProps.filtersValueFromQuery === props.filtersValueFromQuery)
   ) {
-    return;
+    return { statsDataPromise: Promise.resolve({ ok: false }) };
   }
+
+  const statsService = StatsService();
+  const statsContexterService = StatsContexterService();
 
   const { searchResult, filtersValueFromQuery } = props;
 
-  StatsService().reset();
+  statsService.reset();
 
   // TODO-FE[CX-591] Set ab tests in stats context
-  StatsContexterService().setAbTests({});
-  StatsContexterService().setPropertySearch(filtersMapFiltersValueToStatsContextPropertySearch(filtersValueFromQuery));
-  StatsContexterService().setPropertyCategoryIdentifier(
+  statsContexterService.setAbTests({});
+  statsContexterService.setPropertySearch(filtersMapFiltersValueToStatsContextPropertySearch(filtersValueFromQuery));
+  statsContexterService.setPropertyCategoryIdentifier(
     filtersMapCategoryIdToStats[filtersValueFromQuery[FiltersParametersEnum.categoryId]]
   );
-  StatsContexterService().setPropertySerp(true);
-  StatsService().pageView();
+  statsContexterService.setPropertySerp(true);
+  statsService.pageView();
 
-  StatsService().propertySerp({
+  const localContext = {
     pagination: {
       pageCurrent: filtersValueFromQuery[FiltersParametersEnum.pageNumber],
       itemPerPage: propertySerpItemsPerPage, // this property is not used in pf-frontend-common, but interface requires some value even it is not used
       itemTotal: searchResult.total,
     },
+  };
+
+  statsService.propertySerp(localContext);
+
+  const statsDataPromise = apiPropertyStatsDataFetcher(
+    props.searchResult.properties.map(propertySerpObfuscatedGetId),
+    props.filtersValueFromQuery[FiltersParametersEnum.pageNumber]
+  ).then((statsDataResult) => {
+    if (statsDataResult.ok) {
+      // populate global scope with properties data
+      statsDataResult.data.forEach((propertyStatsData) => {
+        StatsDataService().getPropertyStore().add(propertyStatsData);
+      });
+
+      // track property listing loaded
+      searchResult.properties.forEach((obfuscatedProperty) => {
+        statsService.propertyLoad(parseInt(propertySerpObfuscatedGetId(obfuscatedProperty), 10), localContext);
+      });
+    }
+
+    return statsDataResult;
   });
+
+  return {
+    statsDataPromise,
+  };
 };

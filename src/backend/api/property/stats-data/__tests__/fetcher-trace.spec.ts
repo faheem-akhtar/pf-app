@@ -5,6 +5,8 @@ import { AnyValueType } from 'types/any/value.type';
 
 describe('backendApiPropertyStatsDataFetcher', () => {
   it('should map data correctly and obfuscate the keys', async () => {
+    // eslint-disable-next-line no-console
+    console.log = jest.fn();
     process.env.TRACE = '1';
 
     mockWindowFetch({ json: () => Promise.resolve(propertiesRawBackendStub()) });
