@@ -10,11 +10,15 @@ import { AuthFacebookService } from 'services/auth/facebook.service';
 import { AuthService } from 'services/auth/service';
 import { WindowService } from 'services/window/service';
 
+jest.mock('services/auth/service');
+
 describe('AuthFacebookService', () => {
   const data: ApiAuthSocialLoginResponseInterface = responseSocialLoginStub();
 
   beforeEach(() => {
     global.origin = 'test.origin';
+
+    (AuthService.onAuthResolved as jest.Mock).mockReset();
   });
 
   describe('signIn', () => {
@@ -32,7 +36,7 @@ describe('AuthFacebookService', () => {
       jest
         .spyOn(WindowService, 'getFB')
         .mockReturnValue(facebookStub({ authResponse: { accessToken: 'accessToken' } }));
-      AuthService['onAuthResolved'] = jest.fn();
+
       const fetchMock = mockWindowFetch({
         ok: true,
         status: 200,
@@ -41,7 +45,7 @@ describe('AuthFacebookService', () => {
 
       AuthFacebookService.signIn().then(() => {
         expect(fetchMock).toHaveBeenCalledWith(data);
-        expect(AuthService['onAuthResolved']).toHaveBeenCalledWith(data);
+        expect(AuthService.onAuthResolved).toHaveBeenCalledWith(data);
       });
     });
 
@@ -51,7 +55,7 @@ describe('AuthFacebookService', () => {
       jest
         .spyOn(WindowService, 'getFB')
         .mockReturnValue(facebookStub({ authResponse: { accessToken: 'accessToken' } }));
-      AuthService['onAuthResolved'] = jest.fn();
+
       const fetchMock = mockWindowFetch({
         ok: false,
         status: 500,
@@ -85,6 +89,18 @@ describe('AuthFacebookService', () => {
 
       expect(apiAuthSocialLoginFacebookFetcherMock).toHaveBeenCalledTimes(1);
       expect(apiAuthSocialLoginFacebookFetcherMock).toHaveBeenCalledWith('accessToken');
+    });
+
+    it('should reject if facebook login failed', () => {
+      mockWindowImportScript();
+
+      jest.spyOn(apiAuthSocialLoginFacebookFetcherModule, 'apiAuthSocialLoginFacebookFetcher');
+
+      jest
+        .spyOn(WindowService, 'getFB')
+        .mockReturnValue(facebookStub({ authResponse: null as unknown as { accessToken: string } }));
+
+      expect(AuthFacebookService.signIn()).rejects.toEqual(undefined);
     });
   });
 });

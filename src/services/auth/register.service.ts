@@ -4,6 +4,8 @@ import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { AuthService } from 'services/auth/service';
 import { UserModelInterface } from 'services/user/model.interface';
 
+import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
+
 /**
  * Register user
  */
@@ -22,7 +24,7 @@ export const AuthRegisterService = (
       return AuthService.onAuthRejected(response);
     }
 
-    AuthService.onAuthResolved(response.data);
+    AuthService.onAuthResolved(response.data, AuthSubscribeEventTypeEnum.register);
 
     return {
       ...response,

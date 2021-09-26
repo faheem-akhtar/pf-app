@@ -4,6 +4,8 @@ import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.int
 import { AuthService } from 'services/auth/service';
 import { UserModelInterface } from 'services/user/model.interface';
 
+import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
+
 /**
  * Auto register user
  */
@@ -20,6 +22,6 @@ export const AuthAutoRegisterService = (
       return response;
     }
 
-    AuthService.onAuthResolved(response.data);
+    AuthService.onAuthResolved(response.data, AuthSubscribeEventTypeEnum.register);
     return response.data.user;
   });

@@ -9,6 +9,7 @@ import { WindowService } from 'services/window/service';
 
 import { AuthModelInterface } from '../model.interface';
 import { AuthStore } from '../store';
+import { AuthSubscribeEventTypeEnum } from '../subscribe-event-type.enum';
 
 jest.mock('services/jwt/token/service');
 
@@ -62,7 +63,17 @@ describe('AuthStore', () => {
       store['updateUserData'](userMock);
 
       expect(updateMock).toHaveBeenCalledTimes(1);
-      expect(updateMock).toHaveBeenCalledWith(userMock);
+      expect(updateMock).toHaveBeenCalledWith(userMock, undefined);
+    });
+
+    it('should accept event type', () => {
+      const updateMock = jest.fn();
+      store['subscribers'] = [updateMock];
+
+      store['updateUserData'](userMock, AuthSubscribeEventTypeEnum.register);
+
+      expect(updateMock).toHaveBeenCalledTimes(1);
+      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'register' });
     });
   });
 
@@ -167,7 +178,7 @@ describe('AuthStore', () => {
     });
 
     it('should update data', () => {
-      store.onAuthResolved(data);
+      store.onAuthResolved(data, AuthSubscribeEventTypeEnum.login);
 
       expect(JwtTokenService.setRefreshToken).toHaveBeenCalledTimes(1);
       expect(JwtTokenService.setRefreshToken).toHaveBeenCalledWith('refresh token');
@@ -179,7 +190,7 @@ describe('AuthStore', () => {
       const updateMock = jest.fn();
       store['subscribers'] = [updateMock];
 
-      store.onAuthResolved(data);
+      store.onAuthResolved(data, AuthSubscribeEventTypeEnum.login);
 
       expect(store['windowLocalStorage'].removeItem).not.toHaveBeenCalled();
       expect(store['windowLocalStorage'].setItem).toHaveBeenCalledTimes(1);
@@ -195,7 +206,7 @@ describe('AuthStore', () => {
       );
 
       expect(updateMock).toHaveBeenCalledTimes(1);
-      expect(updateMock).toHaveBeenCalledWith(userMock);
+      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'login' });
     });
   });
 

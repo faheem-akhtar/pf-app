@@ -5,6 +5,8 @@ import { importScript } from 'helpers/import/script';
 import { AuthService } from 'services/auth/service';
 import { WindowService } from 'services/window/service';
 
+import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
+
 const scriptUrl = '//apis.google.com/js/api:client.js';
 
 export const AuthGoogleService = {
@@ -35,7 +37,7 @@ export const AuthGoogleService = {
                   return;
                 }
 
-                AuthService.onAuthResolved(res.data);
+                AuthService.onAuthResolved(res.data, AuthSubscribeEventTypeEnum.login);
                 resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
               });
             })

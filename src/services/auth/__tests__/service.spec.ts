@@ -10,6 +10,7 @@ import { AuthModelInterface } from 'services/auth/model.interface';
 import { JwtTokenService } from 'services/jwt/token/service';
 
 import { AuthService } from '../service';
+import { AuthSubscribeEventTypeEnum } from '../subscribe-event-type.enum';
 
 describe('AuthService', () => {
   describe('updateUserData', () => {
@@ -21,7 +22,7 @@ describe('AuthService', () => {
       const userStub = userModelStub();
       AuthService['updateUserData'](userModelStub());
 
-      expect(subscribersSpy).toBeCalledWith(userStub);
+      expect(subscribersSpy).toBeCalledWith(userStub, undefined);
     });
   });
 
@@ -56,7 +57,7 @@ describe('AuthService', () => {
         },
       };
 
-      AuthService['onAuthResolved'](data);
+      AuthService['onAuthResolved'](data, AuthSubscribeEventTypeEnum.login);
 
       expect(setRefreshTokenSpy).toBeCalledWith(data.meta.refresh_token);
       expect(setTokenSpy).toBeCalledWith(data.meta.token);
@@ -70,7 +71,7 @@ describe('AuthService', () => {
           email: user.email,
         })
       );
-      expect(subscribersSpy).toBeCalledWith(user);
+      expect(subscribersSpy).toBeCalledWith(user, { eventType: 'login' });
     });
   });
   describe('signOut', () => {

@@ -3,7 +3,10 @@ import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { ApiAuthAutoRegisterRequestInterface } from 'api/auth/auto-register/request.interface';
 import { ApiAuthRegisterResponseInterface } from 'api/auth/register/response.interface';
 import { AuthAutoRegisterService } from 'services/auth/auto-register.service';
+import { AuthService } from 'services/auth/service';
 import { AnyValueType } from 'types/any/value.type';
+
+jest.mock('services/auth/service');
 
 describe('AuthAutoRegisterService', () => {
   const model: ApiAuthAutoRegisterRequestInterface = {
@@ -83,5 +86,23 @@ describe('AuthAutoRegisterService', () => {
       last_name: 'last_name',
       userId: '1',
     });
+
+    expect(AuthService.onAuthResolved).toHaveBeenCalledTimes(1);
+    expect(AuthService.onAuthResolved).toHaveBeenCalledWith(
+      {
+        meta: {
+          refresh_token: 'refresh token',
+          token: 'token ',
+        },
+        user: {
+          email: 'test@propertyfinder.ae',
+          first_name: 'first name',
+          image: 'image',
+          last_name: 'last_name',
+          userId: '1',
+        },
+      },
+      'register'
+    );
   });
 });

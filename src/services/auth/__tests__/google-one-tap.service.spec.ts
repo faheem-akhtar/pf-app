@@ -44,17 +44,20 @@ describe('AuthGoogleOneTapService', () => {
 
       expect(fetchMock).toHaveBeenCalled();
 
-      expect(AuthService['onAuthResolved']).toHaveBeenCalledWith({
-        user: {
+      expect(AuthService['onAuthResolved']).toHaveBeenCalledWith(
+        {
+          user: {
+            email: 'test@propertyfinder.ae',
+            first_name: 'first name',
+            last_name: 'last_name',
+            image: 'image',
+            userId: '1',
+          },
+          meta: { token: 'token', refresh_token: 'refresh token' },
           email: 'test@propertyfinder.ae',
-          first_name: 'first name',
-          last_name: 'last_name',
-          image: 'image',
-          userId: '1',
         },
-        meta: { token: 'token', refresh_token: 'refresh token' },
-        email: 'test@propertyfinder.ae',
-      });
+        'login'
+      );
     });
 
     it('should load google one tap and reject promise', () => {

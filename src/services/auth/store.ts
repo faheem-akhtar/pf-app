@@ -9,6 +9,8 @@ import { UserModelInterface } from 'services/user/model.interface';
 import { WindowLocalStorageInterface } from 'services/window/local-storage/interface';
 import { WindowService } from 'services/window/service';
 
+import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
+
 export class AuthStore {
   /**
    * User key in browser storage
@@ -46,9 +48,9 @@ export class AuthStore {
    * Update user information
    * @param userData
    */
-  private updateUserData = (userData: UserModelInterface | null): void => {
+  private updateUserData = (userData: UserModelInterface | null, eventType?: AuthSubscribeEventTypeEnum): void => {
     this.subscribers.forEach((update) => {
-      update(userData);
+      update(userData, eventType ? { eventType } : undefined);
     });
   };
 
@@ -96,14 +98,14 @@ export class AuthStore {
   /**
    * User authn promise resolved
    */
-  public onAuthResolved = (data: AuthModelInterface): void => {
+  public onAuthResolved = (data: AuthModelInterface, eventType: AuthSubscribeEventTypeEnum): void => {
     // Update data
     this.jwtTokenService.setRefreshToken(data.meta.refresh_token);
     this.jwtTokenService.setToken(data.meta.token);
 
     // Update user data in local storage
     this.setUser(data.user);
-    this.updateUserData(data.user);
+    this.updateUserData(data.user, eventType);
   };
 
   /**

@@ -1,3 +1,5 @@
 import { UserModelInterface } from 'services/user/model.interface';
 
-export type AuthSubscriberType = (userModel: UserModelInterface | null) => void;
+import { AuthSubscriberMetaInterface } from './subscriber-meta.interface';
+
+export type AuthSubscriberType = (userModel: UserModelInterface | null, meta?: AuthSubscriberMetaInterface) => void;

@@ -12,8 +12,12 @@ import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { OnBoardingComponent } from 'library/on-boarding/component';
 import { OnBoardingTypeEnum } from 'library/on-boarding/type.enum';
+import { AuthService } from 'services/auth/service';
+import { AuthSubscribeEventTypeEnum } from 'services/auth/subscribe-event-type.enum';
+import { AuthSubscriberType } from 'services/auth/subscriber.type';
 
 import { SaveSearchContext } from '../context';
+import { saveSearchTracker } from '../tracker';
 import { SaveSearchModalContentComponent } from './content-component';
 import styles from './save-search-modal-component.module.scss';
 
@@ -31,6 +35,7 @@ export const SaveSearchModalButtonComponent = ({ visibleTooltip }: { visibleTool
   const openDialog = (): void => {
     if (user) {
       openFiltersRef.current();
+      saveSearchTracker.onOpenCreateDialog();
     } else {
       openLoginRef.current();
       setAutoOpenDialog(true);
@@ -50,6 +55,22 @@ export const SaveSearchModalButtonComponent = ({ visibleTooltip }: { visibleTool
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoOpenDialog, user, saveSearch.filtered]);
 
+  useEffect(() => {
+    if (autoOpenDialog) {
+      const onUpdate: AuthSubscriberType = (user, meta) => {
+        if (user && meta?.eventType === AuthSubscribeEventTypeEnum.login) {
+          saveSearchTracker.onSignInSuccess();
+        }
+        if (user && meta?.eventType === AuthSubscribeEventTypeEnum.register) {
+          saveSearchTracker.onSignUpSuccess();
+        }
+      };
+      const unsubscribeAuth = AuthService.subscribe(onUpdate);
+
+      return (): void => unsubscribeAuth();
+    }
+  }, [autoOpenDialog]);
+
   return (
     <>
       <div className={styles.tooltipWrapper}>
@@ -61,6 +82,7 @@ export const SaveSearchModalButtonComponent = ({ visibleTooltip }: { visibleTool
             if (saveSearch.filtered.length === 0) {
               openDialog();
             }
+            saveSearchTracker.onClickCta();
           }}
           icon={{
             component: IconThinStarTemplate,

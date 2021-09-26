@@ -4,6 +4,8 @@ import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { AuthService } from 'services/auth/service';
 import { UserModelInterface } from 'services/user/model.interface';
 
+import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
+
 /**
  * Login user
  */
@@ -19,7 +21,7 @@ export const AuthLoginService = (
       return AuthService.onLoginRejected(response);
     }
 
-    AuthService.onAuthResolved(response.data);
+    AuthService.onAuthResolved(response.data, AuthSubscribeEventTypeEnum.login);
 
     return {
       ...response,

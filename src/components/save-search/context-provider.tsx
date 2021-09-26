@@ -4,12 +4,14 @@ import { apiSaveSearchCreateFetcher } from 'api/save-search/create/fetcher';
 import { useApiSaveSearch } from 'api/save-search/hook';
 import { FiltersContext } from 'components/filters/context';
 import { UserContext } from 'context/user/context';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
 import { SaveSearchContext } from './context';
 import { SaveSearchContextInterface } from './context.interface';
 import { saveSearchFilterEquality } from './filter-equality';
 import { saveSearchFiltersMapper } from './filters-mapper';
 import { SaveSearchLoadResultInterface } from './load-result-interface';
+import { saveSearchTracker } from './tracker';
 
 export const SaveSearchContextProvider: FunctionComponent = ({ children }) => {
   const user = useContext(UserContext);
@@ -33,6 +35,9 @@ export const SaveSearchContextProvider: FunctionComponent = ({ children }) => {
       apiSaveSearchCreateFetcher({ name, frequency, filters: filtersCtx.value }).then((response) => {
         if (response.ok) {
           setSearches([...searches, response.data]);
+          saveSearchTracker.onCreateSuccess(
+            filtersCtx.value[FiltersParametersEnum.locationsIds].map((location) => location.id)
+          );
         }
         return response;
       }),

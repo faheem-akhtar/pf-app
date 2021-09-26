@@ -5,6 +5,8 @@ import { importScript } from 'helpers/import/script';
 import { AuthService } from 'services/auth/service';
 import { WindowService } from 'services/window/service';
 
+import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
+
 /**
  * Script url
  */
@@ -43,7 +45,7 @@ export const AuthFacebookService = {
                   reject(res.error);
                   return;
                 }
-                AuthService.onAuthResolved(res.data);
+                AuthService.onAuthResolved(res.data, AuthSubscribeEventTypeEnum.login);
                 resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
               });
             } else {
