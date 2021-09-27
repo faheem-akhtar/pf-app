@@ -17,7 +17,6 @@ describe('apiContactedPropertiesCreateFetcher', () => {
     const factoryMock = mockWindowFetch();
 
     await apiContactedPropertiesCreateFetcher({
-      id: '111',
       propertyId: 1,
       contactDate: '2021-09-14',
       contactType: ContactedPropertyTypeEnum.email,

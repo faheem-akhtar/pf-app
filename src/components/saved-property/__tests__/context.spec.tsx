@@ -42,7 +42,6 @@ describe('SavedPropertyContext', () => {
     const value: SavedPropertyContextInterface = {
       data: [
         {
-          id: '2',
           propertyId: 2,
           saveDate: dateToIso(new Date()),
         },

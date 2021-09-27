@@ -16,7 +16,6 @@ describe('apiSavedPropertiesCreateFetcher', () => {
     const factoryMock = mockWindowFetch();
 
     await apiSavedPropertiesCreateFetcher({
-      id: '111',
       propertyId: 1,
       saveDate: '2021-09-14',
     });

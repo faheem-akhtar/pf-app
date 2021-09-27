@@ -11,6 +11,8 @@ import { propertyStub } from 'stubs/property/stub';
 import { touchEventStub } from 'stubs/touch/event.stub';
 
 import { propertySerpObfuscatedGetContactOptionsList } from 'components/property/serp/obfuscated/get/contact-options-list';
+import { SavedPropertyContext } from 'components/saved-property/context';
+import { SavedPropertyInterface } from 'components/saved-property/interface';
 import { StatsService } from 'services/stats/service';
 import { PropertySearchStatsDataPromiseForCurrentQueryContext } from 'views/property-search/stats-data-promise-for-current-query/context';
 
@@ -129,4 +131,34 @@ describe('PropertyCardComponent', () => {
   makeCtaClickTest('call', 'phone');
   makeCtaClickTest('email', 'email');
   makeCtaClickTest('whatsapp', 'whatsapp');
+
+  it('should send propertySave event on save button click', () => {
+    const defaultProps = makeDefaultProps();
+    const { getByTestId } = render(<PropertyCardComponent {...defaultProps} />);
+    StatsService().propertySave = jest.fn();
+
+    const saveButton = getByTestId('property-save-button');
+    userEvent.click(saveButton);
+
+    expect(StatsService().propertySave).toHaveBeenCalledTimes(1);
+    expect(StatsService().propertySave).toHaveBeenCalledWith(198023, {});
+  });
+
+  it('should send propertyUnsave event on save button click and was previously saved', () => {
+    const defaultProps = makeDefaultProps();
+    const { getByTestId } = render(
+      <SavedPropertyContext.Provider
+        value={{ data: [{ propertyId: 198023 } as SavedPropertyInterface], toggle: jest.fn() }}
+      >
+        <PropertyCardComponent {...defaultProps} />
+      </SavedPropertyContext.Provider>
+    );
+    StatsService().propertyUnsave = jest.fn();
+
+    const saveButton = getByTestId('property-save-button');
+    userEvent.click(saveButton);
+
+    expect(StatsService().propertyUnsave).toHaveBeenCalledTimes(1);
+    expect(StatsService().propertyUnsave).toHaveBeenCalledWith(198023, {});
+  });
 });

@@ -49,7 +49,6 @@ describe('ContactedPropertyContext', () => {
     const value: ContactedPropertyContextInterface = {
       data: [
         {
-          id: '1',
           propertyId: 2,
           contactType: ContactedPropertyTypeEnum.call,
           contactDate: dateToIso(new Date()),

@@ -105,11 +105,9 @@ export const PropertyCardComponent = ({
     saved: isPropertySaved,
     contactDate,
     onSaveButtonClick: (): void => {
-      onSaveButtonClick(
-        propertyId,
-        !savedProperties.data.find((property) => property.propertyId === parseInt(propertyId, 10))
-      );
+      onSaveButtonClick(propertyId, !isPropertySaved);
       savedProperties.toggle(propertyId);
+      StatsService()[isPropertySaved ? 'propertyUnsave' : 'propertySave'](parseInt(propertyId), {});
     },
     onMenuButtonClick: (): void => {
       menuModalOpenRef.current();

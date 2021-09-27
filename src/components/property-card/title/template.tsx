@@ -21,7 +21,7 @@ export const PropertyCardTitleTemplate: React.FunctionComponent<PropertyCardTitl
       </a>
       <div className={styles.horizontal_spacer} />
       <div className={styles.interactive_area}>
-        <button type='button' onClick={onSaveButtonClick}>
+        <button type='button' data-testid='property-save-button' onClick={onSaveButtonClick}>
           {saved ? (
             <IconSolidFavoriteTemplate
               clipped

@@ -1,10 +1,5 @@
 export interface SavedPropertyInterface {
   /**
-   * ID
-   */
-  id: string;
-
-  /**
    * The associated property id
    */
   propertyId: number;
