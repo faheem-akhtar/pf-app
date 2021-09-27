@@ -16,7 +16,7 @@ export const PropertyCardTitleTemplate: React.FunctionComponent<PropertyCardTitl
 }) => {
   return (
     <div className={styles.container}>
-      <a className={styles.link} href={propertySerpObfuscatedGetUrl(property)}>
+      <a className={styles.link} href={`${propertySerpObfuscatedGetUrl(property)}?ref=listing`}>
         {propertySerpObfuscatedGetPriceText(property)}
       </a>
       <div className={styles.horizontal_spacer} />
