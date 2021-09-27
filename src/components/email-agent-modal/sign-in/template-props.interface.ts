@@ -1,3 +1,4 @@
-import { EmailAgentModalSignInTemplatePropsBaseInterface } from './template-props-base.interface';
+import { EmailAgentModalFormSuccessComponentPropsInterface } from '../form/success-component-props.interface';
 
-export interface EmailAgentModalSignInTemplatePropsInterface extends EmailAgentModalSignInTemplatePropsBaseInterface {}
+export interface EmailAgentModalSignInTemplatePropsInterface
+  extends Pick<EmailAgentModalFormSuccessComponentPropsInterface, 'openAuthRef' | 'closeModal' | 't'> {}

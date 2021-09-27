@@ -5,6 +5,7 @@ import { AuthModalComponent } from 'components/auth/modal/component';
 import { formMakeValidator } from 'components/form/make-validator';
 import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
 import { ModalComponent } from 'components/modal/component';
+import { propertySerpObfuscatedGetDefaultPrice } from 'components/property/serp/obfuscated/get/default-price';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
@@ -27,7 +28,7 @@ import { EmailAgentModalFormComponentPropsInterface } from './form/component-pro
 import { EmailAgentModalFormErrorMessageTemplate } from './form/error-message-template';
 import { FormFieldsEnum } from './form/fields.enum';
 import { FormFieldsValueType } from './form/fields-value.type';
-import { EmailAgentModalFormSuccessTemplate } from './form/success-template';
+import { EmailAgentModalFormSuccessComponent } from './form/success-component';
 import { EmailAgentModalStatusEnum } from './status.enum';
 
 const captchaService = GoogleRecaptchaService();
@@ -141,7 +142,18 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
 
   const body =
     status === EmailAgentModalStatusEnum.submitted ? (
-      <EmailAgentModalFormSuccessTemplate closeModal={closeModal} t={t} openAuthRef={openAuthRef} />
+      <EmailAgentModalFormSuccessComponent
+        closeModal={closeModal}
+        t={t}
+        openAuthRef={openAuthRef}
+        user={user}
+        property={{
+          defaultPrice: propertySerpObfuscatedGetDefaultPrice(property),
+          id: propertySerpObfuscatedGetId(property),
+          reference: propertySerpObfuscatedGetReference(property),
+        }}
+        fieldsValue={fieldsValue}
+      />
     ) : (
       <>
         <h2 className={styles.name}>{propertySerpObfuscatedGetName(property)}</h2>

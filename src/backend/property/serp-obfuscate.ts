@@ -2,6 +2,7 @@ import { PropertySerpInterface } from 'components/property/serp/interface';
 import { propertySerpObfuscatedFieldBathroomValue } from 'components/property/serp/obfuscated/field/bathroom-value';
 import { propertySerpObfuscatedFieldBedroomValue } from 'components/property/serp/obfuscated/field/bedroom-value';
 import { propertySerpObfuscatedFieldContactOptionsList } from 'components/property/serp/obfuscated/field/contact-options-list';
+import { propertySerpObfuscatedFieldDefaultPrice } from 'components/property/serp/obfuscated/field/default-price';
 import { propertySerpObfuscatedFieldExclusive } from 'components/property/serp/obfuscated/field/exclusive';
 import { propertySerpObfuscatedFieldId } from 'components/property/serp/obfuscated/field/id';
 import { propertySerpObfuscatedFieldImagesCount } from 'components/property/serp/obfuscated/field/images-count';
@@ -80,6 +81,9 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
         break;
       case 'reference':
         obfuscatedProperty[propertySerpObfuscatedFieldReference] = value;
+        break;
+      case 'defaultPrice':
+        obfuscatedProperty[propertySerpObfuscatedFieldDefaultPrice] = value;
         break;
       default:
         assertUnreachable(propertyKey);

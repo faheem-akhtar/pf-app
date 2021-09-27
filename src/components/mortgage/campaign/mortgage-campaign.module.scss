@@ -1,0 +1,10 @@
+.container {
+  background-color: var(--color-global-grey4);
+  padding: calc(var(--spacing) * 2.5);
+  text-align: center;
+  width: 100%;
+}
+
+.button {
+  margin-top: calc(var(--spacing) * 1.5);
+}

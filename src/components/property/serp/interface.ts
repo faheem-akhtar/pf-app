@@ -85,4 +85,10 @@ export interface PropertySerpInterface {
    * Property reference ID
    */
   reference: string;
+
+  /**
+   * Price
+   * Example: 110000
+   */
+  defaultPrice: number;
 }

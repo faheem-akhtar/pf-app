@@ -31,6 +31,7 @@ export const backendApiPropertySearchMapper = (
       property_type,
       meta,
       reference,
+      default_price,
     } = property;
 
     const { email, phone, whatsapp } = meta.contact_options.app;
@@ -66,6 +67,7 @@ export const backendApiPropertySearchMapper = (
       priceText: meta.price_text,
       id: property.id,
       reference,
+      defaultPrice: default_price,
     };
 
     if (configIsTrace) {

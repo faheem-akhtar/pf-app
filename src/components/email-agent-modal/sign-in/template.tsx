@@ -14,7 +14,7 @@ export const EmailAgentModalSignInTemplate = ({
   closeModal,
   openAuthRef,
 }: EmailAgentModalSignInTemplatePropsInterface): JSX.Element => (
-  <div className={styles.container}>
+  <section className={styles.container}>
     <p className={styles.title}>{t('agent-modal/sign-in-title')}</p>
 
     <ul className={styles.list}>
@@ -47,5 +47,5 @@ export const EmailAgentModalSignInTemplate = ({
     <button className={styles.notNowButton} onClick={closeModal}>
       {t('not-now')}
     </button>
-  </div>
+  </section>
 );

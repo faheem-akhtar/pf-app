@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MortgageCampaignComponent when category ids are sale should render without throwing any errors 1`] = `
+<div>
+  <section
+    class="container"
+  >
+    <p>
+      agent-modal/mortgage-campaign-title
+    </p>
+    <a
+      class="button primary regular fullWidth button"
+      href="https://www.mortgagefinder.ae/r?lang=en&propertyvalue=100000&reference=123&propertyId=198023&utm_source=propertyfinder-mobile&utm_medium=popup&utm_campaign=commercial-finance&utm_content=get-pre-approved&ud=eyJmdWxsbmFtZSI6IkZpcnN0TmFtZSBMYXN0TmFtZSIsInBob25lX251bWJlciI6Iis5NzE1NTU1NTU1NSIsImVtYWlsX2FkZHJlc3MiOiJ0ZXN0QHByb3BlcnR5ZmluZGVyLmFlIn0%3D"
+      target="_blank"
+    >
+      agent-modal/mortgage-campaign-cta-label
+      <svg
+        class="icon icon--right"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M10.4121 4.70711C10.0216 4.31658 9.38844 4.3166 8.99792 4.70713C8.60906 5.09599 8.60714 5.72588 8.99365 6.11708L14.8275 12.0218L8.99716 17.884C8.60908 18.2742 8.60994 18.9049 8.99908 19.294C9.38897 19.6839 10.0211 19.6839 10.411 19.294L16.9979 12.7071C17.3885 12.3166 17.3885 11.6834 16.9979 11.2929L10.4121 4.70711Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </a>
+  </section>
+</div>
+`;

@@ -3,6 +3,7 @@ import { contactOptionsEnabledStub } from 'stubs/contact-options/enabled.stub';
 import { propertySerpObfuscatedFieldBathroomValue } from 'components/property/serp/obfuscated/field/bathroom-value';
 import { propertySerpObfuscatedFieldBedroomValue } from 'components/property/serp/obfuscated/field/bedroom-value';
 import { propertySerpObfuscatedFieldContactOptionsList } from 'components/property/serp/obfuscated/field/contact-options-list';
+import { propertySerpObfuscatedFieldDefaultPrice } from 'components/property/serp/obfuscated/field/default-price';
 import { propertySerpObfuscatedFieldExclusive } from 'components/property/serp/obfuscated/field/exclusive';
 import { propertySerpObfuscatedFieldId } from 'components/property/serp/obfuscated/field/id';
 import { propertySerpObfuscatedFieldImagesCount } from 'components/property/serp/obfuscated/field/images-count';
@@ -34,4 +35,5 @@ export const propertyStub = (): PropertySerpObfuscatedType =>
     [propertySerpObfuscatedFieldPriceText]: '555,555 AED',
     [propertySerpObfuscatedFieldImagesCount]: 3,
     [propertySerpObfuscatedFieldId]: '198023',
+    [propertySerpObfuscatedFieldDefaultPrice]: 100000,
   } as PropertySerpObfuscatedType);
