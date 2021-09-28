@@ -27,7 +27,7 @@ const fetchTranslations = async (url, filename) => {
       resolve(downloadedFilePath);
     });
     response.body.on('error', (err) => {
-      console.error('Downloading bundle has failed. Reason: ', err);
+      console.error(err, 'Downloading bundle has failed');
       reject(err);
     });
   });
@@ -60,7 +60,7 @@ const getBundleUrlForCountrySpecificTranslations = async (countryCode) => {
     console.info(`Lokalise bundle url for ${countryCode} is ready to download`);
     return bundle_url;
   } catch (err) {
-    console.error(`Lokalise bundle url for ${countryCode} is not ready. Reason: `, err);
+    console.error(err, `Lokalise bundle url for ${countryCode} is not ready. Reason: `);
     if (err.code === 406) {
       // it means country/${coode}/%LANG_ISO%.json is not exist
       return null;

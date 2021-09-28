@@ -103,7 +103,7 @@ export class JwtTokenStore {
       }
 
       // eslint-disable-next-line no-console
-      console.error('Failed to refresh auth token', result.error);
+      console.error(result.error, 'Failed to refresh auth token');
       return null;
     });
 

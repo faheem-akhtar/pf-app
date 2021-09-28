@@ -24,7 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     } else {
       res.status(500);
       // eslint-disable-next-line no-console
-      console.error('contacted property api failed', response.error);
+      console.error(response.error, 'contacted property api failed');
       res.end();
     }
   });

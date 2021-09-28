@@ -29,7 +29,6 @@ describe('pages/api/property-search/count', () => {
     expect(resMock.status).toHaveBeenCalledTimes(1);
     expect(resMock.status).toHaveBeenCalledWith(500);
     expect(consoleMock.error).toHaveBeenCalledWith(
-      'property search count failed',
       expect.objectContaining({
         body: 'response.text',
         payload: {
@@ -43,7 +42,8 @@ describe('pages/api/property-search/count', () => {
           method: 'GET',
         },
         status: 200,
-      })
+      }),
+      'property search count failed'
     );
   });
 });

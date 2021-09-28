@@ -32,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
 
     if (!emailAgentDataResponse.ok) {
       // eslint-disable-next-line no-console
-      console.error('Property email agent failed, emailAgentDataResponse', emailAgentDataResponse.error);
+      console.error(emailAgentDataResponse.error, 'Property email agent failed, emailAgentDataResponse');
       res.status(500).end();
       return;
     }
@@ -60,7 +60,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     results.forEach((result) => {
       if (!result.ok) {
         // eslint-disable-next-line no-console
-        console.error('Property email agent failed', result.error);
+        console.error(result.error, 'Property email agent failed');
       }
     });
   }

@@ -29,9 +29,19 @@ The application initially reads the country-specific key, if it's not defined it
 
 Styling internalization is being handled by [postcss-rtl](https://www.npmjs.com/package/postcss-rtl).
 
-#### Start project
+### Logging
 
-## Routing
+Console functions are customized separately for datadog implementations for both client and server side.
+They still have native functionality, besides that they feed the datadog with the given inputs and should be called as follows:
+
+```
+    // First parameter may be an object (stack) or string, second parameter is always optional
+    console.error(error, 'message');
+    // or
+    console.log('message');
+```
+
+### Routing
 
 The page to be run is decided by the ingress defined in `chars/pf-web-app/values.yaml`. The defined variables are used in `ingress.yaml` to configure resolving the requested URL.
 
@@ -43,7 +53,7 @@ URL is resolved in in sequence from left to right.
 
 Healtcheck path: /pf-web-app/ping
 
-## Testing
+### Testing
 
 The app is tested with [jest](https://jestjs.io/) and [react-testing-library](https://testing-library.com/docs/react-testing-library).
 
