@@ -52,6 +52,7 @@ export class BrowserLoggerStore {
     datadogLogs.init({
       env: environmentGetDatadog(configCommon.countryCode),
       clientToken: this.clientKey,
+      service: 'pf-web-app',
       forwardErrorsToLogs: true,
       sampleRate: 100,
     });
@@ -69,7 +70,7 @@ export class BrowserLoggerStore {
     if (this.isLoggerCallable) {
       datadogLogs.logger[type](message, messageContext);
     }
-    BrowserLoggerStore.methods[type](message, messageContext);
+    BrowserLoggerStore.methods[type](message, messageContext || '');
   };
 
   /**

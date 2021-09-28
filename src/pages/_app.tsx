@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { appRootElementId } from 'src/constants/app/root-element-id';
 
 import { UserContextProvider } from 'context/user/context-provider';
+import { BrowserLoggerService } from 'services/browser-logger/service';
 import { LocaleEnum } from 'services/locale/enum';
 import { LocaleService } from 'services/locale/service';
 
@@ -18,6 +19,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const { locale } = useRouter();
 
   useEffect(() => {
+    BrowserLoggerService().initialize();
     // Init locale service
     LocaleService.setLocale(locale as LocaleEnum);
     document.documentElement.dir = locale === LocaleEnum.ar ? 'rtl' : 'ltr';
