@@ -35,7 +35,7 @@ describe('PropertySearchCountAndSortSectionComponent', () => {
     userEvent.click(screen.getByText('Beds (most)'));
 
     expect(routerPushSpy).toHaveBeenCalledTimes(1);
-    expect(routerPushSpy).toHaveBeenCalledWith('https://propertyfinder.ae/en/search?c=2&rp=y&ob=bd');
+    expect(routerPushSpy).toHaveBeenCalledWith('/search?c=2&rp=y&ob=bd');
   });
 
   it('should render ... when loading', () => {

@@ -50,8 +50,8 @@ jest.mock('next-i18next/serverSideTranslations', () => ({
 const router = {
   events: { on: jest.fn(), off: jest.fn() },
   locale: LanguageCodeEnum.en,
-  pathname: 'https://propertyfinder.ae/en/search',
-  asPath: 'https://propertyfinder.ae/en/search?c=4',
+  pathname: '/search',
+  asPath: '/search?c=4',
   push: jest.fn(),
 } as unknown as NextRouter;
 

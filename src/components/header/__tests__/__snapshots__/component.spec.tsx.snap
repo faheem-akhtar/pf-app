@@ -39,8 +39,9 @@ exports[`HeaderComponent should render without throwing any errors when no user 
             class="container"
           >
             <a
+              aria-label="language-selector"
               class="link linkAr"
-              href="https://propertyfinder.ae/en/search?c=4"
+              href="/ar/search?c=4"
             >
               menu.language.ar
             </a>

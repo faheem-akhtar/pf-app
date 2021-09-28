@@ -1,4 +1,3 @@
-import { LinkComponent } from 'components/link/component';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { domClassMerge } from 'helpers/dom/class-merge';
 
@@ -11,8 +10,12 @@ export const LanguageSelectorTemplate = ({
   label,
 }: LanguageSelectorTemplatePropsInterface): JSX.Element => (
   <div className={styles.container}>
-    <LinkComponent href={path} locale={targetLocale}>
-      <a className={domClassMerge(styles.link, { [styles.linkAr]: targetLocale === LanguageCodeEnum.ar })}>{label}</a>
-    </LinkComponent>
+    <a
+      aria-label='language-selector'
+      href={`/${targetLocale}${path}`}
+      className={domClassMerge(styles.link, { [styles.linkAr]: targetLocale === LanguageCodeEnum.ar })}
+    >
+      {label}
+    </a>
   </div>
 );

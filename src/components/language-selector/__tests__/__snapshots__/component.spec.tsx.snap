@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LanguageSelectorComponent should render without throwing any errors 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <a
+      aria-label="language-selector"
+      class="link linkAr"
+      href="/ar/search?c=4"
+    >
+      menu.language.ar
+    </a>
+  </div>
+</div>
+`;
