@@ -1,0 +1,231 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FiltersSectionComponent should render without throwing any errors 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <div
+      class="root"
+      data-testid="multi-selection-autocomplete-template"
+    >
+      <div
+        class="container container_not_active_multiple_elements"
+      >
+        <label
+          class="chip container chip_selected"
+        >
+          <span
+            class="label"
+          >
+            Abu Dhabi
+          </span>
+          <span
+            class="chipSuffix"
+          >
+            <button
+              class="cross_button"
+            >
+              <svg
+                class="cross_icon"
+                viewBox="3 3 10 10"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M4.34408 3.17475C4.01717 2.92057 3.54448 2.94367 3.24408 3.24408C2.91864 3.56951 2.91864 4.09715 3.24408 4.42259L6.82149 8L3.24408 11.5774C2.91864 11.9028 2.91864 12.4305 3.24408 12.7559C3.54448 13.0563 4.01717 13.0794 4.34408 12.8252L4.42259 12.7559L8 9.17851L11.5774 12.7559L11.6559 12.8252C11.9828 13.0794 12.4555 13.0563 12.7559 12.7559C13.0814 12.4305 13.0814 11.9028 12.7559 11.5774L9.17851 8L12.7559 4.42259C13.0814 4.09715 13.0814 3.56951 12.7559 3.24408C12.4555 2.94367 11.9828 2.92057 11.6559 3.17475L11.5774 3.24408L8 6.82149L4.42259 3.24408L4.34408 3.17475Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </span>
+        </label>
+        <label
+          class="chip container chip_selected"
+        >
+          <span
+            class="label"
+          >
+            1 more
+          </span>
+          <span
+            class="chipSuffix"
+          >
+            <button
+              class="cross_button"
+            >
+              <svg
+                class="cross_icon"
+                viewBox="3 3 10 10"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M4.34408 3.17475C4.01717 2.92057 3.54448 2.94367 3.24408 3.24408C2.91864 3.56951 2.91864 4.09715 3.24408 4.42259L6.82149 8L3.24408 11.5774C2.91864 11.9028 2.91864 12.4305 3.24408 12.7559C3.54448 13.0563 4.01717 13.0794 4.34408 12.8252L4.42259 12.7559L8 9.17851L11.5774 12.7559L11.6559 12.8252C11.9828 13.0794 12.4555 13.0563 12.7559 12.7559C13.0814 12.4305 13.0814 11.9028 12.7559 11.5774L9.17851 8L12.7559 4.42259C13.0814 4.09715 13.0814 3.56951 12.7559 3.24408C12.4555 2.94367 11.9828 2.92057 11.6559 3.17475L11.5774 3.24408L8 6.82149L4.42259 3.24408L4.34408 3.17475Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </span>
+        </label>
+        <div
+          class="add_label"
+        >
+          multi-location-selector/add
+        </div>
+      </div>
+      <input
+        class="hidden_input"
+      />
+    </div>
+    <div
+      class="buttons_row"
+    >
+      <div
+        class="tooltipWrapper"
+      >
+        <button
+          class="button tertiary small filter_button"
+        >
+          <svg
+            class="icon icon--left"
+            height="24"
+            viewBox="-5 -7 24 24"
+            width="24"
+          >
+            <g
+              id="svg-filter"
+              stroke="none"
+            >
+              <path
+                d="M6.565 4c-.083.326-.085.67 0 1H.5a.5.5 0 0 1 0-1h6.065zm2.01 4l.656 1H.5a.5.5 0 0 1 0-1h8.075zM.5 0h11.997a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1zm11.1 9.8l-3.498-5a.5.5 0 0 1 .4-.8H15.5a.5.5 0 0 1 .4.8l-3.5 5a.5.5 0 0 1-.8 0z"
+              />
+            </g>
+          </svg>
+          filters
+           
+          <span />
+        </button>
+      </div>
+      <div
+        class="tooltipWrapper"
+      >
+        <button
+          class="button tertiary small"
+        >
+          <svg
+            class="icon icon--left icon__inactive"
+            fill="none"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M11.5516 3.03827C11.735 2.66665 12.265 2.66665 12.4484 3.03827L14.5518 7.30025C14.7703 7.74296 15.1926 8.04982 15.6812 8.12081L20.3846 8.80425C20.7947 8.86384 20.9584 9.36783 20.6617 9.65709L17.2583 12.9746C16.9047 13.3192 16.7434 13.8157 16.8269 14.3023L17.6303 18.9866C17.7004 19.3951 17.2717 19.7066 16.9048 19.5137L12.698 17.3021C12.261 17.0723 11.739 17.0723 11.302 17.3021L7.09516 19.5137C6.72835 19.7066 6.29963 19.3951 6.36969 18.9866L7.17312 14.3023C7.25658 13.8157 7.09525 13.3192 6.74173 12.9746L3.33833 9.6571C3.04158 9.36783 3.20533 8.86384 3.61544 8.80425L8.31881 8.12081C8.80738 8.04982 9.22973 7.74296 9.44822 7.30025L11.5516 3.03827Z"
+              stroke="currentColor"
+            />
+          </svg>
+          save-search/cta-label
+        </button>
+        <div
+          class="container tooltip container--bottom container--visible"
+        >
+          <div
+            class="content"
+          >
+            <div
+              class="arrow tooltipArrow"
+            />
+            <div
+              class="inner"
+              role="tooltip"
+            >
+              <span>
+                <p
+                  class="tooltipTitle"
+                >
+                  on-boarding/save-search-title
+                </p>
+                on-boarding/save-search-description
+              </span>
+            </div>
+            <div
+              class="action"
+            >
+              <svg
+                class="icon"
+                viewBox="3 3 10 10"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M4.34408 3.17475C4.01717 2.92057 3.54448 2.94367 3.24408 3.24408C2.91864 3.56951 2.91864 4.09715 3.24408 4.42259L6.82149 8L3.24408 11.5774C2.91864 11.9028 2.91864 12.4305 3.24408 12.7559C3.54448 13.0563 4.01717 13.0794 4.34408 12.8252L4.42259 12.7559L8 9.17851L11.5774 12.7559L11.6559 12.8252C11.9828 13.0794 12.4555 13.0563 12.7559 12.7559C13.0814 12.4305 13.0814 11.9028 12.7559 11.5774L9.17851 8L12.7559 4.42259C13.0814 4.09715 13.0814 3.56951 12.7559 3.24408C12.4555 2.94367 11.9828 2.92057 11.6559 3.17475L11.5774 3.24408L8 6.82149L4.42259 3.24408L4.34408 3.17475Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="appear_on_scroll appear_on_scroll__visible"
+        data-testid="AppearOnScrollTemplate"
+      >
+        <div
+          class="buttons_row buttons_row__appear_on_scroll"
+        >
+          <div
+            class="tooltipWrapper"
+          >
+            <button
+              class="button tertiary small filter_button"
+            >
+              <svg
+                class="icon icon--left"
+                height="24"
+                viewBox="-5 -7 24 24"
+                width="24"
+              >
+                <g
+                  id="svg-filter"
+                  stroke="none"
+                >
+                  <path
+                    d="M6.565 4c-.083.326-.085.67 0 1H.5a.5.5 0 0 1 0-1h6.065zm2.01 4l.656 1H.5a.5.5 0 0 1 0-1h8.075zM.5 0h11.997a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1zm11.1 9.8l-3.498-5a.5.5 0 0 1 .4-.8H15.5a.5.5 0 0 1 .4.8l-3.5 5a.5.5 0 0 1-.8 0z"
+                  />
+                </g>
+              </svg>
+              filters
+               
+              <span />
+            </button>
+          </div>
+          <div
+            class="tooltipWrapper"
+          >
+            <button
+              class="button tertiary small"
+            >
+              <svg
+                class="icon icon--left icon__inactive"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+              >
+                <path
+                  d="M11.5516 3.03827C11.735 2.66665 12.265 2.66665 12.4484 3.03827L14.5518 7.30025C14.7703 7.74296 15.1926 8.04982 15.6812 8.12081L20.3846 8.80425C20.7947 8.86384 20.9584 9.36783 20.6617 9.65709L17.2583 12.9746C16.9047 13.3192 16.7434 13.8157 16.8269 14.3023L17.6303 18.9866C17.7004 19.3951 17.2717 19.7066 16.9048 19.5137L12.698 17.3021C12.261 17.0723 11.739 17.0723 11.302 17.3021L7.09516 19.5137C6.72835 19.7066 6.29963 19.3951 6.36969 18.9866L7.17312 14.3023C7.25658 13.8157 7.09525 13.3192 6.74173 12.9746L3.33833 9.6571C3.04158 9.36783 3.20533 8.86384 3.61544 8.80425L8.31881 8.12081C8.80738 8.04982 9.22973 7.74296 9.44822 7.30025L11.5516 3.03827Z"
+                  stroke="currentColor"
+                />
+              </svg>
+              save-search/cta-label
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

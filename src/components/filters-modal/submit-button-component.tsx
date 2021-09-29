@@ -9,7 +9,6 @@ import { ButtonTemplate } from 'library/button/template';
 import styles from './filters-modal-component.module.scss';
 import { FiltersModalSubmitButtonPropsInterface } from './submit-button-props.interface';
 
-// TODO-FE[CX-423] add tests
 export const FiltersModalSubmitButtonComponent = ({
   onSubmit,
   filtersValue,
@@ -50,10 +49,10 @@ export const FiltersModalSubmitButtonComponent = ({
       {result.ok && result.data ? (
         buttonText
       ) : (
-        <div className={styles.notFound}>
+        <>
           <strong>{t('filters/no-properties-found')}</strong>
           {t('filters/clear-or-change-filters')}
-        </div>
+        </>
       )}
     </ButtonTemplate>
   );

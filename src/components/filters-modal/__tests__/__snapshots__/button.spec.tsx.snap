@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FiltersModalButtonComponent should render without throwing any errors 1`] = `
+<div>
+  <div
+    class="tooltipWrapper"
+  >
+    <button
+      class="button tertiary small filter_button"
+    >
+      <svg
+        class="icon icon--left"
+        height="24"
+        viewBox="-5 -7 24 24"
+        width="24"
+      >
+        <g
+          id="svg-filter"
+          stroke="none"
+        >
+          <path
+            d="M6.565 4c-.083.326-.085.67 0 1H.5a.5.5 0 0 1 0-1h6.065zm2.01 4l.656 1H.5a.5.5 0 0 1 0-1h8.075zM.5 0h11.997a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1zm11.1 9.8l-3.498-5a.5.5 0 0 1 .4-.8H15.5a.5.5 0 0 1 .4.8l-3.5 5a.5.5 0 0 1-.8 0z"
+          />
+        </g>
+      </svg>
+      filters
+       
+      <span />
+    </button>
+  </div>
+</div>
+`;

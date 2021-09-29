@@ -57,17 +57,14 @@
   width: 18rem;
 }
 
-.notFound {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .notFoundButton {
+  align-items: center;
   background-color: transparent;
   color: var(--color-global-black);
+  display: flex;
+  flex-direction: column;
   font-weight: var(--font-weight-04);
+  justify-content: center;
   padding: 0;
   pointer-events: none;
 }

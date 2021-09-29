@@ -6,6 +6,7 @@ import { ModalComponent } from 'components/modal/component';
 import { onBoardingEnabledFilterTooltip } from 'config/on-boarding/enabled-filter-tooltip';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { filtersCountGetActiveFields } from 'helpers/filters/count/get-active-fields';
+import { functionNoop } from 'helpers/function/noop';
 import { stringMakeBoldWord } from 'helpers/string/make-bold-word';
 import { useTranslation } from 'helpers/translation/hook';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
@@ -18,10 +19,9 @@ import { OnBoardingTypeEnum } from 'library/on-boarding/type.enum';
 import { FiltersModalContentComponent } from './content-component';
 import styles from './filters-modal-component.module.scss';
 
-// TODO-FE[CX-423] add tests
 export const FiltersModalButtonComponent = ({ visibleTooltip }: { visibleTooltip: boolean }): JSX.Element => {
-  const openFiltersRef = useRef<() => void>(() => null);
-  const closeFiltersRef = useRef<() => void>(() => null);
+  const openFiltersRef = useRef<() => void>(functionNoop);
+  const closeFiltersRef = useRef<() => void>(functionNoop);
   const { t } = useTranslation();
   const filtersCtx = useContext(FiltersContext);
   const nonDefaultFiltersCount = filtersCountGetActiveFields(filtersCtx);

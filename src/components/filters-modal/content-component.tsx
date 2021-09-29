@@ -40,7 +40,7 @@ export const FiltersModalContentComponent = ({ close }: { close: () => void }): 
       <div className={styles.header}>
         <div onClick={close} className={styles.headerLeft}>
           <IconThickCloseTemplate class={styles.closeIcon} />
-          <span className={styles.title}>{t('filters')}</span>
+          <h1 className={styles.title}>{t('filters')}</h1>
         </div>
         <ButtonTemplate
           className={filtersValueIsDefault ? styles.hidden : ''}
