@@ -14,7 +14,7 @@ const DUMMY_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01
 export const objectObfuscate = (rawData: object, randomSeed: number = Math.random()): Record<string, AnyValueType> => {
   let globalCounter = Math.floor(randomSeed * DUMMY_CHARACTERS.length);
 
-  return objectDeepMapKeys(rawData, (key: string): string => {
+  return objectDeepMapKeys(rawData as Record<string, AnyValueType>, (key: string): string => {
     let keyWithNoise = '';
     const keyPosition = 1 + Math.floor(randomSeed * 3);
 

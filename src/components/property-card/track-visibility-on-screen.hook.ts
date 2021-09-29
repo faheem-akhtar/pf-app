@@ -29,8 +29,7 @@ export const usePropertyCardTrackVisibilityOnScreen = (
         statsDataPromise.then(({ ok }) => {
           if (ok) {
             StatsService().propertyImpression(parseInt(propertyId));
-          }
-          {
+          } else {
             // eslint-disable-next-line no-console
             console.error('failed to send listing impression because stats data was not loaded');
           }
