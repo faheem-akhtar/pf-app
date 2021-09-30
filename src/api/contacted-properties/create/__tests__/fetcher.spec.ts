@@ -1,18 +1,15 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { jwtTokenStoreStub } from 'stubs/jwt/token/store.stub';
 
 import { ContactedPropertyTypeEnum } from 'enums/contacted-property/type.enum';
-import { JwtTokenStore } from 'services/jwt/token/store';
 
 import { apiContactedPropertiesCreateFetcher } from '../fetcher';
 
-jest.mock('services/jwt/token/store');
+jest.mock('services/jwt/token/store', () => ({
+  JwtTokenStore: jest.fn().mockImplementation(() => jwtTokenStoreStub()),
+}));
 
 describe('apiContactedPropertiesCreateFetcher', () => {
-  beforeEach(() => {
-    global.origin = 'test.origin';
-    ((JwtTokenStore as jest.Mock).mock.instances[0].getToken as jest.Mock).mockReturnValue('my token');
-  });
-
   it('should send a post request', async () => {
     const factoryMock = mockWindowFetch();
 
@@ -30,7 +27,7 @@ describe('apiContactedPropertiesCreateFetcher', () => {
         headers: {
           locale: 'en',
           'content-type': 'application/vnd.api+json',
-          'x-pf-jwt': 'Bearer my token',
+          'x-pf-jwt': 'Bearer mocked token',
         },
         body: JSON.stringify({
           data: {

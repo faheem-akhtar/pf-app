@@ -46,8 +46,12 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
           <p className={styles['save-search-form__content-desc']}>{fields.formatted_filters}</p>
         )}
         <div className={styles['save-search-form__content-row']}>
-          <label className={styles['save-search-form__label']}>{t('save_search/name-label')}</label>
+          <label htmlFor='save-search-name' className={styles['save-search-form__label']}>
+            {t('save_search/name-label')}
+          </label>
           <InputBaseComponent
+            id='save-search-name'
+            name='name'
             floatPlaceholder={false}
             placeholder={t('save_search/name-placeholder')}
             value={name.value}
@@ -64,6 +68,8 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
             {t('save_search/frequency-label')}
           </label>
           <SelectFieldTemplate
+            id='frequency'
+            name='frequency'
             value={selectedFrequency?.value}
             dropdownIcon
             options={saveSearchFrequencies.map((item) => ({ ...item, label: t(item.label) }))}
@@ -72,7 +78,6 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
               setFrequency(value as SaveSearchFrequencyEnum);
             }}
           />
-          {frequency.error && <p className={styles['save-search-form__error']}>{frequency.error}</p>}
           <p className={styles['save-search-form__info']}>{t('save_search/frequency-help_text')}</p>
         </div>
       </div>

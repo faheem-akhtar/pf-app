@@ -1,0 +1,316 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SaveSearchModalContentComponent should render the component 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div
+      id="snackbar-root"
+    />
+    <div
+      id="root_element"
+    />
+    <div>
+      <div
+        class="content"
+      >
+        <header
+          class="save-search-form__header"
+        >
+          <h1
+            class="save-search-form__header-title"
+          >
+            save_search/form-add-title
+          </h1>
+        </header>
+        <div
+          class="save-search-form__content"
+        >
+          <div
+            class="save-search-form__content-row"
+          >
+            <label
+              class="save-search-form__label"
+              for="save-search-name"
+            >
+              save_search/name-label
+            </label>
+            <div
+              class="container"
+            >
+              <div
+                class="content"
+              >
+                <input
+                  aria-invalid="false"
+                  aria-label="name"
+                  class="input"
+                  id="save-search-name"
+                  name="name"
+                  placeholder="save_search/name-placeholder"
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            
+          </div>
+          <div
+            class="save-search-form__content-row"
+          >
+            <label
+              class="save-search-form__label"
+              for="frequency"
+            >
+              save_search/frequency-label
+            </label>
+            <div
+              class="container"
+            >
+              <select
+                class="field fieldWithIcon"
+                id="frequency"
+                name="frequency"
+              >
+                <option
+                  value="0"
+                >
+                  off
+                </option>
+                <option
+                  value="1"
+                >
+                  daily
+                </option>
+                <option
+                  value="2"
+                >
+                  weekly
+                </option>
+              </select>
+              <svg
+                class="icon"
+                viewBox="4.5 8 16 8"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M4.64645 8.14645C4.47288 8.32001 4.4536 8.58944 4.58859 8.78431L4.64645 8.85355L11.6464 15.8536C11.82 16.0271 12.0894 16.0464 12.2843 15.9114L12.3536 15.8536L19.3536 8.85355C19.5488 8.65829 19.5488 8.34171 19.3536 8.14645C19.18 7.97288 18.9106 7.9536 18.7157 8.08859L18.6464 8.14645L12 14.793L5.35355 8.14645C5.17999 7.97288 4.91056 7.9536 4.71569 8.08859L4.64645 8.14645Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <p
+              class="save-search-form__info"
+            >
+              save_search/frequency-help_text
+            </p>
+          </div>
+        </div>
+        <footer
+          class="save-search-form__footer"
+        >
+          <button
+            class="button primary regular save-search-form__button"
+          >
+            save
+          </button>
+        </footer>
+        <div
+          class="close"
+        >
+          <svg
+            class="closeIcon"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M5.6129 4.2097L5.70711 4.29289L12 10.585L18.2929 4.29289C18.6834 3.90237 19.3166 3.90237 19.7071 4.29289C20.0676 4.65338 20.0953 5.22061 19.7903 5.6129L19.7071 5.70711L13.414 12L19.7071 18.2929C20.0976 18.6834 20.0976 19.3166 19.7071 19.7071C19.3466 20.0676 18.7794 20.0953 18.3871 19.7903L18.2929 19.7071L12 13.414L5.70711 19.7071C5.31658 20.0976 4.68342 20.0976 4.29289 19.7071C3.93241 19.3466 3.90468 18.7794 4.2097 18.3871L4.29289 18.2929L10.585 12L4.29289 5.70711C3.90237 5.31658 3.90237 4.68342 4.29289 4.29289C4.62334 3.96245 5.12751 3.91161 5.5114 4.14038L5.6129 4.2097Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="content"
+    >
+      <header
+        class="save-search-form__header"
+      >
+        <h1
+          class="save-search-form__header-title"
+        >
+          save_search/form-add-title
+        </h1>
+      </header>
+      <div
+        class="save-search-form__content"
+      >
+        <div
+          class="save-search-form__content-row"
+        >
+          <label
+            class="save-search-form__label"
+            for="save-search-name"
+          >
+            save_search/name-label
+          </label>
+          <div
+            class="container"
+          >
+            <div
+              class="content"
+            >
+              <input
+                aria-invalid="false"
+                aria-label="name"
+                class="input"
+                id="save-search-name"
+                name="name"
+                placeholder="save_search/name-placeholder"
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          
+        </div>
+        <div
+          class="save-search-form__content-row"
+        >
+          <label
+            class="save-search-form__label"
+            for="frequency"
+          >
+            save_search/frequency-label
+          </label>
+          <div
+            class="container"
+          >
+            <select
+              class="field fieldWithIcon"
+              id="frequency"
+              name="frequency"
+            >
+              <option
+                value="0"
+              >
+                off
+              </option>
+              <option
+                value="1"
+              >
+                daily
+              </option>
+              <option
+                value="2"
+              >
+                weekly
+              </option>
+            </select>
+            <svg
+              class="icon"
+              viewBox="4.5 8 16 8"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M4.64645 8.14645C4.47288 8.32001 4.4536 8.58944 4.58859 8.78431L4.64645 8.85355L11.6464 15.8536C11.82 16.0271 12.0894 16.0464 12.2843 15.9114L12.3536 15.8536L19.3536 8.85355C19.5488 8.65829 19.5488 8.34171 19.3536 8.14645C19.18 7.97288 18.9106 7.9536 18.7157 8.08859L18.6464 8.14645L12 14.793L5.35355 8.14645C5.17999 7.97288 4.91056 7.9536 4.71569 8.08859L4.64645 8.14645Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <p
+            class="save-search-form__info"
+          >
+            save_search/frequency-help_text
+          </p>
+        </div>
+      </div>
+      <footer
+        class="save-search-form__footer"
+      >
+        <button
+          class="button primary regular save-search-form__button"
+        >
+          save
+        </button>
+      </footer>
+      <div
+        class="close"
+      >
+        <svg
+          class="closeIcon"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M5.6129 4.2097L5.70711 4.29289L12 10.585L18.2929 4.29289C18.6834 3.90237 19.3166 3.90237 19.7071 4.29289C20.0676 4.65338 20.0953 5.22061 19.7903 5.6129L19.7071 5.70711L13.414 12L19.7071 18.2929C20.0976 18.6834 20.0976 19.3166 19.7071 19.7071C19.3466 20.0676 18.7794 20.0953 18.3871 19.7903L18.2929 19.7071L12 13.414L5.70711 19.7071C5.31658 20.0976 4.68342 20.0976 4.29289 19.7071C3.93241 19.3466 3.90468 18.7794 4.2097 18.3871L4.29289 18.2929L10.585 12L4.29289 5.70711C3.90237 5.31658 3.90237 4.68342 4.29289 4.29289C4.62334 3.96245 5.12751 3.91161 5.5114 4.14038L5.6129 4.2097Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

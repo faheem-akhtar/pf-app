@@ -19,7 +19,7 @@ export const SaveSearchContextProvider: FunctionComponent = ({ children }) => {
   const saveSearchResponseData = saveSearchResponse.ok ? saveSearchResponse.data : [];
   const [searches, setSearches] = useState<SaveSearchLoadResultInterface[]>([]);
   const filtersCtx = useContext(FiltersContext);
-  const filters = saveSearchFiltersMapper(filtersCtx.value);
+  const filters = saveSearchFiltersMapper(filtersCtx?.value || {});
 
   useEffect(() => {
     if (user && saveSearchResponse.ok) {

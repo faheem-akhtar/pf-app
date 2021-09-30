@@ -1,17 +1,13 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
-
-import { JwtTokenStore } from 'services/jwt/token/store';
+import { jwtTokenStoreStub } from 'stubs/jwt/token/store.stub';
 
 import { apiSavedPropertiesCreateFetcher } from '../create-fetcher';
 
-jest.mock('services/jwt/token/store');
+jest.mock('services/jwt/token/store', () => ({
+  JwtTokenStore: jest.fn().mockImplementation(() => jwtTokenStoreStub()),
+}));
 
 describe('apiSavedPropertiesCreateFetcher', () => {
-  beforeEach(() => {
-    global.origin = 'test.origin';
-    ((JwtTokenStore as jest.Mock).mock.instances[0].getToken as jest.Mock).mockReturnValue('my token');
-  });
-
   it('should send a post request', async () => {
     const factoryMock = mockWindowFetch();
 
@@ -22,13 +18,13 @@ describe('apiSavedPropertiesCreateFetcher', () => {
 
     expect(factoryMock).toHaveBeenCalledTimes(1);
     expect(factoryMock).toHaveBeenCalledWith(
-      'test.origin/en/api/pwa/saved-property',
+      'default-origin/en/api/pwa/saved-property',
       expect.objectContaining({
         method: 'POST',
         headers: {
           locale: 'en',
           'content-type': 'application/vnd.api+json',
-          'x-pf-jwt': 'Bearer my token',
+          'x-pf-jwt': 'Bearer mocked token',
         },
         body: JSON.stringify({
           data: {

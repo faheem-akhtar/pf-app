@@ -15,6 +15,8 @@ export const SelectFieldTemplate = <V extends unknown>({
   options,
   error = false,
   errorText,
+  id,
+  name,
 }: SelectFieldTemplatePropsInterface<V>): JSX.Element => {
   const isEmpty = !value && value !== 0;
   const selectedOption = options.find((option) => option.value === value) as SelectFieldOptionInterface<V>;
@@ -23,6 +25,8 @@ export const SelectFieldTemplate = <V extends unknown>({
     <div className={domClassMerge(styles.container, className)}>
       {label && !isEmpty && <span className={styles.label}>{label}</span>}
       <select
+        id={id}
+        name={name}
         disabled={disabled}
         className={domClassMerge(styles.field, {
           [styles.fieldEmpty]: isEmpty,

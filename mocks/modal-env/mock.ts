@@ -1,12 +1,19 @@
 import { appRootElementId } from 'constants/app/root-element-id';
 
 export const mockModalEnv = (): { modalRoot: HTMLDivElement; appRoot: HTMLDivElement } => {
-  const modalRoot = document.createElement('div');
+  const modalRoot = (document.getElementById('modal-root') || document.createElement('div')) as HTMLDivElement;
   modalRoot.id = 'modal-root';
-  document.body.appendChild(modalRoot);
-  const appRoot = document.createElement('div');
+
+  const appRoot = (document.getElementById(appRootElementId) || document.createElement('div')) as HTMLDivElement;
   appRoot.id = appRootElementId;
-  document.body.appendChild(appRoot);
+
+  if (!document.getElementById('modal-root')) {
+    document.body.appendChild(modalRoot);
+  }
+
+  if (!document.getElementById(appRootElementId)) {
+    document.body.appendChild(appRoot);
+  }
 
   return {
     modalRoot,

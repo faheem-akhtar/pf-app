@@ -1,6 +1,16 @@
 import { SelectFieldOptionInterface } from './option.interface';
 export interface SelectFieldTemplatePropsInterface<V> {
   /**
+   * The identifier
+   */
+  id?: string;
+
+  /**
+   * The name attribute
+   */
+  name?: string;
+
+  /**
    * The selected value
    */
   value: V;

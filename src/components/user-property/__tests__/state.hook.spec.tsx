@@ -4,9 +4,10 @@
 import { fireEvent, render } from '@testing-library/react';
 import { FunctionComponent, ReactElement } from 'react';
 
+import { userModelStub } from 'stubs/user/model.stub';
+
 import { ApiSwrResultType } from 'api/swr-result-type';
 import * as UserContextModule from 'context/user/context';
-import { UserModelInterface } from 'services/user/model.interface';
 import { WindowService } from 'services/window/service';
 
 import { useUserPropertyState } from '../state.hook';
@@ -65,7 +66,7 @@ describe('useUserPropertyState', () => {
     ];
 
     const { getByTestId } = render(
-      <UserContextModule.UserContext.Provider value={{ userId: '1' } as UserModelInterface}>
+      <UserContextModule.UserContext.Provider value={userModelStub()}>
         <MockComponent propertyId={1} apiResponse={{ ok: true, data: mockData, headers: {} as Headers }} />
       </UserContextModule.UserContext.Provider>
     );
@@ -90,7 +91,7 @@ describe('useUserPropertyState', () => {
 
   it('should not duplicate the property', () => {
     const { getByTestId } = render(
-      <UserContextModule.UserContext.Provider value={{ userId: '1' } as UserModelInterface}>
+      <UserContextModule.UserContext.Provider value={userModelStub()}>
         <MockComponent propertyId={1} apiResponse={{ ok: true, data: [{ propertyId: 1 }], headers: {} as Headers }} />
       </UserContextModule.UserContext.Provider>
     );
@@ -103,7 +104,7 @@ describe('useUserPropertyState', () => {
 
   it('should update the server if user is logged in', () => {
     const { getByTestId } = render(
-      <UserContextModule.UserContext.Provider value={{ userId: '1' } as UserModelInterface}>
+      <UserContextModule.UserContext.Provider value={userModelStub()}>
         <MockComponent propertyId={1} apiResponse={{ ok: null }} />
       </UserContextModule.UserContext.Provider>
     );
@@ -137,7 +138,7 @@ describe('useUserPropertyState', () => {
 
   it('should remove from the server if user is logged in', () => {
     const { getByTestId } = render(
-      <UserContextModule.UserContext.Provider value={{ userId: '1' } as UserModelInterface}>
+      <UserContextModule.UserContext.Provider value={userModelStub()}>
         <MockComponent propertyId={1} apiResponse={{ ok: true, data: [{ propertyId: 1 }], headers: {} as Headers }} />
       </UserContextModule.UserContext.Provider>
     );
@@ -182,7 +183,7 @@ describe('useUserPropertyState', () => {
     };
 
     const { getByTestId } = render(
-      <UserContextModule.UserContext.Provider value={{ userId: '1' } as UserModelInterface}>
+      <UserContextModule.UserContext.Provider value={userModelStub()}>
         <MockComponent propertyId={1} apiResponse={{ ok: true, data: [{ propertyId: 1 }], headers: {} as Headers }} />
       </UserContextModule.UserContext.Provider>
     );

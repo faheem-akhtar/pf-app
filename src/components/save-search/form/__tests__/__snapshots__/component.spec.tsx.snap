@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SaveSearchFormComponent should render the component 1`] = `
+<div>
+  <header
+    class="save-search-form__header"
+  >
+    <h1
+      class="save-search-form__header-title"
+    >
+      save_search/form-add-title
+    </h1>
+  </header>
+  <div
+    class="save-search-form__content"
+  >
+    <div
+      class="save-search-form__content-row"
+    >
+      <label
+        class="save-search-form__label"
+        for="save-search-name"
+      >
+        save_search/name-label
+      </label>
+      <div
+        class="container"
+      >
+        <div
+          class="content"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="name"
+            class="input"
+            id="save-search-name"
+            name="name"
+            placeholder="save_search/name-placeholder"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      
+    </div>
+    <div
+      class="save-search-form__content-row"
+    >
+      <label
+        class="save-search-form__label"
+        for="frequency"
+      >
+        save_search/frequency-label
+      </label>
+      <div
+        class="container"
+      >
+        <select
+          class="field fieldWithIcon"
+          id="frequency"
+          name="frequency"
+        >
+          <option
+            value="0"
+          >
+            off
+          </option>
+          <option
+            value="1"
+          >
+            daily
+          </option>
+          <option
+            value="2"
+          >
+            weekly
+          </option>
+        </select>
+        <svg
+          class="icon"
+          viewBox="4.5 8 16 8"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M4.64645 8.14645C4.47288 8.32001 4.4536 8.58944 4.58859 8.78431L4.64645 8.85355L11.6464 15.8536C11.82 16.0271 12.0894 16.0464 12.2843 15.9114L12.3536 15.8536L19.3536 8.85355C19.5488 8.65829 19.5488 8.34171 19.3536 8.14645C19.18 7.97288 18.9106 7.9536 18.7157 8.08859L18.6464 8.14645L12 14.793L5.35355 8.14645C5.17999 7.97288 4.91056 7.9536 4.71569 8.08859L4.64645 8.14645Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <p
+        class="save-search-form__info"
+      >
+        save_search/frequency-help_text
+      </p>
+    </div>
+  </div>
+  <footer
+    class="save-search-form__footer"
+  >
+    <button
+      class="button primary regular save-search-form__button"
+    >
+      save
+    </button>
+  </footer>
+</div>
+`;
