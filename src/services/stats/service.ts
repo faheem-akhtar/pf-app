@@ -14,6 +14,7 @@ import { configPlatform } from 'config/platform';
 import { LocaleService } from 'services/locale/service';
 
 import { StatsContexterService } from './contexter.service';
+import { StatsGuardService } from './guard.service';
 
 // Get stats emitter service instance
 let statsService: StatsEmitter;
@@ -27,7 +28,7 @@ export function StatsService(): StatsEmitter {
       StatsDebuggerService()
     );
 
-    StatsDebuggerService().activate(true);
+    StatsGuardService.init();
 
     new Snowplow2StatsObserver(
       new Snowplow2StatsTracker(<Snowplow2WindowInterface>window, StatsDebuggerService(), {
