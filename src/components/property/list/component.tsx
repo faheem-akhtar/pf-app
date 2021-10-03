@@ -5,6 +5,7 @@ import { ModalComponent } from 'components/modal/component';
 import { PropertyCardComponent } from 'components/property-card/component';
 import { SavedPropertyAuthModalComponent } from 'components/saved-property/auth/modal/component';
 import { savedPropertyAuthModalStorageKey } from 'components/saved-property/auth/modal/storage-key';
+import { savedPropertyTracker } from 'components/saved-property/tracker';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
 import { functionNoop } from 'helpers/function/noop';
 import { useServicesDfpAds } from 'services/dfp/ads.hook';
@@ -66,6 +67,7 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
                 if (isSaved && !sessionStorage.getItem(savedPropertyAuthModalStorageKey)) {
                   authModalOpenRef.current();
                   sessionStorage.setItem(savedPropertyAuthModalStorageKey, { propertyId });
+                  savedPropertyTracker.onOpenUserAuthModal();
                 }
               }}
             />
