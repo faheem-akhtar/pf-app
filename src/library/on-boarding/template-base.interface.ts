@@ -16,4 +16,9 @@ export interface OnBoardingTemplateBaseInterface {
    * Additional css class for arrow
    */
   arrowClassName?: string;
+
+  /**
+   * Trigger when tooltip is close
+   */
+  onClose?: () => void;
 }

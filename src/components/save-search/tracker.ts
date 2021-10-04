@@ -1,6 +1,6 @@
 import { AnalyticsGaService } from 'services/analytics/ga.service';
 
-const sendAnalytics = (data: { eventAction: string; eventLabel?: string }): void => {
+const sendAnalytics = (data: { eventCategory?: string; eventAction: string; eventLabel?: string }): void => {
   AnalyticsGaService.send({
     event: 'customEvent',
     eventCategory: 'Saved Search',
@@ -98,6 +98,28 @@ export const saveSearchTracker = {
     sendAnalytics({
       eventAction: 'card:click',
       eventLabel: locationIds.map((id) => `|location:${id}|`).join(''),
+    });
+  },
+
+  /**
+   * Trigger when onboarding tooltip displyed
+   */
+  onTooltipOpen: (): void => {
+    sendAnalytics({
+      eventCategory: 'Onboarding',
+      eventAction: 'Onboarding - Tooltip - Impression',
+      eventLabel: 'Property Serp - Onboarding - Tooltip - Impression - save-search-tooltip',
+    });
+  },
+
+  /**
+   * Trigger when onboarding tooltip closed
+   */
+  onTooltipClose: (): void => {
+    sendAnalytics({
+      eventCategory: 'Onboarding',
+      eventAction: 'Onboarding - Tooltip - Close',
+      eventLabel: 'Property Serp - Onboarding - Tooltip - Close - save-search-tooltip - Auto',
     });
   },
 };

@@ -19,6 +19,8 @@ describe('FiltersModalButtonComponent', () => {
 
   let renderResult: RenderResult;
   beforeEach(() => {
+    document.documentElement.scroll = jest.fn();
+
     mockReactUseSwr('api_user', {
       ok: true,
       data: {

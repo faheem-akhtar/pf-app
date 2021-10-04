@@ -9,6 +9,7 @@ import { mockReactUseSwrRecover, setupSwrMock } from 'mocks/react/use-swr.mock';
 import { configStatsDataEncryptionKey } from 'config/stats-data-encryption-key';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import * as StatsServiceModule from 'services/stats/service';
+import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
 
 import { translationsMap } from './misc/add-translation.mock';
 import { recoverReactUseEffect } from './react/use-effect.mock';
@@ -61,6 +62,7 @@ jest.mock('next/router', () => ({
 
 global.origin = 'default-origin';
 (global as unknown as { snowplow: Function }).snowplow = jest.fn();
+(global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
 
 // We do not want the test to fail because we updated the encryption key, so all the tests will see this key instead of the real one
 jest.spyOn(configStatsDataEncryptionKey, 'get').mockReturnValue('test-encryption-key');

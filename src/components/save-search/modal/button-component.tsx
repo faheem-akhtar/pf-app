@@ -97,6 +97,10 @@ export const SaveSearchModalButtonComponent = ({ visibleTooltip }: { visibleTool
             name={OnBoardingTypeEnum.saveSearchTooltip}
             className={styles.tooltip}
             arrowClassName={styles.tooltipArrow}
+            onClose={(): void => {
+              saveSearchTracker.onTooltipOpen();
+              saveSearchTracker.onTooltipClose();
+            }}
           >
             <>
               <p className={styles.tooltipTitle}>{t('on-boarding/save-search-title')}</p>

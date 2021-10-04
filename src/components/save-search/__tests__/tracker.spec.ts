@@ -174,4 +174,34 @@ describe('saveSearchTracker', () => {
       ]);
     });
   });
+
+  describe('onTooltipOpen', () => {
+    it('should send ga event', () => {
+      saveSearchTracker.onTooltipOpen();
+
+      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+        {
+          event: 'customEvent',
+          eventAction: 'Onboarding - Tooltip - Impression',
+          eventCategory: 'Onboarding',
+          eventLabel: 'Property Serp - Onboarding - Tooltip - Impression - save-search-tooltip',
+        },
+      ]);
+    });
+  });
+
+  describe('onTooltipClose', () => {
+    it('should send ga event', () => {
+      saveSearchTracker.onTooltipClose();
+
+      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+        {
+          event: 'customEvent',
+          eventAction: 'Onboarding - Tooltip - Close',
+          eventCategory: 'Onboarding',
+          eventLabel: 'Property Serp - Onboarding - Tooltip - Close - save-search-tooltip - Auto',
+        },
+      ]);
+    });
+  });
 });

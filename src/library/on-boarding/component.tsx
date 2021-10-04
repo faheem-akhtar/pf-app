@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
 
+import { functionNoop } from 'helpers/function/noop';
 import { useOnBoardingStorage } from 'helpers/on-boarding/storage.hook';
 import { useWindowMouseDown } from 'helpers/window/mouse-down.hook';
 import { WindowService } from 'services/window/service';
@@ -17,6 +18,7 @@ export const OnBoardingComponent: FunctionComponent<OnBoardingComponentPropsInte
   placement = OnBoardingPlacementEnum.bottom,
   name,
   prerequisiteName,
+  onClose = functionNoop,
   ...props
 }) => {
   const rootRef = useRef(null);
@@ -40,6 +42,7 @@ export const OnBoardingComponent: FunctionComponent<OnBoardingComponentPropsInte
     });
 
     mutate();
+    onClose();
   };
 
   useEffect(() => {

@@ -12,6 +12,7 @@ import { userModelStub } from 'stubs/user/model.stub';
 
 import { UserContext } from 'context/user/context';
 import { UserContextProvider } from 'context/user/context-provider';
+import * as OnBoardingComponentModule from 'library/on-boarding/component';
 import { AuthService } from 'services/auth/service';
 import { AuthSubscribeEventTypeEnum } from 'services/auth/subscribe-event-type.enum';
 import { UserModelInterface } from 'services/user/model.interface';
@@ -179,5 +180,32 @@ describe('SaveSearchModalButtonComponent', () => {
         ])
       );
     });
+  });
+
+  it('should send tooltip open and close events on tooltip close', () => {
+    jest.spyOn(OnBoardingComponentModule, 'OnBoardingComponent').mockImplementationOnce((props) => (
+      <button onClick={props.onClose} data-testid='tooltip-close-button'>
+        {props.children}
+      </button>
+    ));
+
+    const { getByTestId } = render(<SaveSearchModalButtonComponent visibleTooltip />);
+
+    userEvent.click(getByTestId('tooltip-close-button'));
+
+    expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      {
+        event: 'customEvent',
+        eventAction: 'Onboarding - Tooltip - Impression',
+        eventCategory: 'Onboarding',
+        eventLabel: 'Property Serp - Onboarding - Tooltip - Impression - save-search-tooltip',
+      },
+      {
+        event: 'customEvent',
+        eventAction: 'Onboarding - Tooltip - Close',
+        eventCategory: 'Onboarding',
+        eventLabel: 'Property Serp - Onboarding - Tooltip - Close - save-search-tooltip - Auto',
+      },
+    ]);
   });
 });
