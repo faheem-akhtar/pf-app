@@ -5,7 +5,10 @@ import { backendApiPropertySearchFetcher } from 'backend/api/property/search/fet
 import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
 import { backendTranslationGetDefinitions } from 'backend/translation/get-definitions';
 import { FiltersDataInterface } from 'components/filters/data/interface';
+import { cookieAbTestKey } from 'constants/cookie/ab-test-key';
 import { PageTypeEnum } from 'enums/page-type/enum';
+import { headersDevPatchSetCookieDomain } from 'helpers/headers/dev-patch-set-cookie-domain';
+import { headersParseExperimentsFromSetCookie } from 'helpers/headers/parse-experiments-from-set-cookie';
 import { PropertySearchView } from 'views/property-search/view';
 import { PropertySearchViewPropsType } from 'views/property-search/view-props.type';
 
@@ -18,7 +21,11 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
 
   const filtersValueFromQuery = backendFiltersQueryToValue(context.query, locale);
 
-  const searchResult = await backendApiPropertySearchFetcher(locale, filtersValueFromQuery);
+  const searchResult = await backendApiPropertySearchFetcher(
+    locale,
+    filtersValueFromQuery,
+    context.req.cookies[cookieAbTestKey]
+  );
 
   if (!searchResult.ok) {
     context.res.statusCode = 500;
@@ -30,6 +37,8 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     };
   }
 
+  context.res.setHeader('set-cookie', headersDevPatchSetCookieDomain(searchResult.headers.get('set-cookie') || ''));
+
   return {
     props: {
       ok: true,
@@ -39,6 +48,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       documentTitle: searchResult.data.title,
       ...(await backendTranslationGetDefinitions(locale)),
       pageType: PageTypeEnum.propertySerp,
+      abTests: headersParseExperimentsFromSetCookie(searchResult.headers.get('set-cookie') || ''),
     },
   };
 };

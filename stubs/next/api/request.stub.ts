@@ -8,5 +8,6 @@ export const nextApiRequestStub = (): NextApiRequest => {
     headers: {
       [ApiHeaderEnum.locale as string]: 'en',
     },
+    cookies: {},
   } as NextApiRequest;
 };

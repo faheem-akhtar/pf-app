@@ -40,8 +40,7 @@ export const usePropertySearchTrackPageView = (
 
   statsService.reset();
 
-  // TODO-FE[CX-591] Set ab tests in stats context
-  statsContexterService.setAbTests({});
+  statsContexterService.setAbTests(props.abTests);
   statsContexterService.setPropertySearch(filtersMapFiltersValueToStatsContextPropertySearch(filtersValueFromQuery));
   statsContexterService.setPropertyCategoryIdentifier(
     filtersMapCategoryIdToStats[filtersValueFromQuery[FiltersParametersEnum.categoryId]]

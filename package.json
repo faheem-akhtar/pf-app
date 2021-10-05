@@ -56,7 +56,6 @@
     "@propertyfinder/pf-fe-logger": "^2.0.0",
     "@propertyfinder/pf-frontend-common": "^28.0.4",
     "@types/grecaptcha": "^3.0.3",
-    "comlink": "^4.3.1",
     "dd-trace": "^1.2.1",
     "eslint-plugin-react": "^7.24.0",
     "i18next": "20.3.2",

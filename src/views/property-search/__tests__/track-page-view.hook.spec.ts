@@ -2,6 +2,8 @@
  * @jest-environment jsdom
  */
 
+import { StatsContextAbTestsInterface } from '@propertyfinder/pf-frontend-common/dist/module/stats/context/ab-tests.interface';
+
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
 import { mockReactUseState } from 'mocks/react/use-state.mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
@@ -88,10 +90,12 @@ describe('usePropertySearchTrackPageView', () => {
     StatsService().pageView = jest.fn();
     StatsService().propertySerp = jest.fn();
 
+    const abTests: StatsContextAbTestsInterface = { test91: { variants: { variantA: true }, async: false } };
     usePropertySearchTrackPageView(undefined, {
       ok: true,
       filtersValueFromQuery,
       searchResult: { total: 5, properties: [propertyStub()] },
+      abTests,
     } as PropertySearchViewPropsType);
 
     expect(setAbTestsSpy).toHaveBeenCalledTimes(1);
@@ -99,7 +103,7 @@ describe('usePropertySearchTrackPageView', () => {
     expect(setPropertyCategoryIdentifierSpy).toHaveBeenCalledTimes(1);
     expect(setPropertySerpSpy).toHaveBeenCalledTimes(1);
 
-    expect(setAbTestsSpy).toHaveBeenCalledWith({});
+    expect(setAbTestsSpy).toHaveBeenCalledWith(abTests);
     expect(setPropertySearchSpy).toHaveBeenCalledWith({
       amenities: [],
       category: 2,
