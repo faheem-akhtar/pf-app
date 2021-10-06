@@ -21,6 +21,7 @@ import { AuthRegisterService } from 'services/auth/register.service';
 import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 
 import styles from '../auth.module.scss';
+import { AuthSuccessTypeEnum } from '../success-type.enum';
 
 export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface): JSX.Element => {
   const captchaService = GoogleRecaptchaService();
@@ -86,7 +87,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
 
                     // Close modal
                     props.onClose();
-                    props.onSuccess();
+                    props.onSuccess(AuthSuccessTypeEnum.registerWithEmail);
                   } else {
                     setErrorMessage(e.error.body || `${t('auth/something-wrong')}! ${t('auth/try-later')}`);
 

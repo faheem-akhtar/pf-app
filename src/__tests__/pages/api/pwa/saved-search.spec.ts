@@ -4,8 +4,7 @@ import { mockWindowConsole } from 'mocks/window/console.mock';
 import { nextApiRequestStub, nextApiResponseStub } from 'stubs/next/api';
 
 import * as backendApiSaveSearchFetcherModule from 'backend/api/save-search/fetcher';
-
-import pagesApiPwaSavedSearch from '../saved-search';
+import pagesApiPwaSavedSearch from 'pages/api/pwa/saved-search';
 
 jest.mock('backend/api/save-search/fetcher');
 

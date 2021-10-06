@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 
 import { AuthLoginFieldEnum } from 'components/auth/login/field.enum';
 import { AuthLoginPropsInterface } from 'components/auth/login/props.interface';
 import { formMakeValidator } from 'components/form/make-validator';
+import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
@@ -11,10 +12,15 @@ import { AuthGoogleService } from 'services/auth/google.service';
 import { AuthLoginService } from 'services/auth/login.service';
 import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 
+import { AuthSuccessTypeEnum } from '../success-type.enum';
 import { AuthLoginTemplate } from './template';
 import { AuthLoginTemplatePropsInterface } from './template-props.interface';
 
-export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element => {
+export const AuthLoginComponent: FunctionComponent<AuthLoginPropsInterface> = ({
+  onGoogleLoginStart = functionNoop,
+  onFacebookLoginStart = functionNoop,
+  ...props
+}): JSX.Element => {
   const Template = props.template || AuthLoginTemplate;
   const captchaService = GoogleRecaptchaService();
   const { t } = useTranslation();
@@ -38,10 +44,11 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
   const validate = formMakeValidator(errors, setErrors, validators);
 
   const onFacebookLoginClick = (): void => {
+    onFacebookLoginStart();
     setIsLoading(true);
     AuthFacebookService.signIn()
       .then(() => {
-        props.onSuccess();
+        props.onSuccess(AuthSuccessTypeEnum.signInWithFacebook);
         props.onClose();
       })
       .catch(() => {
@@ -52,10 +59,11 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
   };
 
   const onGoogleLoginClick = (): void => {
+    onGoogleLoginStart();
     setIsLoading(true);
     AuthGoogleService.signIn()
       .then(() => {
-        props.onSuccess();
+        props.onSuccess(AuthSuccessTypeEnum.signInWithGoogle);
         props.onClose();
       })
       .catch(() => {
@@ -87,7 +95,7 @@ export const AuthLoginComponent = (props: AuthLoginPropsInterface): JSX.Element 
               setErrorMessage('');
               // Close modal
               props.onClose();
-              props.onSuccess();
+              props.onSuccess(AuthSuccessTypeEnum.signInWithEmail);
             } else {
               setErrorMessage(e.error.body || `${t('auth/something-wrong')}! ${t('auth/try-later')}`);
               captchaService.reset();

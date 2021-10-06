@@ -4,8 +4,7 @@ import { mockWindowConsole } from 'mocks/window/console.mock';
 import { nextApiRequestStub, nextApiResponseStub } from 'stubs/next/api';
 
 import * as backendApiContactedPropertyFetcherModule from 'backend/api/contacted-property/fetcher';
-
-import pagesApiPwaContactedProperty from '../contacted-property';
+import pagesApiPwaContactedProperty from 'pages/api/pwa/contacted-property';
 
 jest.mock('backend/api/contacted-property/fetcher');
 

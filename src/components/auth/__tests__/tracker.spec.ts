@@ -1,34 +1,21 @@
 import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
 
-import { savedPropertyTracker } from '../tracker';
+import { authTracker } from '../tracker';
 
-describe('savedPropertyTracker', () => {
+describe('authTracker', () => {
   beforeEach(() => {
     (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
   });
 
-  describe('onOpenUserAuthModal', () => {
-    it('should send ga event', () => {
-      savedPropertyTracker.onOpenUserAuthModal();
-
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
-        {
-          event: 'User Interaction',
-          eventAction: 'Impression:Login to see saved properties',
-        },
-      ]);
-    });
-  });
-
   describe('onOpenLoginForm', () => {
     it('should send ga event', () => {
-      savedPropertyTracker.onOpenLoginForm();
+      authTracker.onOpenLoginForm('event label');
 
       expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Click:Sign in Button',
-          eventLabel: 'Property Serp - Post Call Lead',
+          eventLabel: 'event label',
         },
       ]);
     });
@@ -36,13 +23,13 @@ describe('savedPropertyTracker', () => {
 
   describe('onOpenRegisterForm', () => {
     it('should send ga event', () => {
-      savedPropertyTracker.onOpenRegisterForm();
+      authTracker.onOpenRegisterForm('event label');
 
       expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Sign up with Email',
-          eventLabel: 'Property Serp - Post Call Lead',
+          eventLabel: 'event label',
         },
       ]);
     });
@@ -50,13 +37,13 @@ describe('savedPropertyTracker', () => {
 
   describe('onOpenForgotPasswordForm', () => {
     it('should send ga event', () => {
-      savedPropertyTracker.onOpenForgotPasswordForm();
+      authTracker.onOpenForgotPasswordForm('event label');
 
       expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Password Reset',
-          eventLabel: 'Property Serp - Post Call Lead',
+          eventLabel: 'event label',
         },
       ]);
     });
@@ -64,13 +51,13 @@ describe('savedPropertyTracker', () => {
 
   describe('onSuccessLoginWithEmail', () => {
     it('should send ga event', () => {
-      savedPropertyTracker.onSuccessLoginWithEmail();
+      authTracker.onSuccessLoginWithEmail('event label');
 
       expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Finish:Sign in with email',
-          eventLabel: 'Property Serp - Post Call Lead',
+          eventLabel: 'event label',
         },
       ]);
     });
@@ -78,13 +65,13 @@ describe('savedPropertyTracker', () => {
 
   describe('onOpenLoginWithFacebook', () => {
     it('should send ga event', () => {
-      savedPropertyTracker.onOpenLoginWithFacebook();
+      authTracker.onOpenLoginWithFacebook('event label');
 
       expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Sign in with facebook',
-          eventLabel: 'Property Serp - Post Call Lead',
+          eventLabel: 'event label',
         },
       ]);
     });
@@ -92,13 +79,13 @@ describe('savedPropertyTracker', () => {
 
   describe('onOpenLoginWithGoogle', () => {
     it('should send ga event', () => {
-      savedPropertyTracker.onOpenLoginWithGoogle();
+      authTracker.onOpenLoginWithGoogle('event label');
 
       expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Sign in with google',
-          eventLabel: 'Property Serp - Post Call Lead',
+          eventLabel: 'event label',
         },
       ]);
     });
@@ -106,13 +93,13 @@ describe('savedPropertyTracker', () => {
 
   describe('onSuccessLoginWithFacebook', () => {
     it('should send ga event', () => {
-      savedPropertyTracker.onSuccessLoginWithFacebook();
+      authTracker.onSuccessLoginWithFacebook('event label');
 
       expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Finish:Sign in with facebook',
-          eventLabel: 'Property Serp - Post Call Lead',
+          eventLabel: 'event label',
         },
       ]);
     });
@@ -120,13 +107,13 @@ describe('savedPropertyTracker', () => {
 
   describe('onSuccessLoginWithGoogle', () => {
     it('should send ga event', () => {
-      savedPropertyTracker.onSuccessLoginWithGoogle();
+      authTracker.onSuccessLoginWithGoogle('event label');
 
       expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Finish:Sign in with google',
-          eventLabel: 'Property Serp - Post Call Lead',
+          eventLabel: 'event label',
         },
       ]);
     });

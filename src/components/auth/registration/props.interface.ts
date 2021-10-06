@@ -1,3 +1,5 @@
+import { AuthSuccessTypeEnum } from '../success-type.enum';
+
 export interface AuthRegistrationPropsInterface {
   /**
    * On close auth modal
@@ -7,7 +9,7 @@ export interface AuthRegistrationPropsInterface {
   /**
    * On success
    */
-  onSuccess: () => void;
+  onSuccess: (type: AuthSuccessTypeEnum) => void;
 
   /**
    * On login link clicked

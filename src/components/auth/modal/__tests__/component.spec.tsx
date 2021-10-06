@@ -1,12 +1,14 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render, RenderResult, screen } from '@testing-library/react';
+import { act, fireEvent, render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import * as AuthForgotPasswordComponentModule from 'components/auth/forgot-password/component';
 import * as AuthLoginComponentModule from 'components/auth/login/component';
 import * as AuthRegistrationComponentModule from 'components/auth/registration/component';
+import { AuthSuccessTypeEnum } from 'components/auth/success-type.enum';
+import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
 
 import { AuthModalComponent } from '../component';
 import { AuthModalPropsInterface } from '../props.interface';
@@ -23,6 +25,8 @@ describe('AuthModalComponent', () => {
     };
 
     renderResult = render(<AuthModalComponent {...props} />);
+
+    (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
   });
 
   it('renders without throwing any errors', () => {
@@ -35,33 +39,114 @@ describe('AuthModalComponent', () => {
     });
 
     it('should display registration screen', () => {
-      userEvent.click(screen.getByText('auth/not-registered-yet', { exact: false }));
+      act(() => {
+        userEvent.click(screen.getByText('auth/not-registered-yet', { exact: false }));
+      });
       expect(screen.getByRole('heading', { level: 1, name: 'auth/create-account' })).toBeInTheDocument();
+
+      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+        {
+          event: 'Userbox',
+          eventAction: 'Start:Sign up with Email',
+          eventLabel: 'Header',
+        },
+      ]);
     });
 
     it('should display forgot password screen', () => {
-      userEvent.click(screen.getByText('auth/forgot-password?'));
+      act(() => {
+        userEvent.click(screen.getByText('auth/forgot-password?'));
+      });
       expect(screen.getByRole('heading', { level: 1, name: 'auth/forgot-password?' })).toBeInTheDocument();
+
+      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+        {
+          event: 'Userbox',
+          eventAction: 'Start:Password Reset',
+          eventLabel: 'Header',
+        },
+      ]);
     });
 
     it('should call close', () => {
       jest
         .spyOn(AuthLoginComponentModule, 'AuthLoginComponent')
-        .mockImplementationOnce(({ onClose }) => <p onClick={onClose} />);
+        .mockImplementationOnce(({ onClose }) => <button data-testid='close-button' onClick={onClose} />);
       renderResult = render(<AuthModalComponent {...props} />);
 
-      userEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
+      userEvent.click(renderResult.getByTestId('close-button'));
       expect(props.close).toHaveBeenCalledTimes(1);
     });
 
     it('should call success', () => {
       jest
         .spyOn(AuthLoginComponentModule, 'AuthLoginComponent')
-        .mockImplementationOnce(({ onSuccess }) => <p onClick={onSuccess} />);
+        .mockImplementationOnce(({ onSuccess }) => (
+          <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithEmail)} />
+        ));
       renderResult = render(<AuthModalComponent {...props} />);
 
-      userEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
+      (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+
+      act(() => {
+        userEvent.click(renderResult.getByTestId('my-button'));
+      });
+
       expect(props.success).toHaveBeenCalledTimes(1);
+
+      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+        {
+          event: 'Userbox',
+          eventAction: 'Finish:Sign in with email',
+          eventLabel: 'Header',
+        },
+      ]);
+    });
+
+    it('should track success sign in with facebook', () => {
+      jest
+        .spyOn(AuthLoginComponentModule, 'AuthLoginComponent')
+        .mockImplementationOnce(({ onSuccess }) => (
+          <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithFacebook)} />
+        ));
+      renderResult = render(<AuthModalComponent {...props} />);
+
+      (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+
+      act(() => {
+        userEvent.click(renderResult.getByTestId('my-button'));
+      });
+
+      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+        {
+          event: 'Userbox',
+          eventAction: 'Finish:Sign in with facebook',
+          eventLabel: 'Header',
+        },
+      ]);
+    });
+
+    it('should track success sign in with google', () => {
+      jest
+        .spyOn(AuthLoginComponentModule, 'AuthLoginComponent')
+        .mockImplementationOnce(({ onSuccess }) => (
+          <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithGoogle)} />
+        ));
+      renderResult = render(<AuthModalComponent {...props} />);
+
+      (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+
+      act(() => {
+        userEvent.click(renderResult.getByTestId('my-button'));
+      });
+
+      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+        {
+          event: 'Userbox',
+          eventAction: 'Finish:Sign in with google',
+          eventLabel: 'Header',
+        },
+      ]);
     });
   });
 
@@ -93,7 +178,9 @@ describe('AuthModalComponent', () => {
     it('should call success', () => {
       jest
         .spyOn(AuthRegistrationComponentModule, 'AuthRegistrationComponent')
-        .mockImplementationOnce(({ onSuccess }) => <p onClick={onSuccess} />);
+        .mockImplementationOnce(({ onSuccess }) => (
+          <p onClick={(): void => onSuccess(AuthSuccessTypeEnum.registerWithEmail)} />
+        ));
       renderResult = render(<AuthModalComponent {...props} />);
 
       // first switch to registration screen

@@ -32,6 +32,8 @@ describe('AuthLoginComponent', () => {
       onForgotPassword: jest.fn(),
       onRegister: jest.fn(),
       onSuccess: jest.fn(),
+      onFacebookLoginStart: jest.fn(),
+      onGoogleLoginStart: jest.fn(),
     };
 
     renderResult = render(<AuthLoginComponent {...props} />);
@@ -69,6 +71,9 @@ describe('AuthLoginComponent', () => {
 
       expect(props.onClose).toHaveBeenCalledTimes(1);
       expect(props.onSuccess).toHaveBeenCalledTimes(1);
+      expect(props.onSuccess).toHaveBeenCalledWith('sign-in-with-facebook');
+
+      expect(props.onFacebookLoginStart).toHaveBeenCalledTimes(1);
     });
 
     it('should handle the error while login with facebook', async () => {
@@ -107,6 +112,9 @@ describe('AuthLoginComponent', () => {
 
       expect(props.onClose).toHaveBeenCalledTimes(1);
       expect(props.onSuccess).toHaveBeenCalledTimes(1);
+      expect(props.onSuccess).toHaveBeenCalledWith('sign-in-with-google');
+
+      expect(props.onGoogleLoginStart).toHaveBeenCalledTimes(1);
     });
 
     it('should handle the error while login with google', async () => {
@@ -144,6 +152,7 @@ describe('AuthLoginComponent', () => {
 
       expect(props.onClose).toHaveBeenCalledTimes(1);
       expect(props.onSuccess).toHaveBeenCalledTimes(1);
+      expect(props.onSuccess).toHaveBeenCalledWith('sign-in-with-email');
     });
 
     it('should not do anything if email is invalid', () => {

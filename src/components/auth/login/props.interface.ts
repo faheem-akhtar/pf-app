@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react';
 
+import { AuthSuccessTypeEnum } from '../success-type.enum';
 import { AuthLoginTemplatePropsInterface } from './template-props.interface';
 
 export interface AuthLoginPropsInterface {
@@ -16,7 +17,7 @@ export interface AuthLoginPropsInterface {
   /**
    * On success
    */
-  onSuccess: () => void;
+  onSuccess: (type: AuthSuccessTypeEnum) => void;
 
   /**
    * On registration link clicked
@@ -32,4 +33,14 @@ export interface AuthLoginPropsInterface {
    * On forgot password link clicked
    */
   onForgotPassword: () => void;
+
+  /**
+   * When user click on login with facebook
+   */
+  onFacebookLoginStart?: () => void;
+
+  /**
+   * When user click on login with google
+   */
+  onGoogleLoginStart?: () => void;
 }
