@@ -26,7 +26,7 @@ export const FiltersModalWidgetIsDeveloperPropertyComponent: FiltersModalWidgetT
 
         changeFiltersValue({
           ...filtersValue,
-          [FiltersParametersEnum.sort]: 'mr' as FiltersValueFieldSortType,
+          [FiltersParametersEnum.sort]: (toggleIsDeveloperProperty ? 'da' : 'mr') as FiltersValueFieldSortType,
           [FiltersParametersEnum.isDeveloperProperty]: toggleIsDeveloperProperty,
           [FiltersParametersEnum.minInstallmentYears]: null,
           [FiltersParametersEnum.maxInstallmentYears]: null,
