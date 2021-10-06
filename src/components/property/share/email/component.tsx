@@ -8,6 +8,7 @@ import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 
+import { propertyShareTracker } from '../tracker';
 import { PropertyShareEmailComponentPropsInterface } from './component-props.interface';
 import { PropertyShareEmailFormComponent } from './form/component';
 import styles from './property-share-email.module.scss';
@@ -37,6 +38,7 @@ export const PropertyShareEmailComponent = ({
           propertyId={propertySerpObfuscatedGetId(property)}
           onFormSubmitted={(): void => {
             setIsFormSent(true);
+            propertyShareTracker.onSuccessSocialShare('Email');
           }}
         />
       </Fragment>

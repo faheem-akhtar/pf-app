@@ -7,12 +7,12 @@ import { IconShareWhatsappTemplate } from 'components/icon/share/whatsapp-templa
 import { domClassMerge } from 'helpers/dom/class-merge';
 
 import styles from '../property-share.module.scss';
+import { propertyShareTracker } from '../tracker';
 import { PropertyShareSocialComponentPropsInterface } from './component-props.interface';
 
 const socialGetShareLinkUtmPlatform = (url: string, platform: string): string =>
   `${url}?utm_source=${platform}&utm_medium=social&utm_campaign=share_property`;
 
-// TODO-FE[CX-366] implement GA
 export const PropertyShareSocialComponent = ({
   propertyUrl,
   t,
@@ -30,6 +30,7 @@ export const PropertyShareSocialComponent = ({
           )}`}
           target='_blank'
           rel='noreferrer'
+          onClick={(): void => propertyShareTracker.onClickSocialShare('Facebook')}
         >
           <IconShareFacebookTemplate class={domClassMerge(styles.icon, styles.facebook)} />
         </a>
@@ -39,10 +40,17 @@ export const PropertyShareSocialComponent = ({
           data-action='share/whatsapp/share'
           target='_blank'
           rel='noreferrer'
+          onClick={(): void => propertyShareTracker.onClickSocialShare('Whatsapp')}
         >
           <IconShareWhatsappTemplate class={domClassMerge(styles.icon, styles.whatsapp)} />
         </a>
-        <div className={styles.link} onClick={onClickEmail}>
+        <div
+          className={styles.link}
+          onClick={(): void => {
+            propertyShareTracker.onClickSocialShare('Email');
+            onClickEmail();
+          }}
+        >
           <IconShareEmailTemplate class={domClassMerge(styles.icon, styles.email)} />
         </div>
         <a
@@ -50,6 +58,7 @@ export const PropertyShareSocialComponent = ({
           href={`https://twitter.com/intent/tweet?url=${socialGetShareLinkUtmPlatform(propertyUrl, 'twitter')}`}
           target='_blank'
           rel='noreferrer'
+          onClick={(): void => propertyShareTracker.onClickSocialShare('Twitter')}
         >
           <IconShareTwitterTemplate class={domClassMerge(styles.icon, styles.twitter)} />
         </a>
