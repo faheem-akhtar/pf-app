@@ -19,6 +19,6 @@ const getGlobalContext = (locale: string): StatsContextGlobalInterface => ({
 
 export const AnalyticsSnowplowService = {
   send: (event: AnalyticsSnowplowEventType): void => {
-    (window as unknown as { dataLayer: AnalyticsSnowplowEventType[] }).dataLayer.push(event);
+    window.dataLayer.push(event);
   },
 };

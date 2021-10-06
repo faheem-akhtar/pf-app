@@ -1,5 +1,11 @@
 import { configAnalyticsGtmId } from 'config/analytics/gtm-id';
+import { configCommon } from 'config/common';
+import { configTealiumEnabled } from 'config/tealium/enabled';
+import { tealiumProfileId } from 'config/tealium/profile-id';
 import { helpersIsDevelopment } from 'helpers/is-development';
+import { AnalyticsPageNamesEnum } from 'services/analytics/page-names.enum';
+import { TealiumEventEnum } from 'services/tealium/event.enum';
+import { TealiumPageTypeEnum } from 'services/tealium/page-type.enum';
 
 const __html = `
 function urlQueryGetParameterByName(name, url = window.location.href) {
@@ -23,25 +29,24 @@ if (!urlQueryGetParameterByName('no-gtm')) {
 }
 
 if (!urlQueryGetParameterByName('no-analytics')) {
-  // TODO-FE[CX-186] remove false
-  if (false && !urlQueryGetParameterByName('no-tealium')) {
+  if (!urlQueryGetParameterByName('no-tealium') && ${configTealiumEnabled}) {
     // TODO-FE[CX-186] setup tealium variables from env
     // Default Tealium event data
     window.tealium = {
-      "page_country"        : "ae",                           //Required
-      "page_currency_code"  : "AED",             //Required
-      "page_lang"           : "en",                        //Required
-      "page_category"       : "Ancillary Page",  //Required
-      "page_type"           : "other",                //Required
-      "tealium_event"       : "view",      //Required
+      "page_country"        : "${configCommon.countryCode}",                           //Required
+      "page_currency_code"  : "${configCommon.currencyCode}",             //Required
+      "page_lang"           : "${configCommon.language.current}",                        //Required
+      "page_category"       : "${AnalyticsPageNamesEnum.ancillaryPage}",  //Required
+      "page_type"           : "${TealiumPageTypeEnum.other}",                //Required
+      "tealium_event"       : "${TealiumEventEnum.default}",      //Required
     };
 
     // Tealium
     (function(a,b,c,d){
-    a='https://tags.tiqcdn.com/utag/propertyfinder/uae/prod/utag.js';
-    b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
-    a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
-    })();
+      a='https://tags.tiqcdn.com/utag/propertyfinder/${tealiumProfileId}/prod/utag.js';
+      b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+      a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+      })();
   }
 
   // Snowplow

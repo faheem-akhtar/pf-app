@@ -11,7 +11,7 @@ import { IconGooglePlayTemplate } from './icon/google-play.template';
 /**
  * TODO-FE[TPNX-3016] Add tests
  */
-export const FooterComponent = (): JSX.Element => {
+export const FooterComponent = ({ onClickAppDownload }: { onClickAppDownload?: () => void }): JSX.Element => {
   const { t } = useTranslation();
 
   return (
@@ -43,13 +43,17 @@ export const FooterComponent = (): JSX.Element => {
         ))}
       </div>
       <ul className={domClassMerge(styles.section, styles.apps)}>
-        <li className={domClassMerge(styles.item, styles.container)}>
+        <li className={domClassMerge(styles.item, styles.container)} onClick={onClickAppDownload}>
           <a className={styles.downloadLink} href={configLinksDefinition.iosDownloadLink}>
             <IconAppStoreTemplate />
           </a>
         </li>
-        <li className={domClassMerge(styles.item, styles.container)}>
-          <a className={styles.downloadLink} href={configLinksDefinition.androidDownloadLink}>
+        <li className={domClassMerge(styles.item, styles.container)} onClick={onClickAppDownload}>
+          <a
+            className={styles.downloadLink}
+            href={configLinksDefinition.androidDownloadLink}
+            onClick={onClickAppDownload}
+          >
             <IconGooglePlayTemplate />
           </a>
         </li>

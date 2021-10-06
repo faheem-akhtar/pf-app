@@ -23,8 +23,7 @@ if (!urlQueryGetParameterByName('no-gtm')) {
 }
 
 if (!urlQueryGetParameterByName('no-analytics')) {
-  // TODO-FE[CX-186] remove false
-  if (false && !urlQueryGetParameterByName('no-tealium')) {
+  if (!urlQueryGetParameterByName('no-tealium') && false) {
     // TODO-FE[CX-186] setup tealium variables from env
     // Default Tealium event data
     window.tealium = {
@@ -38,10 +37,10 @@ if (!urlQueryGetParameterByName('no-analytics')) {
 
     // Tealium
     (function(a,b,c,d){
-    a='https://tags.tiqcdn.com/utag/propertyfinder/uae/prod/utag.js';
-    b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
-    a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
-    })();
+      a='https://tags.tiqcdn.com/utag/propertyfinder/uae/prod/utag.js';
+      b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+      a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+      })();
   }
 
   // Snowplow

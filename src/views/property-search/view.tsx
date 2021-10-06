@@ -15,6 +15,12 @@ import { PropertySearchNotFoundSectionTemplate } from 'components/property-searc
 import { SavedPropertyContextProvider } from 'components/saved-property/context-provider';
 import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
+import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
+import { TealiumEventEnum } from 'services/tealium/event.enum';
+import { TealiumEventActionEnum } from 'services/tealium/event-action.enum';
+import { TealiumEventCategoryEnum } from 'services/tealium/event-category.enum';
+import { TealiumEventLabelEnum } from 'services/tealium/event-label.enum';
+import { TealiumEventTypeEnum } from 'services/tealium/event-type.enum';
 
 import { PropertySearchResultsCountForCurrentQueryContext } from './results-count-for-current-query/context';
 import { PropertySearchStatsDataPromiseForCurrentQueryContext } from './stats-data-promise-for-current-query/context';
@@ -63,7 +69,17 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
               </ContactedPropertyContextProvider>
             </SavedPropertyContextProvider>
             <MapSearchButtonComponent />
-            <FooterComponent />
+            <FooterComponent
+              onClickAppDownload={(): void => {
+                AnalyticsTealiumService.link({
+                  tealium_event: TealiumEventEnum.appDownload,
+                  event_category: TealiumEventCategoryEnum.productFeature,
+                  event_type: TealiumEventTypeEnum.click,
+                  event_action: TealiumEventActionEnum.app,
+                  event_label: TealiumEventLabelEnum.download,
+                });
+              }}
+            />
           </FiltersContextProvider>
         </SnackbarContextProvider>
       </PropertySearchResultsCountForCurrentQueryContext.Provider>
