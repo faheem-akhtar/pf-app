@@ -8,7 +8,6 @@ import { mockReactUseSwrRecover, setupSwrMock } from 'mocks/react/use-swr.mock';
 
 import { configStatsDataEncryptionKey } from 'config/stats-data-encryption-key';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
-import * as StatsServiceModule from 'services/stats/service';
 import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
 
 import { translationsMap } from './misc/add-translation.mock';
@@ -22,8 +21,14 @@ import { recoverWindowFetch } from './window/fetch.mock';
 import { recoverWindowMockImportScript } from './window/import-script.mock';
 import { recoverWindowRemoveEventListener } from './window/remove-event-listener.mock';
 
-jest.mock('services/stats/service');
-jest.spyOn(StatsServiceModule, 'StatsService').mockReturnValue(jest.fn() as unknown as StatsEmitter);
+jest.mock('@propertyfinder/pf-frontend-common/dist/module/stats/emitter');
+
+jest.mock('services/stats/service', () => {
+  const statsServiceMock = new (StatsEmitter as jest.Mock)();
+  return {
+    StatsService: (): StatsEmitter => statsServiceMock,
+  };
+});
 
 if (!global.window) {
   (global as unknown as { window: Window }).window = global as unknown as Window;

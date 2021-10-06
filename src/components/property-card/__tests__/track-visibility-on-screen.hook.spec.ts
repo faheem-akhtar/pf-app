@@ -33,7 +33,7 @@ describe('usePropertyCardTrackVisibilityOnScreen', () => {
   let fireSetInterval: Function;
 
   beforeEach(() => {
-    StatsService().propertyImpression = jest.fn();
+    (StatsService().propertyImpression as jest.Mock).mockReset();
     mockReactUseEffect();
     window.setInterval = ((callback: Function): number => {
       fireSetInterval = callback;

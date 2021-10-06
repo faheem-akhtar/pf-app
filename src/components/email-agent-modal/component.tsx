@@ -1,3 +1,4 @@
+import { StatsContextLeadInterface } from '@propertyfinder/pf-frontend-common/dist/module/stats/context/lead.interface';
 import { FunctionComponent, useContext, useRef, useState } from 'react';
 
 import { apiEmailAgentFetcher } from 'api/email-agent/fetcher';
@@ -19,6 +20,7 @@ import { validationEmail } from 'helpers/validation/email';
 import { validationPhone } from 'helpers/validation/phone';
 import { validationRequired } from 'helpers/validation/required';
 import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
+import { StatsService } from 'services/stats/service';
 import { EmailAgentAttributesInterface } from 'types/email-agent/attributes.interface';
 
 import { EmailAgentModalComponentPropsInterface } from './component-props.interface';
@@ -122,14 +124,28 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
 
     try {
       const captcha_token = await captchaService.execute();
+      const propertyId = parseInt(propertySerpObfuscatedGetId(property), 10);
+      const leadContext: StatsContextLeadInterface = {
+        medium: 'email',
+        cta: 'button',
+        email: {
+          name: fieldsValue.name,
+          email: fieldsValue.email,
+          phone: fieldsValue.phone,
+          message: fieldsValue.message,
+          emailAlert: fieldsValue.emailAlert,
+        },
+      };
 
       await apiEmailAgentFetcher({
-        propertyId: parseInt(propertySerpObfuscatedGetId(property), 10),
+        propertyId,
         ...formFields,
         emailAlert: fieldsValue.emailAlert,
         [FormFieldsEnum.captchaToken]: captcha_token,
         autoRegister: !!user,
       } as EmailAgentAttributesInterface);
+
+      StatsService().propertyLeadSend(propertyId, { lead: leadContext });
 
       setStatus(EmailAgentModalStatusEnum.submitted);
     } catch {

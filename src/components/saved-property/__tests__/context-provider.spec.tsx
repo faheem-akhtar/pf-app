@@ -4,13 +4,17 @@
 import { fireEvent, render } from '@testing-library/react';
 import { FunctionComponent, ReactElement, useContext } from 'react';
 
-import { dateToIso } from 'helpers/date/to-iso';
+import * as dateToIsoModule from 'helpers/date/to-iso';
 import { WindowService } from 'services/window/service';
 
 import { SavedPropertyContext } from '../context';
 import { SavedPropertyContextProvider } from '../context-provider';
 
 jest.mock('services/window/service');
+
+const mockDate = '2021-01-20';
+
+jest.spyOn(dateToIsoModule, 'dateToIso').mockReturnValue(mockDate);
 
 describe('SavedPropertyContextProvider', () => {
   let MockChildComponent: FunctionComponent;
@@ -44,7 +48,7 @@ describe('SavedPropertyContextProvider', () => {
       JSON.stringify([
         {
           propertyId: 1,
-          saveDate: dateToIso(new Date()),
+          saveDate: mockDate,
         },
       ])
     );
@@ -67,7 +71,7 @@ describe('SavedPropertyContextProvider', () => {
       JSON.stringify([
         {
           propertyId: 1,
-          saveDate: dateToIso(new Date()),
+          saveDate: mockDate,
         },
       ])
     );

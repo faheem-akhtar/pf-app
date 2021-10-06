@@ -22,6 +22,11 @@ describe('usePropertySearchTrackPageView', () => {
   beforeEach(() => {
     mockReactUseState();
     mockReactUseEffect();
+
+    (StatsService().reset as jest.Mock).mockReset();
+    (StatsService().pageView as jest.Mock).mockReset();
+    (StatsService().propertySerp as jest.Mock).mockReset();
+    (StatsService().propertyLoad as jest.Mock).mockReset();
   });
 
   it('should do nothing if page failed to load', () => {
@@ -29,8 +34,6 @@ describe('usePropertySearchTrackPageView', () => {
       ok: false,
       error: '',
     });
-
-    StatsService().reset = jest.fn();
 
     expect(StatsService().reset).not.toHaveBeenCalled();
   });
@@ -49,8 +52,6 @@ describe('usePropertySearchTrackPageView', () => {
         searchResult: { properties: [{}] },
       } as PropertySearchViewPropsType
     );
-
-    StatsService().reset = jest.fn();
 
     expect(StatsService().reset).not.toHaveBeenCalled();
   });
@@ -72,8 +73,6 @@ describe('usePropertySearchTrackPageView', () => {
       } as PropertySearchViewPropsType
     );
 
-    StatsService().reset = jest.fn();
-
     expect(StatsService().reset).not.toHaveBeenCalled();
   });
 
@@ -85,10 +84,6 @@ describe('usePropertySearchTrackPageView', () => {
     const setPropertySearchSpy = jest.spyOn(StatsContexterService(), 'setPropertySearch');
     const setPropertyCategoryIdentifierSpy = jest.spyOn(StatsContexterService(), 'setPropertyCategoryIdentifier');
     const setPropertySerpSpy = jest.spyOn(StatsContexterService(), 'setPropertySerp');
-
-    StatsService().reset = jest.fn();
-    StatsService().pageView = jest.fn();
-    StatsService().propertySerp = jest.fn();
 
     const abTests: StatsContextAbTestsInterface = { test91: { variants: { variantA: true }, async: false } };
     usePropertySearchTrackPageView(undefined, {
@@ -139,13 +134,6 @@ describe('usePropertySearchTrackPageView', () => {
     StatsContexterService().setPropertyCategoryIdentifier = jest.fn();
     StatsContexterService().setPropertySerp = jest.fn();
 
-    StatsService().reset = jest.fn();
-    StatsService().pageView = jest.fn();
-    StatsService().propertySerp = jest.fn();
-
-    const statsService = StatsService();
-    statsService.propertyLoad = jest.fn();
-
     const { statsDataPromise } = usePropertySearchTrackPageView(undefined, {
       ok: true,
       filtersValueFromQuery,
@@ -154,7 +142,7 @@ describe('usePropertySearchTrackPageView', () => {
 
     await statsDataPromise;
 
-    expect(statsService.propertyLoad).toHaveBeenCalledWith(198023, {
+    expect(StatsService().propertyLoad).toHaveBeenCalledWith(198023, {
       pagination: { itemPerPage: 25, itemTotal: 5, pageCurrent: 1 },
     });
   });

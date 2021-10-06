@@ -33,6 +33,9 @@ const makeDefaultProps = (): PropertyCardComponentPropsType => ({
  */
 
 describe('PropertyCardComponent', () => {
+  beforeEach(() => {
+    (StatsService().propertyLeadClick as jest.Mock).mockReset();
+  });
   /**
    * Gallery
    */
@@ -83,7 +86,6 @@ describe('PropertyCardComponent', () => {
    * CTA buttons
    */
   it('should print error if can not send lead', async () => {
-    StatsService().propertyLeadClick = jest.fn();
     const statsDataPromise = Promise.resolve({ ok: false });
 
     mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {});
@@ -107,7 +109,6 @@ describe('PropertyCardComponent', () => {
 
   const makeCtaClickTest = (ctaType: string, medium: string): void => {
     it(`should send lead on ${ctaType}`, async () => {
-      StatsService().propertyLeadClick = jest.fn();
       const statsDataPromise = Promise.resolve({ ok: true });
       mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {});
       const defaultProps = makeDefaultProps();

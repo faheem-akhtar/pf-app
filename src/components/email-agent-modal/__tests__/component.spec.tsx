@@ -16,6 +16,7 @@ import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 import { UserContext } from 'context/user/context';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
+import { StatsService } from 'services/stats/service';
 
 import { EmailAgentModalComponent } from '../component';
 import { EmailAgentModalComponentPropsInterface } from '../component-props.interface';
@@ -42,6 +43,8 @@ describe('EmailAgentModalComponent', () => {
   });
 
   beforeEach(() => {
+    (StatsService().propertyLeadSend as jest.Mock).mockReset();
+
     mockModalEnv();
     mockReactUseSwr('en-countries-GET-{"sort":"priority"}', {
       ok: true,
@@ -199,6 +202,21 @@ describe('EmailAgentModalComponent', () => {
             })
           )
         );
+
+        expect(StatsService().propertyLeadSend).toHaveBeenCalledTimes(1);
+        expect(StatsService().propertyLeadSend).toHaveBeenCalledWith(198023, {
+          lead: {
+            medium: 'email',
+            cta: 'button',
+            email: {
+              name: 'Name',
+              email: 'email@example.com',
+              phone: '+971123456',
+              message: 'Hi, I found your property with ref: 123 on Property Finder. Please contact me. Thank you.',
+              emailAlert: true,
+            },
+          },
+        });
 
         expect(screen.queryByTestId('loader-template')).not.toBeInTheDocument();
         expect(screen.queryByRole('heading', { level: 2 })).not.toBeInTheDocument();
