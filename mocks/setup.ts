@@ -9,6 +9,7 @@ import { mockReactUseSwrRecover, setupSwrMock } from 'mocks/react/use-swr.mock';
 import { configStatsDataEncryptionKey } from 'config/stats-data-encryption-key';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
+import { TFunctionType } from 'types/t-function/type';
 
 import { translationsMap } from './misc/add-translation.mock';
 import { recoverReactUseEffect } from './react/use-effect.mock';
@@ -37,12 +38,19 @@ setupSwrMock();
 
 jest.mock('next-i18next', () => ({
   useTranslation: (): {
-    t: (key: string) => string;
+    t: TFunctionType;
     i18n: {
       exists: (key: string) => boolean;
     };
   } => ({
-    t: (key: string): string => translationsMap[key] || key,
+    t: (key, options): string => {
+      return typeof options !== 'string' && typeof options?.count !== 'undefined'
+        ? (translationsMap[`${key}${options.count > 1 ? '_plural' : ''}`] || translationsMap[key] || key).replace(
+            '{{count}}',
+            options.count.toString()
+          )
+        : translationsMap[key] || key;
+    },
     i18n: {
       exists: (key: string): boolean => !!translationsMap[key],
     },

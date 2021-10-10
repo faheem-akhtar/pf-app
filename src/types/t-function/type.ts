@@ -1,4 +1,3 @@
-// eslint-disable-next-line pf-rules/forbid-import
-import { TFunction } from 'next-i18next';
+import { TOptions } from 'i18next';
 
-export type TFunctionType = TFunction;
+export type TFunctionType = (key: string, options?: string | TOptions, allowManyContext?: boolean) => string;

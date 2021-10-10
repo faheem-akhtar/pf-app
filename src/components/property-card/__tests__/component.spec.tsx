@@ -5,6 +5,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { mockModalEnv } from 'mocks/modal-env/mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
 import { mockWindowConsole } from 'mocks/window/console.mock';
 import { propertyStub } from 'stubs/property/stub';
@@ -33,6 +34,10 @@ const makeDefaultProps = (): PropertyCardComponentPropsType => ({
  */
 
 describe('PropertyCardComponent', () => {
+  beforeAll(() => {
+    mockModalEnv();
+  });
+
   beforeEach(() => {
     (StatsService().propertyLeadClick as jest.Mock).mockReset();
   });
@@ -111,6 +116,7 @@ describe('PropertyCardComponent', () => {
     it(`should send lead on ${ctaType}`, async () => {
       const statsDataPromise = Promise.resolve({ ok: true });
       mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {});
+      mockReactUseSwr('en-countries-GET-{"sort":"priority"}', {});
       const defaultProps = makeDefaultProps();
       propertySerpObfuscatedGetContactOptionsList(defaultProps.property).whatsapp = { type: '', value: '', link: '' };
       const { getByText } = render(

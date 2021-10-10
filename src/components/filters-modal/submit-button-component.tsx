@@ -23,17 +23,6 @@ export const FiltersModalSubmitButtonComponent = ({
     result = { ok: true, data: forceNumberOfProperties } as ApiFetcherResultSuccessInterface<number>;
   }
 
-  // TODO-FE[CX-399] use lokalize plural feature
-  let buttonText = '';
-
-  if (result.ok) {
-    if (result.data === 1) {
-      buttonText = t('show-one-result');
-    } else {
-      buttonText = t('show-n-results').replace('{n}', result.data.toString());
-    }
-  }
-
   return (
     <ButtonTemplate
       type='button'
@@ -47,7 +36,7 @@ export const FiltersModalSubmitButtonComponent = ({
       loading={!result.ok}
     >
       {result.ok && result.data ? (
-        buttonText
+        t('show-n-result', { count: result.data })
       ) : (
         <>
           <strong>{t('filters/no-properties-found')}</strong>

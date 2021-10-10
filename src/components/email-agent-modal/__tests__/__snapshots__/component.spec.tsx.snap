@@ -342,7 +342,7 @@ exports[`EmailAgentModalComponent when the user is not exist should render witho
             name="message"
             type="text"
           >
-            Hi, I found your property with ref: 123 on Property Finder. Please contact me. Thank you.
+            agent-modal/default-email-message
           </textarea>
           <div
             class="placeholder placeholder--floating"

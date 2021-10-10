@@ -24,6 +24,6 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log('Proxy error', e);
-    res.status(500).send(e.toString());
+    res.status(500).send((e as Error).toString());
   }
 };

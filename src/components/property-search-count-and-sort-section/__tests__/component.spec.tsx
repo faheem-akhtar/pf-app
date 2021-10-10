@@ -17,7 +17,7 @@ import { PropertySearchCountAndSortSectionComponent } from '../component';
 describe('PropertySearchCountAndSortSectionComponent', () => {
   beforeAll(() => {
     mockModalEnv();
-    mockMiscAddTranslation('n-properties-sorted-by', '{n} properties sorted by');
+    mockMiscAddTranslation('n-properties-sorted-by', '{{count}} properties sorted by');
   });
 
   it('should change the route when new sorting is picked', async () => {
@@ -45,7 +45,7 @@ describe('PropertySearchCountAndSortSectionComponent', () => {
       </FiltersContextProvider>
     );
 
-    expect(screen.getByText('... properties sorted by')).toBeInTheDocument();
+    expect(screen.getByText('...')).toBeInTheDocument();
   });
 
   it('should render N properties sorted by when not loading', () => {

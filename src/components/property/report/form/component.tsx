@@ -123,7 +123,7 @@ export const PropertyReportFormComponent = ({
       {userType === PropertyReportUserTypeEnum.agent && (
         <div className={styles.field}>
           <span className={styles.text}>
-            {t('report-modal/max-file-size').replace('{size}', `${configPropertyReportAttachmentSizeLimit}`)}
+            {t('report-modal/max-file-size', { size: configPropertyReportAttachmentSizeLimit })}
           </span>
           <input
             type='file'

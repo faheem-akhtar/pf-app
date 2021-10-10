@@ -47,7 +47,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
 
   // Generate T&C message
   const authText = t(`auth/accept-terms-and-conditions`);
-  const authTextParts = authText.split('{link}');
+  const authTextParts = authText.split('{{link}}');
 
   /**
    * Validate form fields

@@ -46,10 +46,7 @@ export const KeywordsComponent = ({
         <span
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
-            __html: t('keywords_widget/no-suggestions-message').replace(
-              '{inputValue}',
-              stringSanitizeSimple(inputValue)
-            ),
+            __html: t('keywords_widget/no-suggestions-message', { inputValue: stringSanitizeSimple(inputValue) }),
           }}
         />
       )}

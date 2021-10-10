@@ -18,7 +18,7 @@ export const FiltersModalWidgetAreaComponent: FiltersModalWidgetType = ({
   t,
 }) => (
   <FiltersModalItemTemplate
-    label={t('filters-modal/property-size-title').replace('{area_unit}', t(`area-unit/${configCommon.areaUnit}`))}
+    label={t('filters-modal/property-size-title', { area_unit: t(`area-unit/${configCommon.areaUnit}`) })}
     icon={<IconThickFloorPlanTemplate class={styles.icon} />}
   >
     <div className={styles.split}>

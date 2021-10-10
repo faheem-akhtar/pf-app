@@ -35,7 +35,7 @@ export const PropertySearchCountAndSortSectionComponent = ({
 
   return (
     <div className={styles.container}>
-      <span>{t('n-properties-sorted-by').replace('{n}', loading ? '...' : count.toString())} </span>
+      <span>{loading ? '...' : t('n-properties-sorted-by', { count })} </span>
       <div className={styles.tooltipWrapper}>
         <button className={styles.sort_btn} onClick={(): void => openFiltersRef.current()}>
           <span>{choices.find((c) => c.value === filtersCtx.value[FiltersParametersEnum.sort])?.label}</span>
@@ -49,10 +49,9 @@ export const PropertySearchCountAndSortSectionComponent = ({
           >
             <span
               dangerouslySetInnerHTML={{
-                __html: t('on-boarding/featured-description').replace(
-                  '{suffix}',
-                  stringMakeBoldWord(t('on-boarding/featured-description-suffix'))
-                ),
+                __html: t('on-boarding/featured-description', {
+                  suffix: stringMakeBoldWord(t('on-boarding/featured-description-suffix')),
+                }),
               }}
             />
           </OnBoardingComponent>

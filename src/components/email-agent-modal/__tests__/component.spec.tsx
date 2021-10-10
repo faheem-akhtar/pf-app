@@ -5,7 +5,6 @@
 import { act, render, RenderResult, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { mockMiscAddTranslation } from 'mocks/misc/add-translation.mock';
 import { mockModalEnv } from 'mocks/modal-env/mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
@@ -31,11 +30,6 @@ describe('EmailAgentModalComponent', () => {
   let props: EmailAgentModalComponentPropsInterface;
 
   beforeAll(() => {
-    mockMiscAddTranslation(
-      'agent-modal/default-email-message',
-      'Hi, I found your property with ref: #{ref} on Property Finder. Please contact me. Thank you.'
-    );
-
     props = {
       property,
       openRef,
@@ -67,7 +61,7 @@ describe('EmailAgentModalComponent', () => {
       name: 'FirstName LastName',
       email: 'test@propertyfinder.ae',
       phone: '',
-      message: 'Hi, I found your property with ref: 123 on Property Finder. Please contact me. Thank you.',
+      message: 'agent-modal/default-email-message',
       emailAlert: true,
     });
   });
@@ -98,7 +92,7 @@ describe('EmailAgentModalComponent', () => {
               name: 'FirstName LastName',
               email: 'test@propertyfinder.ae',
               phone: '+971123456',
-              message: 'Hi, I found your property with ref: 123 on Property Finder. Please contact me. Thank you.',
+              message: 'agent-modal/default-email-message',
               emailAlert: false,
               captcha_token: 'token',
               autoRegister: true,
@@ -148,9 +142,7 @@ describe('EmailAgentModalComponent', () => {
 
     it('should display property data properly', () => {
       expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Title from agent');
-      expect(screen.getByLabelText('message')).toHaveValue(
-        'Hi, I found your property with ref: 123 on Property Finder. Please contact me. Thank you.'
-      );
+      expect(screen.getByLabelText('message')).toHaveValue('agent-modal/default-email-message');
     });
 
     it('should take initial values when modal is opened', () => {
@@ -158,7 +150,7 @@ describe('EmailAgentModalComponent', () => {
         name: '',
         email: '',
         phone: '',
-        message: 'Hi, I found your property with ref: 123 on Property Finder. Please contact me. Thank you.',
+        message: 'agent-modal/default-email-message',
         emailAlert: true,
       });
       expect(screen.queryByLabelText('agent-modal/receive-advertising-message')).not.toBeInTheDocument();
@@ -189,7 +181,7 @@ describe('EmailAgentModalComponent', () => {
                   name: 'Name',
                   email: 'email@example.com',
                   phone: '+971123456',
-                  message: 'Hi, I found your property with ref: 123 on Property Finder. Please contact me. Thank you.',
+                  message: 'agent-modal/default-email-message',
                   emailAlert: true,
                   captcha_token: 'token',
                   autoRegister: false,
@@ -212,7 +204,7 @@ describe('EmailAgentModalComponent', () => {
               name: 'Name',
               email: 'email@example.com',
               phone: '+971123456',
-              message: 'Hi, I found your property with ref: 123 on Property Finder. Please contact me. Thank you.',
+              message: 'agent-modal/default-email-message',
               emailAlert: true,
             },
           },

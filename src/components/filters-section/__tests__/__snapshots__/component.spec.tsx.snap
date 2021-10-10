@@ -46,7 +46,7 @@ exports[`FiltersSectionComponent should render without throwing any errors 1`] =
           <span
             class="label"
           >
-            1 more
+            multi-location-selector/n-more
           </span>
           <span
             class="chipSuffix"

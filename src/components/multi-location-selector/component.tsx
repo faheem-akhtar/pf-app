@@ -20,7 +20,7 @@ const renderNoSuggestions = (t: TFunctionType, inputValue: string): JSX.Element 
   <span
     // eslint-disable-next-line react/no-danger
     dangerouslySetInnerHTML={{
-      __html: t('multi-location-selector/no-suggestions').replace('{inputValue}', inputValue),
+      __html: t('multi-location-selector/no-suggestions', { inputValue }),
     }}
   />
 );

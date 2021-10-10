@@ -21,7 +21,7 @@ export const FiltersModalWidgetPriceComponent: FiltersModalWidgetType = ({
 
   return (
     <FiltersModalItemTemplate
-      label={t('filters-modal/price-title').replace('{currency}', t(`currency-code/${configCommon.currencyCode}`))}
+      label={t('filters-modal/price-title', { currency: t(`currency-code/${configCommon.currencyCode}`) })}
       icon={<IconThickPriceTemplate class={styles.icon} />}
       hasBorder={!filtersDataChoicesGetPaymentMethod(filtersValue, filtersData).length}
     >

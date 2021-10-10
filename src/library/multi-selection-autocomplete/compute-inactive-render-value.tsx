@@ -21,7 +21,7 @@ export const multiSelectionAutocompleteComputeInactiveRenderValue = <T extends u
 
   if (props.value.length > alwaysVisibleChipsN) {
     renderValue.push({
-      title: props.t('{N} more').replace('{N}', String(props.value.length - alwaysVisibleChipsN)),
+      title: props.t('multi-location-selector/n-more', { count: props.value.length - alwaysVisibleChipsN }),
       isMore: true,
     } as MultiSelectionAutocompleteInactiveRenderValueInterface<T>);
   }

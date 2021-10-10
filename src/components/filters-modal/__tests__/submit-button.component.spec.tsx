@@ -15,7 +15,8 @@ describe('FiltersModalSubmitButtonComponent', () => {
   const { filtersValueFromQuery } = filtersContextPropsStub();
 
   beforeAll(() => {
-    mockMiscAddTranslation('show-n-results', 'Show {n} results');
+    mockMiscAddTranslation('show-n-result', 'Show {{count}} result');
+    mockMiscAddTranslation('show-n-result_plural', 'Show {{count}} results');
 
     props = {
       onSubmit: jest.fn(),
@@ -26,7 +27,7 @@ describe('FiltersModalSubmitButtonComponent', () => {
   it('should display 1 result', () => {
     render(<FiltersModalSubmitButtonComponent {...props} forceNumberOfProperties={1} />);
 
-    expect(screen.getByRole('button')).toHaveTextContent('show-one-result');
+    expect(screen.getByRole('button')).toHaveTextContent('Show 1 result');
   });
 
   it('should display n results', () => {

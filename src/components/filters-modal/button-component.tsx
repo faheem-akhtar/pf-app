@@ -50,10 +50,9 @@ export const FiltersModalButtonComponent = ({ visibleTooltip }: { visibleTooltip
           >
             <span
               dangerouslySetInnerHTML={{
-                __html: t('on-boarding/filter-description').replace(
-                  '{name}',
-                  stringMakeBoldWord(t('filters-modal/is-developer-property-title'))
-                ),
+                __html: t('on-boarding/filter-description', {
+                  name: stringMakeBoldWord(t('filters-modal/is-developer-property-title')),
+                }),
               }}
             />
           </OnBoardingComponent>

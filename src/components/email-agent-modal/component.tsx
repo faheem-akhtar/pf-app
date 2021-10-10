@@ -50,7 +50,7 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
     name: user ? `${user.first_name} ${user.last_name}` : '',
     email: user ? user.email : '',
     phone: '',
-    message: t('agent-modal/default-email-message').replace('#{ref}', propertySerpObfuscatedGetReference(property)),
+    message: t('agent-modal/default-email-message', { ref: propertySerpObfuscatedGetReference(property) }),
     emailAlert: configEmailAgentEmailAlertCheckedByDefault,
     acceptTerms: false,
     receiveAdvertising: false,

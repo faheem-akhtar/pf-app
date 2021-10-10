@@ -1,7 +1,8 @@
 // eslint-disable-next-line pf-rules/forbid-import
-import { TFunction, useTranslation as i18nUseTranslation } from 'next-i18next';
+import { useTranslation as i18nUseTranslation } from 'next-i18next';
 
 import { helpersIsTest } from 'helpers/is-test';
+import { TFunctionType } from 'types/t-function/type';
 
 const { NEXT_PUBLIC_COUNTRY_CODE } = process.env;
 
@@ -12,12 +13,20 @@ const { NEXT_PUBLIC_COUNTRY_CODE } = process.env;
  */
 // TODO-FE[TPNX-3016] Add tests
 // TODO-FE[TPNX-3145] update README
-export const useTranslation = (namespace: string = 'common'): { t: TFunction } => {
+export const useTranslation = (namespace: string = 'common'): { t: TFunctionType } => {
   const countrySpecifcTranslations = i18nUseTranslation(NEXT_PUBLIC_COUNTRY_CODE);
   const commonTranslations = i18nUseTranslation(namespace);
 
   return {
-    t: (key, options): string => {
+    t: (key, options, allowManyContext): string => {
+      if (typeof options !== 'string' && options?.count === 0) {
+        key = `${key}_0`;
+      }
+
+      if (allowManyContext && typeof options !== 'string' && typeof options !== 'undefined') {
+        options.context = 'many';
+      }
+
       if (
         key === countrySpecifcTranslations.t(key) &&
         key === commonTranslations.t(key) &&

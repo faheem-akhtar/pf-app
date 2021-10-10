@@ -29,7 +29,7 @@ export const PropertyShareEmailFormComponent = ({
   const [email, setEmail] = useState<string>(user?.email || '');
   const [friendEmail, setFriendEmail] = useState<string>('');
   const [message, setMessage] = useState<string>(
-    t('social-share/default-message').replace('{sitename}', t(configSiteNameValue))
+    t('social-share/default-message', { sitename: t(configSiteNameValue) })
   );
   const [requestErrorMessage, setRequestErrorMessage] = useState('');
   const [errors, setErrors] = useState<Partial<Record<PropertyShareEmailFieldsEnum, string>>>({});

@@ -58,7 +58,7 @@ describe('FiltersSectionComponent', () => {
   });
 
   it('should have 1 element when the button is clicked', () => {
-    userEvent.click(screen.getByRole('button', { name: '1 more' }));
+    userEvent.click(screen.getByRole('button', { name: 'multi-location-selector/n-more' }));
     const autoCompleteContainer = screen.getByTestId('multi-selection-autocomplete-template').childNodes[0];
 
     expect(autoCompleteContainer.contains).toHaveLength(1);

@@ -10,4 +10,5 @@ module.exports = {
     useSuspense: false,
     wait: true,
   },
+  compatibilityJSON: 'v3',
 };
