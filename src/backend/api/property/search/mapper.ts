@@ -20,6 +20,7 @@ export const backendApiPropertySearchMapper = (
     ...data.properties,
   ].map((property) => {
     const {
+      area,
       name,
       links,
       verified,
@@ -34,6 +35,7 @@ export const backendApiPropertySearchMapper = (
       default_price,
     } = property;
 
+    const { listed_at_message, live_event_metadata } = meta;
     const { email, phone, whatsapp } = meta.contact_options.app;
 
     const contactOptionsList: PropertyContactOptionsListInterface = { email: !!email };
@@ -50,6 +52,9 @@ export const backendApiPropertySearchMapper = (
     }
 
     const propertyCompact: PropertySerpInterface = {
+      area,
+      liveEvent: !!live_event_metadata,
+      publishDate: listed_at_message,
       name,
       verified,
       listingLevel: listing_level,

@@ -1,6 +1,20 @@
 import { PropertyContactOptionsListInterface } from '../contact-options-list.interface';
-
 export interface PropertySerpInterface {
+  /**
+   * Live event
+   */
+  liveEvent: boolean;
+
+  /**
+   * Area in sqft
+   */
+  area: string;
+
+  /**
+   * Date the property was listed
+   */
+  publishDate: string;
+
   /**
    * Property ID
    */

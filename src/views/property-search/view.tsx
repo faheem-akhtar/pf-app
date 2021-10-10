@@ -14,6 +14,7 @@ import { PropertySearchCountAndSortSectionComponent } from 'components/property-
 import { PropertySearchNotFoundSectionTemplate } from 'components/property-search-not-found-section/template';
 import { SavedPropertyContextProvider } from 'components/saved-property/context-provider';
 import { SnackbarContextProvider } from 'components/snackbar/context-provider';
+import { WrapperTemplate } from 'components/wrapper/template';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
 import { TealiumEventEnum } from 'services/tealium/event.enum';
@@ -54,22 +55,24 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
               <ContactedPropertyContextProvider>
                 <HeaderComponent />
                 <FiltersSectionComponent />
-                {props.searchResult.total ? (
-                  <Fragment>
-                    <PropertySearchCountAndSortSectionComponent
-                      loading={pageIsLoading}
-                      count={props.searchResult.total}
-                    />
-                    <PropertyListComponent
-                      properties={props.searchResult.properties}
-                      adConfig={props.searchResult.adConfig}
-                      pageIsLoading={pageIsLoading}
-                    />
-                    <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
-                  </Fragment>
-                ) : (
-                  <PropertySearchNotFoundSectionTemplate />
-                )}
+                <WrapperTemplate>
+                  {props.searchResult.total ? (
+                    <Fragment>
+                      <PropertySearchCountAndSortSectionComponent
+                        loading={pageIsLoading}
+                        count={props.searchResult.total}
+                      />
+                      <PropertyListComponent
+                        properties={props.searchResult.properties}
+                        adConfig={props.searchResult.adConfig}
+                        pageIsLoading={pageIsLoading}
+                      />
+                      <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
+                    </Fragment>
+                  ) : (
+                    <PropertySearchNotFoundSectionTemplate />
+                  )}
+                </WrapperTemplate>
               </ContactedPropertyContextProvider>
             </SavedPropertyContextProvider>
             <MapSearchButtonComponent />

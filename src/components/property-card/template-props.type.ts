@@ -1,46 +1,118 @@
-import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
-import { PropertyCardCtaButtonsGroupTemplatePropsInterface } from 'components/property-card/cta-buttons-group/template-props.interface';
+import React from 'react';
+
 import { GalleryScrollComponentPropsInterface } from 'library/gallery-scroll/component-props.interface';
 import { TFunctionType } from 'types/t-function/type';
 
+import { PropertyCardBannersBannerInterface } from './banners/banner.interface';
+
 export type PropertyCardTemplatePropsType = {
-  /**
-   * Gallery scroll props
-   */
-  gallery: GalleryScrollComponentPropsInterface;
   /**
    * Is propety loading
    */
   loading: boolean;
   /**
-   * Obfuscated property
+   * Gallery scroll props
    */
-  property: PropertySerpObfuscatedType;
-  /**
-   * CTA Buttons props
-   */
-  ctaButtons: Omit<PropertyCardCtaButtonsGroupTemplatePropsInterface, 'contactOptions'>;
+  gallery: GalleryScrollComponentPropsInterface;
 
   /**
-   * Has property has been short listed by the user
+   * Type of property
+   */
+  type: string;
+  /**
+   * Price
+   */
+  price: string;
+  /**
+   * Custom card title
+   */
+  customTitle: string;
+  /**
+   * Location
+   */
+  location: string;
+  /**
+   * Bedrooms
+   */
+  bedrooms: string;
+  /**
+   * Bathrooms
+   */
+  bathrooms: string;
+  /**
+   * Area
+   */
+  area: string;
+  /**
+   * Whether is saved or not
    */
   saved: boolean;
-
   /**
-   * Last contacted date
+   * Publishing date
+   */
+  publishDate: string;
+  /**
+   * Delivery date
+   */
+  deliveryDate?: string;
+  /**
+   * Contact date
    */
   contactDate?: string;
-
   /**
-   * Clicked on the saved button
+   * Banners to display
    */
-  onSaveButtonClick: () => void;
+  banners?: PropertyCardBannersBannerInterface[];
   /**
-   * Clicked on the menu button
+   * Whether or not banners are visible
    */
-  onMenuButtonClick: () => void;
+  showBanners?: boolean;
+  /**
+   * Property page link
+   */
+  href: string;
+  /**
+   * Utilities included
+   */
+  utilitiesIncluded: boolean;
+  /**
+   * Phone number
+   */
+  phoneNumber?: string;
+  /**
+   * Whatsapp link
+   */
+  whatsAppLink?: string;
   /**
    * Translate function
    */
   t: TFunctionType;
+  /**
+   * On save button click handler
+   */
+  onSaveButtonClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * On Menu button click handler
+   */
+  onMenuButtonClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * On Phone button click handler
+   */
+  onCallClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  /**
+   * On Email button click handler
+   */
+  onEmailClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  /**
+   * On Whatsapp button click handler
+   */
+  onWhatsappClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  /**
+   * On gallery index change handler
+   */
+  onGalleryIndexChange?: (index: number) => void;
+  /**
+   * On gallery click handler
+   */
+  onGalleryClick: () => void;
 };

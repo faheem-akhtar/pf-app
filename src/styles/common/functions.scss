@@ -1,0 +1,9 @@
+/* Spacing multiplier */
+@function spacingm($multiplier: 1) {
+  @return calc(var(--spacing) * #{$multiplier});
+}
+
+/* Spacing divider */
+@function spacingd($divider) {
+  @return calc(var(--spacing) / #{$divider});
+}

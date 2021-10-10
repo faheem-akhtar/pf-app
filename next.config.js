@@ -31,6 +31,9 @@ module.exports = {
 
     return config;
   },
+  sassOptions: {
+    prependData: "@import 'src/styles/common/functions';",
+  },
   compress: false,
   async headers() {
     return [

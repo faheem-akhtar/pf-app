@@ -1,20 +1,24 @@
 .container {
   background-color: var(--color-global-white);
-  padding: 0 calc(var(--spacing) * 2) calc(var(--spacing) * 2) calc(var(--spacing) * 2);
+  padding-bottom: spacingm(2);
   position: relative;
   z-index: var(--z-index-03);
+}
+
+.searchbar {
+  margin-bottom: var(--spacing);
 }
 
 .buttons_row {
   display: flex;
   justify-content: space-between;
-  margin-top: var(--spacing);
 }
 
 .buttons_row__appear_on_scroll {
   background-color: var(--color-global-white);
   margin-top: 0;
-  padding: calc(var(--spacing) * 2);
+  padding-bottom: spacingm(2);
+  padding-top: spacingm(2);
   width: 100%;
 }
 

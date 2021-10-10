@@ -6,6 +6,7 @@ import { FiltersModalButtonComponent } from 'components/filters-modal/button-com
 import { MultiLocationSelectorComponent } from 'components/multi-location-selector/component';
 import { SaveSearchContextProvider } from 'components/save-search/context-provider';
 import { SaveSearchModalButtonComponent } from 'components/save-search/modal/button-component';
+import { WrapperTemplate } from 'components/wrapper/template';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { domClassMerge } from 'helpers/dom/class-merge';
@@ -32,8 +33,9 @@ export const FiltersSectionComponent = (): JSX.Element => {
   const filtersCtx = useContext(FiltersContext);
 
   return (
-    <div className={styles.container}>
+    <WrapperTemplate className={styles.container}>
       <MultiLocationSelectorComponent
+        className={styles.searchbar}
         locale={(router.locale || LanguageCodeEnum.en) as LanguageCodeEnum}
         value={filtersCtx.value[FiltersParametersEnum.locationsIds]}
         onChange={(locations: LocationCompactInterface[]): void => {
@@ -49,8 +51,10 @@ export const FiltersSectionComponent = (): JSX.Element => {
         <ButtonsRow visibleTooltip />
       </SaveSearchContextProvider>
       <AppearOnScrollComponent>
-        <ButtonsRow className={styles.buttons_row__appear_on_scroll} />
+        <WrapperTemplate className={styles.buttons_row__appear_on_scroll}>
+          <ButtonsRow />
+        </WrapperTemplate>
       </AppearOnScrollComponent>
-    </div>
+    </WrapperTemplate>
   );
 };

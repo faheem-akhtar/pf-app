@@ -30,6 +30,7 @@ module.exports = {
     'react/jsx-no-target-blank': 'error',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/display-name': 'off',
     'no-extra-boolean-cast': 'error',
     'no-prototype-builtins': 'error',
     'no-global-assign': 'error',

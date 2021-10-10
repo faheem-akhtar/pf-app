@@ -1,3 +1,4 @@
+import { GalleryScrollObjectFitEnum } from './object-fit.enum';
 import { GalleryScrollTemplateItemInterface } from './template-item.interface';
 
 export interface GalleryScrollTemplatePropsInterface {
@@ -40,4 +41,9 @@ export interface GalleryScrollTemplatePropsInterface {
    * Active index
    */
   activeIndex: number;
+
+  /**
+   * Image fit behavior
+   */
+  objectFit?: GalleryScrollObjectFitEnum;
 }

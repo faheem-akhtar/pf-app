@@ -26,6 +26,7 @@ const renderNoSuggestions = (t: TFunctionType, inputValue: string): JSX.Element 
 );
 
 export const MultiLocationSelectorComponent = ({
+  className,
   locale,
   onChange,
   value: locations,
@@ -61,6 +62,7 @@ export const MultiLocationSelectorComponent = ({
 
   return (
     <MultiSelectionAutocompleteComponent
+      className={className}
       value={locations}
       getTitle={(location): string => {
         const text = `${location.abbreviation ? `${location.abbreviation} - ` : ''}${location.name}`;

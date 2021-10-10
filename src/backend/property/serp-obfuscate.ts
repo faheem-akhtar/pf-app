@@ -1,4 +1,5 @@
 import { PropertySerpInterface } from 'components/property/serp/interface';
+import { propertySerpObfuscatedFieldAreaValue } from 'components/property/serp/obfuscated/field/area-value';
 import { propertySerpObfuscatedFieldBathroomValue } from 'components/property/serp/obfuscated/field/bathroom-value';
 import { propertySerpObfuscatedFieldBedroomValue } from 'components/property/serp/obfuscated/field/bedroom-value';
 import { propertySerpObfuscatedFieldContactOptionsList } from 'components/property/serp/obfuscated/field/contact-options-list';
@@ -9,10 +10,12 @@ import { propertySerpObfuscatedFieldImagesCount } from 'components/property/serp
 import { propertySerpObfuscatedFieldImgUrl } from 'components/property/serp/obfuscated/field/img-url';
 import { propertySerpObfuscatedFieldImgUrlSmall } from 'components/property/serp/obfuscated/field/img-url-small';
 import { propertySerpObfuscatedFieldListingLevel } from 'components/property/serp/obfuscated/field/listing-level';
+import { propertySerpObfuscatedFieldLiveEventValue } from 'components/property/serp/obfuscated/field/live-event-value';
 import { propertySerpObfuscatedFieldLocationTreePath } from 'components/property/serp/obfuscated/field/location-tree-path';
 import { propertySerpObfuscatedFieldName } from 'components/property/serp/obfuscated/field/name';
 import { propertySerpObfuscatedFieldPriceText } from 'components/property/serp/obfuscated/field/price-text';
 import { propertySerpObfuscatedFieldPropertyTypeName } from 'components/property/serp/obfuscated/field/property-type-name';
+import { propertySerpObfuscatedFieldPublishDateValue } from 'components/property/serp/obfuscated/field/publish-date-value';
 import { propertySerpObfuscatedFieldReference } from 'components/property/serp/obfuscated/field/reference';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
@@ -33,6 +36,15 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
     const propertyKey = key as keyof PropertySerpInterface;
     const value = property[propertyKey];
     switch (propertyKey) {
+      case 'area':
+        obfuscatedProperty[propertySerpObfuscatedFieldAreaValue] = value;
+        break;
+      case 'publishDate':
+        obfuscatedProperty[propertySerpObfuscatedFieldPublishDateValue] = value;
+        break;
+      case 'liveEvent':
+        obfuscatedProperty[propertySerpObfuscatedFieldLiveEventValue] = value;
+        break;
       case 'url':
         obfuscatedProperty[propertySerpObfuscatedFieldUrl] = value;
         break;

@@ -55,7 +55,7 @@ describe('PropertyCardComponent', () => {
     const defaultProps = makeDefaultProps();
     const { getByTestId, getAllByTestId } = render(<PropertyCardComponent {...defaultProps} />);
 
-    mockReactUseSwr('en-property-search/images-GET-{"propertyId":"198023","imageType":"small"}', {
+    mockReactUseSwr('en-property-search/images-GET-{"propertyId":"198023","imageType":"medium"}', {
       ok: true,
       data: ['i1', 'i2', 'i3'],
     });
@@ -95,13 +95,13 @@ describe('PropertyCardComponent', () => {
 
     mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {});
     const defaultProps = makeDefaultProps();
-    const { getByText } = render(
+    const { getByTestId } = render(
       <PropertySearchStatsDataPromiseForCurrentQueryContext.Provider value={statsDataPromise}>
         <PropertyCardComponent {...defaultProps} />
       </PropertySearchStatsDataPromiseForCurrentQueryContext.Provider>
     );
 
-    const callButton = getByText('cta-call');
+    const callButton = getByTestId('cta-call');
 
     const { error: errorMock } = mockWindowConsole();
     userEvent.click(callButton);
@@ -119,13 +119,13 @@ describe('PropertyCardComponent', () => {
       mockReactUseSwr('en-countries-GET-{"sort":"priority"}', {});
       const defaultProps = makeDefaultProps();
       propertySerpObfuscatedGetContactOptionsList(defaultProps.property).whatsapp = { type: '', value: '', link: '' };
-      const { getByText } = render(
+      const { getByTestId } = render(
         <PropertySearchStatsDataPromiseForCurrentQueryContext.Provider value={statsDataPromise}>
           <PropertyCardComponent {...defaultProps} />
         </PropertySearchStatsDataPromiseForCurrentQueryContext.Provider>
       );
 
-      const callButton = getByText(`cta-${ctaType}`);
+      const callButton = getByTestId(`cta-${ctaType}`);
 
       userEvent.click(callButton);
       await statsDataPromise;

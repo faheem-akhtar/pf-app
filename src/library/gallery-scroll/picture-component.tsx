@@ -3,12 +3,14 @@ import { useState } from 'react';
 import { domClassMerge } from 'helpers/dom/class-merge';
 
 import styles from './gallery-scroll.module.scss';
+import { GalleryScrollObjectFitEnum } from './object-fit.enum';
 import { GalleryScrollPictureComponentPropsInterface } from './picture-component-props.interface';
 
 export const GalleryScrollPictureComponent = ({
   style,
   sourceUrl,
   isTouched,
+  objectFit = GalleryScrollObjectFitEnum.NONE,
 }: GalleryScrollPictureComponentPropsInterface): JSX.Element => {
   const [loading, setLoading] = useState(true);
 
@@ -21,7 +23,7 @@ export const GalleryScrollPictureComponent = ({
     >
       {sourceUrl && <source srcSet={sourceUrl.replace('.jpg', '.webp')} type='image/webp' />}
       {sourceUrl && <source srcSet={sourceUrl} type='image/jpeg' />}
-      {sourceUrl && <img loading={isTouched ? undefined : 'lazy'} src={sourceUrl} />}
+      {sourceUrl && <img style={{ objectFit }} loading={isTouched ? undefined : 'lazy'} src={sourceUrl} />}
     </picture>
   );
 };

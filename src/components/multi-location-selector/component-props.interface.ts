@@ -25,4 +25,9 @@ export interface MultiLocationSelectorComponentPropsInterface {
    * Maximum number of search results
    */
   maxSearchResults?: number;
+
+  /**
+   * Additional css class
+   */
+  className?: string;
 }
