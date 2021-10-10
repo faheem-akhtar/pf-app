@@ -44,7 +44,11 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
     <PropertySearchStatsDataPromiseForCurrentQueryContext.Provider value={statsDataPromise}>
       <PropertySearchResultsCountForCurrentQueryContext.Provider value={props.searchResult.total}>
         <SnackbarContextProvider>
-          <HeadComponent pageTitle={props.documentTitle} />
+          <HeadComponent
+            pageTitle={props.documentTitle}
+            // TODO-FE[CX-708] The page should be indexable for landing pages. Implement it once landing pages are served by pf-web-app
+            shouldIndex={false}
+          />
           <FiltersContextProvider {...filtersContextProps}>
             <SavedPropertyContextProvider>
               <ContactedPropertyContextProvider>
