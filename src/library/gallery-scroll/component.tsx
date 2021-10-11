@@ -1,4 +1,4 @@
-import { useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 
 import { functionNoop } from 'helpers/function/noop';
 
@@ -11,12 +11,19 @@ import { GalleryScrollTemplate } from './template';
 
 export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterface): JSX.Element => {
   const galleryRef = useRef<HTMLDivElement>(null);
-  const numberOfImages = props.items.length;
-  const [reducer] = useState(() => galleryScrollMakeReducer(props.isRtl, numberOfImages));
-  const [initialReducerState] = useState(() => galleryScrollMakeInitialState(props.items, props.isRtl));
+  const { className, items, isRtl, objectFit, onActiveIndexChange = functionNoop, onTouch = functionNoop } = props;
+  const numberOfImages = items.length;
+  const [reducer] = useState(() => galleryScrollMakeReducer(isRtl, numberOfImages));
+  const [initialReducerState] = useState(() => galleryScrollMakeInitialState(items, isRtl));
 
   const [state, dispatch] = useReducer(reducer, initialReducerState);
   useGalleryScrollEffects(state.pointerPositionStart !== null, dispatch);
+
+  const { activeIndex } = state;
+
+  useEffect(() => {
+    onActiveIndexChange(activeIndex);
+  }, [onActiveIndexChange, activeIndex]);
 
   const onStart = (positionX: number, initialTouch?: { positionX: number; positionY: number }): void => {
     const galleryRect = (galleryRef.current as HTMLDivElement).getBoundingClientRect();
@@ -32,7 +39,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
 
   const hasMultipleImages = numberOfImages > 1;
 
-  const itemsToRender = props.items.map((item, i) => ({
+  const itemsToRender = items.map((item, i) => ({
     ...item,
     style: hasMultipleImages ? galleryScrollGetSlidingStyles(state, i, numberOfImages) : {},
   }));
@@ -40,13 +47,13 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
   return (
     <GalleryScrollTemplate
       containerRef={galleryRef}
-      className={props.className}
+      className={className}
       onMouseDown={
         hasMultipleImages
           ? (e): void => {
               e.preventDefault();
               onStart(e.clientX);
-              props.onTouch();
+              onTouch();
             }
           : functionNoop
       }
@@ -55,14 +62,14 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
           ? (e): void => {
               const initialTouch = { positionX: e.touches[0].clientX, positionY: e.touches[0].clientY };
               onStart(e.changedTouches[0].pageX, initialTouch);
-              props.onTouch();
+              onTouch();
             }
           : functionNoop
       }
       items={itemsToRender}
       isTouched={state.isTouched}
       activeIndex={state.activeIndex}
-      objectFit={props.objectFit}
+      objectFit={objectFit}
     />
   );
 };

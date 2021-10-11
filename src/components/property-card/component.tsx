@@ -166,11 +166,6 @@ export const PropertyCardComponent = ({
     },
   };
 
-  // Updates card when property changes
-  useEffect(() => {
-    setGalleryIndex(0);
-  }, [property, t]);
-
   // Handles banner animation
   useEffect(() => {
     if (timeoutRef.current) {
