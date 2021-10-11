@@ -64,6 +64,7 @@ describe('PropertyCardComponent', () => {
     fireEvent.touchStart(gallery, {
       ...touchEventStub(),
       changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
+      touches: [{ clientX: 5, clientY: 7 }],
     });
 
     expect(getAllByTestId('GalleryScrollPicture').length).toBe(3);

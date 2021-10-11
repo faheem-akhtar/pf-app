@@ -5,6 +5,13 @@ export type GalleryScrollActionType =
        * The horizontal position where user has touched the gallery
        */
       positionX: number;
+      /**
+       * The first touch move registered
+       */
+      firstTouchMove?: {
+        positionX: number;
+        positionY: number;
+      };
     }
   | {
       type: 'start';
@@ -20,5 +27,12 @@ export type GalleryScrollActionType =
        * The absolute left coordinate of gallery
        */
       galleryLeft: number;
+      /**
+       * The initial touch registered
+       */
+      initialTouch?: {
+        positionX: number;
+        positionY: number;
+      };
     }
   | { type: 'end' };

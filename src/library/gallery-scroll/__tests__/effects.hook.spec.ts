@@ -69,10 +69,14 @@ describe('useGalleryScrollEffects', () => {
     const [name, callback] = contextMenuCall;
     expect(name).toBe('touchmove');
 
-    callback({ changedTouches: [{ pageX: 3 }] });
+    callback({ changedTouches: [{ pageX: 3 }], touches: [{ clientX: 3, clientY: 5 }] });
 
     expect(dispatchMock).toBeCalledTimes(1);
-    expect(dispatchMock).toHaveBeenCalledWith({ type: 'move', positionX: 3 });
+    expect(dispatchMock).toHaveBeenCalledWith({
+      type: 'move',
+      positionX: 3,
+      firstTouchMove: { positionX: 3, positionY: 5 },
+    });
   });
 
   it('should dispatch end action on mouse up and stop propagation of event', () => {

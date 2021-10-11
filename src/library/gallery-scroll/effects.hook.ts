@@ -19,8 +19,8 @@ export const useGalleryScrollEffects = (
       return false;
     };
 
-    const onMove = (positionX: number): void => {
-      dispatch({ type: 'move', positionX });
+    const onMove = (positionX: number, firstTouchMove?: { positionX: number; positionY: number }): void => {
+      dispatch({ type: 'move', positionX, firstTouchMove });
     };
     const onEnd = (e: Event): void => {
       e.stopPropagation();
@@ -31,7 +31,8 @@ export const useGalleryScrollEffects = (
       onMove(e.clientX);
     };
     const onTouchMove = (e: TouchEvent): void => {
-      onMove(e.changedTouches[0].pageX);
+      const firstTouchMove = { positionX: e.touches[0].clientX, positionY: e.touches[0].clientY };
+      onMove(e.changedTouches[0].pageX, firstTouchMove);
     };
     const onTouchEnd = (e: TouchEvent): void => {
       // we should prevent default because otherwise it will trigger mouse down right after touchend

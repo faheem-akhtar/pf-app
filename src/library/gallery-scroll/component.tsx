@@ -18,7 +18,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
   const [state, dispatch] = useReducer(reducer, initialReducerState);
   useGalleryScrollEffects(state.pointerPositionStart !== null, dispatch);
 
-  const onStart = (positionX: number): void => {
+  const onStart = (positionX: number, initialTouch?: { positionX: number; positionY: number }): void => {
     const galleryRect = (galleryRef.current as HTMLDivElement).getBoundingClientRect();
 
     dispatch({
@@ -26,6 +26,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
       positionX,
       galleryLeft: galleryRect.left,
       galleryRight: galleryRect.right,
+      initialTouch,
     });
   };
 
@@ -52,7 +53,8 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
       onTouchStart={
         hasMultipleImages
           ? (e): void => {
-              onStart(e.changedTouches[0].pageX);
+              const initialTouch = { positionX: e.touches[0].clientX, positionY: e.touches[0].clientY };
+              onStart(e.changedTouches[0].pageX, initialTouch);
               props.onTouch();
             }
           : functionNoop

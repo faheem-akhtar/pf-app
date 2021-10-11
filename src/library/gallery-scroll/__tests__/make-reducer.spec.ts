@@ -1,5 +1,6 @@
 import { GalleryScrollActionType } from '../action.type';
 import { GalleryScrollBrowseEnum } from '../browse.enum';
+import { GalleryScrollDirectionEnum } from '../direction.enum';
 import { GalleryScrollItemInterface } from '../item.interface';
 import { galleryScrollMakeInitialState } from '../make-initial-state';
 import { galleryScrollMakeReducer } from '../make-reducer';
@@ -57,15 +58,34 @@ describe('galleryScrollMakeReducer', () => {
       expect(result.pointerPositionCurrent).toBe(6);
     });
 
-    it('should set pointerPositionCurrent', () => {
+    it('should not set dragging when event is onMouseMove', () => {
       const result = reducer({ ...initialState3Images, pointerPositionStart: 5 }, { type: 'move', positionX: 50 });
 
-      expect(result.isDragging).toBe(true);
+      expect(result.isDragging).toBe(false);
       expect(result.pointerPositionCurrent).toBe(50);
+    });
+
+    it('should set dragging and touch direction to horizontal', () => {
+      const result = reducer(
+        { ...initialState3Images, pointerPositionStart: 5, initialTouch: { positionX: 7, positionY: 9 } },
+        { type: 'move', positionX: 50, firstTouchMove: { positionX: 4, positionY: 7 } }
+      );
+
+      expect(result.isDragging).toBe(true);
+      expect(result.touchDirection).toBe(GalleryScrollDirectionEnum.HORIZONTAL);
     });
   });
 
   describe('on end', () => {
+    it('should return initial state when the touch direction is vertical', () => {
+      const result = reducer(
+        { ...initialState3Images, touchDirection: GalleryScrollDirectionEnum.VERTICAL },
+        { type: 'end' }
+      );
+
+      expect(result).toStrictEqual({ ...initialState3Images, touchDirection: 'vertical' });
+    });
+
     it('should ignore action if pointerPositionCurrent is not set', () => {
       const result = reducer(initialState3Images, { type: 'end' });
 

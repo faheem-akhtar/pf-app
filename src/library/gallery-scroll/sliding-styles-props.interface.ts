@@ -1,4 +1,5 @@
 import { GalleryScrollBrowseEnum } from './browse.enum';
+import { GalleryScrollDirectionEnum } from './direction.enum';
 
 export interface GalleryScrollSlidingStylesPropsInterface {
   /**
@@ -30,4 +31,17 @@ export interface GalleryScrollSlidingStylesPropsInterface {
    * Type of browsing
    */
   browse: GalleryScrollBrowseEnum;
+
+  /**
+   * Initial touch registered
+   */
+  initialTouch?: {
+    positionX: number;
+    positionY: number;
+  };
+
+  /**
+   * Type of touching direction
+   */
+  touchDirection?: GalleryScrollDirectionEnum;
 }

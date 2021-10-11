@@ -71,6 +71,7 @@ describe('AppearOnScrollComponent', () => {
     fireEvent.touchStart(getByTestId('GalleryScroll'), {
       ...touchEventStub(),
       changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
+      touches: [{ clientX: 3, clientY: 5 } as Touch],
     });
 
     expect(dispatchMock).toHaveBeenCalledTimes(1);
@@ -79,6 +80,7 @@ describe('AppearOnScrollComponent', () => {
       galleryRight: 0,
       positionX: 5,
       type: 'start',
+      initialTouch: { positionX: 3, positionY: 5 },
     });
   });
 

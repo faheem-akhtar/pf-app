@@ -1,10 +1,14 @@
 import { GalleryScrollBrowseEnum } from './browse.enum';
 import { galleryScrollComputeItemPositionsXUpdate } from './compute-item-positions-x-update';
+import { GalleryScrollDirectionEnum } from './direction.enum';
 import { galleryScrollGetBrowseOnUserTouchDown } from './get-browse-on-user-touch-down';
+import { galleryScrollGetTouchDirection } from './get-touch-direction';
 import { GalleryScrollReducerType } from './reducer.type';
 import { GalleryScrollStateInterface } from './state.interface';
 
 type MakeReducerType = (isRtl: boolean, itemsCount: number) => GalleryScrollReducerType;
+
+const DRAG_DELTA_MIN = 10;
 
 export const galleryScrollMakeReducer: MakeReducerType =
   (isRtl, itemsCount) =>
@@ -14,12 +18,25 @@ export const galleryScrollMakeReducer: MakeReducerType =
         const pointerPositionCurrent = action.positionX;
         const pointerPositionDelta = state.pointerPositionStart - pointerPositionCurrent;
 
-        if (Math.abs(pointerPositionDelta) > 10) {
-          return {
-            ...state,
-            isDragging: true,
-            pointerPositionCurrent,
-          };
+        if (state.initialTouch && action.firstTouchMove) {
+          const touchDirection: GalleryScrollDirectionEnum = state.touchDirection
+            ? state.touchDirection
+            : galleryScrollGetTouchDirection(state.initialTouch, action.firstTouchMove);
+
+          if (!state.touchDirection) {
+            state.touchDirection = touchDirection;
+          }
+
+          if (
+            touchDirection === GalleryScrollDirectionEnum.HORIZONTAL &&
+            Math.abs(pointerPositionDelta) > DRAG_DELTA_MIN
+          ) {
+            return {
+              ...state,
+              isDragging: true,
+              pointerPositionCurrent,
+            };
+          }
         }
 
         return {
@@ -28,6 +45,9 @@ export const galleryScrollMakeReducer: MakeReducerType =
         };
       }
     } else if (action.type === 'end') {
+      if (state.touchDirection === GalleryScrollDirectionEnum.VERTICAL) {
+        return state;
+      }
       const { activeIndex, itemsPositionsX } = state;
 
       if (state.pointerPositionStart !== null && state.pointerPositionCurrent !== null) {
@@ -73,6 +93,7 @@ export const galleryScrollMakeReducer: MakeReducerType =
           (action.galleryRight - action.galleryLeft) / 2
         ),
         isTouched: true,
+        ...(action.initialTouch && { initialTouch: action.initialTouch }),
       };
     }
 
