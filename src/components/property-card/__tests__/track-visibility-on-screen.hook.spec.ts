@@ -1,6 +1,8 @@
+import { mockReactUseContext } from 'mocks/react/use-context.mock';
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
 import { mockWindowConsole } from 'mocks/window/console.mock';
 
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { StatsService } from 'services/stats/service';
 
 import { usePropertyCardTrackVisibilityOnScreen } from '../track-visibility-on-screen.hook';
@@ -35,6 +37,7 @@ describe('usePropertyCardTrackVisibilityOnScreen', () => {
   beforeEach(() => {
     (StatsService().propertyImpression as jest.Mock).mockReset();
     mockReactUseEffect();
+    mockReactUseContext(5, { value: { [FiltersParametersEnum.pageNumber]: 3 } });
     window.setInterval = ((callback: Function): number => {
       fireSetInterval = callback;
       return 0;
@@ -57,7 +60,9 @@ describe('usePropertyCardTrackVisibilityOnScreen', () => {
     await statsDataPromise;
 
     expect(StatsService().propertyImpression).toHaveBeenCalledTimes(1);
-    expect(StatsService().propertyImpression).toHaveBeenCalledWith(1);
+    expect(StatsService().propertyImpression).toHaveBeenCalledWith(1, {
+      pagination: { itemPerPage: 25, itemTotal: 5, pageCurrent: 3 },
+    });
     expect(window.clearInterval).toHaveBeenCalledTimes(1);
   });
 

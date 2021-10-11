@@ -11,6 +11,7 @@ import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { TFunctionType } from 'types/t-function/type';
 
 import { translationsMap } from './misc/add-translation.mock';
+import { recoverReactUseContext } from './react/use-context.mock';
 import { recoverReactUseEffect } from './react/use-effect.mock';
 import { recoverReactUseReducer } from './react/use-reducer.mock';
 import { recoverReactUseRef } from './react/use-ref.mock';
@@ -93,6 +94,7 @@ beforeEach(() => {
   recoverWindowFetch();
   recoverReactUseRef();
   recoverWindowMockImportScript();
+  recoverReactUseContext();
   mockReactUseSwrRecover();
 
   delete process.env.TRACE;

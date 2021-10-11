@@ -2,7 +2,7 @@ import { StatsContextAbTestsInterface } from '@propertyfinder/pf-frontend-common
 
 export const headersParseExperimentsFromSetCookie = (valueOfSetCookieHeader: string): StatsContextAbTestsInterface => {
   try {
-    const keyStr = 'website_ab_tests=';
+    const keyStr = process.env.ENVIRONMENT === 'staging' ? 'website_ab_tests_staging=' : 'website_ab_tests=';
     const indexOfKeyStr = valueOfSetCookieHeader.indexOf(keyStr);
     const valueIndex = indexOfKeyStr + keyStr.length;
     const valueOfSetCookieHeaderStartingFromAbTestValue = valueOfSetCookieHeader.substr(valueIndex);

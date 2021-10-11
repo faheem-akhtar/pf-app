@@ -24,7 +24,8 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
   const searchResult = await backendApiPropertySearchFetcher(
     locale,
     filtersValueFromQuery,
-    context.req.cookies[cookieAbTestKey]
+    context.req.cookies[cookieAbTestKey],
+    context.req.headers['user-agent'] as string
   );
 
   if (!searchResult.ok) {

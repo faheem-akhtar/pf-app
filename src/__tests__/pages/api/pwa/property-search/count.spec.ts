@@ -35,7 +35,6 @@ describe('pages/api/property-search/count', () => {
           headers: {
             Host: 'www.propertyfinder.ae',
             locale: 'en',
-            'user-agent': 'pf-web-app-74f9c3382b2516b2e826762e13dfa3ea05d84396',
             'x-akamai-device-characteristics': 'is_mobile=true&is_tablet=false',
             'x-forwarded-proto': 'https',
           },

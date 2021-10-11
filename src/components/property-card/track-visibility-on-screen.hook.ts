@@ -1,6 +1,10 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
+import { FiltersContext } from 'components/filters/context';
+import { propertySerpItemsPerPage } from 'constants/property/serp/items-per-page';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { StatsService } from 'services/stats/service';
+import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
 
 import { propertyCardComputeVisibilityPercentage } from './compute-visibility-percentage';
 
@@ -13,6 +17,10 @@ export const usePropertyCardTrackVisibilityOnScreen = (
   propertyId: string,
   containerRef: React.RefObject<HTMLDivElement>
 ): void => {
+  const itemTotal = useContext(PropertySearchResultsCountForCurrentQueryContext);
+  const { value: filtersValue } = useContext(FiltersContext);
+  const pageCurrent = filtersValue[FiltersParametersEnum.pageNumber];
+
   useEffect(() => {
     let timeMsOnScreenWithRequiredPercentOfVisibility = 0;
     const intervalId = setInterval(() => {
@@ -28,7 +36,13 @@ export const usePropertyCardTrackVisibilityOnScreen = (
       if (timeMsOnScreenWithRequiredPercentOfVisibility >= LISTING_REQUIRED_TIME_MS_ON_SCREEN_TO_TRACK_IMPRESSION) {
         statsDataPromise.then(({ ok }) => {
           if (ok) {
-            StatsService().propertyImpression(parseInt(propertyId));
+            StatsService().propertyImpression(parseInt(propertyId), {
+              pagination: {
+                pageCurrent,
+                itemPerPage: propertySerpItemsPerPage, // this property is not used in pf-frontend-common, but interface requires some value even it is not used
+                itemTotal,
+              },
+            });
           } else {
             // eslint-disable-next-line no-console
             console.error('failed to send listing impression because stats data was not loaded');
@@ -41,5 +55,5 @@ export const usePropertyCardTrackVisibilityOnScreen = (
     return (): void => {
       clearInterval(intervalId);
     };
-  }, [statsDataPromise, containerRef, propertyId]);
+  }, [statsDataPromise, containerRef, propertyId, pageCurrent, itemTotal]);
 };
