@@ -29,18 +29,6 @@ The application initially reads the country-specific key, if it's not defined it
 
 Styling internalization is being handled by [postcss-rtl](https://www.npmjs.com/package/postcss-rtl).
 
-### Logging
-
-Console functions are customized separately for datadog implementations for both client and server side.
-They still have native functionality, besides that they feed the datadog with the given inputs and should be called as follows:
-
-```
-    // First parameter may be an object (stack) or string, second parameter is always optional
-    console.error(error, 'message');
-    // or
-    console.log('message');
-```
-
 ### Routing
 
 The page to be run is decided by the ingress defined in `chars/pf-web-app/values.yaml`. The defined variables are used in `ingress.yaml` to configure resolving the requested URL.
