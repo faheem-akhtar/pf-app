@@ -12,39 +12,42 @@ import { authTracker } from '../tracker';
 import styles from './auth-modal-component.module.scss';
 import { AuthModalPropsInterface } from './props.interface';
 
-// TODO[CX-751] - combine it with SavedPropertyAuthModalComponent
 export const AuthModalComponent = ({
+  eventLabel = 'Header',
+  initialScreen = AuthScreenEnum.login,
+  loginTemplate,
   close = functionNoop,
   cancel = functionNoop,
   success = functionNoop,
 }: AuthModalPropsInterface): JSX.Element => {
-  const [authScreen, setAuthScreen] = useState(AuthScreenEnum.login);
+  const [authScreen, setAuthScreen] = useState(initialScreen);
 
   useEffect(() => {
     if (authScreen === AuthScreenEnum.login) {
-      authTracker.onOpenLoginForm('Header');
+      authTracker.onOpenLoginForm(eventLabel);
     }
 
     if (authScreen === AuthScreenEnum.registration) {
-      authTracker.onOpenRegisterForm('Header');
+      authTracker.onOpenRegisterForm(eventLabel);
     }
 
     if (authScreen === AuthScreenEnum.forgotPassword) {
-      authTracker.onOpenForgotPasswordForm('Header');
+      authTracker.onOpenForgotPasswordForm(eventLabel);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authScreen]);
 
   const onSuccess = (type?: AuthSuccessTypeEnum): void => {
     if (type === AuthSuccessTypeEnum.signInWithEmail) {
-      authTracker.onSuccessLoginWithEmail('Header');
+      authTracker.onSuccessLoginWithEmail(eventLabel);
     }
 
     if (type === AuthSuccessTypeEnum.signInWithFacebook) {
-      authTracker.onSuccessLoginWithFacebook('Header');
+      authTracker.onSuccessLoginWithFacebook(eventLabel);
     }
 
     if (type === AuthSuccessTypeEnum.signInWithGoogle) {
-      authTracker.onSuccessLoginWithGoogle('Header');
+      authTracker.onSuccessLoginWithGoogle(eventLabel);
     }
 
     success();
@@ -63,16 +66,21 @@ export const AuthModalComponent = ({
             close();
             cancel();
           }}
+          data-testid='auth-close-button'
         >
           <IconThickCrossTemplate class={styles.closeIcon} />
         </button>
       </div>
-      {authScreen === AuthScreenEnum.login && (
+      {[AuthScreenEnum.login, AuthScreenEnum.shortLogin].includes(authScreen) && (
         <AuthLoginComponent
           onClose={close}
           onSuccess={onSuccess}
+          onLogin={(): void => setAuthScreen(AuthScreenEnum.login)}
           onRegister={(): void => setAuthScreen(AuthScreenEnum.registration)}
           onForgotPassword={(): void => setAuthScreen(AuthScreenEnum.forgotPassword)}
+          onFacebookLoginStart={(): void => authTracker.onOpenLoginWithFacebook(eventLabel)}
+          onGoogleLoginStart={(): void => authTracker.onOpenLoginWithGoogle(eventLabel)}
+          template={authScreen === AuthScreenEnum.shortLogin ? loginTemplate : undefined}
         />
       )}
       {authScreen === AuthScreenEnum.registration && (

@@ -1,17 +1,15 @@
-import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
-
 import { authTracker } from '../tracker';
 
 describe('authTracker', () => {
   beforeEach(() => {
-    (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+    window.dataLayer = [];
   });
 
   describe('onOpenLoginForm', () => {
     it('should send ga event', () => {
       authTracker.onOpenLoginForm('event label');
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Click:Sign in Button',
@@ -25,7 +23,7 @@ describe('authTracker', () => {
     it('should send ga event', () => {
       authTracker.onOpenRegisterForm('event label');
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Sign up with Email',
@@ -39,7 +37,7 @@ describe('authTracker', () => {
     it('should send ga event', () => {
       authTracker.onOpenForgotPasswordForm('event label');
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Password Reset',
@@ -53,7 +51,7 @@ describe('authTracker', () => {
     it('should send ga event', () => {
       authTracker.onSuccessLoginWithEmail('event label');
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Finish:Sign in with email',
@@ -67,7 +65,7 @@ describe('authTracker', () => {
     it('should send ga event', () => {
       authTracker.onOpenLoginWithFacebook('event label');
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Sign in with facebook',
@@ -81,7 +79,7 @@ describe('authTracker', () => {
     it('should send ga event', () => {
       authTracker.onOpenLoginWithGoogle('event label');
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Sign in with google',
@@ -95,7 +93,7 @@ describe('authTracker', () => {
     it('should send ga event', () => {
       authTracker.onSuccessLoginWithFacebook('event label');
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Finish:Sign in with facebook',
@@ -109,7 +107,7 @@ describe('authTracker', () => {
     it('should send ga event', () => {
       authTracker.onSuccessLoginWithGoogle('event label');
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Finish:Sign in with google',

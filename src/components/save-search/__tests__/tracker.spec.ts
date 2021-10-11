@@ -1,17 +1,15 @@
-import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
-
 import { saveSearchTracker } from '../tracker';
 
 describe('saveSearchTracker', () => {
   beforeEach(() => {
-    (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+    window.dataLayer = [];
   });
 
   describe('onClickCta', () => {
     it('should send ga event', () => {
       saveSearchTracker.onClickCta();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'click',
@@ -25,7 +23,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onOpenCreateDialog();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'create:open',
@@ -39,7 +37,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onCreateSuccess();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'create:success',
@@ -52,7 +50,7 @@ describe('saveSearchTracker', () => {
     it('should also send location to ga', () => {
       saveSearchTracker.onCreateSuccess(['1', '2']);
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'create:success',
@@ -67,7 +65,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onSignInSuccess();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'signIn',
@@ -81,7 +79,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onSignUpSuccess();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'signUp',
@@ -95,7 +93,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onDeleteSuccess();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'card:delete',
@@ -109,7 +107,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onDeleteAllSuccess();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'card:deleteAll',
@@ -123,7 +121,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onOpenEditDialog();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'card:edit:open',
@@ -137,7 +135,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onEditSuccess();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'card:edit:success',
@@ -151,7 +149,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onClickCard();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'card:click',
@@ -164,7 +162,7 @@ describe('saveSearchTracker', () => {
     it('should also send location to ga', () => {
       saveSearchTracker.onClickCard(['1', '2']);
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'card:click',
@@ -179,7 +177,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onTooltipOpen();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'Onboarding - Tooltip - Impression',
@@ -194,7 +192,7 @@ describe('saveSearchTracker', () => {
     it('should send ga event', () => {
       saveSearchTracker.onTooltipClose();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'Onboarding - Tooltip - Close',

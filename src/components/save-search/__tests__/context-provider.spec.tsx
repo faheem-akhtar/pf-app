@@ -17,7 +17,6 @@ import { FiltersValueInterface } from 'components/filters/value/interface';
 import { UserContext } from 'context/user/context';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
-import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import { SaveSearchContext } from '../context';
@@ -31,7 +30,7 @@ describe('SaveSearchContextProvider', () => {
   let MockChildComponent: FunctionComponent;
 
   beforeEach(() => {
-    (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+    window.dataLayer = [];
     mockReactUseSwr('en-saved-search-GET-{"page[limit]":9999}', { ok: null });
 
     // eslint-disable-next-line react/display-name
@@ -111,7 +110,7 @@ describe('SaveSearchContextProvider', () => {
         await userEvent.click(getByRole('button'));
       });
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'customEvent',
           eventAction: 'create:success',
@@ -157,7 +156,7 @@ describe('SaveSearchContextProvider', () => {
         await userEvent.click(button);
       });
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([]);
+      expect(window.dataLayer).toEqual([]);
 
       expect(button).toHaveTextContent('[]');
     });

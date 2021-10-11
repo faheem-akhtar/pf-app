@@ -5,6 +5,11 @@ export enum AuthScreenEnum {
   login = 'login',
 
   /**
+   * A short login screen
+   */
+  shortLogin = 'short-login',
+
+  /**
    * Registration screen
    */
   registration = 'registration',

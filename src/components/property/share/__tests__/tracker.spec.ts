@@ -3,7 +3,7 @@ import { PropertyShareTrackerPlatformType } from '../tracker-platform.type';
 
 describe('propertyShareTracker', () => {
   beforeEach(() => {
-    (global as unknown as Window).dataLayer = [];
+    window.dataLayer = [];
   });
 
   describe('onClickSocialShare', () => {
@@ -12,7 +12,7 @@ describe('propertyShareTracker', () => {
       it(`should send ga event for ${platform}`, () => {
         propertyShareTracker.onClickSocialShare(platform);
 
-        expect((global as unknown as Window).dataLayer).toEqual([
+        expect(window.dataLayer).toEqual([
           {
             event: 'User Interaction',
             eventAction: `Click:${platform} Share`,
@@ -27,7 +27,7 @@ describe('propertyShareTracker', () => {
     it('should send ga event', () => {
       propertyShareTracker.onSuccessSocialShare('Email');
 
-      expect((global as unknown as Window).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'User Interaction',
           eventAction: 'Finish:Email Share',

@@ -1,50 +1,64 @@
 /**
  * @jest-environment jsdom
  */
-import { act, fireEvent, render, RenderResult, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import * as AuthForgotPasswordComponentModule from 'components/auth/forgot-password/component';
 import * as AuthLoginComponentModule from 'components/auth/login/component';
 import * as AuthRegistrationComponentModule from 'components/auth/registration/component';
+import { AuthScreenEnum } from 'components/auth/screen.enum';
 import { AuthSuccessTypeEnum } from 'components/auth/success-type.enum';
-import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
+import { SavedPropertyAuthLoginTemplate } from 'components/saved-property/auth/login/template';
 
 import { AuthModalComponent } from '../component';
 import { AuthModalPropsInterface } from '../props.interface';
 
 describe('AuthModalComponent', () => {
   let props: AuthModalPropsInterface;
-  let renderResult: RenderResult;
 
   beforeEach(() => {
+    window.dataLayer = [];
     props = {
       close: jest.fn(),
       cancel: jest.fn(),
       success: jest.fn(),
     };
-
-    renderResult = render(<AuthModalComponent {...props} />);
-
-    (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
   });
 
   it('renders without throwing any errors', () => {
-    expect(renderResult.container).toMatchSnapshot();
+    expect(render(<AuthModalComponent {...props} />).container).toMatchSnapshot();
+  });
+
+  it('should accept an event label', () => {
+    render(<AuthModalComponent {...props} eventLabel='event label' />);
+
+    expect(window.dataLayer).toEqual([
+      {
+        event: 'Userbox',
+        eventAction: 'Click:Sign in Button',
+        eventLabel: 'event label',
+      },
+    ]);
   });
 
   describe('login screen', () => {
+    beforeEach(() => {
+      render(<AuthModalComponent {...props} />);
+
+      window.dataLayer = [];
+    });
+
     it('should render login by default', () => {
       expect(screen.getByRole('heading', { level: 1, name: 'sign-in' })).toBeInTheDocument();
     });
 
     it('should display registration screen', () => {
-      act(() => {
-        userEvent.click(screen.getByText('auth/not-registered-yet', { exact: false }));
-      });
+      userEvent.click(screen.getByText('auth/not-registered-yet', { exact: false }));
+
       expect(screen.getByRole('heading', { level: 1, name: 'auth/create-account' })).toBeInTheDocument();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Sign up with Email',
@@ -54,12 +68,10 @@ describe('AuthModalComponent', () => {
     });
 
     it('should display forgot password screen', () => {
-      act(() => {
-        userEvent.click(screen.getByText('auth/forgot-password?'));
-      });
+      userEvent.click(screen.getByText('auth/forgot-password?'));
       expect(screen.getByRole('heading', { level: 1, name: 'auth/forgot-password?' })).toBeInTheDocument();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Start:Password Reset',
@@ -72,9 +84,14 @@ describe('AuthModalComponent', () => {
       jest
         .spyOn(AuthLoginComponentModule, 'AuthLoginComponent')
         .mockImplementationOnce(({ onClose }) => <button data-testid='close-button' onClick={onClose} />);
-      renderResult = render(<AuthModalComponent {...props} />);
+      render(<AuthModalComponent {...props} />);
 
-      userEvent.click(renderResult.getByTestId('close-button'));
+      userEvent.click(screen.getByTestId('close-button'));
+      expect(props.close).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call close on header', () => {
+      userEvent.click(screen.getByTestId('auth-close-button') as HTMLDivElement);
       expect(props.close).toHaveBeenCalledTimes(1);
     });
 
@@ -84,17 +101,15 @@ describe('AuthModalComponent', () => {
         .mockImplementationOnce(({ onSuccess }) => (
           <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithEmail)} />
         ));
-      renderResult = render(<AuthModalComponent {...props} />);
+      render(<AuthModalComponent {...props} />);
 
-      (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+      window.dataLayer = [];
 
-      act(() => {
-        userEvent.click(renderResult.getByTestId('my-button'));
-      });
+      userEvent.click(screen.getByTestId('my-button'));
 
       expect(props.success).toHaveBeenCalledTimes(1);
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Finish:Sign in with email',
@@ -109,15 +124,13 @@ describe('AuthModalComponent', () => {
         .mockImplementationOnce(({ onSuccess }) => (
           <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithFacebook)} />
         ));
-      renderResult = render(<AuthModalComponent {...props} />);
+      render(<AuthModalComponent {...props} />);
 
-      (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+      window.dataLayer = [];
 
-      act(() => {
-        userEvent.click(renderResult.getByTestId('my-button'));
-      });
+      userEvent.click(screen.getByTestId('my-button'));
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Finish:Sign in with facebook',
@@ -132,15 +145,13 @@ describe('AuthModalComponent', () => {
         .mockImplementationOnce(({ onSuccess }) => (
           <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithGoogle)} />
         ));
-      renderResult = render(<AuthModalComponent {...props} />);
+      render(<AuthModalComponent {...props} />);
 
-      (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+      window.dataLayer = [];
 
-      act(() => {
-        userEvent.click(renderResult.getByTestId('my-button'));
-      });
+      userEvent.click(screen.getByTestId('my-button'));
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+      expect(window.dataLayer).toEqual([
         {
           event: 'Userbox',
           eventAction: 'Finish:Sign in with google',
@@ -150,13 +161,45 @@ describe('AuthModalComponent', () => {
     });
   });
 
-  describe('registration screen', () => {
+  describe('short login screen', () => {
     beforeEach(() => {
-      // switch to registration screen
-      userEvent.click(screen.getByText('auth/not-registered-yet? auth/create-account'));
+      render(
+        <AuthModalComponent
+          {...props}
+          initialScreen={AuthScreenEnum.shortLogin}
+          loginTemplate={SavedPropertyAuthLoginTemplate}
+        />
+      );
     });
 
+    it('should render the short login screen', () => {
+      expect(screen.getByRole('heading', { level: 1, name: 'saved_property/auth-login-title' })).toBeInTheDocument();
+    });
+
+    it('should switch to default login screen', () => {
+      userEvent.click(screen.getByText('log-in'));
+
+      expect(screen.getByRole('heading', { level: 1, name: 'sign-in' })).toBeInTheDocument();
+    });
+
+    ['google', 'facebook'].forEach((platform) => {
+      it(`should track "start sign in with ${platform}" event`, () => {
+        userEvent.click(screen.getByRole('button', { name: `auth/sign-in-${platform}` }));
+
+        expect(window.dataLayer).toEqual([
+          {
+            event: 'Userbox',
+            eventAction: `Start:Sign in with ${platform}`,
+            eventLabel: 'Header',
+          },
+        ]);
+      });
+    });
+  });
+
+  describe('registration screen', () => {
     it('should switch to login screen', () => {
+      render(<AuthModalComponent {...props} initialScreen={AuthScreenEnum.registration} />);
       userEvent.click(screen.getByText('auth/already-registered? log-in'));
 
       expect(screen.getByRole('heading', { level: 1, name: 'sign-in' })).toBeInTheDocument();
@@ -165,13 +208,11 @@ describe('AuthModalComponent', () => {
     it('should call close', () => {
       jest
         .spyOn(AuthRegistrationComponentModule, 'AuthRegistrationComponent')
-        .mockImplementationOnce(({ onClose }) => <p onClick={onClose} />);
-      renderResult = render(<AuthModalComponent {...props} />);
+        .mockImplementationOnce(({ onClose }) => <button data-testid='my-button' onClick={onClose} />);
 
-      // first switch to registration screen
-      fireEvent.click(renderResult.container.querySelector('.link.create-account') as HTMLDivElement);
+      render(<AuthModalComponent {...props} initialScreen={AuthScreenEnum.registration} />);
 
-      fireEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
+      userEvent.click(screen.getByTestId('my-button'));
       expect(props.close).toHaveBeenCalledTimes(1);
     });
 
@@ -179,25 +220,19 @@ describe('AuthModalComponent', () => {
       jest
         .spyOn(AuthRegistrationComponentModule, 'AuthRegistrationComponent')
         .mockImplementationOnce(({ onSuccess }) => (
-          <p onClick={(): void => onSuccess(AuthSuccessTypeEnum.registerWithEmail)} />
+          <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.registerWithEmail)} />
         ));
-      renderResult = render(<AuthModalComponent {...props} />);
+      render(<AuthModalComponent {...props} initialScreen={AuthScreenEnum.registration} />);
 
-      // first switch to registration screen
-      fireEvent.click(renderResult.container.querySelector('.link.create-account') as HTMLDivElement);
-
-      fireEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
+      userEvent.click(screen.getByTestId('my-button'));
       expect(props.success).toHaveBeenCalledTimes(1);
     });
   });
 
   describe('forgot password screen', () => {
-    beforeEach(() => {
-      // switch to forgot password screen
-      userEvent.click(screen.getByText('auth/forgot-password?'));
-    });
-
     it('should switch to registration screen', () => {
+      render(<AuthModalComponent {...props} initialScreen={AuthScreenEnum.forgotPassword} />);
+
       userEvent.click(screen.getByText('auth/not-registered-yet? auth/create-account'));
 
       expect(screen.getByRole('heading', { level: 1, name: 'auth/create-account' })).toBeInTheDocument();
@@ -206,26 +241,22 @@ describe('AuthModalComponent', () => {
     it('should call close', () => {
       jest
         .spyOn(AuthForgotPasswordComponentModule, 'AuthForgotPasswordComponent')
-        .mockImplementationOnce(({ onClose }) => <p onClick={onClose} />);
-      renderResult = render(<AuthModalComponent {...props} />);
+        .mockImplementationOnce(({ onClose }) => <button data-testid='my-button' onClick={onClose} />);
 
-      // first switch to forgot password screen
-      fireEvent.click(renderResult.container.querySelector('.link.forgot-password') as HTMLDivElement);
+      render(<AuthModalComponent {...props} initialScreen={AuthScreenEnum.forgotPassword} />);
 
-      fireEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
+      userEvent.click(screen.getByTestId('my-button'));
       expect(props.close).toHaveBeenCalledTimes(1);
     });
 
     it('should call success', () => {
       jest
         .spyOn(AuthForgotPasswordComponentModule, 'AuthForgotPasswordComponent')
-        .mockImplementationOnce(({ onSuccess }) => <p onClick={onSuccess} />);
-      renderResult = render(<AuthModalComponent {...props} />);
+        .mockImplementationOnce(({ onSuccess }) => <button data-testid='my-button' onClick={onSuccess} />);
 
-      // first switch to forgot password screen
-      fireEvent.click(renderResult.container.querySelector('.link.forgot-password') as HTMLDivElement);
+      render(<AuthModalComponent {...props} initialScreen={AuthScreenEnum.forgotPassword} />);
 
-      fireEvent.click(renderResult.container.querySelector('p') as HTMLParagraphElement);
+      userEvent.click(screen.getByTestId('my-button'));
       expect(props.success).toHaveBeenCalledTimes(1);
     });
   });

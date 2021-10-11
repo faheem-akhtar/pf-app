@@ -17,7 +17,6 @@ import { AuthService } from 'services/auth/service';
 import { AuthSubscribeEventTypeEnum } from 'services/auth/subscribe-event-type.enum';
 import { UserModelInterface } from 'services/user/model.interface';
 import { WindowService } from 'services/window/service';
-import { AnalyticsGaEventType } from 'types/analytics/ga/event.type';
 
 import { SaveSearchModalButtonComponent } from '../button-component';
 
@@ -39,7 +38,7 @@ jest.mock('components/auth/modal/component', () => ({
 
 describe('SaveSearchModalButtonComponent', () => {
   beforeEach(() => {
-    (global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer = [];
+    window.dataLayer = [];
     document.documentElement.scroll = jest.fn();
 
     mockReactUseSwr('api_user', {
@@ -114,7 +113,7 @@ describe('SaveSearchModalButtonComponent', () => {
 
       expect(renderResult.queryByTestId('auth-modal-component')).toBeInTheDocument();
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual(
+      expect(window.dataLayer).toEqual(
         expect.arrayContaining([
           {
             event: 'customEvent',
@@ -134,7 +133,7 @@ describe('SaveSearchModalButtonComponent', () => {
         );
       });
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual(
+      expect(window.dataLayer).toEqual(
         expect.arrayContaining([
           {
             event: 'customEvent',
@@ -150,7 +149,7 @@ describe('SaveSearchModalButtonComponent', () => {
         userEvent.click(renderResult.getByText('save-search/cta-label'));
       });
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual(
+      expect(window.dataLayer).toEqual(
         expect.not.arrayContaining([
           {
             event: 'customEvent',
@@ -170,7 +169,7 @@ describe('SaveSearchModalButtonComponent', () => {
         );
       });
 
-      expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual(
+      expect(window.dataLayer).toEqual(
         expect.arrayContaining([
           {
             event: 'customEvent',
@@ -193,7 +192,7 @@ describe('SaveSearchModalButtonComponent', () => {
 
     userEvent.click(getByTestId('tooltip-close-button'));
 
-    expect((global as unknown as { dataLayer: AnalyticsGaEventType[] }).dataLayer).toEqual([
+    expect(window.dataLayer).toEqual([
       {
         event: 'customEvent',
         eventAction: 'Onboarding - Tooltip - Impression',

@@ -1,9 +1,11 @@
 import Head from 'next/head';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
+import { AuthModalComponent } from 'components/auth/modal/component';
+import { AuthScreenEnum } from 'components/auth/screen.enum';
 import { ModalComponent } from 'components/modal/component';
 import { PropertyCardComponent } from 'components/property-card/component';
-import { SavedPropertyAuthModalComponent } from 'components/saved-property/auth/modal/component';
+import { SavedPropertyAuthLoginTemplate } from 'components/saved-property/auth/login/template';
 import { savedPropertyAuthModalStorageKey } from 'components/saved-property/auth/modal/storage-key';
 import { savedPropertyTracker } from 'components/saved-property/tracker';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
@@ -74,7 +76,12 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
           );
         })}
         <ModalComponent openRef={authModalOpenRef} closeRef={authModalCloseRef} overlay>
-          <SavedPropertyAuthModalComponent onClose={(): void => authModalCloseRef.current()} />
+          <AuthModalComponent
+            eventLabel='Property Serp - Post Call Lead'
+            initialScreen={AuthScreenEnum.shortLogin}
+            loginTemplate={SavedPropertyAuthLoginTemplate}
+            close={(): void => authModalCloseRef.current()}
+          />
         </ModalComponent>
       </div>
     </>
