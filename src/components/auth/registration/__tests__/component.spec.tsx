@@ -5,11 +5,11 @@ import { render, RenderResult, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
+import { userModelStub } from 'stubs/user/model.stub';
 
 import * as AuthRegisterServiceModule from 'services/auth/register.service';
 import { GoogleRecaptcha } from 'services/google/recaptcha';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
-import { UserModelInterface } from 'services/user/model.interface';
 
 import { AuthRegistrationComponent } from '../component';
 import { AuthRegistrationPropsInterface } from '../props.interface';
@@ -18,13 +18,6 @@ describe('AuthRegistrationComponent', () => {
   let props: AuthRegistrationPropsInterface;
   let renderResult: RenderResult;
   let googleRecaptchaMock: GoogleRecaptcha;
-  const mockUser = {
-    first_name: 'first name',
-    last_name: 'last name',
-    email: 'email@example.com',
-    image: '',
-    userId: '1',
-  } as UserModelInterface;
 
   beforeEach(() => {
     props = {
@@ -52,7 +45,7 @@ describe('AuthRegistrationComponent', () => {
     const AuthRegisterServiceMock = jest.spyOn(AuthRegisterServiceModule, 'AuthRegisterService').mockReturnValue(
       Promise.resolve({
         ok: true,
-        data: mockUser,
+        data: userModelStub(),
         headers: {} as Headers,
       })
     );
@@ -64,7 +57,7 @@ describe('AuthRegistrationComponent', () => {
 
     userEvent.click(screen.getByRole('button', { name: 'auth/create-account' }));
 
-    await waitFor(() => expect(renderResult.container.querySelector('.loader1')));
+    expect(await screen.findByTestId('auth-loader'));
 
     expect(googleRecaptchaMock.execute).toHaveBeenCalledTimes(1);
     expect(googleRecaptchaMock.reset).not.toHaveBeenCalled();
@@ -126,7 +119,7 @@ describe('AuthRegistrationComponent', () => {
     const AuthRegisterServiceMock = jest.spyOn(AuthRegisterServiceModule, 'AuthRegisterService').mockReturnValue(
       Promise.resolve({
         ok: true,
-        data: mockUser,
+        data: userModelStub(),
         headers: {} as Headers,
       })
     );

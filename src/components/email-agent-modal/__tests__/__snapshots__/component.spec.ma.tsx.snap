@@ -156,40 +156,6 @@ exports[`EmailAgentModalComponent Marocco should render without throwing any err
                 )
               </span>
             </li>
-            <li
-              class="item"
-              role="listitem"
-            >
-              <div
-                class="countryFlag countryFlag--ae"
-              />
-              Émirats arabes unis
-               
-              <span
-                class="phoneCode"
-              >
-                (
-                +971
-                )
-              </span>
-            </li>
-            <li
-              class="item"
-              role="listitem"
-            >
-              <div
-                class="countryFlag countryFlag--bh"
-              />
-              Bahreïn
-               
-              <span
-                class="phoneCode"
-              >
-                (
-                +973
-                )
-              </span>
-            </li>
           </ul>
         </div>
         <div

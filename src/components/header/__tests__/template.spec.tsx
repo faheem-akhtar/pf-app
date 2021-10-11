@@ -12,7 +12,7 @@ import { HeaderTemplatePropsInterface } from '../template.props.interface';
 describe('HeaderTemplate', () => {
   let props: HeaderTemplatePropsInterface;
 
-  beforeAll(() => {
+  beforeEach(() => {
     props = {
       locale: 'en',
       onLoginButtonClick: jest.fn(),
@@ -31,11 +31,15 @@ describe('HeaderTemplate', () => {
   });
 
   it('should appear user related contents when the user is exist', () => {
-    const userProfile = {
-      user: userModelStub(),
-      savedPropertiesCount: 2,
-    };
-    render(<HeaderTemplate {...props} userProfile={userProfile} />);
+    render(
+      <HeaderTemplate
+        {...props}
+        userProfile={{
+          user: userModelStub(),
+          savedPropertiesCount: 2,
+        }}
+      />
+    );
 
     expect(screen.getByAltText(/user photo/i)).toHaveAttribute(
       'src',

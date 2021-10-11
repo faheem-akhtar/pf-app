@@ -2,9 +2,7 @@
 
 exports[`AuthLoginComponent renders without throwing any errors 1`] = `
 <div>
-  <div
-    data-testid="AuthLoginComponent"
-  >
+  <div>
     <h1
       class="heading"
     >

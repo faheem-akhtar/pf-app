@@ -52,7 +52,7 @@ describe('AppearOnScrollComponent', () => {
 
     const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} />);
 
-    fireEvent.mouseDown(getByTestId('GalleryScroll'), { clientX: 5 });
+    fireEvent.mouseDown(getByTestId('gallery-scroll'), { clientX: 5 });
 
     expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({
@@ -68,7 +68,7 @@ describe('AppearOnScrollComponent', () => {
 
     const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} />);
 
-    fireEvent.touchStart(getByTestId('GalleryScroll'), {
+    fireEvent.touchStart(getByTestId('gallery-scroll'), {
       ...touchEventStub(),
       changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
       touches: [{ clientX: 3, clientY: 5 } as Touch],
@@ -87,15 +87,15 @@ describe('AppearOnScrollComponent', () => {
   it('single image case', () => {
     const { getAllByTestId } = render(<GalleryScrollComponent {...defaultProps} items={[image1]} />);
 
-    expect(getAllByTestId('GalleryScrollPicture').length).toBe(1);
+    expect(getAllByTestId('gallery-scroll-picture').length).toBe(1);
   });
 
   // TODO-FE[CX-408] Fix the gallery scroll image load test
   xit('loading class should be removed after image is loaded', () => {
     const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} items={[image1]} />);
 
-    fireEvent.load(getByTestId('GalleryScrollPicture'));
+    fireEvent.load(getByTestId('gallery-scroll-picture'));
 
-    expect(getByTestId('GalleryScrollPicture').className).toMatchInlineSnapshot(`"item"`);
+    expect(getByTestId('gallery-scroll-picture').className).toMatchInlineSnapshot(`"item"`);
   });
 });

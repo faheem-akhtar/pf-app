@@ -51,6 +51,6 @@ describe('FiltersModalContentComponent', () => {
     userEvent.click(submitButton);
 
     expect(close).toHaveBeenCalledTimes(1);
-    expect(screen.queryByRole('heading', { level: 1, name: 'filters' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: 'filters' })).toBeInTheDocument();
   });
 });

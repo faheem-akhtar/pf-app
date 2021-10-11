@@ -24,7 +24,7 @@ describe('MortgageCampaignComponent', () => {
   let props: MortgageCampaignComponentPropsInterface;
   const property: PropertySerpObfuscatedType = propertyStub();
 
-  beforeAll(() => {
+  beforeEach(() => {
     props = {
       property: {
         defaultPrice: propertySerpObfuscatedGetDefaultPrice(property),

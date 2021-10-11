@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { act, render, RenderResult } from '@testing-library/react';
+import { act, render, RenderResult, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
@@ -54,28 +54,22 @@ describe('SaveSearchModalButtonComponent', () => {
   });
 
   describe('customer', () => {
-    let renderResult: RenderResult;
-
     beforeEach(() => {
-      renderResult = render(
+      render(
         <UserContext.Provider value={userModelStub()}>
           <SaveSearchModalButtonComponent visibleTooltip />
         </UserContext.Provider>
       );
     });
 
-    it('should open and close the save search modal when clicked on the cta', () => {
-      act(() => {
-        userEvent.click(renderResult.getByText('save-search/cta-label'));
-      });
+    it('should open and close the save search modal when clicked on the cta', async () => {
+      await waitFor(() => userEvent.click(screen.getByText('save-search/cta-label')));
 
-      expect(renderResult.queryByTestId('save-search-modal-content-component')).toBeInTheDocument();
+      expect(screen.getByTestId('save-search-modal-content-component')).toBeInTheDocument();
 
-      act(() => {
-        userEvent.click(renderResult.getByTestId('save-search-modal-content-component'));
-      });
+      await waitFor(() => userEvent.click(screen.getByTestId('save-search-modal-content-component')));
 
-      expect(renderResult.queryByTestId('save-search-modal-content-component')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('save-search-modal-content-component')).not.toBeInTheDocument();
     });
   });
 
@@ -92,26 +86,21 @@ describe('SaveSearchModalButtonComponent', () => {
       );
     });
 
-    it('should open and close the login dialog', () => {
-      act(() => {
-        userEvent.click(renderResult.getByText('save-search/cta-label'));
-      });
+    it('should open and close the login dialog', async () => {
+      await waitFor(() => userEvent.click(screen.getByText('save-search/cta-label')));
 
-      expect(renderResult.queryByTestId('auth-modal-component')).toBeInTheDocument();
+      expect(screen.getByTestId('auth-modal-component')).toBeInTheDocument();
 
-      act(() => {
-        userEvent.click(renderResult.getByTestId('auth-modal-component'));
-      });
+      const authModal = screen.getByTestId('auth-modal-component');
+      userEvent.click(authModal);
 
-      expect(renderResult.queryByTestId('auth-modal-component')).not.toBeInTheDocument();
+      expect(authModal).not.toBeInTheDocument();
     });
 
-    it('should open the save search modal when user got logged in', () => {
-      act(() => {
-        userEvent.click(renderResult.getByText('save-search/cta-label'));
-      });
+    it('should open the save search modal when user got logged in', async () => {
+      await waitFor(() => userEvent.click(screen.getByText('save-search/cta-label')));
 
-      expect(renderResult.queryByTestId('auth-modal-component')).toBeInTheDocument();
+      expect(screen.getByTestId('auth-modal-component')).toBeInTheDocument();
 
       expect(window.dataLayer).toEqual(
         expect.arrayContaining([
@@ -184,7 +173,7 @@ describe('SaveSearchModalButtonComponent', () => {
   it('should send tooltip open and close events on tooltip close', () => {
     jest.spyOn(OnBoardingComponentModule, 'OnBoardingComponent').mockImplementationOnce((props) => (
       <button onClick={props.onClose} data-testid='tooltip-close-button'>
-        {props.children}
+        children
       </button>
     ));
 

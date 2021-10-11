@@ -7,6 +7,7 @@ import userEvent from '@testing-library/user-event';
 
 import { mockModalEnv } from 'mocks/modal-env/mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
+import { countryPhoneCodesStub } from 'stubs/country-phone-codes/stub';
 import { propertyStub } from 'stubs/property/stub';
 
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
@@ -17,6 +18,7 @@ import { EmailAgentModalComponentPropsInterface } from '../component-props.inter
 describe('EmailAgentModalComponent Marocco', () => {
   const openRef = { current: jest.fn() };
   const property: PropertySerpObfuscatedType = propertyStub();
+
   let props: EmailAgentModalComponentPropsInterface;
 
   beforeEach(() => {
@@ -29,23 +31,14 @@ describe('EmailAgentModalComponent Marocco', () => {
     mockReactUseSwr('en-countries-GET-{"sort":"priority"}', {
       ok: true,
       data: [
-        {
+        countryPhoneCodesStub({
           code: 'ma',
           name: 'Maroc',
           phoneCode: '+212',
-        },
-        {
-          code: 'ae',
-          name: 'Émirats arabes unis',
-          phoneCode: '+971',
-        },
-        {
-          code: 'bh',
-          name: 'Bahreïn',
-          phoneCode: '+973',
-        },
+        }),
       ],
     });
+
     render(<EmailAgentModalComponent {...props} />);
     act(openRef.current);
   });
@@ -73,20 +66,22 @@ describe('EmailAgentModalComponent Marocco', () => {
       const errorText = screen.getByText('agent-modal/accept-conditions-error-message');
       expect(errorText).toBeInTheDocument();
 
-      userEvent.click(
-        screen.getByRole('checkbox', {
-          name: 'agent-modal/accept-terms-message-prefix agent-modal/accept-terms-message-link agent-modal/accept-terms-message-suffix',
-        })
-      );
+      const acceptTermsCheckbox = screen.getByRole('checkbox', {
+        name: 'agent-modal/accept-terms-message-prefix agent-modal/accept-terms-message-link agent-modal/accept-terms-message-suffix',
+      });
+
+      userEvent.click(acceptTermsCheckbox);
+      expect(acceptTermsCheckbox).toBeChecked();
       userEvent.click(screen.getByRole('button', { name: 'agent-modal/cta-send-message' }));
 
       expect(errorText).toBeInTheDocument();
 
-      userEvent.click(
-        screen.getByRole('checkbox', {
-          name: 'agent-modal/receive-advertising-message',
-        })
-      );
+      const receiveAdvertisingCheckbox = screen.getByRole('checkbox', {
+        name: 'agent-modal/receive-advertising-message',
+      });
+
+      userEvent.click(receiveAdvertisingCheckbox);
+      expect(acceptTermsCheckbox).toBeChecked();
       userEvent.click(screen.getByRole('button', { name: 'agent-modal/cta-send-message' }));
 
       expect(errorText).not.toBeInTheDocument();

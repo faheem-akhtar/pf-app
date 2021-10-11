@@ -51,7 +51,7 @@ describe('AppearOnScrollComponent', () => {
 
   describe('animation classes changes', () => {
     const getTemplate = (): Promise<HTMLElement> => {
-      return screen.findByTestId('AppearOnScrollTemplate');
+      return screen.findByTestId('appear-on-scroll-template');
     };
     const assertTemplateStatus: (className: string) => Promise<void> = async (className: string) => {
       const template = await getTemplate();
@@ -73,8 +73,9 @@ describe('AppearOnScrollComponent', () => {
 
       await waitFor(() => {
         expect(defaultProps.onEntering).toHaveBeenCalled();
-        expect(defaultProps.onHidden).toHaveBeenCalled();
       });
+
+      expect(defaultProps.onHidden).toHaveBeenCalled();
     });
 
     it('should call onExiting when wrapper is in the viewport', async () => {
@@ -89,8 +90,9 @@ describe('AppearOnScrollComponent', () => {
 
       await waitFor(() => {
         expect(defaultProps.onExiting).toHaveBeenCalled();
-        expect(defaultProps.onVisible).toHaveBeenCalled();
       });
+
+      expect(defaultProps.onVisible).toHaveBeenCalled();
     });
 
     it('should disconnect observer on unmount', () => {

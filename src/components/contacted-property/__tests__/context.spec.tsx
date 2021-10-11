@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { FunctionComponent, ReactElement, useContext } from 'react';
 
 import { ContactedPropertyTypeEnum } from 'enums/contacted-property/type.enum';
@@ -10,25 +11,20 @@ import { dateToIso } from 'helpers/date/to-iso';
 import { ContactedPropertyContext } from '../context';
 import { ContactedPropertyContextInterface } from '../context.interface';
 
+const MockChildComponent: FunctionComponent = (): ReactElement => {
+  const contactedProperty = useContext(ContactedPropertyContext);
+
+  return (
+    <button onClick={(): void => contactedProperty.add(1, ContactedPropertyTypeEnum.call)}>
+      {JSON.stringify(contactedProperty.data)}
+    </button>
+  );
+};
+
 describe('ContactedPropertyContext', () => {
-  let MockChildComponent: FunctionComponent;
-
-  beforeEach(() => {
-    // eslint-disable-next-line react/display-name
-    MockChildComponent = (): ReactElement => {
-      const contactedProperty = useContext(ContactedPropertyContext);
-
-      return (
-        <button onClick={(): void => contactedProperty.add(1, ContactedPropertyTypeEnum.call)}>
-          {JSON.stringify(contactedProperty.data)}
-        </button>
-      );
-    };
-  });
-
   it('should have default values', () => {
     let returnValue;
-    const { getByText, container } = render(
+    render(
       <ContactedPropertyContext.Consumer>
         {({ data, add }): ReactElement => (
           <button onClick={(): void => (returnValue = add(1, ContactedPropertyTypeEnum.call))}>
@@ -38,9 +34,9 @@ describe('ContactedPropertyContext', () => {
       </ContactedPropertyContext.Consumer>
     );
 
-    expect(getByText('[]')).toBeTruthy();
+    expect(screen.getByText('[]')).toBeInTheDocument();
 
-    fireEvent.click(container.querySelector('button') as HTMLButtonElement);
+    userEvent.click(screen.getByRole('button'));
 
     expect(returnValue).toBeNull();
   });
@@ -56,15 +52,15 @@ describe('ContactedPropertyContext', () => {
       ],
       add: jest.fn(),
     };
-    const { container, getByText } = render(
+    const { getByText } = render(
       <ContactedPropertyContext.Provider value={value}>
         <MockChildComponent />
       </ContactedPropertyContext.Provider>
     );
 
-    expect(getByText(JSON.stringify(value.data))).toBeTruthy();
+    expect(getByText(JSON.stringify(value.data))).toBeInTheDocument();
 
-    fireEvent.click(container.querySelector('button') as HTMLButtonElement);
+    userEvent.click(screen.getByRole('button'));
 
     expect(value.add).toHaveBeenCalledTimes(1);
   });

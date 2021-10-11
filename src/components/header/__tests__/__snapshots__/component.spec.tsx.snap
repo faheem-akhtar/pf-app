@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderComponent should render without throwing any errors when no user 1`] = `
+exports[`HeaderComponent renders without throwing any errors 1`] = `
 <div>
   <header
     class="container"

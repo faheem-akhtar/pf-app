@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useRouter } from 'next/router';
 
@@ -31,7 +31,7 @@ describe('PropertySearchCountAndSortSectionComponent', () => {
     );
 
     userEvent.click(screen.getByText(/^Featured$/));
-    await waitFor(() => expect(screen.getByRole('button', { name: /cancel/i })).toBeInTheDocument());
+    await screen.findByRole('button', { name: /cancel/i });
     userEvent.click(screen.getByText('Beds (most)'));
 
     expect(routerPushSpy).toHaveBeenCalledTimes(1);

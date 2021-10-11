@@ -8,9 +8,7 @@ exports[`AuthModalComponent renders without throwing any errors 1`] = `
     <div
       class="header"
     >
-      <button
-        data-testid="auth-close-button"
-      >
+      <button>
         <svg
           class="closeIcon"
           viewBox="7 7 10 10"
@@ -26,9 +24,7 @@ exports[`AuthModalComponent renders without throwing any errors 1`] = `
         </svg>
       </button>
     </div>
-    <div
-      data-testid="AuthLoginComponent"
-    >
+    <div>
       <h1
         class="heading"
       >

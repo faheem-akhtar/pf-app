@@ -41,11 +41,11 @@ describe('AuthForgotPasswordComponent', () => {
     const googleRecaptchaMock = googleRecaptchaStub();
     jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
 
-    const { container } = render(<AuthForgotPasswordComponent {...props} />);
+    render(<AuthForgotPasswordComponent {...props} />);
     userEvent.type(screen.getByLabelText('email'), 'email@example.com');
     userEvent.click(screen.getByRole('button', { name: 'auth/reset-password' }));
 
-    await waitFor(() => expect(container.querySelector('.loader1')));
+    expect(await screen.findByTestId('auth-loader'));
 
     expect(googleRecaptchaMock.execute).toHaveBeenCalledTimes(1);
     expect(googleRecaptchaMock.reset).not.toHaveBeenCalled();
@@ -83,7 +83,9 @@ describe('AuthForgotPasswordComponent', () => {
     userEvent.type(screen.getByLabelText('email'), 'email@example.com');
     userEvent.click(screen.getByRole('button', { name: 'auth/reset-password' }));
 
-    await waitFor(() => expect(googleRecaptchaMock.reset).toHaveBeenCalledTimes(1));
+    await waitFor(() => {
+      expect(googleRecaptchaMock.reset).toHaveBeenCalledTimes(1);
+    });
 
     expect(props.onClose).not.toHaveBeenCalled();
     expect(props.onSuccess).not.toHaveBeenCalled();

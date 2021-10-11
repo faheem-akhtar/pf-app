@@ -17,7 +17,7 @@ import styles from '../auth.module.scss';
 import { AuthLoginTemplatePropsInterface } from './template-props.interface';
 
 export const AuthLoginTemplate: FunctionComponent<AuthLoginTemplatePropsInterface> = (props) => (
-  <div data-testid='AuthLoginComponent'>
+  <div>
     <h1 className={styles.heading}>{props.t('sign-in')}</h1>
     {/* Facebook */}
     <ButtonTemplate

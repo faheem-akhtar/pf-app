@@ -48,7 +48,7 @@ describe('PropertyCardComponent', () => {
     const defaultProps = makeDefaultProps();
     const { getAllByTestId } = render(<PropertyCardComponent {...defaultProps} />);
 
-    expect(getAllByTestId('GalleryScrollPicture').length).toBe(1);
+    expect(getAllByTestId('gallery-scroll-picture').length).toBe(1);
   });
 
   it('should load images when gallery is touched', () => {
@@ -60,14 +60,14 @@ describe('PropertyCardComponent', () => {
       data: ['i1', 'i2', 'i3'],
     });
 
-    const gallery = getByTestId('GalleryScroll');
+    const gallery = getByTestId('gallery-scroll');
     fireEvent.touchStart(gallery, {
       ...touchEventStub(),
       changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
       touches: [{ clientX: 5, clientY: 7 }],
     });
 
-    expect(getAllByTestId('GalleryScrollPicture').length).toBe(3);
+    expect(getAllByTestId('gallery-scroll-picture').length).toBe(3);
   });
 
   it('should call usePropertyCardTrackVisibilityOnScreen hook', async () => {

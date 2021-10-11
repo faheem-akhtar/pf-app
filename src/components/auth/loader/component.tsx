@@ -10,7 +10,7 @@ export const AuthLoaderComponent = ({
   isCentered: boolean;
 }): JSX.Element | null =>
   isEnabled ? (
-    <div className={styles.loader1}>
+    <div className={styles.loader1} data-testid='auth-loader'>
       <div
         className={domClassMerge(styles['loader1__spinner'], isCentered ? styles['loader1__spinner--centered'] : '')}
       >

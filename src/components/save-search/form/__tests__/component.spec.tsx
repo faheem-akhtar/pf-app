@@ -22,7 +22,7 @@ describe('SaveSearchFormComponent', () => {
 
       userEvent.clear(getByLabelText('save_search/name-label'));
 
-      expect(getByText('save_search/name-validation-required')).toBeTruthy();
+      expect(getByText('save_search/name-validation-required')).toBeInTheDocument();
     });
 
     it('should display max charactor limit error', () => {
@@ -35,7 +35,7 @@ describe('SaveSearchFormComponent', () => {
 
       userEvent.type(getByLabelText('save_search/name-label'), charactors.join(''));
 
-      expect(getByText('save_search/name-validation-character_limit')).toBeTruthy();
+      expect(getByText('save_search/name-validation-character_limit')).toBeInTheDocument();
     });
   });
 
@@ -57,13 +57,13 @@ describe('SaveSearchFormComponent', () => {
 
   it('should not submit the form', async () => {
     const onSuccessMock = jest.fn();
-    const { getByLabelText, getByRole } = render(<SaveSearchFormComponent onSuccess={onSuccessMock} />);
+    const { getByLabelText, getByRole, getByTestId } = render(<SaveSearchFormComponent onSuccess={onSuccessMock} />);
 
     userEvent.type(getByLabelText('save_search/name-label'), 'my name');
 
     userEvent.click(getByRole('button'));
 
-    await waitFor(() => expect(getByRole('button').querySelector('.dropdownLoader')));
+    expect(getByTestId('loader-template')).toBeInTheDocument();
 
     await waitFor(() => expect(onSuccessMock).toHaveBeenCalledTimes(1));
   });
@@ -84,7 +84,7 @@ describe('SaveSearchFormComponent', () => {
         ok: false,
       })
     );
-    const { getByLabelText, getByRole, getByText } = render(
+    const { getByLabelText, getByRole, findByText } = render(
       <SaveSearchContext.Provider
         value={{
           data: [],
@@ -100,7 +100,7 @@ describe('SaveSearchFormComponent', () => {
 
     userEvent.click(getByRole('button'));
 
-    await waitFor(() => getByText('general-error-message'));
+    await findByText('general-error-message');
 
     expect(onSuccessMock).not.toHaveBeenCalled();
   });

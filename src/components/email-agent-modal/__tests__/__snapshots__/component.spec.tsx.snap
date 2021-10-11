@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EmailAgentModalComponent when the user is not exist form submission should form successfully submitted 1`] = `
+exports[`EmailAgentModalComponent when no user form submission should form successfully submitted 1`] = `
 <div
   class="container"
   data-testid="email-agent-modal-content"
@@ -133,7 +133,7 @@ exports[`EmailAgentModalComponent when the user is not exist form submission sho
 </div>
 `;
 
-exports[`EmailAgentModalComponent when the user is not exist should render without throwing any errors 1`] = `
+exports[`EmailAgentModalComponent when no user should render without throwing any errors 1`] = `
 <div
   class="container"
   data-testid="email-agent-modal-content"

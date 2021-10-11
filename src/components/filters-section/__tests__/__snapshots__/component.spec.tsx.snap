@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FiltersSectionComponent should render without throwing any errors 1`] = `
+exports[`FiltersSectionComponent renders without throwing any errors 1`] = `
 <div>
   <div
     class="container container"
@@ -171,7 +171,7 @@ exports[`FiltersSectionComponent should render without throwing any errors 1`] =
     <div>
       <div
         class="appear_on_scroll appear_on_scroll__visible"
-        data-testid="AppearOnScrollTemplate"
+        data-testid="appear-on-scroll-template"
       >
         <div
           class="container buttons_row__appear_on_scroll"

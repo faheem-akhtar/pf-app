@@ -23,25 +23,22 @@ import { CallingAgentModalComponentPropsInterface } from '../component-props.int
 import { CallingAgentModalFeedbackComponent } from '../feedback-component';
 
 describe('CallingAgentModalComponent', () => {
-  const property: PropertySerpObfuscatedType = propertyStub();
-  let props: CallingAgentModalComponentPropsInterface;
-  let referenceId: string;
-  let propertyId: string;
-
   const openRef = { current: jest.fn() };
   const closeRef = { current: jest.fn() };
+  const property: PropertySerpObfuscatedType = propertyStub();
+  const propertyId: string = propertySerpObfuscatedGetId(property);
+
+  let props: CallingAgentModalComponentPropsInterface;
 
   beforeEach(() => {
-    referenceId = propertySerpObfuscatedGetReference(property);
-    propertyId = propertySerpObfuscatedGetId(property);
+    mockModalEnv();
+
     props = {
       propertyId,
-      referenceId,
+      referenceId: propertySerpObfuscatedGetReference(property),
       openRef,
       closeRef,
     };
-
-    mockModalEnv();
   });
 
   it('should render without throwing any errors', () => {
@@ -54,14 +51,42 @@ describe('CallingAgentModalComponent', () => {
     expect(screen.getByTestId('calling-agent-modal-content')).toMatchSnapshot();
   });
 
-  describe('FeedbackComponent', () => {
+  describe('when agent model information is loaded', () => {
     beforeEach(() => {
       mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
         ok: true,
         data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
       });
+
+      render(<CallingAgentModalComponent {...props} />);
+      act(openRef.current);
     });
 
+    it('should update title when close is clicked first time', () => {
+      userEvent.click(screen.getByRole('button', { name: /cross/i }));
+
+      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('agent-modal/property-availability');
+    });
+
+    it('should close modal when close is clicked second time', () => {
+      const closeButton = screen.getByRole('button', { name: /cross/i });
+      userEvent.dblClick(closeButton);
+
+      expect(closeButton).not.toBeInTheDocument();
+    });
+
+    test('if agent info is shown properly', () => {
+      expect(screen.getByTestId('agent-info-component-details')).toMatchSnapshot();
+    });
+
+    it('should render feedback component when agent data exists and close is clicked first time', () => {
+      userEvent.click(screen.getByRole('button', { name: /cross/i }));
+
+      expect(screen.getByText('agent-modal/agent-not-answered')).toBeInTheDocument();
+    });
+  });
+
+  describe('FeedbackComponent', () => {
     it('should call onAnswerClicked callback when a feedback button is clicked', async () => {
       const onAnswerClickedSpy = jest.fn();
       render(<CallingAgentModalFeedbackComponent onAnswerClicked={onAnswerClickedSpy} propertyId={propertyId} />);
@@ -73,7 +98,7 @@ describe('CallingAgentModalComponent', () => {
       expect(onAnswerClickedSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should make request if clicked answer is no', async () => {
+    it('should make a request if clicked answer is no', async () => {
       const fetchMock = mockWindowFetch();
       render(
         <FiltersContextProvider {...filtersContextPropsStub()}>
@@ -101,42 +126,6 @@ describe('CallingAgentModalComponent', () => {
           })
         )
       );
-    });
-  });
-
-  describe('when agent modal informations is loaded', () => {
-    beforeEach(() => {
-      mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
-        ok: true,
-        data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
-      });
-
-      render(<CallingAgentModalComponent {...props} />);
-      act(openRef.current);
-    });
-
-    it('should update title when close is clicked first time', () => {
-      userEvent.click(screen.getByRole('button', { name: /cross/i }));
-
-      expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('agent-modal/property-availability');
-    });
-
-    it('should close modal when close is clicked second time', () => {
-      const closeButton = screen.getByRole('button', { name: /cross/i });
-
-      userEvent.dblClick(closeButton);
-
-      expect(closeButton).not.toBeInTheDocument();
-    });
-
-    it('if agent info is shown properly', () => {
-      expect(screen.getByTestId('agent-info-component-details')).toMatchSnapshot();
-    });
-
-    it('should render feedback component when agent data exists and close is clicked first time', () => {
-      userEvent.click(screen.getByRole('button', { name: /cross/i }));
-
-      expect(screen.getByText('agent-modal/agent-not-answered')).toBeInTheDocument();
     });
   });
 });

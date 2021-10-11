@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import { act, render, waitFor } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
@@ -28,7 +28,7 @@ describe('SaveSearchModalContentComponent', () => {
       .spyOn(SaveSearchFormComponentModule, 'SaveSearchFormComponent')
       .mockImplementationOnce(({ onSuccess }) => <button onClick={onSuccess} />);
 
-    const { getByRole, getByText } = render(
+    const { getByRole, findByText } = render(
       <SnackbarContextProvider>
         <SaveSearchModalContentComponent close={closeMock} />
       </SnackbarContextProvider>
@@ -38,7 +38,7 @@ describe('SaveSearchModalContentComponent', () => {
       userEvent.click(getByRole('button'));
     });
 
-    await waitFor(() => getByText('save_search/create-success_notification'));
+    await findByText('save_search/create-success_notification');
 
     expect(closeMock).toHaveBeenCalledTimes(1);
     expect(closeMock).toHaveBeenCalledWith();

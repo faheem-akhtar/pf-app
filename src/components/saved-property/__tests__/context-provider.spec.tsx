@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { FunctionComponent, ReactElement, useContext } from 'react';
 
 import * as dateToIsoModule from 'helpers/date/to-iso';
@@ -32,17 +33,17 @@ describe('SavedPropertyContextProvider', () => {
   });
 
   it('should accept toggle and propertyIds', () => {
-    const { container } = render(
+    render(
       <SavedPropertyContextProvider>
         <MockChildComponent />
       </SavedPropertyContextProvider>
     );
 
-    const button = container.querySelector('button') as HTMLButtonElement;
+    const button = screen.getByRole('button');
 
     expect(button).toHaveTextContent('[]');
 
-    fireEvent.click(button);
+    userEvent.click(button);
 
     expect(button).toHaveTextContent(
       JSON.stringify([
@@ -55,17 +56,17 @@ describe('SavedPropertyContextProvider', () => {
   });
 
   it('should toggle the save state of the property', () => {
-    const { container } = render(
+    render(
       <SavedPropertyContextProvider>
         <MockChildComponent />
       </SavedPropertyContextProvider>
     );
 
-    const button = container.querySelector('button') as HTMLButtonElement;
+    const button = screen.getByRole('button');
 
     expect(button).toHaveTextContent('[]');
 
-    fireEvent.click(button);
+    userEvent.click(button);
 
     expect(button).toHaveTextContent(
       JSON.stringify([
@@ -76,7 +77,7 @@ describe('SavedPropertyContextProvider', () => {
       ])
     );
 
-    fireEvent.click(button);
+    userEvent.click(button);
 
     expect(button).toHaveTextContent('[]');
   });

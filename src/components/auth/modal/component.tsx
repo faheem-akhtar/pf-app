@@ -66,7 +66,6 @@ export const AuthModalComponent = ({
             close();
             cancel();
           }}
-          data-testid='auth-close-button'
         >
           <IconThickCrossTemplate class={styles.closeIcon} />
         </button>

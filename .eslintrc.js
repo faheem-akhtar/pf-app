@@ -14,7 +14,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'pf-rules', 'simple-import-sort'],
+  plugins: ['@typescript-eslint', 'pf-rules', 'simple-import-sort', 'testing-library', 'jest-dom'],
   root: true,
   rules: {
     'new-cap': ['error', { newIsCap: true, capIsNew: false }],
@@ -34,6 +34,12 @@ module.exports = {
     'no-extra-boolean-cast': 'error',
     'no-prototype-builtins': 'error',
     'no-global-assign': 'error',
+    'testing-library/consistent-data-testid': [
+      'error',
+      {
+        testIdPattern: '^[a-z]+(-[a-z]+)*$', // enforce the usage of kebab-case
+      },
+    ],
     'pf-rules/export-name-validation': [
       'error',
       {
@@ -99,6 +105,21 @@ module.exports = {
     ],
   },
   overrides: [
+    {
+      files: ['**/__tests__/**/*.tsx', '**/?(*.)+(spec|test).tsx'],
+      extends: ['plugin:testing-library/react', 'plugin:jest-dom/recommended'],
+      rules: {
+        'testing-library/prefer-presence-queries': 'error',
+        'testing-library/prefer-user-event': [
+          'error',
+          {
+            allowedMethods: ['mouseDown'],
+          },
+        ],
+        'testing-library/no-wait-for-multiple-assertions': 'error',
+        'testing-library/prefer-screen-queries': 'off',
+      },
+    },
     {
       files: ['*.ts', '*.tsx'],
       parserOptions: {

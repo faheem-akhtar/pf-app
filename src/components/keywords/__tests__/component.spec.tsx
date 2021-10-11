@@ -1,8 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent as fireDOMEvent } from '@testing-library/dom';
-import { fireEvent, render, waitFor } from '@testing-library/react';
+
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { mockMiscAddTranslation } from 'mocks/misc/add-translation.mock';
 import { configKeywordsByCategoryStub } from 'stubs/config/keywords/by-category.stub';
@@ -32,7 +33,8 @@ describe('KeywordsComponent', () => {
   });
 
   test('if no-suggestion template rendered when suggestions are empty', async () => {
-    const { getByText, getByTestId } = render(
+    mockMiscAddTranslation('keywords_widget/no-suggestions-message', 'no-message');
+    render(
       <KeywordsComponent
         keywordsMapping={configKeywordsByCategoryStub}
         onChange={onChange}
@@ -40,21 +42,19 @@ describe('KeywordsComponent', () => {
         category={FiltersCategoryIdEnum.residentialForRent}
       />
     );
-    mockMiscAddTranslation('keywords_widget/no-suggestions-message', 'no-message');
-    const multiSelectAutoCompleteTemplate = getByTestId('multi-selection-autocomplete-template');
 
-    await waitFor(async () => {
-      fireEvent.click(multiSelectAutoCompleteTemplate);
-      fireEvent.input(getByTestId('multi-selection-autocomplete-template-input'), { target: { value: 'lorem' } });
-      await waitFor(() => {
-        expect(getByText(/no-message|lorem/i)).toBeTruthy();
-      });
+    userEvent.tab();
+
+    expect(screen.getByPlaceholderText('keywords_widget/placeholder')).toHaveFocus();
+    userEvent.type(screen.getByPlaceholderText('keywords_widget/placeholder'), 'lorem');
+
+    await waitFor(() => {
+      expect(screen.getByText(/no-message|lorem/i)).toBeInTheDocument();
     });
   });
 
   it('should get the titles from the suggestions', async () => {
-    const inputValue = 'lor';
-    const { getByTestId } = render(
+    render(
       <KeywordsComponent
         keywordsMapping={configKeywordsByCategoryStub}
         onChange={onChange}
@@ -62,35 +62,32 @@ describe('KeywordsComponent', () => {
         category={FiltersCategoryIdEnum.residentialForRent}
       />
     );
-    const multiSelectAutoCompleteTemplate = getByTestId('multi-selection-autocomplete-template');
-    fireEvent.click(multiSelectAutoCompleteTemplate);
 
-    await waitFor(async () => {
-      const multiSelectAutoCompleteInput = getByTestId('multi-selection-autocomplete-template-input');
-      fireEvent.focus(multiSelectAutoCompleteInput);
-      fireEvent.input(multiSelectAutoCompleteInput, { target: { value: inputValue } });
-    });
+    userEvent.tab();
 
-    await waitFor(() => {
-      const suggestionsTemplate = getByTestId('multi-selection-autocomplete-template-suggestions');
-      expect(suggestionsTemplate.innerHTML).toContain(`<strong>${inputValue}</strong>`);
-    });
+    expect(screen.getByPlaceholderText('keywords_widget/placeholder')).toHaveFocus();
+
+    userEvent.type(screen.getByPlaceholderText('keywords_widget/placeholder'), 'lor');
+
+    const suggestionsTemplate = await screen.findByTestId('multi-selection-autocomplete-template-suggestions');
+    expect(suggestionsTemplate.innerHTML).toContain(`<strong>lor</strong>`);
   });
 
   test('if suggestion chips are set correctly', async () => {
     const value = 'lorem,ipsum';
-    const { getByTestId } = render(
+
+    render(
       <KeywordsComponent
-        chipsOnTheBottom
         keywordsMapping={configKeywordsByCategoryStub}
         onChange={onChange}
         value={value}
         category={FiltersCategoryIdEnum.residentialForRent}
+        chipsOnTheBottom
       />
     );
 
-    await waitFor(() => {
-      const chipsContainerTemplate = getByTestId('multi-selection-autocomplete-template-chips');
+    await waitFor(async () => {
+      const chipsContainerTemplate = await screen.findByTestId('multi-selection-autocomplete-template-chips');
       value.split(',').forEach((word) => {
         expect(chipsContainerTemplate.innerHTML).toContain(`<span class="label">${word}</span>`);
       });
@@ -99,7 +96,7 @@ describe('KeywordsComponent', () => {
 
   test('if the given keyword is added to the existing keyword stack', async () => {
     const values = 'dolor,sit';
-    const { getByTestId } = render(
+    render(
       <KeywordsComponent
         keywordsMapping={configKeywordsByCategoryStub}
         onChange={onChange}
@@ -107,30 +104,28 @@ describe('KeywordsComponent', () => {
         category={FiltersCategoryIdEnum.residentialForRent}
       />
     );
-    const multiSelectAutoCompleteTemplate = getByTestId('multi-selection-autocomplete-template');
-    fireEvent.click(multiSelectAutoCompleteTemplate);
 
-    await waitFor(() => {
-      const multiSelectAutoCompleteInput = getByTestId('multi-selection-autocomplete-template-input');
-      fireEvent.focus(multiSelectAutoCompleteInput);
-      fireEvent.input(multiSelectAutoCompleteInput, { target: { value: 'lor' } });
-    });
+    userEvent.click(screen.getByTestId('multi-selection-autocomplete-template'));
+    userEvent.tab();
 
-    await waitFor(() => {
-      const suggestionsTemplate = getByTestId('multi-selection-autocomplete-template-suggestions');
-      const suggestionButton = suggestionsTemplate.querySelector('button');
-      if (suggestionButton) {
-        fireDOMEvent.click(suggestionButton);
-        expect(onChange).toBeCalledWith(
-          [...values.split(','), configKeywordsByCategoryStub[FiltersCategoryIdEnum.residentialForRent][0]].join(',')
-        );
-      }
-    });
+    expect(screen.getByPlaceholderText('keywords_widget/placeholder')).toHaveFocus();
+
+    userEvent.type(screen.getByPlaceholderText('keywords_widget/placeholder'), 'lor');
+
+    const suggestionButton = await screen.findByTestId('multi-selection-autocomplete-template-suggestion-button');
+
+    if (suggestionButton) {
+      userEvent.click(suggestionButton);
+
+      expect(onChange).toBeCalledWith(
+        [...values.split(','), configKeywordsByCategoryStub[FiltersCategoryIdEnum.residentialForRent][0]].join(',')
+      );
+    }
   });
 
   test('if the given keyword is not added since it already exists', async () => {
     const values = 'lorem,ipsum';
-    const { getByTestId } = render(
+    render(
       <KeywordsComponent
         keywordsMapping={configKeywordsByCategoryStub}
         onChange={onChange}
@@ -138,28 +133,24 @@ describe('KeywordsComponent', () => {
         category={FiltersCategoryIdEnum.residentialForRent}
       />
     );
-    const multiSelectAutoCompleteTemplate = getByTestId('multi-selection-autocomplete-template');
-    fireEvent.click(multiSelectAutoCompleteTemplate);
 
-    await waitFor(() => {
-      const multiSelectAutoCompleteInput = getByTestId('multi-selection-autocomplete-template-input');
-      fireEvent.focus(multiSelectAutoCompleteInput);
-      fireEvent.input(multiSelectAutoCompleteInput, { target: { value: 'lor' } });
-    });
+    userEvent.click(screen.getByTestId('multi-selection-autocomplete-template'));
+    userEvent.tab();
 
-    await waitFor(() => {
-      const suggestionsTemplate = getByTestId('multi-selection-autocomplete-template-suggestions');
-      const suggestionButton = suggestionsTemplate.querySelector('button');
-      if (suggestionButton) {
-        fireDOMEvent.click(suggestionButton);
-        expect(onChange).not.toHaveBeenCalledTimes(1);
-      }
-    });
+    expect(screen.getByPlaceholderText('keywords_widget/placeholder')).toHaveFocus();
+
+    userEvent.type(screen.getByPlaceholderText('keywords_widget/placeholder'), 'lor');
+
+    const suggestionButton = await screen.findByTestId('multi-selection-autocomplete-template-suggestion-button');
+    if (suggestionButton) {
+      userEvent.click(suggestionButton);
+      expect(onChange).not.toHaveBeenCalledTimes(1);
+    }
   });
 
   test('if the given keyword is not added since stack is full', async () => {
     const values = 'lorem,ipsum';
-    const { getByTestId } = render(
+    render(
       <KeywordsComponent
         keywordsMapping={configKeywordsByCategoryStub}
         onChange={onChange}
@@ -167,50 +158,43 @@ describe('KeywordsComponent', () => {
         category={FiltersCategoryIdEnum.commercialForRent}
       />
     );
-    const multiSelectAutoCompleteTemplate = getByTestId('multi-selection-autocomplete-template');
-    fireEvent.click(multiSelectAutoCompleteTemplate);
 
-    await waitFor(() => {
-      const multiSelectAutoCompleteInput = getByTestId('multi-selection-autocomplete-template-input');
-      fireEvent.focus(multiSelectAutoCompleteInput);
-      fireEvent.input(multiSelectAutoCompleteInput, { target: { value: 'a' } });
-    });
+    userEvent.click(screen.getByTestId('multi-selection-autocomplete-template'));
+    userEvent.tab();
 
-    await waitFor(() => {
-      const suggestionsTemplate = getByTestId('multi-selection-autocomplete-template-suggestions');
-      const { length } = suggestionsTemplate.querySelectorAll('button');
-      expect(length).toEqual(configKeywordsMaxWordLimit);
-    });
+    expect(screen.getByPlaceholderText('keywords_widget/placeholder')).toHaveFocus();
+
+    userEvent.type(screen.getByPlaceholderText('keywords_widget/placeholder'), 'a');
+
+    const suggestionButtons = await screen.findAllByTestId('multi-selection-autocomplete-template-suggestion-button');
+    expect(suggestionButtons).toHaveLength(configKeywordsMaxWordLimit);
   });
 
-  test('if the clicked keyword is removed from the keyword stack', async () => {
+  test('if the clicked keyword is removed from the keyword stack', () => {
     const values = 'dolor,sit';
-    const { getByTestId } = render(
+    render(
       <KeywordsComponent
-        chipsOnTheBottom
         keywordsMapping={configKeywordsByCategoryStub}
         onChange={onChange}
         value={values}
         category={FiltersCategoryIdEnum.residentialForRent}
+        chipsOnTheBottom
       />
     );
 
-    await waitFor(() => {
-      const chipsContainerTemplate = getByTestId('multi-selection-autocomplete-template-chips');
-      // first suggestion will be clicked
-      const chipButton = chipsContainerTemplate.querySelector('button');
-      if (chipButton) {
-        fireDOMEvent.click(chipButton);
-        const [, lastSuggestion] = values.split(',');
-        expect(onChange).toHaveBeenCalledWith(lastSuggestion);
-      }
-    });
+    // first suggestion will be clicked
+    const chipButton = screen.getAllByRole('button')[0];
+
+    if (chipButton) {
+      userEvent.click(chipButton);
+      const [, lastSuggestion] = values.split(',');
+      expect(onChange).toHaveBeenCalledWith(lastSuggestion);
+    }
   });
 
-  test('if the item group is removed when clicked', async () => {
+  test('if the item group is removed when clicked', () => {
     const values = 'dolor,sit,amet,lorem';
-
-    const { getByTestId } = render(
+    render(
       <KeywordsComponent
         keywordsMapping={configKeywordsByCategoryStub}
         onChange={onChange}
@@ -218,13 +202,12 @@ describe('KeywordsComponent', () => {
         category={FiltersCategoryIdEnum.residentialForRent}
       />
     );
-    const multiSelectAutoCompleteTemplate = getByTestId('multi-selection-autocomplete-template');
-    await waitFor(() => {
-      const chips = multiSelectAutoCompleteTemplate.querySelectorAll('.cross_button');
-      if (chips) {
-        fireDOMEvent.click(chips[1]);
-        expect(onChange).toHaveBeenCalledWith(values.split(',')[0]);
-      }
-    });
+
+    const chipButtons = screen.getAllByRole('button');
+
+    if (chipButtons) {
+      userEvent.click(chipButtons[1]);
+      expect(onChange).toHaveBeenCalledWith(values.split(',')[0]);
+    }
   });
 });

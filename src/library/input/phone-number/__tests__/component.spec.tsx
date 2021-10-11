@@ -5,6 +5,7 @@
 import { render, screen } from '@testing-library/react';
 
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
+import { countryPhoneCodesStub } from 'stubs/country-phone-codes/stub';
 
 import { InputPhoneNumberComponent } from '../component';
 import { InputPhoneNumberComponentPropsInterface } from '../component-props.interface';
@@ -29,14 +30,11 @@ describe('EmailAgentModalFormWidgetPhoneComponent', () => {
   it('should display phone number field with initial value', () => {
     mockReactUseSwr('en-countries-GET-{"sort":"priority"}', {
       ok: true,
-      data: [
-        { code: 'ae', name: 'United Arab Emirates', phoneCode: '+971' },
-        { code: 'tr', name: 'Turkey', phoneCode: '+90' },
-      ],
+      data: [countryPhoneCodesStub()],
     });
     render(<InputPhoneNumberComponent {...props} />);
 
-    const listItems = screen.getAllByRole('listitem');
-    expect(listItems).toHaveLength(2);
+    const listItems = screen.getByRole('listitem');
+    expect(listItems).toBeInTheDocument();
   });
 });

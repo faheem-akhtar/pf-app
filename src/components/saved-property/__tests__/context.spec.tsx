@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { FunctionComponent, ReactElement, useContext } from 'react';
 
 import { dateToIso } from 'helpers/date/to-iso';
@@ -23,7 +24,7 @@ describe('SavedPropertyContext', () => {
 
   it('should have default values', () => {
     let returnValue;
-    const { getByText, container } = render(
+    const { getByText, getByRole } = render(
       <SavedPropertyContext.Consumer>
         {({ data: propertyIds, toggle }): ReactElement => (
           <button onClick={(): void => (returnValue = toggle('1'))}>{JSON.stringify(propertyIds)}</button>
@@ -31,9 +32,9 @@ describe('SavedPropertyContext', () => {
       </SavedPropertyContext.Consumer>
     );
 
-    expect(getByText('[]')).toBeTruthy();
+    expect(getByText('[]')).toBeInTheDocument();
 
-    fireEvent.click(container.querySelector('button') as HTMLButtonElement);
+    userEvent.click(getByRole('button'));
 
     expect(returnValue).toBeNull();
   });
@@ -48,15 +49,15 @@ describe('SavedPropertyContext', () => {
       ],
       toggle: jest.fn(),
     };
-    const { container, getByText } = render(
+    const { getByRole, getByText } = render(
       <SavedPropertyContext.Provider value={value}>
         <MockChildComponent />
       </SavedPropertyContext.Provider>
     );
 
-    expect(getByText(JSON.stringify(value.data))).toBeTruthy();
+    expect(getByText(JSON.stringify(value.data))).toBeInTheDocument();
 
-    fireEvent.click(container.querySelector('button') as HTMLButtonElement);
+    userEvent.click(getByRole('button'));
 
     expect(value.toggle).toHaveBeenCalledTimes(1);
   });

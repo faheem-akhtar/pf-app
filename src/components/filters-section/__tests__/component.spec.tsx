@@ -8,32 +8,17 @@ import userEvent from '@testing-library/user-event';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
 import { mockWindowIntersectionObserver } from 'mocks/window/intersection-observer.mock';
 import { filtersContextPropsStub } from 'stubs/filters/context-props.stub';
+import { locationCompactKcStub } from 'stubs/location';
+import { locationCompactStub } from 'stubs/location/compact.stub';
 
 import { FiltersContextProvider } from 'components/filters/context-provider';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import { FiltersSectionComponent } from '../component';
 
 describe('FiltersSectionComponent', () => {
   let renderResult: RenderResult;
   const { filtersValueFromQuery, filtersData } = filtersContextPropsStub();
-  const locations: LocationCompactInterface[] = [
-    {
-      name: 'Abu Dhabi',
-      abbreviation: '',
-      id: '6',
-      path: 'Abu Dhabi',
-      path_name: '',
-    },
-    {
-      name: 'Dubai',
-      abbreviation: '',
-      id: '1',
-      path: 'Dubai',
-      path_name: '',
-    },
-  ];
 
   beforeEach(() => {
     mockReactUseSwr('api_user', {
@@ -43,9 +28,13 @@ describe('FiltersSectionComponent', () => {
       },
     });
     mockWindowIntersectionObserver();
+
     renderResult = render(
       <FiltersContextProvider
-        filtersValueFromQuery={{ ...filtersValueFromQuery, [FiltersParametersEnum.locationsIds]: locations }}
+        filtersValueFromQuery={{
+          ...filtersValueFromQuery,
+          [FiltersParametersEnum.locationsIds]: [locationCompactStub(), locationCompactKcStub],
+        }}
         filtersData={filtersData}
       >
         <FiltersSectionComponent />
@@ -53,11 +42,11 @@ describe('FiltersSectionComponent', () => {
     );
   });
 
-  it('should render without throwing any errors', () => {
+  it('renders without throwing any errors', () => {
     expect(renderResult.container).toMatchSnapshot();
   });
 
-  it('should have 1 element when the button is clicked', () => {
+  it('should remain one location when the button is clicked', () => {
     userEvent.click(screen.getByRole('button', { name: 'multi-location-selector/n-more' }));
     const autoCompleteContainer = screen.getByTestId('multi-selection-autocomplete-template').childNodes[0];
 

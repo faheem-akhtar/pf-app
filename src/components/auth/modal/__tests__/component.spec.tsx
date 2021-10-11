@@ -91,7 +91,7 @@ describe('AuthModalComponent', () => {
     });
 
     it('should call close on header', () => {
-      userEvent.click(screen.getByTestId('auth-close-button') as HTMLDivElement);
+      userEvent.click(screen.getByRole('button', { name: /cross/i }));
       expect(props.close).toHaveBeenCalledTimes(1);
     });
 

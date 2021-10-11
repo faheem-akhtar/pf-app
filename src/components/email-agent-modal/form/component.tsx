@@ -85,7 +85,6 @@ export const EmailAgentModalFormComponent = ({
         componentType={ButtonComponentTypeEnum.primary}
         className={styles.button}
         loading={loading}
-        data-testid='email-agent-modal-submit-button'
       >
         {t('agent-modal/cta-send-message')}
       </ButtonTemplate>

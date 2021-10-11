@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { FunctionComponent, ReactElement } from 'react';
 
 import { userModelStub } from 'stubs/user/model.stub';
@@ -82,7 +83,7 @@ describe('useUserPropertyState', () => {
 
     expect(button).toHaveTextContent('[]');
 
-    fireEvent.click(button);
+    userEvent.click(button);
 
     expect(button).toHaveTextContent(JSON.stringify({ propertyId: 1 }));
     expect(WindowService.localStorage.setItem).toHaveBeenCalledTimes(1);
@@ -97,7 +98,7 @@ describe('useUserPropertyState', () => {
     );
     const button = getByTestId('add-button') as HTMLButtonElement;
 
-    fireEvent.click(button);
+    userEvent.click(button);
 
     expect(button).toHaveTextContent(JSON.stringify({ propertyId: 1 }));
   });
@@ -112,7 +113,7 @@ describe('useUserPropertyState', () => {
 
     expect(button).toHaveTextContent('[]');
 
-    fireEvent.click(button);
+    userEvent.click(button);
 
     expect(button).toHaveTextContent(JSON.stringify({ propertyId: 1 }));
     expect(WindowService.localStorage.setItem).toHaveBeenCalledTimes(1);
@@ -130,7 +131,7 @@ describe('useUserPropertyState', () => {
     const addButton = getByTestId('add-button') as HTMLButtonElement;
     const removeButton = getByTestId('remove-button') as HTMLButtonElement;
 
-    fireEvent.click(removeButton);
+    userEvent.click(removeButton);
 
     expect(addButton).toHaveTextContent('[]');
     expect(removeFetcherMock).not.toHaveBeenCalled();
@@ -149,7 +150,7 @@ describe('useUserPropertyState', () => {
 
     (WindowService.localStorage.setItem as jest.Mock).mockReset();
 
-    fireEvent.click(removeButton);
+    userEvent.click(removeButton);
 
     expect(addButton).toHaveTextContent('[]');
     expect(WindowService.localStorage.setItem).toHaveBeenCalledTimes(1);
@@ -190,7 +191,7 @@ describe('useUserPropertyState', () => {
     const addButton = getByTestId('add-button') as HTMLButtonElement;
     const removeButton = getByTestId('remove-button') as HTMLButtonElement;
 
-    fireEvent.click(removeButton);
+    userEvent.click(removeButton);
 
     expect(addButton).toHaveTextContent('[]');
     expect(removeFetcherMock).not.toHaveBeenCalled();

@@ -39,6 +39,6 @@ describe('SavedPropertyAuthLoginTemplate', () => {
   it('should render the error message', () => {
     const { getByText } = render(<SavedPropertyAuthLoginTemplate {...props} errorMessage='This is an error message' />);
 
-    expect(getByText('This is an error message')).toBeTruthy();
+    expect(getByText('This is an error message')).toBeInTheDocument();
   });
 });

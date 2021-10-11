@@ -82,6 +82,7 @@ export const MultiSelectionAutocompleteTemplate = <T extends unknown>(
         {props.suggestions.map((item, index) => {
           return (
             <button
+              data-testid='multi-selection-autocomplete-template-suggestion-button'
               className={domClassMerge(styles.suggestion, {
                 [styles.suggestion_selected]: index === props.selectedItemIndex,
               })}

@@ -29,13 +29,6 @@ describe('EmailAgentModalComponent', () => {
   const property: PropertySerpObfuscatedType = propertyStub();
   let props: EmailAgentModalComponentPropsInterface;
 
-  beforeAll(() => {
-    props = {
-      property,
-      openRef,
-    };
-  });
-
   beforeEach(() => {
     (StatsService().propertyLeadSend as jest.Mock).mockReset();
 
@@ -47,84 +40,77 @@ describe('EmailAgentModalComponent', () => {
         { code: 'tr', name: 'Turkey', phoneCode: '+90' },
       ],
     });
+
+    props = {
+      property,
+      openRef,
+    };
   });
 
-  it('should take initial values when modal is opened', () => {
-    render(
-      <UserContext.Provider value={userModelStub()}>
-        <EmailAgentModalComponent {...props} />
-      </UserContext.Provider>
-    );
-    act(openRef.current);
+  describe('when user is exist', () => {
+    beforeEach(() => {
+      render(
+        <UserContext.Provider value={userModelStub()}>
+          <EmailAgentModalComponent {...props} />
+        </UserContext.Provider>
+      );
+      act(openRef.current);
+    });
 
-    expect(screen.getByTestId('email-agent-form')).toHaveFormValues({
-      name: 'FirstName LastName',
-      email: 'test@propertyfinder.ae',
-      phone: '',
-      message: 'agent-modal/default-email-message',
-      emailAlert: true,
+    it('should take initial values when modal is opened', () => {
+      expect(screen.getByTestId('email-agent-form')).toHaveFormValues({
+        name: 'FirstName LastName',
+        email: 'test@propertyfinder.ae',
+        phone: '',
+        message: 'agent-modal/default-email-message',
+        emailAlert: true,
+      });
+    });
+
+    it('should not appear sign in pop-up', async () => {
+      userEvent.type(screen.getByPlaceholderText('phone'), '123456');
+      GoogleRecaptchaServiceModule.GoogleRecaptchaService().execute = (): Promise<string> => Promise.resolve('token');
+      userEvent.click(screen.getByRole('checkbox', { name: 'agent-modal/email-alert-message' }));
+      userEvent.click(screen.getByRole('button', { name: 'agent-modal/cta-send-message' }));
+
+      const fetchMock = mockWindowFetch();
+      await waitFor(() =>
+        expect(fetchMock).toHaveBeenCalledWith(
+          'default-origin/en/api/pwa/property/email-agent',
+          expect.objectContaining({
+            body: JSON.stringify({
+              attributes: {
+                propertyId: parseInt(propertySerpObfuscatedGetId(props.property), 10),
+                name: 'FirstName LastName',
+                email: 'test@propertyfinder.ae',
+                phone: '+971123456',
+                message: 'agent-modal/default-email-message',
+                emailAlert: false,
+                captcha_token: 'token',
+                autoRegister: true,
+              },
+            }),
+            headers: {
+              locale: 'en',
+            },
+            method: 'POST',
+          })
+        )
+      );
+
+      expect(screen.queryByText('agent-modal/sign-in-title')).not.toBeInTheDocument();
+    });
+
+    it('should the modal disappear when overlay is clicked', async () => {
+      const modalOverlayEl = screen.getByRole('document');
+      userEvent.click(modalOverlayEl);
+      act(closeRef.current);
+
+      await waitFor(() => expect(screen.queryByText('agent-modal/email-form-title')).not.toBeInTheDocument());
     });
   });
 
-  it('should not appear sign in pop-up', async () => {
-    render(
-      <UserContext.Provider value={userModelStub()}>
-        <EmailAgentModalComponent {...props} />
-      </UserContext.Provider>
-    );
-    act(openRef.current);
-
-    userEvent.type(screen.getByPlaceholderText('phone'), '123456');
-
-    GoogleRecaptchaServiceModule.GoogleRecaptchaService().execute = (): Promise<string> => Promise.resolve('token');
-
-    userEvent.click(screen.getByRole('checkbox', { name: 'agent-modal/email-alert-message' }));
-    userEvent.click(screen.getByRole('button', { name: 'agent-modal/cta-send-message' }));
-
-    const fetchMock = mockWindowFetch();
-    await waitFor(() =>
-      expect(fetchMock).toHaveBeenCalledWith(
-        'default-origin/en/api/pwa/property/email-agent',
-        expect.objectContaining({
-          body: JSON.stringify({
-            attributes: {
-              propertyId: parseInt(propertySerpObfuscatedGetId(props.property), 10),
-              name: 'FirstName LastName',
-              email: 'test@propertyfinder.ae',
-              phone: '+971123456',
-              message: 'agent-modal/default-email-message',
-              emailAlert: false,
-              captcha_token: 'token',
-              autoRegister: true,
-            },
-          }),
-          headers: {
-            locale: 'en',
-          },
-          method: 'POST',
-        })
-      )
-    );
-
-    expect(screen.queryByText('agent-modal/sign-in-title')).not.toBeInTheDocument();
-  });
-
-  it('should the modal disappear when overlay is clicked', async () => {
-    render(
-      <UserContext.Provider value={userModelStub()}>
-        <EmailAgentModalComponent {...props} />
-      </UserContext.Provider>
-    );
-    act(openRef.current);
-
-    const modalOverlay = screen.getByRole('document');
-    userEvent.click(modalOverlay);
-
-    act(closeRef.current);
-    await waitFor(() => expect(screen.queryByText('agent-modal/email-form-title')).not.toBeInTheDocument());
-  });
-
-  describe('when the user is not exist', () => {
+  describe('when no user', () => {
     let renderResult: RenderResult;
 
     beforeEach(() => {
@@ -156,8 +142,8 @@ describe('EmailAgentModalComponent', () => {
       expect(screen.queryByLabelText('agent-modal/receive-advertising-message')).not.toBeInTheDocument();
       expect(screen.queryByLabelText('agent-modal/accept-terms-message-prefix')).not.toBeInTheDocument();
 
-      const errorTexts = screen.queryAllByLabelText(/^validation(?:_?[a-z]+)*/);
-      expect(errorTexts).toHaveLength(0);
+      const errorTexts = screen.queryByLabelText(/^validation(?:_?[a-z]+)*/);
+      expect(errorTexts).not.toBeInTheDocument();
     });
 
     describe('form submission', () => {
@@ -221,7 +207,7 @@ describe('EmailAgentModalComponent', () => {
         act(closeRef.current);
         act(openAuthRef.current);
 
-        await waitFor(() => expect(screen.getByRole('heading', { level: 1, name: 'sign-in' })).toBeInTheDocument());
+        await screen.findByRole('heading', { level: 1, name: 'sign-in' });
         expect(screen.queryByTestId('email-agent-modal-content')).not.toBeInTheDocument();
 
         userEvent.click(screen.getByRole('button', { name: /cross/i }));

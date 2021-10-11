@@ -1,7 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import { fireEvent, render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { FunctionComponent, ReactElement, useContext } from 'react';
 
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
@@ -29,7 +30,7 @@ describe('SaveSearchContext', () => {
           >
             {JSON.stringify(saveSearch.data)}
           </button>
-          <p>{JSON.stringify(saveSearch.filtered)}</p>
+          <p data-testid='save-search-filtered'>{JSON.stringify(saveSearch.filtered)}</p>
         </>
       );
     };
@@ -37,7 +38,7 @@ describe('SaveSearchContext', () => {
 
   it('should have default values', (done) => {
     let returnValue = Promise.resolve({} as ApiFetcherResultType<SaveSearchLoadResultInterface>);
-    const { container } = render(
+    render(
       <SaveSearchContext.Consumer>
         {({ data: propertyIds, filtered, create }): ReactElement => (
           <>
@@ -48,16 +49,18 @@ describe('SaveSearchContext', () => {
             >
               {JSON.stringify(propertyIds)}
             </button>
-            <p>{JSON.stringify(filtered)}</p>
+            <p data-testid='save-search-filtered'>{JSON.stringify(filtered)}</p>
           </>
         )}
       </SaveSearchContext.Consumer>
     );
 
-    expect(container.querySelector('p')?.textContent).toEqual('[]');
-    expect(container.querySelector('button')?.textContent).toEqual('[]');
+    const button = screen.getByRole('button');
 
-    fireEvent.click(container.querySelector('button') as HTMLButtonElement);
+    expect(button).toHaveTextContent('[]');
+    expect(screen.getByTestId('save-search-filtered')).toHaveTextContent('[]');
+
+    userEvent.click(button);
 
     returnValue.then((res) => {
       expect(res).toEqual({ ok: true, data: {}, headers: {} });
@@ -87,16 +90,18 @@ describe('SaveSearchContext', () => {
       ],
       create: jest.fn(),
     };
-    const { container } = render(
+    render(
       <SaveSearchContext.Provider value={value}>
         <MockChildComponent />
       </SaveSearchContext.Provider>
     );
 
-    expect(container.querySelector('button')?.textContent).toEqual(JSON.stringify(value.data));
-    expect(container.querySelector('p')?.textContent).toEqual(JSON.stringify(value.filtered));
+    const button = screen.getByRole('button');
 
-    fireEvent.click(container.querySelector('button') as HTMLButtonElement);
+    expect(button).toHaveTextContent(JSON.stringify(value.data));
+    expect(screen.getByTestId('save-search-filtered')).toHaveTextContent(JSON.stringify(value.filtered));
+
+    userEvent.click(button);
 
     expect(value.create).toHaveBeenCalledTimes(1);
   });
