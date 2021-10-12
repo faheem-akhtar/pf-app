@@ -119,6 +119,7 @@
     "postcss-rtl": "^1.7.3",
     "prettier": "^2.3.2",
     "sass-loader": "^10",
+    "sass-resources-loader": "^2.2.4",
     "style-loader": "^2.0.0",
     "stylelint": "^13.13.1",
     "stylelint-declaration-strict-value": "^1.7.12",

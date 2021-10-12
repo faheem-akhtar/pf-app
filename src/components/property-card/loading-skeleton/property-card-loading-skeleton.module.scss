@@ -1,51 +1,33 @@
 .container {
-  background-color: var(--color-global-white);
+  border-radius: 0.8rem;
   display: flex;
-  height: 15rem;
-  margin-bottom: calc(var(--spacing) * 2);
+  flex-direction: column;
+  height: 37.6rem;
+  overflow: hidden;
 }
 
 .gallery {
-  height: 100%;
-  width: 12.4rem;
+  height: 23.3rem;
 }
 
-.content_container {
-  display: flex;
+.content {
+  background-color: var(--color-global-white);
   flex: 1;
-  flex-direction: column;
-  margin: 0 calc(var(--spacing) * 2) 0 calc(var(--spacing) * 1.5);
-  padding: var(--spacing) 0;
+  padding: spacingm(3) spacingm(2) spacingm(4) spacingm();
 }
 
 .row1 {
+  border-radius: 0.2rem;
   height: 2.4rem;
-  margin-top: var(--spacing);
-  width: 16.8rem;
+  margin-bottom: spacingm(3);
+  width: 20.2rem;
 }
 
 .row2 {
+  border-radius: 0.2rem;
   height: 1.8rem;
-  margin-top: calc(var(--spacing) * 2);
-  width: 100%;
-}
 
-.fill_vertical_space {
-  flex: 1;
-}
-
-.cta_buttons_container {
-  display: flex;
-  height: 3.2rem;
-  margin-bottom: var(--spacing);
-  width: 100%;
-}
-
-.button {
-  flex: 1;
-  height: 100%;
-}
-
-.button:not(:nth-of-type(1)) {
-  margin-left: calc(var(--spacing) * 1.5);
+  & + & {
+    margin-top: spacingm(2);
+  }
 }

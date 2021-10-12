@@ -10,6 +10,9 @@ export default create({
   colorPrimary: '#ef5e4e',
   colorSecondary: '#ef5e4e',
 
+  // App
+  appContentBg: '#fbe9e0',
+
   // Brand
   brandTitle: 'PF - Storybook',
   brandUrl: 'https://www.propertyfinder.ae/',

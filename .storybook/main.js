@@ -1,6 +1,6 @@
 const path = require('path');
 const srcDir = path.join(__dirname, '../src');
-const {TsconfigPathsPlugin} = require('tsconfig-paths-webpack-plugin');
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   stories: [`${srcDir}/**/*.stories.mdx`, `${srcDir}/**/*.stories.@(js|jsx|ts|tsx)`],
@@ -23,22 +23,20 @@ module.exports = {
       test: /\.(scss)$/,
       use: [
         'style-loader',
+        'css-loader',
+        'sass-loader',
         {
-          loader: 'css-loader',
+          loader: require.resolve('sass-resources-loader'),
           options: {
-            modules: {
-              localIdentName: "[name]__[local]--[hash:base64:5]",
-            },
+            // Can be changed for entry point containing sass related content like variables, mixins, etc
+            resources: `${srcDir}/styles/common/functions.scss`,
           },
         },
-        'sass-loader',
       ],
       include: path.resolve(srcDir),
     });
 
-  [].push.apply(config.resolve.plugins, [
-      new TsconfigPathsPlugin({extensions: config.resolve.extensions})
-  ]);
+    [].push.apply(config.resolve.plugins, [new TsconfigPathsPlugin({ extensions: config.resolve.extensions })]);
 
     return config;
   },

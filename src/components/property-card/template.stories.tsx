@@ -126,6 +126,30 @@ PropertyCard.args = {
         sourceUrl:
           'https://www.propertyfinder.ae/property/0d8de151cfe7d450e2d3d6a89a2df5e4/260/185/MODE/839734/8151024-492b2o.jpg?ctr=ae',
       },
+      {
+        sourceUrl:
+          'https://www.propertyfinder.ae/property/610d21efe03411ef664a9cb33fe25924/668/452/MODE/8ff4a2/8323893-2e8f0o.jpg?ctr=ae',
+      },
+      {
+        sourceUrl:
+          'https://www.propertyfinder.ae/property/bcfd7ef905556c311697811c6298a3d2/668/452/MODE/8fe8f6/8323893-ffb96o.jpg?ctr=ae',
+      },
+      {
+        sourceUrl:
+          'https://www.propertyfinder.ae/property/3f3de8501af19836f0d4125a7f73d8ae/668/452/MODE/61b99b/8323893-d27edo.jpg?ctr=ae',
+      },
+      {
+        sourceUrl:
+          'https://www.propertyfinder.ae/property/201b371bfa25f0c67e01fc4612e1a857/668/452/MODE/3cf077/8323893-9f74co.jpg?ctr=ae',
+      },
+      {
+        sourceUrl:
+          'https://www.propertyfinder.ae/property/74fcb0e1bd052a04fefeda1c1953db31/668/452/MODE/62847a/8323893-a2057o.jpg?ctr=ae',
+      },
+      {
+        sourceUrl:
+          'https://www.propertyfinder.ae/property/a56c3ff080e52833dad01af955dc267d/668/452/MODE/b5b360/8323893-20122o.jpg?ctr=ae',
+      },
     ],
     isRtl: false,
   },
