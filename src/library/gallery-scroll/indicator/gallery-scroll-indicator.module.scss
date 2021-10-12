@@ -27,7 +27,7 @@
 }
 
 .dot::after {
-  background: var(--color-global-white);
+  background: var(--color-global-white-op-70);
   border-radius: 0.5rem;
   box-shadow: 0 0.1rem 0 0 var(--color-global-black-op-35);
   content: '';
@@ -37,10 +37,15 @@
   width: 0.6rem;
 }
 
+.dot__small::after {
+  transform: scale(0.67);
+}
+
 .dot__hidden::after {
   transform: scale(0);
 }
 
 .dot__active::after {
+  background: var(--color-global-white);
   transform: scale(1.3333);
 }

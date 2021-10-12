@@ -1,6 +1,7 @@
 /* eslint-disable pf-rules/export-name-validation */
 
 import { GalleryScrollComponent } from './component';
+import styles from './gallery-scroll-storybook.module.scss';
 
 export default {
   title: 'Library/Gallery',
@@ -23,6 +24,7 @@ export const Gallery = (props: { imagesCount: number; isRtl: boolean }): JSX.Ele
     isRtl={props.isRtl}
     items={images.map((sourceUrl) => ({ sourceUrl }))}
     onTouch={(): null => null}
+    className={styles.gallery}
   />
 );
 

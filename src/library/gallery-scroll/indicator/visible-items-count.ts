@@ -1,1 +1,1 @@
-export const galleryScrollIndicatorVisibleItemsCount = 3;
+export const galleryScrollIndicatorVisibleItemsCount = 7;

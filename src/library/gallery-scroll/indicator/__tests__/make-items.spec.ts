@@ -18,4 +18,22 @@ describe('galleryScrollIndicatorMakeItems', () => {
 
     expect(result).toMatchSnapshot();
   });
+
+  it('5 items, second is active', () => {
+    const result = galleryScrollIndicatorMakeItems(5, 1);
+
+    expect(result).toMatchSnapshot();
+  });
+
+  it('7 items, third is active', () => {
+    const result = galleryScrollIndicatorMakeItems(7, 3);
+
+    expect(result).toMatchSnapshot();
+  });
+
+  it('12 items, seventh is active', () => {
+    const result = galleryScrollIndicatorMakeItems(12, 7);
+
+    expect(result).toMatchSnapshot();
+  });
 });

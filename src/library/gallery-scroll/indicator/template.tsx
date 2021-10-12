@@ -16,6 +16,7 @@ export const GalleryScrollIndicatorTemplate = (props: GalleryScrollIndicatorProp
     domClassMerge(styles.dot, {
       [styles.dot__active]: item.isActive,
       [styles.dot__hidden]: item.isHidden,
+      [styles.dot__small]: item.isSmall,
     });
 
   const transformXPx = galleryScrollIndicatorGetTransform({ items, itemWidth: props.itemWidth });
@@ -23,8 +24,13 @@ export const GalleryScrollIndicatorTemplate = (props: GalleryScrollIndicatorProp
     transform: `translateX(${transformXPx}px)`,
   };
 
+  const widthMultiplier =
+    props.itemsCount < galleryScrollIndicatorVisibleItemsCount
+      ? props.itemsCount
+      : galleryScrollIndicatorVisibleItemsCount;
+
   return (
-    <div className={styles.container} style={{ width: props.itemWidth * galleryScrollIndicatorVisibleItemsCount }}>
+    <div className={styles.container} style={{ width: props.itemWidth * widthMultiplier }}>
       <div className={styles.items_container} style={containerStyle}>
         {items.map((item, itemIndex) => (
           <div key={itemIndex} className={getItemClassName(item)} />

@@ -6,26 +6,34 @@ import { galleryScrollIndicatorVisibleItemsCount } from './visible-items-count';
 export const galleryScrollIndicatorMakeItems = (
   itemsCount: number,
   activeIndex: number
-): GalleryScrollIndicatorItemInterface[] =>
-  arrayFromRange(0, itemsCount).map((i) => {
-    const isActive = i === activeIndex;
-    let isVisible;
-    const firstActive = activeIndex === 0;
-    const lastActive = activeIndex === itemsCount - 1;
-    const numberOfSmallDots = galleryScrollIndicatorVisibleItemsCount - 1;
-    if (firstActive) {
-      isVisible = i <= numberOfSmallDots;
-    } else if (lastActive) {
-      isVisible = i >= activeIndex - numberOfSmallDots;
-    } else {
-      isVisible = Math.abs(i - activeIndex) <= numberOfSmallDots / 2;
-    }
+): GalleryScrollIndicatorItemInterface[] => {
+  const numberOfSmallDots = galleryScrollIndicatorVisibleItemsCount - 1;
+  const startMiddlePoint = Math.ceil(numberOfSmallDots / 2);
+  const endMiddlePoint = itemsCount - Math.ceil(galleryScrollIndicatorVisibleItemsCount / 2) - 1;
 
+  return arrayFromRange(0, itemsCount).map((i) => {
+    const isActive = i === activeIndex;
+    let isVisible = false;
+
+    if (isActive) {
+      isVisible = true;
+    } else if (activeIndex <= startMiddlePoint) {
+      if (i < activeIndex || i <= numberOfSmallDots) {
+        isVisible = true;
+      }
+    } else if (activeIndex >= endMiddlePoint) {
+      if (i > activeIndex || i >= itemsCount - numberOfSmallDots - 1) {
+        isVisible = true;
+      }
+    } else if (Math.abs(activeIndex - i) <= startMiddlePoint) {
+      isVisible = true;
+    }
     const isHidden = !isVisible;
 
     return {
       isActive,
       isHidden,
-      isSmall: !isHidden && !isActive,
+      isSmall: !isActive && Math.abs(activeIndex - i) !== 1,
     };
   });
+};
