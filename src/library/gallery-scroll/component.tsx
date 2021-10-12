@@ -70,6 +70,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
       isTouched={state.isTouched}
       activeIndex={state.activeIndex}
       objectFit={objectFit}
+      isRtl={isRtl}
     />
   );
 };

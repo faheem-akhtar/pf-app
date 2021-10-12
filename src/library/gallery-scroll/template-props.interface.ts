@@ -46,4 +46,9 @@ export interface GalleryScrollTemplatePropsInterface {
    * Image fit behavior
    */
   objectFit?: GalleryScrollObjectFitEnum;
+
+  /**
+   * Right to left alignment (true for Arabic)
+   */
+  isRtl: boolean;
 }

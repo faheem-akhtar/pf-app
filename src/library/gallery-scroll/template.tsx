@@ -20,7 +20,12 @@ export const GalleryScrollTemplate: React.FunctionComponent<GalleryScrollTemplat
         ))}
       </div>
 
-      <GalleryScrollIndicatorTemplate itemWidth={10} itemsCount={props.items.length} activeIndex={props.activeIndex} />
+      <GalleryScrollIndicatorTemplate
+        itemWidth={10}
+        itemsCount={props.items.length}
+        activeIndex={props.activeIndex}
+        isRtl={props.isRtl}
+      />
     </div>
   );
 };

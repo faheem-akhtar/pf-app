@@ -19,7 +19,7 @@ export const GalleryScrollIndicatorTemplate = (props: GalleryScrollIndicatorProp
       [styles.dot__small]: item.isSmall,
     });
 
-  const transformXPx = galleryScrollIndicatorGetTransform({ items, itemWidth: props.itemWidth });
+  const transformXPx = galleryScrollIndicatorGetTransform({ items, itemWidth: props.itemWidth, isRtl: props.isRtl });
   const containerStyle = {
     transform: `translateX(${transformXPx}px)`,
   };

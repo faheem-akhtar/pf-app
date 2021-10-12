@@ -4,18 +4,16 @@
 export const galleryScrollIndicatorGetTransform = (props: {
   items: { isHidden: boolean }[];
   itemWidth: number;
+  isRtl: boolean;
 }): number => {
   let transformIndex = 0;
 
   props.items.some((item, index) => {
-    const itemIsAtTheEnd = index === props.items.length - 2;
-
-    // Do not shift
-    if (!item.isHidden || itemIsAtTheEnd) {
+    if (!item.isHidden) {
       return true;
     }
 
-    transformIndex = -(index + 1);
+    transformIndex = props.isRtl ? index + 1 : -(index + 1);
 
     return false;
   });
