@@ -26,12 +26,12 @@ export const PropertyCardMenuContentTemplate = ({
         }}
       />
 
+      {/* TODO[CX-375] - Implement hide property modal
       <PropertyCardMenuContentButtonTemplate
         label={t('cta-hide')}
         icon={IconThinEyeHideTemplate}
-        // TODO[CX-375] - Implement hide property modal
         onClick={(): void => undefined}
-      />
+      /> */}
 
       <PropertyCardMenuContentButtonTemplate
         label={t('cta-report')}
