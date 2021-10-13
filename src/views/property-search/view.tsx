@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import { usePrevious } from 'src/hooks/previous.hook';
 
 import { ContactedPropertyContextProvider } from 'components/contacted-property/context-provider';
 import { FiltersContextProvider } from 'components/filters/context-provider';
@@ -16,6 +15,7 @@ import { SavedPropertyContextProvider } from 'components/saved-property/context-
 import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { WrapperTemplate } from 'components/wrapper/template';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
+import { usePrevious } from 'hooks/previous.hook';
 import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
 import { useServicesTealiumSearch } from 'services/tealium/search.hook';
 

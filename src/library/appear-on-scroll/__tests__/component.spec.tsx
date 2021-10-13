@@ -44,6 +44,7 @@ describe('AppearOnScrollComponent', () => {
       onExiting: jest.fn(),
       onHidden: jest.fn(),
       children: <div>Some content</div>,
+      showOnlyOnScrollUp: false,
     };
     mockElementGetBoundingClientRect({ y: 1 });
     mockDocumentBodyClientHeight(BODY_CLIENT_HEIGHT);

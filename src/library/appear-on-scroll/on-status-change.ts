@@ -2,7 +2,7 @@ import { AppearOnScrollComponentPropsInterface } from './component-props.interfa
 import { AppearOnScrollStatusEnum } from './status.enum';
 
 export const appearOnScrollOnStatusChange = (
-  props: AppearOnScrollComponentPropsInterface,
+  props: Pick<AppearOnScrollComponentPropsInterface, 'onEntering' | 'onExiting' | 'onHidden' | 'onVisible'>,
   status: AppearOnScrollStatusEnum | null
 ): void => {
   switch (status) {

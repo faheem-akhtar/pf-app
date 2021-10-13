@@ -96,7 +96,7 @@ module.exports = {
           ['^\\u0000', '^@?\\w'],
           ['^(mocks|stubs)'],
           [
-            '^(api|backend|components|constants|config|context|enums|feature|helpers|library|pages|services|styles|types|views)',
+            '^(api|backend|components|constants|config|hooks|context|enums|feature|helpers|library|pages|services|styles|types|views)',
           ],
           ['^'],
           ['^\\.'],

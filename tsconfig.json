@@ -24,6 +24,7 @@
       "enums/*": ["src/enums/*"],
       "feature/*": ["src/feature/*"],
       "helpers/*": ["src/helpers/*"],
+      "hooks/*": ["src/hooks/*"],
       "library/*": ["src/library/*"],
       "mocks/*": ["mocks/*"],
       "pages/*": ["src/pages/*"],

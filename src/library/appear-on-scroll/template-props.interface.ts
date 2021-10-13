@@ -4,7 +4,7 @@ import { AppearOnScrollStatusEnum } from './status.enum';
 export interface AppearOnScrollTemplatePropsInterface
   extends Omit<
     AppearOnScrollComponentPropsInterface,
-    'showOnLoad' | 'onExiting' | 'onHidden' | 'onEntering' | 'onVisible'
+    'showOnLoad' | 'onExiting' | 'onHidden' | 'onEntering' | 'onVisible' | 'showOnlyOnScrollUp'
   > {
   /**
    * Status

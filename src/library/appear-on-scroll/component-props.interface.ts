@@ -8,6 +8,10 @@ export interface AppearOnScrollComponentPropsInterface {
    */
   className?: string;
   /**
+   * Show content on only scroll on top
+   */
+  showOnlyOnScrollUp?: boolean;
+  /**
    * Handler for when the component (not the wrapper) starts exiting the viewport
    */
   onExiting?: () => void;

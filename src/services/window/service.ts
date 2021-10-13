@@ -22,4 +22,6 @@ export const WindowService = {
   getFB: (): typeof FB | null => (helpersIsClient ? window?.FB : null),
   getGoogle: (): typeof google | null => (helpersIsClient ? window?.google : null),
   getGrecaptcha: (): typeof grecaptcha => window.grecaptcha,
+  scrollY: (): number | null => (helpersIsClient ? window?.scrollY : null),
+  requestAnimationFrame: (callback: FrameRequestCallback): number => window.requestAnimationFrame(callback),
 };

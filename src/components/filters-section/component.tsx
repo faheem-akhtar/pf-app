@@ -50,7 +50,7 @@ export const FiltersSectionComponent = (): JSX.Element => {
       <SaveSearchContextProvider>
         <ButtonsRow visibleTooltip />
       </SaveSearchContextProvider>
-      <AppearOnScrollComponent>
+      <AppearOnScrollComponent showOnlyOnScrollUp>
         <WrapperTemplate className={styles.buttons_row__appear_on_scroll}>
           <ButtonsRow />
         </WrapperTemplate>
