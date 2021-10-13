@@ -11,8 +11,10 @@ import { useEffect } from 'react';
 import { appRootElementId } from 'src/constants/app/root-element-id';
 
 import { UserContextProvider } from 'context/user/context-provider';
+import { AuthService } from 'services/auth/service';
 import { LocaleEnum } from 'services/locale/enum';
 import { LocaleService } from 'services/locale/service';
+import { StatsContexterService } from 'services/stats/contexter.service';
 
 const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   const { locale } = useRouter();
@@ -22,6 +24,24 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     LocaleService.setLocale(locale as LocaleEnum);
     document.documentElement.dir = locale === LocaleEnum.ar ? 'rtl' : 'ltr';
   }, [locale]);
+
+  useEffect(
+    () =>
+      AuthService.subscribe((user, meta) => {
+        StatsContexterService().setAuthenticationUser(
+          user
+            ? {
+                id: parseInt(user?.userId),
+                firstName: user.first_name,
+                lastName: user.last_name,
+                email: user.email,
+              }
+            : null
+        );
+        StatsContexterService().setAuthenticationProvider(meta.providerType);
+      }),
+    []
+  );
 
   return (
     <UserContextProvider>

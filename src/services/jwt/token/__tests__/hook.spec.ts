@@ -5,6 +5,7 @@ import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
 import { mockReactUseState } from 'mocks/react/use-state.mock';
 
 import { AuthService } from 'services/auth/service';
+import { AuthSubscribeEventTypeEnum } from 'services/auth/subscribe-event-type.enum';
 import { useJwtToken } from 'services/jwt/token/hook';
 import { JwtTokenService } from 'services/jwt/token/service';
 import { UserModelInterface } from 'services/user/model.interface';
@@ -19,14 +20,14 @@ describe('useGalleryScrollEffects', () => {
   it('should reset token', () => {
     jest.spyOn(JwtTokenService, 'getToken').mockReturnValue('token');
     useJwtToken();
-    AuthService['updateUserData'](null);
+    AuthService['updateUserData'](null, AuthSubscribeEventTypeEnum.logout, null);
     expect(setState).toHaveBeenCalledWith(null);
   });
 
   it('should update token', () => {
     jest.spyOn(JwtTokenService, 'getToken').mockReturnValue('new token');
     useJwtToken();
-    AuthService['updateUserData']({} as UserModelInterface);
+    AuthService['updateUserData']({} as UserModelInterface, AuthSubscribeEventTypeEnum.login, 'Google');
     expect(setState).toHaveBeenCalledWith('new token');
   });
 

@@ -24,7 +24,7 @@ export const AuthRegisterService = (
       return AuthService.onAuthRejected(response);
     }
 
-    AuthService.onAuthResolved(response.data, AuthSubscribeEventTypeEnum.register);
+    AuthService.onAuthResolved(response.data, AuthSubscribeEventTypeEnum.register, 'Email');
 
     return {
       ...response,

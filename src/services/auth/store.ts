@@ -1,3 +1,5 @@
+import { AuthenticationProviderType } from '@propertyfinder/pf-frontend-common/dist/module/stats/types';
+
 import { apiAuthLogoutFetcher } from 'api/auth/logout/fetcher';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
@@ -16,6 +18,11 @@ export class AuthStore {
    * User key in browser storage
    */
   private readonly userKey: string = 'user-authentication-user';
+
+  /**
+   * User key in browser storage
+   */
+  private readonly providerTypeKey: string = 'user-authentication-provider';
 
   /**
    * Service subscribers
@@ -48,20 +55,31 @@ export class AuthStore {
    * Update user information
    * @param userData
    */
-  private updateUserData = (userData: UserModelInterface | null, eventType?: AuthSubscribeEventTypeEnum): void => {
+  private updateUserData = (
+    userData: UserModelInterface | null,
+    eventType: AuthSubscribeEventTypeEnum,
+    providerType: AuthenticationProviderType | null
+  ): void => {
     this.subscribers.forEach((update) => {
-      update(userData, eventType ? { eventType } : undefined);
+      update(userData, { eventType, providerType });
     });
   };
 
   /**
    * Subscribe to the service update
    */
-  public subscribe = (onUpdate: AuthSubscriberType): (() => void) => {
-    this.subscribers.push(onUpdate);
+  public subscribe = (subscriber: AuthSubscriberType): (() => void) => {
+    this.subscribers.push(subscriber);
+
+    const user = this.getUser();
+
+    subscriber(user, {
+      eventType: AuthSubscribeEventTypeEnum.subscribe,
+      providerType: user ? this.getProviderType() : null,
+    });
 
     return (): void => {
-      this.subscribers = this.subscribers.filter((sub) => sub !== onUpdate);
+      this.subscribers = this.subscribers.filter((sub) => sub !== subscriber);
     };
   };
 
@@ -70,7 +88,8 @@ export class AuthStore {
    */
   public logOut(): Promise<void> {
     return apiAuthLogoutFetcher().then(() => {
-      this.updateUserData(null);
+      this.setProviderType(null);
+      this.updateUserData(null, AuthSubscribeEventTypeEnum.logout, null);
       this.resetToken();
       this.signOut();
     });
@@ -98,14 +117,20 @@ export class AuthStore {
   /**
    * User authn promise resolved
    */
-  public onAuthResolved = (data: AuthModelInterface, eventType: AuthSubscribeEventTypeEnum): void => {
+  public onAuthResolved = (
+    data: AuthModelInterface,
+    eventType: AuthSubscribeEventTypeEnum,
+    providerType: AuthenticationProviderType
+  ): void => {
+    this.setProviderType(providerType);
+
     // Update data
     this.jwtTokenService.setRefreshToken(data.meta.refresh_token);
     this.jwtTokenService.setToken(data.meta.token);
 
     // Update user data in local storage
     this.setUser(data.user);
-    this.updateUserData(data.user, eventType);
+    this.updateUserData(data.user, eventType, providerType);
   };
 
   /**
@@ -163,15 +188,33 @@ export class AuthStore {
       return;
     }
 
-    this.windowLocalStorage.setItem(
-      this.userKey,
-      JSON.stringify({
-        id: model.userId,
-        first_name: model.first_name,
-        last_name: model.last_name,
-        image: model.image,
-        email: model.email,
-      })
-    );
+    this.windowLocalStorage.setItem(this.userKey, {
+      id: model.userId,
+      first_name: model.first_name,
+      last_name: model.last_name,
+      image: model.image,
+      email: model.email,
+    });
+  }
+
+  /**
+   * Set provider
+   */
+  private setProviderType(providerType: AuthenticationProviderType | null): void {
+    if (!providerType) {
+      this.windowLocalStorage.removeItem(this.providerTypeKey);
+      return;
+    }
+
+    this.windowLocalStorage.setItem(this.providerTypeKey, providerType);
+  }
+
+  /**
+   * Get provider type
+   */
+  private getProviderType(): AuthenticationProviderType | null {
+    const providerType = <AuthenticationProviderType>this.windowLocalStorage.getItem(this.providerTypeKey) || null;
+
+    return providerType;
   }
 }

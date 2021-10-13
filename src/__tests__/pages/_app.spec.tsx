@@ -5,8 +5,33 @@
 import { render, waitFor } from '@testing-library/react';
 import React from 'react';
 
+import { userModelStub } from 'stubs/user/model.stub';
+
 import MyApp from 'pages/_app';
+import * as AuthServiceModule from 'services/auth/service';
+import { AuthSubscribeEventTypeEnum } from 'services/auth/subscribe-event-type.enum';
+import { AuthSubscriberType } from 'services/auth/subscriber.type';
 import { LocaleService } from 'services/locale/service';
+import * as contexterServiceModule from 'services/stats/contexter.service';
+
+const serviceMock = {
+  setAuthenticationUser: jest.fn(),
+  setAuthenticationProvider: jest.fn(),
+};
+
+jest.mock('services/stats/contexter.service', () => ({
+  StatsContexterService: (): typeof serviceMock => serviceMock,
+}));
+
+jest.mock('services/auth/service', () => ({
+  AuthService: {
+    getUser: (): ReturnType<typeof AuthServiceModule.AuthService['getUser']> => userModelStub(),
+    subscribe: (subscriber: AuthSubscriberType): ReturnType<typeof AuthServiceModule.AuthService['subscribe']> => {
+      subscriber(userModelStub(), { eventType: AuthSubscribeEventTypeEnum.subscribe, providerType: 'Email' });
+      return jest.fn();
+    },
+  },
+}));
 
 jest.mock('next-i18next', () => ({
   appWithTranslation: (Component: React.FunctionComponent): React.FunctionComponent =>
@@ -41,6 +66,22 @@ describe('MyApp', () => {
     await waitFor(() => {
       expect(setLocaleSpy).toHaveBeenCalled();
     });
+  });
+
+  it('should set auth context', async () => {
+    const defaultProps = makeDefaultProps();
+
+    render(<MyApp {...defaultProps} />);
+
+    await waitFor(() => {
+      expect(contexterServiceModule.StatsContexterService().setAuthenticationUser).toHaveBeenCalledWith({
+        email: 'test@propertyfinder.ae',
+        firstName: 'FirstName',
+        id: 1,
+        lastName: 'LastName',
+      });
+    });
+    expect(contexterServiceModule.StatsContexterService().setAuthenticationProvider).toHaveBeenCalledWith('Email');
   });
 
   describe('dir setup', () => {

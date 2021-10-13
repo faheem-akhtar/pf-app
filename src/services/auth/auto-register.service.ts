@@ -22,6 +22,6 @@ export const AuthAutoRegisterService = (
       return response;
     }
 
-    AuthService.onAuthResolved(response.data, AuthSubscribeEventTypeEnum.register);
+    AuthService.onAuthResolved(response.data, AuthSubscribeEventTypeEnum.register, 'Email');
     return response.data.user;
   });

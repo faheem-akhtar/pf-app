@@ -27,7 +27,7 @@ export const AuthGoogleOneTapService = {
                 return;
               }
 
-              AuthService.onAuthResolved(res.data, AuthSubscribeEventTypeEnum.login);
+              AuthService.onAuthResolved(res.data, AuthSubscribeEventTypeEnum.login, 'Google');
               resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
             });
           },

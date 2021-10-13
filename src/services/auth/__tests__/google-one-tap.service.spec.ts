@@ -56,7 +56,8 @@ describe('AuthGoogleOneTapService', () => {
           meta: { token: 'token', refresh_token: 'refresh token' },
           email: 'test@propertyfinder.ae',
         },
-        'login'
+        'login',
+        'Google'
       );
     });
 

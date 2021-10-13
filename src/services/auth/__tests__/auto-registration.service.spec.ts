@@ -102,7 +102,8 @@ describe('AuthAutoRegisterService', () => {
           userId: '1',
         },
       },
-      'register'
+      'register',
+      'Email'
     );
   });
 });

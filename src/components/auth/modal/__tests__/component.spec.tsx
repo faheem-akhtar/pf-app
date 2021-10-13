@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import * as AuthForgotPasswordComponentModule from 'components/auth/forgot-password/component';
@@ -53,31 +53,35 @@ describe('AuthModalComponent', () => {
       expect(screen.getByRole('heading', { level: 1, name: 'sign-in' })).toBeInTheDocument();
     });
 
-    it('should display registration screen', () => {
+    it('should display registration screen', async () => {
       userEvent.click(screen.getByText('auth/not-registered-yet', { exact: false }));
 
       expect(screen.getByRole('heading', { level: 1, name: 'auth/create-account' })).toBeInTheDocument();
 
-      expect(window.dataLayer).toEqual([
-        {
-          event: 'Userbox',
-          eventAction: 'Start:Sign up with Email',
-          eventLabel: 'Header',
-        },
-      ]);
+      await waitFor(() => {
+        expect(window.dataLayer).toEqual([
+          {
+            event: 'Userbox',
+            eventAction: 'Start:Sign up with Email',
+            eventLabel: 'Header',
+          },
+        ]);
+      });
     });
 
-    it('should display forgot password screen', () => {
+    it('should display forgot password screen', async () => {
       userEvent.click(screen.getByText('auth/forgot-password?'));
       expect(screen.getByRole('heading', { level: 1, name: 'auth/forgot-password?' })).toBeInTheDocument();
 
-      expect(window.dataLayer).toEqual([
-        {
-          event: 'Userbox',
-          eventAction: 'Start:Password Reset',
-          eventLabel: 'Header',
-        },
-      ]);
+      await waitFor(() => {
+        expect(window.dataLayer).toEqual([
+          {
+            event: 'Userbox',
+            eventAction: 'Start:Password Reset',
+            eventLabel: 'Header',
+          },
+        ]);
+      });
     });
 
     it('should call close', () => {

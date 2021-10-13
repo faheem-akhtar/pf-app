@@ -118,7 +118,8 @@ describe('SaveSearchModalButtonComponent', () => {
             user: { userId: '2' } as UserModelInterface,
             meta: { token: '', refresh_token: '' },
           },
-          AuthSubscribeEventTypeEnum.login
+          AuthSubscribeEventTypeEnum.login,
+          'Facebook'
         );
       });
 
@@ -154,7 +155,8 @@ describe('SaveSearchModalButtonComponent', () => {
             user: { userId: '3' } as UserModelInterface,
             meta: { token: '', refresh_token: '' },
           },
-          AuthSubscribeEventTypeEnum.register
+          AuthSubscribeEventTypeEnum.register,
+          'Email'
         );
       });
 

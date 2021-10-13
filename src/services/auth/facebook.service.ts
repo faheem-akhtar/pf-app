@@ -45,7 +45,7 @@ export const AuthFacebookService = {
                   reject(res.error);
                   return;
                 }
-                AuthService.onAuthResolved(res.data, AuthSubscribeEventTypeEnum.login);
+                AuthService.onAuthResolved(res.data, AuthSubscribeEventTypeEnum.login, 'Facebook');
                 resolve((res as ApiFetcherResultSuccessInterface<ApiAuthSocialLoginModelInterface>).data);
               });
             } else {

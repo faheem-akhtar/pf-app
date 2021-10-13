@@ -20,9 +20,9 @@ describe('AuthService', () => {
       AuthService.subscribe(subscribersSpy);
 
       const userStub = userModelStub();
-      AuthService['updateUserData'](userModelStub());
+      AuthService['updateUserData'](userModelStub(), AuthSubscribeEventTypeEnum.login, 'Facebook');
 
-      expect(subscribersSpy).toBeCalledWith(userStub, undefined);
+      expect(subscribersSpy).toBeCalledWith(userStub, { eventType: 'login', providerType: 'Facebook' });
     });
   });
 
@@ -57,21 +57,19 @@ describe('AuthService', () => {
         },
       };
 
-      AuthService['onAuthResolved'](data, AuthSubscribeEventTypeEnum.login);
+      AuthService['onAuthResolved'](data, AuthSubscribeEventTypeEnum.login, 'Google');
 
       expect(setRefreshTokenSpy).toBeCalledWith(data.meta.refresh_token);
       expect(setTokenSpy).toBeCalledWith(data.meta.token);
-      expect(AuthService['windowLocalStorage'].setItem).toBeCalledWith(
-        'user-authentication-user',
-        JSON.stringify({
-          id: user.userId,
-          first_name: user.first_name,
-          last_name: user.last_name,
-          image: user.image,
-          email: user.email,
-        })
-      );
-      expect(subscribersSpy).toBeCalledWith(user, { eventType: 'login' });
+      expect(AuthService['windowLocalStorage'].setItem).toBeCalledWith('user-authentication-user', {
+        id: user.userId,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        image: user.image,
+        email: user.email,
+      });
+      expect(AuthService['windowLocalStorage'].setItem).toBeCalledWith('user-authentication-provider', 'Google');
+      expect(subscribersSpy).toBeCalledWith(user, { eventType: 'login', providerType: 'Google' });
     });
   });
   describe('signOut', () => {

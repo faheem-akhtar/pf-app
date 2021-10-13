@@ -21,7 +21,7 @@ export const AuthLoginService = (
       return AuthService.onLoginRejected(response);
     }
 
-    AuthService.onAuthResolved(response.data, AuthSubscribeEventTypeEnum.login);
+    AuthService.onAuthResolved(response.data, AuthSubscribeEventTypeEnum.login, 'Email');
 
     return {
       ...response,

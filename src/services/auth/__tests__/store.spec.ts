@@ -60,24 +60,32 @@ describe('AuthStore', () => {
       const updateMock = jest.fn();
       store['subscribers'] = [updateMock];
 
-      store['updateUserData'](userMock);
+      store['updateUserData'](userMock, AuthSubscribeEventTypeEnum.login, 'Google');
 
-      expect(updateMock).toHaveBeenCalledTimes(1);
-      expect(updateMock).toHaveBeenCalledWith(userMock, undefined);
+      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'login', providerType: 'Google' });
     });
 
     it('should accept event type', () => {
       const updateMock = jest.fn();
       store['subscribers'] = [updateMock];
 
-      store['updateUserData'](userMock, AuthSubscribeEventTypeEnum.register);
+      store['updateUserData'](userMock, AuthSubscribeEventTypeEnum.register, 'Google');
 
       expect(updateMock).toHaveBeenCalledTimes(1);
-      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'register' });
+      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'register', providerType: 'Google' });
     });
   });
 
   describe('subscribe()', () => {
+    it('should call subscriber right after subscription with latest data', () => {
+      const onUpdateMock = jest.fn();
+      expect(store['subscribers']).toEqual([]);
+
+      store.subscribe(onUpdateMock);
+
+      expect(onUpdateMock).toHaveBeenCalledWith(null, { eventType: 'subscribe', providerType: null });
+    });
+
     it('should able subscription to the updates', () => {
       const onUpdateMock = jest.fn();
       expect(store['subscribers']).toEqual([]);
@@ -126,7 +134,6 @@ describe('AuthStore', () => {
 
       await store.logOut();
 
-      expect(store['windowLocalStorage'].removeItem).toHaveBeenCalledTimes(1);
       expect(store['windowLocalStorage'].removeItem).toHaveBeenCalledWith('user-authentication-user');
 
       expect(store['windowLocalStorage'].setItem).not.toHaveBeenCalled();
@@ -178,7 +185,7 @@ describe('AuthStore', () => {
     });
 
     it('should update data', () => {
-      store.onAuthResolved(data, AuthSubscribeEventTypeEnum.login);
+      store.onAuthResolved(data, AuthSubscribeEventTypeEnum.login, 'Google');
 
       expect(JwtTokenService.setRefreshToken).toHaveBeenCalledTimes(1);
       expect(JwtTokenService.setRefreshToken).toHaveBeenCalledWith('refresh token');
@@ -190,23 +197,18 @@ describe('AuthStore', () => {
       const updateMock = jest.fn();
       store['subscribers'] = [updateMock];
 
-      store.onAuthResolved(data, AuthSubscribeEventTypeEnum.login);
+      store.onAuthResolved(data, AuthSubscribeEventTypeEnum.login, 'Google');
 
       expect(store['windowLocalStorage'].removeItem).not.toHaveBeenCalled();
-      expect(store['windowLocalStorage'].setItem).toHaveBeenCalledTimes(1);
-      expect(store['windowLocalStorage'].setItem).toHaveBeenCalledWith(
-        'user-authentication-user',
-        JSON.stringify({
-          id: userMock.userId,
-          first_name: userMock.first_name,
-          last_name: userMock.last_name,
-          image: userMock.image,
-          email: userMock.email,
-        })
-      );
+      expect(store['windowLocalStorage'].setItem).toHaveBeenCalledWith('user-authentication-user', {
+        id: userMock.userId,
+        first_name: userMock.first_name,
+        last_name: userMock.last_name,
+        image: userMock.image,
+        email: userMock.email,
+      });
 
-      expect(updateMock).toHaveBeenCalledTimes(1);
-      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'login' });
+      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'login', providerType: 'Google' });
     });
   });
 
@@ -306,16 +308,13 @@ describe('AuthStore', () => {
 
       expect(store['windowLocalStorage'].removeItem).not.toHaveBeenCalled();
       expect(store['windowLocalStorage'].setItem).toHaveBeenCalledTimes(1);
-      expect(store['windowLocalStorage'].setItem).toHaveBeenCalledWith(
-        'user-authentication-user',
-        JSON.stringify({
-          id: userMock.userId,
-          first_name: userMock.first_name,
-          last_name: userMock.last_name,
-          image: userMock.image,
-          email: userMock.email,
-        })
-      );
+      expect(store['windowLocalStorage'].setItem).toHaveBeenCalledWith('user-authentication-user', {
+        id: userMock.userId,
+        first_name: userMock.first_name,
+        last_name: userMock.last_name,
+        image: userMock.image,
+        email: userMock.email,
+      });
     });
 
     it('should just remove the user if null is passed', () => {
