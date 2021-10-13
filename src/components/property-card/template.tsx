@@ -11,6 +11,7 @@ import { domClassMerge } from 'helpers/dom/class-merge';
 import { GalleryScrollComponent } from 'library/gallery-scroll/component';
 import { GalleryScrollObjectFitEnum } from 'library/gallery-scroll/object-fit.enum';
 
+import { PropertyCardGalleryPlaceholderTemplate } from './gallery-placeholder/template';
 import { PropertyCardLoadingSkeletonTemplate } from './loading-skeleton/template';
 import styles from './property-card.module.scss';
 import { PropertyCardTemplatePropsType } from './template-props.type';
@@ -53,13 +54,19 @@ export const PropertyCardTemplate = ({
   return (
     <article className={styles.container}>
       <header className={domClassMerge(styles.section, styles.header)}>
-        <GalleryScrollComponent
-          {...gallery}
-          className={styles.gallery}
-          objectFit={GalleryScrollObjectFitEnum.UNSET}
-          onActiveIndexChange={onGalleryIndexChange}
-          onClick={onGalleryClick}
-        />
+        {gallery.items.length ? (
+          <GalleryScrollComponent
+            {...gallery}
+            className={styles.gallery}
+            objectFit={GalleryScrollObjectFitEnum.UNSET}
+            onActiveIndexChange={onGalleryIndexChange}
+            onClick={onGalleryClick}
+          />
+        ) : (
+          <button className={styles.placeholder} onClick={onGalleryClick}>
+            <PropertyCardGalleryPlaceholderTemplate />
+          </button>
+        )}
         {banners.length ? (
           <ul
             className={domClassMerge(styles.banner_container, {
@@ -106,12 +113,16 @@ export const PropertyCardTemplate = ({
             {location}
           </p>
           <p className={styles.details}>
-            <span className={styles.details__section} aria-label={t('Bedrooms')}>
-              {bedrooms}
-            </span>
-            <span className={styles.details__section} aria-label={t('bathrooms')}>
-              {bathrooms}
-            </span>
+            {bedrooms && (
+              <span className={styles.details__section} aria-label={t('Bedrooms')}>
+                {bedrooms}
+              </span>
+            )}
+            {bathrooms && (
+              <span className={styles.details__section} aria-label={t('bathrooms')}>
+                {bathrooms}
+              </span>
+            )}
             <span className={styles.details__section} aria-label={t('Property Area')}>
               {area}
             </span>

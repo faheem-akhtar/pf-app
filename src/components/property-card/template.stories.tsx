@@ -5,6 +5,7 @@ import { Meta, Story } from '@storybook/react';
 
 import { PropertyCardBannersBannerInterface } from './banners/banner.interface';
 import { PropertyCardBannersBannerClassEnum } from './banners/banner-class.enum';
+import styles from './stories.module.scss';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
 
@@ -36,17 +37,18 @@ export default {
     onCallClick: { action: 'onCallClick' },
     onEmailClick: { action: 'onEmailClick' },
     onWhatsappClick: { action: 'onWhatsappClick' },
+    onGalleryClick: { action: 'onGalleryClick' },
 
     bathrooms: {
       defaultValue: '1 Bathroom',
-      options: ['1 Bathroom', '2 Bathrooms', '3 Bathrooms', '4 Bathrooms', '5 Bathrooms', '6 Bathrooms'],
+      options: [null, '1 Bathroom', '2 Bathrooms', '3 Bathrooms', '4 Bathrooms', '5 Bathrooms', '6 Bathrooms'],
       control: {
         type: 'select',
       },
     },
     bedrooms: {
       defaultValue: 'studio',
-      options: ['studio', '1 Bedroom', '2 Bedrooms', '3 Bedrooms', '4 Bedrooms', '5 Bedrooms', '6 Bedrooms'],
+      options: [null, 'studio', '1 Bedroom', '2 Bedrooms', '3 Bedrooms', '4 Bedrooms', '5 Bedrooms', '6 Bedrooms'],
       control: {
         type: 'select',
       },
@@ -98,9 +100,20 @@ export const PropertyCard: Story<PropertyCardTemplatePropsType & { bannerOptions
 
   const banners = bannerOptions.map((item) => demoBanners[item]);
 
+  const noImagesCard = { ...props };
+  noImagesCard.gallery = {
+    ...props.gallery,
+    items: [],
+  };
+
   return (
-    <div style={{ width: 360 }}>
-      <PropertyCardTemplate banners={banners} {...props} t={(x: string): string => x} />
+    <div style={{ width: 360, paddingBottom: '5rem' }}>
+      <div className={styles.item}>
+        <PropertyCardTemplate banners={banners} {...props} t={(x: string): string => x} />
+      </div>
+      <div className={styles.item}>
+        <PropertyCardTemplate banners={banners} {...noImagesCard} t={(x: string): string => x} />
+      </div>
     </div>
   );
 };

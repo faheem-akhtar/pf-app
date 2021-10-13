@@ -34,11 +34,11 @@ export type PropertyCardTemplatePropsType = {
   /**
    * Bedrooms
    */
-  bedrooms: string;
+  bedrooms: string | null;
   /**
    * Bathrooms
    */
-  bathrooms: string;
+  bathrooms: string | null;
   /**
    * Area
    */

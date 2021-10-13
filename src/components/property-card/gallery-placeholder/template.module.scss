@@ -1,0 +1,12 @@
+.container {
+  background-color: var(--color-global-grey3);
+  color: var(--color-global-grey2);
+  height: 100%;
+}
+
+.svg {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
