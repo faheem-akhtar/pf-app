@@ -30,6 +30,11 @@ if (!urlQueryGetParameterByName('no-gtm')) {
 
 if (!urlQueryGetParameterByName('no-analytics')) {
   if (!urlQueryGetParameterByName('no-tealium') && ${configTealiumEnabled}) {
+    // https://docs.tealium.com/platforms/javascript/settings
+    window.utag_cfg_ovrd = {
+      readywait: true
+    }
+
     // TODO-FE[CX-186] setup tealium variables from env
     // Default Tealium event data
     window.tealium = {
