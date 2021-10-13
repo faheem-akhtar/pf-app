@@ -20,7 +20,7 @@ beforeEach(() => {
 
 describe('useGalleryScrollEffects', () => {
   it('should add listeners when mouse or touch down', () => {
-    useGalleryScrollEffects(true, dispatchMock);
+    useGalleryScrollEffects(true, dispatchMock, true);
     expect(addEventListenerMock).toHaveBeenCalledTimes(5);
     expect(addEventListenerMock.mock.calls[0][0]).toBe('contextmenu');
     expect(addEventListenerMock.mock.calls[1][0]).toBe('mousemove');
@@ -30,12 +30,12 @@ describe('useGalleryScrollEffects', () => {
   });
 
   it('should not add listeners when mouse or touch are not down', () => {
-    useGalleryScrollEffects(false, dispatchMock);
+    useGalleryScrollEffects(false, dispatchMock, false);
     expect(addEventListenerMock).toHaveBeenCalledTimes(0);
   });
 
   it('should disable context menu', () => {
-    useGalleryScrollEffects(true, dispatchMock);
+    useGalleryScrollEffects(true, dispatchMock, true);
     const contextMenuCall = addEventListenerMock.mock.calls[0];
     const [name, callback] = contextMenuCall;
     expect(name).toBe('contextmenu');
@@ -52,7 +52,7 @@ describe('useGalleryScrollEffects', () => {
   });
 
   it('should dispatch move action on mouse move', () => {
-    useGalleryScrollEffects(true, dispatchMock);
+    useGalleryScrollEffects(true, dispatchMock, true);
     const contextMenuCall = addEventListenerMock.mock.calls[1];
     const [name, callback] = contextMenuCall;
     expect(name).toBe('mousemove');
@@ -64,7 +64,7 @@ describe('useGalleryScrollEffects', () => {
   });
 
   it('should dispatch move action on touch move', () => {
-    useGalleryScrollEffects(true, dispatchMock);
+    useGalleryScrollEffects(true, dispatchMock, true);
     const contextMenuCall = addEventListenerMock.mock.calls[2];
     const [name, callback] = contextMenuCall;
     expect(name).toBe('touchmove');
@@ -80,7 +80,7 @@ describe('useGalleryScrollEffects', () => {
   });
 
   it('should dispatch end action on mouse up and stop propagation of event', () => {
-    useGalleryScrollEffects(true, dispatchMock);
+    useGalleryScrollEffects(true, dispatchMock, true);
     const contextMenuCall = addEventListenerMock.mock.calls[3];
     const [name, callback] = contextMenuCall;
     expect(name).toBe('mouseup');
@@ -92,11 +92,11 @@ describe('useGalleryScrollEffects', () => {
 
     expect(callbackProps.stopPropagation).toBeCalledTimes(1);
     expect(dispatchMock).toBeCalledTimes(1);
-    expect(dispatchMock).toHaveBeenCalledWith({ type: 'end' });
+    expect(dispatchMock).toHaveBeenLastCalledWith(expect.objectContaining({ type: 'end' }));
   });
 
   it('should dispatch end action on touchend and stop propagation of event', () => {
-    useGalleryScrollEffects(true, dispatchMock);
+    useGalleryScrollEffects(true, dispatchMock, true);
     const contextMenuCall = addEventListenerMock.mock.calls[4];
     const [name, callback] = contextMenuCall;
     expect(name).toBe('touchend');
@@ -110,7 +110,7 @@ describe('useGalleryScrollEffects', () => {
     expect(callbackProps.stopPropagation).toBeCalledTimes(1);
     expect(callbackProps.preventDefault).toBeCalledTimes(1);
     expect(dispatchMock).toBeCalledTimes(1);
-    expect(dispatchMock).toHaveBeenCalledWith({ type: 'end' });
+    expect(dispatchMock).toHaveBeenLastCalledWith(expect.objectContaining({ type: 'end' }));
   });
 
   it('should not prevent events after unmount', () => {
@@ -125,7 +125,7 @@ describe('useGalleryScrollEffects', () => {
       eventListeners.splice(eventListeners.indexOf(callback));
     };
 
-    useGalleryScrollEffects(true, dispatchMock);
+    useGalleryScrollEffects(true, dispatchMock, true);
     unmountAll();
     const eventMock = {
       preventDefault: jest.fn(),

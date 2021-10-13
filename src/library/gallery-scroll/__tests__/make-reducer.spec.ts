@@ -12,7 +12,6 @@ describe('galleryScrollMakeReducer', () => {
   const initialState3Images = galleryScrollMakeInitialState([image1, image2, image3], false);
 
   const reducer = galleryScrollMakeReducer(false, 3);
-  const rtlReducer = galleryScrollMakeReducer(true, 3);
 
   it('return original state when action not matching any condition', () => {
     const result = reducer(initialState3Images, {} as GalleryScrollActionType);
@@ -92,34 +91,6 @@ describe('galleryScrollMakeReducer', () => {
       expect(result).toBe(initialState3Images);
     });
 
-    it('click on left should move the index to second item', () => {
-      const result = reducer(
-        {
-          ...initialState3Images,
-          browse: GalleryScrollBrowseEnum.next,
-          pointerPositionStart: 5,
-          pointerPositionCurrent: 5,
-        },
-        { type: 'end' }
-      );
-
-      expect(result.activeIndex).toBe(1);
-    });
-
-    it('click on left should move the index to last item', () => {
-      const result = reducer(
-        {
-          ...initialState3Images,
-          browse: GalleryScrollBrowseEnum.previous,
-          pointerPositionStart: 5,
-          pointerPositionCurrent: 5,
-        },
-        { type: 'end' }
-      );
-
-      expect(result.activeIndex).toBe(2);
-    });
-
     it('drag to left should move the index to seconds item', () => {
       const result = reducer(
         {
@@ -148,36 +119,6 @@ describe('galleryScrollMakeReducer', () => {
 
       expect(result.activeIndex).toBe(2);
       expect(result.browse).toBe(GalleryScrollBrowseEnum.previous);
-    });
-
-    describe('rtl', () => {
-      it('click on left should move the index to last item', () => {
-        const result = rtlReducer(
-          {
-            ...initialState3Images,
-            browse: GalleryScrollBrowseEnum.next,
-            pointerPositionStart: 5,
-            pointerPositionCurrent: 5,
-          },
-          { type: 'end' }
-        );
-
-        expect(result.activeIndex).toBe(2);
-      });
-
-      it('click on left should move the index to second item', () => {
-        const result = rtlReducer(
-          {
-            ...initialState3Images,
-            browse: GalleryScrollBrowseEnum.previous,
-            pointerPositionStart: 5,
-            pointerPositionCurrent: 5,
-          },
-          { type: 'end' }
-        );
-
-        expect(result.activeIndex).toBe(1);
-      });
     });
   });
 });

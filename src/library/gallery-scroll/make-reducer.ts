@@ -48,6 +48,7 @@ export const galleryScrollMakeReducer: MakeReducerType =
       if (state.touchDirection === GalleryScrollDirectionEnum.VERTICAL) {
         return state;
       }
+
       const { activeIndex, itemsPositionsX } = state;
 
       if (state.pointerPositionStart !== null && state.pointerPositionCurrent !== null) {

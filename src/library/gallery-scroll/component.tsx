@@ -11,13 +11,21 @@ import { GalleryScrollTemplate } from './template';
 
 export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterface): JSX.Element => {
   const galleryRef = useRef<HTMLDivElement>(null);
-  const { className, items, isRtl, objectFit, onActiveIndexChange = functionNoop, onTouch = functionNoop } = props;
+  const {
+    className,
+    items,
+    isRtl,
+    objectFit,
+    onActiveIndexChange = functionNoop,
+    onTouch = functionNoop,
+    onClick = functionNoop,
+  } = props;
   const numberOfImages = items.length;
   const [reducer] = useState(() => galleryScrollMakeReducer(isRtl, numberOfImages));
   const [initialReducerState] = useState(() => galleryScrollMakeInitialState(items, isRtl));
 
   const [state, dispatch] = useReducer(reducer, initialReducerState);
-  useGalleryScrollEffects(state.pointerPositionStart !== null, dispatch);
+  useGalleryScrollEffects(state.pointerPositionStart !== null, dispatch, state.isDragging);
 
   const { activeIndex } = state;
 
@@ -71,6 +79,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
       activeIndex={state.activeIndex}
       objectFit={objectFit}
       isRtl={isRtl}
+      onClick={onClick}
     />
   );
 };

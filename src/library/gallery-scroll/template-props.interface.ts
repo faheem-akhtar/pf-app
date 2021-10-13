@@ -1,7 +1,7 @@
-import { GalleryScrollObjectFitEnum } from './object-fit.enum';
+import { GalleryScrollPropsBaseInterface } from './props-base.interface';
 import { GalleryScrollTemplateItemInterface } from './template-item.interface';
 
-export interface GalleryScrollTemplatePropsInterface {
+export interface GalleryScrollTemplatePropsInterface extends GalleryScrollPropsBaseInterface {
   /**
    * Ref to gallery
    */
@@ -18,16 +18,6 @@ export interface GalleryScrollTemplatePropsInterface {
   onMouseDown: React.MouseEventHandler<HTMLDivElement>;
 
   /**
-   * Clicked the gallery
-   */
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-
-  /**
-   * Additional class name
-   */
-  className?: string;
-
-  /**
    * Images
    */
   items: GalleryScrollTemplateItemInterface[];
@@ -41,14 +31,4 @@ export interface GalleryScrollTemplatePropsInterface {
    * Active index
    */
   activeIndex: number;
-
-  /**
-   * Image fit behavior
-   */
-  objectFit?: GalleryScrollObjectFitEnum;
-
-  /**
-   * Right to left alignment (true for Arabic)
-   */
-  isRtl: boolean;
 }

@@ -1,23 +1,11 @@
 import { GalleryScrollItemInterface } from './item.interface';
-import { GalleryScrollObjectFitEnum } from './object-fit.enum';
+import { GalleryScrollPropsBaseInterface } from './props-base.interface';
 
-export interface GalleryScrollComponentPropsInterface {
-  /**
-   * Container element class name
-   */
-  className?: string;
+export interface GalleryScrollComponentPropsInterface extends GalleryScrollPropsBaseInterface {
   /**
    * Images
    */
   items: GalleryScrollItemInterface[];
-  /**
-   * Right to left alignment (true for Arabic)
-   */
-  isRtl: boolean;
-  /**
-   * Image fit behavior
-   */
-  objectFit?: GalleryScrollObjectFitEnum;
   /**
    * On gallery mouse down or touch down
    */

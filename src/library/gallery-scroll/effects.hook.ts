@@ -6,7 +6,8 @@ import { GalleryScrollActionType } from './action.type';
 
 export const useGalleryScrollEffects = (
   isMouseOrTouchDown: boolean,
-  dispatch: Dispatch<GalleryScrollActionType>
+  dispatch: Dispatch<GalleryScrollActionType>,
+  isDragging: boolean
 ): void => {
   useEffect(() => {
     if (!isMouseOrTouchDown) {
@@ -24,6 +25,12 @@ export const useGalleryScrollEffects = (
     };
     const onEnd = (e: Event): void => {
       e.stopPropagation();
+      // Prevent dragging and keeps the active position when the click is triggered
+      if (!isDragging) {
+        (e.target as HTMLDivElement).click();
+        return;
+      }
+
       dispatch({ type: 'end' });
     };
 

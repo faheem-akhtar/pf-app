@@ -44,9 +44,8 @@ export const PropertyCardTemplate = ({
   onSaveButtonClick,
   onWhatsappClick,
   onGalleryIndexChange,
-}: // onGalleryClick,
-//TODO-FE: CX-776 Add gallery on click callback
-PropertyCardTemplatePropsType): JSX.Element => {
+  onGalleryClick,
+}: PropertyCardTemplatePropsType): JSX.Element => {
   if (loading) {
     return <PropertyCardLoadingSkeletonTemplate />;
   }
@@ -59,8 +58,7 @@ PropertyCardTemplatePropsType): JSX.Element => {
           className={styles.gallery}
           objectFit={GalleryScrollObjectFitEnum.UNSET}
           onActiveIndexChange={onGalleryIndexChange}
-          //TODO-FE: CX-776 Add gallery on click callback
-          // onClick={onGalleryClick}
+          onClick={onGalleryClick}
         />
         {banners.length ? (
           <ul
