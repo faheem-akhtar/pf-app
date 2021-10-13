@@ -1,4 +1,5 @@
 import { StatsDataService } from '@propertyfinder/pf-frontend-common/dist/service/stats-data/service';
+import { useRef } from 'react';
 
 import { apiPropertyStatsDataFetcher } from 'api/property-stats-data/fetcher';
 import { filtersMapCategoryIdToStats } from 'components/filters/map-category-id-to-stats';
@@ -22,6 +23,7 @@ export const usePropertySearchTrackPageView = (
   statsDataPromise: Promise<{ ok: boolean }>;
 } => {
   const pageFailedToLoad = !props.ok || (prevProps && !prevProps.ok);
+  const statsDataPromiseRef = useRef(Promise.resolve({ ok: false }));
 
   if (
     pageFailedToLoad ||
@@ -30,7 +32,7 @@ export const usePropertySearchTrackPageView = (
     (prevProps && !prevProps.ok) ||
     (prevProps && prevProps.filtersValueFromQuery === props.filtersValueFromQuery)
   ) {
-    return { statsDataPromise: Promise.resolve({ ok: false }) };
+    return { statsDataPromise: statsDataPromiseRef.current };
   }
 
   const statsService = StatsService();
@@ -73,6 +75,8 @@ export const usePropertySearchTrackPageView = (
         statsService.propertyLoad(parseInt(propertySerpObfuscatedGetId(obfuscatedProperty), 10), localContext);
       });
     }
+
+    statsDataPromiseRef.current = statsDataPromise;
 
     return statsDataResult;
   });

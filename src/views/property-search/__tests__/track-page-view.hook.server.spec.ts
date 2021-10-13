@@ -1,4 +1,5 @@
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
+import { mockReactUseRef } from 'mocks/react/use-ref.mock';
 import { mockReactUseState } from 'mocks/react/use-state.mock';
 
 import * as helpersIsClientModule from 'helpers/is-client';
@@ -11,6 +12,7 @@ Object.defineProperty(helpersIsClientModule, 'helpersIsClient', { value: false }
 
 describe('usePropertySearchTrackPageView on server', () => {
   it('should do nothing event if load is sucess', () => {
+    mockReactUseRef();
     mockReactUseState();
     mockReactUseEffect();
 

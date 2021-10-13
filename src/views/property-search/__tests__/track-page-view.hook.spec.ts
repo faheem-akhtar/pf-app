@@ -5,6 +5,7 @@
 import { StatsContextAbTestsInterface } from '@propertyfinder/pf-frontend-common/dist/module/stats/context/ab-tests.interface';
 
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
+import { mockReactUseRef } from 'mocks/react/use-ref.mock';
 import { mockReactUseState } from 'mocks/react/use-state.mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
@@ -18,8 +19,12 @@ import { StatsService } from 'services/stats/service';
 import { usePropertySearchTrackPageView } from '../track-page-view.hook';
 import { PropertySearchViewPropsType } from '../view-props.type';
 
+const prevPromise = Promise.resolve({ ok: true });
+
 describe('usePropertySearchTrackPageView', () => {
   beforeEach(() => {
+    mockReactUseRef(prevPromise);
+
     mockReactUseState();
     mockReactUseEffect();
 
@@ -54,6 +59,25 @@ describe('usePropertySearchTrackPageView', () => {
     );
 
     expect(StatsService().reset).not.toHaveBeenCalled();
+  });
+
+  it('should return previous promise when same filter value is passed', () => {
+    const filtersValueFromQuery = {};
+
+    const { statsDataPromise } = usePropertySearchTrackPageView(
+      {
+        ok: true,
+        filtersValueFromQuery,
+        searchResult: { properties: [{}] },
+      } as PropertySearchViewPropsType,
+      {
+        ok: true,
+        filtersValueFromQuery,
+        searchResult: { properties: [{}] },
+      } as PropertySearchViewPropsType
+    );
+
+    expect(statsDataPromise).toBe(prevPromise);
   });
 
   it('should do nothing if props has not been changed', () => {
