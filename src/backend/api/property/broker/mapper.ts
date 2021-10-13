@@ -1,4 +1,4 @@
-import { PropertyAgentResultType } from 'components/property/agent-result.type';
+import { PropertyBrokerResultType } from 'components/property/broker-result.type';
 import { configIsTrace } from 'config/is-trace';
 
 import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
@@ -6,12 +6,15 @@ import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
 // TODO-FE[CX-431] Add unit tests for backendApiPropertyBrokerMapper
 export const backendApiPropertyBrokerMapper = ([
   property,
-]: BackendApiPropertyJsonApiResultType): PropertyAgentResultType => {
+]: BackendApiPropertyJsonApiResultType): PropertyBrokerResultType => {
   const { broker } = property;
-  const result = {
+  const result: PropertyBrokerResultType = {
+    id: broker?.id || '',
+    agentCount: broker?.agents || 0,
+    locationName: broker?.location_name || '',
     name: broker?.name || '',
-    languages: [],
-    imageSrc: broker?.links.logo_178_98,
+    imageSrc: broker?.links.logo_178_98 || '',
+    propertiesCount: broker?.total_properties || 0,
   };
 
   if (configIsTrace) {

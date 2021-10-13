@@ -1,8 +1,12 @@
 import { PropertySerpInterface } from 'components/property/serp/interface';
+import { propertySerpObfuscatedFieldAgentId } from 'components/property/serp/obfuscated/field/agent-id';
 import { propertySerpObfuscatedFieldAreaValue } from 'components/property/serp/obfuscated/field/area-value';
 import { propertySerpObfuscatedFieldBathroomValue } from 'components/property/serp/obfuscated/field/bathroom-value';
 import { propertySerpObfuscatedFieldBedroomValue } from 'components/property/serp/obfuscated/field/bedroom-value';
+import { propertySerpObfuscatedFieldBrokerId } from 'components/property/serp/obfuscated/field/broker-id';
+import { propertySerpObfuscatedFieldCompletionStatus } from 'components/property/serp/obfuscated/field/completion-status';
 import { propertySerpObfuscatedFieldContactOptionsList } from 'components/property/serp/obfuscated/field/contact-options-list';
+import { propertySerpObfuscatedFieldDateInsert } from 'components/property/serp/obfuscated/field/date-insert';
 import { propertySerpObfuscatedFieldDefaultPrice } from 'components/property/serp/obfuscated/field/default-price';
 import { propertySerpObfuscatedFieldExclusive } from 'components/property/serp/obfuscated/field/exclusive';
 import { propertySerpObfuscatedFieldId } from 'components/property/serp/obfuscated/field/id';
@@ -11,12 +15,15 @@ import { propertySerpObfuscatedFieldImgUrl } from 'components/property/serp/obfu
 import { propertySerpObfuscatedFieldImgUrlSmall } from 'components/property/serp/obfuscated/field/img-url-small';
 import { propertySerpObfuscatedFieldListingLevel } from 'components/property/serp/obfuscated/field/listing-level';
 import { propertySerpObfuscatedFieldLiveEventValue } from 'components/property/serp/obfuscated/field/live-event-value';
+import { propertySerpObfuscatedFieldLocationTreeCompact } from 'components/property/serp/obfuscated/field/location-tree-compact';
 import { propertySerpObfuscatedFieldLocationTreePath } from 'components/property/serp/obfuscated/field/location-tree-path';
 import { propertySerpObfuscatedFieldName } from 'components/property/serp/obfuscated/field/name';
 import { propertySerpObfuscatedFieldPriceText } from 'components/property/serp/obfuscated/field/price-text';
 import { propertySerpObfuscatedFieldPropertyTypeName } from 'components/property/serp/obfuscated/field/property-type-name';
 import { propertySerpObfuscatedFieldPublishDateValue } from 'components/property/serp/obfuscated/field/publish-date-value';
+import { propertySerpObfuscatedFieldQualityScore } from 'components/property/serp/obfuscated/field/quality-score';
 import { propertySerpObfuscatedFieldReference } from 'components/property/serp/obfuscated/field/reference';
+import { propertySerpObfuscatedFieldSize } from 'components/property/serp/obfuscated/field/size';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
@@ -96,6 +103,27 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
         break;
       case 'defaultPrice':
         obfuscatedProperty[propertySerpObfuscatedFieldDefaultPrice] = value;
+        break;
+      case 'agentId':
+        obfuscatedProperty[propertySerpObfuscatedFieldAgentId] = value;
+        break;
+      case 'brokerId':
+        obfuscatedProperty[propertySerpObfuscatedFieldBrokerId] = value;
+        break;
+      case 'locationTreeCompact':
+        obfuscatedProperty[propertySerpObfuscatedFieldLocationTreeCompact] = value;
+        break;
+      case 'size':
+        obfuscatedProperty[propertySerpObfuscatedFieldSize] = value;
+        break;
+      case 'qualityScore':
+        obfuscatedProperty[propertySerpObfuscatedFieldQualityScore] = value;
+        break;
+      case 'dateInsert':
+        obfuscatedProperty[propertySerpObfuscatedFieldDateInsert] = value;
+        break;
+      case 'completionStatus':
+        obfuscatedProperty[propertySerpObfuscatedFieldCompletionStatus] = value;
         break;
       default:
         assertUnreachable(propertyKey);

@@ -6,6 +6,7 @@ import { useApiPropertyImages } from 'api/property-images/hook';
 import { CallingAgentModalComponent } from 'components/calling-agent-modal/component';
 import { ContactedPropertyContext } from 'components/contacted-property/context';
 import { EmailAgentModalComponent } from 'components/email-agent-modal/component';
+import { FiltersContext } from 'components/filters/context';
 import { PropertyReportComponent } from 'components/property/report/component';
 import { propertySerpObfuscatedGetAreaValue } from 'components/property/serp/obfuscated/get/area-value';
 import { propertySerpObfuscatedGetBathroomValue } from 'components/property/serp/obfuscated/get/bathroom-value';
@@ -30,6 +31,7 @@ import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
 import { LocaleService } from 'services/locale/service';
 import { StatsService } from 'services/stats/service';
+import { TealiumConversionEventFactory } from 'services/tealium/conversion-event-factory';
 import { PropertySearchStatsDataPromiseForCurrentQueryContext } from 'views/property-search/stats-data-promise-for-current-query/context';
 
 import { PropertyShareComponent } from '../property/share/component';
@@ -56,6 +58,7 @@ export const PropertyCardComponent = ({
   const propertyId = propertySerpObfuscatedGetId(property);
   const savedProperties = useContext(SavedPropertyContext);
   const contactedProperty = useContext(ContactedPropertyContext);
+  const filterContext = useContext(FiltersContext);
   const contactDate = contactedProperty.data.find(
     (property) => property.propertyId === parseInt(propertyId, 10)
   )?.contactDate;
@@ -71,6 +74,10 @@ export const PropertyCardComponent = ({
   const propertyReportOpenRef = useRef<() => void>(functionNoop);
 
   const imagesResponse = useApiPropertyImages(propertyId, 'medium', galleryHasBeenTouched);
+
+  const tealiumEvents = TealiumConversionEventFactory(property, filterContext.value, {
+    isTransactionalEvent: true,
+  });
 
   const galleryProps = {
     items: imagesResponse.ok
@@ -124,6 +131,7 @@ export const PropertyCardComponent = ({
       ? {
           onCallClick: (): void => {
             sendLead('phone');
+            tealiumEvents.sendCallEvent();
             callingAgentModalOpenRef.current();
             contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.call);
           },
@@ -143,6 +151,7 @@ export const PropertyCardComponent = ({
       ? {
           onWhatsappClick: (): void => {
             sendLead('whatsapp');
+            tealiumEvents.sendWhatsappEvent();
             contactedProperty.add(parseInt(propertyId, 10), ContactedPropertyTypeEnum.whatsApp);
           },
           whatsAppLink: whatsapp.link,
@@ -152,13 +161,19 @@ export const PropertyCardComponent = ({
     onSaveButtonClick: (): void => {
       onSaveButtonClick(propertyId, !isPropertySaved);
       savedProperties.toggle(propertyId);
+      if (!isPropertySaved) {
+        tealiumEvents.sendSavePropertyEvent();
+      }
       StatsService()[isPropertySaved ? 'propertyUnsave' : 'propertySave'](parseInt(propertyId), {});
     },
     onMenuButtonClick: (): void => {
       menuModalOpenRef.current();
     },
     t,
-    onGalleryIndexChange: (index: number) => {
+    onGalleryIndexChange: (index: number, length: number) => {
+      if (galleryIndex === 0 && galleryHasBeenTouched) {
+        tealiumEvents.sendGalleryScrollEvent(propertyId, length);
+      }
       setGalleryIndex(index);
     },
     onGalleryClick: (): void => {
@@ -195,7 +210,16 @@ export const PropertyCardComponent = ({
   return (
     <div data-testid='list-item' ref={containerRef} className={styles.item}>
       <PropertyCardTemplate {...cardTemplateProps} />
-      <EmailAgentModalComponent openRef={emailAgentModalOpenRef} property={property} />
+      <EmailAgentModalComponent
+        openRef={emailAgentModalOpenRef}
+        property={property}
+        onFormSubmitted={(email, isAlertEnabled): void => {
+          tealiumEvents.sendEmailEvent();
+          if (isAlertEnabled) {
+            tealiumEvents.sendEmailSignupEvent(email);
+          }
+        }}
+      />
       <CallingAgentModalComponent
         propertyId={propertyId}
         referenceId={propertySerpObfuscatedGetReference(property)}
@@ -208,11 +232,7 @@ export const PropertyCardComponent = ({
           socialShareOpenRef={socialShareOpenRef}
         />
         <PropertyShareComponent property={property} t={t} openRef={socialShareOpenRef} />
-        <PropertyReportComponent
-          propertyId={propertySerpObfuscatedGetId(property)}
-          t={t}
-          openRef={propertyReportOpenRef}
-        />
+        <PropertyReportComponent propertyId={propertyId} t={t} openRef={propertyReportOpenRef} />
       </PropertyCardMenuModalComponent>
     </div>
   );

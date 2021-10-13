@@ -10,4 +10,9 @@ export interface EmailAgentModalComponentPropsInterface {
    * Property
    */
   property: PropertySerpObfuscatedType;
+
+  /**
+   * Form submitted handler
+   */
+  onFormSubmitted?: (email: string, isEmailAlertEnabled: boolean) => void;
 }

@@ -75,6 +75,7 @@ export const propertyBackendStub = (): BackendModelPropertyInterface => ({
   completion_status: null,
   is_expired: false,
   utilities_price_type: 'exclusive',
+  date_insert: '2020-10-05T06:23:34+00:00',
   exclusive: false,
   share_url:
     'https://www.propertyfinder.ae/en/rent/apartment-for-rent-abu-dhabi-khalifa-city-khalifa-city-a-7750053.html',

@@ -1,3 +1,5 @@
+import { LocationCompactInterface } from 'types/location/compact.interface';
+
 import { PropertyContactOptionsListInterface } from '../contact-options-list.interface';
 export interface PropertySerpInterface {
   /**
@@ -19,6 +21,16 @@ export interface PropertySerpInterface {
    * Property ID
    */
   id: string;
+
+  /**
+   * Property Agent ID
+   */
+  agentId?: string;
+
+  /**
+   * Property Broker ID
+   */
+  brokerId?: string;
 
   /**
    * Name
@@ -54,9 +66,24 @@ export interface PropertySerpInterface {
   locationTreePath: string;
 
   /**
+   * Location tree - compact
+   */
+  locationTreeCompact?: Partial<LocationCompactInterface>[];
+
+  /**
+   * insertion date
+   */
+  dateInsert: string;
+
+  /**
    * Is this listing exclusive to the agent
    */
   exclusive: boolean;
+
+  /**
+   * Quality score
+   */
+  qualityScore: number;
 
   /**
    * Url to the listing
@@ -105,4 +132,14 @@ export interface PropertySerpInterface {
    * Example: 110000
    */
   defaultPrice: number;
+
+  /**
+   * Size
+   */
+  size: number;
+
+  /**
+   * The completion status of the property
+   */
+  completionStatus: string | null;
 }

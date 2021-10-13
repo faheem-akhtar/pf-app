@@ -13,5 +13,5 @@ export interface GalleryScrollComponentPropsInterface extends GalleryScrollProps
   /**
    * Triggered when active item changes
    */
-  onActiveIndexChange?: (index: number) => void;
+  onActiveIndexChange?: (index: number, length: number) => void;
 }

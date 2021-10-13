@@ -6,7 +6,7 @@ import { TealiumEventTypeEnum } from './event-type.enum';
 
 export interface TealiumEventInterface extends TealiumDataLayerInterface {
   event_type: TealiumEventTypeEnum;
-  event_category: TealiumEventCategoryEnum;
-  event_action: TealiumEventActionEnum;
-  event_label: TealiumEventLabelEnum;
+  event_category: TealiumEventCategoryEnum | '';
+  event_action: TealiumEventActionEnum | '';
+  event_label: TealiumEventLabelEnum | '';
 }

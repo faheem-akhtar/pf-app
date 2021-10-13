@@ -49,11 +49,7 @@ export const FooterComponent = ({ onClickAppDownload }: { onClickAppDownload?: (
           </a>
         </li>
         <li className={domClassMerge(styles.item, styles.container)} onClick={onClickAppDownload}>
-          <a
-            className={styles.downloadLink}
-            href={configLinksDefinition.androidDownloadLink}
-            onClick={onClickAppDownload}
-          >
+          <a className={styles.downloadLink} href={configLinksDefinition.androidDownloadLink}>
             <IconGooglePlayTemplate />
           </a>
         </li>

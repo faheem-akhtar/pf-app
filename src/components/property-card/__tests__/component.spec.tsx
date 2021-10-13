@@ -8,6 +8,7 @@ import userEvent from '@testing-library/user-event';
 import { mockModalEnv } from 'mocks/modal-env/mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
 import { mockWindowConsole } from 'mocks/window/console.mock';
+import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { propertyStub } from 'stubs/property/stub';
 import { touchEventStub } from 'stubs/touch/event.stub';
 
@@ -39,6 +40,7 @@ describe('PropertyCardComponent', () => {
   });
 
   beforeEach(() => {
+    mockWindowFetch();
     (StatsService().propertyLeadClick as jest.Mock).mockReset();
   });
   /**

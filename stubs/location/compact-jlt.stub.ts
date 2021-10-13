@@ -4,6 +4,7 @@ export const locationCompactJltStub: LocationCompactInterface = {
   id: '943',
   name: 'Jumeirah Lake Towers',
   abbreviation: 'JLT',
+  location_type: 'tower',
   path_name: 'Dubai, Jumeirah Lake Towers',
   path: '2.943',
 };

@@ -30,7 +30,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
   const { activeIndex } = state;
 
   useEffect(() => {
-    onActiveIndexChange(activeIndex);
+    onActiveIndexChange(activeIndex, numberOfImages);
   }, [onActiveIndexChange, activeIndex]);
 
   const onStart = (positionX: number, initialTouch?: { positionX: number; positionY: number }): void => {

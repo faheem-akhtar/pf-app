@@ -27,11 +27,16 @@ export const backendApiPropertySearchMapper = (
       listing_level,
       bathroom_value,
       bedroom_value,
+      quality_score,
       location_tree_path,
+      completion_status,
+      location_tree,
       exclusive,
       property_type,
       meta,
+      size,
       reference,
+      date_insert,
       default_price,
     } = property;
 
@@ -68,10 +73,22 @@ export const backendApiPropertySearchMapper = (
       imgUrlSmall: links.image_property_small,
       imagesCount: meta.images_count,
       propertyTypeName: property_type.name,
+      locationTreeCompact:
+        location_tree?.map((location) => ({
+          id: location.id,
+          name: location.name,
+          location_type: location.location_type,
+        })) || [],
       contactOptionsList,
       priceText: meta.price_text,
+      qualityScore: quality_score,
+      dateInsert: new Date(date_insert).toDateString(),
       id: property.id,
+      completionStatus: completion_status,
       reference,
+      size,
+      agentId: property.agent?.id || '',
+      brokerId: property.broker?.id || '',
       defaultPrice: default_price,
     };
 

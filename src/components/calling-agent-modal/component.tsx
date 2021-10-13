@@ -57,9 +57,9 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
 
   const closeModal = (): void => {
     setCurrentStep(0);
+    setModalIsOpened(false);
     internalCloseRef.current();
   };
-
   const onCloseClick = (): void => {
     if (currentStep === 1) {
       closeModal();

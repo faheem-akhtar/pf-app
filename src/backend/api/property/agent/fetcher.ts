@@ -8,7 +8,7 @@ const fetcher = BackendApiFactory<PropertyAgentResultType, BackendApiPropertyJso
   method: 'GET',
   url: 'property',
   queryDefaultParams: {
-    include: 'agent,agent.languages',
+    include: 'agent,agent.languages,broker',
   },
   dataMapper: backendApiPropertyAgentMapper,
 });

@@ -110,7 +110,7 @@ export type PropertyCardTemplatePropsType = {
   /**
    * On gallery index change handler
    */
-  onGalleryIndexChange?: (index: number) => void;
+  onGalleryIndexChange?: (index: number, length: number) => void;
   /**
    * On gallery click handler
    */

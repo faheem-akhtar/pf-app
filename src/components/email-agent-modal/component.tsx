@@ -38,6 +38,7 @@ const captchaService = GoogleRecaptchaService();
 export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponentPropsInterface> = ({
   openRef,
   property,
+  onFormSubmitted,
 }) => {
   const { t } = useTranslation();
   const user = useContext(UserContext);
@@ -153,6 +154,9 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
       captchaService.reset();
     } finally {
       setIsLoading(false);
+      if (onFormSubmitted) {
+        onFormSubmitted(fieldsValue.email, fieldsValue.emailAlert);
+      }
     }
   };
 

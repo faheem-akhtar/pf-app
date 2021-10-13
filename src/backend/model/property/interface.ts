@@ -292,6 +292,11 @@ export interface BackendModelPropertyInterface {
   offering_type_id: string;
 
   /**
+   * Insertion date
+   */
+  date_insert: string;
+
+  /**
    * Size
    */
   size: number;

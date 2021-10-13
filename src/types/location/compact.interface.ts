@@ -23,4 +23,10 @@ export interface LocationCompactInterface {
    * Location path, ex: 1.50.280
    */
   path: string;
+
+  /**
+   * Location type
+   * Ex: SUBCOMMUNITY | CITY
+   */
+  location_type?: string;
 }
