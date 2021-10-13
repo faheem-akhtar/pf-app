@@ -30,31 +30,29 @@ service:
 
 ingress:
   enabled: true
-  mobilePath: /(_next|((en|ar|fr)/(search|static|api/location/list|api/location/search|api/property-search/count|api/property-search/images)))(.*)
-  desktopPath: /pf-web-app\/(.*)
   host: .k8s.propertyfinder.net
 
 countries:
   ae:
-    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    mobilePath: /pf-web-app\/(.*)
     desktopPath: /pf-web-app\/(.*)
   bh:
-    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    mobilePath: /pf-web-app\/(.*)
     desktopPath: /pf-web-app\/(.*)
   eg:
-    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    mobilePath: /pf-web-app\/(.*)
     desktopPath: /pf-web-app\/(.*)
   qa:
-    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    mobilePath: /pf-web-app\/(.*)
     desktopPath: /pf-web-app\/(.*)
   sa:
-    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    mobilePath: /pf-web-app\/(.*)
     desktopPath: /pf-web-app\/(.*)
   lb: 
     mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
     desktopPath: /pf-web-app\/(.*)
   ma:
-    mobilePath: /(_next|((ar|fr)/(static|api/pwa|search)))(.*)
+    mobilePath: /pf-web-app\/(.*)
     desktopPath: /pf-web-app\/(.*)
 
 resources:
