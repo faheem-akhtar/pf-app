@@ -8,7 +8,12 @@ import { TealiumEventTypeEnum } from 'services/tealium/event-type.enum';
 import { TealiumServiceInterface } from 'services/tealium/service.interface';
 
 const collect = (collectType: TealiumCollectTypeEnum, data: TealiumDataLayerInterface): void => {
-  window?.utag[collectType]({
+  if (typeof window.utag === 'undefined') {
+    // eslint-disable-next-line no-console
+    console.error('window.utag is not loaded');
+    return;
+  }
+  window.utag[collectType]({
     ...window.tealium,
     ...data,
   });
