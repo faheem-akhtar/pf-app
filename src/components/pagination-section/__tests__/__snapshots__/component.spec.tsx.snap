@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginationSectionComponent renders without throwing any errors 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <a
+      class="button primary small disabled primary--disabled button"
+      disabled=""
+      href="#"
+    >
+      <svg
+        class="icon icon--left"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.588 19.2929C13.9785 19.6834 14.6117 19.6834 15.0022 19.2929C15.3911 18.904 15.393 18.2741 15.0065 17.8829L9.17257 11.9782L15.003 6.11596C15.391 5.72576 15.3902 5.0951 15.001 4.70596C14.6111 4.31607 13.979 4.31607 13.5891 4.70596L7.00218 11.2929C6.61166 11.6834 6.61166 12.3166 7.00218 12.7071L13.588 19.2929Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+      prev
+    </a>
+    <a
+      class="button primary small button"
+      href="/en/search?page=2"
+    >
+      next
+      <svg
+        class="icon icon--right"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M10.4121 4.70711C10.0216 4.31658 9.38844 4.3166 8.99792 4.70713C8.60906 5.09599 8.60714 5.72588 8.99365 6.11708L14.8275 12.0218L8.99716 17.884C8.60908 18.2742 8.60994 18.9049 8.99908 19.294C9.38897 19.6839 10.0211 19.6839 10.411 19.294L16.9979 12.7071C17.3885 12.3166 17.3885 11.6834 16.9979 11.2929L10.4121 4.70711Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </a>
+  </div>
+</div>
+`;

@@ -1,5 +1,5 @@
-import Router, { NextRouter, useRouter } from 'next/router';
-import { useContext } from 'react';
+import { NextRouter, useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
 
 import { FiltersContext } from 'components/filters/context';
 import { IconTemplatePropsInterface } from 'components/icon/template-props.interface';
@@ -15,9 +15,6 @@ import { ButtonTemplate } from 'library/button/template';
 
 import { PaginationSectionComponentPropsType } from './component-props.type';
 import styles from './pagination-section.module.scss';
-
-// TODO-FE[TPNX-3064] Proper implementation for pagination section
-Router.events?.on('routeChangeStart', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 const renderLink = (
   router: NextRouter,
@@ -50,7 +47,6 @@ const renderLink = (
   );
 };
 
-// TODO-FE[CX-425] Add tests
 export const PaginationSectionComponent = ({
   pagesAvailable,
   loading,
@@ -60,6 +56,16 @@ export const PaginationSectionComponent = ({
   const {
     value: { [FiltersParametersEnum.pageNumber]: currentPage },
   } = useContext(FiltersContext);
+
+  useEffect(() => {
+    const callback = (): void => window.scrollTo({ top: 0, behavior: 'smooth' });
+    router.events.on('routeChangeStart', callback);
+
+    return (): void => {
+      router.events.off('routeChangeStart', callback);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.container}>
