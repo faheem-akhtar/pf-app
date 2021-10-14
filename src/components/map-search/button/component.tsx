@@ -21,7 +21,7 @@ export const MapSearchButtonComponent = (): JSX.Element | null => {
   return (
     <ButtonTemplate
       type='button'
-      href={localeGetHref(locale as string, path)}
+      href={localeGetHref(locale as string, path, true)}
       className={styles.button}
       componentType={ButtonComponentTypeEnum.floating}
       size={ButtonSizeEnum.small}

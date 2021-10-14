@@ -44,7 +44,7 @@ export const HeaderTemplate = ({
               <div className={styles.savedProperties}>
                 <span className={styles.spacer} />
                 <a
-                  href={localeGetHref(locale as string, '/user/saved-properties')}
+                  href={localeGetHref(locale as string, '/user/saved-properties', true)}
                   className={styles.savedPropertiesButton}
                 >
                   <IconThinFavoriteTemplate class={styles.savedPropertiesIcon} clipped />

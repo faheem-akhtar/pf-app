@@ -17,4 +17,9 @@ describe('localeGetHref', () => {
   it('should return the href with the alternative locale', () => {
     expect(localeGetHref(alternative, path)).toEqual(`https://${configOriginValue}/${alternative}${path}`);
   });
+
+  it('should support relative urls', () => {
+    expect(localeGetHref(current, path, true)).toEqual(`/${current}${path}`);
+    expect(localeGetHref(alternative, path, true)).toEqual(`/${alternative}${path}`);
+  });
 });

@@ -7,9 +7,10 @@ import { configOriginValue } from 'config/origin/value';
  * @param locale string
  * @param path string
  */
-export const localeGetHref = (locale: string, path: string): string => {
+export const localeGetHref = (locale: string, path: string, relative: boolean = false): string => {
   const { current, alternative } = configCommon.language;
   const currentLocaleIsDefault = locale === current;
+  const relativeUrl = `/${currentLocaleIsDefault ? current : alternative}${path}`;
 
-  return `https://${configOriginValue}/${currentLocaleIsDefault ? current : alternative}${path}`;
+  return relative ? relativeUrl : `https://${configOriginValue}${relativeUrl}`;
 };
