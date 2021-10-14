@@ -5,6 +5,7 @@ import { filtersDataMakeInitialStateKey } from 'components/filters/data/make-ini
 import { FiltersValueFieldCategoryIdType } from 'components/filters/value/field/category-id.type';
 import { FiltersValueFieldChoiceInterface } from 'components/filters/value/field/choice.interface';
 import { FiltersValueFieldPropertyTypeIdType } from 'components/filters/value/field/property-type-id.type';
+import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
@@ -230,7 +231,7 @@ const toFilterValue = (fields: { id: string }[] | void, params: ParamsType): Par
 // TODO-FE[] read it directly
 const commonInitialState: Partial<FiltersValueInterface> = {
   [FiltersParametersEnum.pageNumber]: 1,
-  [FiltersParametersEnum.sort]: '',
+  [FiltersParametersEnum.sort]: 'mr' as FiltersValueFieldSortType,
   [FiltersParametersEnum.locationsIds]: [],
   [FiltersParametersEnum.minPrice]: null,
   [FiltersParametersEnum.maxPrice]: null,
