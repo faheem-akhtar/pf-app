@@ -11,10 +11,10 @@ describe('localeGetHref', () => {
   });
 
   it('should return the href with the current locale', () => {
-    expect(localeGetHref(current, path)).toEqual(`${configOriginValue}/${current}${path}`);
+    expect(localeGetHref(current, path)).toEqual(`https://${configOriginValue}/${current}${path}`);
   });
 
   it('should return the href with the alternative locale', () => {
-    expect(localeGetHref(alternative, path)).toEqual(`${configOriginValue}/${alternative}${path}`);
+    expect(localeGetHref(alternative, path)).toEqual(`https://${configOriginValue}/${alternative}${path}`);
   });
 });
