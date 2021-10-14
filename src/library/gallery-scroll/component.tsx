@@ -25,7 +25,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
   const [initialReducerState] = useState(() => galleryScrollMakeInitialState(items, isRtl));
 
   const [state, dispatch] = useReducer(reducer, initialReducerState);
-  useGalleryScrollEffects(state.pointerPositionStart !== null, dispatch, state.isDragging);
+  useGalleryScrollEffects(state.pointerPositionStart !== null, dispatch, state.isDragging, onClick);
 
   const { activeIndex } = state;
 
@@ -79,7 +79,6 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
       activeIndex={state.activeIndex}
       objectFit={objectFit}
       isRtl={isRtl}
-      onClick={onClick}
     />
   );
 };
