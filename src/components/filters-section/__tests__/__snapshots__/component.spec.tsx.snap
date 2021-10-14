@@ -16,7 +16,7 @@ exports[`FiltersSectionComponent renders without throwing any errors 1`] = `
           class="chip container chip_selected"
         >
           <span
-            class="label"
+            class="chipLabel label"
           >
             Abu Dhabi
           </span>
@@ -44,7 +44,7 @@ exports[`FiltersSectionComponent renders without throwing any errors 1`] = `
           class="chip container chip_selected"
         >
           <span
-            class="label"
+            class="chipLabel label"
           >
             multi-location-selector/n-more
           </span>

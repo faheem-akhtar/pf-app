@@ -13,7 +13,7 @@ exports[`KeywordsComponent if render is completed without throwing any errors 1`
         class="chip container chip_selected"
       >
         <span
-          class="label"
+          class="chipLabel label"
         >
           value
         </span>

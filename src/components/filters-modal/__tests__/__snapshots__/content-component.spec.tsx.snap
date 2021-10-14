@@ -110,7 +110,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip chip_selected"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 any
               </span>
             </label>
@@ -121,7 +123,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Apartment
               </span>
             </label>
@@ -132,7 +136,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Villa
               </span>
             </label>
@@ -143,7 +149,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Townhouse
               </span>
             </label>
@@ -154,7 +162,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Penthouse
               </span>
             </label>
@@ -165,7 +175,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Compound
               </span>
             </label>
@@ -176,7 +188,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Duplex
               </span>
             </label>
@@ -187,7 +201,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Full Floor
               </span>
             </label>
@@ -198,7 +214,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Half Floor
               </span>
             </label>
@@ -209,7 +227,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Whole Building
               </span>
             </label>
@@ -220,7 +240,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Land
               </span>
             </label>
@@ -231,7 +253,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Bulk Sale Unit
               </span>
             </label>
@@ -242,7 +266,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Bungalow
               </span>
             </label>
@@ -253,7 +279,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Hotel & Hotel Apartment
               </span>
             </label>
@@ -295,7 +323,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip chip_selected"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 all-virtual-viewings
               </span>
             </label>
@@ -306,7 +336,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 360 Tours
               </span>
             </label>
@@ -317,7 +349,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Video Tours
               </span>
             </label>
@@ -328,7 +362,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Live Viewings
               </span>
             </label>
@@ -859,7 +895,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip chip_selected"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 any
               </span>
             </label>
@@ -870,7 +908,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Studio
               </span>
             </label>
@@ -881,7 +921,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 1 Bedroom
               </span>
             </label>
@@ -892,7 +934,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 2 Bedrooms
               </span>
             </label>
@@ -903,7 +947,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 3 Bedrooms
               </span>
             </label>
@@ -914,7 +960,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 4 Bedrooms
               </span>
             </label>
@@ -925,7 +973,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 5 Bedrooms
               </span>
             </label>
@@ -936,7 +986,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 6 Bedrooms
               </span>
             </label>
@@ -947,7 +999,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 7 Bedrooms
               </span>
             </label>
@@ -984,7 +1038,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip chip_selected"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 any
               </span>
             </label>
@@ -995,7 +1051,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 1 Bathroom
               </span>
             </label>
@@ -1006,7 +1064,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 2 Bathrooms
               </span>
             </label>
@@ -1017,7 +1077,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 3 Bathrooms
               </span>
             </label>
@@ -1028,7 +1090,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 4 Bathrooms
               </span>
             </label>
@@ -1039,7 +1103,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 5 Bathrooms
               </span>
             </label>
@@ -1050,7 +1116,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 6 Bathrooms
               </span>
             </label>
@@ -1061,7 +1129,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 7 Bathrooms
               </span>
             </label>
@@ -1072,7 +1142,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 7+ Bathrooms
               </span>
             </label>
@@ -1533,7 +1605,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip chip_selected"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 any
               </span>
             </label>
@@ -1544,7 +1618,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Off-plan
               </span>
             </label>
@@ -1555,7 +1631,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Ready
               </span>
             </label>
@@ -1592,7 +1670,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Central A/C
               </span>
             </label>
@@ -1603,7 +1683,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Maids Room
               </span>
             </label>
@@ -1614,7 +1696,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Balcony
               </span>
             </label>
@@ -1625,7 +1709,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Shared Pool
               </span>
             </label>
@@ -1636,7 +1722,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Shared Spa
               </span>
             </label>
@@ -1647,7 +1735,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Shared Gym
               </span>
             </label>
@@ -1658,7 +1748,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Concierge Service
               </span>
             </label>
@@ -1669,7 +1761,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Covered Parking
               </span>
             </label>
@@ -1680,7 +1774,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 View of Water
               </span>
             </label>
@@ -1691,7 +1787,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 View of Landmark
               </span>
             </label>
@@ -1702,7 +1800,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Pets Allowed
               </span>
             </label>
@@ -1713,7 +1813,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Study
               </span>
             </label>
@@ -1724,7 +1826,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Private Garden
               </span>
             </label>
@@ -1735,7 +1839,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Private Pool
               </span>
             </label>
@@ -1746,7 +1852,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Private Gym
               </span>
             </label>
@@ -1757,7 +1865,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Private Jacuzzi
               </span>
             </label>
@@ -1768,7 +1878,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Built in Wardrobes
               </span>
             </label>
@@ -1779,7 +1891,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Walk-in Closet
               </span>
             </label>
@@ -1790,7 +1904,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Built in Kitchen Appliances
               </span>
             </label>
@@ -1801,7 +1917,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Maid Service
               </span>
             </label>
@@ -1812,7 +1930,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Children's Play Area
               </span>
             </label>
@@ -1823,7 +1943,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Children's Pool
               </span>
             </label>
@@ -1834,7 +1956,9 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
             <label
               class="chip"
             >
-              <span>
+              <span
+                class="chipLabel"
+              >
                 Barbecue Area
               </span>
             </label>

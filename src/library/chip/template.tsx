@@ -14,7 +14,7 @@ export const ChipTemplate = (props: ChipTemplatePropsInterface): JSX.Element => 
       onClick={props.onClick}
     >
       {props.prefixIcon && <span className={styles.chipPrefix}>{props.prefixIcon}</span>}
-      {<span className={props.labelClassName}>{props.label}</span>}
+      {<span className={domClassMerge(styles.chipLabel, props.labelClassName)}>{props.label}</span>}
       {props.suffixIcon && <span className={styles.chipSuffix}>{props.suffixIcon}</span>}
     </label>
   );

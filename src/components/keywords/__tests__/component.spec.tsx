@@ -89,7 +89,7 @@ describe('KeywordsComponent', () => {
     await waitFor(async () => {
       const chipsContainerTemplate = await screen.findByTestId('multi-selection-autocomplete-template-chips');
       value.split(',').forEach((word) => {
-        expect(chipsContainerTemplate.innerHTML).toContain(`<span class="label">${word}</span>`);
+        expect(chipsContainerTemplate.innerHTML).toContain(`<span class="chipLabel label">${word}</span>`);
       });
     });
   });
