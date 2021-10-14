@@ -31,7 +31,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
   const { activeIndex } = state;
 
   const prevActiveIndex = usePrevious(activeIndex);
-  if (prevActiveIndex !== activeIndex) {
+  if (prevActiveIndex !== undefined && prevActiveIndex !== activeIndex) {
     onActiveIndexChange(activeIndex, numberOfImages);
   }
 

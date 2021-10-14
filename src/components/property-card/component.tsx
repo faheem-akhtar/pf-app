@@ -72,7 +72,6 @@ export const PropertyCardComponent = ({
   const menuModalOpenRef = useRef<() => void>(functionNoop);
   const socialShareOpenRef = useRef<() => void>(functionNoop);
   const propertyReportOpenRef = useRef<() => void>(functionNoop);
-
   const imagesResponse = useApiPropertyImages(propertyId, 'medium', galleryHasBeenTouched);
 
   const tealiumEvents = TealiumConversionEventFactory(property, filterContext.value, {
@@ -171,9 +170,7 @@ export const PropertyCardComponent = ({
     },
     t,
     onGalleryIndexChange: (index: number, length: number) => {
-      if (galleryIndex === 0 && galleryHasBeenTouched) {
-        tealiumEvents.sendGalleryScrollEvent(propertyId, length);
-      }
+      tealiumEvents.sendGalleryScrollEvent(propertyId, length);
       setGalleryIndex(index);
     },
     onGalleryClick: (): void => {
