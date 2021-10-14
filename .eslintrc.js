@@ -34,6 +34,7 @@ module.exports = {
     'no-extra-boolean-cast': 'error',
     'no-prototype-builtins': 'error',
     'no-global-assign': 'error',
+    'react-hooks/exhaustive-deps': 'error',
     'testing-library/consistent-data-testid': [
       'error',
       {

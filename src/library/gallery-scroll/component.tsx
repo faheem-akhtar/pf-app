@@ -1,6 +1,7 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useReducer, useRef, useState } from 'react';
 
 import { functionNoop } from 'helpers/function/noop';
+import { usePrevious } from 'hooks/previous.hook';
 
 import { GalleryScrollComponentPropsInterface } from './component-props.interface';
 import { useGalleryScrollEffects } from './effects.hook';
@@ -29,9 +30,10 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
 
   const { activeIndex } = state;
 
-  useEffect(() => {
+  const prevActiveIndex = usePrevious(activeIndex);
+  if (prevActiveIndex !== activeIndex) {
     onActiveIndexChange(activeIndex, numberOfImages);
-  }, [onActiveIndexChange, activeIndex]);
+  }
 
   const onStart = (positionX: number, initialTouch?: { positionX: number; positionY: number }): void => {
     const galleryRect = (galleryRef.current as HTMLDivElement).getBoundingClientRect();

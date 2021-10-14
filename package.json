@@ -39,7 +39,7 @@
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "download-resources": "./scripts/download-resources/run.sh",
     "randomize-obfuscation-keys": "./scripts/randomize-obfuscation-keys.js",
-    "lint": "yarn eslint stubs --ext .ts,.tsx && yarn eslint mocks --ext .ts,.tsx && yarn eslint src --ext .ts,.tsx && yarn stylelint 'src/**/*.{css,scss}'",
+    "lint": "yarn eslint stubs --max-warnings=0 --ext .ts,.tsx && yarn eslint mocks --ext .ts,.tsx && yarn eslint src --max-warnings=0 --ext .ts,.tsx && yarn stylelint 'src/**/*.{css,scss}'",
     "lint-fix": "yarn eslint stubs --ext .ts,.tsx --fix && yarn eslint mocks --ext .ts,.tsx --fix && yarn eslint src --ext .ts,.tsx --fix && yarn stylelint 'src/**/*.{css,scss}' --fix",
     "validate-types": "tsc --project ./tsconfig.json",
     "download-i18n": "node ./scripts/download-translations",
@@ -48,7 +48,7 @@
   "lint-staged": {
     "*.{js,ts,tsx,css,scss,md}": "prettier --check",
     "src/**/*.{css,scss}": "stylelint --quiet",
-    "*.{js,ts,tsx}": "eslint",
+    "*.{js,ts,tsx}": "eslint --max-warnings=0",
     "src/**/*spec.{js,ts,tsx}": "yarn test"
   },
   "dependencies": {
