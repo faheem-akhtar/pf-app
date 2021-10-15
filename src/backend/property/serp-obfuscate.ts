@@ -26,6 +26,7 @@ import { propertySerpObfuscatedFieldReference } from 'components/property/serp/o
 import { propertySerpObfuscatedFieldSize } from 'components/property/serp/obfuscated/field/size';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
+import { propertySerpObfuscatedFieldVideoTour } from 'components/property/serp/obfuscated/field/video-tour';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 import { configIsTrace } from 'config/is-trace';
 import { assertUnreachable } from 'helpers/assert/unreachable';
@@ -103,6 +104,9 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
         break;
       case 'defaultPrice':
         obfuscatedProperty[propertySerpObfuscatedFieldDefaultPrice] = value;
+        break;
+      case 'videoTour':
+        obfuscatedProperty[propertySerpObfuscatedFieldVideoTour] = value;
         break;
       case 'agentId':
         obfuscatedProperty[propertySerpObfuscatedFieldAgentId] = value;

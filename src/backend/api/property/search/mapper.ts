@@ -40,7 +40,7 @@ export const backendApiPropertySearchMapper = (
       default_price,
     } = property;
 
-    const { listed_at_message, live_event_metadata } = meta;
+    const { listed_at_message, live_event_metadata, video_metadata } = meta;
     const { email, phone, whatsapp } = meta.contact_options.app;
 
     const contactOptionsList: PropertyContactOptionsListInterface = { email: !!email };
@@ -90,6 +90,7 @@ export const backendApiPropertySearchMapper = (
       agentId: property.agent?.id || '',
       brokerId: property.broker?.id || '',
       defaultPrice: default_price,
+      videoTour: video_metadata,
     };
 
     if (configIsTrace) {

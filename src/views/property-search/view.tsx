@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 
+import { abTestTracker } from 'components/ab-test/tracker';
 import { ContactedPropertyContextProvider } from 'components/contacted-property/context-provider';
 import { FiltersContextProvider } from 'components/filters/context-provider';
 import { FiltersSectionComponent } from 'components/filters-section/component';
@@ -15,6 +16,7 @@ import { SavedPropertyContextProvider } from 'components/saved-property/context-
 import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { WrapperTemplate } from 'components/wrapper/template';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
+import { useReactConstructor } from 'helpers/react/constructor.hook';
 import { usePrevious } from 'hooks/previous.hook';
 import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
 import { useServicesTealiumSearch } from 'services/tealium/search.hook';
@@ -30,6 +32,11 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
   const { statsDataPromise } = usePropertySearchTrackPageView(prevProps, props);
   const pageIsLoading = usePageIsLoading();
 
+  useReactConstructor(() => {
+    if (props.ok) {
+      abTestTracker.load(props.abTests);
+    }
+  });
   useServicesTealiumSearch(props);
 
   if (!props.ok) {

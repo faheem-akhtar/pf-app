@@ -16,6 +16,7 @@ import { WindowService } from 'services/window/service';
 import { propertySerpObfuscatedGetImgUrl } from '../serp/obfuscated/get/img-url';
 import { propertySerpObfuscatedGetUrl } from '../serp/obfuscated/get/url';
 import { PropertySerpObfuscatedType } from '../serp/obfuscated/type';
+import { PropertyTrackerFactory } from '../tracker.factory';
 import { PropertyListAdPlaceholderTemplate } from './ad-placeholder-template';
 import { PropertyListComponentPropsInterface } from './component-props.interface';
 import { PropertyListItemType } from './item/type';
@@ -26,6 +27,7 @@ const NUMBER_OF_IMAGES_TO_PRELOAD = 3;
 export const PropertyListComponent: React.FunctionComponent<PropertyListComponentPropsInterface> = (props) => {
   const { properties, adConfig, pageIsLoading } = props;
   const { sessionStorage } = WindowService;
+  const propertyTracker = PropertyTrackerFactory();
 
   const authModalOpenRef = useRef<() => void>(functionNoop);
   const authModalCloseRef = useRef<() => void>(functionNoop);
@@ -72,6 +74,7 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
                   savedPropertyTracker.onOpenUserAuthModal();
                 }
               }}
+              onPropertyClick={(): void => propertyTracker.click(item.property)}
             />
           );
         })}

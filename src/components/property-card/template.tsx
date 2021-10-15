@@ -46,6 +46,7 @@ export const PropertyCardTemplate = ({
   onWhatsappClick,
   onGalleryIndexChange,
   onGalleryClick,
+  onPropertyLinkClick,
 }: PropertyCardTemplatePropsType): JSX.Element => {
   if (loading) {
     return <PropertyCardLoadingSkeletonTemplate />;
@@ -94,7 +95,7 @@ export const PropertyCardTemplate = ({
         </div>
       </header>
       <div className={styles.content}>
-        <a className={styles.link} href={href} />
+        <a className={styles.link} href={href} onClick={onPropertyLinkClick} />
         <section className={domClassMerge(styles.section, styles.body)}>
           <p className={styles.type} aria-label={t('Property type')}>
             {type}

@@ -48,6 +48,7 @@ export const PropertyCardComponent = ({
   property,
   loading,
   onSaveButtonClick,
+  onPropertyClick,
 }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -174,8 +175,10 @@ export const PropertyCardComponent = ({
       setGalleryIndex(index);
     },
     onGalleryClick: (): void => {
+      onPropertyClick();
       window.location.href = cardTemplateProps.href;
     },
+    onPropertyLinkClick: onPropertyClick,
   };
 
   // Handles banner animation
@@ -202,7 +205,7 @@ export const PropertyCardComponent = ({
     setIsPropertySaved(!!savedProperties.data.find((property) => property.propertyId === parseInt(propertyId, 10)));
   }, [savedProperties.data, propertyId]);
 
-  usePropertyCardTrackVisibilityOnScreen(statsDataPromise, propertyId, containerRef);
+  usePropertyCardTrackVisibilityOnScreen(statsDataPromise, property, containerRef);
 
   return (
     <div data-testid='list-item' ref={containerRef} className={styles.item}>

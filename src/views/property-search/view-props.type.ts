@@ -3,6 +3,7 @@ import { StatsContextAbTestsInterface } from '@propertyfinder/pf-frontend-common
 import { FiltersDataInterface } from 'components/filters/data/interface';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { PropertySerpSearchResultType } from 'components/property/serp/search-result.type';
+import { PageTypeEnum } from 'enums/page-type/enum';
 
 export type PropertySearchViewPropsType =
   | {
@@ -12,6 +13,7 @@ export type PropertySearchViewPropsType =
       searchResult: PropertySerpSearchResultType;
       documentTitle: string;
       abTests: StatsContextAbTestsInterface;
+      pageType: PageTypeEnum;
     }
   | {
       ok: false;

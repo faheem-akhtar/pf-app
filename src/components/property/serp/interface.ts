@@ -1,6 +1,8 @@
 import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import { PropertyContactOptionsListInterface } from '../contact-options-list.interface';
+import { PropertyVideoTourInterface } from '../video-tour.interface';
+
 export interface PropertySerpInterface {
   /**
    * Live event
@@ -134,6 +136,11 @@ export interface PropertySerpInterface {
   defaultPrice: number;
 
   /**
+   * Video tour data
+   */
+  videoTour?: PropertyVideoTourInterface;
+
+  /*
    * Size
    */
   size: number;

@@ -115,4 +115,8 @@ export type PropertyCardTemplatePropsType = {
    * On gallery click handler
    */
   onGalleryClick: () => void;
+  /**
+   * On property link click
+   */
+  onPropertyLinkClick: () => void;
 };

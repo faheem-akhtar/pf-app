@@ -28,6 +28,7 @@ const makeDefaultProps = (): PropertyCardComponentPropsType => ({
   property: propertyStub(),
   loading: false,
   onSaveButtonClick: jest.fn(),
+  onPropertyClick: jest.fn(),
 });
 
 /**
@@ -86,7 +87,7 @@ describe('PropertyCardComponent', () => {
 
     expect(usePropertyCardTrackVisibilityOnScreenModule.usePropertyCardTrackVisibilityOnScreen).toHaveBeenCalledWith(
       statsDataPromise,
-      '198023',
+      defaultProps.property,
       expect.objectContaining({ current: expect.anything() })
     );
   });

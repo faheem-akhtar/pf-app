@@ -1,6 +1,7 @@
 import { mockReactUseContext } from 'mocks/react/use-context.mock';
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
 import { mockWindowConsole } from 'mocks/window/console.mock';
+import { propertyStub } from 'stubs/property/stub';
 
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { StatsService } from 'services/stats/service';
@@ -53,21 +54,21 @@ describe('usePropertyCardTrackVisibilityOnScreen', () => {
   it('should fire analytics event after 2 intervals (500ms)', async () => {
     mockWindowConsole();
 
-    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, '1', onScreenContainerRef);
+    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, propertyStub(), onScreenContainerRef);
     fireSetInterval();
     fireSetInterval();
 
     await statsDataPromise;
 
     expect(StatsService().propertyImpression).toHaveBeenCalledTimes(1);
-    expect(StatsService().propertyImpression).toHaveBeenCalledWith(1, {
+    expect(StatsService().propertyImpression).toHaveBeenCalledWith(198023, {
       pagination: { itemPerPage: 25, itemTotal: 5, pageCurrent: 3 },
     });
     expect(window.clearInterval).toHaveBeenCalledTimes(1);
   });
 
   it('should not fire analytics event after 2 intervals (500ms) when card is not on screen', async () => {
-    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, '1', outOffScreenContainerRef);
+    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, propertyStub(), outOffScreenContainerRef);
     fireSetInterval();
     fireSetInterval();
 
@@ -79,7 +80,7 @@ describe('usePropertyCardTrackVisibilityOnScreen', () => {
 
   it('should clear interval on unmount', async () => {
     const { unmountAll } = mockReactUseEffect();
-    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, '1', outOffScreenContainerRef);
+    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, propertyStub(), outOffScreenContainerRef);
 
     unmountAll();
 
@@ -88,7 +89,7 @@ describe('usePropertyCardTrackVisibilityOnScreen', () => {
 
   it('should handle the absense of container ref without an error', async () => {
     const { unmountAll } = mockReactUseEffect();
-    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, '1', { current: null });
+    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, propertyStub(), { current: null });
 
     fireSetInterval();
     unmountAll();
@@ -99,7 +100,7 @@ describe('usePropertyCardTrackVisibilityOnScreen', () => {
   it('should report if statsData was failed to load', async () => {
     const statsDataPromise = Promise.resolve({ ok: false });
     mockReactUseEffect();
-    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, '1', onScreenContainerRef);
+    usePropertyCardTrackVisibilityOnScreen(statsDataPromise, propertyStub(), onScreenContainerRef);
 
     fireSetInterval();
     fireSetInterval();

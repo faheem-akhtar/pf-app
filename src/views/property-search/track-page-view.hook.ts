@@ -5,6 +5,7 @@ import { apiPropertyStatsDataFetcher } from 'api/property-stats-data/fetcher';
 import { filtersMapCategoryIdToStats } from 'components/filters/map-category-id-to-stats';
 import { filtersMapFiltersValueToStatsContextPropertySearch } from 'components/filters/map-filters-value-to-stats-context-property-search';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
+import { PropertyTrackerFactory } from 'components/property/tracker.factory';
 import { propertySerpItemsPerPage } from 'constants/property/serp/items-per-page';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { helpersIsClient } from 'helpers/is-client';
@@ -37,8 +38,8 @@ export const usePropertySearchTrackPageView = (
 
   const statsService = StatsService();
   const statsContexterService = StatsContexterService();
-
-  const { searchResult, filtersValueFromQuery } = props;
+  const { searchResult, filtersValueFromQuery, pageType } = props;
+  const propertyTracker = PropertyTrackerFactory(pageType);
 
   statsService.reset();
 
@@ -72,7 +73,7 @@ export const usePropertySearchTrackPageView = (
 
       // track property listing loaded
       searchResult.properties.forEach((obfuscatedProperty) => {
-        statsService.propertyLoad(parseInt(propertySerpObfuscatedGetId(obfuscatedProperty), 10), localContext);
+        propertyTracker.load(obfuscatedProperty, localContext);
       });
     }
 

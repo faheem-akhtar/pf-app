@@ -31,7 +31,7 @@ import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfusca
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 
-export const propertyStub = (): PropertySerpObfuscatedType =>
+export const propertyStub = (data: Partial<PropertySerpObfuscatedType> = {}): PropertySerpObfuscatedType =>
   ({
     [propertySerpObfuscatedFieldUrl]: 'url',
     [propertySerpObfuscatedFieldCompletionStatus]: 'off_plan',
@@ -65,4 +65,5 @@ export const propertyStub = (): PropertySerpObfuscatedType =>
     [propertySerpObfuscatedFieldLiveEventValue]: '',
     [propertySerpObfuscatedFieldAreaValue]: '550 Sqft',
     [propertySerpObfuscatedFieldPublishDateValue]: '1 hour ago',
+    ...data,
   } as PropertySerpObfuscatedType);
