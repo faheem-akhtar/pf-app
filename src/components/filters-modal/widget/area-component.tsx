@@ -23,7 +23,6 @@ export const FiltersModalWidgetAreaComponent: FiltersModalWidgetType = ({
   >
     <div className={styles.split}>
       <SelectFieldTemplate
-        dropdownIcon
         label={t('from')}
         value={filtersValue[FiltersParametersEnum.minArea]}
         options={filtersToRangeOptions(
@@ -39,7 +38,6 @@ export const FiltersModalWidgetAreaComponent: FiltersModalWidgetType = ({
         }}
       />
       <SelectFieldTemplate
-        dropdownIcon
         label={t('to')}
         value={filtersValue[FiltersParametersEnum.maxArea]}
         options={filtersToRangeOptions(

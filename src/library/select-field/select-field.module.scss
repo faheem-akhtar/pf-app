@@ -43,6 +43,10 @@
   }
 }
 
+.fieldWrapper {
+  position: relative;
+}
+
 .fieldEmpty {
   color: var(--color-global-grey1);
 }

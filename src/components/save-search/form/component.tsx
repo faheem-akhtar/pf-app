@@ -71,7 +71,6 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
             id='frequency'
             name='frequency'
             value={selectedFrequency?.value}
-            dropdownIcon
             options={saveSearchFrequencies.map((item) => ({ ...item, label: t(item.label) }))}
             onChange={(value): void => {
               setGeneralError('');

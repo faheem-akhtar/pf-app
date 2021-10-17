@@ -27,7 +27,6 @@ export const FiltersModalWidgetInstallmentYearsComponent: FiltersModalWidgetType
     >
       <div className={styles.split}>
         <SelectFieldTemplate
-          dropdownIcon
           label={t('from')}
           value={filtersValue[FiltersParametersEnum.minInstallmentYears]}
           options={filtersModalUpdateSelectedOptionLabel(
@@ -43,7 +42,6 @@ export const FiltersModalWidgetInstallmentYearsComponent: FiltersModalWidgetType
           }}
         />
         <SelectFieldTemplate
-          dropdownIcon
           label={t('to')}
           value={filtersValue[FiltersParametersEnum.maxInstallmentYears]}
           options={filtersModalUpdateSelectedOptionLabel(

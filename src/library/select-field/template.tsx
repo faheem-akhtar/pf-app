@@ -7,7 +7,7 @@ import { SelectFieldTemplatePropsInterface } from './template-props.interface';
 
 export const SelectFieldTemplate = <V extends unknown>({
   className,
-  dropdownIcon,
+  dropdownIcon = true,
   label,
   onChange,
   value,
@@ -24,30 +24,32 @@ export const SelectFieldTemplate = <V extends unknown>({
   return (
     <div className={domClassMerge(styles.container, className)}>
       {label && !isEmpty && <span className={styles.label}>{label}</span>}
-      <select
-        id={id}
-        name={name}
-        disabled={disabled}
-        className={domClassMerge(styles.field, {
-          [styles.fieldEmpty]: isEmpty,
-          [styles.fieldWithIcon]: dropdownIcon,
-          [styles.fieldFloating]: !!label && !isEmpty,
-          [styles['field--error']]: error,
-        })}
-        onChange={(e): void => {
-          const newIndex = Number((e.target as HTMLSelectElement).value);
-          onChange((options[newIndex] as SelectFieldOptionInterface<V>).value);
-        }}
-        value={options.indexOf(selectedOption)}
-      >
-        {options.map((option, index) => (
-          <option key={index} value={index}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+      <div className={styles.fieldWrapper}>
+        <select
+          id={id}
+          name={name}
+          disabled={disabled}
+          className={domClassMerge(styles.field, {
+            [styles.fieldEmpty]: isEmpty,
+            [styles.fieldWithIcon]: dropdownIcon,
+            [styles.fieldFloating]: !!label && !isEmpty,
+            [styles['field--error']]: error,
+          })}
+          onChange={(e): void => {
+            const newIndex = Number((e.target as HTMLSelectElement).value);
+            onChange((options[newIndex] as SelectFieldOptionInterface<V>).value);
+          }}
+          value={options.indexOf(selectedOption)}
+        >
+          {options.map((option, index) => (
+            <option key={index} value={index}>
+              {option.label}
+            </option>
+          ))}
+        </select>
 
-      {dropdownIcon && <IconThinChevronDownTemplate class={styles.icon} />}
+        {dropdownIcon && <IconThinChevronDownTemplate class={styles.icon} />}
+      </div>
       {error && <span className={styles.errorText}>{errorText}</span>}
     </div>
   );

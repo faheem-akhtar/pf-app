@@ -27,7 +27,6 @@ export const FiltersModalWidgetPriceComponent: FiltersModalWidgetType = ({
     >
       <div className={styles.split}>
         <SelectFieldTemplate
-          dropdownIcon
           label={t('from')}
           value={filtersValue[FiltersParametersEnum.minPrice]}
           options={filtersToRangeOptions(
@@ -40,7 +39,6 @@ export const FiltersModalWidgetPriceComponent: FiltersModalWidgetType = ({
           }}
         />
         <SelectFieldTemplate
-          dropdownIcon
           label={t('to')}
           value={filtersValue[FiltersParametersEnum.maxPrice]}
           options={filtersToRangeOptions(
