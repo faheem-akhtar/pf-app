@@ -1,4 +1,6 @@
+import { mockWindowConsole } from 'mocks/window/console.mock';
 import { tealiumServiceStub } from 'stubs/tealium/service.stub';
+import { userModelStub } from 'stubs/user/model.stub';
 
 import { TealiumAgentStatsInterface } from 'services/tealium/agent-stats.interface';
 import { TealiumEventEnum } from 'services/tealium/event.enum';
@@ -11,10 +13,19 @@ import { AnalyticsTealiumService } from '../tealium.service';
 
 describe('AnalyticsTealiumService', () => {
   const tealiumService = tealiumServiceStub();
+  const userModel = userModelStub();
 
   beforeEach(() => {
     window.utag = tealiumService;
     window.tealium = { page_type: 'page_type', page_currency_code: 'AED' };
+  });
+
+  test('if event is not fired before utag is not loaded', () => {
+    const consoleMock = mockWindowConsole();
+    window.utag = undefined;
+    const payload = { tealium_event: TealiumEventEnum.search };
+    AnalyticsTealiumService.view(payload);
+    expect(consoleMock.error).toHaveBeenCalledWith('window.utag is not loaded');
   });
 
   test('if tealium events are called', () => {
@@ -39,6 +50,42 @@ describe('AnalyticsTealiumService', () => {
       ...window.tealium,
       page_currency_code: 'AED',
     });
+  });
+
+  test('if user-register event is called with correct payload', () => {
+    AnalyticsTealiumService.onUserRegistered({
+      user_email: userModel.email,
+      user_id: userModel.userId,
+      user_status: 'Logged In',
+    });
+    expect(window.utag.link).toHaveBeenCalledWith(
+      expect.objectContaining({
+        tealium_event: TealiumEventEnum.userRegister,
+        user_email: userModel.email,
+        user_id: userModel.userId,
+        user_status: 'Logged In',
+      })
+    );
+  });
+
+  test('if user-login event is called with correct payload - google', () => {
+    AnalyticsTealiumService.onUserLoggedIn(
+      {
+        user_email: userModel.email,
+        user_id: userModel.userId,
+        user_status: 'Logged In',
+      },
+      'google'
+    );
+    expect(window.utag.link).toHaveBeenCalledWith(
+      expect.objectContaining({
+        tealium_event: TealiumEventEnum.userLogin,
+        event_label: 'google',
+        user_email: userModel.email,
+        user_id: userModel.userId,
+        user_status: 'Logged In',
+      })
+    );
   });
 
   test('if the parameters of app download event are passed to utag correctly', () => {

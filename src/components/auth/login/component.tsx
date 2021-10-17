@@ -47,8 +47,8 @@ export const AuthLoginComponent: FunctionComponent<AuthLoginPropsInterface> = ({
     onFacebookLoginStart();
     setIsLoading(true);
     AuthFacebookService.signIn()
-      .then(() => {
-        props.onSuccess(AuthSuccessTypeEnum.signInWithFacebook);
+      .then((e) => {
+        props.onSuccess(AuthSuccessTypeEnum.signInWithFacebook, e.user);
         props.onClose();
       })
       .catch(() => {
@@ -62,8 +62,8 @@ export const AuthLoginComponent: FunctionComponent<AuthLoginPropsInterface> = ({
     onGoogleLoginStart();
     setIsLoading(true);
     AuthGoogleService.signIn()
-      .then(() => {
-        props.onSuccess(AuthSuccessTypeEnum.signInWithGoogle);
+      .then((e) => {
+        props.onSuccess(AuthSuccessTypeEnum.signInWithGoogle, e.user);
         props.onClose();
       })
       .catch(() => {
@@ -95,7 +95,7 @@ export const AuthLoginComponent: FunctionComponent<AuthLoginPropsInterface> = ({
               setErrorMessage('');
               // Close modal
               props.onClose();
-              props.onSuccess(AuthSuccessTypeEnum.signInWithEmail);
+              props.onSuccess(AuthSuccessTypeEnum.signInWithEmail, e.data);
             } else {
               setErrorMessage(e.error.body || `${t('auth/something-wrong')}! ${t('auth/try-later')}`);
               captchaService.reset();

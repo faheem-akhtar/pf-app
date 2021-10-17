@@ -7,6 +7,7 @@ import { AuthModelInterface } from 'services/auth/model.interface';
 import { AuthSubscriberType } from 'services/auth/subscriber.type';
 import { JwtTokenService } from 'services/jwt/token/service';
 import { JwtTokenStore } from 'services/jwt/token/store';
+import { tealiumUserEventTracker } from 'services/tealium/user-event-tracker';
 import { UserModelInterface } from 'services/user/model.interface';
 import { WindowService } from 'services/window/service';
 import { WindowStorageInterface } from 'services/window/storage/interface';
@@ -89,6 +90,7 @@ export class AuthStore {
   public logOut(): Promise<void> {
     return apiAuthLogoutFetcher().then(() => {
       this.setProviderType(null);
+      tealiumUserEventTracker.onLogout(this.getUser());
       this.updateUserData(null, AuthSubscribeEventTypeEnum.logout, null);
       this.resetToken();
       this.signOut();

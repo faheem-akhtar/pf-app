@@ -6,4 +6,7 @@ export const tealiumServiceStub = (): TealiumServiceInterface => ({
   onAppDownloadClicked: jest.fn(),
   onPageViewRendered: jest.fn(),
   onConversionEventCalled: jest.fn(),
+  onUserRegistered: jest.fn(),
+  onUserLoggedIn: jest.fn(),
+  onUserLoggedOut: jest.fn(),
 });

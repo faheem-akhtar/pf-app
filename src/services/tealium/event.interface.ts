@@ -1,3 +1,5 @@
+import { AuthenticationProviderType } from '@propertyfinder/pf-frontend-common/dist/module/stats/types';
+
 import { TealiumDataLayerInterface } from './data-layer.interface';
 import { TealiumEventActionEnum } from './event-action.enum';
 import { TealiumEventCategoryEnum } from './event-category.enum';
@@ -8,5 +10,5 @@ export interface TealiumEventInterface extends TealiumDataLayerInterface {
   event_type: TealiumEventTypeEnum;
   event_category: TealiumEventCategoryEnum | '';
   event_action: TealiumEventActionEnum | '';
-  event_label: TealiumEventLabelEnum | '';
+  event_label: TealiumEventLabelEnum | Lowercase<AuthenticationProviderType> | '';
 }

@@ -1,3 +1,5 @@
+import { UserModelInterface } from 'services/user/model.interface';
+
 import { AuthSuccessTypeEnum } from '../success-type.enum';
 
 export interface AuthRegistrationPropsInterface {
@@ -9,7 +11,7 @@ export interface AuthRegistrationPropsInterface {
   /**
    * On success
    */
-  onSuccess: (type: AuthSuccessTypeEnum) => void;
+  onSuccess: (type: AuthSuccessTypeEnum, user: UserModelInterface) => void;
 
   /**
    * On login link clicked

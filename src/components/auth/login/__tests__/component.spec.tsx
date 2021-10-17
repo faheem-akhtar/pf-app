@@ -11,6 +11,7 @@ import { AuthFacebookService } from 'services/auth/facebook.service';
 import { AuthGoogleService } from 'services/auth/google.service';
 import * as AuthLoginServiceModule from 'services/auth/login.service';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
+import { UserModelInterface } from 'services/user/model.interface';
 
 import { AuthLoginComponent } from '../component';
 import { AuthLoginPropsInterface } from '../props.interface';
@@ -18,6 +19,7 @@ import { AuthLoginPropsInterface } from '../props.interface';
 describe('AuthLoginComponent', () => {
   let props: AuthLoginPropsInterface;
   let renderResult: RenderResult;
+  let userModel: UserModelInterface;
 
   beforeEach(() => {
     props = {
@@ -28,6 +30,8 @@ describe('AuthLoginComponent', () => {
       onFacebookLoginStart: jest.fn(),
       onGoogleLoginStart: jest.fn(),
     };
+
+    userModel = userModelStub();
 
     renderResult = render(<AuthLoginComponent {...props} />);
   });
@@ -50,7 +54,7 @@ describe('AuthLoginComponent', () => {
       jest.spyOn(AuthFacebookService, 'signIn').mockReturnValue(
         Promise.resolve({
           email: 'email@example.com',
-          user: userModelStub(),
+          user: userModel,
           meta: {
             token: 'token',
             refresh_token: 'refresh token',
@@ -64,7 +68,7 @@ describe('AuthLoginComponent', () => {
 
       expect(props.onClose).toHaveBeenCalledTimes(1);
       expect(props.onSuccess).toHaveBeenCalledTimes(1);
-      expect(props.onSuccess).toHaveBeenCalledWith('sign-in-with-facebook');
+      expect(props.onSuccess).toHaveBeenCalledWith('sign-in-with-facebook', userModel);
 
       expect(props.onFacebookLoginStart).toHaveBeenCalledTimes(1);
     });
@@ -85,7 +89,7 @@ describe('AuthLoginComponent', () => {
       jest.spyOn(AuthGoogleService, 'signIn').mockReturnValue(
         Promise.resolve({
           email: 'email@example.com',
-          user: userModelStub(),
+          user: userModel,
           meta: {
             token: 'token',
             refresh_token: 'refresh token',
@@ -99,7 +103,7 @@ describe('AuthLoginComponent', () => {
 
       expect(props.onClose).toHaveBeenCalledTimes(1);
       expect(props.onSuccess).toHaveBeenCalledTimes(1);
-      expect(props.onSuccess).toHaveBeenCalledWith('sign-in-with-google');
+      expect(props.onSuccess).toHaveBeenCalledWith('sign-in-with-google', userModel);
 
       expect(props.onGoogleLoginStart).toHaveBeenCalledTimes(1);
     });
@@ -123,7 +127,7 @@ describe('AuthLoginComponent', () => {
       jest.spyOn(AuthLoginServiceModule, 'AuthLoginService').mockReturnValue(
         Promise.resolve({
           ok: true,
-          data: userModelStub(),
+          data: userModel,
           headers: {} as Headers,
         })
       );
@@ -139,7 +143,7 @@ describe('AuthLoginComponent', () => {
 
       expect(props.onClose).toHaveBeenCalledTimes(1);
       expect(props.onSuccess).toHaveBeenCalledTimes(1);
-      expect(props.onSuccess).toHaveBeenCalledWith('sign-in-with-email');
+      expect(props.onSuccess).toHaveBeenCalledWith('sign-in-with-email', userModel);
     });
 
     it('should not do anything if email is invalid', () => {

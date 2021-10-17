@@ -6,6 +6,8 @@ import { AuthRegistrationComponent } from 'components/auth/registration/componen
 import { AuthScreenEnum } from 'components/auth/screen.enum';
 import { IconThickCrossTemplate } from 'components/icon/thick/cross-template';
 import { functionNoop } from 'helpers/function/noop';
+import { tealiumUserEventTracker } from 'services/tealium/user-event-tracker';
+import { UserModelInterface } from 'services/user/model.interface';
 
 import { AuthSuccessTypeEnum } from '../success-type.enum';
 import { authTracker } from '../tracker';
@@ -37,17 +39,24 @@ export const AuthModalComponent = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authScreen]);
 
-  const onSuccess = (type?: AuthSuccessTypeEnum): void => {
+  const onSuccess = (type?: AuthSuccessTypeEnum, user?: UserModelInterface): void => {
     if (type === AuthSuccessTypeEnum.signInWithEmail) {
       authTracker.onSuccessLoginWithEmail(eventLabel);
+      user && tealiumUserEventTracker.onLoginWithEmail(user);
     }
 
     if (type === AuthSuccessTypeEnum.signInWithFacebook) {
       authTracker.onSuccessLoginWithFacebook(eventLabel);
+      user && tealiumUserEventTracker.onLoginWithFacebook(user);
     }
 
     if (type === AuthSuccessTypeEnum.signInWithGoogle) {
       authTracker.onSuccessLoginWithGoogle(eventLabel);
+      user && tealiumUserEventTracker.onLoginWithGoogle(user);
+    }
+
+    if (type === AuthSuccessTypeEnum.registerWithEmail) {
+      user && tealiumUserEventTracker.onRegisterWithEmail(user);
     }
 
     success();

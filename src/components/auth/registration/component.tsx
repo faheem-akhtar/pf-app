@@ -87,7 +87,7 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
 
                     // Close modal
                     props.onClose();
-                    props.onSuccess(AuthSuccessTypeEnum.registerWithEmail);
+                    props.onSuccess(AuthSuccessTypeEnum.registerWithEmail, e.data);
                   } else {
                     setErrorMessage(e.error.body || `${t('auth/something-wrong')}! ${t('auth/try-later')}`);
 

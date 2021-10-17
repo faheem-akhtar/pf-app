@@ -58,4 +58,34 @@ export const AnalyticsTealiumService: TealiumServiceInterface = {
       ...data,
     });
   },
+  onUserRegistered(user) {
+    this.link({
+      tealium_event: TealiumEventEnum.userRegister,
+      event_type: TealiumEventTypeEnum.click,
+      event_category: TealiumEventCategoryEnum.user,
+      event_action: TealiumEventActionEnum.register,
+      event_label: 'email',
+      ...user,
+    });
+  },
+  onUserLoggedIn(user, provider) {
+    this.link({
+      tealium_event: TealiumEventEnum.userLogin,
+      event_type: TealiumEventTypeEnum.click,
+      event_category: TealiumEventCategoryEnum.user,
+      event_action: TealiumEventActionEnum.signIn,
+      event_label: provider,
+      ...user,
+    });
+  },
+  onUserLoggedOut(user) {
+    this.link({
+      tealium_event: TealiumEventEnum.userLogout,
+      event_type: TealiumEventTypeEnum.click,
+      event_label: '',
+      event_category: TealiumEventCategoryEnum.user,
+      event_action: TealiumEventActionEnum.signOut,
+      ...user,
+    });
+  },
 };

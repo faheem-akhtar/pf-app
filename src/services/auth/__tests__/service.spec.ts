@@ -3,6 +3,7 @@
  */
 
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { tealiumServiceStub } from 'stubs/tealium/service.stub';
 import { userModelStub } from 'stubs/user/model.stub';
 
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
@@ -85,6 +86,7 @@ describe('AuthService', () => {
 
   describe('logOut', () => {
     it('should clear token and reset token and notify server', async () => {
+      window.utag = tealiumServiceStub();
       const fetchMock = mockWindowFetch();
       JwtTokenService['token'] = 'user_authenticated';
       const setTokenSpy = jest.spyOn(JwtTokenService, 'setToken');
@@ -96,6 +98,7 @@ describe('AuthService', () => {
       expect(setTokenSpy).toBeCalled();
       expect(setRefreshTokenSpy).toBeCalled();
       expect(AuthService['signOut']).toBeCalled();
+      expect(window.utag.link).toHaveBeenCalledTimes(1);
       expect(fetchMock).toHaveBeenCalledWith('default-origin/en/api/user/logout', {
         body: undefined,
         headers: { 'content-type': 'application/vnd.api+json', locale: 'en', 'x-pf-jwt': 'Bearer user_authenticated' },

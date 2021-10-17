@@ -4,18 +4,22 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { userModelStub } from 'stubs/user/model.stub';
+
 import * as AuthForgotPasswordComponentModule from 'components/auth/forgot-password/component';
 import * as AuthLoginComponentModule from 'components/auth/login/component';
 import * as AuthRegistrationComponentModule from 'components/auth/registration/component';
 import { AuthScreenEnum } from 'components/auth/screen.enum';
 import { AuthSuccessTypeEnum } from 'components/auth/success-type.enum';
 import { SavedPropertyAuthLoginTemplate } from 'components/saved-property/auth/login/template';
+import { UserModelInterface } from 'services/user/model.interface';
 
 import { AuthModalComponent } from '../component';
 import { AuthModalPropsInterface } from '../props.interface';
 
 describe('AuthModalComponent', () => {
   let props: AuthModalPropsInterface;
+  let userModel: UserModelInterface;
 
   beforeEach(() => {
     window.dataLayer = [];
@@ -24,6 +28,7 @@ describe('AuthModalComponent', () => {
       cancel: jest.fn(),
       success: jest.fn(),
     };
+    userModel = userModelStub();
   });
 
   it('renders without throwing any errors', () => {
@@ -103,7 +108,10 @@ describe('AuthModalComponent', () => {
       jest
         .spyOn(AuthLoginComponentModule, 'AuthLoginComponent')
         .mockImplementationOnce(({ onSuccess }) => (
-          <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithEmail)} />
+          <button
+            data-testid='my-button'
+            onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithEmail, userModel)}
+          />
         ));
       render(<AuthModalComponent {...props} />);
 
@@ -126,7 +134,10 @@ describe('AuthModalComponent', () => {
       jest
         .spyOn(AuthLoginComponentModule, 'AuthLoginComponent')
         .mockImplementationOnce(({ onSuccess }) => (
-          <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithFacebook)} />
+          <button
+            data-testid='my-button'
+            onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithFacebook, userModel)}
+          />
         ));
       render(<AuthModalComponent {...props} />);
 
@@ -147,7 +158,10 @@ describe('AuthModalComponent', () => {
       jest
         .spyOn(AuthLoginComponentModule, 'AuthLoginComponent')
         .mockImplementationOnce(({ onSuccess }) => (
-          <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithGoogle)} />
+          <button
+            data-testid='my-button'
+            onClick={(): void => onSuccess(AuthSuccessTypeEnum.signInWithGoogle, userModel)}
+          />
         ));
       render(<AuthModalComponent {...props} />);
 
@@ -224,7 +238,10 @@ describe('AuthModalComponent', () => {
       jest
         .spyOn(AuthRegistrationComponentModule, 'AuthRegistrationComponent')
         .mockImplementationOnce(({ onSuccess }) => (
-          <button data-testid='my-button' onClick={(): void => onSuccess(AuthSuccessTypeEnum.registerWithEmail)} />
+          <button
+            data-testid='my-button'
+            onClick={(): void => onSuccess(AuthSuccessTypeEnum.registerWithEmail, userModel)}
+          />
         ));
       render(<AuthModalComponent {...props} initialScreen={AuthScreenEnum.registration} />);
 

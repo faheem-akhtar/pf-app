@@ -1,4 +1,5 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { tealiumServiceStub } from 'stubs/tealium/service.stub';
 import { windowStorageStub } from 'stubs/window/storage.stub';
 
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
@@ -27,6 +28,7 @@ describe('AuthStore', () => {
   };
 
   beforeEach(() => {
+    window.utag = tealiumServiceStub();
     signInSpy = jest.spyOn(AuthGoogleOneTapService, 'signIn');
 
     localStorageMock = windowStorageStub();
@@ -134,6 +136,7 @@ describe('AuthStore', () => {
 
       await store.logOut();
 
+      expect(window.utag.link).toHaveBeenCalledTimes(1);
       expect(store['windowLocalStorage'].removeItem).toHaveBeenCalledWith('user-authentication-user');
 
       expect(store['windowLocalStorage'].setItem).not.toHaveBeenCalled();
