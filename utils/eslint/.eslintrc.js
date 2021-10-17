@@ -1,4 +1,4 @@
-const mainConfig = require('../src/.eslintrc.js');
+const mainConfig = require('../../.eslintrc.js');
 
 module.exports = {
   ...mainConfig,

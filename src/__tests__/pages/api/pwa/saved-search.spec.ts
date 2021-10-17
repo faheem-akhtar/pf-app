@@ -94,7 +94,14 @@ describe('pagesApiPwaSavedSearch', () => {
     expect(resMock.end).toHaveBeenCalledWith();
 
     expect(consoleMock.error).toHaveBeenCalledTimes(1);
-    expect(consoleMock.error).toHaveBeenCalledWith('this is an error', 'save search api failed');
+    expect((consoleMock.error as jest.Mock).mock.calls).toMatchInlineSnapshot(`
+      Array [
+        Array [
+          "save search api failed",
+          "this is an error",
+        ],
+      ]
+    `);
   });
 
   it('can accept post data', async () => {

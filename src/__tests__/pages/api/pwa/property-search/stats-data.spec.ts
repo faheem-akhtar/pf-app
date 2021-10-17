@@ -46,6 +46,6 @@ describe('property stats-data api handler', () => {
     expect(resMock.end).toHaveBeenCalledTimes(1);
     expect(resMock.status).toHaveBeenCalledTimes(1);
     expect(resMock.status).toHaveBeenCalledWith(500);
-    expect(consoleMock.error).toHaveBeenCalledWith(expect.anything(), 'property search stats data failed');
+    expect(consoleMock.error).toHaveBeenCalledWith('property search stats data failed', expect.anything());
   });
 });

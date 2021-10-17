@@ -16,6 +16,11 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'pf-rules', 'simple-import-sort', 'testing-library', 'jest-dom'],
   root: true,
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   rules: {
     'new-cap': ['error', { newIsCap: true, capIsNew: false }],
     'no-console': 'error',
@@ -41,6 +46,7 @@ module.exports = {
         testIdPattern: '^[a-z]+(-[a-z]+)*$', // enforce the usage of kebab-case
       },
     ],
+    'pf-rules/console-first-argument-string': 'error',
     'pf-rules/export-name-validation': [
       'error',
       {

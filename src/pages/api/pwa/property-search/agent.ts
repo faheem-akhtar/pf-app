@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       res.status(500);
 
       // eslint-disable-next-line no-console
-      console.error(response.error, 'property search agent failed');
+      console.error('property search agent failed', response.error);
       res.end();
     }
   });

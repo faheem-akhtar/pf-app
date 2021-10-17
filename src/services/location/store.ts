@@ -85,7 +85,7 @@ export class LocationStore {
     }).then((result) => {
       if (!result.ok) {
         // eslint-disable-next-line no-console
-        console.error(result.error);
+        console.error('fetch locations for query failed', result.error);
         return [];
       }
 
@@ -98,7 +98,7 @@ export class LocationStore {
     this.fetchLocationsEtag({ locale: this.locale }).then((loadEtagResult) => {
       if (!loadEtagResult.ok) {
         // eslint-disable-next-line no-console
-        console.error(loadEtagResult.error);
+        console.error('fetch locations for etag failed', loadEtagResult.error);
         return;
       }
       // reload the locations if etag changed
@@ -108,7 +108,7 @@ export class LocationStore {
       }).then((result) => {
         if (!result.ok) {
           // eslint-disable-next-line no-console
-          console.error(result.error);
+          console.error('fetch all locations failed', result.error);
           return;
         }
         this.locations = result.data;

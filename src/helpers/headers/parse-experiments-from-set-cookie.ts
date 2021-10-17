@@ -26,7 +26,7 @@ export const headersParseExperimentsFromSetCookie = (valueOfSetCookieHeader: str
       }, {} as StatsContextAbTestsInterface);
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.error(e, `Failed to parse abtests from set cookie header: ${valueOfSetCookieHeader}`);
+    console.error(`Failed to parse abtests from set cookie header: ${valueOfSetCookieHeader}`, e);
     return {};
   }
 };

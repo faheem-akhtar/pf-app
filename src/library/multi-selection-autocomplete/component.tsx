@@ -69,7 +69,7 @@ export const MultiSelectionAutocompleteComponent = <T extends unknown>(
       .then(setSuggestions)
       .catch((e) => {
         // eslint-disable-next-line no-console
-        console.error(e, `MultiSelectionAutocompleteComponent.handleSuggestionsResult promise error`);
+        console.error(`MultiSelectionAutocompleteComponent.handleSuggestionsResult promise error`, e);
       })
       .then(() => setIsLoading(false));
   };

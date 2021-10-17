@@ -8,5 +8,5 @@ export function assertUnreachable(x: never): void {
     }
   }
   // eslint-disable-next-line no-console
-  console.error(x, 'AssertUnreachable called with');
+  console.error('AssertUnreachable called with', x);
 }

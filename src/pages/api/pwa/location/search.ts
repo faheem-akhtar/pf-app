@@ -10,7 +10,7 @@ export default (req: NextApiRequest, res: NextApiResponse): void => {
       res.end();
     } else {
       // eslint-disable-next-line no-console
-      console.error(response.error);
+      console.error('location api failed', response.error);
       res.status(500);
       res.end();
     }

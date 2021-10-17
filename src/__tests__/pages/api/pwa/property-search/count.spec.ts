@@ -28,21 +28,26 @@ describe('pages/api/property-search/count', () => {
     expect(resMock.end).toHaveBeenCalledTimes(1);
     expect(resMock.status).toHaveBeenCalledTimes(1);
     expect(resMock.status).toHaveBeenCalledWith(500);
-    expect(consoleMock.error).toHaveBeenCalledWith(
-      expect.objectContaining({
-        body: 'response.text',
-        payload: {
-          headers: {
-            Host: 'www.propertyfinder.ae',
-            locale: 'en',
-            'x-akamai-device-characteristics': 'is_mobile=true&is_tablet=false',
-            'x-forwarded-proto': 'https',
+    expect((consoleMock.error as jest.Mock).mock.calls).toMatchInlineSnapshot(`
+      Array [
+        Array [
+          "property search count failed",
+          Object {
+            "body": "response.text",
+            "payload": Object {
+              "headers": Object {
+                "Host": "www.propertyfinder.ae",
+                "locale": "en",
+                "x-akamai-device-characteristics": "is_mobile=true&is_tablet=false",
+                "x-forwarded-proto": "https",
+              },
+              "method": "GET",
+            },
+            "status": 200,
+            "url": "http://website-pf-local/en/api/search/count?filter%5Bcategory_id%5D=2&filter%5Bprice_type%5D=y&sort=mr&page%5Bnumber%5D=1&break_thru_cache=0.2",
           },
-          method: 'GET',
-        },
-        status: 200,
-      }),
-      'property search count failed'
-    );
+        ],
+      ]
+    `);
   });
 });

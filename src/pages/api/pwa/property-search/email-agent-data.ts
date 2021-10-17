@@ -14,7 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
       res.status(500);
 
       // eslint-disable-next-line no-console
-      console.error(response.error, 'property search email agent data failed');
+      console.error('property search email agent data failed', response.error);
       res.end();
     }
   });
