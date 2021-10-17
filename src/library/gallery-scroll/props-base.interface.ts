@@ -4,7 +4,7 @@ export interface GalleryScrollPropsBaseInterface {
   /**
    * Clicked the gallery
    */
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: () => void;
 
   /**
    * Image fit behavior

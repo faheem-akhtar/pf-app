@@ -15,8 +15,10 @@ export const galleryScrollMakeInitialState = (
     }
     return { ...acc, [index]: 100 };
   }, galleryScrollComputeItemPositionsXUpdate(items.length, isRtl, 0)),
-  pointerPositionStart: null,
-  pointerPositionCurrent: null,
+  pointerPositionStartX: null,
+  pointerPositionStartY: null,
+  pointerPositionCurrentX: null,
+  scrollDirection: null,
   isTouched: false,
   browse: GalleryScrollBrowseEnum.none,
 });

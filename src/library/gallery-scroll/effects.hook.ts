@@ -7,8 +7,8 @@ import { GalleryScrollActionType } from './action.type';
 export const useGalleryScrollEffects = (
   isMouseOrTouchDown: boolean,
   dispatch: Dispatch<GalleryScrollActionType>,
-  isDragging: boolean,
-  onGalleryClick: Function
+  isClickLike: boolean,
+  onClick: () => void
 ): void => {
   useEffect(() => {
     if (!isMouseOrTouchDown) {
@@ -21,28 +21,25 @@ export const useGalleryScrollEffects = (
       return false;
     };
 
-    const onMove = (positionX: number, firstTouchMove?: { positionX: number; positionY: number }): void => {
-      dispatch({ type: 'move', positionX, firstTouchMove });
+    const onMove = (positionX: number, positionY: number): void => {
+      dispatch({ type: 'move', positionX, positionY });
     };
     const onEnd = (e: Event): void => {
       e.stopPropagation();
-      // Prevent dragging and keeps the active position when the click is triggered
-      if (!isDragging) {
-        onGalleryClick();
-        return;
-      }
 
       dispatch({ type: 'end' });
     };
 
     const onMouseMove = (e: MouseEvent): void => {
-      onMove(e.clientX);
+      onMove(e.clientX, e.clientY);
     };
     const onTouchMove = (e: TouchEvent): void => {
-      const firstTouchMove = { positionX: e.touches[0].clientX, positionY: e.touches[0].clientY };
-      onMove(e.changedTouches[0].pageX, firstTouchMove);
+      onMove(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
     };
     const onTouchEnd = (e: TouchEvent): void => {
+      if (isClickLike) {
+        onClick();
+      }
       // we should prevent default because otherwise it will trigger mouse down right after touchend
       e.preventDefault();
       onEnd(e);

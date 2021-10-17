@@ -3,16 +3,24 @@ import { galleryScrollGetTouchDirection } from '../get-touch-direction';
 
 describe('galleryScrollGetTouchDirection', () => {
   it('should return the vertical', () => {
-    const initialTouch = { positionX: 7, positionY: 9 };
-    const firstTouchMove = { positionX: 6, positionY: 7 };
-
-    expect(galleryScrollGetTouchDirection(initialTouch, firstTouchMove)).toBe(GalleryScrollDirectionEnum.VERTICAL);
+    expect(
+      galleryScrollGetTouchDirection({
+        pointerPositionSecondX: 7,
+        pointerPositionSecondY: 9,
+        pointerPositionStartX: 6,
+        pointerPositionStartY: 7,
+      })
+    ).toBe(GalleryScrollDirectionEnum.VERTICAL);
   });
 
   it('should return the horizontal', () => {
-    const initialTouch = { positionX: 7, positionY: 9 };
-    const firstTouchMove = { positionX: 4, positionY: 7 };
-
-    expect(galleryScrollGetTouchDirection(initialTouch, firstTouchMove)).toBe(GalleryScrollDirectionEnum.HORIZONTAL);
+    expect(
+      galleryScrollGetTouchDirection({
+        pointerPositionSecondX: 7,
+        pointerPositionSecondY: 9,
+        pointerPositionStartX: 4,
+        pointerPositionStartY: 7,
+      })
+    ).toBe(GalleryScrollDirectionEnum.HORIZONTAL);
   });
 });

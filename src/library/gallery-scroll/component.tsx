@@ -4,6 +4,7 @@ import { functionNoop } from 'helpers/function/noop';
 import { usePrevious } from 'hooks/previous.hook';
 
 import { GalleryScrollComponentPropsInterface } from './component-props.interface';
+import { GalleryScrollDirectionEnum } from './direction.enum';
 import { useGalleryScrollEffects } from './effects.hook';
 import { galleryScrollGetSlidingStyles } from './get-sliding-styles';
 import { galleryScrollMakeInitialState } from './make-initial-state';
@@ -26,7 +27,14 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
   const [initialReducerState] = useState(() => galleryScrollMakeInitialState(items, isRtl));
 
   const [state, dispatch] = useReducer(reducer, initialReducerState);
-  useGalleryScrollEffects(state.pointerPositionStart !== null, dispatch, state.isDragging, onClick);
+  useGalleryScrollEffects(
+    state.pointerPositionStartX !== null,
+    dispatch,
+    state.pointerPositionCurrentX === null ||
+      (state.pointerPositionCurrentX === state.pointerPositionStartX &&
+        state.scrollDirection !== GalleryScrollDirectionEnum.VERTICAL),
+    onClick
+  );
 
   const { activeIndex } = state;
 
@@ -36,15 +44,15 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
     setTimeout(() => onActiveIndexChange(activeIndex, numberOfImages));
   }
 
-  const onStart = (positionX: number, initialTouch?: { positionX: number; positionY: number }): void => {
+  const onStart = (positionX: number, positionY: number): void => {
     const galleryRect = (galleryRef.current as HTMLDivElement).getBoundingClientRect();
 
     dispatch({
       type: 'start',
       positionX,
+      positionY,
       galleryLeft: galleryRect.left,
       galleryRight: galleryRect.right,
-      initialTouch,
     });
   };
 
@@ -63,7 +71,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
         hasMultipleImages
           ? (e): void => {
               e.preventDefault();
-              onStart(e.clientX);
+              onStart(e.clientX, e.clientY);
               onTouch();
             }
           : functionNoop
@@ -71,8 +79,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
       onTouchStart={
         hasMultipleImages
           ? (e): void => {
-              const initialTouch = { positionX: e.touches[0].clientX, positionY: e.touches[0].clientY };
-              onStart(e.changedTouches[0].pageX, initialTouch);
+              onStart(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
               onTouch();
             }
           : functionNoop

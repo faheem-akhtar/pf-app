@@ -34,7 +34,7 @@ describe('AppearOnScrollComponent', () => {
   });
 
   it('should disconnect observer on unmount', async () => {
-    mockReactUseReducer({ ...initialState3Images, pointerPositionStart: 20 });
+    mockReactUseReducer({ ...initialState3Images, pointerPositionStartX: 20 });
     const { unmount } = render(<GalleryScrollComponent {...defaultProps} />);
 
     unmount();
@@ -48,30 +48,30 @@ describe('AppearOnScrollComponent', () => {
   });
 
   it('should dispatch start on mouse down', () => {
-    const { dispatchMock } = mockReactUseReducer({ ...initialState3Images, pointerPositionStart: 20 });
+    const { dispatchMock } = mockReactUseReducer({ ...initialState3Images, pointerPositionStartX: 20 });
 
     const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} />);
 
-    fireEvent.mouseDown(getByTestId('gallery-scroll'), { clientX: 5 });
+    fireEvent.mouseDown(getByTestId('gallery-scroll'), { clientX: 5, clientY: 8 });
 
     expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(dispatchMock).toHaveBeenCalledWith({
       galleryLeft: 0,
       galleryRight: 0,
       positionX: 5,
+      positionY: 8,
       type: 'start',
     });
   });
 
   it('should dispatch start on touch start', () => {
-    const { dispatchMock } = mockReactUseReducer({ ...initialState3Images, pointerPositionStart: 20 });
+    const { dispatchMock } = mockReactUseReducer({ ...initialState3Images, pointerPositionStartX: 20 });
 
     const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} />);
 
     fireEvent.touchStart(getByTestId('gallery-scroll'), {
       ...touchEventStub(),
-      changedTouches: [{ pageX: 5 } as Touch] as unknown as React.TouchList,
-      touches: [{ clientX: 3, clientY: 5 } as Touch],
+      changedTouches: [{ pageX: 5, pageY: 6 } as Touch] as unknown as React.TouchList,
     });
 
     expect(dispatchMock).toHaveBeenCalledTimes(1);
@@ -79,8 +79,8 @@ describe('AppearOnScrollComponent', () => {
       galleryLeft: 0,
       galleryRight: 0,
       positionX: 5,
+      positionY: 6,
       type: 'start',
-      initialTouch: { positionX: 3, positionY: 5 },
     });
   });
 

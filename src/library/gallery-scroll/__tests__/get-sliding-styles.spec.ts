@@ -30,7 +30,7 @@ describe('galleryScrollGetSlidingStyles', () => {
 
   it('should return instant transform while dragging', () => {
     const result = galleryScrollGetSlidingStyles(
-      { ...initialState4Images, isDragging: true, pointerPositionCurrent: 5, pointerPositionStart: 50 },
+      { ...initialState4Images, isDragging: true, pointerPositionCurrentX: 5, pointerPositionStartX: 50 },
       0,
       images.length
     );

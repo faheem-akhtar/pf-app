@@ -16,10 +16,10 @@ export function galleryScrollGetSlidingStyles(
   const isSliding = slidingIndexes.includes(index);
 
   if (isSliding) {
-    if (state.isDragging && state.pointerPositionCurrent !== null && state.pointerPositionStart !== null) {
+    if (state.isDragging && state.pointerPositionCurrentX !== null && state.pointerPositionStartX !== null) {
       // Dragging & item sliding
       // Set position instantly with current drag value
-      const pixels = state.pointerPositionCurrent - state.pointerPositionStart;
+      const pixels = state.pointerPositionCurrentX - state.pointerPositionStartX;
       const style = {
         transitionDuration: '0ms',
         transform: `translateX(calc(${state.itemsPositionsX[index]}% + ${pixels}px))`,

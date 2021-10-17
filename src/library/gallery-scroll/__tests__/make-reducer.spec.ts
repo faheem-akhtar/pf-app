@@ -1,6 +1,5 @@
 import { GalleryScrollActionType } from '../action.type';
 import { GalleryScrollBrowseEnum } from '../browse.enum';
-import { GalleryScrollDirectionEnum } from '../direction.enum';
 import { GalleryScrollItemInterface } from '../item.interface';
 import { galleryScrollMakeInitialState } from '../make-initial-state';
 import { galleryScrollMakeReducer } from '../make-reducer';
@@ -21,17 +20,29 @@ describe('galleryScrollMakeReducer', () => {
 
   describe('on start', () => {
     it('on the left should set browse to prev', () => {
-      const result = reducer(initialState3Images, { type: 'start', positionX: 10, galleryLeft: 0, galleryRight: 100 });
+      const result = reducer(initialState3Images, {
+        type: 'start',
+        positionX: 10,
+        positionY: 5,
+        galleryLeft: 0,
+        galleryRight: 100,
+      });
 
       expect(result.isDragging).toBe(false);
-      expect(result.pointerPositionStart).toBe(10);
-      expect(result.pointerPositionCurrent).toBe(10);
+      expect(result.pointerPositionStartX).toBe(10);
+      expect(result.pointerPositionCurrentX).toBe(10);
       expect(result.browse).toBe(GalleryScrollBrowseEnum.previous);
       expect(result.isTouched).toBe(true);
     });
 
     it('on the right should set browse to next', () => {
-      const result = reducer(initialState3Images, { type: 'start', positionX: 50, galleryLeft: 0, galleryRight: 100 });
+      const result = reducer(initialState3Images, {
+        type: 'start',
+        positionX: 50,
+        positionY: 5,
+        galleryLeft: 0,
+        galleryRight: 100,
+      });
 
       expect(result.browse).toBe(GalleryScrollBrowseEnum.next);
     });
@@ -39,64 +50,63 @@ describe('galleryScrollMakeReducer', () => {
 
   describe('on move', () => {
     it('should ignore action if not dragging', () => {
-      const result = reducer(initialState3Images, { type: 'move', positionX: 50 });
+      const result = reducer(initialState3Images, { type: 'move', positionY: 5, positionX: 50 });
 
       expect(result).toBe(initialState3Images);
     });
 
-    it('should set pointerPositionCurrent', () => {
-      const result = reducer({ ...initialState3Images, pointerPositionStart: 5 }, { type: 'move', positionX: 50 });
+    it('should set pointerPositionCurrentX', () => {
+      const result = reducer(
+        { ...initialState3Images, pointerPositionStartX: 5, pointerPositionStartY: 5 },
+        { type: 'move', positionY: 5, positionX: 50 }
+      );
 
-      expect(result.pointerPositionCurrent).toBe(50);
+      expect(result.pointerPositionCurrentX).toBe(50);
     });
 
-    it('should set pointerPositionCurrent but should not start dragging', () => {
-      const result = reducer({ ...initialState3Images, pointerPositionStart: 5 }, { type: 'move', positionX: 6 });
+    it('should set pointerPositionCurrentX but should not start dragging', () => {
+      const result = reducer(
+        { ...initialState3Images, pointerPositionStartX: 5, pointerPositionStartY: 5 },
+        { type: 'move', positionY: 5, positionX: 6 }
+      );
 
       expect(result.isDragging).toBe(false);
-      expect(result.pointerPositionCurrent).toBe(6);
+      expect(result.pointerPositionCurrentX).toBe(6);
     });
 
     it('should not set dragging when event is onMouseMove', () => {
-      const result = reducer({ ...initialState3Images, pointerPositionStart: 5 }, { type: 'move', positionX: 50 });
+      const result = reducer(
+        { ...initialState3Images, pointerPositionStartX: 5, pointerPositionStartY: 100 },
+        { type: 'move', positionY: 5, positionX: 50 }
+      );
 
       expect(result.isDragging).toBe(false);
-      expect(result.pointerPositionCurrent).toBe(50);
+      expect(result.pointerPositionCurrentX).toBe(50);
     });
 
     it('should set dragging and touch direction to horizontal', () => {
       const result = reducer(
-        { ...initialState3Images, pointerPositionStart: 5, initialTouch: { positionX: 7, positionY: 9 } },
-        { type: 'move', positionX: 50, firstTouchMove: { positionX: 4, positionY: 7 } }
+        { ...initialState3Images, pointerPositionStartX: 5, pointerPositionStartY: 5 },
+        { type: 'move', positionX: 50, positionY: 5 }
       );
 
       expect(result.isDragging).toBe(true);
-      expect(result.touchDirection).toBe(GalleryScrollDirectionEnum.HORIZONTAL);
     });
   });
 
   describe('on end', () => {
-    it('should return initial state when the touch direction is vertical', () => {
-      const result = reducer(
-        { ...initialState3Images, touchDirection: GalleryScrollDirectionEnum.VERTICAL },
-        { type: 'end' }
-      );
-
-      expect(result).toStrictEqual({ ...initialState3Images, touchDirection: 'vertical' });
-    });
-
-    it('should ignore action if pointerPositionCurrent is not set', () => {
+    it('should ignore action if pointerPositionCurrentX is not set', () => {
       const result = reducer(initialState3Images, { type: 'end' });
 
-      expect(result).toBe(initialState3Images);
+      expect(result).toEqual(initialState3Images);
     });
 
     it('drag to left should move the index to seconds item', () => {
       const result = reducer(
         {
           ...initialState3Images,
-          pointerPositionStart: 50,
-          pointerPositionCurrent: 40,
+          pointerPositionStartX: 50,
+          pointerPositionCurrentX: 40,
           isDragging: true,
         },
         { type: 'end' }
@@ -110,8 +120,8 @@ describe('galleryScrollMakeReducer', () => {
       const result = reducer(
         {
           ...initialState3Images,
-          pointerPositionStart: 40,
-          pointerPositionCurrent: 50,
+          pointerPositionStartX: 40,
+          pointerPositionCurrentX: 50,
           isDragging: true,
         },
         { type: 'end' }

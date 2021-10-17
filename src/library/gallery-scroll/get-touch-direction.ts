@@ -1,14 +1,14 @@
 import { GalleryScrollDirectionEnum } from './direction.enum';
+import { GalleryScrollGetTouchDirectionPropsInterface } from './get-touch-direction-props.interface';
 
 /**
  * Calculates direction of touch move
  */
 export const galleryScrollGetTouchDirection = (
-  initialTouch: { positionX: number; positionY: number },
-  firstTouchMove: { positionX: number; positionY: number }
+  props: GalleryScrollGetTouchDirectionPropsInterface
 ): GalleryScrollDirectionEnum => {
-  const xDiff = Math.abs(initialTouch.positionX - firstTouchMove.positionX);
-  const yDiff = Math.abs(initialTouch.positionY - firstTouchMove.positionY);
+  const xDiff = Math.abs(props.pointerPositionSecondX - props.pointerPositionStartX);
+  const yDiff = Math.abs(props.pointerPositionSecondY - props.pointerPositionStartY);
 
   return xDiff > yDiff ? GalleryScrollDirectionEnum.HORIZONTAL : GalleryScrollDirectionEnum.VERTICAL;
 };
