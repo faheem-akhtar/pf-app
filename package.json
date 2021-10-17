@@ -52,6 +52,7 @@
     "src/**/*spec.{js,ts,tsx}": "yarn test"
   },
   "dependencies": {
+    "@datadog/browser-logs": "^3.6.11",
     "@propertyfinder/pf-fe-logger": "^2.0.0",
     "@propertyfinder/pf-frontend-common": "^28.0.4",
     "@types/grecaptcha": "^3.0.3",

@@ -57,3 +57,8 @@ To test a single file just add the path to the end of the comment like:
 ```bash
 yarn test:update src/components/header/__tests__/component.spec.tsx
 ```
+
+### Logging
+
+Some console methods have been customized for datadog implementation in the client side.
+Nothing is required to send them to datadog, use console methods as normal. If first parameter is a string it will use that as message, otherwise the message will be `Generic`.
