@@ -32,7 +32,8 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
 
   const prevActiveIndex = usePrevious(activeIndex);
   if (prevActiveIndex !== undefined && prevActiveIndex !== activeIndex) {
-    onActiveIndexChange(activeIndex, numberOfImages);
+    // should use setTimeout, otherwise callback code can not use react setState
+    setTimeout(() => onActiveIndexChange(activeIndex, numberOfImages));
   }
 
   const onStart = (positionX: number, initialTouch?: { positionX: number; positionY: number }): void => {
