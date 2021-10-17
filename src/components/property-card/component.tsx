@@ -117,7 +117,8 @@ export const PropertyCardComponent = ({
     price: propertySerpObfuscatedGetPriceText(property),
     customTitle: propertySerpObfuscatedGetName(property),
     location: propertySerpObfuscatedGetLocationTreePath(property),
-    bathrooms: typeof bathsValue === 'number' ? t('n-bathroom', { count: bathsValue }, bathsValue > 7) : bathsValue,
+    bathrooms:
+      typeof bathsValue === 'number' && bathsValue > 0 ? t('n-bathroom', { count: bathsValue }, bathsValue > 7) : null,
     bedrooms: typeof bedsValue === 'number' ? t('n-bedroom', { count: bedsValue }, bedsValue > 7) : bedsValue,
     area: propertySerpObfuscatedGetAreaValue(property),
     publishDate: `${t('Listed')} ${propertySerpObfuscatedGetPublishDateValue(property)}`,
