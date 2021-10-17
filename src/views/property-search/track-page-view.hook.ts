@@ -77,10 +77,10 @@ export const usePropertySearchTrackPageView = (
       });
     }
 
-    statsDataPromiseRef.current = statsDataPromise;
-
     return statsDataResult;
   });
+
+  statsDataPromiseRef.current = statsDataPromise;
 
   return {
     statsDataPromise,
