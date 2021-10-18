@@ -47,6 +47,18 @@ module.exports = {
       },
     ],
     'pf-rules/console-first-argument-string': 'error',
+    'pf-rules/enforce-extension-in-folder': [
+      'error',
+      {
+        rootFolder: __dirname.split('/').pop(),
+        ignoreBarrelFiles: true,
+        foldersAndExtensions: {
+          stubs: 'stub',
+          mocks: 'mock',
+          __tests__: 'spec',
+        },
+      },
+    ],
     'pf-rules/export-name-validation': [
       'error',
       {

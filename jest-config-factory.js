@@ -34,7 +34,7 @@ module.exports = ({ testRegex, moduleFileExtensions }) => ({
 
   testEnvironment: 'node',
   testRegex,
-  setupFilesAfterEnv: ['<rootDir>/mocks/global-react.ts', '<rootDir>/mocks/setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/mocks/global-react.mock.ts', '<rootDir>/mocks/setup.mock.ts'],
   moduleDirectories: ['node_modules'],
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\](?!lodash-es/).+\\.js$'],
 });
