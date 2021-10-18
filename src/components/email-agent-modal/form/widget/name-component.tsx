@@ -13,7 +13,6 @@ export const EmailAgentModalFormWidgetNameComponent: React.FunctionComponent<
       onChange={onChange}
       value={value}
       placeholder={t('name')}
-      error={!!error}
       errorText={error}
     />
   </EmailAgentModalFormFieldTemplate>

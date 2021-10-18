@@ -13,7 +13,6 @@ export const SelectFieldTemplate = <V extends unknown>({
   value,
   disabled,
   options,
-  error = false,
   errorText,
   id,
   name,
@@ -33,7 +32,7 @@ export const SelectFieldTemplate = <V extends unknown>({
             [styles.fieldEmpty]: isEmpty,
             [styles.fieldWithIcon]: dropdownIcon,
             [styles.fieldFloating]: !!label && !isEmpty,
-            [styles['field--error']]: error,
+            [styles['field--error']]: !!errorText,
           })}
           onChange={(e): void => {
             const newIndex = Number((e.target as HTMLSelectElement).value);
@@ -50,7 +49,7 @@ export const SelectFieldTemplate = <V extends unknown>({
 
         {dropdownIcon && <IconThinChevronDownTemplate class={styles.icon} />}
       </div>
-      {error && <span className={styles.errorText}>{errorText}</span>}
+      {errorText && <span className={styles.errorText}>{errorText}</span>}
     </div>
   );
 };

@@ -85,7 +85,6 @@ export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterf
             placeholder={t('email')}
             type='email'
             value={email}
-            error={!!errors[AuthForgotPasswordFieldEnum.email]}
             onChange={(value): void => {
               validate({
                 [AuthForgotPasswordFieldEnum.email]: value,

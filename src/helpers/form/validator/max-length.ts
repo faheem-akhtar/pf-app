@@ -7,7 +7,7 @@ export const formValidatorMaxLength = (
 ): FormFieldValidatorType => {
   return {
     getError(value: string): string {
-      const errorMessage = message.replace('{max-length}', String(maxLength));
+      const errorMessage = message.replace('{{max-length}}', String(maxLength));
 
       if (inclusive) {
         return value.length >= maxLength ? errorMessage : '';

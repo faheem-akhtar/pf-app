@@ -13,7 +13,6 @@ export default {
   args: {
     type: 'text',
     disabled: false,
-    error: false,
     focus: false,
     value: '',
     floatPlaceholder: true,
@@ -79,7 +78,6 @@ Error.args = {
   onChange: action('onChange'),
   onFocus: action('onFocus'),
   onBlur: action('onBlur'),
-  error: true,
   errorText: 'Error message goes here',
 };
 

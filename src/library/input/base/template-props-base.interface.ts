@@ -53,12 +53,6 @@ export interface InputBaseTemplatePropsBaseInterface {
   textarea?: boolean;
 
   /**
-   * If `true`, the label is displayed in an error state.
-   * @default false
-   */
-  error?: boolean;
-
-  /**
    * The error text content.
    */
   errorText?: string;

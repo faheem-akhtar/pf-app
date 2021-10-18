@@ -55,7 +55,6 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
             floatPlaceholder={false}
             placeholder={t('save_search/name-placeholder')}
             value={name.value}
-            error={!!name.error}
             onChange={(value): void => {
               setGeneralError('');
               setName(value);

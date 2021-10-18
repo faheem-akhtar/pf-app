@@ -14,7 +14,6 @@ export const EmailAgentModalFormWidgetEmailComponent: React.FunctionComponent<
       value={value}
       placeholder={t('email')}
       type='email'
-      error={!!error}
       errorText={error}
     />
   </EmailAgentModalFormFieldTemplate>

@@ -22,7 +22,7 @@ export const InputPhoneNumberTemplate = (props: InputPhoneNumberTemplatePropsInt
         <div
           ref={props.rootRef}
           className={domClassMerge(styles.container, {
-            [styles[`container--error`]]: props.error,
+            [styles[`container--error`]]: !!props.errorText,
             [styles[`container--focus`]]: props.focus,
           })}
           onClick={props.onClickToggle}

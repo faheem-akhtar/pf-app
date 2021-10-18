@@ -13,7 +13,6 @@ export const EmailAgentModalFormWidgetPhoneComponent: React.FunctionComponent<
       onChange={onChange}
       value={value}
       placeholder={t('phone')}
-      error={!!error}
       errorText={error}
     />
   </EmailAgentModalFormFieldTemplate>

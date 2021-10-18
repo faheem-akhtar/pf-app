@@ -88,7 +88,6 @@ export const PropertyShareEmailFormComponent = ({
           value={email}
           type='email'
           inputClassName={styles.input}
-          error={!!errors.email}
           errorText={errors.email}
           onChange={(value): void => {
             validate({ [PropertyShareEmailFieldsEnum.email]: value });
@@ -102,7 +101,6 @@ export const PropertyShareEmailFormComponent = ({
           type='email'
           value={friendEmail}
           inputClassName={styles.input}
-          error={!!errors.friendsEmail}
           errorText={errors.friendsEmail}
           onChange={(value): void => {
             validate({ [PropertyShareEmailFieldsEnum.friendsEmail]: value });
@@ -115,7 +113,6 @@ export const PropertyShareEmailFormComponent = ({
         <InputBaseComponent
           value={message}
           inputClassName={styles.textarea}
-          error={!!errors.message}
           textarea
           errorText={errors.message}
           onChange={(value): void => {

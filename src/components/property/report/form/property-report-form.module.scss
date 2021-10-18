@@ -23,3 +23,9 @@
   margin: calc(var(--spacing) * 3) auto 0 auto;
   text-transform: capitalize;
 }
+
+.field__error {
+  color: var(--color-feedback-error-base);
+  font-size: var(--font-size-09);
+  padding-top: spacingd(2);
+}

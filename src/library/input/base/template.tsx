@@ -17,7 +17,6 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
     floatPlaceholder = true,
     value,
     disabled = false,
-    error = false,
     errorText,
     focus = false,
     placeholder,
@@ -38,7 +37,7 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
       <div
         className={domClassMerge(styles.container, className, {
           [styles[`container--disabled`]]: disabled,
-          [styles[`container--error`]]: error,
+          [styles[`container--error`]]: !!errorText,
           [styles[`container--focused`]]: focus,
           [styles[`container--textarea`]]: textarea,
         })}
@@ -50,7 +49,7 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
             id={props.id}
             name={props.name}
             aria-label={props.name}
-            aria-invalid={error}
+            aria-invalid={!!errorText}
             aria-errormessage={errorText}
             type={type}
             value={value}
@@ -78,7 +77,7 @@ export const InputBaseTemplate = (props: InputBaseTemplatePropsBaseInterface): J
       </div>
 
       {helperText && <p className={styles.helperText}>{helperText}</p>}
-      {error && errorText && (
+      {errorText && (
         <p id={errorText} className={styles.errorText}>
           {errorText}
         </p>

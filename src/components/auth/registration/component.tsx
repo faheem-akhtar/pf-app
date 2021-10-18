@@ -108,7 +108,6 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
             placeholder={t('auth/first-name')}
             type='text'
             value={firstName}
-            error={!!errors[AuthRegistrationFieldEnum.firstName]}
             onChange={(value): void => {
               !validate({
                 [AuthRegistrationFieldEnum.firstName]: value,
@@ -126,7 +125,6 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
             placeholder={t('auth/last-name')}
             type='text'
             value={lastName}
-            error={!!errors[AuthRegistrationFieldEnum.lastName]}
             onChange={(value): void => {
               !validate({
                 [AuthRegistrationFieldEnum.lastName]: value,
@@ -143,7 +141,6 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
             type='email'
             placeholder={t('email')}
             value={email}
-            error={!!errors[AuthRegistrationFieldEnum.email]}
             onChange={(value): void => {
               validate({
                 [AuthRegistrationFieldEnum.email]: value,
@@ -160,7 +157,6 @@ export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface)
             type='password'
             placeholder={t('password')}
             value={password}
-            error={!!errors[AuthRegistrationFieldEnum.password]}
             onChange={(value): void => {
               !validate({
                 [AuthRegistrationFieldEnum.password]: value,

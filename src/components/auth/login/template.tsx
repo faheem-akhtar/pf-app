@@ -54,7 +54,6 @@ export const AuthLoginTemplate: FunctionComponent<AuthLoginTemplatePropsInterfac
           placeholder={props.t('email')}
           type='email'
           value={props.email}
-          error={!!props.errors[AuthLoginFieldEnum.email]}
           onChange={props.onEmailChange}
           errorText={props.errors[AuthLoginFieldEnum.email]}
         />
@@ -66,7 +65,6 @@ export const AuthLoginTemplate: FunctionComponent<AuthLoginTemplatePropsInterfac
           placeholder={props.t('password')}
           type='password'
           value={props.password}
-          error={!!props.errors[AuthLoginFieldEnum.password]}
           onChange={props.onPasswordChange}
           errorText={props.errors[AuthLoginFieldEnum.password]}
         />
