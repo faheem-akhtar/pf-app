@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 
 import { AuthModalComponent } from 'components/auth/modal/component';
 import { AuthScreenEnum } from 'components/auth/screen.enum';
@@ -9,6 +9,7 @@ import { SavedPropertyAuthLoginTemplate } from 'components/saved-property/auth/l
 import { savedPropertyAuthModalStorageKey } from 'components/saved-property/auth/modal/storage-key';
 import { savedPropertyTracker } from 'components/saved-property/tracker';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
+import { UserContext } from 'context/user/context';
 import { functionNoop } from 'helpers/function/noop';
 import { useServicesDfpAds } from 'services/dfp/ads.hook';
 import { WindowService } from 'services/window/service';
@@ -28,6 +29,7 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
   const { properties, adConfig, pageIsLoading } = props;
   const { sessionStorage } = WindowService;
   const propertyTracker = PropertyTrackerFactory();
+  const user = useContext(UserContext);
 
   const authModalOpenRef = useRef<() => void>(functionNoop);
   const authModalCloseRef = useRef<() => void>(functionNoop);
@@ -68,7 +70,7 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
               property={item.property}
               loading={pageIsLoading}
               onSaveButtonClick={(propertyId, isSaved): void => {
-                if (isSaved && !sessionStorage.getItem(savedPropertyAuthModalStorageKey)) {
+                if (isSaved && !sessionStorage.getItem(savedPropertyAuthModalStorageKey) && !user) {
                   authModalOpenRef.current();
                   sessionStorage.setItem(savedPropertyAuthModalStorageKey, { propertyId });
                   savedPropertyTracker.onOpenUserAuthModal();
