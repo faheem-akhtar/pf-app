@@ -146,7 +146,7 @@ export function saveSearchFiltersMapper(filters: FiltersValueInterface): SaveSea
   return (Object.keys(filters) as Array<keyof FiltersValueInterface>).reduce((acc, key) => {
     const value = mapper[key]?.filterAndMap(filters[key] as SaveSearchFilterAndMapValueType);
     const newKey = mapper[key]?.newKey as keyof SaveSearchFiltersInterface;
-    if (typeof value !== 'undefined' && value !== false) {
+    if (typeof value !== 'undefined' && value !== false && value !== '') {
       acc[newKey] = value as never;
     }
     return acc;

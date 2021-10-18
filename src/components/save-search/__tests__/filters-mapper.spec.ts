@@ -13,7 +13,6 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { PropertyPriceTypeShortEnum } from 'enums/property/price-type-short.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 
-import { SaveSearchFiltersInterface } from '../filters.interface';
 import { saveSearchFiltersMapper } from '../filters-mapper';
 
 const exampleSaveSearchFilters: FiltersValueInterface = {
@@ -34,13 +33,8 @@ const exampleSaveSearchFilters: FiltersValueInterface = {
 };
 
 describe('saveSearchFiltersMapper', () => {
-  let filterParams: SaveSearchFiltersInterface;
-  beforeEach(() => {
-    filterParams = saveSearchFiltersMapper(exampleSaveSearchFilters);
-  });
-
   it('should exclude not-valid parameters', () => {
-    expect(filterParams).not.toContain(
+    expect(saveSearchFiltersMapper(exampleSaveSearchFilters)).not.toContain(
       expect.objectContaining({
         max_bathroom: '',
       })
@@ -48,18 +42,26 @@ describe('saveSearchFiltersMapper', () => {
   });
 
   it('should transform all valid values to filter params', () => {
-    expect(filterParams).toEqual({
-      category_id: 2,
-      price_type: 'y',
-      amenities: ['A', 'B'],
-      furnished: 1,
-      completion_status: 'completion',
-      keyword: 'lorem, ipsum',
-      location_ids: ['L1', 'L2'],
-      max_bathroom: 3,
-      payment_method: 'payment',
-      min_bedroom: 0,
-    });
+    expect(saveSearchFiltersMapper(exampleSaveSearchFilters)).toMatchInlineSnapshot(`
+      Object {
+        "amenities": Array [
+          "A",
+          "B",
+        ],
+        "category_id": 2,
+        "completion_status": "completion",
+        "furnished": 1,
+        "keyword": "lorem, ipsum",
+        "location_ids": Array [
+          "L1",
+          "L2",
+        ],
+        "max_bathroom": 3,
+        "min_bedroom": 0,
+        "payment_method": "payment",
+        "price_type": "y",
+      }
+    `);
   });
 
   it('should ignore the default value', () => {
@@ -68,5 +70,32 @@ describe('saveSearchFiltersMapper', () => {
         [FiltersParametersEnum.furnishing]: '0' as FiltersValueFieldFurnishedType,
       } as FiltersValueInterface)
     ).toEqual({});
+  });
+
+  it('should ignore the empty string value', () => {
+    expect(
+      saveSearchFiltersMapper({
+        ...exampleSaveSearchFilters,
+        [FiltersParametersEnum.pricePeriod]: '' as FiltersValueFieldPricePeriodType,
+      })
+    ).toMatchInlineSnapshot(`
+      Object {
+        "amenities": Array [
+          "A",
+          "B",
+        ],
+        "category_id": 2,
+        "completion_status": "completion",
+        "furnished": 1,
+        "keyword": "lorem, ipsum",
+        "location_ids": Array [
+          "L1",
+          "L2",
+        ],
+        "max_bathroom": 3,
+        "min_bedroom": 0,
+        "payment_method": "payment",
+      }
+    `);
   });
 });

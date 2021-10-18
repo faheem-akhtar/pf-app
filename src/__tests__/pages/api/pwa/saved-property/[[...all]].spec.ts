@@ -6,8 +6,7 @@ import { mockWindowConsole } from 'mocks/window/console.mock';
 import { nextApiRequestStub, nextApiResponseStub } from 'stubs/next/api';
 
 import * as backendApiSavedPropertyFetcherModule from 'backend/api/saved-property/fetcher';
-
-import pagesApiPwaSavedPropertyAll from '../[[...all]]';
+import pagesApiPwaSavedPropertyAll from 'pages/api/pwa/saved-property/[[...all]]';
 
 jest.mock('backend/api/saved-property/fetcher');
 
