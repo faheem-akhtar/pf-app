@@ -4,6 +4,7 @@ import { userModelStub } from 'stubs/user/model.stub';
 
 import { TealiumAgentStatsInterface } from 'services/tealium/agent-stats.interface';
 import { TealiumEventEnum } from 'services/tealium/event.enum';
+import { TealiumEventInterface } from 'services/tealium/event.interface';
 import { TealiumEventActionEnum } from 'services/tealium/event-action.enum';
 import { TealiumEventCategoryEnum } from 'services/tealium/event-category.enum';
 import { TealiumEventLabelEnum } from 'services/tealium/event-label.enum';
@@ -20,12 +21,23 @@ describe('AnalyticsTealiumService', () => {
     window.tealium = { page_type: 'page_type', page_currency_code: 'AED' };
   });
 
-  test('if event is not fired before utag is not loaded', () => {
+  test('if the events are fired after utag is loaded', () => {
     const consoleMock = mockWindowConsole();
     window.utag = undefined;
     const payload = { tealium_event: TealiumEventEnum.search };
     AnalyticsTealiumService.view(payload);
+    AnalyticsTealiumService.link({ tealium_event: TealiumEventEnum.smsNow } as TealiumEventInterface);
     expect(consoleMock.error).toHaveBeenCalledWith('window.utag is not loaded');
+
+    window.utag = tealiumServiceStub();
+    AnalyticsTealiumService.callStalledEvents();
+
+    expect(window.utag.link).toHaveBeenCalledWith(
+      expect.objectContaining({
+        tealium_event: TealiumEventEnum.smsNow,
+      })
+    );
+    expect(window.utag.view).toHaveBeenCalledWith(expect.objectContaining(payload));
   });
 
   test('if tealium events are called', () => {

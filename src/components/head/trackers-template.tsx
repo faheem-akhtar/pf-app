@@ -4,6 +4,7 @@ import { configTealiumEnabled } from 'config/tealium/enabled';
 import { tealiumProfileId } from 'config/tealium/profile-id';
 import { helpersIsDevelopment } from 'helpers/is-development';
 import { AnalyticsPageNamesEnum } from 'services/analytics/page-names.enum';
+import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
 import { TealiumEventEnum } from 'services/tealium/event.enum';
 import { TealiumPageTypeEnum } from 'services/tealium/page-type.enum';
 
@@ -50,6 +51,7 @@ if (!urlQueryGetParameterByName('no-analytics')) {
     (function(a,b,c,d){
       a='https://tags.tiqcdn.com/utag/propertyfinder/${tealiumProfileId}/prod/utag.js';
       b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+      d.onload=function(){ ${AnalyticsTealiumService.callStalledEvents()} };
       a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
       })();
   }

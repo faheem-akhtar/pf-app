@@ -7,13 +7,17 @@ import { TealiumEventLabelEnum } from 'services/tealium/event-label.enum';
 import { TealiumEventTypeEnum } from 'services/tealium/event-type.enum';
 import { TealiumServiceInterface } from 'services/tealium/service.interface';
 
-const collect = (collectType: TealiumCollectTypeEnum, data: TealiumDataLayerInterface): void => {
+const stalledEvents = new Map<TealiumEventEnum, { data: TealiumDataLayerInterface; type: TealiumCollectTypeEnum }>();
+
+const collect = (type: TealiumCollectTypeEnum, data: TealiumDataLayerInterface): void => {
   if (typeof window.utag === 'undefined') {
     // eslint-disable-next-line no-console
     console.error('window.utag is not loaded');
+    stalledEvents.set(data.tealium_event, { data, type });
     return;
   }
-  window.utag[collectType]({
+
+  window.utag[type]({
     ...window.tealium,
     ...data,
   });
@@ -27,6 +31,14 @@ export const AnalyticsTealiumService: TealiumServiceInterface = {
   // doc: https://docs.tealium.com/platforms/javascript/api/tracking-functions/#utag-link
   link(data) {
     collect(TealiumCollectTypeEnum.link, data);
+  },
+  callStalledEvents() {
+    if (stalledEvents.size) {
+      stalledEvents.forEach(({ data, type }, tealiumEvent) => {
+        window.utag[type](data);
+        stalledEvents.delete(tealiumEvent);
+      });
+    }
   },
   // Handler for mobile app download
   onAppDownloadClicked() {

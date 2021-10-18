@@ -10,6 +10,7 @@ import { TealiumUtagInterface } from './utag.interface';
 export interface TealiumServiceInterface extends TealiumUtagInterface {
   onAppDownloadClicked: () => void;
   onPageViewRendered: <T extends TealiumDataLayerInterface>(payload: T) => void;
+  callStalledEvents: () => void;
   onConversionEventCalled: (
     event: TealiumEventEnum,
     payload: TealiumAgentStatsInterface,
