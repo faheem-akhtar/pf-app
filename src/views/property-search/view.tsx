@@ -10,6 +10,7 @@ import { HeaderComponent } from 'components/header/component';
 import { MapSearchButtonComponent } from 'components/map-search/button/component';
 import { PaginationSectionComponent } from 'components/pagination-section/component';
 import { PropertyListComponent } from 'components/property/list/component';
+import { PropertyListHeadingComponent } from 'components/property/list/heading/component';
 import { PropertySearchCountAndSortSectionComponent } from 'components/property-search-count-and-sort-section/component';
 import { PropertySearchNotFoundSectionTemplate } from 'components/property-search-not-found-section/template';
 import { SavedPropertyContextProvider } from 'components/saved-property/context-provider';
@@ -60,6 +61,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
               <ContactedPropertyContextProvider>
                 <HeaderComponent />
                 <FiltersSectionComponent />
+                <PropertyListHeadingComponent pageTitle={props.documentTitle} />
                 <WrapperTemplate>
                   {props.searchResult.total ? (
                     <Fragment>
