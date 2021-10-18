@@ -1,14 +1,14 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { jwtTokenStoreStub } from 'stubs/jwt/token/store.stub';
+import { saveSearchDataStub } from 'stubs/save-search/data.stub';
 
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { SaveSearchFiltersInterface } from 'components/save-search/filters.interface';
+import { SaveSearchLoadResultInterface } from 'components/save-search/load-result-interface';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import { apiSaveSearchCreateFetcher } from '../fetcher';
-import { ApiSaveSearchCreateResponseInterface } from '../response.interface';
 
 jest.mock('services/jwt/token/store', () => ({
   JwtTokenStore: jest.fn().mockImplementation(() => jwtTokenStoreStub()),
@@ -16,22 +16,9 @@ jest.mock('services/jwt/token/store', () => ({
 
 describe('apiSaveSearchCreateFetcher', () => {
   it('should send a post request', async () => {
-    const responseMock: ApiSaveSearchCreateResponseInterface = {
-      data: {
-        id: '1',
-        type: 'saved_search',
-        attributes: {
-          name: 'my search name',
-          frequency: 'daily' as SaveSearchFrequencyEnum,
-          filters: {
-            location_ids: ['50'],
-          } as SaveSearchFiltersInterface,
-          formatted_filters: 'Apartments in Dubai Marina',
-        },
-      },
-    };
+    const dataMock = saveSearchDataStub();
     const factoryMock = mockWindowFetch({
-      json: (): Promise<ApiSaveSearchCreateResponseInterface> => Promise.resolve(responseMock),
+      json: (): Promise<SaveSearchLoadResultInterface[]> => Promise.resolve([dataMock]),
     });
 
     const response = await apiSaveSearchCreateFetcher({
@@ -48,7 +35,7 @@ describe('apiSaveSearchCreateFetcher', () => {
     });
 
     expect(factoryMock).toHaveBeenCalledTimes(1);
-    expect(factoryMock).toHaveBeenCalledWith('default-origin/en/api/saved-search', {
+    expect(factoryMock).toHaveBeenCalledWith('default-origin/en/api/pwa/saved-search', {
       method: 'POST',
       headers: {
         locale: 'en',
@@ -70,10 +57,7 @@ describe('apiSaveSearchCreateFetcher', () => {
     });
     expect(response).toEqual(
       expect.objectContaining({
-        data: {
-          id: '1',
-          ...responseMock.data.attributes,
-        },
+        data: dataMock,
       })
     );
   });

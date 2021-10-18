@@ -8,25 +8,19 @@ import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 import { LocaleService } from 'services/locale/service';
 
 import { ApiSaveSearchCreateRequestInterface } from './request.interface';
-import { ApiSaveSearchCreateResponseInterface } from './response.interface';
 
 const fetcher = ApiAuthRequiredFactory<
   SaveSearchLoadResultInterface,
-  ApiSaveSearchCreateResponseInterface,
+  SaveSearchLoadResultInterface[],
   ApiJsonModelInterface<ApiSaveSearchCreateRequestInterface>
 >({
   method: 'POST',
   url: 'saved-search',
+  handledByPfWebApp: true,
   alterHeaders: (headers) => {
     headers['content-type'] = 'application/vnd.api+json';
   },
-  dataMapper: ({ data }) => ({
-    id: data.id,
-    name: data.attributes.name,
-    frequency: data.attributes.frequency,
-    filters: data.attributes.filters,
-    formatted_filters: data.attributes.formatted_filters,
-  }),
+  dataMapper: (data) => data[0],
 });
 
 export const apiSaveSearchCreateFetcher = (requestParams: {
