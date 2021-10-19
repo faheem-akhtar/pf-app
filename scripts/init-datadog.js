@@ -1,9 +1,8 @@
 const ddTrace = require('dd-trace');
-const isEnvDevelopment = require('./is-env-development');
 
 const tracer = ddTrace.init({
   logInjection: true,
-  debug: isEnvDevelopment() && process.env.TRACE === '1',
+  debug: false,
 });
 
 const headersToRecord = [
