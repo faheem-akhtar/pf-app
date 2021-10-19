@@ -4,7 +4,7 @@ export interface HeaderTemplatePropsInterface {
   /**
    * Locale
    */
-  locale: string | undefined;
+  locale: string;
 
   /**
    * Fn to trigger when the user click log in button

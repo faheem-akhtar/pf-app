@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-
 import { IconLogoAlternativeTemplate } from 'components/icon/logo/alternative-template';
 import { IconLogoCurrentTemplate } from 'components/icon/logo/current-template';
 import { IconThinFavoriteTemplate } from 'components/icon/thin/favorite-template';
@@ -23,7 +21,7 @@ export const HeaderTemplate = ({
 }: HeaderTemplatePropsInterface): JSX.Element => {
   const { t } = useTranslation();
 
-  const logo = localeIsDefault(locale as string) ? <IconLogoCurrentTemplate /> : <IconLogoAlternativeTemplate />;
+  const logo = localeIsDefault(locale) ? <IconLogoCurrentTemplate /> : <IconLogoAlternativeTemplate />;
 
   return (
     <header className={styles.container}>
@@ -31,7 +29,7 @@ export const HeaderTemplate = ({
         <div className={styles.section}>
           <div className={styles.sectionLeft}>
             <a
-              href={localeIsDefault(locale as string) ? '/' : `/${configCommon.language.alternative}`}
+              href={localeIsDefault(locale) ? '/' : `/${configCommon.language.alternative}`}
               className={styles.logoLink}
             >
               {logo}
@@ -44,7 +42,7 @@ export const HeaderTemplate = ({
               <div className={styles.savedProperties}>
                 <span className={styles.spacer} />
                 <a
-                  href={localeGetHref(locale as string, '/user/saved-properties', true)}
+                  href={localeGetHref(locale, '/user/saved-properties', true)}
                   className={styles.savedPropertiesButton}
                 >
                   <IconThinFavoriteTemplate class={styles.savedPropertiesIcon} clipped />
@@ -67,13 +65,13 @@ export const HeaderTemplate = ({
                   {t('log-in')}
                 </ButtonTemplate>
               ) : (
-                <Fragment>
+                <a className={styles.userProfileLink} href={localeGetHref(locale, '/user', true)}>
                   {userProfile?.user.image ? (
-                    <img src={userProfile?.user.image} alt='User Photo' className={styles.userPhoto} />
+                    <img src={userProfile.user.image} alt='User Photo' className={styles.userPhoto} />
                   ) : (
                     <IconThinUserTemplate class={styles.userIcon} />
                   )}
-                </Fragment>
+                </a>
               )}
             </div>
           </div>
