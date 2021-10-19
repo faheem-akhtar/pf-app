@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { FunctionComponent, useRef } from 'react';
 
 import { ModalComponent } from 'components/modal/component';
 import { functionNoop } from 'helpers/function/noop';
@@ -6,15 +6,13 @@ import { functionNoop } from 'helpers/function/noop';
 import { PropertyCardMenuModalComponentPropsInterface } from './component-props.interface';
 import { PropertyCardMenuModalTemplate } from './template';
 
-// TODO-FE[CX-440] add tests
-export const PropertyCardMenuModalComponent = ({
-  children,
+export const PropertyCardMenuModalComponent: FunctionComponent<PropertyCardMenuModalComponentPropsInterface> = ({
   openRef,
   closeRef,
   closeButtonLabel,
   onCloseButtonClick = functionNoop,
-  onOverlayClick = functionNoop,
-}: PropertyCardMenuModalComponentPropsInterface): JSX.Element => {
+  children,
+}): JSX.Element => {
   const internalCloseRef = useRef<() => void>(functionNoop);
   if (closeRef) {
     closeRef.current = (): void => {
@@ -23,16 +21,19 @@ export const PropertyCardMenuModalComponent = ({
   }
 
   return (
-    <ModalComponent openRef={openRef} closeRef={internalCloseRef} overlay>
+    <ModalComponent
+      openRef={openRef}
+      closeRef={internalCloseRef}
+      overlay
+      onOverlayClick={(): void => {
+        internalCloseRef.current();
+      }}
+    >
       <PropertyCardMenuModalTemplate
         closeButtonLabel={closeButtonLabel}
         onCloseButtonClick={(): void => {
           internalCloseRef.current();
           onCloseButtonClick();
-        }}
-        onOverlayClick={(): void => {
-          internalCloseRef.current();
-          onOverlayClick();
         }}
       >
         {children}

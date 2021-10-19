@@ -5,16 +5,6 @@ export interface PropertyCardMenuModalTemplatePropsBaseInterface {
   closeButtonLabel: string;
 
   /**
-   * Content wrapped by PropertyCardMenuModalTemplate.
-   */
-  children: React.ReactNode;
-
-  /**
-   * Click handler for when user clicks on overlay
-   */
-  onOverlayClick?: () => void;
-
-  /**
    * Click handler for when user clicks on close button
    */
   onCloseButtonClick?: () => void;
