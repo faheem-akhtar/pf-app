@@ -66,7 +66,7 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
 
           return (
             <PropertyCardComponent
-              key={propertySerpObfuscatedGetUrl(item.property)}
+              key={`${propertySerpObfuscatedGetUrl(item.property)}-${index}`}
               property={item.property}
               loading={pageIsLoading}
               onSaveButtonClick={(propertyId, isSaved): void => {
