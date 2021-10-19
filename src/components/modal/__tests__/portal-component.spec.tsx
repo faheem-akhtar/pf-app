@@ -21,13 +21,6 @@ describe('ModalPortalComponent', () => {
     expect(appRoot).toHaveClass('hide');
   });
 
-  it('It should not add hide classname when opened in overlay mode', async () => {
-    const { appRoot } = mockModalEnv();
-    render(<ModalPortalComponent overlay>content</ModalPortalComponent>);
-
-    expect(appRoot).not.toHaveClass();
-  });
-
   it('It should hide ads on mount', async () => {
     const adElement = document.createElement('div');
     adElement.setAttribute('data-ad', '1');
@@ -45,7 +38,7 @@ describe('ModalPortalComponent', () => {
     adElement.setAttribute('data-ad', '1');
     document.body.append(adElement);
     mockModalEnv();
-    const { unmount } = render(<ModalPortalComponent overlay>content</ModalPortalComponent>);
+    const { unmount } = render(<ModalPortalComponent>content</ModalPortalComponent>);
     unmount();
 
     await waitFor(() => {
