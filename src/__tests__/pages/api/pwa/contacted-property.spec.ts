@@ -83,7 +83,10 @@ describe('pagesApiPwaContactedProperty', () => {
     const factoryMock = jest.fn().mockReturnValue(
       Promise.resolve({
         ok: false,
-        error: 'this is an error',
+        error: {
+          status: 500,
+          body: 'this is an error',
+        },
       })
     );
     (backendApiContactedPropertyFetcherModule.backendApiContactedPropertyFetcher as jest.Mock).mockReturnValue(
@@ -106,7 +109,10 @@ describe('pagesApiPwaContactedProperty', () => {
       Array [
         Array [
           "contacted property api failed",
-          "this is an error",
+          Object {
+            "body": "this is an error",
+            "status": 500,
+          },
         ],
       ]
     `);

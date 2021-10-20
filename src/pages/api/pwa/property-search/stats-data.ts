@@ -12,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     if (response.ok) {
       res.send(response.data);
     } else {
-      res.status(500);
+      res.status(response.error.status);
       // eslint-disable-next-line no-console
       console.error('property search stats data failed', response.error);
       res.end();

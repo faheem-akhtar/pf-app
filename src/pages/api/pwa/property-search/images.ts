@@ -20,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     if (response.ok) {
       res.send(response.data[propertyId].map((image) => image.links[imageType]));
     } else {
-      res.status(500);
+      res.status(response.error.status);
       // eslint-disable-next-line no-console
       console.error('property search count failed', response.error);
       res.end();

@@ -79,7 +79,10 @@ describe('pagesApiPwaSavedPropertyAll', () => {
     const factoryMock = jest.fn().mockReturnValue(
       Promise.resolve({
         ok: false,
-        error: 'this is an error',
+        error: {
+          status: 500,
+          body: 'this is an error',
+        },
       })
     );
     (backendApiSavedPropertyFetcherModule.backendApiSavedPropertyFetcher as jest.Mock).mockReturnValue(factoryMock);
@@ -100,7 +103,10 @@ describe('pagesApiPwaSavedPropertyAll', () => {
       Array [
         Array [
           "saved property api failed",
-          "this is an error",
+          Object {
+            "body": "this is an error",
+            "status": 500,
+          },
         ],
       ]
     `);

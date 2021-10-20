@@ -77,7 +77,10 @@ describe('pagesApiPwaSavedSearch', () => {
     const factoryMock = jest.fn().mockReturnValue(
       Promise.resolve({
         ok: false,
-        error: 'this is an error',
+        error: {
+          status: 500,
+          body: 'this is an error',
+        },
       })
     );
     (backendApiSaveSearchFetcherModule.backendApiSaveSearchFetcher as jest.Mock).mockReturnValue(factoryMock);
@@ -98,7 +101,10 @@ describe('pagesApiPwaSavedSearch', () => {
       Array [
         Array [
           "save search api failed",
-          "this is an error",
+          Object {
+            "body": "this is an error",
+            "status": 500,
+          },
         ],
       ]
     `);

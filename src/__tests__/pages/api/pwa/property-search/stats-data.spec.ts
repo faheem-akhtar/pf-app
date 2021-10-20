@@ -34,7 +34,7 @@ describe('property stats-data api handler', () => {
       json: () => Promise.resolve(propertiesRawBackendStub()),
     });
     const consoleMock = mockWindowConsole();
-    mockWindowFetch({ ok: false });
+    mockWindowFetch({ ok: false, status: 500 });
     const reqMock = {
       ...nextApiRequestStub(),
       query: { pageNumber: 2, ['propertiesIds[]']: ['1', '2'] },

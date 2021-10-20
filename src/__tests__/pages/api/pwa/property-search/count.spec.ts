@@ -19,7 +19,7 @@ describe('pages/api/property-search/count', () => {
 
   it('should return 500 if request fails', async () => {
     const consoleMock = mockWindowConsole();
-    mockWindowFetch({ ok: false });
+    mockWindowFetch({ ok: false, status: 500 });
     const reqMock = nextApiRequestStub();
     const resMock = nextApiResponseStub();
     await countHandler(reqMock, resMock);
@@ -43,7 +43,7 @@ describe('pages/api/property-search/count', () => {
               },
               "method": "GET",
             },
-            "status": 200,
+            "status": 500,
             "url": "http://website-pf-local/en/api/search/count?filter%5Bcategory_id%5D=2&filter%5Bprice_type%5D=y&sort=mr&page%5Bnumber%5D=1&break_thru_cache=0.2",
           },
         ],

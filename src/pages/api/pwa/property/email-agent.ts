@@ -33,7 +33,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     if (!emailAgentDataResponse.ok) {
       // eslint-disable-next-line no-console
       console.error('Property email agent failed, emailAgentDataResponse', emailAgentDataResponse.error);
-      res.status(500).end();
+      res.status(emailAgentDataResponse.error.status).end();
       return;
     }
 
