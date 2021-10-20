@@ -12,8 +12,13 @@
 
 .message {
   margin-top: calc(var(--spacing) * 2);
+
   textarea {
     border-width: var(--spacing) calc(var(--spacing) * 3);
+  }
+
+  textarea,
+  label {
     font-size: var(--font-size-08);
   }
 }

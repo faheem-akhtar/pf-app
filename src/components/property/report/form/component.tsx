@@ -160,6 +160,7 @@ export const PropertyReportFormComponent = ({
             setFormField('message', value);
           }}
           placeholder={t('message')}
+          floatPlaceholder={false}
           errorText={form.fields.message.error}
         />
       </div>
