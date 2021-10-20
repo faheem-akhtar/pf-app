@@ -45,9 +45,11 @@
   white-space: nowrap;
 }
 
-.snackbar_actions button {
+.snackbar_actions button,
+.snackbar_actions a {
   color: inherit;
   margin-left: 1.6rem;
+  text-decoration: none;
 }
 
 @media (min-width: 592px) {

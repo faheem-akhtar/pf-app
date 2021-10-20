@@ -87,6 +87,7 @@ describe('SaveSearchFormComponent', () => {
     const { getByLabelText, getByRole, findByText } = render(
       <SaveSearchContext.Provider
         value={{
+          ok: true,
           data: [],
           filtered: [],
           create: saveSearchCreateMock,

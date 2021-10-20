@@ -20,10 +20,9 @@ export const SnackbarContentComponent: FunctionComponent<SnackbarContentPropsInt
   const snackbarElem = useRef<HTMLDivElement>(null);
 
   // Limit the number and type of actions
-  const actions = domToChildArray<HTMLButtonElement>(action, (item) => item.type === 'button').slice(
-    0,
-    MAX_NUMBER_OF_ACTIONS
-  );
+  const actions = domToChildArray<HTMLButtonElement>(action, (item) =>
+    ['button', 'a'].includes(item.type as string)
+  ).slice(0, MAX_NUMBER_OF_ACTIONS);
 
   // is event target is on the snackbar
   const isComponentTargeted = (event: MouseEvent): boolean | null => {

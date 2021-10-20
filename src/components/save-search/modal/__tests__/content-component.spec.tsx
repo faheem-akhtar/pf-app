@@ -39,6 +39,7 @@ describe('SaveSearchModalContentComponent', () => {
     });
 
     await findByText('save_search/create-success_notification');
+    await findByText('save_search/manage-cta-label');
 
     expect(closeMock).toHaveBeenCalledTimes(1);
     expect(closeMock).toHaveBeenCalledWith();

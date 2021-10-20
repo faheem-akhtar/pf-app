@@ -2,22 +2,27 @@
  * @jest-environment jsdom
  */
 
-import { act, render, RenderResult, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 import { mockModalEnv } from 'mocks/modal-env/mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
+import { mockSnackbarEnv } from 'mocks/snackbar/env.mock';
+import { saveSearchDataStub } from 'stubs/save-search/data.stub';
 import { userModelStub } from 'stubs/user/model.stub';
 
+import { SaveSearchContext } from 'components/save-search/context';
+import { SaveSearchLoadResultInterface } from 'components/save-search/load-result-interface';
+import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { UserContext } from 'context/user/context';
 import { UserContextProvider } from 'context/user/context-provider';
 import * as OnBoardingComponentModule from 'library/on-boarding/component';
 import { AuthService } from 'services/auth/service';
 import { AuthSubscribeEventTypeEnum } from 'services/auth/subscribe-event-type.enum';
-import { UserModelInterface } from 'services/user/model.interface';
 import { WindowService } from 'services/window/service';
 
+import { SaveSearchModalAuthPropsInterface } from '../auth/props.interface';
 import { SaveSearchModalButtonComponent } from '../button-component';
 
 jest.mock('services/window/service');
@@ -29,10 +34,13 @@ jest.mock('../content-component', () => ({
   ),
 }));
 
-jest.mock('components/auth/modal/component', () => ({
+jest.mock('../auth/component', () => ({
   // eslint-disable-next-line react/display-name
-  AuthModalComponent: ({ cancel }: { cancel: () => void }): JSX.Element => (
-    <button data-testid='auth-modal-component' onClick={cancel} />
+  SaveSearchModalAuthComponent: (props: SaveSearchModalAuthPropsInterface): JSX.Element => (
+    <>
+      <button data-testid='auth-modal-cancel' onClick={props.onCancel} />
+      <button data-testid='auth-modal-success' onClick={props.onSuccess} />
+    </>
   ),
 }));
 
@@ -47,6 +55,7 @@ describe('SaveSearchModalButtonComponent', () => {
     });
 
     mockModalEnv();
+    mockSnackbarEnv();
   });
 
   it('should render the component', () => {
@@ -74,33 +83,36 @@ describe('SaveSearchModalButtonComponent', () => {
   });
 
   describe('guest', () => {
-    let renderResult: RenderResult;
-
     beforeEach(() => {
       (WindowService.localStorage.getItem as jest.Mock).mockReturnValue(null);
+    });
 
-      renderResult = render(
+    it('should open and close the login dialog', async () => {
+      render(
         <UserContextProvider>
           <SaveSearchModalButtonComponent visibleTooltip />
         </UserContextProvider>
       );
-    });
 
-    it('should open and close the login dialog', async () => {
       await waitFor(() => userEvent.click(screen.getByText('save-search/cta-label')));
 
-      expect(screen.getByTestId('auth-modal-component')).toBeInTheDocument();
+      const cancelButton = screen.getByTestId('auth-modal-cancel');
 
-      const authModal = screen.getByTestId('auth-modal-component');
-      userEvent.click(authModal);
+      expect(cancelButton).toBeInTheDocument();
 
-      expect(authModal).not.toBeInTheDocument();
+      userEvent.click(cancelButton);
+
+      expect(cancelButton).not.toBeInTheDocument();
     });
 
     it('should open the save search modal when user got logged in', async () => {
-      await waitFor(() => userEvent.click(screen.getByText('save-search/cta-label')));
+      render(
+        <UserContextProvider>
+          <SaveSearchModalButtonComponent visibleTooltip />
+        </UserContextProvider>
+      );
 
-      expect(screen.getByTestId('auth-modal-component')).toBeInTheDocument();
+      await waitFor(() => userEvent.click(screen.getByText('save-search/cta-label')));
 
       expect(window.dataLayer).toEqual(
         expect.arrayContaining([
@@ -112,10 +124,12 @@ describe('SaveSearchModalButtonComponent', () => {
         ])
       );
 
+      const successButton = screen.getByTestId('auth-modal-success');
+
       act(() => {
         AuthService.onAuthResolved(
           {
-            user: { userId: '2' } as UserModelInterface,
+            user: userModelStub(),
             meta: { token: '', refresh_token: '' },
           },
           AuthSubscribeEventTypeEnum.login,
@@ -123,52 +137,57 @@ describe('SaveSearchModalButtonComponent', () => {
         );
       });
 
-      expect(window.dataLayer).toEqual(
-        expect.arrayContaining([
-          {
-            event: 'customEvent',
-            eventAction: 'signIn',
-            eventCategory: 'Saved Search',
-          },
-        ])
-      );
+      userEvent.click(successButton);
+
+      expect(successButton).not.toBeInTheDocument();
+
+      expect(screen.getByTestId('save-search-modal-content-component')).toBeInTheDocument();
     });
 
-    it('should trigger signUp event when user register while using the save search cta', () => {
-      act(() => {
-        userEvent.click(renderResult.getByText('save-search/cta-label'));
-      });
-
-      expect(window.dataLayer).toEqual(
-        expect.not.arrayContaining([
-          {
-            event: 'customEvent',
-            eventAction: 'signUp',
-            eventCategory: 'Saved Search',
-          },
-        ])
+    it('should display an alert message when user try to save already saved search', async () => {
+      const renderComponent = (filteredData: SaveSearchLoadResultInterface[] = []): ReactElement => (
+        <UserContextProvider>
+          <SnackbarContextProvider>
+            <SaveSearchContext.Provider
+              value={{
+                ok: true,
+                data: [],
+                filtered: filteredData,
+                create: jest.fn(),
+              }}
+            >
+              <SaveSearchModalButtonComponent visibleTooltip />
+            </SaveSearchContext.Provider>
+          </SnackbarContextProvider>
+        </UserContextProvider>
       );
+      const { rerender } = render(renderComponent());
+
+      await waitFor(() => userEvent.click(screen.getByText('save-search/cta-label')));
+
+      const successButton = screen.getByTestId('auth-modal-success');
 
       act(() => {
         AuthService.onAuthResolved(
           {
-            user: { userId: '3' } as UserModelInterface,
+            user: userModelStub(),
             meta: { token: '', refresh_token: '' },
           },
-          AuthSubscribeEventTypeEnum.register,
-          'Email'
+          AuthSubscribeEventTypeEnum.login,
+          'Facebook'
         );
       });
 
-      expect(window.dataLayer).toEqual(
-        expect.arrayContaining([
-          {
-            event: 'customEvent',
-            eventAction: 'signUp',
-            eventCategory: 'Saved Search',
-          },
-        ])
-      );
+      rerender(renderComponent([saveSearchDataStub()]));
+
+      await waitFor(() => userEvent.click(screen.getByText('save-search/cta-label_active')));
+
+      userEvent.click(successButton);
+
+      expect(successButton).not.toBeInTheDocument();
+
+      await waitFor(() => screen.findByText('save_search/exist-notification'));
+      await waitFor(() => screen.findByText('save_search/manage-cta-label'));
     });
   });
 

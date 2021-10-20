@@ -49,12 +49,12 @@ export const FiltersSectionComponent = (): JSX.Element => {
       />
       <SaveSearchContextProvider>
         <ButtonsRow visibleTooltip />
+        <AppearOnScrollComponent showOnlyOnScrollUp>
+          <WrapperTemplate className={styles.buttons_row__appear_on_scroll}>
+            <ButtonsRow />
+          </WrapperTemplate>
+        </AppearOnScrollComponent>
       </SaveSearchContextProvider>
-      <AppearOnScrollComponent showOnlyOnScrollUp>
-        <WrapperTemplate className={styles.buttons_row__appear_on_scroll}>
-          <ButtonsRow />
-        </WrapperTemplate>
-      </AppearOnScrollComponent>
     </WrapperTemplate>
   );
 };

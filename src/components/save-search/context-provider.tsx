@@ -29,6 +29,7 @@ export const SaveSearchContextProvider: FunctionComponent = ({ children }) => {
   }, [user, saveSearchResponse.ok]);
 
   const value: SaveSearchContextInterface = {
+    ok: saveSearchResponse.ok,
     data: searches,
     filtered: searches.filter((item) => saveSearchFilterEquality(item.filters, filters)),
     create: ({ name, frequency }) =>

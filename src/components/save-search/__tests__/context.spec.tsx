@@ -20,7 +20,6 @@ describe('SaveSearchContext', () => {
     // eslint-disable-next-line react/display-name
     MockChildComponent = (): ReactElement => {
       const saveSearch = useContext(SaveSearchContext);
-
       return (
         <>
           <button
@@ -40,7 +39,7 @@ describe('SaveSearchContext', () => {
     let returnValue = Promise.resolve({} as ApiFetcherResultType<SaveSearchLoadResultInterface>);
     render(
       <SaveSearchContext.Consumer>
-        {({ data: propertyIds, filtered, create }): ReactElement => (
+        {({ data: propertyIds, filtered, ok, create }): ReactElement => (
           <>
             <button
               onClick={(): void => {
@@ -50,6 +49,7 @@ describe('SaveSearchContext', () => {
               {JSON.stringify(propertyIds)}
             </button>
             <p data-testid='save-search-filtered'>{JSON.stringify(filtered)}</p>
+            <p data-testid='save-search-ok'>{JSON.stringify(ok)}</p>
           </>
         )}
       </SaveSearchContext.Consumer>
@@ -59,6 +59,7 @@ describe('SaveSearchContext', () => {
 
     expect(button).toHaveTextContent('[]');
     expect(screen.getByTestId('save-search-filtered')).toHaveTextContent('[]');
+    expect(screen.getByTestId('save-search-ok')).toHaveTextContent('null');
 
     userEvent.click(button);
 
@@ -70,6 +71,7 @@ describe('SaveSearchContext', () => {
 
   it('should accept data, filtered and create', () => {
     const value: SaveSearchContextInterface = {
+      ok: true,
       data: [
         {
           id: '2',

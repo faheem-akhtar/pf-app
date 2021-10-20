@@ -31,6 +31,7 @@ describe('EmailAgentModalComponent', () => {
 
   beforeEach(() => {
     (StatsService().propertyLeadSend as jest.Mock).mockReset();
+    document.documentElement.scroll = jest.fn();
 
     mockModalEnv();
     mockReactUseSwr('en-countries-GET-{"sort":"priority"}', {

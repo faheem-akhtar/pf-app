@@ -5,6 +5,11 @@ import { SaveSearchLoadResultInterface } from './load-result-interface';
 
 export interface SaveSearchContextInterface {
   /**
+   * Api response status
+   */
+  ok: boolean | null;
+
+  /**
    * list of saved searches
    */
   data: SaveSearchLoadResultInterface[];
