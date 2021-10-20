@@ -46,7 +46,6 @@ export const HeaderTemplate = ({
                   className={styles.savedPropertiesButton}
                 >
                   <IconThinFavoriteTemplate class={styles.savedPropertiesIcon} clipped />
-                  <div className={styles.notificationDot} />
                   <div className={styles.notificationBadge} data-testid='notification-badge'>
                     {userProfile.savedPropertiesCount}
                   </div>
