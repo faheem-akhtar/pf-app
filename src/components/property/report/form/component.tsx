@@ -159,6 +159,7 @@ export const PropertyReportFormComponent = ({
           onChange={(value): void => {
             setFormField('message', value);
           }}
+          placeholder={t('message')}
           errorText={form.fields.message.error}
         />
       </div>
@@ -167,8 +168,9 @@ export const PropertyReportFormComponent = ({
         type='submit'
         loading={loading}
         className={styles.send}
-        size={ButtonSizeEnum.small}
+        size={ButtonSizeEnum.regular}
         componentType={ButtonComponentTypeEnum.primary}
+        fullWidth
       >
         {`${t('send')} ${t('cta-report')}`}
       </ButtonTemplate>
