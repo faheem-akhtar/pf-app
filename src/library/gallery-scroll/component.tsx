@@ -67,23 +67,15 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
     <GalleryScrollTemplate
       containerRef={galleryRef}
       className={className}
-      onMouseDown={
-        hasMultipleImages
-          ? (e): void => {
-              e.preventDefault();
-              onStart(e.clientX, e.clientY);
-              onTouch();
-            }
-          : functionNoop
-      }
-      onTouchStart={
-        hasMultipleImages
-          ? (e): void => {
-              onStart(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
-              onTouch();
-            }
-          : functionNoop
-      }
+      onMouseDown={(e): void => {
+        e.preventDefault();
+        onStart(e.clientX, e.clientY);
+        onTouch();
+      }}
+      onTouchStart={(e): void => {
+        onStart(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+        onTouch();
+      }}
       items={itemsToRender}
       isTouched={state.isTouched}
       activeIndex={state.activeIndex}
