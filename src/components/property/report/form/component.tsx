@@ -159,7 +159,7 @@ export const PropertyReportFormComponent = ({
           onChange={(value): void => {
             setFormField('message', value);
           }}
-          placeholder={t('message')}
+          placeholder={t('report-modal/additional-messages-placeholder')}
           floatPlaceholder={false}
           errorText={form.fields.message.error}
         />
