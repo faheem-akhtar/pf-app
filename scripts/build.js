@@ -3,7 +3,7 @@
 const os = require('os');
 const cpuCount = os.cpus().length;
 
-const { exec } = require('child_process');
+const { exec, execSync } = require('child_process');
 const countries = require('./countries');
 
 function promiseFromChildProcess(child, name) {
@@ -75,6 +75,10 @@ async function build(country, isMobile, retry = true) {
 
 async function start() {
   console.log('Number of cpus available:', cpuCount);
+
+  // remove the local env file before building
+  execSync('rm /src/.env.local');
+
   await Promise.all(
     countries.reduce((acc, countryCode) => {
       acc.push(build(countryCode, true));

@@ -3,6 +3,8 @@
 # Declare variables to be passed into your templates.
 
 environment: production
+recaptcha_key: 6LcCK8EUAAAAALLeZpmtWq2EG1tM7KKyxSG7rchL
+snowplow_host: c.propertyfinderdata.com
 
 autoscaling:
   enabled: true

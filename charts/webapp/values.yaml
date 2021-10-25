@@ -5,6 +5,8 @@
 prId: latest
 
 environment: prenv
+recaptcha_key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+snowplow_host: c-dev.propertyfinderdata.com
 
 sites:
   - mobile

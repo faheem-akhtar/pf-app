@@ -63,6 +63,10 @@ spec:
             {{- end }}
             - name: ENVIRONMENT
               value: {{ $data.Values.environment }}
+            - name: NEXT_PUBLIC_RECAPTCHA
+              value: {{ $data.Values.recaptcha_key }}
+            - name: NEXT_PUBLIC_SNOWPLOW_HOST
+              value: {{ $data.Values.snowplow_host }}
             {{- if ne $data.Values.environment "prenv" }}
             - name: DD_AGENT_HOST
               valueFrom:
