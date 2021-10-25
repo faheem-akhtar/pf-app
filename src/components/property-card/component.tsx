@@ -79,15 +79,18 @@ export const PropertyCardComponent = ({
     isTransactionalEvent: true,
   });
 
+  const propertyImagesCount = propertySerpObfuscatedGetImagesCount(property);
   const galleryProps = {
     items: imagesResponse.ok
       ? imagesResponse.data.map((sourceUrl) => ({ sourceUrl }))
-      : [
+      : propertyImagesCount
+      ? [
           { sourceUrl: propertySerpObfuscatedGetImgUrl(property) },
-          ...arrayFromRange(0, propertySerpObfuscatedGetImagesCount(property) - 1).map(() => ({
+          ...arrayFromRange(0, propertyImagesCount - 1).map(() => ({
             sourceUrl: '',
           })),
-        ],
+        ]
+      : [],
     isRtl: locale === LanguageCodeEnum.ar,
     onTouch: (): void => setGalleryHasBeenTouched(true),
   };

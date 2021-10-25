@@ -1,7 +1,7 @@
 import styles from './template.module.scss';
 
 export const PropertyCardGalleryPlaceholderTemplate = (): JSX.Element => (
-  <div className={styles.container}>
+  <div className={styles.container} data-testid='gallery-placeholder-image'>
     <svg className={styles.svg} viewBox='73 47 113 90'>
       <g>
         <path
