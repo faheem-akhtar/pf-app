@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { render, screen } from '@testing-library/react';
 
 import { mockMiscAddTranslation } from 'mocks/misc/add-translation.mock';

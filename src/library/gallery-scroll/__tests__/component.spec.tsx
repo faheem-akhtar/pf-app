@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { fireEvent, render } from '@testing-library/react';
 
 import { mockReactUseReducer } from 'mocks/react/use-reducer.mock';

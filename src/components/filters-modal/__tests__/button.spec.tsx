@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { act, render, RenderResult, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -19,8 +15,6 @@ describe('FiltersModalButtonComponent', () => {
 
   let renderResult: RenderResult;
   beforeEach(() => {
-    document.documentElement.scroll = jest.fn();
-
     mockReactUseSwr('api_user', {
       ok: true,
       data: {

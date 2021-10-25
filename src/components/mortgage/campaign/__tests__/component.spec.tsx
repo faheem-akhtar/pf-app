@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { render, RenderResult, screen } from '@testing-library/react';
 
 import { filtersContextPropsStub } from 'stubs/filters/context-props.stub';

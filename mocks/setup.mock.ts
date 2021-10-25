@@ -84,6 +84,8 @@ jest.spyOn(configStatsDataEncryptionKey, 'get').mockReturnValue('test-encryption
 jest.spyOn(Math, 'random').mockReturnValue(0.2);
 
 beforeEach(() => {
+  document.documentElement.scroll = jest.fn();
+
   // clean up global environment after each test
   recoverReactUseEffect();
   recoverReactUseReducer();

@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { TimeService } from '../service';
 
 describe('TimeService', () => {

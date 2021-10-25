@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import { render, RenderResult, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

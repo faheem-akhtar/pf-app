@@ -32,7 +32,7 @@ module.exports = ({ testRegex, moduleFileExtensions }) => ({
     ],
   },
 
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   testRegex,
   setupFilesAfterEnv: ['<rootDir>/mocks/global-react.mock.ts', '<rootDir>/mocks/setup.mock.ts'],
   moduleDirectories: ['node_modules'],

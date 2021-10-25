@@ -51,7 +51,7 @@ if (!urlQueryGetParameterByName('no-analytics')) {
     (function(a,b,c,d){
       a='https://tags.tiqcdn.com/utag/propertyfinder/${tealiumProfileId}/prod/utag.js';
       b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
-      d.onload=function(){ ${AnalyticsTealiumService.callStalledEvents()} };
+      d.onload=function(){ ${AnalyticsTealiumService().callStalledEvents()} };
       a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
       })();
   }

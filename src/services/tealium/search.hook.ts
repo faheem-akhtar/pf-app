@@ -20,7 +20,7 @@ export const useServicesTealiumSearch = (props: PropertySearchViewPropsType): vo
     const searchPayload = tealiumAdapterSearchStats(filtersValueFromQuery, filtersData);
     const propertyListPayload = tealiumAdapterPropertyListStats(props.searchResult.properties, filtersValueFromQuery);
 
-    AnalyticsTealiumService.onPageViewRendered({
+    AnalyticsTealiumService().onPageViewRendered({
       tealium_event: TealiumEventEnum.search,
       page_type: TealiumPageTypeEnum.list,
       search_interaction_type: TealiumSearchInteractionTypesEnum.landing,

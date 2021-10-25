@@ -1,7 +1,4 @@
 /* eslint-disable no-console */
-/**
- * @jest-environment jsdom
- */
 import { datadogLogs } from '@datadog/browser-logs';
 
 import { mockWindowConsole } from 'mocks/window/console.mock';

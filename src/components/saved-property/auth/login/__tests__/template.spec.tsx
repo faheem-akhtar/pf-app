@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import { render, RenderResult } from '@testing-library/react';
 
 import { AuthLoginTemplatePropsInterface } from 'components/auth/login/template-props.interface';

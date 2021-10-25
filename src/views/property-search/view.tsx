@@ -83,7 +83,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
               </ContactedPropertyContextProvider>
             </SavedPropertyContextProvider>
             <MapSearchButtonComponent />
-            <FooterComponent onClickAppDownload={AnalyticsTealiumService.onAppDownloadClicked} />
+            <FooterComponent onClickAppDownload={AnalyticsTealiumService().onAppDownloadClicked} />
           </FiltersContextProvider>
         </SnackbarContextProvider>
       </PropertySearchResultsCountForCurrentQueryContext.Provider>

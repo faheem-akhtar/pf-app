@@ -25,7 +25,7 @@ export const TealiumConversionEventFactory = (
       if (response.ok) {
         const { data } = response;
 
-        AnalyticsTealiumService.onConversionEventCalled(
+        AnalyticsTealiumService().onConversionEventCalled(
           event,
           {
             ...tealiumAdapterPropertyStats(property, filters, {

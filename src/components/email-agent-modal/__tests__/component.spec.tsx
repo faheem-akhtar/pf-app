@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { act, render, RenderResult, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -31,7 +27,6 @@ describe('EmailAgentModalComponent', () => {
 
   beforeEach(() => {
     (StatsService().propertyLeadSend as jest.Mock).mockReset();
-    document.documentElement.scroll = jest.fn();
 
     mockModalEnv();
     mockReactUseSwr('en-countries-GET-{"sort":"priority"}', {

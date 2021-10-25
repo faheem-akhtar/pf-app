@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
 import { mockReactUseState } from 'mocks/react/use-state.mock';
 

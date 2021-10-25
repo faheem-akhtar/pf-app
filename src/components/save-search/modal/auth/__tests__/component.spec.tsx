@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -27,7 +24,6 @@ describe('SaveSearchModalAuthComponent', () => {
 
   beforeEach(() => {
     window.dataLayer = [];
-    document.documentElement.scroll = jest.fn();
 
     props = {
       onCancel: jest.fn(),

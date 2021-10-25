@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React, { ReactElement } from 'react';
@@ -47,7 +43,6 @@ jest.mock('../auth/component', () => ({
 describe('SaveSearchModalButtonComponent', () => {
   beforeEach(() => {
     window.dataLayer = [];
-    document.documentElement.scroll = jest.fn();
 
     mockReactUseSwr('api_user', {
       ok: true,

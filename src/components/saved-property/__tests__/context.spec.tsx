@@ -1,6 +1,3 @@
-/**
- * @jest-environment jsdom
- */
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FunctionComponent, ReactElement, useContext } from 'react';

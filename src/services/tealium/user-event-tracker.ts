@@ -3,7 +3,7 @@ import { UserModelInterface } from 'services/user/model.interface';
 
 export const tealiumUserEventTracker = {
   onLoginWithFacebook: (user: UserModelInterface): void => {
-    AnalyticsTealiumService.onUserLoggedIn(
+    AnalyticsTealiumService().onUserLoggedIn(
       {
         user_email: user.email,
         user_id: user.userId,
@@ -13,7 +13,7 @@ export const tealiumUserEventTracker = {
     );
   },
   onLoginWithEmail: (user: UserModelInterface): void => {
-    AnalyticsTealiumService.onUserLoggedIn(
+    AnalyticsTealiumService().onUserLoggedIn(
       {
         user_email: user.email,
         user_id: user.userId,
@@ -23,7 +23,7 @@ export const tealiumUserEventTracker = {
     );
   },
   onLoginWithGoogle: (user: UserModelInterface): void => {
-    AnalyticsTealiumService.onUserLoggedIn(
+    AnalyticsTealiumService().onUserLoggedIn(
       {
         user_email: user.email,
         user_id: user.userId,
@@ -33,7 +33,7 @@ export const tealiumUserEventTracker = {
     );
   },
   onRegisterWithEmail: (user: UserModelInterface): void => {
-    AnalyticsTealiumService.onUserRegistered({
+    AnalyticsTealiumService().onUserRegistered({
       user_email: user.email,
       user_id: user.userId,
       user_status: 'Logged In',
@@ -41,7 +41,7 @@ export const tealiumUserEventTracker = {
   },
   onLogout: (user: UserModelInterface | null): void => {
     if (user) {
-      AnalyticsTealiumService.onUserLoggedOut({
+      AnalyticsTealiumService().onUserLoggedOut({
         user_email: user.email,
         user_id: user.userId,
         user_status: 'Not Logged In',

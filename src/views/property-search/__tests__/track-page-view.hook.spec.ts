@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { StatsContextAbTestsInterface } from '@propertyfinder/pf-frontend-common/dist/module/stats/context/ab-tests.interface';
 
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';

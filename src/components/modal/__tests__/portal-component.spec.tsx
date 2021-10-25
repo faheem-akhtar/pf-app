@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { render, waitFor } from '@testing-library/react';
 
 import { mockModalEnv } from 'mocks/modal-env/mock';

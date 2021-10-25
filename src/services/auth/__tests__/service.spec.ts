@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { tealiumServiceStub } from 'stubs/tealium/service.stub';
 import { userModelStub } from 'stubs/user/model.stub';

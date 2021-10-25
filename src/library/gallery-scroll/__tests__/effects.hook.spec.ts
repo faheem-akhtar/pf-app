@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import { mockReactUseEffect } from 'mocks/react/use-effect.mock';
 import { mockWindowAddEventListener } from 'mocks/window/add-event-listener.mock';
 
