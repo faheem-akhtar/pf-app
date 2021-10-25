@@ -102,6 +102,7 @@ describe('useGalleryScrollEffects', () => {
     const callbackProps = {
       stopPropagation: jest.fn(),
       preventDefault: jest.fn(),
+      cancelable: true,
     };
     callback(callbackProps);
 

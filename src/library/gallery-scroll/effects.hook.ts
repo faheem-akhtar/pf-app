@@ -41,7 +41,9 @@ export const useGalleryScrollEffects = (
         onClick();
       }
       // we should prevent default because otherwise it will trigger mouse down right after touchend
-      e.preventDefault();
+      if (e.cancelable) {
+        e.preventDefault();
+      }
       onEnd(e);
     };
 
