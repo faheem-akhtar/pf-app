@@ -11,7 +11,7 @@ exports[`PaginationSectionComponent renders without throwing any errors 1`] = `
       href="#"
     >
       <svg
-        class="icon icon--left"
+        class="icon icon--left leftIcon"
         height="24"
         viewBox="0 0 24 24"
         width="24"
@@ -31,7 +31,7 @@ exports[`PaginationSectionComponent renders without throwing any errors 1`] = `
     >
       next
       <svg
-        class="icon icon--right"
+        class="icon icon--right rightIcon"
         height="24"
         viewBox="0 0 24 24"
         width="24"

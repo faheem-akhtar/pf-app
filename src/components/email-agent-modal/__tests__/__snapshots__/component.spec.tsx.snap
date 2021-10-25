@@ -252,7 +252,9 @@ exports[`EmailAgentModalComponent when no user should render without throwing an
               <div
                 class="countryFlag countryFlag--ae"
               />
-              <span>
+              <span
+                class="phoneCode"
+              >
                 +971
               </span>
             </div>
@@ -282,7 +284,7 @@ exports[`EmailAgentModalComponent when no user should render without throwing an
               United Arab Emirates
                
               <span
-                class="phoneCode"
+                class="phoneCode phoneCode--list-item"
               >
                 (
                 +971
@@ -299,7 +301,7 @@ exports[`EmailAgentModalComponent when no user should render without throwing an
               Turkey
                
               <span
-                class="phoneCode"
+                class="phoneCode phoneCode--list-item"
               >
                 (
                 +90

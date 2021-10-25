@@ -22,7 +22,8 @@ const renderLink = (
   page: number,
   hidden: boolean,
   label: string,
-  iconPosition: ButtonIconPositionEnum
+  iconPosition: ButtonIconPositionEnum,
+  iconClass: string
 ): JSX.Element => {
   const url = `/${router.locale}${router.pathname}?${urlQuerySerialize({ ...router.query, page })}`;
 
@@ -39,6 +40,7 @@ const renderLink = (
       icon={{
         component: icon,
         position: iconPosition,
+        className: iconClass,
       }}
       className={styles.button}
     >
@@ -75,7 +77,8 @@ export const PaginationSectionComponent = ({
         currentPage - 1,
         loading || currentPage === 1,
         t('prev'),
-        ButtonIconPositionEnum.left
+        ButtonIconPositionEnum.left,
+        styles.leftIcon
       )}
       {renderLink(
         router,
@@ -83,7 +86,8 @@ export const PaginationSectionComponent = ({
         currentPage + 1,
         loading || currentPage === pagesAvailable,
         t('next'),
-        ButtonIconPositionEnum.right
+        ButtonIconPositionEnum.right,
+        styles.rightIcon
       )}
     </div>
   );

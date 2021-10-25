@@ -79,6 +79,11 @@
   padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3);
 }
 
+/*! rtl:ignore*/
 .phoneCode {
-  margin-left: var(--spacing);
+  direction: ltr;
+
+  &--list-item {
+    margin-left: var(--spacing);
+  }
 }

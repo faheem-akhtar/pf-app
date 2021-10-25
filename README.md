@@ -28,6 +28,8 @@ The application initially reads the country-specific key, if it's not defined it
 #### Managing styling
 
 Styling internalization is being handled by [postcss-rtl](https://www.npmjs.com/package/postcss-rtl).
+If you want to add a comment to CSS(ex: ignoring rtl), comment should start with exclamation mark to prevent Next.js from removing that comment.
+Ex: /_! rtl:ignore _/
 
 ### Routing
 

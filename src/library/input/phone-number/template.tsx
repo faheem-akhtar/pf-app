@@ -34,7 +34,7 @@ export const InputPhoneNumberTemplate = (props: InputPhoneNumberTemplatePropsInt
           <div className={styles.body}>
             <div className={styles.content}>
               <InputPhoneNumberCountryFlagTemplate countryCode={config.code} />
-              <span>{config.phoneCode}</span>
+              <span className={styles.phoneCode}>{config.phoneCode}</span>
             </div>
 
             <IconThinChevronDownTemplate
@@ -66,7 +66,10 @@ export const InputPhoneNumberTemplate = (props: InputPhoneNumberTemplatePropsInt
                 }}
               >
                 <InputPhoneNumberCountryFlagTemplate countryCode={option.code} />
-                {option.name} <span className={styles.phoneCode}>({option.phoneCode})</span>
+                {option.name}{' '}
+                <span className={domClassMerge(styles.phoneCode, styles['phoneCode--list-item'])}>
+                  ({option.phoneCode})
+                </span>
               </li>
             ))}
           </ul>

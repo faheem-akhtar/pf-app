@@ -7,3 +7,8 @@
 .button {
   width: 9.8rem;
 }
+
+[dir='rtl'] .leftIcon,
+[dir='rtl'] .rightIcon {
+  transform: rotate(180deg);
+}

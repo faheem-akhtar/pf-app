@@ -119,7 +119,9 @@ exports[`EmailAgentModalComponent Marocco should render without throwing any err
               <div
                 class="countryFlag countryFlag--ma"
               />
-              <span>
+              <span
+                class="phoneCode"
+              >
                 +212
               </span>
             </div>
@@ -149,7 +151,7 @@ exports[`EmailAgentModalComponent Marocco should render without throwing any err
               Maroc
                
               <span
-                class="phoneCode"
+                class="phoneCode phoneCode--list-item"
               >
                 (
                 +212

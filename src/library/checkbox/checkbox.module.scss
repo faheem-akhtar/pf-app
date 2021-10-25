@@ -13,7 +13,7 @@
   display: flex;
   flex-wrap: wrap;
   line-height: 2rem;
-  padding-left: calc(var(--spacing) * 5);
+  padding-left: spacingm(5);
   position: relative;
 
   &::before {
@@ -46,15 +46,18 @@
     }
 
     &::after {
-      border: solid var(--color-global-white);
-      /*rtl:ignore*/
-      border-width: 0 0 calc(var(--spacing) / 2) calc(var(--spacing) / 2);
-      /*rtl:ignore*/
+      border-color: var(--color-global-white);
+      border-style: solid;
       height: 0.7rem;
       left: 0.5rem;
       top: 0.5rem;
-      transform: rotate(-45deg);
       width: 1.1rem;
     }
   }
+}
+
+/*! rtl:ignore*/
+.input:checked + .label::after {
+  border-width: 0 0 spacingd(2) spacingd(2);
+  transform: rotate(-45deg);
 }
