@@ -20,6 +20,7 @@ import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 import { useReactConstructor } from 'helpers/react/constructor.hook';
 import { usePrevious } from 'hooks/previous.hook';
 import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
+import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { useServicesTealiumSearch } from 'services/tealium/search.hook';
 
 import { PropertySearchResultsCountForCurrentQueryContext } from './results-count-for-current-query/context';
@@ -44,6 +45,8 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
     return <div>Error: ${props.error}</div>;
   }
 
+  GoogleRecaptchaService().setSiteKey(props.env.recaptchaKey);
+
   const { filtersValueFromQuery, filtersData } = props;
   const filtersContextProps = { filtersValueFromQuery, filtersData };
 
@@ -55,6 +58,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
             pageTitle={props.documentTitle}
             // TODO-FE[CX-708] The page should be indexable for landing pages. Implement it once landing pages are served by pf-web-app
             shouldIndex={false}
+            snowplowHost={props.env.snowplowHost}
           />
           <FiltersContextProvider {...filtersContextProps}>
             <SavedPropertyContextProvider>

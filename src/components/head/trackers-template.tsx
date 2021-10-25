@@ -8,7 +8,7 @@ import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
 import { TealiumEventEnum } from 'services/tealium/event.enum';
 import { TealiumPageTypeEnum } from 'services/tealium/page-type.enum';
 
-const __html = `
+const __html = ({ snowplowHost }: { snowplowHost: string }): string => `
 function urlQueryGetParameterByName(name, url = window.location.href) {
   name = name.replace(/[[]]/g, '\\$&');
   var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
@@ -67,7 +67,7 @@ if (!urlQueryGetParameterByName('no-analytics')) {
       window.snowplow(
         'newTracker',
         'pf-website',
-        '${process.env.NEXT_PUBLIC_SNOWPLOW_HOST}',
+        '${snowplowHost}',
         {
           appId: 'pf-mobilesite',
           platform: 'web',
@@ -97,7 +97,7 @@ if (!urlQueryGetParameterByName('no-analytics')) {
 }
 `;
 
-export const HeadTrackersTemplate = (): JSX.Element => (
+export const HeadTrackersTemplate = ({ snowplowHost }: { snowplowHost: string }): JSX.Element => (
   // eslint-disable-next-line react/no-danger
-  <script dangerouslySetInnerHTML={{ __html }} />
+  <script dangerouslySetInnerHTML={{ __html: __html({ snowplowHost }) }} />
 );

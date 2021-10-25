@@ -14,6 +14,10 @@ export type PropertySearchViewPropsType =
       documentTitle: string;
       abTests: StatsContextAbTestsInterface;
       pageType: PageTypeEnum;
+      env: {
+        snowplowHost: string;
+        recaptchaKey: string;
+      };
     }
   | {
       ok: false;

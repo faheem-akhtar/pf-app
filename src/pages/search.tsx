@@ -50,6 +50,10 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       ...(await backendTranslationGetDefinitions(locale)),
       pageType: PageTypeEnum.propertySerp,
       abTests: headersParseExperimentsFromSetCookie(searchResult.headers.get('set-cookie') || ''),
+      env: {
+        recaptchaKey: process.env.NEXT_PUBLIC_RECAPTCHA as string,
+        snowplowHost: process.env.NEXT_PUBLIC_SNOWPLOW_HOST as string,
+      },
     },
   };
 };

@@ -3,7 +3,11 @@ import Head from 'next/head';
 import { HeadComponentPropsInterface } from './component-props.interface';
 import { HeadTrackersTemplate } from './trackers-template';
 
-export const HeadComponent = ({ pageTitle, shouldIndex = true }: HeadComponentPropsInterface): JSX.Element => {
+export const HeadComponent = ({
+  pageTitle,
+  shouldIndex = true,
+  snowplowHost,
+}: HeadComponentPropsInterface): JSX.Element => {
   return (
     <Head>
       <title>{pageTitle}</title>
@@ -18,7 +22,7 @@ export const HeadComponent = ({ pageTitle, shouldIndex = true }: HeadComponentPr
       <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
       <meta name='msapplication-TileColor' content='#ffffff' />
       <meta name='theme-color' content='#ffffff' />
-      <HeadTrackersTemplate />
+      <HeadTrackersTemplate snowplowHost={snowplowHost} />
     </Head>
   );
 };

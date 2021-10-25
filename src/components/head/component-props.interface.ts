@@ -8,4 +8,9 @@ export interface HeadComponentPropsInterface {
    * if true, set meta tag to indicate that this page should be indexed by search engines
    */
   shouldIndex?: boolean;
+
+  /**
+   * Snowplow host
+   */
+  snowplowHost: string;
 }

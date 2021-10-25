@@ -154,12 +154,22 @@ describe('GoogleRecaptcha', () => {
 
       expect(renderSpy).toHaveBeenCalledTimes(1);
       expect(renderSpy).toHaveBeenCalledWith(reCaptchaSelector, {
-        sitekey: process.env.NEXT_PUBLIC_RECAPTCHA,
+        sitekey: '',
         callback: expect.any(Function),
         'expired-callback': expect.any(Function),
         size: 'invisible',
       });
       expect(googleRecaptcha['instanceId']).toEqual(10);
+    });
+  });
+
+  describe('setSiteKey()', () => {
+    it('should set the recaptchaKey', () => {
+      expect(googleRecaptcha['instanceId']).toBeUndefined();
+
+      googleRecaptcha['setSiteKey']('123');
+
+      expect(googleRecaptcha['recaptchaKey']).toEqual('123');
     });
   });
 

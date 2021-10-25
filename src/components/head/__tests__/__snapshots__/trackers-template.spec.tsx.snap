@@ -60,7 +60,7 @@ if (!urlQueryGetParameterByName('no-analytics')) {
       window.snowplow(
         'newTracker',
         'pf-website',
-        'undefined',
+        'c.propertyfinderdata.com',
         {
           appId: 'pf-mobilesite',
           platform: 'web',

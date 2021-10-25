@@ -8,6 +8,11 @@ import { AnyValueType } from 'types/any/value.type';
 // eslint-disable-next-line pf-rules/export-name-validation
 export class GoogleRecaptcha {
   /**
+   * Google recaptcha site key
+   */
+  private recaptchaKey: string = '';
+
+  /**
    * Is recaptcha ready for usage ?
    * @protected
    */
@@ -123,6 +128,14 @@ export class GoogleRecaptcha {
   }
 
   /**
+   * Set google recaptcha key
+   * @param siteKey
+   */
+  public setSiteKey(siteKey: string): void {
+    this.recaptchaKey = siteKey;
+  }
+
+  /**
    * On captcha is being initialized
    */
   private onCaptchaRender = (): void => {
@@ -137,7 +150,7 @@ export class GoogleRecaptcha {
 
     // Render inside the placeholder
     this.instanceId = WindowService.getGrecaptcha().render(reCaptchaSelector, {
-      sitekey: process.env.NEXT_PUBLIC_RECAPTCHA,
+      sitekey: this.recaptchaKey,
       callback: (c: string) => {
         // Store captcha token
         this.token = c;
