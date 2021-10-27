@@ -77,7 +77,7 @@ async function start() {
   console.log('Number of cpus available:', cpuCount);
 
   // remove the local env file before building
-  execSync('rm /src/.env.local');
+  execSync('rm -f /src/.env.local');
 
   await Promise.all(
     countries.reduce((acc, countryCode) => {
