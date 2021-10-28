@@ -13,6 +13,7 @@ export const IconThickCloseTemplate = (props: IconTemplatePropsInterface): JSX.E
       width={clipped ? undefined : '24'}
       className={props.class}
     >
+      <title>Close</title>
       <path
         fillRule='evenodd'
         clipRule='evenodd'

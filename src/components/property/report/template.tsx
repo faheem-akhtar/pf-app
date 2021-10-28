@@ -23,15 +23,16 @@ export const PropertyReportTemplate = ({
   t: TFunctionType;
 }): JSX.Element => (
   <div
+    data-testid='property-report'
     className={styles.container}
     onClick={(e): void => {
       e.stopPropagation();
     }}
   >
     <div className={styles.header}>
-      <div className={styles.close} onClick={onClose}>
+      <button className={styles.close} onClick={onClose}>
         <IconThickCloseTemplate class={styles.closeIcon} />
-      </div>
+      </button>
       {!isReportSent && (
         <>
           <IconSolidWarningTemplate class={styles.icon} />

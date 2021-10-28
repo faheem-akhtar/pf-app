@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PropertyReportComponent renders without throwing any errors 1`] = `
+<div
+  class="container"
+  data-testid="property-report"
+>
+  <div
+    class="header"
+  >
+    <button
+      class="close"
+    >
+      <svg
+        class="closeIcon"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+      >
+        <title>
+          Close
+        </title>
+        <path
+          clip-rule="evenodd"
+          d="M5.6129 4.2097L5.70711 4.29289L12 10.585L18.2929 4.29289C18.6834 3.90237 19.3166 3.90237 19.7071 4.29289C20.0676 4.65338 20.0953 5.22061 19.7903 5.6129L19.7071 5.70711L13.414 12L19.7071 18.2929C20.0976 18.6834 20.0976 19.3166 19.7071 19.7071C19.3466 20.0676 18.7794 20.0953 18.3871 19.7903L18.2929 19.7071L12 13.414L5.70711 19.7071C5.31658 20.0976 4.68342 20.0976 4.29289 19.7071C3.93241 19.3466 3.90468 18.7794 4.2097 18.3871L4.29289 18.2929L10.585 12L4.29289 5.70711C3.90237 5.31658 3.90237 4.68342 4.29289 4.29289C4.62334 3.96245 5.12751 3.91161 5.5114 4.14038L5.6129 4.2097Z"
+          fill="currentColor"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </button>
+    <svg
+      class="icon"
+      fill="none"
+      viewBox="0 0 1792 1792"
+    >
+      <path
+        d="M1024 1375v-190q0-14-9.5-23.5t-22.5-9.5h-192q-13 0-22.5 9.5t-9.5 23.5v190q0 14 9.5 23.5t22.5 9.5h192q13 0 22.5-9.5t9.5-23.5zm-2-374l18-459q0-12-10-19-13-11-24-11h-220q-11 0-24 11-10 7-10 21l17 457q0 10 10 16.5t24 6.5h185q14 0 23.5-6.5t10.5-16.5zm-14-934l768 1408q35 63-2 126-17 29-46.5 46t-63.5 17h-1536q-34 0-63.5-17t-46.5-46q-37-63-2-126l768-1408q17-31 47-49t65-18 65 18 47 49z"
+      />
+    </svg>
+    <span>
+      report-modal/title
+    </span>
+  </div>
+  <form>
+    <div
+      class="container field"
+    >
+      <div
+        class="fieldWrapper"
+      >
+        <select
+          class="field fieldEmpty fieldWithIcon"
+        >
+          <option
+            value="0"
+          >
+            report-modal/select-reason
+          </option>
+          <option
+            value="1"
+          >
+            report/property-not-available
+          </option>
+          <option
+            value="2"
+          >
+            report/inaccurate-price
+          </option>
+          <option
+            value="3"
+          >
+            report/no-response-broker
+          </option>
+          <option
+            value="4"
+          >
+            report/no-property-details
+          </option>
+          <option
+            value="5"
+          >
+            report/poor-quality-irrelevant-photos
+          </option>
+          <option
+            value="6"
+          >
+            report/poor-description
+          </option>
+          <option
+            value="7"
+          >
+            report/inaccurate-location
+          </option>
+          <option
+            value="8"
+          >
+            report/inaccurate-bedrooms
+          </option>
+          <option
+            value="9"
+          >
+            report/incorrect-property-type
+          </option>
+        </select>
+        <svg
+          class="icon"
+          viewBox="4.5 8 16 8"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M4.64645 8.14645C4.47288 8.32001 4.4536 8.58944 4.58859 8.78431L4.64645 8.85355L11.6464 15.8536C11.82 16.0271 12.0894 16.0464 12.2843 15.9114L12.3536 15.8536L19.3536 8.85355C19.5488 8.65829 19.5488 8.34171 19.3536 8.14645C19.18 7.97288 18.9106 7.9536 18.7157 8.08859L18.6464 8.14645L12 14.793L5.35355 8.14645C5.17999 7.97288 4.91056 7.9536 4.71569 8.08859L4.64645 8.14645Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      
+    </div>
+    <div
+      class="container field"
+    >
+      <div
+        class="fieldWrapper"
+      >
+        <select
+          class="field fieldEmpty fieldWithIcon"
+        >
+          <option
+            value="0"
+          >
+            report-modal/select-user-type
+          </option>
+          <option
+            value="1"
+          >
+            user-renter
+          </option>
+          <option
+            value="2"
+          >
+            user-landlord
+          </option>
+          <option
+            value="3"
+          >
+            user-agent
+          </option>
+        </select>
+        <svg
+          class="icon"
+          viewBox="4.5 8 16 8"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M4.64645 8.14645C4.47288 8.32001 4.4536 8.58944 4.58859 8.78431L4.64645 8.85355L11.6464 15.8536C11.82 16.0271 12.0894 16.0464 12.2843 15.9114L12.3536 15.8536L19.3536 8.85355C19.5488 8.65829 19.5488 8.34171 19.3536 8.14645C19.18 7.97288 18.9106 7.9536 18.7157 8.08859L18.6464 8.14645L12 14.793L5.35355 8.14645C5.17999 7.97288 4.91056 7.9536 4.71569 8.08859L4.64645 8.14645Z"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      
+    </div>
+    <div
+      class="messageContainer"
+    >
+      <span>
+        report-modal/additional-messages
+      </span>
+      <div
+        class="container message container--textarea"
+      >
+        <div
+          class="content"
+        >
+          <textarea
+            aria-errormessage=""
+            aria-invalid="false"
+            class="input input--textarea"
+            placeholder="report-modal/additional-messages-placeholder"
+            type="text"
+          />
+        </div>
+      </div>
+      
+    </div>
+    
+    <button
+      class="button primary regular fullWidth send"
+    >
+      send cta-report
+    </button>
+    <div
+      id="recaptcha"
+    />
+  </form>
+</div>
+`;

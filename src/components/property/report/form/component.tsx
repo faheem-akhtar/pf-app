@@ -138,6 +138,7 @@ export const PropertyReportFormComponent = ({
             {t('report-modal/max-file-size', { size: configPropertyReportAttachmentSizeLimit })}
           </span>
           <input
+            data-testid='property-report-upload-file'
             type='file'
             name='attachment'
             onChange={(event): void => {

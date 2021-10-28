@@ -4,12 +4,14 @@ import userEvent from '@testing-library/user-event';
 import { mockModalEnv } from 'mocks/modal-env/mock';
 import { mockReactUseSwr } from 'mocks/react/use-swr.mock';
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
+import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
 import { propertyStub } from 'stubs/property/stub';
 import { userModelStub } from 'stubs/user/model.stub';
 
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 import { UserContext } from 'context/user/context';
+import { GoogleRecaptcha } from 'services/google/recaptcha';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
 import { StatsService } from 'services/stats/service';
 
@@ -44,7 +46,12 @@ describe('EmailAgentModalComponent', () => {
   });
 
   describe('when user is exist', () => {
+    let googleRecaptchaMock: GoogleRecaptcha;
+
     beforeEach(() => {
+      googleRecaptchaMock = googleRecaptchaStub();
+      jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
+
       render(
         <UserContext.Provider value={userModelStub()}>
           <EmailAgentModalComponent {...props} />
@@ -65,7 +72,6 @@ describe('EmailAgentModalComponent', () => {
 
     it('should not appear sign in pop-up', async () => {
       userEvent.type(screen.getByPlaceholderText('phone'), '123456');
-      GoogleRecaptchaServiceModule.GoogleRecaptchaService().execute = (): Promise<string> => Promise.resolve('token');
       userEvent.click(screen.getByRole('checkbox', { name: 'agent-modal/email-alert-message' }));
       userEvent.click(screen.getByRole('button', { name: 'agent-modal/cta-send-message' }));
 
@@ -95,6 +101,9 @@ describe('EmailAgentModalComponent', () => {
       );
 
       expect(screen.queryByText('agent-modal/sign-in-title')).not.toBeInTheDocument();
+
+      expect(googleRecaptchaMock.execute).toHaveBeenCalledTimes(1);
+      expect(googleRecaptchaMock.reset).not.toHaveBeenCalled();
     });
 
     it('should the modal disappear when overlay is clicked', async () => {
@@ -108,8 +117,12 @@ describe('EmailAgentModalComponent', () => {
 
   describe('when no user', () => {
     let renderResult: RenderResult;
+    let googleRecaptchaMock: GoogleRecaptcha;
 
     beforeEach(() => {
+      googleRecaptchaMock = googleRecaptchaStub();
+      jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
+
       renderResult = render(
         <UserContext.Provider value={null}>
           <EmailAgentModalComponent {...props} />
@@ -147,8 +160,6 @@ describe('EmailAgentModalComponent', () => {
         userEvent.type(screen.getByLabelText('name'), 'Name');
         userEvent.type(screen.getByLabelText('email'), 'email@example.com');
         userEvent.type(screen.getByPlaceholderText('phone'), '123456');
-
-        GoogleRecaptchaServiceModule.GoogleRecaptchaService().execute = (): Promise<string> => Promise.resolve('token');
 
         userEvent.click(screen.getByRole('button', { name: 'agent-modal/cta-send-message' }));
 
@@ -196,6 +207,9 @@ describe('EmailAgentModalComponent', () => {
         expect(screen.queryByRole('heading', { level: 2 })).not.toBeInTheDocument();
         expect(screen.getByText('thank-you')).toBeInTheDocument();
 
+        expect(googleRecaptchaMock.execute).toHaveBeenCalledTimes(1);
+        expect(googleRecaptchaMock.reset).not.toHaveBeenCalled();
+
         expect(screen.getByTestId('email-agent-modal-content')).toMatchSnapshot();
         expect(screen.getByText('agent-modal/sign-in-title')).toBeInTheDocument();
 
@@ -214,9 +228,6 @@ describe('EmailAgentModalComponent', () => {
         userEvent.type(screen.getByLabelText('name'), 'Name');
         userEvent.type(screen.getByLabelText('email'), 'email@example.com');
         userEvent.type(screen.getByPlaceholderText('phone'), '123456');
-
-        GoogleRecaptchaServiceModule.GoogleRecaptchaService().execute = (): Promise<string> => Promise.resolve('token');
-
         userEvent.click(screen.getByRole('button', { name: 'agent-modal/cta-send-message' }));
 
         await waitFor(() =>
@@ -226,8 +237,6 @@ describe('EmailAgentModalComponent', () => {
             </UserContext.Provider>
           )
         );
-
-        GoogleRecaptchaServiceModule.GoogleRecaptchaService().reset = (): Promise<void> => Promise.resolve();
 
         expect(screen.getByText('something-wrong-try-again')).toBeInTheDocument();
         expect(screen.queryByTestId('loader-template')).not.toBeInTheDocument();

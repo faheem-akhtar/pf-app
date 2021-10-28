@@ -33,13 +33,12 @@ import { FormFieldsValueType } from './form/fields-value.type';
 import { EmailAgentModalFormSuccessComponent } from './form/success-component';
 import { EmailAgentModalStatusEnum } from './status.enum';
 
-const captchaService = GoogleRecaptchaService();
-
 export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponentPropsInterface> = ({
   openRef,
   property,
   onFormSubmitted,
 }) => {
+  const captchaService = GoogleRecaptchaService();
   const { t } = useTranslation();
   const user = useContext(UserContext);
 

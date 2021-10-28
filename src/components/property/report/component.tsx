@@ -1,4 +1,4 @@
-import { MutableRefObject, useContext, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 import { apiReportAttachmentsFetcher } from 'api/report/attachments/fetcher';
 import { apiReportFetcher } from 'api/report/fetcher';
@@ -7,22 +7,17 @@ import { ModalComponent } from 'components/modal/component';
 import { UserContext } from 'context/user/context';
 import { functionNoop } from 'helpers/function/noop';
 import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
-import { TFunctionType } from 'types/t-function/type';
 
+import { PropertyReportComponentPropsInterface } from './component-props.interface';
 import { PropertyReportFormSubmitPayloadInterface } from './form/submit-payload.interface';
 import { PropertyReportTemplate } from './template';
-
-const captchaService = GoogleRecaptchaService();
 
 export const PropertyReportComponent = ({
   openRef,
   propertyId,
   t,
-}: {
-  openRef: MutableRefObject<() => void>;
-  propertyId: string;
-  t: TFunctionType;
-}): JSX.Element => {
+}: PropertyReportComponentPropsInterface): JSX.Element => {
+  const captchaService = GoogleRecaptchaService();
   const [isRequestOnProgress, setIsRequestOnProgress] = useState(false);
   const [isReportSent, setIsReportSent] = useState(false);
   const [requestErrorMessage, setRequestErrorMessage] = useState('');
@@ -46,6 +41,7 @@ export const PropertyReportComponent = ({
     await captchaService.execute();
     setRequestErrorMessage('');
     const { attachment, ...attributes } = payload;
+
     const requests = [
       (): ReturnType<typeof apiReportFetcher> =>
         apiReportFetcher(propertyId, {
