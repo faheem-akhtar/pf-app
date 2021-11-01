@@ -39,7 +39,7 @@ countries:
     mobilePath: /pf-web-app\/(.*)
     desktopPath: /pf-web-app\/(.*)
   bh:
-    mobilePath: /pf-web-app\/(.*)
+    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
     desktopPath: /pf-web-app\/(.*)
   eg:
     mobilePath: /pf-web-app\/(.*)
