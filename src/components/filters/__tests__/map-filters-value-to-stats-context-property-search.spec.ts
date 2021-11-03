@@ -42,6 +42,7 @@ describe('filtersMapFiltersValueToStatsContextPropertySearch', () => {
       is_developer_property: true,
       max_installment_years: 10,
       min_installment_years: 5,
+      completion_status: 'completed',
     });
   });
 });

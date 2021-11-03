@@ -1758,10 +1758,10 @@
   resolved "https://npm.pkg.github.com/download/@propertyfinder/pf-fe-logger/2.0.1/be0ba4f96477d9142706d3bde1c15167e9a9977252bd699fa5bedeabd2994115#8d412e630dc368c0898bc12d13af43ebeb957c72"
   integrity sha512-AkLodsMkeYWo4XzcVdHe76LtQ8awF+lAQBqSSdbvT2iea67A8c2r7MkceV1zQmYL0WMJMObAHXxwi5t0SZWZDg==
 
-"@propertyfinder/pf-frontend-common@^28.0.4":
-  version "28.0.4"
-  resolved "https://npm.pkg.github.com/download/@propertyfinder/pf-frontend-common/28.0.4/fdfa403b213f9bae860e34f0f165f0f2601073140f55a6e97e4c6cc795f15dc7#ca5572634747e5b4d981736d8493a314b80d8bf3"
-  integrity sha512-SEyrRIiThsKamDjg83Rxapo51wCBf4BFZmynmWESu2npR7drPkvEHmAo1/UWOSz2GTljD4ePkVgXL2qeSKkCtQ==
+"@propertyfinder/pf-frontend-common@^28.0.6":
+  version "28.0.6"
+  resolved "https://npm.pkg.github.com/download/@propertyfinder/pf-frontend-common/28.0.6/61e581eb6767a1b57731806908a378057f2e6e425990f33c2d8e9a44d0425338#7f83e18acfedb2ca0c5fe02130b6a1d25510d0e5"
+  integrity sha512-6VxeCiuh1/5YQTmkEDsHqBGm5QP8e9bZ+0vqB2sW1RFUUKqVW5dZeSrNjiKXR0Uyf2Lp1Ag8iPgj9I0wLQ6b5w==
   dependencies:
     "@types/mustache" "0.8.29"
     "@types/node" "7.0.31"

@@ -54,7 +54,7 @@
   "dependencies": {
     "@datadog/browser-logs": "^3.6.11",
     "@propertyfinder/pf-fe-logger": "^2.0.0",
-    "@propertyfinder/pf-frontend-common": "^28.0.4",
+    "@propertyfinder/pf-frontend-common": "^28.0.6",
     "@types/grecaptcha": "^3.0.3",
     "dd-trace": "^1.2.1",
     "eslint-plugin-react": "^7.24.0",

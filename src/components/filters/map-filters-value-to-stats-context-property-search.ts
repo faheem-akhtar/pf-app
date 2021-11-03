@@ -43,5 +43,6 @@ export const filtersMapFiltersValueToStatsContextPropertySearch = (
     amenities: filtersValue[FiltersParametersEnum.amenities],
     keywords: filtersValue[FiltersParametersEnum.keyword],
     sort: filtersValue[FiltersParametersEnum.sort] as CtaSortPropertyType,
+    completion_status: filtersValue[FiltersParametersEnum.completionStatus],
   });
 };
