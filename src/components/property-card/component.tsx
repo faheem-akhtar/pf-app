@@ -225,7 +225,7 @@ export const PropertyCardComponent = ({
         }}
       />
       <CallingAgentModalComponent
-        propertyId={propertyId}
+        property={property}
         referenceId={propertySerpObfuscatedGetReference(property)}
         openRef={callingAgentModalOpenRef}
       />

@@ -25,7 +25,7 @@ const reportAttributes: Omit<ReportAttributesInterface, 'reporter_type'> = {
 
 export const CallingAgentModalFeedbackComponent: React.FunctionComponent<{
   propertyId: string;
-  onAnswerClicked: () => void;
+  onAnswerClicked: (answer: string) => void;
 }> = ({ onAnswerClicked, propertyId }) => {
   const filtersCtx = useContext(FiltersContext);
   const user = useContext(UserContext);
@@ -40,7 +40,7 @@ export const CallingAgentModalFeedbackComponent: React.FunctionComponent<{
         reporter_type: userReportCategory(filtersCtx.value[FiltersParametersEnum.categoryId]),
       });
     }
-    onAnswerClicked();
+    onAnswerClicked(option);
   };
 
   return (

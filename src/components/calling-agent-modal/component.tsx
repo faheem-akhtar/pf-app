@@ -3,6 +3,7 @@ import React, { Fragment, useRef, useState } from 'react';
 import { useApiAgent } from 'api/agent/hook';
 import { IconThickCrossTemplate } from 'components/icon/thick/cross-template';
 import { ModalComponent } from 'components/modal/component';
+import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
@@ -10,6 +11,7 @@ import { useTranslation } from 'helpers/translation/hook';
 import styles from './calling-agent-modal.module.scss';
 import { CallingAgentModalComponentPropsInterface } from './component-props.interface';
 import { CallingAgentModalFeedbackComponent } from './feedback-component';
+import { callingAgentModalTracker } from './tracker';
 
 const AgentInfoComponent: React.FunctionComponent<{
   name?: string;
@@ -44,7 +46,7 @@ const AgentInfoComponent: React.FunctionComponent<{
 };
 
 export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentModalComponentPropsInterface> = ({
-  propertyId,
+  property,
   referenceId,
   openRef,
   closeRef,
@@ -53,6 +55,7 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
   const [currentStep, setCurrentStep] = useState<number>(0);
   const { t } = useTranslation();
   const internalCloseRef = useRef<() => void>(closeRef?.current || functionNoop);
+  const propertyId = propertySerpObfuscatedGetId(property);
   const agentDetailsResponse = useApiAgent(propertyId, modalIsOpened);
 
   const closeModal = (): void => {
@@ -98,7 +101,13 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
                 referenceId={referenceId}
               />
             ) : (
-              <CallingAgentModalFeedbackComponent propertyId={propertyId} onAnswerClicked={closeModal} />
+              <CallingAgentModalFeedbackComponent
+                propertyId={propertyId}
+                onAnswerClicked={(answer): void => {
+                  callingAgentModalTracker.onAnswerClicked(property, answer);
+                  closeModal();
+                }}
+              />
             )}
           </Fragment>
         )}

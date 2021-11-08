@@ -16,7 +16,7 @@ import { PropertyReportUserTypeEnum } from 'enums/property/report/user-type.enum
 
 import { CallingAgentModalComponent } from '../component';
 import { CallingAgentModalComponentPropsInterface } from '../component-props.interface';
-import { CallingAgentModalFeedbackComponent } from '../feedback-component';
+import * as CallingAgentModalFeedbackComponentModule from '../feedback-component';
 
 describe('CallingAgentModalComponent', () => {
   const openRef = { current: jest.fn() };
@@ -29,8 +29,10 @@ describe('CallingAgentModalComponent', () => {
   beforeEach(() => {
     mockModalEnv();
 
+    window.dataLayer = [];
+
     props = {
-      propertyId,
+      property,
       referenceId: propertySerpObfuscatedGetReference(property),
       openRef,
       closeRef,
@@ -84,21 +86,48 @@ describe('CallingAgentModalComponent', () => {
 
   describe('FeedbackComponent', () => {
     it('should call onAnswerClicked callback when a feedback button is clicked', async () => {
-      const onAnswerClickedSpy = jest.fn();
-      render(<CallingAgentModalFeedbackComponent onAnswerClicked={onAnswerClickedSpy} propertyId={propertyId} />);
+      mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
+        ok: true,
+        data: { name: 'lorem', languages: ['a', 'b'], imageSrc: 'image' },
+      });
+      jest
+        .spyOn(CallingAgentModalFeedbackComponentModule, 'CallingAgentModalFeedbackComponent')
+        .mockImplementationOnce(({ onAnswerClicked }) => (
+          <button data-testid='feedback-component-button' onClick={(): void => onAnswerClicked('yes')} />
+        ));
+
+      render(<CallingAgentModalComponent {...props} />);
+
       act(openRef.current);
 
-      const [answerButton] = screen.getAllByRole('button');
-      userEvent.click(answerButton);
+      const closeButton = screen.getByRole('button', { name: /cross/i });
 
-      expect(onAnswerClickedSpy).toHaveBeenCalledTimes(1);
+      expect(closeButton).toBeInTheDocument();
+
+      userEvent.click(closeButton);
+
+      userEvent.click(screen.getByTestId('feedback-component-button'));
+
+      expect(closeButton).not.toBeInTheDocument();
+
+      expect(window.dataLayer).toEqual([
+        {
+          event: 'customEvent',
+          eventCategory: 'Post Lead Survey',
+          eventAction: 'propertyAvailable',
+          eventLabel: 'offering-type - agentId - broker',
+        },
+      ]);
     });
 
     it('should make a request if clicked answer is no', async () => {
       const fetchMock = mockWindowFetch();
       render(
         <FiltersContextProvider {...filtersContextPropsStub()}>
-          <CallingAgentModalFeedbackComponent onAnswerClicked={jest.fn()} propertyId={propertyId} />
+          <CallingAgentModalFeedbackComponentModule.CallingAgentModalFeedbackComponent
+            onAnswerClicked={jest.fn()}
+            propertyId={propertyId}
+          />
         </FiltersContextProvider>
       );
       const answerButton = screen.getByText('no');

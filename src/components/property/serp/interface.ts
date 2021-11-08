@@ -149,4 +149,9 @@ export interface PropertySerpInterface {
    * The completion status of the property
    */
   completionStatus: string | null;
+
+  /**
+   * Offering type or category identifier
+   */
+  offeringType: string;
 }

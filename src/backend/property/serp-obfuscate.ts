@@ -18,6 +18,7 @@ import { propertySerpObfuscatedFieldLiveEventValue } from 'components/property/s
 import { propertySerpObfuscatedFieldLocationTreeCompact } from 'components/property/serp/obfuscated/field/location-tree-compact';
 import { propertySerpObfuscatedFieldLocationTreePath } from 'components/property/serp/obfuscated/field/location-tree-path';
 import { propertySerpObfuscatedFieldName } from 'components/property/serp/obfuscated/field/name';
+import { propertySerpObfuscatedFieldOfferingTypeName } from 'components/property/serp/obfuscated/field/offering-type-name';
 import { propertySerpObfuscatedFieldPriceText } from 'components/property/serp/obfuscated/field/price-text';
 import { propertySerpObfuscatedFieldPropertyTypeName } from 'components/property/serp/obfuscated/field/property-type-name';
 import { propertySerpObfuscatedFieldPublishDateValue } from 'components/property/serp/obfuscated/field/publish-date-value';
@@ -128,6 +129,9 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
         break;
       case 'completionStatus':
         obfuscatedProperty[propertySerpObfuscatedFieldCompletionStatus] = value;
+        break;
+      case 'offeringType':
+        obfuscatedProperty[propertySerpObfuscatedFieldOfferingTypeName] = value;
         break;
       default:
         assertUnreachable(propertyKey);

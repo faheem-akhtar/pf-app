@@ -90,6 +90,7 @@ export const backendApiPropertySearchMapper = (
         brokerId: property.broker?.id || '',
         defaultPrice: default_price,
         videoTour: video_metadata,
+        offeringType: property.offering_type,
       };
 
       if (configIsTrace) {
