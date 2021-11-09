@@ -1,5 +1,5 @@
 const winston = require('winston');
-const ENABLE_NATIVE_LOGGING = true;
+const ENABLE_NATIVE_LOGGING = process.env.NODE_ENV !== 'production';
 
 class Console extends winston.transports.Console {
   log(info, callback) {
