@@ -31,6 +31,9 @@ describe('pages/api/property-search/count', () => {
     expect((consoleMock.error as jest.Mock).mock.calls).toMatchInlineSnapshot(`
       Array [
         Array [
+          "window.fetch error: http://website-pf-local/en/api/search/count?filter%5Bcategory_id%5D=2&filter%5Bprice_type%5D=y&sort=mr&page%5Bnumber%5D=1&break_thru_cache=0.2. response.text",
+        ],
+        Array [
           "property search count failed",
           Object {
             "body": "response.text",

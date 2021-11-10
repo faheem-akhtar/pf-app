@@ -101,12 +101,16 @@ export const ApiMakeFactory =
 
         if (!response.ok) {
           if (makeFactoryProps.requireAuth && response.status === 401 && shouldRetryOn401) {
+            // eslint-disable-next-line no-console
+            console.warn(`Got 401, retrying: ${finalUrl}`);
             return makeFactoryProps.jwtTokenService.refreshToken().then((): Promise<ApiFetcherResultType<Result>> => {
               return ApiMakeFactory(makeFactoryProps)(factoryProps)(props, false);
             });
           }
 
           return response.text().then((body) => {
+            // eslint-disable-next-line no-console
+            console.error(`window.fetch error: ${finalUrl}. ${body || ''}`);
             return {
               ok: false,
               error: {

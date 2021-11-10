@@ -23,6 +23,7 @@ const headersToRecord = [
   'accept-language',
   'cookie',
   'x-akamai-device-characteristics',
+  'Referer',
 ];
 
 tracer.use('http', {
@@ -37,6 +38,12 @@ tracer.use('http', {
       }
       if (res && res._header) {
         span.setTag('res._header', res._header);
+      }
+      if (req.body) {
+        span.setTag('req.body', req.body);
+      }
+      if (req.query) {
+        span.setTag('req.query', req.query);
       }
     },
   },
