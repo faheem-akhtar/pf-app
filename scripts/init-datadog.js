@@ -1,6 +1,7 @@
 const ddTrace = require('dd-trace');
 
 const tracer = ddTrace.init({
+  service: `pf-web-app-${process.env.NEXT_PUBLIC_COUNTRY_CODE}`,
   logInjection: true,
   debug: false,
 });

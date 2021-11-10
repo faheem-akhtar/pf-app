@@ -1,5 +1,3 @@
-require('./init-datadog');
-require('./logger');
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
@@ -21,3 +19,6 @@ app.prepare().then(() => {
     console.info(`nextJS server is ready at ${PORT} port`);
   });
 });
+
+require('./init-datadog');
+require('./logger');

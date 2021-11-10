@@ -42,7 +42,7 @@ export class BrowserLoggerStore {
     datadogLogs.init({
       env: environmentGetDatadog(configCommon.countryCode),
       clientToken: this.clientKey,
-      service: 'pf-web-app',
+      service: `pf-web-app-${configCommon.countryCode}`,
       forwardErrorsToLogs: true,
       sampleRate: 100,
     });
