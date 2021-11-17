@@ -4,6 +4,9 @@ import { ModalComponent } from 'components/modal/component';
 import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { functionNoop } from 'helpers/function/noop';
+import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
+import { ButtonSizeEnum } from 'library/button/size.enum';
+import { ButtonTemplate } from 'library/button/template';
 
 import { PropertyShareComponentPropsInterface } from './component-props.interface';
 import { PropertyShareEmailComponent } from './email/component';
@@ -30,6 +33,7 @@ export const PropertyShareComponent = ({ t, openRef, property }: PropertyShareCo
       onOverlayClick={closeModal}
     >
       <div
+        data-testid='property-share'
         className={styles.container}
         onClick={(e): void => {
           e.stopPropagation();
@@ -40,10 +44,16 @@ export const PropertyShareComponent = ({ t, openRef, property }: PropertyShareCo
             [styles['title--right']]: !shareViaEmail,
           })}
         >
-          {shareViaEmail && <span className={styles.emailTitle}>{t('cta-share')}</span>}
-          <span className={styles.close} onClick={closeModal}>
+          {shareViaEmail && <h1 className={styles.emailTitle}>{t('cta-share')}</h1>}
+          <ButtonTemplate
+            className={styles.close}
+            onClick={closeModal}
+            type='button'
+            componentType={ButtonComponentTypeEnum.secondaryBlue}
+            size={ButtonSizeEnum.small}
+          >
             {t('close')}
-          </span>
+          </ButtonTemplate>
         </div>
         {!shareViaEmail ? (
           <PropertyShareSocialComponent

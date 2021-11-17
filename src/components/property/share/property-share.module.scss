@@ -21,7 +21,11 @@
 }
 
 .close {
-  color: var(--color-interaction-1-dark-mode);
+  border: none;
+  font-size: var(--font-size-01);
+  font-weight: var(--font-weight-04);
+  min-width: auto;
+  padding: 0;
 }
 
 .header {

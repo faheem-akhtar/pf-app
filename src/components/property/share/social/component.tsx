@@ -20,7 +20,7 @@ export const PropertyShareSocialComponent = ({
 }: PropertyShareSocialComponentPropsInterface): JSX.Element => {
   return (
     <Fragment>
-      <div className={styles.header}>{t('social-share/title')}</div>
+      <h1 className={styles.header}>{t('social-share/title')}</h1>
       <div className={styles.content}>
         <a
           className={styles.link}

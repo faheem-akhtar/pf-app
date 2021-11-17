@@ -18,13 +18,12 @@ import { PropertyShareEmailFieldsEnum } from '../fields.enum';
 import { PropertyShareEmailFormComponentPropsInterface } from './component-props.interface';
 import styles from './property-share-email-form.module.scss';
 
-const captchaService = GoogleRecaptchaService();
-
 export const PropertyShareEmailFormComponent = ({
   propertyId,
   onFormSubmitted,
   t,
 }: PropertyShareEmailFormComponentPropsInterface): JSX.Element => {
+  const captchaService = GoogleRecaptchaService();
   const user = useContext(UserContext);
   const [email, setEmail] = useState<string>(user?.email || '');
   const [friendEmail, setFriendEmail] = useState<string>('');
@@ -85,6 +84,8 @@ export const PropertyShareEmailFormComponent = ({
     <form onSubmit={onSubmitForm}>
       <div className={styles.field}>
         <InputBaseComponent
+          id='email'
+          name='email'
           value={email}
           type='email'
           inputClassName={styles.input}
@@ -98,6 +99,8 @@ export const PropertyShareEmailFormComponent = ({
       </div>
       <div className={styles.field}>
         <InputBaseComponent
+          id='friends-email'
+          name='friends-email'
           type='email'
           value={friendEmail}
           inputClassName={styles.input}
@@ -111,6 +114,8 @@ export const PropertyShareEmailFormComponent = ({
       </div>
       <div className={styles.field}>
         <InputBaseComponent
+          id='message'
+          name='message'
           value={message}
           inputClassName={styles.textarea}
           textarea
