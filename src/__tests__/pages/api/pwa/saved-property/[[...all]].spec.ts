@@ -54,7 +54,11 @@ describe('pagesApiPwaSavedPropertyAll', () => {
     await pagesApiPwaSavedPropertyAll(reqMock, resMock);
 
     factoryMock.mock.calls[0][0].alterHeaders(headers);
-    expect(headers).toEqual({ 'content-type': 'application/vnd.api+json', 'x-pf-jwt': 'jwt-token' });
+    expect(headers).toEqual({
+      'content-type': 'application/vnd.api+json',
+      'x-pf-jwt': 'jwt-token',
+      'cache-control': 'no-cache',
+    });
   });
 
   it('should send back the data', async () => {

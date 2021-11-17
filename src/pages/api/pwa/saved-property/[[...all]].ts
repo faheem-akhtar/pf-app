@@ -16,6 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     alterHeaders: (headers) => {
       headers[ApiHeaderEnum.auth] = req.headers[ApiHeaderEnum.auth] as string;
       headers['content-type'] = 'application/vnd.api+json';
+      headers['cache-control'] = 'no-cache';
     },
     getOrigin: configOriginIfDevUseStagingValue,
     query: req.query,
