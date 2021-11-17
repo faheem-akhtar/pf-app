@@ -40,6 +40,7 @@ describe('pagesApiPwaSavedPropertyAll', () => {
       getOrigin: expect.any(Function),
       query: {},
       postData: undefined,
+      reloadCache: true,
     });
   });
 
@@ -57,7 +58,7 @@ describe('pagesApiPwaSavedPropertyAll', () => {
     expect(headers).toEqual({
       'content-type': 'application/vnd.api+json',
       'x-pf-jwt': 'jwt-token',
-      'cache-control': 'no-cache',
+      'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
     });
   });
 
@@ -136,6 +137,7 @@ describe('pagesApiPwaSavedPropertyAll', () => {
       getOrigin: expect.any(Function),
       query: {},
       postData: { a: 1, b: 2 },
+      reloadCache: true,
     });
   });
 
@@ -156,6 +158,7 @@ describe('pagesApiPwaSavedPropertyAll', () => {
       alterHeaders: expect.any(Function),
       getOrigin: expect.any(Function),
       query: {},
+      reloadCache: true,
     });
   });
 });
