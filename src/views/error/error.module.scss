@@ -1,0 +1,18 @@
+.error {
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: spacingm(7) spacingm(2);
+  }
+
+  &__code {
+    font-size: var(--font-size-17);
+    margin-bottom: spacingm(2);
+  }
+
+  &__message {
+    font-size: var(--font-size-11);
+    margin-bottom: spacingm(3);
+  }
+}

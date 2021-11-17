@@ -1,6 +1,8 @@
 import { UserModelInterface } from 'services/user/model.interface';
 
-export interface HeaderTemplatePropsInterface {
+import { HeaderPropsBaseInterface } from './props-base.interface';
+
+export interface HeaderTemplatePropsInterface extends HeaderPropsBaseInterface {
   /**
    * Locale
    */

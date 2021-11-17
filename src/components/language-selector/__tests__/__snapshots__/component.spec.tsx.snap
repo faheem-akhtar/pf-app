@@ -4,6 +4,7 @@ exports[`LanguageSelectorComponent should render without throwing any errors 1`]
 <div>
   <div
     class="container"
+    data-testid="language-selector"
   >
     <a
       aria-label="language-selector"

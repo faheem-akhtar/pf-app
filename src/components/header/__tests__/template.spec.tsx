@@ -54,4 +54,10 @@ describe('HeaderTemplate', () => {
     expect(screen.getByRole('link', { name: /logo-ar/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /logo-ar/i })).toHaveAttribute('href', '/ar');
   });
+
+  it('should not visible language selector', () => {
+    render(<HeaderTemplate {...props} languageSelectorVisible={false} />);
+
+    expect(screen.queryByTestId('language-selector')).not.toBeInTheDocument();
+  });
 });

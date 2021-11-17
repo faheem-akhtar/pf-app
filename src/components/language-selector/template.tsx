@@ -9,7 +9,7 @@ export const LanguageSelectorTemplate = ({
   path,
   label,
 }: LanguageSelectorTemplatePropsInterface): JSX.Element => (
-  <div className={styles.container}>
+  <div className={styles.container} data-testid='language-selector'>
     <a
       aria-label='language-selector'
       href={`/${targetLocale}${path}`}

@@ -18,9 +18,9 @@ export const HeaderTemplate = ({
   locale,
   userProfile,
   onLoginButtonClick,
+  languageSelectorVisible = true,
 }: HeaderTemplatePropsInterface): JSX.Element => {
   const { t } = useTranslation();
-
   const logo = localeIsDefault(locale) ? <IconLogoCurrentTemplate /> : <IconLogoAlternativeTemplate />;
 
   return (
@@ -37,7 +37,7 @@ export const HeaderTemplate = ({
           </div>
 
           <div className={styles.sectionRight}>
-            <LanguageSelectorComponent />
+            {languageSelectorVisible && <LanguageSelectorComponent />}
             {userProfile?.user && (
               <div className={styles.savedProperties}>
                 <span className={styles.spacer} />
