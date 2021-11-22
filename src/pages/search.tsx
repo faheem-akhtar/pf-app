@@ -47,6 +47,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       filtersValueFromQuery,
       searchResult: searchResult.data,
       documentTitle: searchResult.data.title,
+      breadcrumbs: searchResult.data.breadcrumbs,
       ...(await backendTranslationGetDefinitions(locale)),
       pageType: PageTypeEnum.propertySerp,
       abTests: headersParseExperimentsFromSetCookie(searchResult.headers.get('set-cookie') || ''),

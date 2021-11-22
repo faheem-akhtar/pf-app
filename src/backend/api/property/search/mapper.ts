@@ -5,6 +5,7 @@ import { PropertySerpSearchResultType } from 'components/property/serp/search-re
 import { configIsTrace } from 'config/is-trace';
 import { configPropertyHideEmailIfWhatsappPresent } from 'config/property/hide-email-if-whatsapp-present';
 
+import { backendApiPropertySearchBreadcrumbMapper } from './breadcrumb/mapper';
 import { BackendApiPropertySearchJsonApiResultType } from './json-api-result.type';
 import { BackendApiPropertySearchRawJsonResponseType } from './raw-json-response-type';
 
@@ -116,6 +117,7 @@ export const backendApiPropertySearchMapper = (
     },
     total: rawJson.data.relationships.properties.meta.total_count,
     pages: rawJson.data.relationships.properties.meta.page_count,
+    breadcrumbs: backendApiPropertySearchBreadcrumbMapper(rawJson.data.meta.breadcrumbs),
   };
 
   if (configIsTrace) {

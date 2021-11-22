@@ -19,23 +19,7 @@ import { configPriceChoicesDefinition } from 'config/price-choices/definition';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 import { categoryIdIsRent } from 'helpers/category-id/is-rent';
-import { LocationCompactInterface } from 'types/location/compact.interface';
-import { LocationCompactMapType } from 'types/location/compact-map.type';
-
-import locationsByLocale from '../../../../public/static/locations';
-
-const locationsMapByLocale: Record<string, LocationCompactMapType> = {};
-
-Object.keys(locationsByLocale).forEach((locale) => {
-  const locations = (locationsByLocale as unknown as Record<string, LocationCompactInterface[]>)[locale];
-  locationsMapByLocale[locale] = locations.reduce(
-    (map: Record<string, LocationCompactInterface>, location: LocationCompactInterface) => {
-      map[location.id] = location;
-      return map;
-    },
-    {} as Record<string, LocationCompactInterface>
-  );
-});
+import { locationsMapByLocale } from 'helpers/locations/map-by-locale';
 
 // TODO-FE[CX-409] add tests
 export const backendFiltersQueryToValue = (
@@ -49,7 +33,7 @@ export const backendFiltersQueryToValue = (
 
   return {
     [FiltersParametersEnum.locationsIds]:
-      queryParams[FiltersQueryParametersEnum.locationsIds]?.split('-')?.map((id) => locationsMapByLocale[locale][id]) ||
+      queryParams[FiltersQueryParametersEnum.locationsIds]?.split('-')?.map((id) => locationsMapByLocale(locale)[id]) ||
       [],
     [FiltersParametersEnum.categoryId]: categoryId,
     [FiltersParametersEnum.propertyTypeId]:

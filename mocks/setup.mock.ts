@@ -73,6 +73,13 @@ jest.mock('next/router', () => ({
   useRouter: (): NextRouter => router,
 }));
 
+jest.mock(
+  'next/link',
+  () =>
+    ({ children }: { children: JSX.Element }): JSX.Element =>
+      children
+);
+
 global.origin = 'default-origin';
 (global as unknown as { snowplow: Function }).snowplow = jest.fn();
 global.window.dataLayer = [];

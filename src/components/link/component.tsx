@@ -1,13 +1,14 @@
 import Link from 'next/link';
+import { FunctionComponent } from 'react';
 
 import { LinkComponentPropsInterface } from './component.props.interface';
 
-const NextLink: (props: LinkComponentPropsInterface) => JSX.Element = Link as (
-  props: LinkComponentPropsInterface
-) => JSX.Element;
+export const LinkComponent: FunctionComponent<LinkComponentPropsInterface> = (props) => {
+  const { href, locale, ...rest } = props;
 
-export const LinkComponent = ({ href, children, locale }: LinkComponentPropsInterface): JSX.Element => (
-  <NextLink href={href} locale={locale}>
-    {children}
-  </NextLink>
-);
+  return (
+    <Link href={href} locale={locale} {...rest}>
+      {props.children}
+    </Link>
+  );
+};

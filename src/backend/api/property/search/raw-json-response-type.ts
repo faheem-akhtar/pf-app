@@ -1,5 +1,10 @@
+import { BackendApiPropertySearchBreadcrumbResultType } from './breadcrumb/result.type';
+
 export type BackendApiPropertySearchRawJsonResponseType = {
   data: {
+    meta: {
+      breadcrumbs: BackendApiPropertySearchBreadcrumbResultType[];
+    };
     relationships: {
       properties: {
         meta: {

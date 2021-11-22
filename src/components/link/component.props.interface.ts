@@ -1,18 +1,3 @@
-import { ReactNode } from 'react';
+import { LinkProps } from 'next/link';
 
-export interface LinkComponentPropsInterface {
-  /**
-   * The URL to link to when the button is clicked.
-   */
-  href: string;
-
-  /**
-   * Contains any child elements defined within the component
-   */
-  children: ReactNode;
-
-  /**
-   * Locale
-   */
-  locale?: string;
-}
+export interface LinkComponentPropsInterface extends React.PropsWithChildren<LinkProps> {}

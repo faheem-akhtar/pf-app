@@ -16,18 +16,3 @@
 .ad iframe {
   display: block;
 }
-
-.heading {
-  background-color: var(--color-global-white);
-  padding-bottom: spacingm();
-  padding-top: spacingm(2);
-}
-
-.title {
-  color: var(--color-global-grey1);
-  font-size: var(--font-size-08);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-}
