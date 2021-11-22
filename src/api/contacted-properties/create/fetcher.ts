@@ -2,6 +2,7 @@ import { ApiAuthRequiredFactory } from 'api/auth-required-factory';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiJsonModelInterface } from 'api/json/model.interface';
 import { ContactedPropertyInterface } from 'components/contacted-property/interface';
+import { ContactedPropertyTypeEnum } from 'enums/contacted-property/type.enum';
 import { LocaleService } from 'services/locale/service';
 
 import { ApiContactedPropertiesCreateRequestInterface } from './request.interface';
@@ -28,7 +29,7 @@ export const apiContactedPropertiesCreateFetcher = async ({
   const locale = LocaleService.getLocale();
   const requestParams: ApiContactedPropertiesCreateRequestInterface = {
     property_id: propertyId,
-    contact_type: contactType,
+    contact_type: contactType || ContactedPropertyTypeEnum.call,
     contact_date: contactDate,
   };
 
