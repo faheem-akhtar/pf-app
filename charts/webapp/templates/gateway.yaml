@@ -14,8 +14,8 @@ spec:
     - hosts:
       {{- range $country, $config := $root.Values.countries }}
       {{- if eq $root.Values.environment "prenv" }}
-      - website.{{ $root.Release.Name  }}-{{ $country }}{{ $root.Values.ingress.host}}
-      - m.website.{{ $root.Release.Name }}-{{ $country }}{{ $root.Values.ingress.host }}
+      - website-{{ $country }}-{{ $root.Release.Name  }}{{ $root.Values.ingress.host}}
+      - m.website-{{ $country }}-{{ $root.Release.Name  }}{{ $root.Values.ingress.host}}
       {{- else}}
       {{- range $config.hosts }}
       - {{ . }}

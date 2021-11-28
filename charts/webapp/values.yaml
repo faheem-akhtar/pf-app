@@ -32,7 +32,7 @@ service:
 
 ingress:
   enabled: true
-  host: .k8s.propertyfinder.net
+  host: .prenv.propertyfinder.net
 
 countries:
   ae:
