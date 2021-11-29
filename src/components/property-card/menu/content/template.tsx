@@ -1,20 +1,16 @@
-import { Fragment, MutableRefObject } from 'react';
+import { Fragment } from 'react';
 
 import { IconThinReportTemplate } from 'components/icon/thin/report-template';
 import { IconThinShareTemplate } from 'components/icon/thin/share-template';
-import { TFunctionType } from 'types/t-function/type';
 
 import { PropertyCardMenuContentButtonTemplate } from './button/template';
+import { PropertyCardMenuContentTemplatePropsInterface } from './template-props.interface';
 
 export const PropertyCardMenuContentTemplate = ({
   socialShareOpenRef,
   reportOpenRef,
   t,
-}: {
-  t: TFunctionType;
-  socialShareOpenRef: MutableRefObject<() => void>;
-  reportOpenRef: MutableRefObject<() => void>;
-}): JSX.Element => {
+}: PropertyCardMenuContentTemplatePropsInterface): JSX.Element => {
   return (
     <Fragment>
       <PropertyCardMenuContentButtonTemplate

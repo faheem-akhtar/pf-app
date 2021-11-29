@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 
 import { IconThinMapPinTemplate } from 'components/icon/thin/map-pin-template';
-import { mapSearchEnabledByDefault } from 'config/map-search/enabled-by-default';
 import { localeGetHref } from 'helpers/locale/get-href';
 import { useTranslation } from 'helpers/translation/hook';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
@@ -11,12 +10,10 @@ import { ButtonTemplate } from 'library/button/template';
 
 import styles from './map-search-button.module.scss';
 
-export const MapSearchButtonComponent = (): JSX.Element | null => {
+export const MapSearchButtonComponent = (): JSX.Element => {
   const { t } = useTranslation();
   const { asPath, locale } = useRouter();
   const path = asPath.replace('search', 'map-search');
-
-  if (!mapSearchEnabledByDefault) return null;
 
   return (
     <ButtonTemplate

@@ -12,10 +12,11 @@ import { PaginationSectionComponent } from 'components/pagination-section/compon
 import { PropertyListComponent } from 'components/property/list/component';
 import { PropertyListHeaderComponent } from 'components/property/list/header/component';
 import { PropertySearchCountAndSortSectionComponent } from 'components/property-search-count-and-sort-section/component';
-import { PropertySearchNotFoundSectionTemplate } from 'components/property-search-not-found-section/template';
+import { PropertySearchNotFoundSectionComponent } from 'components/property-search-not-found-section/component';
 import { SavedPropertyContextProvider } from 'components/saved-property/context-provider';
 import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { WrapperTemplate } from 'components/wrapper/template';
+import { mapSearchEnabledByDefault } from 'config/map-search/enabled-by-default';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 import { useReactConstructor } from 'helpers/react/constructor.hook';
 import { usePrevious } from 'hooks/previous.hook';
@@ -84,12 +85,12 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
                       <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
                     </Fragment>
                   ) : (
-                    <PropertySearchNotFoundSectionTemplate />
+                    <PropertySearchNotFoundSectionComponent />
                   )}
                 </WrapperTemplate>
               </ContactedPropertyContextProvider>
             </SavedPropertyContextProvider>
-            <MapSearchButtonComponent />
+            {mapSearchEnabledByDefault && <MapSearchButtonComponent />}
             <FooterComponent onClickAppDownload={AnalyticsTealiumService().onAppDownloadClicked} />
           </FiltersContextProvider>
         </SnackbarContextProvider>

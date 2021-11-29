@@ -13,6 +13,7 @@ export const IconThinReportTemplate = (props: IconTemplatePropsInterface): JSX.E
       height={clipped ? undefined : '24'}
       className={props.class}
     >
+      <title>Report</title>
       <path
         fillRule='evenodd'
         clipRule='evenodd'

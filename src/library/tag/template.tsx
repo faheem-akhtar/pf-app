@@ -6,5 +6,7 @@ import styles from './tag.module.scss';
 import { TagTemplatePropsInterface } from './template-props.interface';
 
 export const TagTemplate: FunctionComponent<TagTemplatePropsInterface> = (props) => (
-  <div className={domClassMerge(styles.tag, props.className)}>{props.children}</div>
+  <div data-testid='tag' className={domClassMerge(styles.tag, props.className)}>
+    {props.children}
+  </div>
 );

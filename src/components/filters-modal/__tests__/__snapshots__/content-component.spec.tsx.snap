@@ -313,6 +313,7 @@ exports[`FiltersModalContentComponent should render without throwing any errors 
           virtual-viewings
           <div
             class="tag"
+            data-testid="tag"
           >
             new
           </div>

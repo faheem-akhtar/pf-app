@@ -2,7 +2,7 @@ import { useTranslation } from 'helpers/translation/hook';
 
 import styles from './property-search-not-found-section.module.scss';
 
-export const PropertySearchNotFoundSectionTemplate = (): JSX.Element => {
+export const PropertySearchNotFoundSectionComponent = (): JSX.Element => {
   const { t } = useTranslation();
 
   return (

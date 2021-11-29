@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PropertySearchNotFoundSectionComponent should render without throwing any errors 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <h2
+      class="text"
+    >
+      search/properties-not-found
+    </h2>
+    <div
+      class="hint"
+    >
+      search/properties-not-fount-hint
+    </div>
+    <ul
+      class="options"
+    >
+      <li>
+        change-the-location
+      </li>
+    </ul>
+  </div>
+</div>
+`;

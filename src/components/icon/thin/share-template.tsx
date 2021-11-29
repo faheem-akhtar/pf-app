@@ -13,6 +13,7 @@ export const IconThinShareTemplate = (props: IconTemplatePropsInterface): JSX.El
       height={clipped ? undefined : '24'}
       className={props.class}
     >
+      <title>Share</title>
       <path
         fillRule='evenodd'
         clipRule='evenodd'
