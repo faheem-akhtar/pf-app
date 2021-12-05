@@ -1,0 +1,45 @@
+.container {
+  align-items: center;
+  display: flex;
+}
+
+.avatar {
+  background-color: var(--color-global-grey2);
+  border-radius: 50%;
+  height: 7.04rem;
+  min-width: 7.04rem;
+  overflow: hidden;
+  position: relative;
+  width: 7.04rem;
+
+  &-image {
+    display: block;
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0);
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  padding: 0 spacingm(2);
+
+  &-name {
+    color: var(--color-global-black);
+    font-size: var(--font-size-01);
+    font-weight: var(--font-weight-02);
+    padding-bottom: var(--spacing);
+  }
+
+  &-description {
+    font-size: var(--font-size-08);
+  }
+
+  &-ref {
+    color: var(--color-global-black);
+    font-size: var(--font-size-01);
+    font-weight: var(--font-weight-02);
+  }
+}

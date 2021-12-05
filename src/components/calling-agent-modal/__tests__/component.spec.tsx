@@ -16,7 +16,7 @@ import { PropertyReportUserTypeEnum } from 'enums/property/report/user-type.enum
 
 import { CallingAgentModalComponent } from '../component';
 import { CallingAgentModalComponentPropsInterface } from '../component-props.interface';
-import * as CallingAgentModalFeedbackComponentModule from '../feedback-component';
+import * as CallingAgentModalFeedbackComponentModule from '../feedback/component';
 
 describe('CallingAgentModalComponent', () => {
   const openRef = { current: jest.fn() };

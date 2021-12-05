@@ -1,0 +1,15 @@
+.container {
+  margin-bottom: spacingm(3);
+}
+
+.option {
+  margin-bottom: spacingm(2);
+  text-transform: capitalize;
+  width: 100%;
+}
+
+.hint {
+  color: var(--color-global-grey1);
+  font-size: var(--font-size-09);
+  line-height: 2rem;
+}

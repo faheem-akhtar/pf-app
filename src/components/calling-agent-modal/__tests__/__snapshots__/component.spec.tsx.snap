@@ -6,16 +6,16 @@ exports[`CallingAgentModalComponent should render without throwing any errors 1`
   data-testid="calling-agent-modal-content"
 >
   <div
-    class="header"
+    class="content-header"
   >
     <h1
-      class="text"
+      class="content-text"
     >
       agent-modal/title
     </h1>
     <button>
       <svg
-        class="closeIcon"
+        class="content-close-icon"
         viewBox="7 7 10 10"
       >
         <title>
@@ -34,42 +34,43 @@ exports[`CallingAgentModalComponent should render without throwing any errors 1`
 
 exports[`CallingAgentModalComponent when agent model information is loaded if agent info is shown properly 1`] = `
 <div
-  class="details"
+  class="container"
   data-testid="agent-info-component-details"
 >
   <div
-    class="avatarContainer"
+    class="avatar"
   >
     <picture
-      class="avatar"
+      class="avatar-image"
     >
       <source
         srcset="image"
         type="image/jpeg"
       />
       <img
-        class="avatar"
+        alt="lorem"
+        class="avatar-image"
         src="image"
       />
     </picture>
   </div>
   <div
-    class="info"
+    class="text"
   >
     <span
-      class="name text"
+      class="text-name"
     >
       lorem
     </span>
     <p
-      class="description"
+      class="text-description"
     >
       speaks: a, b
       <br />
       reference
       : 
       <span
-        class="text"
+        class="text-ref"
       >
         123
       </span>
