@@ -18,7 +18,7 @@ export const GalleryScrollPictureComponent = ({
     <picture
       data-testid='gallery-scroll-picture'
       style={style || {}}
-      className={domClassMerge(styles.item, { loading })}
+      className={domClassMerge(styles.item, { [styles['item--loading']]: loading })}
       onLoad={(): void => setLoading(false)}
     >
       {sourceUrl && <source srcSet={sourceUrl.replace('.jpg', '.webp')} type='image/webp' />}

@@ -1,14 +1,10 @@
+@import 'base/reset.scss';
+
 /* Common variables & styles (not allowed to override) */
-@import './common/variables.scss';
+@import 'abstracts/variables';
 @import '~language';
 
-/** Common keyframes */
-@import './common/keyframes.scss';
-
 /* Common variables & styles (not allowed to override) */
-@import './common/module/fonts.scss';
-@import './common/html.scss';
-@import './common/body.scss';
-
-/* Common loading styles */
-@import './common/loading.scss';
+@import 'base/typography';
+@import 'base/html';
+@import 'base/body';

@@ -29,7 +29,7 @@ module.exports = {
           loader: require.resolve('sass-resources-loader'),
           options: {
             // Can be changed for entry point containing sass related content like variables, mixins, etc
-            resources: `${srcDir}/styles/common/functions.scss`,
+            resources: `${srcDir}/styles/global.scss`,
           },
         },
       ],

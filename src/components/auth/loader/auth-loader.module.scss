@@ -34,13 +34,15 @@
 }
 
 .loader1__bounce {
-  animation: sk-bouncedelay 1.2s infinite ease-in-out both;
   background-color: var(--color-primary-clay-dark);
-
   border-radius: 100%;
   display: inline-block;
   height: 1.2rem;
   width: 1.2rem;
+
+  :global {
+    @include animation(sk-bouncedelay 1.2s var(--transition-count1) var(--transition-logic3) both);
+  }
 }
 
 .loader1__bounce--1 {
@@ -49,16 +51,4 @@
 
 .loader1__bounce--2 {
   animation-delay: -0.16s;
-}
-
-/* Used for loader1 */
-@keyframes sk-bouncedelay {
-  0%,
-  80%,
-  100% {
-    transform: scale(0);
-  }
-  40% {
-    transform: scale(1);
-  }
 }

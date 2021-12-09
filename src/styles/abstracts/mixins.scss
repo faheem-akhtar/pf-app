@@ -1,0 +1,43 @@
+/* 3 dots applier */
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin loading {
+  background: linear-gradient(
+    110deg,
+    var(--color-global-stone-25) 8%,
+    var(--color-global-stone-50) 18%,
+    var(--color-global-stone-25) 33%
+  );
+  background-size: 200% 100%;
+
+  @include animation('shine 1s infinite');
+}
+
+/* Keyframe factory to create animation for supporting all browsers */
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+
+  @-o-keyframes #{$animation-name} {
+    $browser: '-o-' !global;
+    @content;
+  }
+
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+/* Animation helper */
+@mixin animation($str) {
+  animation: #{$str};
+}

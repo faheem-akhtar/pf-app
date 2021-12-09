@@ -1,8 +1,7 @@
-import '../src/styles/common/variables.scss';
-import '../src/styles/common/keyframes.scss';
-import '../src/styles/common/storybook.scss';
-import '../src/styles/common/loading.scss';
-import '../src/styles/common/html.scss';
+import '../src/styles/base/reset.scss';
+import '../src/styles/base/html.scss';
+import '../src/styles/abstracts/variables.scss';
+import '../src/styles/vendors/storybook.scss';
 import '../src/styles/common/language.scss';
 
 const customViewports = {

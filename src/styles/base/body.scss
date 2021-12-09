@@ -5,8 +5,13 @@ body {
   color: var(--color-global-black);
   fill: var(--color-global-black);
   font: var(--font-size-01) / 1.6 var(--font-family-default);
-}
 
-.body__svg {
-  display: none;
+  /* To provide the contextual adjustment of inter-glyph spacing. */
+  font-kerning: normal;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
 }

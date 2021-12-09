@@ -26,6 +26,10 @@
   width: 100%;
   will-change: transform;
   z-index: var(--z-index-01);
+
+  &--loading {
+    @include loading;
+  }
 }
 
 .item > img {

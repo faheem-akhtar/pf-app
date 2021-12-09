@@ -71,7 +71,8 @@
 
 .overlay {
   background-color: var(--color-global-black-op-80);
+
   :global {
-    animation: opacity-up var(--transition-duration);
+    @include animation(opacity-up var(--transition-duration));
   }
 }

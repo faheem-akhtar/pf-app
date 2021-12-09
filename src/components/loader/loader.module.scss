@@ -22,7 +22,7 @@
   width: 0.6rem;
 
   :global {
-    animation: opacity-up 1s infinite ease-in-out both;
+    @include animation(opacity-up 1s var(--transition-count1) var(--transition-logic3) both);
   }
 
   &:not(:last-child) {

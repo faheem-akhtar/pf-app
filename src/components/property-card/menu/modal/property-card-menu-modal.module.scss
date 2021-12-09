@@ -11,7 +11,7 @@
   z-index: var(--z-index-08);
 
   :global {
-    animation: slide-in-up 200ms var(--transition-logic);
+    @include animation(slide-in-up 200ms var(--transition-logic));
   }
 }
 

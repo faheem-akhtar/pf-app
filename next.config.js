@@ -32,7 +32,7 @@ module.exports = {
     return config;
   },
   sassOptions: {
-    prependData: "@import 'src/styles/common/functions';",
+    prependData: "@import 'src/styles/global';",
   },
   compress: false,
   async headers() {

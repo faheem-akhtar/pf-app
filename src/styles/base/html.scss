@@ -1,0 +1,12 @@
+html {
+  /* Keep base font-size to 10px, so it is easy to compute the REMs */
+  font-size: 62.5%;
+  height: 100%;
+  line-height: var(--html-line-height);
+
+  /* Prevent any object from being highlighted upon touch event */
+  -webkit-tap-highlight-color: transparent;
+
+  /* Prevent font scaling in landscape while allowing user zoom */
+  -webkit-text-size-adjust: 100%;
+}
