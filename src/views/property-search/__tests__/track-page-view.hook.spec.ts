@@ -11,6 +11,7 @@ import { propertyStub } from 'stubs/property/stub';
 import { statsDataObfuscatedStub } from 'stubs/stats-data/obfuscated.stub';
 
 import { FiltersValueInterface } from 'components/filters/value/interface';
+import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { StatsContexterService } from 'services/stats/contexter.service';
 import { StatsService } from 'services/stats/service';
@@ -191,5 +192,26 @@ describe('usePropertySearchTrackPageView', () => {
     expect(StatsService().propertyLoad).toHaveBeenCalledWith(198023, {
       pagination: { itemPerPage: 25, itemTotal: 5, pageCurrent: 1 },
     });
+  });
+
+  it('should fetch if we have no properties', async () => {
+    const fetchMock = mockWindowFetch({ ok: false });
+    const filtersValueFromQuery = filtersValueStub();
+
+    StatsContexterService().setAbTests = jest.fn();
+    StatsContexterService().setPropertySearch = jest.fn();
+    StatsContexterService().setPropertyCategoryIdentifier = jest.fn();
+    StatsContexterService().setPropertySerp = jest.fn();
+
+    const { statsDataPromise } = usePropertySearchTrackPageView(undefined, {
+      ok: true,
+      filtersValueFromQuery,
+      searchResult: { properties: [] as PropertySerpObfuscatedType[] },
+    } as PropertySearchViewPropsType);
+
+    expect(await statsDataPromise).toEqual({ ok: true });
+
+    expect(StatsService().propertyLoad).not.toHaveBeenCalled();
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 });

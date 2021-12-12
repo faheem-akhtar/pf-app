@@ -61,24 +61,27 @@ export const usePropertySearchTrackPageView = (
 
   statsService.propertySerp(localContext);
 
-  const statsDataPromise = apiPropertyStatsDataFetcher(
-    props.searchResult.properties.map(propertySerpObfuscatedGetId),
-    props.filtersValueFromQuery[FiltersParametersEnum.pageNumber]
-  ).then((statsDataResult) => {
-    if (statsDataResult.ok) {
-      // populate global scope with properties data
-      statsDataResult.data.forEach((propertyStatsData) => {
-        StatsDataService().getPropertyStore().add(propertyStatsData);
-      });
+  const statsDataPromise =
+    props.searchResult.properties.length > 0
+      ? apiPropertyStatsDataFetcher(
+          props.searchResult.properties.map(propertySerpObfuscatedGetId),
+          props.filtersValueFromQuery[FiltersParametersEnum.pageNumber]
+        ).then((statsDataResult) => {
+          if (statsDataResult.ok) {
+            // populate global scope with properties data
+            statsDataResult.data.forEach((propertyStatsData) => {
+              StatsDataService().getPropertyStore().add(propertyStatsData);
+            });
 
-      // track property listing loaded
-      searchResult.properties.forEach((obfuscatedProperty) => {
-        propertyTracker.load(obfuscatedProperty, localContext);
-      });
-    }
+            // track property listing loaded
+            searchResult.properties.forEach((obfuscatedProperty) => {
+              propertyTracker.load(obfuscatedProperty, localContext);
+            });
+          }
 
-    return statsDataResult;
-  });
+          return statsDataResult;
+        })
+      : Promise.resolve({ ok: true });
 
   statsDataPromiseRef.current = statsDataPromise;
 
