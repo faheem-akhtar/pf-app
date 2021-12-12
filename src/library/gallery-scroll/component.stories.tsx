@@ -1,5 +1,7 @@
 /* eslint-disable pf-rules/export-name-validation */
 
+import { PropertyCardTypeEnum } from 'components/property-card/type.enum';
+
 import { GalleryScrollComponent } from './component';
 import styles from './gallery-scroll-storybook.module.scss';
 
@@ -25,6 +27,7 @@ export const Gallery = (props: { imagesCount: number; isRtl: boolean }): JSX.Ele
     items={images.map((sourceUrl) => ({ sourceUrl }))}
     onTouch={(): null => null}
     className={styles.gallery}
+    cardType={PropertyCardTypeEnum.modern}
   />
 );
 

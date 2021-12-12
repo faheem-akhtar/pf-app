@@ -22,6 +22,7 @@ import { propertySerpObfuscatedGetPropertyTypeName } from 'components/property/s
 import { propertySerpObfuscatedGetPublishDateValue } from 'components/property/serp/obfuscated/get/publish-date-value';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
 import { propertySerpObfuscatedGetUrl } from 'components/property/serp/obfuscated/get/url';
+import { propertySerpObfuscatedGetUtilitiesPriceTypeName } from 'components/property/serp/obfuscated/get/utilities-price-type-name';
 import { SavedPropertyContext } from 'components/saved-property/context';
 import { ContactedPropertyTypeEnum } from 'enums/contacted-property/type.enum';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
@@ -43,12 +44,14 @@ import styles from './property-card.module.scss';
 import { PropertyCardTemplate } from './template';
 import { PropertyCardTemplatePropsType } from './template-props.type';
 import { usePropertyCardTrackVisibilityOnScreen } from './track-visibility-on-screen.hook';
+import { PropertyCardTypeEnum } from './type.enum';
 
 export const PropertyCardComponent = ({
   property,
   loading,
   onSaveButtonClick,
   onPropertyClick,
+  cardType = PropertyCardTypeEnum.classic,
 }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -93,6 +96,8 @@ export const PropertyCardComponent = ({
       : [],
     isRtl: locale === LanguageCodeEnum.ar,
     onTouch: (): void => setGalleryHasBeenTouched(true),
+    // TODO-FE[CX-991] Add AB test value
+    cardType,
   };
 
   const sendLead = (medium: LeadMediumType): void => {
@@ -112,6 +117,8 @@ export const PropertyCardComponent = ({
   const bathsValue = propertySerpObfuscatedGetBathroomValue(property);
 
   const cardTemplateProps: PropertyCardTemplatePropsType = {
+    // TODO-FE[CX-991] Implement conditionally rendering templates by AB test value
+    cardType,
     loading,
     gallery: galleryProps,
     saved: isPropertySaved,
@@ -128,8 +135,7 @@ export const PropertyCardComponent = ({
     href: `${propertySerpObfuscatedGetUrl(property)}?ref=listing`,
     banners: propertyCardBannersGetBanners(property, t),
     showBanners,
-    // TODO-FE: CX-768 enable for other markets
-    utilitiesIncluded: false,
+    utilitiesPriceType: propertySerpObfuscatedGetUtilitiesPriceTypeName(property),
 
     ...(phone
       ? {

@@ -29,6 +29,7 @@ import { propertySerpObfuscatedFieldQualityScore } from 'components/property/ser
 import { propertySerpObfuscatedFieldReference } from 'components/property/serp/obfuscated/field/reference';
 import { propertySerpObfuscatedFieldSize } from 'components/property/serp/obfuscated/field/size';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
+import { propertySerpObfuscatedFieldUtilitiesPriceTypeName } from 'components/property/serp/obfuscated/field/utilities-price-type-name';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 
@@ -67,5 +68,6 @@ export const propertyStub = (data: Partial<PropertySerpObfuscatedType> = {}): Pr
     [propertySerpObfuscatedFieldAreaValue]: '550 Sqft',
     [propertySerpObfuscatedFieldPublishDateValue]: '1 hour ago',
     [propertySerpObfuscatedFieldOfferingTypeName]: 'offering-type',
+    [propertySerpObfuscatedFieldUtilitiesPriceTypeName]: 'inclusive',
     ...data,
   } as PropertySerpObfuscatedType);

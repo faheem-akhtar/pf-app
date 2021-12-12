@@ -26,6 +26,7 @@ import { propertySerpObfuscatedFieldQualityScore } from 'components/property/ser
 import { propertySerpObfuscatedFieldReference } from 'components/property/serp/obfuscated/field/reference';
 import { propertySerpObfuscatedFieldSize } from 'components/property/serp/obfuscated/field/size';
 import { propertySerpObfuscatedFieldUrl } from 'components/property/serp/obfuscated/field/url';
+import { propertySerpObfuscatedFieldUtilitiesPriceTypeName } from 'components/property/serp/obfuscated/field/utilities-price-type-name';
 import { propertySerpObfuscatedFieldVerified } from 'components/property/serp/obfuscated/field/verified';
 import { propertySerpObfuscatedFieldVideoTour } from 'components/property/serp/obfuscated/field/video-tour';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
@@ -132,6 +133,9 @@ export const backendPropertySerpObfuscate = (property: PropertySerpInterface): P
         break;
       case 'offeringType':
         obfuscatedProperty[propertySerpObfuscatedFieldOfferingTypeName] = value;
+        break;
+      case 'utilitiesPriceType':
+        obfuscatedProperty[propertySerpObfuscatedFieldUtilitiesPriceTypeName] = value;
         break;
       default:
         assertUnreachable(propertyKey);

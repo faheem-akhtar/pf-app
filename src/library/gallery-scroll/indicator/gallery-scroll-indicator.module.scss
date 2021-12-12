@@ -12,40 +12,63 @@
   z-index: var(--z-index-02);
 }
 
-.items_container {
+.items {
   align-items: center;
   display: inline-flex;
   transition: transform 0.3s;
 }
 
 .dot {
+  $self: &;
   align-items: center;
   display: flex;
   height: 1rem;
   justify-content: center;
   width: 1rem;
-}
 
-.dot::after {
-  background: var(--color-global-white-op-70);
-  border-radius: 0.5rem;
-  box-shadow: 0 0.1rem 0 0 var(--color-global-black-op-35);
-  content: '';
-  display: block;
-  height: 0.6rem;
-  transition: transform 0.2s;
-  width: 0.6rem;
-}
+  &::after {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.1rem 0 0 var(--color-global-black-op-35);
+    content: '';
+    display: block;
+    height: 0.6rem;
+    transition: transform 0.2s;
+    width: 0.6rem;
+  }
 
-.dot__small::after {
-  transform: scale(0.67);
-}
+  &--classic {
+    &::after {
+      background: var(--color-global-white);
+    }
+  }
 
-.dot__hidden::after {
-  transform: scale(0);
-}
+  &--modern {
+    &#{$self}--active {
+      &::after {
+        background: var(--color-global-white);
+      }
+    }
 
-.dot__active::after {
-  background: var(--color-global-white);
-  transform: scale(1.3333);
+    &::after {
+      background: var(--color-global-white);
+    }
+  }
+
+  &--active {
+    &::after {
+      transform: scale(1.3333);
+    }
+  }
+
+  &--small {
+    &::after {
+      transform: scale(0.67);
+    }
+  }
+
+  &--hidden {
+    &::after {
+      transform: scale(0);
+    }
+  }
 }

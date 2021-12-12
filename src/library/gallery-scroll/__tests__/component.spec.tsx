@@ -4,6 +4,8 @@ import { mockReactUseReducer } from 'mocks/react/use-reducer.mock';
 import { mockWindowRemoveEventListener } from 'mocks/window/remove-event-listener.mock';
 import { touchEventStub } from 'stubs/touch/event.stub';
 
+import { PropertyCardTypeEnum } from 'components/property-card/type.enum';
+
 import { GalleryScrollComponent } from '../component';
 import { GalleryScrollComponentPropsInterface } from '../component-props.interface';
 import { GalleryScrollItemInterface } from '../item.interface';
@@ -26,6 +28,7 @@ describe('AppearOnScrollComponent', () => {
       items: [{ sourceUrl: '1' }, { sourceUrl: '2' }, { sourceUrl: '3' }, { sourceUrl: '4' }],
       isRtl: false,
       onTouch: jest.fn,
+      cardType: PropertyCardTypeEnum.modern,
     };
   });
 

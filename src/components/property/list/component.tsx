@@ -22,6 +22,7 @@ import { PropertyListAdPlaceholderTemplate } from './ad-placeholder-template';
 import { PropertyListComponentPropsInterface } from './component-props.interface';
 import { PropertyListItemType } from './item/type';
 import { PropertyListItemTypeEnum } from './item/type.enum';
+import styles from './property-list.module.scss';
 
 const NUMBER_OF_IMAGES_TO_PRELOAD = 3;
 
@@ -58,7 +59,7 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
   return (
     <>
       <PreloadImages />
-      <div>
+      <div className={styles.container}>
         {items.map((item, index) => {
           if (item.type === 'ad') {
             return <PropertyListAdPlaceholderTemplate id={item.id} key={index} />;

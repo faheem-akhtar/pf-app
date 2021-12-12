@@ -53,6 +53,11 @@ export interface ButtonTemplatePropsBaseInterface {
   className?: string;
 
   /**
+   * Accessible testId from parents
+   */
+  testId?: string;
+
+  /**
    * Handle button click event
    */
   onClick?: React.MouseEventHandler<Element>;

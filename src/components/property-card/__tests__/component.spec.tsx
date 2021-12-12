@@ -19,6 +19,7 @@ import { PropertySearchStatsDataPromiseForCurrentQueryContext } from 'views/prop
 import { PropertyCardComponent } from '../component';
 import { PropertyCardComponentPropsType } from '../component-props.type';
 import * as usePropertyCardTrackVisibilityOnScreenModule from '../track-visibility-on-screen.hook';
+import { PropertyCardTypeEnum } from '../type.enum';
 
 jest.mock('../track-visibility-on-screen.hook');
 
@@ -27,12 +28,12 @@ const makeDefaultProps = (): PropertyCardComponentPropsType => ({
   loading: false,
   onSaveButtonClick: jest.fn(),
   onPropertyClick: jest.fn(),
+  cardType: PropertyCardTypeEnum.classic,
 });
 
 /**
  * TODO-FE[CX-407] Add missing tests
  */
-
 describe('PropertyCardComponent', () => {
   beforeAll(() => {
     mockModalEnv();
@@ -41,6 +42,22 @@ describe('PropertyCardComponent', () => {
   beforeEach(() => {
     mockWindowFetch();
     (StatsService().propertyLeadClick as jest.Mock).mockReset();
+  });
+
+  describe('renders without throwing any errors', () => {
+    test('if the card type is classic', () => {
+      const defaultProps = makeDefaultProps();
+      const { container } = render(<PropertyCardComponent {...defaultProps} />);
+
+      expect(container).toMatchSnapshot();
+    });
+
+    test('if the card type is modern', () => {
+      const defaultProps = makeDefaultProps();
+      const { container } = render(<PropertyCardComponent {...defaultProps} cardType={PropertyCardTypeEnum.modern} />);
+
+      expect(container).toMatchSnapshot();
+    });
   });
 
   describe('Gallery', () => {
@@ -112,7 +129,7 @@ describe('PropertyCardComponent', () => {
     });
   });
 
-  describe('CtA buttons', () => {
+  describe('CTA buttons', () => {
     it('should print error if can not send lead', async () => {
       const statsDataPromise = Promise.resolve({ ok: false });
 
@@ -148,6 +165,10 @@ describe('PropertyCardComponent', () => {
           </PropertySearchStatsDataPromiseForCurrentQueryContext.Provider>
         );
 
+        // On the old cards cta-email is only visible if there is no whatsapp contact options
+        if (defaultProps.cardType == PropertyCardTypeEnum.classic && ctaType === 'email') {
+          return;
+        }
         const callButton = getByTestId(`cta-${ctaType}`);
 
         userEvent.click(callButton);

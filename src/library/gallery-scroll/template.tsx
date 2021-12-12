@@ -24,6 +24,7 @@ export const GalleryScrollTemplate: React.FunctionComponent<GalleryScrollTemplat
         itemsCount={props.items.length}
         activeIndex={props.activeIndex}
         isRtl={props.isRtl}
+        cardType={props.cardType}
       />
     </div>
   );

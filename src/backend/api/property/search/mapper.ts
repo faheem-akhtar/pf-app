@@ -38,6 +38,7 @@ export const backendApiPropertySearchMapper = (
         reference,
         date_insert,
         default_price,
+        utilities_price_type,
       } = property;
 
       const { listed_at_message, live_event_metadata, video_metadata } = meta;
@@ -92,6 +93,7 @@ export const backendApiPropertySearchMapper = (
         defaultPrice: default_price,
         videoTour: video_metadata,
         offeringType: property.offering_type,
+        utilitiesPriceType: utilities_price_type,
       };
 
       if (configIsTrace) {

@@ -1,4 +1,6 @@
-export interface GalleryScrollIndicatorPropsInterface {
+import { PropertyCardTemplatePropsType } from 'components/property-card/template-props.type';
+
+export interface GalleryScrollIndicatorPropsInterface extends Pick<PropertyCardTemplatePropsType, 'cardType'> {
   /**
    * Dot width
    */

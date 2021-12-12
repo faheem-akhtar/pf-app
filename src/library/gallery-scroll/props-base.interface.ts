@@ -1,6 +1,8 @@
+import { PropertyCardTemplatePropsType } from 'components/property-card/template-props.type';
+
 import { GalleryScrollObjectFitEnum } from './object-fit.enum';
 
-export interface GalleryScrollPropsBaseInterface {
+export interface GalleryScrollPropsBaseInterface extends Pick<PropertyCardTemplatePropsType, 'cardType'> {
   /**
    * Clicked the gallery
    */

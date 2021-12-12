@@ -1,0 +1,2 @@
+export const propertySerpObfuscatedFieldUtilitiesPriceTypeName: string = process.env
+  .NEXT_PUBLIC_PROPERTY_SERP_OBFUSCATED_FIELD_UTILITIES_PRICE_TYPE as string;

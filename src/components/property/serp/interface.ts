@@ -6,21 +6,25 @@ import { PropertyVideoTourInterface } from '../video-tour.interface';
 export interface PropertySerpInterface {
   /**
    * Live event
+   * @example true/false
    */
   liveEvent: boolean;
 
   /**
    * Area in sqft
+   * @example "489 sqm"
    */
   area: string;
 
   /**
    * Date the property was listed
+   * @example "1 day ago"
    */
   publishDate: string;
 
   /**
    * Property ID
+   * @example "540143"
    */
   id: string;
 
@@ -31,39 +35,43 @@ export interface PropertySerpInterface {
 
   /**
    * Property Broker ID
+   * @example "14"
    */
   brokerId?: string;
 
   /**
    * Name
-   * Example: "Upgraded | Custom Design | Full Sea View"
+   * @example "Upgraded | Custom Design | Full Sea View"
    */
   name: string;
 
   /**
    * Is this listing verified
+   * @example true/false
    */
   verified: boolean;
 
   /**
    * Listing level
-   * Example: "premium"
+   * @example "premium"
    */
   listingLevel: string;
 
   /**
    * Number of bathrooms
+   * @example 5
    */
   bathroomValue: number;
 
   /**
    * Number of bedrooms
+   * @example 4
    */
   bedroomValue: number;
 
   /**
    * Location tree page
-   * Example: "Oceana Southern, Oceana, Palm Jumeirah, Dubai"
+   * @example "Oceana Southern, Oceana, Palm Jumeirah, Dubai"
    */
   locationTreePath: string;
 
@@ -73,43 +81,50 @@ export interface PropertySerpInterface {
   locationTreeCompact?: Partial<LocationCompactInterface>[];
 
   /**
-   * insertion date
+   * Insertion date
+   * @example "Mon Dec 06 2021"
    */
   dateInsert: string;
 
   /**
    * Is this listing exclusive to the agent
+   * @example true/false
    */
   exclusive: boolean;
 
   /**
    * Quality score
+   * @example 100
    */
   qualityScore: number;
 
   /**
    * Url to the listing
+   * @example "https://www.propertyfinder.bh/en/rent/apartment-for-rent-capital-governorate-al-juffair-540323.html"
    */
   url: string;
 
   /**
    * Image url
+   * @example "https://www.propertyfinder.bh/property/63e4b6e5bfeae34d58d2a711eb9d028c/668/452/MODE/e68b06/540323-46a40o.jpg?ctr=bh"
    */
   imgUrl: string;
 
   /**
    * Image url small
+   * @example "https://www.propertyfinder.bh/property/63e4b6e5bfeae34d58d2a711eb9d028c/260/185/MODE/aa4e7d/540323-46a40o.jpg?ctr=bh"
    */
   imgUrlSmall: string;
 
   /**
    * Images count
+   * @example 10
    */
   imagesCount: number;
 
   /**
    * Property type name
-   * Example: "Apartment"
+   * @example "Apartment"
    */
   propertyTypeName: string;
 
@@ -120,18 +135,19 @@ export interface PropertySerpInterface {
 
   /**
    * Price text
-   * Example: 110,000 درهم سنوياً
+   * @example 110,000 درهم سنوياً
    */
   priceText: string;
 
   /**
    * Property reference ID
+   * @example "SF-070p"
    */
   reference: string;
 
   /**
    * Price
-   * Example: 110000
+   * @example 110000
    */
   defaultPrice: number;
 
@@ -140,8 +156,9 @@ export interface PropertySerpInterface {
    */
   videoTour?: PropertyVideoTourInterface;
 
-  /*
+  /**
    * Size
+   * @example 80
    */
   size: number;
 
@@ -152,6 +169,13 @@ export interface PropertySerpInterface {
 
   /**
    * Offering type or category identifier
+   * @example "Residential for Rent"
    */
   offeringType: string;
+
+  /**
+   * The utilities price type (inclusive/exclusive)
+   * @example "inclusive" | "exclusive"
+   */
+  utilitiesPriceType: string;
 }

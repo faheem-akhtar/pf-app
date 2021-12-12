@@ -70,24 +70,26 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
                   pageTitle={props.documentTitle}
                   breadcrumbs={props.searchResult.breadcrumbs}
                 />
-                <WrapperTemplate>
-                  {props.searchResult.total ? (
-                    <Fragment>
+                {props.searchResult.total ? (
+                  <Fragment>
+                    <WrapperTemplate>
                       <PropertySearchCountAndSortSectionComponent
                         loading={pageIsLoading}
                         count={props.searchResult.total}
                       />
-                      <PropertyListComponent
-                        properties={props.searchResult.properties}
-                        adConfig={props.searchResult.adConfig}
-                        pageIsLoading={pageIsLoading}
-                      />
+                    </WrapperTemplate>
+                    <PropertyListComponent
+                      properties={props.searchResult.properties}
+                      adConfig={props.searchResult.adConfig}
+                      pageIsLoading={pageIsLoading}
+                    />
+                    <WrapperTemplate>
                       <PaginationSectionComponent pagesAvailable={props.searchResult.pages} loading={pageIsLoading} />
-                    </Fragment>
-                  ) : (
-                    <PropertySearchNotFoundSectionComponent />
-                  )}
-                </WrapperTemplate>
+                    </WrapperTemplate>
+                  </Fragment>
+                ) : (
+                  <PropertySearchNotFoundSectionComponent />
+                )}
               </ContactedPropertyContextProvider>
             </SavedPropertyContextProvider>
             {mapSearchEnabledByDefault && <MapSearchButtonComponent />}

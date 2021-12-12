@@ -58,6 +58,7 @@ export const ButtonTemplate: FunctionComponent<ButtonLinkTemplatePropsInterface 
       onClick={!props.loading ? props.onClick : undefined}
       href={(props as ButtonLinkTemplatePropsInterface).href}
       target={(props as ButtonLinkTemplatePropsInterface).target}
+      data-testid={props.testId}
     >
       {props.loading ? renderLoader() : renderContent()}
     </Component>

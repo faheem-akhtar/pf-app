@@ -18,6 +18,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
     items,
     isRtl,
     objectFit,
+    cardType,
     onActiveIndexChange = functionNoop,
     onTouch = functionNoop,
     onClick = functionNoop,
@@ -81,6 +82,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
       activeIndex={state.activeIndex}
       objectFit={objectFit}
       isRtl={isRtl}
+      cardType={cardType}
     />
   );
 };
