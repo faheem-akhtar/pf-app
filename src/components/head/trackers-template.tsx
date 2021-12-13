@@ -1,7 +1,6 @@
 import { configAnalyticsGtmId } from 'config/analytics/gtm-id';
 import { configCommon } from 'config/common';
-import { configTealiumEnabled } from 'config/tealium/enabled';
-import { tealiumProfileId } from 'config/tealium/profile-id';
+import { configTealiumProfile } from 'config/tealium/profile';
 import { helpersIsDevelopment } from 'helpers/is-development';
 import { AnalyticsPageNamesEnum } from 'services/analytics/page-names.enum';
 import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
@@ -30,7 +29,7 @@ if (!urlQueryGetParameterByName('no-gtm')) {
 }
 
 if (!urlQueryGetParameterByName('no-analytics')) {
-  if (!urlQueryGetParameterByName('no-tealium') && ${configTealiumEnabled}) {
+  if (!urlQueryGetParameterByName('no-tealium') && ${configTealiumProfile.enabled}) {
     // https://docs.tealium.com/platforms/javascript/settings
     window.utag_cfg_ovrd = {
       readywait: true
@@ -49,7 +48,9 @@ if (!urlQueryGetParameterByName('no-analytics')) {
 
     // Tealium
     (function(a,b,c,d){
-      a='https://tags.tiqcdn.com/utag/propertyfinder/${tealiumProfileId}/prod/utag.js';
+      a='//tags.tiqcdn.com/utag/propertyfinder/${configTealiumProfile.id}/${
+  process.env.ENVIRONMENT === 'production' ? 'prod' : 'dev'
+}/utag.js';
       b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
       d.onload=function(){ ${AnalyticsTealiumService().callStalledEvents()} };
       a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);

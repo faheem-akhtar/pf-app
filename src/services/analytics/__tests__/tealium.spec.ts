@@ -12,9 +12,12 @@ import { TealiumEventTypeEnum } from 'services/tealium/event-type.enum';
 
 import { AnalyticsTealium } from '../tealium';
 
-jest.mock('config/tealium/enabled', () => {
+jest.mock('config/tealium/profile', () => {
   return {
-    configTealiumEnabled: true,
+    configTealiumProfile: {
+      enabled: true,
+      id: 'uae',
+    },
   };
 });
 

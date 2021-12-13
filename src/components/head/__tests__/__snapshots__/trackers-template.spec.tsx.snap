@@ -42,7 +42,7 @@ if (!urlQueryGetParameterByName('no-analytics')) {
 
     // Tealium
     (function(a,b,c,d){
-      a='https://tags.tiqcdn.com/utag/propertyfinder/uae/prod/utag.js';
+      a='//tags.tiqcdn.com/utag/propertyfinder/null/dev/utag.js';
       b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
       d.onload=function(){ undefined };
       a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);

@@ -1,4 +1,4 @@
-import { configTealiumEnabled } from 'config/tealium/enabled';
+import { configTealiumProfile } from 'config/tealium/profile';
 import { TealiumCollectTypeEnum } from 'services/tealium/collect-type.enum';
 import { TealiumDataLayerInterface } from 'services/tealium/data-layer.interface';
 import { TealiumEventEnum } from 'services/tealium/event.enum';
@@ -12,7 +12,7 @@ const stalledEvents = new Map<TealiumEventEnum, { data: TealiumDataLayerInterfac
 
 const collect = (type: TealiumCollectTypeEnum, data: TealiumDataLayerInterface): void => {
   if (typeof window.utag === 'undefined') {
-    if (configTealiumEnabled) {
+    if (configTealiumProfile.enabled) {
       // eslint-disable-next-line no-console
       console.error('window.utag is not loaded');
     }
