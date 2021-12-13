@@ -45,7 +45,7 @@ countries:
     mobilePath: /pf-web-app\/(.*)
     desktopPath: /pf-web-app\/(.*)
   qa:
-    mobilePath: /pf-web-app\/(.*)
+    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
     desktopPath: /pf-web-app\/(.*)
   sa:
     mobilePath: /pf-web-app\/(.*)
