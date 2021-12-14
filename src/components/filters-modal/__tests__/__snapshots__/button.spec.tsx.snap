@@ -15,7 +15,6 @@ exports[`FiltersModalButtonComponent should render without throwing any errors 1
         width="24"
       >
         <g
-          id="svg-filter"
           stroke="none"
         >
           <path

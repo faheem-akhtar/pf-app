@@ -14,7 +14,7 @@ export const IconThickPriceExclusiveTemplate = (props: IconTemplatePropsInterfac
       className={props.class}
     >
       <title>Price Exclusive</title>
-      <g clipPath='url(#clip0_89_12)'>
+      <g clipPath='url(#icon-thick-price-exclusive)'>
         <path
           fillRule='evenodd'
           clipRule='evenodd'
@@ -29,7 +29,7 @@ export const IconThickPriceExclusiveTemplate = (props: IconTemplatePropsInterfac
         />
       </g>
       <defs>
-        <clipPath id='clip0_89_12'>
+        <clipPath id='icon-thick-price-exclusive'>
           <rect width='15' height='15' fill='white' transform='translate(0.5 0.5)' />
         </clipPath>
       </defs>

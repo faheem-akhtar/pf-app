@@ -14,7 +14,7 @@ export const IconThickPriceInclusiveTemplate = (props: IconTemplatePropsInterfac
       className={props.class}
     >
       <title>Price Inclusive</title>
-      <g clipPath='url(#a)'>
+      <g clipPath='url(#icon-thick-price-inclusive)'>
         <path
           fill='currentColor'
           fillRule='evenodd'
@@ -23,7 +23,7 @@ export const IconThickPriceInclusiveTemplate = (props: IconTemplatePropsInterfac
         />
       </g>
       <defs>
-        <clipPath id='a'>
+        <clipPath id='icon-thick-price-inclusive'>
           <path fill='#fff' transform='translate(4.5 4.5)' d='M0 0h15v15H0z' />
         </clipPath>
       </defs>
