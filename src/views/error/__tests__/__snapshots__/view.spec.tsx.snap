@@ -86,19 +86,19 @@ exports[`EmailView renders without throwing any errors 1`] = `
     </div>
   </div>
   <footer
-    class="footer"
+    class="container"
   >
     <div
-      class="section categories"
+      class="section section--categories"
     >
       <ul
-        class="container"
+        class="list"
       >
         <li
           class="item"
         >
           <a
-            class="link primary"
+            class="link link--primary"
             href="buy-target"
           >
             buy
@@ -108,7 +108,7 @@ exports[`EmailView renders without throwing any errors 1`] = `
           class="item"
         >
           <a
-            class="link primary"
+            class="link link--primary"
             href="rent-target"
           >
             rent
@@ -118,7 +118,7 @@ exports[`EmailView renders without throwing any errors 1`] = `
           class="item"
         >
           <a
-            class="link primary"
+            class="link link--primary"
             href="commercial_rent-target"
           >
             commercial_rent
@@ -126,13 +126,13 @@ exports[`EmailView renders without throwing any errors 1`] = `
         </li>
       </ul>
       <ul
-        class="container"
+        class="list"
       >
         <li
           class="item"
         >
           <a
-            class="link primary"
+            class="link link--primary"
             href="new_projects-target"
           >
             new_projects
@@ -142,7 +142,7 @@ exports[`EmailView renders without throwing any errors 1`] = `
           class="item"
         >
           <a
-            class="link primary"
+            class="link link--primary"
             href="find_agent-target"
           >
             find_agent
@@ -154,13 +154,13 @@ exports[`EmailView renders without throwing any errors 1`] = `
       class="section"
     >
       <ul
-        class="container"
+        class="list"
       >
         <li
           class="item"
         >
           <a
-            class="link secondary"
+            class="link link--secondary"
             href="about_us-target"
           >
             about_us
@@ -170,7 +170,7 @@ exports[`EmailView renders without throwing any errors 1`] = `
           class="item"
         >
           <a
-            class="link secondary"
+            class="link link--secondary"
             href="privacy_policy-target"
           >
             privacy_policy
@@ -180,7 +180,7 @@ exports[`EmailView renders without throwing any errors 1`] = `
           class="item"
         >
           <a
-            class="link secondary"
+            class="link link--secondary"
             href="client_login-target"
           >
             client_login
@@ -188,13 +188,13 @@ exports[`EmailView renders without throwing any errors 1`] = `
         </li>
       </ul>
       <ul
-        class="container"
+        class="list"
       >
         <li
           class="item"
         >
           <a
-            class="link secondary"
+            class="link link--secondary"
             href="terms_conditions-target"
           >
             terms_conditions
@@ -204,7 +204,7 @@ exports[`EmailView renders without throwing any errors 1`] = `
           class="item"
         >
           <a
-            class="link secondary"
+            class="link link--secondary"
             href="advertise-target"
           >
             advertise
@@ -214,7 +214,7 @@ exports[`EmailView renders without throwing any errors 1`] = `
           class="item"
         >
           <a
-            class="link secondary"
+            class="link link--secondary"
             href="mortgage_finder-target"
           >
             mortgage_finder
@@ -224,7 +224,7 @@ exports[`EmailView renders without throwing any errors 1`] = `
           class="item"
         >
           <a
-            class="link secondary"
+            class="link link--secondary"
             href="careers-target"
           >
             careers
@@ -233,13 +233,13 @@ exports[`EmailView renders without throwing any errors 1`] = `
       </ul>
     </div>
     <ul
-      class="section apps"
+      class="section section--apps"
     >
       <li
-        class="item container"
+        class="list"
       >
         <a
-          class="downloadLink"
+          class="link--download"
           href="ios-target"
         >
           <svg
@@ -280,10 +280,10 @@ exports[`EmailView renders without throwing any errors 1`] = `
         </a>
       </li>
       <li
-        class="item container"
+        class="list"
       >
         <a
-          class="downloadLink"
+          class="link--download"
           href="android-target"
         >
           <svg

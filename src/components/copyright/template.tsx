@@ -1,6 +1,6 @@
-import { useTranslation } from 'helpers/translation/hook';
+import styles from './copyright.module.scss';
+import { CopyrightTemplatePropsInterface } from './template-props.interface';
 
-export const CopyrightTemplate: React.FunctionComponent = () => {
-  const { t } = useTranslation();
-  return <div>{t('copyright')}</div>;
-};
+export const CopyrightTemplate: React.FunctionComponent<CopyrightTemplatePropsInterface> = ({ t }) => (
+  <p className={styles.text}>{t('copyright')}</p>
+);

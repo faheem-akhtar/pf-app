@@ -1,5 +1,11 @@
 {
-  "projects": ["jest.config.default.js", "jest.config.desktop.js", "jest.config.eg.js", "jest.config.ma.js"],
+  "projects": [
+    "jest.config.default.js",
+    "jest.config.desktop.js",
+    "jest.config.eg.js",
+    "jest.config.ma.js",
+    "jest.config.qa.js"
+  ],
   "coverageThreshold": {
     "global": {
       "branches": 75,

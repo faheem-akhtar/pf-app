@@ -15,13 +15,13 @@ export const FooterComponent = ({ onClickAppDownload }: { onClickAppDownload?: (
   const { t } = useTranslation();
 
   return (
-    <footer className={styles.footer}>
-      <div className={domClassMerge(styles.section, styles.categories)}>
+    <footer className={styles.container}>
+      <div className={domClassMerge(styles.section, styles['section--categories'])}>
         {configLinksDefinition.primary.map((links, index) => (
-          <ul className={styles.container} key={`links-${index}`}>
+          <ul className={styles.list} key={`links-${index}`}>
             {links.map((link) => (
               <li key={link.translationKey} className={styles.item}>
-                <a className={domClassMerge(styles.link, styles.primary)} href={t(link.target)}>
+                <a className={domClassMerge(styles.link, styles['link--primary'])} href={t(link.target)}>
                   {t(link.translationKey)}
                 </a>
               </li>
@@ -31,10 +31,10 @@ export const FooterComponent = ({ onClickAppDownload }: { onClickAppDownload?: (
       </div>
       <div className={styles.section}>
         {configLinksDefinition.secondary.map((links, index) => (
-          <ul className={styles.container} key={`links-${index}`}>
+          <ul className={styles.list} key={`links-${index}`}>
             {links.map((link) => (
               <li key={link.translationKey} className={styles.item}>
-                <a className={domClassMerge(styles.link, styles.secondary)} href={t(link.target)}>
+                <a className={domClassMerge(styles.link, styles['link--secondary'])} href={t(link.target)}>
                   {t(link.translationKey)}
                 </a>
               </li>
@@ -42,19 +42,19 @@ export const FooterComponent = ({ onClickAppDownload }: { onClickAppDownload?: (
           </ul>
         ))}
       </div>
-      <ul className={domClassMerge(styles.section, styles.apps)}>
-        <li className={domClassMerge(styles.item, styles.container)} onClick={onClickAppDownload}>
-          <a className={styles.downloadLink} href={t(configLinksDefinition.iosDownloadLink)}>
+      <ul className={domClassMerge(styles.section, styles['section--apps'])}>
+        <li className={styles.list} onClick={onClickAppDownload}>
+          <a className={styles['link--download']} href={configLinksDefinition.iosDownloadLink}>
             <IconAppStoreTemplate />
           </a>
         </li>
-        <li className={domClassMerge(styles.item, styles.container)} onClick={onClickAppDownload}>
-          <a className={styles.downloadLink} href={t(configLinksDefinition.androidDownloadLink)}>
+        <li className={styles.list} onClick={onClickAppDownload}>
+          <a className={styles['link--download']} href={configLinksDefinition.androidDownloadLink}>
             <IconGooglePlayTemplate />
           </a>
         </li>
       </ul>
-      {featureCopyrightEnabled && <CopyrightTemplate />}
+      {featureCopyrightEnabled && <CopyrightTemplate t={t} />}
     </footer>
   );
 };
