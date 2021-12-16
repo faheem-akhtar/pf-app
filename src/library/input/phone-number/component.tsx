@@ -52,7 +52,7 @@ export const InputPhoneNumberComponent: FunctionComponent<InputPhoneNumberCompon
     }
   };
 
-  if (!countryList.length) return <SkeletonTemplate />;
+  if (!countryList.length) return <SkeletonTemplate width='100%' height='4.8rem' />;
 
   return (
     <InputPhoneNumberTemplate

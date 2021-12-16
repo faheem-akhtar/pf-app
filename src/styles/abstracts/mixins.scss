@@ -5,18 +5,6 @@
   white-space: nowrap;
 }
 
-@mixin loading {
-  background: linear-gradient(
-    110deg,
-    var(--color-global-stone-25) 8%,
-    var(--color-global-stone-50) 18%,
-    var(--color-global-stone-25) 33%
-  );
-  background-size: 200% 100%;
-
-  @include animation('shine 1s infinite');
-}
-
 /* Keyframe factory to create animation for supporting all browsers */
 @mixin keyframes($animation-name) {
   @-webkit-keyframes #{$animation-name} {

@@ -3,6 +3,7 @@
 import { Meta, Story } from '@storybook/react';
 
 import { SkeletonTemplate } from './template';
+import { SkeletonTemplatePropsInterface } from './template-props.interface';
 
 export default {
   title: 'Library/Skeleton',
@@ -12,8 +13,13 @@ export default {
   },
 } as Meta;
 
-export const Skeleton: Story<{ className?: string }> = (args): JSX.Element => (
-  <div style={{ maxWidth: '50%' }}>
+export const Skeleton: Story<SkeletonTemplatePropsInterface> = (args): JSX.Element => (
+  <div style={{ maxWidth: '375px' }}>
     <SkeletonTemplate {...args} />
   </div>
 );
+
+Skeleton.args = {
+  width: '100%',
+  height: '4.8rem',
+};

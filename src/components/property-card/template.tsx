@@ -22,26 +22,28 @@ export const PropertyCardTemplate: FunctionComponent<PropertyCardTemplatePropsTy
   banners,
   showBanners = true,
   saved,
+  cardType,
 
   onGalleryClick,
   onGalleryIndexChange,
   onSaveButtonClick,
   onMenuButtonClick,
-  ...props
+  ...rest
 }) => {
   if (loading) {
-    return <PropertyCardLoadingSkeletonTemplate />;
+    return <PropertyCardLoadingSkeletonTemplate cardType={cardType} />;
   }
 
   const templateProps: PropertyCardVariantsTemplatePropsBaseInterface = {
-    ...props,
+    ...rest,
+    cardType,
     templates: {
       gallery: gallery.items.length ? (
         <GalleryScrollComponent
           {...gallery}
           className={styles.gallery}
           objectFit={
-            propertyCardVariantsModernIsActive(props.cardType)
+            propertyCardVariantsModernIsActive(cardType)
               ? GalleryScrollObjectFitEnum.UNSET
               : GalleryScrollObjectFitEnum.NONE
           }
@@ -59,17 +61,15 @@ export const PropertyCardTemplate: FunctionComponent<PropertyCardTemplatePropsTy
           saved={saved}
           onSaveButtonClick={onSaveButtonClick}
           onMenuButtonClick={onMenuButtonClick}
-          cardType={props.cardType}
+          cardType={cardType}
         />
       ),
     },
   };
 
   return (
-    <article
-      className={domClassMerge(styles.container, { [styles[`container--${props.cardType}`]]: !!props.cardType })}
-    >
-      {propertyCardVariantsModernIsActive(props.cardType) ? (
+    <article className={domClassMerge(styles.container, { [styles[`container--${cardType}`]]: !!cardType })}>
+      {propertyCardVariantsModernIsActive(cardType) ? (
         <PropertyCardVariantsModernTemplate {...templateProps} />
       ) : (
         <PropertyCardVariantsClassicTemplate {...templateProps} />

@@ -1,28 +1,12 @@
 .container {
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-name: animatedPlaceholderAnimation;
-  animation-timing-function: linear;
-  background: var(--color-global-grey4);
-  background: linear-gradient(
-    to left,
-    var(--color-global-grey4),
-    var(--color-global-grey4) 29%,
-    var(--color-global-white) 49%,
-    var(--color-global-grey4) 73%,
-    var(--color-global-grey4)
+  background-image: linear-gradient(
+    90deg,
+    var(--color-global-grey4) 0%,
+    var(--color-global-grey3) 25%,
+    var(--color-global-grey4) 50%
   );
-  background-size: 100rem 10.4rem;
-  border-radius: var(--spacing);
-  height: 4.8rem;
-}
+  background-size: 200% 100%;
+  border-radius: 0.3rem;
 
-@keyframes animatedPlaceholderAnimation {
-  0% {
-    background-position: -46.8rem 0;
-  }
-  100% {
-    background-position: 46.8rem 0;
-  }
+  @include animation('shine 1s infinite');
 }

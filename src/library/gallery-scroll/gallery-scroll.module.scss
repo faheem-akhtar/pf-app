@@ -4,6 +4,7 @@
 }
 
 .container {
+  background-color: var(--color-global-grey4);
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -26,10 +27,6 @@
   width: 100%;
   will-change: transform;
   z-index: var(--z-index-01);
-
-  &--loading {
-    @include loading;
-  }
 }
 
 .item > img {
@@ -40,4 +37,10 @@
   position: relative;
   transform: translate(-50%, 0);
   width: 100%;
+}
+
+.loading-icon {
+  color: var(--color-global-grey3);
+  height: 7.5rem;
+  width: 5rem;
 }
