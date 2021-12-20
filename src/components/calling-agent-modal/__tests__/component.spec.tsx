@@ -39,17 +39,19 @@ describe('CallingAgentModalComponent', () => {
     };
   });
 
-  it('should render without throwing any errors', () => {
+  it('displays skeleton when there is no agent info', () => {
     mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
       ok: false,
     });
     render(<CallingAgentModalComponent {...props} />);
     act(openRef.current);
 
-    expect(screen.getByTestId('calling-agent-modal-content')).toMatchSnapshot();
+    const skeletons = screen.getAllByTestId('skeleton-template');
+
+    expect(skeletons).toHaveLength(3);
   });
 
-  describe('when agent model information is loaded', () => {
+  describe('When agent model information is loaded', () => {
     beforeEach(() => {
       mockReactUseSwr('en-property-search/agent-GET-{"propertyId":"198023"}', {
         ok: true,
@@ -71,10 +73,6 @@ describe('CallingAgentModalComponent', () => {
       userEvent.dblClick(closeButton);
 
       expect(closeButton).not.toBeInTheDocument();
-    });
-
-    test('if agent info is shown properly', () => {
-      expect(screen.getByTestId('agent-info-component-details')).toMatchSnapshot();
     });
 
     it('should render feedback component when agent data exists and close is clicked first time', () => {

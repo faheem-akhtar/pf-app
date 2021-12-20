@@ -1,1 +1,1 @@
-export const featureAgentEnabled = false;
+export const featureAgentEnabled = true;

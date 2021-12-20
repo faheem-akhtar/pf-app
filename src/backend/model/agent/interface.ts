@@ -3,11 +3,13 @@ import { BackendModelBrokerInterface } from '../broker/interface';
 export interface BackendModelAgentInterface {
   /**
    * ID
+   * @example "2528"
    */
   id: string;
 
   /**
    * Name
+   * @example "Ali Khamis"
    */
   name: string;
 
@@ -18,11 +20,12 @@ export interface BackendModelAgentInterface {
 
   /**
    * Phone
+   * @example "+97336111924"
    */
   phone: string;
 
   /**
-   * Is mobile public phone ?
+   * Is mobile public phone?
    */
   phone_is_mobile: boolean;
 
@@ -33,6 +36,7 @@ export interface BackendModelAgentInterface {
 
   /**
    * Job position
+   * @example "Agent"
    */
   position: string;
 
@@ -43,6 +47,7 @@ export interface BackendModelAgentInterface {
 
   /**
    * Ranking
+   * @example 44
    */
   ranking: number;
 
@@ -67,6 +72,7 @@ export interface BackendModelAgentInterface {
 
     /**
      * Image URL
+     * @example https://www.propertyfinder.bh/images/pf_agent/picture/da367a068fc789a45d4155084daa42105938d276/desktop
      */
     image_desktop?: string;
   };
@@ -78,7 +84,6 @@ export interface BackendModelAgentInterface {
 
   /**
    * LinkedIn URL
-   *
    */
   linkedin_address: string;
 
@@ -94,36 +99,43 @@ export interface BackendModelAgentInterface {
 
   /**
    * Total number of transactions in last 6 months
+   * @example 0
    */
   transactions_count: number;
 
   /**
    * Total number of properties
+   * @exampel 59
    */
   total_properties: number;
 
   /**
    * Total number of properties residential for rent
+   * @example 55
    */
   properties_residential_for_rent_count: number;
 
   /**
    * Total number of properties residential for sale
+   * @example 1
    */
   properties_residential_for_sale_count: number;
 
   /**
    * Total number of commercial properties
+   * @example 1
    */
   properties_commercial_count: number;
 
   /**
    * User id
+   * @example "1986"
    */
   user_id: string;
 
   /**
    * Listing level
+   * @example 44
    */
   listing_level: number;
 
@@ -134,6 +146,7 @@ export interface BackendModelAgentInterface {
 
   /**
    * Verification status
+   * @example "incomplete"
    */
   verification_status: string;
 

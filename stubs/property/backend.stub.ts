@@ -1,8 +1,12 @@
-import { BackendModelBrokerClientTypeEnum } from 'backend/model/broker/client-type.enum';
 import { BackendModelPropertyCategoryIdentifierEnum } from 'backend/model/property/category-identifier.enum';
 import { BackendModelPropertyInterface } from 'backend/model/property/interface';
 
-export const propertyBackendStub = (): BackendModelPropertyInterface => ({
+import { propertyAgentStub } from './agent.stub';
+import { propertyBrokerStub } from './broker.stub';
+
+export const propertyBackendStub = (
+  data: Partial<BackendModelPropertyInterface> = {}
+): BackendModelPropertyInterface => ({
   links: {
     self: 'https://www.propertyfinder.ae/en/rent/apartment-for-rent-abu-dhabi-khalifa-city-khalifa-city-a-7750053.html',
     self_alternate:
@@ -181,55 +185,7 @@ export const propertyBackendStub = (): BackendModelPropertyInterface => ({
       children_count: 0,
     },
   ],
-  agent: {
-    links: { profile: '/en/agent/mr-hamid-156740' },
-    id: '156740',
-    user_id: '28140',
-    name: 'Mr Hamid',
-    phone: '+971552273878',
-    phone_did: null,
-    phone_is_mobile: true,
-    position: 'Agent',
-    smart_ad: false,
-    listing_level: 0,
-    nationality: '',
-    country_name: '',
-    linkedin_address: '',
-    ranking: 43,
-    are_transactions_visible: true,
-    agent_broker_license_no: '',
-    verification_status: 'incomplete',
-    transactions_count: 0,
-    total_properties: 34,
-    properties_residential_for_rent_count: 34,
-    properties_residential_for_sale_count: 0,
-    properties_commercial_count: 0,
-    years_of_experience: null,
-    languages: [],
-  },
-  broker: {
-    links: {
-      profile: '/en/broker/moon-star-real-estate-2867',
-      logo_178_98: 'https://www.propertyfinder.ae/broker/1/178/98/MODE/85bdb1/2867-logo.jpg?ctr=ae',
-      logo_desktop:
-        'https://www.propertyfinder.ae/images/pf_broker/logo/e8c53693161e54c3e9ad8323a42bfde834959952/desktop',
-    },
-    id: '2867',
-    name: 'Moon Star Real Estate',
-    phone: '+971552273878',
-    ranking: 32.97,
-    url_slug: 'moon-star-real-estate',
-    logo_token: 'e8c53693161e54c3e9ad8323a42bfde834959952',
-    address: 'Mussafah 13, 92 office 6',
-    license_label: 'License',
-    license_number: 'CN - 2332181',
-    location_name: 'Abu Dhabi',
-    transactions_count: 0,
-    agents: 0,
-    total_properties: 189,
-    properties_residential_for_rent_count: 0,
-    properties_residential_for_sale_count: 0,
-    properties_commercial_count: 0,
-    client_type: BackendModelBrokerClientTypeEnum.broker,
-  },
+  agent: propertyAgentStub(),
+  broker: propertyBrokerStub(),
+  ...data,
 });

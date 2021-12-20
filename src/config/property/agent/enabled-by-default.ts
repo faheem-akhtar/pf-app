@@ -1,0 +1,1 @@
+export const propertyAgentEnabledByDefault = true;

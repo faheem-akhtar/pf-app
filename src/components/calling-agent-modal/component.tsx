@@ -7,10 +7,11 @@ import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated
 import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
 
+import { CallingAgentModalAgentInfoComponent } from './agent-info/component';
+import { CallingAgentModalAgentInfoSkeletonTemplate } from './agent-info/skeleton/template';
 import styles from './calling-agent-modal.module.scss';
 import { CallingAgentModalComponentPropsInterface } from './component-props.interface';
 import { CallingAgentModalFeedbackComponent } from './feedback/component';
-import { CallingAgentModalInfoComponent } from './info/component';
 import { callingAgentModalTracker } from './tracker';
 
 export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentModalComponentPropsInterface> = ({
@@ -40,6 +41,32 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
   };
 
   const isAgentInfoShown = currentStep === 0;
+  const renderAgentInfo = (): JSX.Element => {
+    if (!agentDetailsResponse.ok) {
+      return <CallingAgentModalAgentInfoSkeletonTemplate />;
+    }
+
+    return (
+      <Fragment>
+        {isAgentInfoShown ? (
+          <CallingAgentModalAgentInfoComponent
+            imageSrc={agentDetailsResponse.data.imageSrc}
+            name={agentDetailsResponse.data.name}
+            languages={agentDetailsResponse.data.languages}
+            referenceId={referenceId}
+          />
+        ) : (
+          <CallingAgentModalFeedbackComponent
+            propertyId={propertyId}
+            onAnswerClicked={(answer): void => {
+              callingAgentModalTracker.onAnswerClicked(property, answer);
+              closeModal();
+            }}
+          />
+        )}
+      </Fragment>
+    );
+  };
 
   return (
     <ModalComponent
@@ -59,26 +86,7 @@ export const CallingAgentModalComponent: React.FunctionComponent<CallingAgentMod
             <IconThickCrossTemplate class={styles['content-close-icon']} />
           </button>
         </div>
-        {agentDetailsResponse.ok && (
-          <Fragment>
-            {isAgentInfoShown ? (
-              <CallingAgentModalInfoComponent
-                avatar={agentDetailsResponse.data.imageSrc}
-                name={agentDetailsResponse.data.name}
-                languages={agentDetailsResponse.data.languages}
-                referenceId={referenceId}
-              />
-            ) : (
-              <CallingAgentModalFeedbackComponent
-                propertyId={propertyId}
-                onAnswerClicked={(answer): void => {
-                  callingAgentModalTracker.onAnswerClicked(property, answer);
-                  closeModal();
-                }}
-              />
-            )}
-          </Fragment>
-        )}
+        {renderAgentInfo()}
       </div>
     </ModalComponent>
   );

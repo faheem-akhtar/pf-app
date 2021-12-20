@@ -13,7 +13,7 @@ export const backendApiPropertyBrokerMapper = ([
     agentCount: broker?.agents || 0,
     locationName: broker?.location_name || '',
     name: broker?.name || '',
-    imageSrc: broker?.links.logo_178_98 || '',
+    imageSrc: broker?.links.logo_178_98 || null,
     propertiesCount: broker?.total_properties || 0,
   };
 

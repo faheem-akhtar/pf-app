@@ -1,6 +1,6 @@
 import { CopyrightTemplate } from 'components/copyright/template';
+import { copyrightEnabledByDefault } from 'config/copyright/enabled-by-default';
 import { configLinksDefinition } from 'config/links/definition';
-import { featureCopyrightEnabled } from 'feature/copyright/enabled';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { useTranslation } from 'helpers/translation/hook';
 
@@ -54,7 +54,7 @@ export const FooterComponent = ({ onClickAppDownload }: { onClickAppDownload?: (
           </a>
         </li>
       </ul>
-      {featureCopyrightEnabled && <CopyrightTemplate t={t} />}
+      {copyrightEnabledByDefault && <CopyrightTemplate t={t} />}
     </footer>
   );
 };

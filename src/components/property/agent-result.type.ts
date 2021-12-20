@@ -32,7 +32,7 @@ export type PropertyAgentResultType = {
   /**
    * Agent profile picture url
    */
-  imageSrc?: string;
+  imageSrc: string | null;
 
   /**
    * Broker agent count

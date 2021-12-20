@@ -13,7 +13,7 @@ export const backendApiPropertyAgentMapper = ([
     id: agent?.id || '',
     name: agent?.name || '',
     languages: agent?.languages?.map((language) => language.name) || [],
-    imageSrc: agent?.links.image_desktop,
+    imageSrc: agent?.links.image_desktop || null,
     userId: agent?.user_id || '',
     mobileNumber: agent?.phone_did || '',
     position: agent?.position || '',

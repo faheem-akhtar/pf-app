@@ -1,0 +1,21 @@
+.container {
+  align-items: center;
+  display: flex;
+}
+
+.content {
+  padding-left: spacingm(2);
+  padding-right: spacingm(2);
+  width: 100%;
+}
+
+.skeleton {
+  &:first-child {
+    margin-bottom: spacingm();
+  }
+
+  &--image {
+    border-radius: 50%;
+    min-width: 7.04rem;
+  }
+}
