@@ -5,7 +5,9 @@ import { backendApiPropertySearchFetcher } from 'backend/api/property/search/fet
 import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
 import { backendTranslationGetDefinitions } from 'backend/translation/get-definitions';
 import { FiltersDataInterface } from 'components/filters/data/interface';
+import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfuscated/get/img-url';
 import { cookieAbTestKey } from 'constants/cookie/ab-test-key';
+import { propertySerpNoOfPreloadImages } from 'constants/property/serp/no-of-preload-images';
 import { PageTypeEnum } from 'enums/page-type/enum';
 import { headersDevPatchSetCookieDomain } from 'helpers/headers/dev-patch-set-cookie-domain';
 import { headersParseExperimentsFromSetCookie } from 'helpers/headers/parse-experiments-from-set-cookie';
@@ -18,6 +20,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
   context: GetServerSidePropsContext
 ) => {
   const locale = context.locale as string;
+  const linkHeader: string[] = [];
 
   const filtersValueFromQuery = backendFiltersQueryToValue(context.query, locale);
 
@@ -38,7 +41,18 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     };
   }
 
+  searchResult.data.properties.slice(0, propertySerpNoOfPreloadImages).map((property) => {
+    const imgUrl = propertySerpObfuscatedGetImgUrl(property);
+    if (imgUrl) {
+      linkHeader.push(`<${imgUrl.replace(/\.jpg\b/, '.webp')}>; rel="preload"; as="image"`);
+    }
+  });
+
   context.res.setHeader('set-cookie', headersDevPatchSetCookieDomain(searchResult.headers.get('set-cookie') || ''));
+
+  if (linkHeader.length) {
+    context.res.setHeader('Link', linkHeader.join(', '));
+  }
 
   return {
     props: {

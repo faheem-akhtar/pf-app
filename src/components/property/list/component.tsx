@@ -9,6 +9,7 @@ import { SavedPropertyAuthLoginTemplate } from 'components/saved-property/auth/l
 import { savedPropertyAuthModalStorageKey } from 'components/saved-property/auth/modal/storage-key';
 import { savedPropertyTracker } from 'components/saved-property/tracker';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
+import { propertySerpNoOfPreloadImages } from 'constants/property/serp/no-of-preload-images';
 import { UserContext } from 'context/user/context';
 import { functionNoop } from 'helpers/function/noop';
 import { useServicesDfpAds } from 'services/dfp/ads.hook';
@@ -23,8 +24,6 @@ import { PropertyListComponentPropsInterface } from './component-props.interface
 import { PropertyListItemType } from './item/type';
 import { PropertyListItemTypeEnum } from './item/type.enum';
 import styles from './property-list.module.scss';
-
-const NUMBER_OF_IMAGES_TO_PRELOAD = 3;
 
 export const PropertyListComponent: React.FunctionComponent<PropertyListComponentPropsInterface> = (props) => {
   const { properties, adConfig, pageIsLoading } = props;
@@ -50,8 +49,13 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
 
   const PreloadImages = (): JSX.Element => (
     <Head>
-      {properties.slice(0, NUMBER_OF_IMAGES_TO_PRELOAD).map((p, index) => (
-        <link key={index} rel='preload' href={propertySerpObfuscatedGetImgUrl(p)} as='image' />
+      {properties.slice(0, propertySerpNoOfPreloadImages).map((p, index) => (
+        <link
+          key={index}
+          rel='preload'
+          href={propertySerpObfuscatedGetImgUrl(p).replace(/\.jpg\b/, '.webp')}
+          as='image'
+        />
       ))}
     </Head>
   );
