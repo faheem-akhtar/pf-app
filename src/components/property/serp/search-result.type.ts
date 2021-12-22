@@ -30,7 +30,17 @@ export type PropertySerpSearchResultType = {
   title: string;
 
   /**
+   * Page description
+   */
+  description: string;
+
+  /**
    * Breadcrumbs
    */
   breadcrumbs: BreadcrumbInterface[];
+
+  /**
+   * Schema.org structured data
+   */
+  schema: string;
 };

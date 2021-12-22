@@ -23,7 +23,7 @@ const usePriceChoices = (
     return cache[makeKey(categoryId, pricePeriod)];
   }
 
-  const choices: FiltersValueFieldChoiceInterface<number | null>[] = [{ value: null, label: t('any') }];
+  const choices: FiltersValueFieldChoiceInterface<number | null>[] = [{ value: null, label: t('any'), slug: [] }];
 
   let config: ConfigPriceChoicesInterface | void;
 
@@ -49,7 +49,7 @@ const usePriceChoices = (
   let step = config.increments[0];
 
   while (current <= config.max) {
-    choices.push({ value: current, label: numberFormat(current) });
+    choices.push({ value: current, label: numberFormat(current), slug: [current.toString()] });
     if (current >= config.max) {
       break;
     }
@@ -62,7 +62,7 @@ const usePriceChoices = (
   }
 
   if (current !== config.max) {
-    choices.push({ value: config.max, label: numberFormat(config.max) });
+    choices.push({ value: config.max, label: numberFormat(config.max), slug: [config.max.toString()] });
   }
 
   cache[makeKey(categoryId, pricePeriod)] = choices;

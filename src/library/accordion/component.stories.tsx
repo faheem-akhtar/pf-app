@@ -3,8 +3,8 @@
 import { Meta, Story } from '@storybook/react';
 
 import { AccordionComponent } from './component';
-import { AccordionComponentPropsInterface } from './component-props.interface';
-import { AccordionPanelTemplate } from './panel/template';
+import { AccordionItemComponent } from './item/component';
+import { AccordionItemComponentPropsInterface } from './item/component-props.interface';
 
 export default {
   title: 'Library/Accordion',
@@ -21,25 +21,15 @@ export default {
   },
 } as Meta;
 
-export const Default: Story<AccordionComponentPropsInterface> = (args): JSX.Element => (
+export const Accordion: Story<AccordionItemComponentPropsInterface> = (args): JSX.Element => (
   <div style={{ width: 500 }}>
-    <AccordionComponent {...args}>
-      <AccordionPanelTemplate>Content</AccordionPanelTemplate>
+    <AccordionComponent>
+      <AccordionItemComponent title={args.title} expanded>
+        Content
+      </AccordionItemComponent>
+      <AccordionItemComponent title='Nearby areas'>Content</AccordionItemComponent>
     </AccordionComponent>
   </div>
 );
 
-Default.args = {};
-
-export const Multiple: Story<AccordionComponentPropsInterface> = (args): JSX.Element => (
-  <div style={{ width: 500 }}>
-    <AccordionComponent {...args} expanded>
-      <AccordionPanelTemplate>Content</AccordionPanelTemplate>
-    </AccordionComponent>
-    <AccordionComponent {...args} title='Nearby Areas'>
-      <AccordionPanelTemplate>Content</AccordionPanelTemplate>
-    </AccordionComponent>
-  </div>
-);
-
-Multiple.args = {};
+Accordion.args = {};

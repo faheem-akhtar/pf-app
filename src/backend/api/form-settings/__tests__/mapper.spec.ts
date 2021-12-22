@@ -9,6 +9,6 @@ import { BackendApiFormSettingsJsonApiResultType } from './../json-api-result.ty
 describe('backendApiFormSettingsMapper()', () => {
   it('should map correctly', () => {
     const jsonApiData = backendJsonApiSync(filtersFormStub as unknown as BackendJsonApiPayloadInterface);
-    expect(backendApiFormSettingsMapper(jsonApiData as BackendApiFormSettingsJsonApiResultType)).toMatchSnapshot();
+    expect(backendApiFormSettingsMapper({})(jsonApiData as BackendApiFormSettingsJsonApiResultType)).toMatchSnapshot();
   });
 });

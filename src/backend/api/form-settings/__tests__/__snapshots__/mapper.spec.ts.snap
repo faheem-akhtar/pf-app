@@ -6,36 +6,60 @@ Object {
     "filter[category_id]": Array [
       Object {
         "label": "للبيع",
+        "slug": Array [
+          "للبيع",
+        ],
         "value": "1",
       },
       Object {
         "label": "للايجار",
+        "slug": Array [
+          "للايجار",
+        ],
         "value": "2",
       },
       Object {
         "label": "تجاري للبيع",
+        "slug": Array [
+          "تجاري-للبيع",
+        ],
         "value": "3",
       },
       Object {
         "label": "تجاري للايجار",
+        "slug": Array [
+          "تجاري-للايجار",
+        ],
         "value": "4",
       },
     ],
     "filter[furnished]": Array [
       Object {
         "label": "جميع المفروشات",
+        "slug": Array [
+          "جميع-المفروشات",
+        ],
         "value": "0",
       },
       Object {
         "label": "مفروش",
+        "slug": Array [
+          "مفروش",
+        ],
         "value": "1",
       },
       Object {
         "label": "غير مفروش",
+        "slug": Array [
+          "غير-مفروش",
+        ],
         "value": "2",
       },
       Object {
         "label": "مفروش جزئياً",
+        "slug": Array [
+          "مفروش-جزئياً",
+        ],
         "value": "3",
       },
     ],
@@ -44,692 +68,1173 @@ Object {
     "filter[max_area]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": null,
       },
       Object {
         "label": "50 متر مربع",
+        "slug": Array [
+          "50-متر-مربع",
+        ],
         "value": 50,
       },
       Object {
         "label": "100 متر مربع",
+        "slug": Array [
+          "100-متر-مربع",
+        ],
         "value": 100,
       },
       Object {
         "label": "150 متر مربع",
+        "slug": Array [
+          "150-متر-مربع",
+        ],
         "value": 150,
       },
       Object {
         "label": "200 متر مربع",
+        "slug": Array [
+          "200-متر-مربع",
+        ],
         "value": 200,
       },
       Object {
         "label": "250 متر مربع",
+        "slug": Array [
+          "250-متر-مربع",
+        ],
         "value": 250,
       },
       Object {
         "label": "300 متر مربع",
+        "slug": Array [
+          "300-متر-مربع",
+        ],
         "value": 300,
       },
       Object {
         "label": "350 متر مربع",
+        "slug": Array [
+          "350-متر-مربع",
+        ],
         "value": 350,
       },
       Object {
         "label": "400 متر مربع",
+        "slug": Array [
+          "400-متر-مربع",
+        ],
         "value": 400,
       },
       Object {
         "label": "450 متر مربع",
+        "slug": Array [
+          "450-متر-مربع",
+        ],
         "value": 450,
       },
       Object {
         "label": "500 متر مربع",
+        "slug": Array [
+          "500-متر-مربع",
+        ],
         "value": 500,
       },
       Object {
         "label": "550 متر مربع",
+        "slug": Array [
+          "550-متر-مربع",
+        ],
         "value": 550,
       },
       Object {
         "label": "600 متر مربع",
+        "slug": Array [
+          "600-متر-مربع",
+        ],
         "value": 600,
       },
       Object {
         "label": "700 متر مربع",
+        "slug": Array [
+          "700-متر-مربع",
+        ],
         "value": 700,
       },
       Object {
         "label": "800 متر مربع",
+        "slug": Array [
+          "800-متر-مربع",
+        ],
         "value": 800,
       },
       Object {
         "label": "900 متر مربع",
+        "slug": Array [
+          "900-متر-مربع",
+        ],
         "value": 900,
       },
       Object {
         "label": "1,000 متر مربع",
+        "slug": Array [
+          "1,000-متر-مربع",
+        ],
         "value": 1000,
       },
       Object {
         "label": "1,100 متر مربع",
+        "slug": Array [
+          "1,100-متر-مربع",
+        ],
         "value": 1100,
       },
       Object {
         "label": "1,200 متر مربع",
+        "slug": Array [
+          "1,200-متر-مربع",
+        ],
         "value": 1200,
       },
       Object {
         "label": "1,300 متر مربع",
+        "slug": Array [
+          "1,300-متر-مربع",
+        ],
         "value": 1300,
       },
       Object {
         "label": "1,400 متر مربع",
+        "slug": Array [
+          "1,400-متر-مربع",
+        ],
         "value": 1400,
       },
       Object {
         "label": "1,500 متر مربع",
+        "slug": Array [
+          "1,500-متر-مربع",
+        ],
         "value": 1500,
       },
       Object {
         "label": "1,600 متر مربع",
+        "slug": Array [
+          "1,600-متر-مربع",
+        ],
         "value": 1600,
       },
       Object {
         "label": "1,700 متر مربع",
+        "slug": Array [
+          "1,700-متر-مربع",
+        ],
         "value": 1700,
       },
       Object {
         "label": "1,900 متر مربع",
+        "slug": Array [
+          "1,900-متر-مربع",
+        ],
         "value": 1900,
       },
       Object {
         "label": "2,100 متر مربع",
+        "slug": Array [
+          "2,100-متر-مربع",
+        ],
         "value": 2100,
       },
       Object {
         "label": "2,300 متر مربع",
+        "slug": Array [
+          "2,300-متر-مربع",
+        ],
         "value": 2300,
       },
       Object {
         "label": "2,500 متر مربع",
+        "slug": Array [
+          "2,500-متر-مربع",
+        ],
         "value": 2500,
       },
       Object {
         "label": "2,700 متر مربع",
+        "slug": Array [
+          "2,700-متر-مربع",
+        ],
         "value": 2700,
       },
       Object {
         "label": "2,900 متر مربع",
+        "slug": Array [
+          "2,900-متر-مربع",
+        ],
         "value": 2900,
       },
       Object {
         "label": "3,100 متر مربع",
+        "slug": Array [
+          "3,100-متر-مربع",
+        ],
         "value": 3100,
       },
       Object {
         "label": "3,300 متر مربع",
+        "slug": Array [
+          "3,300-متر-مربع",
+        ],
         "value": 3300,
       },
       Object {
         "label": "3,500 متر مربع",
+        "slug": Array [
+          "3,500-متر-مربع",
+        ],
         "value": 3500,
       },
       Object {
         "label": "3,700 متر مربع",
+        "slug": Array [
+          "3,700-متر-مربع",
+        ],
         "value": 3700,
       },
       Object {
         "label": "3,900 متر مربع",
+        "slug": Array [
+          "3,900-متر-مربع",
+        ],
         "value": 3900,
       },
     ],
     "filter[max_bathroom]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": "",
       },
       Object {
         "label": "حمام واحد",
+        "slug": Array [
+          "حمام-واحد",
+        ],
         "value": "1",
       },
       Object {
         "label": "حمامان",
+        "slug": Array [
+          "حمامان",
+        ],
         "value": "2",
       },
       Object {
         "label": "3 حمامات",
+        "slug": Array [
+          "3-حمامات",
+        ],
         "value": "3",
       },
       Object {
         "label": "4 حمامات",
+        "slug": Array [
+          "4-حمامات",
+        ],
         "value": "4",
       },
       Object {
         "label": "5 حمامات",
+        "slug": Array [
+          "5-حمامات",
+        ],
         "value": "5",
       },
       Object {
         "label": "6 حمامات",
+        "slug": Array [
+          "6-حمامات",
+        ],
         "value": "6",
       },
       Object {
         "label": "7 حمامات",
+        "slug": Array [
+          "7-حمامات",
+        ],
         "value": "7",
       },
       Object {
         "label": "7 حمامات واكثر",
+        "slug": Array [
+          "7-حمامات-واكثر",
+        ],
         "value": "8",
       },
     ],
     "filter[max_bedroom]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": "",
       },
       Object {
         "label": "استوديو",
+        "slug": Array [
+          "استوديو",
+        ],
         "value": "0",
       },
       Object {
         "label": "غرفة نوم",
+        "slug": Array [
+          "غرفة-نوم",
+        ],
         "value": "1",
       },
       Object {
         "label": "2 غرفتا نوم",
+        "slug": Array [
+          "2-غرفتا-نوم",
+        ],
         "value": "2",
       },
       Object {
         "label": "3 غرف نوم",
+        "slug": Array [
+          "3-غرف-نوم",
+        ],
         "value": "3",
       },
       Object {
         "label": "4 غرف نوم",
+        "slug": Array [
+          "4-غرف-نوم",
+        ],
         "value": "4",
       },
       Object {
         "label": "5 غرف نوم",
+        "slug": Array [
+          "5-غرف-نوم",
+        ],
         "value": "5",
       },
       Object {
         "label": "6 غرف نوم",
+        "slug": Array [
+          "6-غرف-نوم",
+        ],
         "value": "6",
       },
       Object {
         "label": "7 غرف نوم",
+        "slug": Array [
+          "7-غرف-نوم",
+        ],
         "value": "7",
       },
     ],
     "filter[max_installment_years]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": null,
       },
       Object {
         "label": "سنة واحدة ( 12 دفعة سداد )",
+        "slug": Array [
+          "سنة-واحدة-(-12-دفعة-سداد-)",
+        ],
         "value": 1,
       },
       Object {
         "label": "سنتان ( 24 دفعة سداد )",
+        "slug": Array [
+          "سنتان-(-24-دفعة-سداد-)",
+        ],
         "value": 2,
       },
       Object {
         "label": "3 سنوات ( 36 دفعة سداد )",
+        "slug": Array [
+          "3-سنوات-(-36-دفعة-سداد-)",
+        ],
         "value": 3,
       },
       Object {
         "label": "4 سنوات ( 48 دفعة سداد )",
+        "slug": Array [
+          "4-سنوات-(-48-دفعة-سداد-)",
+        ],
         "value": 4,
       },
       Object {
         "label": "5 سنوات ( 60 دفعة سداد )",
+        "slug": Array [
+          "5-سنوات-(-60-دفعة-سداد-)",
+        ],
         "value": 5,
       },
       Object {
         "label": "6 سنوات ( 72 دفعة سداد )",
+        "slug": Array [
+          "6-سنوات-(-72-دفعة-سداد-)",
+        ],
         "value": 6,
       },
       Object {
         "label": "7 سنوات ( 84 دفعة سداد )",
+        "slug": Array [
+          "7-سنوات-(-84-دفعة-سداد-)",
+        ],
         "value": 7,
       },
       Object {
         "label": "8 سنوات ( 96 دفعة سداد )",
+        "slug": Array [
+          "8-سنوات-(-96-دفعة-سداد-)",
+        ],
         "value": 8,
       },
       Object {
         "label": "9 سنوات ( 108 دفعة سداد )",
+        "slug": Array [
+          "9-سنوات-(-108-دفعة-سداد-)",
+        ],
         "value": 9,
       },
       Object {
         "label": "10 سنوات ( 120 دفعة سداد )",
+        "slug": Array [
+          "10-سنوات-(-120-دفعة-سداد-)",
+        ],
         "value": 10,
       },
     ],
     "filter[min_area]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": null,
       },
       Object {
         "label": "50 متر مربع",
+        "slug": Array [
+          "50-متر-مربع",
+        ],
         "value": 50,
       },
       Object {
         "label": "100 متر مربع",
+        "slug": Array [
+          "100-متر-مربع",
+        ],
         "value": 100,
       },
       Object {
         "label": "150 متر مربع",
+        "slug": Array [
+          "150-متر-مربع",
+        ],
         "value": 150,
       },
       Object {
         "label": "200 متر مربع",
+        "slug": Array [
+          "200-متر-مربع",
+        ],
         "value": 200,
       },
       Object {
         "label": "250 متر مربع",
+        "slug": Array [
+          "250-متر-مربع",
+        ],
         "value": 250,
       },
       Object {
         "label": "300 متر مربع",
+        "slug": Array [
+          "300-متر-مربع",
+        ],
         "value": 300,
       },
       Object {
         "label": "350 متر مربع",
+        "slug": Array [
+          "350-متر-مربع",
+        ],
         "value": 350,
       },
       Object {
         "label": "400 متر مربع",
+        "slug": Array [
+          "400-متر-مربع",
+        ],
         "value": 400,
       },
       Object {
         "label": "450 متر مربع",
+        "slug": Array [
+          "450-متر-مربع",
+        ],
         "value": 450,
       },
       Object {
         "label": "500 متر مربع",
+        "slug": Array [
+          "500-متر-مربع",
+        ],
         "value": 500,
       },
       Object {
         "label": "550 متر مربع",
+        "slug": Array [
+          "550-متر-مربع",
+        ],
         "value": 550,
       },
       Object {
         "label": "600 متر مربع",
+        "slug": Array [
+          "600-متر-مربع",
+        ],
         "value": 600,
       },
       Object {
         "label": "700 متر مربع",
+        "slug": Array [
+          "700-متر-مربع",
+        ],
         "value": 700,
       },
       Object {
         "label": "800 متر مربع",
+        "slug": Array [
+          "800-متر-مربع",
+        ],
         "value": 800,
       },
       Object {
         "label": "900 متر مربع",
+        "slug": Array [
+          "900-متر-مربع",
+        ],
         "value": 900,
       },
       Object {
         "label": "1,000 متر مربع",
+        "slug": Array [
+          "1,000-متر-مربع",
+        ],
         "value": 1000,
       },
       Object {
         "label": "1,100 متر مربع",
+        "slug": Array [
+          "1,100-متر-مربع",
+        ],
         "value": 1100,
       },
       Object {
         "label": "1,200 متر مربع",
+        "slug": Array [
+          "1,200-متر-مربع",
+        ],
         "value": 1200,
       },
       Object {
         "label": "1,300 متر مربع",
+        "slug": Array [
+          "1,300-متر-مربع",
+        ],
         "value": 1300,
       },
       Object {
         "label": "1,400 متر مربع",
+        "slug": Array [
+          "1,400-متر-مربع",
+        ],
         "value": 1400,
       },
       Object {
         "label": "1,500 متر مربع",
+        "slug": Array [
+          "1,500-متر-مربع",
+        ],
         "value": 1500,
       },
       Object {
         "label": "1,600 متر مربع",
+        "slug": Array [
+          "1,600-متر-مربع",
+        ],
         "value": 1600,
       },
       Object {
         "label": "1,700 متر مربع",
+        "slug": Array [
+          "1,700-متر-مربع",
+        ],
         "value": 1700,
       },
       Object {
         "label": "1,900 متر مربع",
+        "slug": Array [
+          "1,900-متر-مربع",
+        ],
         "value": 1900,
       },
       Object {
         "label": "2,100 متر مربع",
+        "slug": Array [
+          "2,100-متر-مربع",
+        ],
         "value": 2100,
       },
       Object {
         "label": "2,300 متر مربع",
+        "slug": Array [
+          "2,300-متر-مربع",
+        ],
         "value": 2300,
       },
       Object {
         "label": "2,500 متر مربع",
+        "slug": Array [
+          "2,500-متر-مربع",
+        ],
         "value": 2500,
       },
       Object {
         "label": "2,700 متر مربع",
+        "slug": Array [
+          "2,700-متر-مربع",
+        ],
         "value": 2700,
       },
       Object {
         "label": "2,900 متر مربع",
+        "slug": Array [
+          "2,900-متر-مربع",
+        ],
         "value": 2900,
       },
       Object {
         "label": "3,100 متر مربع",
+        "slug": Array [
+          "3,100-متر-مربع",
+        ],
         "value": 3100,
       },
       Object {
         "label": "3,300 متر مربع",
+        "slug": Array [
+          "3,300-متر-مربع",
+        ],
         "value": 3300,
       },
       Object {
         "label": "3,500 متر مربع",
+        "slug": Array [
+          "3,500-متر-مربع",
+        ],
         "value": 3500,
       },
       Object {
         "label": "3,700 متر مربع",
+        "slug": Array [
+          "3,700-متر-مربع",
+        ],
         "value": 3700,
       },
       Object {
         "label": "3,900 متر مربع",
+        "slug": Array [
+          "3,900-متر-مربع",
+        ],
         "value": 3900,
       },
     ],
     "filter[min_bathroom]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": "",
       },
       Object {
         "label": "حمام واحد",
+        "slug": Array [
+          "حمام-واحد",
+        ],
         "value": "1",
       },
       Object {
         "label": "حمامان",
+        "slug": Array [
+          "حمامان",
+        ],
         "value": "2",
       },
       Object {
         "label": "3 حمامات",
+        "slug": Array [
+          "3-حمامات",
+        ],
         "value": "3",
       },
       Object {
         "label": "4 حمامات",
+        "slug": Array [
+          "4-حمامات",
+        ],
         "value": "4",
       },
       Object {
         "label": "5 حمامات",
+        "slug": Array [
+          "5-حمامات",
+        ],
         "value": "5",
       },
       Object {
         "label": "6 حمامات",
+        "slug": Array [
+          "6-حمامات",
+        ],
         "value": "6",
       },
       Object {
         "label": "7 حمامات",
+        "slug": Array [
+          "7-حمامات",
+        ],
         "value": "7",
       },
       Object {
         "label": "7 حمامات واكثر",
+        "slug": Array [
+          "7-حمامات-واكثر",
+        ],
         "value": "8",
       },
     ],
     "filter[min_bedroom]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": "",
       },
       Object {
         "label": "استوديو",
+        "slug": Array [
+          "استوديو",
+        ],
         "value": "0",
       },
       Object {
         "label": "غرفة نوم",
+        "slug": Array [
+          "غرفة-نوم",
+        ],
         "value": "1",
       },
       Object {
         "label": "2 غرفتا نوم",
+        "slug": Array [
+          "2-غرفتا-نوم",
+        ],
         "value": "2",
       },
       Object {
         "label": "3 غرف نوم",
+        "slug": Array [
+          "3-غرف-نوم",
+        ],
         "value": "3",
       },
       Object {
         "label": "4 غرف نوم",
+        "slug": Array [
+          "4-غرف-نوم",
+        ],
         "value": "4",
       },
       Object {
         "label": "5 غرف نوم",
+        "slug": Array [
+          "5-غرف-نوم",
+        ],
         "value": "5",
       },
       Object {
         "label": "6 غرف نوم",
+        "slug": Array [
+          "6-غرف-نوم",
+        ],
         "value": "6",
       },
       Object {
         "label": "7 غرف نوم",
+        "slug": Array [
+          "7-غرف-نوم",
+        ],
         "value": "7",
       },
     ],
     "filter[min_installment_years]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": null,
       },
       Object {
         "label": "سنة واحدة ( 12 دفعة سداد )",
+        "slug": Array [
+          "سنة-واحدة-(-12-دفعة-سداد-)",
+        ],
         "value": 1,
       },
       Object {
         "label": "سنتان ( 24 دفعة سداد )",
+        "slug": Array [
+          "سنتان-(-24-دفعة-سداد-)",
+        ],
         "value": 2,
       },
       Object {
         "label": "3 سنوات ( 36 دفعة سداد )",
+        "slug": Array [
+          "3-سنوات-(-36-دفعة-سداد-)",
+        ],
         "value": 3,
       },
       Object {
         "label": "4 سنوات ( 48 دفعة سداد )",
+        "slug": Array [
+          "4-سنوات-(-48-دفعة-سداد-)",
+        ],
         "value": 4,
       },
       Object {
         "label": "5 سنوات ( 60 دفعة سداد )",
+        "slug": Array [
+          "5-سنوات-(-60-دفعة-سداد-)",
+        ],
         "value": 5,
       },
       Object {
         "label": "6 سنوات ( 72 دفعة سداد )",
+        "slug": Array [
+          "6-سنوات-(-72-دفعة-سداد-)",
+        ],
         "value": 6,
       },
       Object {
         "label": "7 سنوات ( 84 دفعة سداد )",
+        "slug": Array [
+          "7-سنوات-(-84-دفعة-سداد-)",
+        ],
         "value": 7,
       },
       Object {
         "label": "8 سنوات ( 96 دفعة سداد )",
+        "slug": Array [
+          "8-سنوات-(-96-دفعة-سداد-)",
+        ],
         "value": 8,
       },
       Object {
         "label": "9 سنوات ( 108 دفعة سداد )",
+        "slug": Array [
+          "9-سنوات-(-108-دفعة-سداد-)",
+        ],
         "value": 9,
       },
       Object {
         "label": "10 سنوات ( 120 دفعة سداد )",
+        "slug": Array [
+          "10-سنوات-(-120-دفعة-سداد-)",
+        ],
         "value": 10,
       },
     ],
     "filter[payment_method]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": "",
       },
       Object {
         "label": "تقسيط",
+        "slug": Array [
+          "تقسيط",
+        ],
         "value": "inst",
       },
     ],
     "filter[price_type]": Array [
       Object {
         "label": "شهرياً",
+        "slug": Array [
+          "شهرياً",
+        ],
         "value": "m",
       },
       Object {
         "label": "يومياً",
+        "slug": Array [
+          "يومياً",
+        ],
         "value": "d",
       },
     ],
     "filter[property_type_id]": Array [
       Object {
         "label": "",
+        "slug": Array [],
         "value": "",
       },
       Object {
         "label": "شقة",
+        "slug": Array [
+          "شقة",
+        ],
         "value": "1",
       },
       Object {
         "label": "فيلا",
+        "slug": Array [
+          "فيلا",
+        ],
         "value": "35",
       },
       Object {
         "label": "تاون هاوس",
+        "slug": Array [
+          "تاون-هاوس",
+        ],
         "value": "22",
       },
       Object {
         "label": "(بنتهاوس  (روف",
+        "slug": Array [
+          "(بنتهاوس-(روف",
+        ],
         "value": "20",
       },
       Object {
         "label": "مجمع سكني",
+        "slug": Array [
+          "مجمع-سكني",
+        ],
         "value": "42",
       },
       Object {
         "label": "شاليه",
+        "slug": Array [
+          "شاليه",
+        ],
         "value": "44",
       },
       Object {
         "label": "منزل مزدوج",
+        "slug": Array [
+          "منزل-مزدوج",
+        ],
         "value": "46",
       },
       Object {
         "label": "دوبلكس",
+        "slug": Array [
+          "دوبلكس",
+        ],
         "value": "24",
       },
       Object {
         "label": "طابق كامل",
+        "slug": Array [
+          "طابق-كامل",
+        ],
         "value": "18",
       },
       Object {
         "label": "نصف طابق",
+        "slug": Array [
+          "نصف-طابق",
+        ],
         "value": "29",
       },
       Object {
         "label": "بناية كاملة",
+        "slug": Array [
+          "بناية-كاملة",
+        ],
         "value": "10",
       },
       Object {
         "label": "قطعة أرض",
+        "slug": Array [
+          "قطعة-أرض",
+        ],
         "value": "5",
       },
       Object {
         "label": "وحدات مُجمعة للبيع",
+        "slug": Array [
+          "وحدات-مُجمعة-للبيع",
+        ],
         "value": "30",
       },
       Object {
         "label": "بانجلو",
+        "slug": Array [
+          "بانجلو",
+        ],
         "value": "31",
       },
       Object {
         "label": "شقق فندقية",
+        "slug": Array [
+          "شقق-فندقية",
+        ],
         "value": "28",
       },
       Object {
         "label": "أي فيلا",
+        "slug": Array [
+          "أي-فيلا",
+        ],
         "value": "50",
       },
       Object {
         "label": "وحدات مُجمعة للإيجار",
+        "slug": Array [
+          "وحدات-مُجمعة-للإيجار",
+        ],
         "value": "34",
       },
       Object {
         "label": "مساحات مكتبية",
+        "slug": Array [
+          "مساحات-مكتبية",
+        ],
         "value": "4",
       },
       Object {
         "label": "محل",
+        "slug": Array [
+          "محل",
+        ],
         "value": "27",
       },
       Object {
         "label": "مخزن",
+        "slug": Array [
+          "مخزن",
+        ],
         "value": "13",
       },
       Object {
         "label": "محل تجاري",
+        "slug": Array [
+          "محل-تجاري",
+        ],
         "value": "21",
       },
       Object {
         "label": "معرض",
+        "slug": Array [
+          "معرض",
+        ],
         "value": "12",
       },
       Object {
         "label": "مصنع",
+        "slug": Array [
+          "مصنع",
+        ],
         "value": "45",
       },
       Object {
         "label": "سكن عمال",
+        "slug": Array [
+          "سكن-عمال",
+        ],
         "value": "11",
       },
       Object {
         "label": "سكن الموظفين",
+        "slug": Array [
+          "سكن-الموظفين",
+        ],
         "value": "43",
       },
       Object {
         "label": "وحدة طبية",
+        "slug": Array [
+          "وحدة-طبية",
+        ],
         "value": "47",
       },
     ],
     "sort": Array [
       Object {
         "label": "مميز",
+        "slug": Array [
+          "مميز",
+        ],
         "value": "mr",
       },
       Object {
         "label": "الاحدث",
+        "slug": Array [
+          "الاحدث",
+        ],
         "value": "nd",
       },
       Object {
         "label": "أقل سعر",
+        "slug": Array [
+          "أقل-سعر",
+        ],
         "value": "pa",
       },
       Object {
         "label": "الأعلى سعراً",
+        "slug": Array [
+          "الأعلى-سعراً",
+        ],
         "value": "pd",
       },
       Object {
         "label": "آقل عدد غرف",
+        "slug": Array [
+          "آقل-عدد-غرف",
+        ],
         "value": "ba",
       },
       Object {
         "label": "آكثر عدد غرف",
+        "slug": Array [
+          "آكثر-عدد-غرف",
+        ],
         "value": "bd",
       },
       Object {
         "label": "موعد التسليم ( الأقرب )",
+        "slug": Array [
+          "موعد-التسليم-(-الأقرب-)",
+        ],
         "value": "da",
       },
       Object {
         "label": "موعد التسليم ( الأقصى )",
+        "slug": Array [
+          "موعد-التسليم-(-الأقصى-)",
+        ],
         "value": "dd",
       },
     ],

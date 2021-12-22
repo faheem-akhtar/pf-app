@@ -12,22 +12,29 @@ export const FiltersModalWidgetUtilitiesPriceTypeComponent: FiltersModalWidgetTy
   filtersData,
   changeFiltersValue,
   t,
-}) => (
-  <FiltersModalItemTemplate
-    label={t('filters-modal/utilities-price-type-title')}
-    icon={<IconThickPriceInclusiveTemplate class={styles.icon} />}
-  >
-    <ChipChoiceTemplate
-      containerClassName={styles.list}
-      placeholder={t('All')}
-      options={filtersDataChoicesGetUtilitiesPrice(filtersValue, filtersData)}
-      selected={filtersValue[FiltersParametersEnum.utilitiesPriceType]}
-      onCheck={(selectedOption): void => {
-        changeFiltersValue({
-          ...filtersValue,
-          [FiltersParametersEnum.utilitiesPriceType]: selectedOption.value,
-        });
-      }}
-    />
-  </FiltersModalItemTemplate>
-);
+}) => {
+  const options = filtersDataChoicesGetUtilitiesPrice(filtersValue, filtersData).map((option) => ({
+    ...option,
+    label: t(option.label),
+  }));
+
+  return (
+    <FiltersModalItemTemplate
+      label={t('filters-modal/utilities-price-type-title')}
+      icon={<IconThickPriceInclusiveTemplate class={styles.icon} />}
+    >
+      <ChipChoiceTemplate
+        containerClassName={styles.list}
+        placeholder={t('all')}
+        options={options}
+        selected={filtersValue[FiltersParametersEnum.utilitiesPriceType]}
+        onCheck={(selectedOption): void => {
+          changeFiltersValue({
+            ...filtersValue,
+            [FiltersParametersEnum.utilitiesPriceType]: selectedOption.value,
+          });
+        }}
+      />
+    </FiltersModalItemTemplate>
+  );
+};

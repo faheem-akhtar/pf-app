@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SeoComponent should render the component with primary content 1`] = `
+<div>
+  <section
+    id="cms-content"
+  >
+    <hr
+      class="hr"
+    />
+    <div
+      class="container"
+    >
+      <div
+        class="body"
+      >
+        <div
+          class="body-html"
+        >
+          <p>
+            This is param for primary content
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`SeoComponent should render the component with primary content with image 1`] = `
+<div>
+  <section
+    id="cms-content"
+  >
+    <hr
+      class="hr"
+    />
+    <div
+      class="container"
+    >
+      <div
+        class="body"
+      >
+        <picture
+          class="body-picture body-picture--right"
+        >
+          <img
+            class="body-picture-img"
+            src="https://www.propertyfinder.ae/dist/common/assets/favicon/favicon-32x32.png"
+          />
+        </picture>
+        <div
+          class="body-html"
+        >
+          <p>
+            This is param for primary content
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`SeoComponent should render the component with secondary content 1`] = `
+<div>
+  <section
+    id="cms-content"
+  >
+    <hr
+      class="hr"
+    />
+    <div
+      class="container"
+    >
+      <div
+        class="body"
+      >
+        <div
+          class="body-html"
+        >
+          <p>
+            This is param for secondary content
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;
+
+exports[`SeoComponent should render the component with secondary content with image 1`] = `
+<div>
+  <section
+    id="cms-content"
+  >
+    <hr
+      class="hr"
+    />
+    <div
+      class="container"
+    >
+      <div
+        class="body"
+      >
+        <picture
+          class="body-picture body-picture--left"
+        >
+          <img
+            class="body-picture-img"
+            src="https://www.propertyfinder.ae/dist/common/assets/favicon/favicon-32x32.png"
+          />
+        </picture>
+        <div
+          class="body-html"
+        >
+          <p>
+            This is param for secondary content
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;

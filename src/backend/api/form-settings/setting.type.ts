@@ -1,5 +1,9 @@
 export type BackendApiFormSettingsSettingType = {
   /**
+   * Id
+   */
+  id: string;
+  /**
    * Relationships
    */
   jsonApiRelationships: string[];

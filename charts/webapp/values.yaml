@@ -36,26 +36,282 @@ ingress:
 
 countries:
   ae:
-    mobilePath: /pf-web-app\/(.*)
-    desktopPath: /pf-web-app\/(.*)
+    mobilePath: 
+      - /pf-web-app\/(.*)
+    desktopPath: 
+      - /pf-web-app\/(.*)
   bh:
-    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
-    desktopPath: /pf-web-app\/(.*)
+    mobilePath: 
+      # search and other next js routes
+      - /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/dubai/furnished-studio-apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded of: /en/(تجاري|تجارية-للايجار|للايجار|تجارية-للبيع|للبيع|تجارية-للايجار|تجارية|تجارية-للايجار|للإجار)/[%a-zA-Z0-9+_-]+/مفروشة-(استوديو|[1-7]-غرفة-نوم)-[%a-zA-Z0-9+_-]+-(للايجار|للإجار|للبيع)-شهري.html
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/dubai/furnished-studio-apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/dubai/studio-apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example /en/buy/dubai/studio-apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}-{priceType}.html
+      # Example: /en/buy/dubai/furnished-1-bedroom-apartments-for-rent-jumeirah-village-circle-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}.html
+      # Example: /en/buy/dubai/furnished-1-bedroom-apartments-for-sale-jumeirah-village-circle.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}-{priceType}.html
+      # Example: /en/buy/dubai/1-bedroom-apartments-for-rent-jumeirah-village-circle-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}.html
+      # Example: /en/buy/dubai/1-bedroom-apartments-for-sale-jumeirah-village-circle.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/dubai/furnished-apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/dubai/apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}-{priceType}.html
+      # Example: /en/buy/dubai/furnished-apartments-for-rent-jumeirah-village-circle-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{propertyTypeSlug}-{saleType}-{locationSlug}-{priceType}.html
+      # Example: /en/buy/dubai/apartments-for-rent-jumeirah-village-circle-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}.html
+      # Example: /en/buy/dubai/furnished-apartments-for-sale-jumeirah-village-circle.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/dubai/furnished-apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/dubai/apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{propertyTypeSlug}-{saleType}-{locationSlug}.html
+      # Example: /en/buy/dubai/apartments-for-sale-jumeirah-village-circle.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+.html
+      # Pattern: /{_locale}/{categorySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/rent/furnished-1-bedroom-properties-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/rent/furnished-1-bedroom-properties-for-rent.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/rent/1-bedroom-properties-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/rent/1-bedroom-properties-for-rent.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/furnished-apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/furnished-apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded of: /ar/(تجاري|للايجار|تجارية-للبيع|للبيع|تجارية|تجارية-للايجار|للإجار)/[%a-zA-Z0-9+_-]+-(للايجار|للإجار|للبيع).html
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+    desktopPath: 
+      - /pf-web-app\/(.*)
   eg:
-    mobilePath: /pf-web-app\/(.*)
-    desktopPath: /pf-web-app\/(.*)
+    mobilePath: 
+      - /pf-web-app\/(.*)
+    desktopPath: 
+      - /pf-web-app\/(.*)
   qa:
-    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
-    desktopPath: /pf-web-app\/(.*)
+    mobilePath: 
+      - /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    desktopPath: 
+      - /pf-web-app\/(.*)
   sa:
-    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
-    desktopPath: /pf-web-app\/(.*)
+    mobilePath: 
+      - /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+    desktopPath: 
+      - /pf-web-app\/(.*)
   lb: 
-    mobilePath: /(_next|((en|ar)/(static|api/pwa|search)))(.*)
-    desktopPath: /pf-web-app\/(.*)
+    mobilePath:
+      # search and other next js routes
+      - /(_next|((en|ar)/(static|api/pwa|search)))(.*)
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/dubai/furnished-studio-apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded of: /en/(تجاري|تجارية-للايجار|للايجار|تجارية-للبيع|للبيع|تجارية-للايجار|تجارية|تجارية-للايجار|للإجار)/[%a-zA-Z0-9+_-]+/مفروشة-(استوديو|[1-7]-غرفة-نوم)-[%a-zA-Z0-9+_-]+-(للايجار|للإجار|للبيع)-شهري.html
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/dubai/furnished-studio-apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/dubai/studio-apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example /en/buy/dubai/studio-apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}-{priceType}.html
+      # Example: /en/buy/dubai/furnished-1-bedroom-apartments-for-rent-jumeirah-village-circle-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}.html
+      # Example: /en/buy/dubai/furnished-1-bedroom-apartments-for-sale-jumeirah-village-circle.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}-{priceType}.html
+      # Example: /en/buy/dubai/1-bedroom-apartments-for-rent-jumeirah-village-circle-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}.html
+      # Example: /en/buy/dubai/1-bedroom-apartments-for-sale-jumeirah-village-circle.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/dubai/furnished-apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/dubai/apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}-{priceType}.html
+      # Example: /en/buy/dubai/furnished-apartments-for-rent-jumeirah-village-circle-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{propertyTypeSlug}-{saleType}-{locationSlug}-{priceType}.html
+      # Example: /en/buy/dubai/apartments-for-rent-jumeirah-village-circle-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}-{locationSlug}.html
+      # Example: /en/buy/dubai/furnished-apartments-for-sale-jumeirah-village-circle.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+.html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/dubai/furnished-apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/dubai/apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{citySlug}/{propertyTypeSlug}-{saleType}-{locationSlug}.html
+      # Example: /en/buy/dubai/apartments-for-sale-jumeirah-village-circle.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+/[a-zA-Z0-9+_-]+-for-(rent|sale)-[a-zA-Z0-9+_-]+.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-[%a-zA-Z0-9+_-]+.html
+      # Pattern: /{_locale}/{categorySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/rent/furnished-1-bedroom-properties-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/rent/furnished-1-bedroom-properties-for-rent.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/furnished-([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/rent/1-bedroom-properties-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{bedroomSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/rent/1-bedroom-properties-for-rent.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/([1-7]-bedroom|studio)-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/(%D8%A7%D8%B3%D8%AA%D9%88%D8%AF%D9%8A%D9%88|[1-7]-%D8%BA%D8%B1%D9%81%D8%A9-%D9%86%D9%88%D9%85)-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/furnished-apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{furnishSlug}-{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/furnished-apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/furnished-[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/%D9%85%D9%81%D8%B1%D9%88%D8%B4%D8%A9-[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+      # Pattern: /{_locale}/{categorySlug}/{propertyTypeSlug}-{saleType}-{priceType}.html
+      # Example: /en/buy/apartments-for-rent-monthly.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+-for-(rent|sale)-monthly.html
+      # Arabic: The UFT-8 encoded
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9)-%D8%B4%D9%87%D8%B1%D9%8A.html
+      # Pattern: /{_locale}/{categorySlug}/{propertyTypeSlug}-{saleType}.html
+      # Example: /en/buy/apartments-for-sale.html
+      - /en/(commercial|commercial-rent|commercial-buy|rent|buy)/[a-zA-Z0-9+_-]+-for-(rent|sale).html
+      # Arabic: The UFT-8 encoded of: /ar/(تجاري|للايجار|تجارية-للبيع|للبيع|تجارية|تجارية-للايجار|للإجار)/[%a-zA-Z0-9+_-]+-(للايجار|للإجار|للبيع).html
+      - /ar/(%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A8%D9%8A%D8%B9|%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%A9-%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A)/[%a-zA-Z0-9+_-]+-(%D9%84%D9%84%D8%A7%D9%8A%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A5%D8%AC%D8%A7%D8%B1|%D9%84%D9%84%D8%A8%D9%8A%D8%B9).html
+    desktopPath: 
+      - /pf-web-app\/(.*)
   ma:
-    mobilePath: /pf-web-app\/(.*)
-    desktopPath: /pf-web-app\/(.*)
+    mobilePath: 
+      - /pf-web-app\/(.*)
+    desktopPath: 
+      - /pf-web-app\/(.*)
 
 resources:
   limits:

@@ -9,9 +9,21 @@ import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.t
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { stringSlugify } from 'helpers/string/slugify';
 
 import { BackendApiFormSettingsJsonApiResultType } from './json-api-result.type';
 import { BackendApiFormSettingsSettingType } from './setting.type';
+
+let translate: Record<string, string>;
+
+const FilterFormSettingsHelpersMapping: Record<string, Array<string>> = {
+  'type-setting': ['propertyTypeSlug'],
+};
+
+const helperFilterParams = Object.values(FilterFormSettingsHelpersMapping).reduce((acc, item) => {
+  acc.push(...item);
+  return acc;
+}, []);
 
 const FilterFormSettingsParametersMapping: Record<string, Array<string>> = {
   query: [FiltersParametersEnum.query],
@@ -33,6 +45,7 @@ const FilterFormSettingsParametersMapping: Record<string, Array<string>> = {
   location_ids: [FiltersParametersEnum.locationsIds],
   is_developer_property: [FiltersParametersEnum.isDeveloperProperty],
   'installment-years': [FiltersParametersEnum.minInstallmentYears, FiltersParametersEnum.maxInstallmentYears],
+  ...FilterFormSettingsHelpersMapping,
 };
 
 type SettingsType = BackendApiFormSettingsSettingType[];
@@ -41,11 +54,15 @@ type ValidateSettingsResultType = Record<
   string,
   {
     value: string | string[] | number | null;
-    choices: { label: string; value: string | number | null }[];
+    choices: { label: string; value: string | number | null; slug: string[] }[];
   }
 >;
 
 type ParamsType = Record<string, { value: string | string[] | number | null }>;
+
+type FilterParamsChoice = Omit<FiltersValueFieldChoiceInterface<string>, 'label'> & { label: string | null };
+
+type FilterParamsReturnType = Record<string, { value: string; choices: FilterParamsChoice[] | null }>;
 
 /**
  * On filter settings validate
@@ -170,30 +187,48 @@ const extractParams = (settings: SettingsType, params: ParamsType, fieldsToReset
  * Ex. Convert price filter to MinPrice and MaxPrice.
  */
 const toFilterParams = (
-  settingsList: { jsonApiType: string; value: string; name: string }[]
-): Record<string, { value: string; choices: { value: string; label: string | null }[] | null }> => {
+  settingsList: { jsonApiType: string; value: string; name: string; id: string }[]
+): FilterParamsReturnType => {
   const settings = Array.isArray(settingsList) ? settingsList : [settingsList];
 
   // Determine filter name
   const filterName = settings[0].jsonApiType;
+  const filter = FilterFormSettingsParametersMapping[filterName];
+
+  if (!filter) {
+    return {};
+  }
 
   // Create filter value choices
   const choices = Array.isArray(settingsList)
-    ? settings.map((setting) => ({
-        value: String(setting.value),
-        label: setting.name || null,
-      }))
+    ? settings.map((setting) => {
+        const translation = JSON.parse(translate[`router/url_${filterName}_${setting.value}`] || 'null') as string[];
+        // First try to get it from the translation or generate it yourself
+        const slug = translation || (setting.name ? [stringSlugify(setting.name)] : []) || [];
+        // type-setting have multiple values for slug coming from the api
+        return filterName === 'type-setting'
+          ? {
+              value: setting.id,
+              label: setting.name || null,
+              slug: [setting.name, setting.value],
+            }
+          : {
+              value: String(setting.value),
+              label: setting.name || null,
+              slug,
+            };
+      })
     : null;
 
   // If this filter is a range filter
-  if (FilterFormSettingsParametersMapping[filterName].length > 1) {
+  if (filter.length > 1) {
     // Convert to range filter (min. max.)
     return {
-      [FilterFormSettingsParametersMapping[filterName][0]]: {
+      [filter[0]]: {
         value: '',
         choices,
       },
-      [FilterFormSettingsParametersMapping[filterName][1]]: {
+      [filter[1]]: {
         value: '',
         choices,
       },
@@ -201,11 +236,11 @@ const toFilterParams = (
   }
 
   return {
-    [FilterFormSettingsParametersMapping[filterName][0]]: {
+    [filter[0]]: {
       value: '',
       choices,
     },
-  } as Record<string, { value: string; choices: { value: string; label: string | null }[] | null }>;
+  } as FilterParamsReturnType;
 };
 
 /**
@@ -246,6 +281,10 @@ const filterTypesThatAlwaysAvailable = Object.keys(commonInitialState);
 const extractAndFilterValues = (filterParams: ParamsType): FiltersValueInterface =>
   (Object.keys(filterParams) as Array<keyof FiltersValueInterface>).reduce(
     (map: FiltersValueInterface & Record<string, string>, filterType: keyof FiltersValueInterface) => {
+      // Exclude the helper filters
+      if (helperFilterParams.includes(filterType)) {
+        return map;
+      }
       if (
         filterType !== FiltersParametersEnum.categoryId && // category is always known
         !filterTypesThatAlwaysAvailable.includes(filterType)
@@ -296,10 +335,12 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
   const choiceAnyNumber = {
     value: null,
     label: '',
+    slug: [],
   };
   const choiceAny = {
     value: '',
     label: '',
+    slug: [],
   };
 
   const filterTypesToAddAnyNumberOption: Array<
@@ -428,6 +469,11 @@ const makePropertyTypeProcessor =
         return arr;
       }, [] as number[]);
 
+      // Exclude the helper filters from the choices indexing
+      if (helperFilterParams.includes(filterType)) {
+        return;
+      }
+
       const choicesIndexesKey = filtersDataMakeChoicesIndexesKey(
         {
           [FiltersParametersEnum.categoryId]: categoryId as FiltersValueFieldCategoryIdType,
@@ -476,29 +522,26 @@ const makeCategoryProcessor =
 /**
  * Map form settings into FiltersDataInterface
  */
-export const backendApiFormSettingsMapper = (
-  formSettings: BackendApiFormSettingsJsonApiResultType
-): FiltersDataInterface => {
-  const allChoices: AllChoicesType = {} as AllChoicesType;
-  const choicesIndexes: ChoicesIndexesType = {};
-  const specificInitialState: InitialStateMap = {} as Record<string, FiltersValueInterface>;
+export const backendApiFormSettingsMapper =
+  (localeTranslation: Record<string, Record<string, string>>) =>
+  (formSettings: BackendApiFormSettingsJsonApiResultType): FiltersDataInterface => {
+    const allChoices: AllChoicesType = {} as AllChoicesType;
+    const choicesIndexes: ChoicesIndexesType = {};
+    const specificInitialState: InitialStateMap = {} as Record<string, FiltersValueInterface>;
 
-  const processCategory = makeCategoryProcessor(formSettings, allChoices, choicesIndexes, specificInitialState);
+    translate = localeTranslation?.['common'] || {};
 
-  // Traverse each category to fill up the choices and initial states
-  [
-    FiltersCategoryIdEnum.residentialForSale,
-    FiltersCategoryIdEnum.residentialForRent,
-    FiltersCategoryIdEnum.commercialForSale,
-    FiltersCategoryIdEnum.commercialForRent,
-  ].forEach(processCategory);
+    const processCategory = makeCategoryProcessor(formSettings, allChoices, choicesIndexes, specificInitialState);
 
-  return {
-    initialState: Object.keys(specificInitialState).reduce((acc, key) => {
-      acc[key] = { ...specificInitialState[key], ...commonInitialState };
-      return acc;
-    }, {} as InitialStateMap),
-    allChoices,
-    choicesIndexes,
+    // Traverse each category to fill up the choices and initial states
+    Object.values(FiltersCategoryIdEnum).forEach(processCategory);
+
+    return {
+      initialState: Object.keys(specificInitialState).reduce((acc, key) => {
+        acc[key] = { ...specificInitialState[key], ...commonInitialState };
+        return acc;
+      }, {} as InitialStateMap),
+      allChoices,
+      choicesIndexes,
+    };
   };
-};

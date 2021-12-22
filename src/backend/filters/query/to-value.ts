@@ -15,13 +15,15 @@ import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.t
 import { FiltersValueFieldUtilitiesPriceTypeType } from 'components/filters/value/field/utilities-price-type.type';
 import { FiltersValueFieldVirtualViewingType } from 'components/filters/value/field/virtual-viewing.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { configPriceChoicesDefinition } from 'config/price-choices/definition';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 import { categoryIdIsRent } from 'helpers/category-id/is-rent';
 import { locationsMapByLocale } from 'helpers/locations/map-by-locale';
 
-// TODO-FE[CX-409] add tests
+/**
+ * Transforms query params to filters value
+ * @example { c: 2, bf: 4, bt: 4 } => { filter[category_id] : '2', filter[min_bedroom]: '4', filter[max_bedroom]: '4' }
+ */
 export const backendFiltersQueryToValue = (
   queryParams: FiltersQueryInterface,
   locale: string
@@ -29,7 +31,9 @@ export const backendFiltersQueryToValue = (
   const categoryId = (queryParams[FiltersQueryParametersEnum.categoryId] ||
     backendFiltersValueDefault[FiltersParametersEnum.categoryId]) as FiltersValueFieldCategoryIdType;
 
-  const defaultPricePeriod = categoryIdIsRent(categoryId) ? Object.keys(configPriceChoicesDefinition.rent)[0] : '';
+  const defaultPricePeriod = categoryIdIsRent(categoryId)
+    ? backendFiltersValueDefault[FiltersParametersEnum.pricePeriod]
+    : '';
 
   return {
     [FiltersParametersEnum.locationsIds]:

@@ -12,6 +12,7 @@ describe('locationsMapByLocale()', () => {
         "name": "Dubai",
         "path": "Dubai",
         "path_name": "",
+        "slug": "dubai",
       }
     `);
     expect(locations['50']).toMatchInlineSnapshot(`
@@ -21,6 +22,7 @@ describe('locationsMapByLocale()', () => {
         "name": "Dubai Marina",
         "path": "Dubai Marina",
         "path_name": "Dubai",
+        "slug": "dubai-marina",
       }
     `);
     expect(locations['41']).toMatchInlineSnapshot(`
@@ -30,6 +32,7 @@ describe('locationsMapByLocale()', () => {
         "name": "Downtown Dubai",
         "path": "Downtown Dubai",
         "path_name": "Dubai",
+        "slug": "downtown-dubai",
       }
     `);
     expect(locations['6']).toMatchInlineSnapshot(`
@@ -39,6 +42,7 @@ describe('locationsMapByLocale()', () => {
         "name": "Abu Dhabi",
         "path": "Abu Dhabi",
         "path_name": "",
+        "slug": "abu-dhabi",
       }
     `);
   });
@@ -52,6 +56,7 @@ describe('locationsMapByLocale()', () => {
         "name": "دبي",
         "path": "دبي",
         "path_name": "",
+        "slug": "دبي",
       }
     `);
     expect(alternativeLocations['50']).toMatchInlineSnapshot(`
@@ -61,6 +66,7 @@ describe('locationsMapByLocale()', () => {
         "name": "دبي مارينا",
         "path": "دبي مارينا",
         "path_name": "دبي",
+        "slug": "دبي-مارينا",
       }
     `);
     expect(alternativeLocations['41']).toMatchInlineSnapshot(`
@@ -70,6 +76,7 @@ describe('locationsMapByLocale()', () => {
         "name": "دبي وسط المدينة",
         "path": "دبي وسط المدينة",
         "path_name": "دبي",
+        "slug": "دبي-وسط-المدينة",
       }
     `);
     expect(alternativeLocations['6']).toMatchInlineSnapshot(`
@@ -79,6 +86,7 @@ describe('locationsMapByLocale()', () => {
         "name": "أبوظبي",
         "path": "أبوظبي",
         "path_name": "",
+        "slug": "أبوظبي",
       }
     `);
   });
