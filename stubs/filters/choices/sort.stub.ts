@@ -4,12 +4,12 @@ export const filtersChoicesSortStub = (
   choices: Partial<FiltersValueFieldChoiceInterface<string>[]> = []
 ): FiltersValueFieldChoiceInterface<string>[] => {
   const defaultChoices: FiltersValueFieldChoiceInterface<string>[] = [
-    { value: 'mr', label: 'Featured' },
-    { value: 'nd', label: 'Newest' },
-    { value: 'pa', label: 'Price (low)' },
-    { value: 'pd', label: 'Price (high)' },
-    { value: 'ba', label: 'Beds (least)' },
-    { value: 'bd', label: 'Beds (most)' },
+    { value: 'mr', label: 'Featured', slug: ['featured'] },
+    { value: 'nd', label: 'Newest', slug: ['newest'] },
+    { value: 'pa', label: 'Price (low)', slug: ['price-(low)'] },
+    { value: 'pd', label: 'Price (high)', slug: ['price-(high)'] },
+    { value: 'ba', label: 'Beds (least)', slug: ['beds-(least)'] },
+    { value: 'bd', label: 'Beds (most)', slug: ['beds-(most)'] },
   ];
 
   return [...defaultChoices, ...(choices as FiltersValueFieldChoiceInterface<string>[])];

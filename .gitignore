@@ -18,5 +18,6 @@ yarn-error.log
 /public/static/translations/fr
 /public/static/locations/*.ts
 /public/static/filters-data/*.ts
+/public/static/locations-slug-history/*.ts
 /scripts/download-resources/script.js
 story-book/

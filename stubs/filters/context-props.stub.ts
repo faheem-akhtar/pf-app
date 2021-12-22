@@ -5,5 +5,5 @@ import { filtersValueStub } from './value/stub';
 
 export const filtersContextPropsStub = (): FiltersContextProviderPropsInterface => ({
   filtersValueFromQuery: filtersValueStub(),
-  filtersData: filtersDataStub,
+  filtersData: filtersDataStub(),
 });

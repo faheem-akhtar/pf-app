@@ -4,7 +4,8 @@
     "jest.config.desktop.js",
     "jest.config.eg.js",
     "jest.config.ma.js",
-    "jest.config.qa.js"
+    "jest.config.qa.js",
+    "jest.config.bh.js"
   ],
   "coverageThreshold": {
     "global": {

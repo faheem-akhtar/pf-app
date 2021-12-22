@@ -17,7 +17,7 @@ describe('filtersCountGetActiveFields()', () => {
     expect(
       filtersCountGetActiveFields({
         value: sampleFilterValues,
-        data: filtersDataStub,
+        data: filtersDataStub(),
       })
     ).toBe(0);
   });
@@ -28,7 +28,7 @@ describe('filtersCountGetActiveFields()', () => {
     expect(
       filtersCountGetActiveFields({
         value: sampleFilterValues,
-        data: filtersDataStub,
+        data: filtersDataStub(),
       })
     ).toBe(2);
   });
@@ -40,7 +40,7 @@ describe('filtersCountGetActiveFields()', () => {
     expect(
       filtersCountGetActiveFields({
         value: sampleFilterValues,
-        data: filtersDataStub,
+        data: filtersDataStub(),
       })
     ).toBe(2);
   });

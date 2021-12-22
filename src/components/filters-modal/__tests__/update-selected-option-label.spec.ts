@@ -1,11 +1,11 @@
 import { filtersModalUpdateSelectedOptionLabel } from '../update-selected-option-label';
 
 const options = [
-  { value: null, label: 'From' },
-  { value: 1, label: '1 year (12 installments)' },
-  { value: 2, label: '2 years (24 installments)' },
-  { value: 3, label: '3 years (36 installments)' },
-  { value: 4, label: '4 years (48 installments)' },
+  { value: null, label: 'From', slug: [] },
+  { value: 1, label: '1 year (12 installments)', slug: [] },
+  { value: 2, label: '2 years (24 installments)', slug: [] },
+  { value: 3, label: '3 years (36 installments)', slug: [] },
+  { value: 4, label: '4 years (48 installments)', slug: [] },
 ];
 
 describe('filtersModalUpdateSelectedOptionLabel', () => {

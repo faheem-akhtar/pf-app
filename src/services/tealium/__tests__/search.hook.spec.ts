@@ -8,7 +8,7 @@ import { PropertySearchViewPropsType } from 'views/property-search/view-props.ty
 
 import { useServicesTealiumSearch } from '../search.hook';
 
-describe('useServicesTealiumSearch', () => {
+describe('useServicesTealiumSearch()', () => {
   const tealiumStub = tealiumServiceStub();
 
   beforeEach(() => {
@@ -25,7 +25,7 @@ describe('useServicesTealiumSearch', () => {
   test('if page is rendered, onPageViewRendered should be called with correct payload', () => {
     useServicesTealiumSearch({
       ok: true,
-      filtersData: filtersDataStub,
+      filtersData: filtersDataStub(),
       filtersValueFromQuery: filtersValueStub(),
       searchResult: { total: 5, properties: [propertyStub()] },
     } as PropertySearchViewPropsType);

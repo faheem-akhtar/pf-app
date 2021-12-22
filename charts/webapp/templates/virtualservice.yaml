@@ -27,11 +27,13 @@ spec:
   # m.website to mobile pods.
   {{- if eq $root.Values.environment "prenv" }}
   - match:
-    - headers:
+    {{- range $mobilePath := $config.mobilePath }}
+    - uri:
+        regex: {{ $mobilePath }}
+    {{- end }}
+      headers:
         host:
           prefix: "m.website"
-      uri:
-        regex: {{ $config.mobilePath }}
     route:
     - destination:
         host: {{ $country }}-{{ $root.Values.service.name }}-mobile
@@ -42,8 +44,10 @@ spec:
     timeout: "30s"
   {{- else }}
   - match:
+    {{- range $mobilePath := $config.mobilePath }}
     - uri:
-        regex: {{ $config.mobilePath }}
+        regex: {{ $mobilePath }}
+    {{- end }}
       headers:
         x-akamai-device-characteristics:
           regex: "is_mobile=true(.*)"
@@ -58,8 +62,10 @@ spec:
   {{- end }}
   # Defaults to desktop
   - match:
+    {{- range $desktopPath := $config.desktopPath }}
     - uri:
-        regex: {{ $config.desktopPath }}
+        regex: {{ $desktopPath }}
+    {{- end }}
     route:
     - destination:
         host: {{ $country }}-{{ $root.Values.service.name }}-desktop
