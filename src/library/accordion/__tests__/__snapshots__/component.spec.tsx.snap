@@ -3,18 +3,18 @@
 exports[`AccordionComponent should render without throwing any errors 1`] = `
 <div>
   <div
-    class="container"
+    class="accordion"
   >
     <header
-      class="header"
+      class="accordion__header"
     >
       <p
-        class="title"
+        class="accordion__title"
       >
         Popular searches
       </p>
       <svg
-        class="icon icon--expanded"
+        class="accordion__icon accordion__icon--expanded"
         viewBox="4.5 8 16 8"
       >
         <path
@@ -26,7 +26,7 @@ exports[`AccordionComponent should render without throwing any errors 1`] = `
       </svg>
     </header>
     <div
-      class="panel"
+      class="accordion__panel"
     >
       content
     </div>

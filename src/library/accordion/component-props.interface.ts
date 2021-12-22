@@ -1,4 +1,4 @@
-export interface AccordionItemComponentPropsInterface {
+export interface AccordionComponentPropsInterface {
   /**
    * Title
    */

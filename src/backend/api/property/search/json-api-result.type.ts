@@ -36,15 +36,5 @@ export type BackendApiPropertySearchJsonApiResultType = {
      * Page title
      */
     meta_title: string;
-
-    /**
-     * Page description
-     */
-    meta_description: string;
-
-    /**
-     * Schema.org structured data
-     */
-    json_schema: object[];
   };
 };

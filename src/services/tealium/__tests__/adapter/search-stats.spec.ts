@@ -12,9 +12,9 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { tealiumAdapterSearchStats } from 'services/tealium/adapter/search-stats';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 
-describe('tealiumAdapterSearchStats()', () => {
+describe('tealiumAdapterSearchStats', () => {
   const baseFilters = filtersValueStub();
-  const filtersData = filtersDataStub();
+  const filtersData = filtersDataStub;
 
   it('should transform all the given parameters', () => {
     const filters = {

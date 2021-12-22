@@ -112,7 +112,6 @@ export const backendApiPropertySearchMapper = (
 
   const result: PropertySerpSearchResultType = {
     title: data.meta.meta_title,
-    description: data.meta.meta_description,
     properties: properties.map(backendPropertySerpObfuscate),
     adConfig: {
       ad_targeting: data.meta.ad_targeting,
@@ -121,7 +120,6 @@ export const backendApiPropertySearchMapper = (
     total: rawJson.data.relationships.properties.meta.total_count,
     pages: rawJson.data.relationships.properties.meta.page_count,
     breadcrumbs: backendApiPropertySearchBreadcrumbMapper(rawJson.data.meta.breadcrumbs),
-    schema: JSON.stringify(data.meta.json_schema),
   };
 
   if (configIsTrace) {

@@ -14,5 +14,4 @@ export const filtersModalMapSelectOptionsLabels = (
   options.map((option) => ({
     value: option.value,
     label: option.value ? (isComparable ? option.label : numberFormat(option.value)) : nullLabel,
-    slug: option.slug,
   }));

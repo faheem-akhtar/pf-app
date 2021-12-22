@@ -57,7 +57,7 @@ describe('PaginationSectionComponent', () => {
     userEvent.click(nextButton);
 
     expect(routerPushSpy).toHaveBeenCalledTimes(1);
-    expect(routerPushSpy).toHaveBeenCalledWith('/en/search?c=4&page=2');
+    expect(routerPushSpy).toHaveBeenCalledWith('/en/search?page=2');
   });
 
   it('should call router events on when on mount', () => {

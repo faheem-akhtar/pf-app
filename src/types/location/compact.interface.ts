@@ -10,12 +10,6 @@ export interface LocationCompactInterface {
   name: string;
 
   /**
-   * Slug
-   * @example dubai-marina
-   */
-  slug?: string;
-
-  /**
    * Abbreviation
    */
   abbreviation: string;

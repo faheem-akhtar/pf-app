@@ -1,10 +1,10 @@
 import { helpersFiltersGetSelectedChoice } from '../get-selected-choice';
 
-describe('helpersFiltersGetSelectedChoice()', () => {
-  const choices = [{ value: 'value1', label: 'label1', slug: [] }];
+describe('helpersFiltersGetSelectedChoice', () => {
+  const choices = [{ value: 'value1', label: 'label1' }];
 
   test('if correct stack is returned for the given value', () => {
-    const choice = { value: 'value', label: 'label', slug: [] };
+    const choice = { value: 'value', label: 'label' };
     expect(helpersFiltersGetSelectedChoice([...choices, choice], 'value')).toBe(choice);
   });
 

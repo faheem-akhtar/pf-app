@@ -8,8 +8,6 @@ import { dateToIso } from 'helpers/date/to-iso';
 import { ContactedPropertyContext } from '../context';
 import { ContactedPropertyContextProvider } from '../context-provider';
 
-jest.mock('helpers/date/to-iso');
-
 const MockChildComponent: FunctionComponent = (): ReactElement => {
   const contactedProperty = useContext(ContactedPropertyContext);
 
@@ -22,7 +20,6 @@ const MockChildComponent: FunctionComponent = (): ReactElement => {
 
 describe('ContactedPropertyContextProvider', () => {
   it('should accept add and data', () => {
-    (dateToIso as jest.Mock).mockReturnValue('2021-01-01');
     render(
       <ContactedPropertyContextProvider>
         <MockChildComponent />
@@ -39,7 +36,7 @@ describe('ContactedPropertyContextProvider', () => {
       JSON.stringify({
         propertyId: 1,
         contactType: ContactedPropertyTypeEnum.whatsApp,
-        contactDate: '2021-01-01',
+        contactDate: dateToIso(new Date()),
       })
     );
   });

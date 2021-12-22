@@ -1,46 +1,19 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-
-import { configCommon } from 'config/common';
-import { localeIsDefault } from 'helpers/locale/is-default';
 
 import { HeadComponentPropsInterface } from './component-props.interface';
 import { HeadTrackersTemplate } from './trackers-template';
 
 export const HeadComponent = ({
-  title,
-  description,
-  schema,
+  pageTitle,
   shouldIndex = true,
   snowplowHost,
-  pageUrl,
-  alternateUrl,
-  pageNextUrl,
-  pagePreviousUrl,
 }: HeadComponentPropsInterface): JSX.Element => {
-  const { locale } = useRouter();
-  const { current, alternative } = configCommon.language;
-  const targetLocale = localeIsDefault(locale as string) ? alternative : current;
-
   return (
     <Head>
-      <title>{title}</title>
-      <meta name='description' content={description} />
-      <meta property='og:title' content={title} />
-      <meta property='og:description' content={description} />
-      {pageUrl && (
-        <>
-          <link href={pageUrl} rel='canonical' />
-          <link href={pageUrl} rel='alternate' hrefLang={locale} />
-          <meta property='og:url' content={pageUrl} />
-        </>
-      )}
-      {alternateUrl && <link href={alternateUrl} rel='alternate' hrefLang={targetLocale} />}
-      {pagePreviousUrl && <link href={pagePreviousUrl} rel='prev' />}
-      {pageNextUrl && <link href={pageNextUrl} rel='next' />}
+      <title>{pageTitle}</title>
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-      <link rel='icon' type='image/png' sizes='32x32' href='/en/static/favicon/32x32.png' />
-      <link rel='icon' type='image/png' sizes='16x16' href='/en/static/favicon/16x16.png' />
+      <link rel='icon' type='image/png' sizes='32x32' href='static/favicon/32x32.png' />
+      <link rel='icon' type='image/png' sizes='16x16' href='static/favicon/16x16.png' />
       <link rel='manifest' href='/en/static/manifest.json' />
       <link rel='mask-icon' href='/en/static/favicon/safari-pinned-tab.svg' color='#ef5e4e' />
       {/* Do not render telephone numbers as links */}
@@ -50,7 +23,6 @@ export const HeadComponent = ({
       <meta name='msapplication-TileColor' content='#ffffff' />
       <meta name='theme-color' content='#ffffff' />
       <HeadTrackersTemplate snowplowHost={snowplowHost} />
-      {schema && <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: schema }} />}
     </Head>
   );
 };

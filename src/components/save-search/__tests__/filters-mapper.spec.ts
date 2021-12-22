@@ -15,7 +15,8 @@ import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import { saveSearchFiltersMapper } from '../filters-mapper';
 
-const exampleSaveSearchFilters: FiltersValueInterface = filtersValueStub({
+const exampleSaveSearchFilters: FiltersValueInterface = {
+  ...filtersValueStub(),
   [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForRent,
   [FiltersParametersEnum.pricePeriod]: PropertyPriceTypeShortEnum.yearly as FiltersValueFieldPricePeriodType,
   [FiltersParametersEnum.amenities]: ['A' as FiltersValueFieldAmenitiesType, 'B' as FiltersValueFieldAmenitiesType],
@@ -29,7 +30,7 @@ const exampleSaveSearchFilters: FiltersValueInterface = filtersValueStub({
   [FiltersParametersEnum.maxBathroom]: '3' as FiltersValueFieldMaxBathroomType,
   [FiltersParametersEnum.paymentMethod]: 'payment' as FiltersValueFieldPaymentMethodType,
   [FiltersParametersEnum.minBedroom]: '0' as FiltersValueFieldMinBedroomType,
-});
+};
 
 describe('saveSearchFiltersMapper', () => {
   it('should exclude not-valid parameters', () => {

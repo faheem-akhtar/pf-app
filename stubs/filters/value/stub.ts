@@ -4,7 +4,7 @@ import { FiltersValueInterface } from 'components/filters/value/interface';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
-export const filtersValueStub = (values: Partial<FiltersValueInterface> = {}): FiltersValueInterface => ({
+export const filtersValueStub = (): FiltersValueInterface => ({
   [FiltersParametersEnum.locationsIds]: [],
   [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForRent,
   [FiltersParametersEnum.propertyTypeId]: '',
@@ -29,5 +29,4 @@ export const filtersValueStub = (values: Partial<FiltersValueInterface> = {}): F
   [FiltersParametersEnum.maxInstallmentYears]: null,
   [FiltersParametersEnum.sort]: 'mr' as FiltersValueFieldSortType,
   [FiltersParametersEnum.pageNumber]: 1,
-  ...values,
 });

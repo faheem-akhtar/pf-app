@@ -6,9 +6,8 @@ import { IconTemplatePropsInterface } from 'components/icon/template-props.inter
 import { IconThickChevronLeftTemplate } from 'components/icon/thick/chevron-left-template';
 import { IconThickChevronRightTemplate } from 'components/icon/thick/chevron-right-template';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { localeGetHref } from 'helpers/locale/get-href';
 import { useTranslation } from 'helpers/translation/hook';
-import { urlQueryUpdate } from 'helpers/url-query/update';
+import { urlQuerySerialize } from 'helpers/url-query/serialize';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
 import { ButtonIconPositionEnum } from 'library/button/icon-position.enum';
 import { ButtonSizeEnum } from 'library/button/size.enum';
@@ -26,7 +25,7 @@ const renderLink = (
   iconPosition: ButtonIconPositionEnum,
   iconClass: string
 ): JSX.Element => {
-  const url = urlQueryUpdate(localeGetHref(router.locale as string, router.asPath, true), { page });
+  const url = `/${router.locale}${router.pathname}?${urlQuerySerialize({ ...router.query, page })}`;
 
   return (
     <ButtonTemplate

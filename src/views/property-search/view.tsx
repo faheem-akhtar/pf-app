@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 
 import { abTestTracker } from 'components/ab-test/tracker';
@@ -8,25 +7,16 @@ import { FiltersSectionComponent } from 'components/filters-section/component';
 import { FooterComponent } from 'components/footer/component';
 import { HeadComponent } from 'components/head/component';
 import { HeaderComponent } from 'components/header/component';
-import { languageSelectorTargetPath } from 'components/language-selector/target-path';
 import { MapSearchButtonComponent } from 'components/map-search/button/component';
 import { PaginationSectionComponent } from 'components/pagination-section/component';
 import { PropertyListComponent } from 'components/property/list/component';
 import { PropertyListHeaderComponent } from 'components/property/list/header/component';
-import { propertySerpNextPageUrl } from 'components/property/serp/next-page-url';
-import { propertySerpPreviousPageUrl } from 'components/property/serp/previous-page-url';
 import { PropertySearchCountAndSortSectionComponent } from 'components/property-search-count-and-sort-section/component';
 import { PropertySearchNotFoundSectionComponent } from 'components/property-search-not-found-section/component';
 import { SavedPropertyContextProvider } from 'components/saved-property/context-provider';
-import { SeoComponent } from 'components/seo/component';
-import { seoReplaceTags } from 'components/seo/replace-tags';
-import { SeoTagEnum } from 'components/seo/tag.enum';
 import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { WrapperTemplate } from 'components/wrapper/template';
-import { configCommon } from 'config/common';
 import { mapSearchEnabledByDefault } from 'config/map-search/enabled-by-default';
-import { localeGetHref } from 'helpers/locale/get-href';
-import { localeIsDefault } from 'helpers/locale/is-default';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 import { useReactConstructor } from 'helpers/react/constructor.hook';
 import { usePrevious } from 'hooks/previous.hook';
@@ -42,9 +32,6 @@ import { PropertySearchViewPropsType } from './view-props.type';
 // TODO-FE[CX-433] add tests
 export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Element => {
   const prevProps = usePrevious(props);
-  const { query, asPath, locale } = useRouter();
-  const { current, alternative } = configCommon.language;
-  const targetLocale = localeIsDefault(locale as string) ? alternative : current;
   const { statsDataPromise } = usePropertySearchTrackPageView(prevProps, props);
   const pageIsLoading = usePageIsLoading();
 
@@ -63,32 +50,16 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
 
   const { filtersValueFromQuery, filtersData } = props;
   const filtersContextProps = { filtersValueFromQuery, filtersData };
-  const pageUrl = localeGetHref(locale as string, asPath);
-
-  const seoTagsData = { [SeoTagEnum.numberOfListings]: props.searchResult.total.toString() };
-  const pageTitle = seoReplaceTags(props.seoData?.content?.title || props.meta.title, seoTagsData);
-  const pageDescription = seoReplaceTags(props.seoData?.content?.description || props.meta.description, seoTagsData);
 
   return (
     <PropertySearchStatsDataPromiseForCurrentQueryContext.Provider value={statsDataPromise}>
       <PropertySearchResultsCountForCurrentQueryContext.Provider value={props.searchResult.total}>
         <SnackbarContextProvider>
           <HeadComponent
-            title={pageTitle}
-            description={pageDescription}
-            schema={props.meta.schema}
-            shouldIndex={props.meta.shouldIndex}
+            pageTitle={props.documentTitle}
+            // TODO-FE[CX-708] The page should be indexable for landing pages. Implement it once landing pages are served by pf-web-app
+            shouldIndex={false}
             snowplowHost={props.env.snowplowHost}
-            pageUrl={pageUrl}
-            alternateUrl={
-              query.pattern &&
-              localeGetHref(
-                targetLocale,
-                languageSelectorTargetPath(query.pattern as string, decodeURI(asPath), locale as string, targetLocale)
-              )
-            }
-            pageNextUrl={propertySerpNextPageUrl(pageUrl, props.searchResult.pages)}
-            pagePreviousUrl={propertySerpPreviousPageUrl(pageUrl)}
           />
           <FiltersContextProvider {...filtersContextProps}>
             <SavedPropertyContextProvider>
@@ -96,7 +67,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
                 <HeaderComponent />
                 <FiltersSectionComponent />
                 <PropertyListHeaderComponent
-                  pageTitle={props.meta.title}
+                  pageTitle={props.documentTitle}
                   breadcrumbs={props.searchResult.breadcrumbs}
                 />
                 {props.searchResult.total ? (
@@ -122,7 +93,6 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
               </ContactedPropertyContextProvider>
             </SavedPropertyContextProvider>
             {mapSearchEnabledByDefault && <MapSearchButtonComponent />}
-            {props.seoData && <SeoComponent {...props.seoData} />}
             <FooterComponent onClickAppDownload={AnalyticsTealiumService().onAppDownloadClicked} />
           </FiltersContextProvider>
         </SnackbarContextProvider>

@@ -1,7 +1,6 @@
 const { i18n } = require('./next-i18next.config');
 const { getLanguageCssAlias } = require('./scripts/build-config');
 const buildConfig = require('./scripts/build-config');
-const rewrites = require('./routes/rewrites');
 
 module.exports = {
   eslint: {
@@ -58,8 +57,5 @@ module.exports = {
         ],
       },
     ];
-  },
-  async rewrites() {
-    return rewrites;
   },
 };

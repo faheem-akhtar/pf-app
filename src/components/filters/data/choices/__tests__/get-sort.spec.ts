@@ -6,6 +6,6 @@ import { filtersDataChoicesGetSort } from '../get-sort';
 
 describe('filtersDataChoicesGetSort()', () => {
   it('should not include delivery date earliest and latest', () => {
-    expect(filtersDataChoicesGetSort(filtersValueStub(), filtersDataStub())).toEqual(filtersChoicesSortStub());
+    expect(filtersDataChoicesGetSort(filtersValueStub(), filtersDataStub)).toEqual(filtersChoicesSortStub());
   });
 });

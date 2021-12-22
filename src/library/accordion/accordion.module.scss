@@ -1,0 +1,36 @@
+.accordion {
+  border-bottom: 0.1rem solid var(--color-global-grey3);
+  padding: spacingm(1.5);
+
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    flex: 1;
+    font-size: var(--font-size-05);
+    margin-right: spacingm();
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__icon {
+    color: var(--color-global-grey2);
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width: 1.6rem;
+
+    &--expanded {
+      transform: rotate(-180deg);
+    }
+  }
+
+  &__panel {
+    font-size: var(--font-size-18);
+    margin-bottom: spacingm();
+    margin-top: spacingm(1.5);
+    padding: 0 spacingm(1.5);
+  }
+}

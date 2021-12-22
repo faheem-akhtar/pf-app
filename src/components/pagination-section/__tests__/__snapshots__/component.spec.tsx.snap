@@ -27,7 +27,7 @@ exports[`PaginationSectionComponent renders without throwing any errors 1`] = `
     </a>
     <a
       class="button primary small button"
-      href="/en/search?c=4&page=2"
+      href="/en/search?page=2"
     >
       next
       <svg

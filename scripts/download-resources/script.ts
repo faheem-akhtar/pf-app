@@ -23,10 +23,6 @@ import { configOriginValue as saOrigin } from 'config/origin/value.sa';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiRequestPropsType } from 'api/request-props.type';
 import { ConfigCommonInterface } from 'types/config/common.interface';
-import { backendApiLocationSlugHistoryFetcher } from 'backend/api/location/slug-history/fetcher';
-import { backendTranslationGetDefinitions } from 'backend/translation/get-definitions';
-
-let translations: Record<string, Record<string, Record<string, string>>>;
 
 const configByCountry: Record<string, ConfigCommonInterface> = {
   ae: aeConfig,
@@ -49,10 +45,7 @@ const originByCountry: Record<string, string> = {
 };
 
 const makeDownloader = <QueryData, Result>(
-  fetcher: (params: {
-    translations?: Record<string, Record<string, string>>;
-    locale?: string;
-  }) => (props: ApiRequestPropsType<QueryData>) => Promise<ApiFetcherResultType<Result>>,
+  fetcher: (props: ApiRequestPropsType<QueryData>) => Promise<ApiFetcherResultType<Result>>,
   name: string
 ) =>
   async function (country: string) {
@@ -62,12 +55,8 @@ const makeDownloader = <QueryData, Result>(
 
     const origin = originByCountry[country];
     const [main, alt] = await Promise.all(
-      // TODO[CX-1075] - avoid passing the locale twice
       [mainLang, altLang].map((locale) =>
         fetcher({
-          translations: translations[locale],
-          locale,
-        })({
           locale,
           getOrigin: () => `http://${origin}`,
           alterHeaders: (headers) => {
@@ -97,23 +86,9 @@ const makeDownloader = <QueryData, Result>(
 
 const downloadLocations = makeDownloader(backendApiLocationAllFetcher, 'locations');
 const downloadFiltersData = makeDownloader(backendApiFormSettingsFetcher, 'filters-data');
-const downloadLocationSlugHistory = makeDownloader(backendApiLocationSlugHistoryFetcher, 'locations-slug-history');
 
 async function downloadResources() {
-  // filters data need translations so first we need to get those
-  const translationEn = await backendTranslationGetDefinitions('en');
-  const translationAr = await backendTranslationGetDefinitions('ar');
-
-  translations = {
-    en: translationEn._nextI18Next?.initialI18nStore['en'],
-    ar: translationAr._nextI18Next?.initialI18nStore['ar'],
-  };
-
-  const downloadForCountry = (country: string) => [
-    downloadLocations(country),
-    downloadFiltersData(country),
-    downloadLocationSlugHistory(country),
-  ];
+  const downloadForCountry = (country: string) => [downloadLocations(country), downloadFiltersData(country)];
   await Promise.all([
     ...downloadForCountry('ae'),
     ...downloadForCountry('bh'),

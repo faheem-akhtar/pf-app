@@ -3,7 +3,7 @@ const { parse } = require('url');
 const next = require('next');
 const isEnvDevelopment = require('./is-env-development');
 
-const PORT = process.env.PORT || process.argv.slice(3)[0];
+const [PORT] = process.argv.slice(3);
 
 const app = next({ dev: isEnvDevelopment() });
 const handle = app.getRequestHandler();

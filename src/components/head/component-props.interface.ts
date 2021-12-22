@@ -1,6 +1,14 @@
-import { ViewsPageMetaInterface } from 'views/page-meta.interface';
+export interface HeadComponentPropsInterface {
+  /**
+   * Page title
+   */
+  pageTitle: string;
 
-export interface HeadComponentPropsInterface extends ViewsPageMetaInterface {
+  /**
+   * if true, set meta tag to indicate that this page should be indexed by search engines
+   */
+  shouldIndex?: boolean;
+
   /**
    * Snowplow host
    */
