@@ -12,7 +12,7 @@ export const LanguageSelectorTemplate = ({
   <div className={styles.container} data-testid='language-selector'>
     <a
       aria-label='language-selector'
-      href={`/${targetLocale}${path}`}
+      href={decodeURI(`/${targetLocale}${path}`)}
       className={domClassMerge(styles.link, { [styles.linkAr]: targetLocale === LanguageCodeEnum.ar })}
     >
       {label}

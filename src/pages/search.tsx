@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
 
   const seoData: SeoDataInterface = {
     ...(seoLinks?.ok && seoLinks.data),
-    ...(seoContent?.ok && { content: seoContent.data || undefined }),
+    ...(seoContent?.ok && seoContent.data && { content: seoContent.data }),
   };
 
   searchResult.data.properties.slice(0, propertySerpNoOfPreloadImages).map((property) => {

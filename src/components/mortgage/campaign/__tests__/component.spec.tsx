@@ -64,10 +64,10 @@ describe('MortgageCampaignComponent', () => {
 
     it('should button link create', () => {
       const button = screen.getByRole('link', { name: 'agent-modal/mortgage-campaign-cta-label' });
-      const mortgageFinderUrl =
-        'https://www.mortgagefinder.ae/r?lang=en&propertyvalue=100000&reference=123&propertyId=198023&utm_source=propertyfinder-mobile&utm_medium=popup&utm_campaign=commercial-finance&utm_content=get-pre-approved&ud=eyJmdWxsbmFtZSI6IkZpcnN0TmFtZSBMYXN0TmFtZSIsInBob25lX251bWJlciI6Iis5NzE1NTU1NTU1NSIsImVtYWlsX2FkZHJlc3MiOiJ0ZXN0QHByb3BlcnR5ZmluZGVyLmFlIn0%3D';
 
-      expect(button).toHaveAttribute('href', mortgageFinderUrl);
+      expect(button.getAttribute('href')).toMatchInlineSnapshot(
+        `"https://www.mortgagefinder.ae/r?lang=en&propertyvalue=100000&reference=123&propertyId=198023&utm_source=propertyfinder-mobile&utm_medium=popup&utm_campaign=commercial-finance&utm_content=get-pre-approved&ud=eyJmdWxsbmFtZSI6IkZpcnN0TmFtZSBMYXN0TmFtZSIsInBob25lX251bWJlciI6Iis5NzE1NTU1NTU1NSIsImVtYWlsX2FkZHJlc3MiOiJ0ZXN0QHByb3BlcnR5ZmluZGVyLmFlIn0="`
+      );
     });
   });
 });

@@ -65,6 +65,8 @@ describe('backendFiltersQueryFromParam()', () => {
         {
           [FiltersQueryParamEnum.location]: 'jumeirah-village-circle',
           [FiltersQueryParametersEnum.categoryId]: '1',
+          test: 'testing',
+          arr: ['a', 'b'],
         } as FiltersQueryParamInterface,
         'en',
         '/en/abc'
@@ -72,6 +74,8 @@ describe('backendFiltersQueryFromParam()', () => {
     ).toEqual({
       [FiltersQueryParametersEnum.locationsIds]: '73',
       [FiltersQueryParametersEnum.categoryId]: '1',
+      test: 'testing',
+      arr: ['a', 'b'],
     });
   });
 

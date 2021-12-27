@@ -84,10 +84,13 @@ export const ApiMakeFactory =
     }
 
     if (factoryProps.queryDefaultParams || props.query) {
-      finalUrl = `${finalUrl}?${urlQuerySerialize({
-        ...factoryProps.queryDefaultParams,
-        ...props.query,
-      })}`;
+      finalUrl = `${finalUrl}?${urlQuerySerialize(
+        {
+          ...factoryProps.queryDefaultParams,
+          ...props.query,
+        },
+        true
+      )}`;
     }
 
     if (configIsTrace) {

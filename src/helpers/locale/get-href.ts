@@ -12,5 +12,6 @@ export const localeGetHref = (locale: string, path: string, relative: boolean = 
   const currentLocaleIsDefault = locale === current;
   const relativeUrl = `/${currentLocaleIsDefault ? current : alternative}${path}`;
 
-  return relative ? relativeUrl : `https://${configOriginValue}${relativeUrl}`;
+  // We should decode so that decoded url is used on both server and client side.
+  return decodeURI(relative ? relativeUrl : `https://${configOriginValue}${relativeUrl}`);
 };

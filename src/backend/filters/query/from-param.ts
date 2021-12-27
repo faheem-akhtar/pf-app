@@ -141,7 +141,7 @@ export const backendFiltersQueryFromParam = (
           break;
 
         default:
-          acc[key] = decodedQuery[key];
+          acc[key] = queryParams[key];
           break;
       }
 

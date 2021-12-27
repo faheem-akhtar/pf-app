@@ -4,7 +4,7 @@ describe('areEqual', () => {
   it('should return true for equal arrays', () => {
     expect(arrayAreEqual([], [])).toBeTruthy();
     expect(arrayAreEqual(['1', '2', '3'], ['1', '2', '3'])).toBeTruthy();
-    // expect(arrayAreEqual(['1', '2', '3'], ['2', '1', '3'])).toBeTruthy();
+    expect(arrayAreEqual(['1', '2', '3'], ['2', '1', '3'])).toBeTruthy();
   });
 
   it('should return false for non-equal arrays', () => {

@@ -1,6 +1,7 @@
 import { FiltersContextInterface } from 'components/filters/context.interface';
 import { filtersDataGetInitialState } from 'components/filters/data/get-initial-state';
 import { FiltersValueInterface } from 'components/filters/value/interface';
+import { arrayAreEqual } from 'helpers/array/are-equal';
 
 /**
  * @param fields FiltersParametersEnum[]
@@ -16,10 +17,7 @@ export const FiltersCountFactory =
       const isFieldUpdated = field.some((key) => {
         if (Array.isArray(value[key])) {
           const updatedValues = value[key] as string[];
-          return (
-            !!updatedValues.length &&
-            updatedValues.every((value, index) => value === (initialFilterState[key] as string[])[index])
-          );
+          return !!updatedValues.length && !arrayAreEqual(updatedValues, initialFilterState[key] as string[]);
         } else {
           return value[key] && initialFilterState[key] !== value[key];
         }

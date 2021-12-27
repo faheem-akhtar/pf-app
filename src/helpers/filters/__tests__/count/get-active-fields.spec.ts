@@ -42,6 +42,6 @@ describe('filtersCountGetActiveFields()', () => {
         value: sampleFilterValues,
         data: filtersDataStub(),
       })
-    ).toBe(2);
+    ).toBe(3);
   });
 });

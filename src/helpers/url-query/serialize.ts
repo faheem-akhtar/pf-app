@@ -1,7 +1,13 @@
 import { UrlQueryType } from 'types/url/query.type';
 
-// TODO-FE[TPNX-3005] add test
-export const urlQuerySerialize = (query: UrlQueryType): string => {
+/**
+ * Serialize the query string so that it can be appended to the url
+ * @example { c: '1', 'am[]': ['AB', 'CD'] } => c=1&am[]=AB&am[]=CD
+ * @param query An object representing query string
+ * @param encoded Whether to encode the resultant query keys and values or not
+ * @returns Query as a string
+ */
+export const urlQuerySerialize = (query: UrlQueryType, encoded: boolean = false): string => {
   const parts: string[] = [];
   for (const key in query) {
     const value = query[key];
@@ -9,7 +15,13 @@ export const urlQuerySerialize = (query: UrlQueryType): string => {
     const values = Array.isArray(value) ? value : [value];
 
     values.forEach((v) => {
-      parts.push(`${encodeURIComponent(`${key}${valueIsArray ? '[]' : ''}`)}=${encodeURIComponent(v as string)}`);
+      parts.push(
+        encoded
+          ? `${encodeURIComponent(`${key}${valueIsArray && !key.includes('[]') ? '[]' : ''}`)}=${encodeURIComponent(
+              v as string
+            )}`
+          : `${key}=${v}`
+      );
     });
   }
   return parts.join('&');

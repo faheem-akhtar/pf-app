@@ -8,7 +8,8 @@
 export function arrayAreEqual<T>(
   arr1: T[],
   arr2: T[],
-  comparator: (item1: T, item2: T) => -1 | 0 | 1 = (item1, item2): -1 | 0 | 1 => (item1 === item2 ? 0 : -1)
+  comparator: (item1: T, item2: T) => -1 | 0 | 1 = (item1, item2): -1 | 0 | 1 =>
+    ((item1 as unknown as number) - (item2 as unknown as number)) as -1 | 0 | 1
 ): boolean {
   if (arr1.length !== arr2.length) {
     return false;
