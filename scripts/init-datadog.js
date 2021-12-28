@@ -1,7 +1,8 @@
 const ddTrace = require('dd-trace');
+const serviceName = `pf-web-app-${process.env.NEXT_PUBLIC_COUNTRY_CODE}`;
 
 const tracer = ddTrace.init({
-  service: `pf-web-app-${process.env.NEXT_PUBLIC_COUNTRY_CODE}`,
+  service: serviceName,
   logInjection: true,
   debug: false,
 });
@@ -27,6 +28,27 @@ const headersToRecord = [
   'Referer',
 ];
 
+function getResourceName(path) {
+  const categoryRegex = `commercial|commercial-rent|commercial-buy|rent|buy|${encodeURI('للإجار')}|${encodeURI(
+    'تجارية-للايجار'
+  )}|${encodeURI('تجارية')}|${encodeURI('تجارية-للايجار')}|${encodeURI('للبيع')}|${encodeURI(
+    'تجارية-للبيع'
+  )}|${encodeURI('للايجار')}|${encodeURI('تجارية-للايجار')}|${encodeURI('تجاري')}`;
+  const resourceName = path
+    // Replace query string
+    .replace(/\?.*/, '')
+    // remove the extension
+    .replace(/\.[a-z]{2,4}$/i, '')
+    // Replace language and starting slash
+    .replace(/^\/((en|ar|fr)\/)?/, '')
+    // Replace slash with underscore
+    .replace(/\//g, '_');
+
+  return resourceName.match(new RegExp(`^(${categoryRegex})_.+`)) && !resourceName.match(/-\d{5,}$/)
+    ? 'search_landing_page'
+    : resourceName;
+}
+
 tracer.use('http', {
   headers: headersToRecord,
   hooks: {
@@ -46,6 +68,24 @@ tracer.use('http', {
       if (req.query) {
         span.setTag('req.query', req.query);
       }
+    },
+  },
+  client: {
+    service: serviceName,
+    hooks: {
+      request: (span, req) => {
+        if (!req.aborted || !req.destroyed) {
+          span.setTag('resource.name', `${req.method} ${getResourceName(req.path)}`);
+        }
+      },
+    },
+  },
+  server: {
+    service: serviceName,
+    hooks: {
+      request: (span, req) => {
+        span.setTag('resource.name', `${req.method} ${getResourceName(req.url)}`);
+      },
     },
   },
 });
