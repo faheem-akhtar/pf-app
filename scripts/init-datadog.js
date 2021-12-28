@@ -44,9 +44,22 @@ function getResourceName(path) {
     // Replace slash with underscore
     .replace(/\//g, '_');
 
-  return resourceName.match(new RegExp(`^(${categoryRegex})_.+`)) && !resourceName.match(/-\d{5,}$/)
-    ? 'search_landing_page'
-    : resourceName;
+  // Landing page request
+  if (resourceName.match(new RegExp(`^(${categoryRegex})_.+`)) && !resourceName.match(/-\d{5,}$/)) {
+    return 'search_landing_page';
+  }
+
+  // Next js static resource request
+  if (resourceName.includes('_next_static_')) {
+    return '_next_static_request';
+  }
+
+  // Next js data request
+  if (resourceName.includes('_next_data_')) {
+    return `_next_data_request_${resourceName.replace(/_next_data_(.+?)_/, '')}`;
+  }
+
+  return resourceName;
 }
 
 tracer.use('http', {
