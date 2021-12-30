@@ -5,6 +5,17 @@ Website - rewrite repository
 ### Project
 
 Before moving next steps, please be sure installed NodeJS version is `v14.17.1`
+
+Also, you need to configure your local npm to support private npm repositories, if you haven't done already.
+Create `~/.npmrc` file on your local machine and add following to the file contents:
+
+```
+//npm.pkg.github.com/:_authToken=<github_token>
+@propertyfinder:registry=https://npm.pkg.github.com/
+```
+
+Where `<github_token>` - is token with package:read and package:write permissions. Also, make sure you've enabled SSO for the token.
+
 To start container in local, please run scripts in root folder
 
 ```
