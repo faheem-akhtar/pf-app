@@ -34,6 +34,7 @@ function getResourceName(path) {
   )}|${encodeURI('تجارية')}|${encodeURI('تجارية-للايجار')}|${encodeURI('للبيع')}|${encodeURI(
     'تجارية-للبيع'
   )}|${encodeURI('للايجار')}|${encodeURI('تجارية-للايجار')}|${encodeURI('تجاري')}`;
+
   const resourceName = path
     // Replace query string
     .replace(/\?.*/, '')
@@ -41,6 +42,10 @@ function getResourceName(path) {
     .replace(/\.[a-z]{2,4}$/i, '')
     // Replace language and starting slash
     .replace(/^\/((en|ar|fr)\/)?/, '')
+    // Cleanup hash from the next js data request
+    .replace(/_next\/data\/.+?\//, '_next/data/')
+    // Remove numbers from the last. @example /api/pwa/saved-property/542866
+    .replace(/\/\d+$/, '')
     // Replace slash with underscore
     .replace(/\//g, '_');
 
@@ -52,11 +57,6 @@ function getResourceName(path) {
   // Next js static resource request
   if (resourceName.includes('_next_static_')) {
     return '_next_static_request';
-  }
-
-  // Next js data request
-  if (resourceName.includes('_next_data_')) {
-    return `_next_data_request_${resourceName.replace(/_next_data_(.+?)_/, '')}`;
   }
 
   return resourceName;

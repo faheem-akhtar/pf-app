@@ -17,6 +17,7 @@ import { FiltersValueFieldVirtualViewingType } from 'components/filters/value/fi
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
+import { arrayFilterNonValue } from 'helpers/array/filter/non-value';
 import { categoryIdIsRent } from 'helpers/category-id/is-rent';
 import { locationsMapByLocale } from 'helpers/locations/map-by-locale';
 
@@ -36,9 +37,10 @@ export const backendFiltersQueryToValue = (
     : '';
 
   return {
-    [FiltersParametersEnum.locationsIds]:
+    [FiltersParametersEnum.locationsIds]: arrayFilterNonValue(
       queryParams[FiltersQueryParametersEnum.locationsIds]?.split('-')?.map((id) => locationsMapByLocale(locale)[id]) ||
-      [],
+        []
+    ),
     [FiltersParametersEnum.categoryId]: categoryId,
     [FiltersParametersEnum.propertyTypeId]:
       (queryParams[FiltersQueryParametersEnum.propertyTypeId] as FiltersValueFieldPropertyTypeIdType) || '',

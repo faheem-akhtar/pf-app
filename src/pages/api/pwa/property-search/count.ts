@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
 
   return backendApiPropertySearchCountFetcher(locale, filtersValue).then((response) => {
     if (response.ok) {
-      res.send(response.data.count);
+      res.send(response.data?.count || 0);
     } else {
       res.status(response.error.status);
       // eslint-disable-next-line no-console

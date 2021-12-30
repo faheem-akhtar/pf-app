@@ -15,6 +15,7 @@ import { propertySerpNoOfPreloadImages } from 'constants/property/serp/no-of-pre
 import { PageTypeEnum } from 'enums/page-type/enum';
 import { headersDevPatchSetCookieDomain } from 'helpers/headers/dev-patch-set-cookie-domain';
 import { headersParseExperimentsFromSetCookie } from 'helpers/headers/parse-experiments-from-set-cookie';
+import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-value';
 import { PropertySearchView } from 'views/property-search/view';
 import { PropertySearchViewPropsType } from 'views/property-search/view-props.type';
 
@@ -28,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
   const filtersData = (filtersDataByLocale as unknown as Record<string, FiltersDataInterface>)[locale];
 
   const { query, error, redirect } = backendFiltersQueryFromParam(
-    context.query,
+    objectFilterNonOrEmptyValue(context.query),
     locale,
     `/${locale}${context.req.url}`
   );

@@ -19,5 +19,12 @@ export const filtersDataGetInitialState = (
   filtersData: FiltersDataInterface
 ): FiltersValueInterface => {
   const key = filtersDataMakeInitialStateKey(value);
-  return filtersData.initialState[key] as FiltersValueInterface;
+  const initialState = filtersData.initialState[key] as FiltersValueInterface;
+
+  if (!initialState) {
+    // eslint-disable-next-line no-console
+    console.error(`Invalid category to property pair: ${key}`);
+  }
+
+  return initialState;
 };

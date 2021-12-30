@@ -18,7 +18,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
 
   backendApiPropertyImagesFetcher(locale, [propertyId]).then((response) => {
     if (response.ok) {
-      res.send(response.data[propertyId].map((image) => image.links[imageType]));
+      res.send((response.data?.[propertyId] || []).map((image) => image.links[imageType]));
     } else {
       res.status(response.error.status);
       // eslint-disable-next-line no-console

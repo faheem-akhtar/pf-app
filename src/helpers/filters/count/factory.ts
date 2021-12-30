@@ -13,6 +13,12 @@ export const FiltersCountFactory =
     let filterCount = 0;
     const initialFilterState = filtersDataGetInitialState(value, data);
 
+    // Don't proceed if initial filter state is undefined.
+    // May be because of invalid category to property pair.
+    if (!initialFilterState) {
+      return filterCount;
+    }
+
     for (const field of fields) {
       const isFieldUpdated = field.some((key) => {
         if (Array.isArray(value[key])) {
