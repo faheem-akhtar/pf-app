@@ -43,7 +43,9 @@ countries:
   bh:
     mobilePath: 
       # next js routes
-      - /(_next|((en|ar)/(static|api/pwa)))(.*)
+      - /(_next|((en|ar)/static))(.*)
+      # next api routes
+      - /((en|ar)/)?api/pwa(.*)
       # search routes
       - /((en|ar)/)?search(.*)
       # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
@@ -176,7 +178,9 @@ countries:
   qa:
     mobilePath: 
       # next js routes
-      - /(_next|((en|ar)/(static|api/pwa)))(.*)
+      - /(_next|((en|ar)/static))(.*)
+      # next api routes
+      - /((en|ar)/)?api/pwa(.*)
       # search routes
       - /((en|ar)/)?search(.*)
     desktopPath: 
@@ -184,7 +188,9 @@ countries:
   sa:
     mobilePath: 
       # next js routes
-      - /(_next|((en|ar)/(static|api/pwa)))(.*)
+      - /(_next|((en|ar)/static))(.*)
+      # next api routes
+      - /((en|ar)/)?api/pwa(.*)
       # search routes
       - /((en|ar)/)?search(.*)
     desktopPath: 
@@ -192,7 +198,9 @@ countries:
   lb: 
     mobilePath:
       # next js routes
-      - /(_next|((en|ar)/(static|api/pwa)))(.*)
+      - /(_next|((en|ar)/static))(.*)
+      # next api routes
+      - /((en|ar)/)?api/pwa(.*)
       # search routes
       - /((en|ar)/)?search(.*)
       # Pattern: /{_locale}/{categorySlug}/{citySlug}/{furnishSlug}-{bedroomSlug}-{propertyTypeSlug}-{saleType}-{priceType}.html
