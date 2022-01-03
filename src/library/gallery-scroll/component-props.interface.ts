@@ -9,9 +9,13 @@ export interface GalleryScrollComponentPropsInterface extends GalleryScrollProps
   /**
    * On gallery mouse down or touch down
    */
-  onTouch: () => void;
+  onTouch?: () => void;
   /**
    * Triggered when active item changes
    */
   onActiveIndexChange?: (index: number, length: number) => void;
+  /**
+   * This will trigger when user is dragging the gallery
+   */
+  onDrag?: () => void;
 }

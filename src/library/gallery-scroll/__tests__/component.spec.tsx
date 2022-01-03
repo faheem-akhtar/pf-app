@@ -97,4 +97,40 @@ describe('AppearOnScrollComponent', () => {
 
     expect(getByTestId('gallery-scroll-picture').className).toMatchInlineSnapshot(`"item"`);
   });
+
+  it('should call onDrag when gallery is moved horizontally', () => {
+    const onDrag = jest.fn();
+
+    const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} onDrag={onDrag} />);
+
+    fireEvent.touchStart(getByTestId('gallery-scroll'), {
+      ...touchEventStub(),
+      changedTouches: [{ pageX: 5, pageY: 6 } as Touch] as unknown as React.TouchList,
+    });
+
+    fireEvent.touchMove(getByTestId('gallery-scroll'), {
+      ...touchEventStub(),
+      changedTouches: [{ pageX: 50, pageY: 6 } as Touch] as unknown as React.TouchList,
+    });
+
+    expect(onDrag).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not call onDrag when gallery is moved vertically', () => {
+    const onDrag = jest.fn();
+
+    const { getByTestId } = render(<GalleryScrollComponent {...defaultProps} onDrag={onDrag} />);
+
+    fireEvent.touchStart(getByTestId('gallery-scroll'), {
+      ...touchEventStub(),
+      changedTouches: [{ pageX: 5, pageY: 6 } as Touch] as unknown as React.TouchList,
+    });
+
+    fireEvent.touchMove(getByTestId('gallery-scroll'), {
+      ...touchEventStub(),
+      changedTouches: [{ pageX: 50, pageY: 60 } as Touch] as unknown as React.TouchList,
+    });
+
+    expect(onDrag).not.toHaveBeenCalled();
+  });
 });

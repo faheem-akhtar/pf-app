@@ -1,4 +1,4 @@
-import { useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 
 import { functionNoop } from 'helpers/function/noop';
 import { usePrevious } from 'hooks/previous.hook';
@@ -22,6 +22,7 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
     onActiveIndexChange = functionNoop,
     onTouch = functionNoop,
     onClick = functionNoop,
+    onDrag = functionNoop,
   } = props;
   const numberOfImages = items.length;
   const [reducer] = useState(() => galleryScrollMakeReducer(isRtl, numberOfImages));
@@ -63,6 +64,13 @@ export const GalleryScrollComponent = (props: GalleryScrollComponentPropsInterfa
     ...item,
     style: hasMultipleImages ? galleryScrollGetSlidingStyles(state, i, numberOfImages) : {},
   }));
+
+  useEffect(() => {
+    if (state.isDragging) {
+      onDrag();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.isDragging]);
 
   return (
     <GalleryScrollTemplate

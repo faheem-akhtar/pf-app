@@ -55,7 +55,7 @@ export const PropertyCardComponent = ({
 }: PropertyCardComponentPropsType): JSX.Element => {
   const { locale } = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [galleryHasBeenTouched, setGalleryHasBeenTouched] = useState(false);
+  const [galleryImagesShouldFetch, setGalleryImagesShouldFetch] = useState(false);
   const [isPropertySaved, setIsPropertySaved] = useState(false);
   const statsDataPromise = useContext(PropertySearchStatsDataPromiseForCurrentQueryContext);
   const { t } = useTranslation();
@@ -76,7 +76,7 @@ export const PropertyCardComponent = ({
   const menuModalOpenRef = useRef<() => void>(functionNoop);
   const socialShareOpenRef = useRef<() => void>(functionNoop);
   const propertyReportOpenRef = useRef<() => void>(functionNoop);
-  const imagesResponse = useApiPropertyImages(propertyId, 'medium', galleryHasBeenTouched);
+  const imagesResponse = useApiPropertyImages(propertyId, 'medium', galleryImagesShouldFetch);
 
   const tealiumEvents = TealiumConversionEventFactory(property, filterContext.value, {
     isTransactionalEvent: true,
@@ -95,7 +95,7 @@ export const PropertyCardComponent = ({
         ]
       : [],
     isRtl: locale === LanguageCodeEnum.ar,
-    onTouch: (): void => setGalleryHasBeenTouched(true),
+    onDrag: (): void => setGalleryImagesShouldFetch(true),
     // TODO-FE[CX-991] Add AB test value
     cardType,
   };
