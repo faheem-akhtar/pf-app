@@ -3,7 +3,6 @@ import { Redirect } from 'next';
 import { FiltersQueryInterface } from 'components/filters/query/interface';
 import { FiltersQueryParamEnum } from 'components/filters/query/param.enum';
 import { FiltersQueryParamInterface } from 'components/filters/query/param.interface';
-import { configLocationInvalidSlug } from 'config/location/invalid-slug';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';
@@ -120,15 +119,6 @@ export const backendFiltersQueryFromParam = (
                 encodeURI(locationSlugHistory.originalSlug),
                 encodeURI(locationSlugHistory.newSlug)
               ),
-              permanent: true,
-            };
-          } else if (key === FiltersQueryParamEnum.location && configLocationInvalidSlug.includes(decodedQuery[key])) {
-            // Do a permanent redirect for some specific invalid location slug.
-            // Completely remove such location slugs.
-            // @example Redirect https://www.propertyfinder.sa/en/rent/ar-riyadh/villas-for-rent-riyadh.html
-            // to https://www.propertyfinder.sa/en/rent/ar-riyadh/villas-for-rent.html
-            redirect = {
-              destination: uri.replace(new RegExp(`-${encodeURI(decodedQuery[key])}(-|\\.)`), '$1'),
               permanent: true,
             };
           } else {

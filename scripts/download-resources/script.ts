@@ -51,7 +51,7 @@ const originByCountry: Record<string, string> = {
 const makeDownloader = <QueryData, Result>(
   fetcher: (params: {
     translations?: Record<string, Record<string, string>>;
-    isPrimaryLocale?: boolean;
+    locale?: string;
   }) => (props: ApiRequestPropsType<QueryData>) => Promise<ApiFetcherResultType<Result>>,
   name: string
 ) =>
@@ -66,7 +66,7 @@ const makeDownloader = <QueryData, Result>(
       [mainLang, altLang].map((locale) =>
         fetcher({
           translations: translations[locale],
-          isPrimaryLocale: locale === mainLang,
+          locale,
         })({
           locale,
           getOrigin: () => `http://${origin}`,
