@@ -7,11 +7,28 @@ describe('backendApiLocationSlugHistoryFetcher', () => {
   it('should fetch the location slug history', async () => {
     const fetchMock = mockWindowFetch({ json: () => Promise.resolve({ data: [locationSlugHistoryBackendStub()] }) });
 
-    await backendApiLocationSlugHistoryFetcher({ locale: 'en' })({ locale: 'en' });
+    await backendApiLocationSlugHistoryFetcher({ isPrimaryLocale: true })({ locale: 'en' });
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
     expect(fetchMock).toHaveBeenCalledWith(
       'http://website-pf-local/en/api/location-slug-history?filter%5Bprimary_language%5D=true',
+      {
+        headers: expect.objectContaining({
+          locale: 'en',
+        }),
+        method: 'GET',
+      }
+    );
+  });
+
+  it('should fetch the location slug history for non primary language', async () => {
+    const fetchMock = mockWindowFetch({ json: () => Promise.resolve({ data: [locationSlugHistoryBackendStub()] }) });
+
+    await backendApiLocationSlugHistoryFetcher({})({ locale: 'en' });
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith(
+      'http://website-pf-local/en/api/location-slug-history?filter%5Bprimary_language%5D=false',
       {
         headers: expect.objectContaining({
           locale: 'en',
