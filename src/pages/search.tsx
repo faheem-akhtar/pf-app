@@ -1,6 +1,7 @@
 /* eslint-disable pf-rules/export-name-validation */
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
+import { backendApiPropertySearchAdFetcher } from 'backend/api/property/search/ad-fetcher';
 import { backendApiPropertySearchFetcher } from 'backend/api/property/search/fetcher';
 import { backendApiSeoContentFetcher } from 'backend/api/seo/content/fetcher';
 import { backendApiSeoLinksFetcher } from 'backend/api/seo/links/fetcher';
@@ -12,6 +13,7 @@ import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfusc
 import { SeoDataInterface } from 'components/seo/data.interface';
 import { cookieAbTestKey } from 'constants/cookie/ab-test-key';
 import { propertySerpNoOfPreloadImages } from 'constants/property/serp/no-of-preload-images';
+import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 import { PageTypeEnum } from 'enums/page-type/enum';
 import { headersDevPatchSetCookieDomain } from 'helpers/headers/dev-patch-set-cookie-domain';
 import { headersParseExperimentsFromSetCookie } from 'helpers/headers/parse-experiments-from-set-cookie';
@@ -34,26 +36,38 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     `/${locale}${context.req.url}`
   );
 
+  const isFirstPage = !query.page || query.page === '1';
+  const isSortByFeatured = !query[FiltersQueryParametersEnum.sort] || query[FiltersQueryParametersEnum.sort] === 'mr';
+
   const isLandingPage = 'pattern' in query;
 
   const filtersValueFromQuery = backendFiltersQueryToValue(query, locale);
 
-  const [searchResult, serverSideTranslations, seoLinks, seoContent] = await Promise.all([
+  const [searchResult, searchAdResult, serverSideTranslations, seoLinks, seoContent] = await Promise.all([
     backendApiPropertySearchFetcher(
       locale,
       filtersValueFromQuery,
       context.req.cookies[cookieAbTestKey],
       context.req.headers['user-agent'] as string
     ),
+
+    // Only fetch ads for 1st page and when result is sort by featured
+    isFirstPage && isSortByFeatured
+      ? backendApiPropertySearchAdFetcher(
+          locale,
+          filtersValueFromQuery,
+          context.req.cookies[cookieAbTestKey],
+          context.req.headers['user-agent'] as string
+        )
+      : null,
+
     backendTranslationGetDefinitions(locale),
 
     // Includes 'pattern' if it is landing pages' route
     isLandingPage ? backendApiSeoLinksFetcher(locale, context.query) : null,
 
     // Only fetch seo content for 1st landing page
-    isLandingPage && (!query.page || query.page === '1')
-      ? backendApiSeoContentFetcher(locale, `/${locale}${context.req.url}`)
-      : null,
+    isLandingPage && isFirstPage ? backendApiSeoContentFetcher(locale, `/${locale}${context.req.url}`) : null,
   ]);
 
   if (!searchResult.ok) {
@@ -69,6 +83,11 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
   if (redirect) {
     return { redirect };
   }
+
+  // insert ads at the start
+  searchResult.data.properties = ((searchAdResult?.ok && searchAdResult.data.properties) || []).concat(
+    searchResult.data.properties
+  );
 
   const seoData: SeoDataInterface = {
     ...(seoLinks?.ok && seoLinks.data),

@@ -30,10 +30,10 @@ spec:
     {{- range $mobilePath := $config.mobilePath }}
     - uri:
         regex: {{ $mobilePath }}
-    {{- end }}
       headers:
         host:
           prefix: "m.website"
+    {{- end }}
     route:
     - destination:
         host: {{ $country }}-{{ $root.Values.service.name }}-mobile

@@ -14,7 +14,12 @@ export const backendApiPropertySearchMapper = (
   data: BackendApiPropertySearchJsonApiResultType,
   rawJson: BackendApiPropertySearchRawJsonResponseType
 ): PropertySerpSearchResultType => {
-  const { properties } = [...data.cts, ...data.smart_ads, ...data.direct_from_developer, ...data.properties].reduce<{
+  const { properties } = [
+    ...(data?.cts || []),
+    ...(data?.smart_ads || []),
+    ...(data?.direct_from_developer || []),
+    ...(data?.properties || []),
+  ].reduce<{
     properties: PropertySerpInterface[];
     set: Set<string>;
   }>(
@@ -118,8 +123,8 @@ export const backendApiPropertySearchMapper = (
       ad_targeting: data.meta.ad_targeting,
       ad_placeholders: data.meta.ad_placeholders,
     },
-    total: rawJson.data.relationships.properties.meta.total_count,
-    pages: rawJson.data.relationships.properties.meta.page_count,
+    total: rawJson.data.relationships.properties?.meta?.total_count,
+    pages: rawJson.data.relationships.properties?.meta?.page_count,
     breadcrumbs: backendApiPropertySearchBreadcrumbMapper(rawJson.data.meta.breadcrumbs),
     schema: JSON.stringify(data.meta.json_schema),
   };

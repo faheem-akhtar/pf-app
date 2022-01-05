@@ -5,28 +5,28 @@ import { headersAddCookie } from 'helpers/headers/add-cookie';
 
 import { backendApiPropertySearchRawFetcher } from './raw-fetcher';
 
-const include = ['properties', 'direct_from_developer']
-  .reduce(
-    (acc, key) => {
-      acc.push(key);
-      acc.push(`${key}.property_type`);
-      return acc;
-    },
-    ['properties.agent', 'properties.broker', 'properties.location_tree']
-  )
+const include = ['smart_ads', 'cts']
+  .reduce((acc, key) => {
+    acc.push(key);
+    acc.push(...[`${key}.property_type`, `${key}.agent`, `${key}.broker`, `${key}.location_tree`]);
+    return acc;
+  }, [] as string[])
   .join(',');
 
-export const backendApiPropertySearchFetcher = (
+export const backendApiPropertySearchAdFetcher = (
   locale: string,
   filtersValue: FiltersValueInterface,
   abTestCookieValue: string,
   userAgent: string
-): ReturnType<typeof backendApiPropertySearchRawFetcher> => {
-  return backendApiPropertySearchRawFetcher({
+): ReturnType<typeof backendApiPropertySearchRawFetcher> =>
+  backendApiPropertySearchRawFetcher({
     locale,
     query: {
       ...filtersToSearchQuery(filtersValue),
       include,
+      // Only 2 ads are required to be display. So no need to pass default 25 value.
+      'page[limit]': 3,
+      break_thru_cache: Math.random(),
     },
     alterHeaders: (headers) => {
       headersAddCookie(cookieAbTestKey, abTestCookieValue, headers);
@@ -37,4 +37,3 @@ export const backendApiPropertySearchFetcher = (
       headers['user-agent'] = userAgent;
     },
   });
-};

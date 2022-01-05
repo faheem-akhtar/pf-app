@@ -11,6 +11,4 @@ export const filtersToSearchQuery = (filtersValue: FiltersValueInterface): UrlQu
     [FiltersParametersEnum.isDeveloperProperty]: filtersValue[FiltersParametersEnum.isDeveloperProperty]
       ? '1'
       : undefined,
-    // TODO-FE[CX-512] remove break_thru_cache workaround
-    break_thru_cache: Math.random(),
   });
