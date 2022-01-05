@@ -99,7 +99,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
                   pageTitle={props.meta.title}
                   breadcrumbs={props.searchResult.breadcrumbs}
                 />
-                {props.searchResult.total ? (
+                {props.searchResult.properties.length > 0 ? (
                   <Fragment>
                     <WrapperTemplate>
                       <PropertySearchCountAndSortSectionComponent
