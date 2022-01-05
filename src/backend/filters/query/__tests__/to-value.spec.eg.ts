@@ -1,27 +1,34 @@
-import { filtersValueStub } from 'stubs/filters/value/stub';
-
 import { FiltersQueryInterface } from 'components/filters/query/interface';
-import { FiltersValueFieldMaxBedroomType } from 'components/filters/value/field/max-bedroom.type';
-import { FiltersValueFieldMinBedroomType } from 'components/filters/value/field/min-bedroom.type';
-import { FiltersValueFieldPricePeriodType } from 'components/filters/value/field/price-period.type';
 import { configCommon } from 'config/common';
-import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
 import { backendFiltersQueryToValue } from '../to-value';
 
 describe('backendFiltersQueryToValue() Egypt', () => {
-  it('should get default values correctly', () => {
+  it('should have matched params for the category', () => {
     expect(
       backendFiltersQueryToValue(
         { c: '2', bf: '4', bt: '4', pattern: '/categorySlug/propertyTypeSlug-saleType.html' } as FiltersQueryInterface,
         configCommon.language.current
       )
-    ).toEqual(
-      filtersValueStub({
-        [FiltersParametersEnum.pricePeriod]: 'm' as FiltersValueFieldPricePeriodType,
-        [FiltersParametersEnum.minBedroom]: '4' as FiltersValueFieldMinBedroomType,
-        [FiltersParametersEnum.maxBedroom]: '4' as FiltersValueFieldMaxBedroomType,
-      })
-    );
+    ).toMatchInlineSnapshot(`
+      Object {
+        "filter[category_id]": "2",
+        "filter[furnished]": "0",
+        "filter[keywords]": "",
+        "filter[locations_ids]": Array [],
+        "filter[max_area]": null,
+        "filter[max_bathroom]": "",
+        "filter[max_bedroom]": "4",
+        "filter[max_price]": null,
+        "filter[min_area]": null,
+        "filter[min_bathroom]": "",
+        "filter[min_bedroom]": "4",
+        "filter[min_price]": null,
+        "filter[price_type]": "m",
+        "filter[property_type_id]": "",
+        "page[number]": 1,
+        "sort": "mr",
+      }
+    `);
   });
 });

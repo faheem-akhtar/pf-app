@@ -6,9 +6,9 @@ import { FiltersValueInterface } from './interface';
 
 /**
  * Check if filters values are same, ignoring sort, page and locations
- * @param v1 First value
- * @param v2 Second value
- * @param ignoreParameters optional array of parameters to ignore during comparison
+ * @param {FiltersValueInterface} v1 First value
+ * @param {FiltersValueInterface} v2 Second value
+ * @param {Array<keyof FiltersValueInterface>} ignoreParameters optional array of parameters to ignore during comparison
  * @returns true if filteres are same
  */
 export const filtersValueEquals = (

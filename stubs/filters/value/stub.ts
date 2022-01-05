@@ -3,10 +3,15 @@ import { FiltersValueFieldSortType } from 'components/filters/value/field/sort.t
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
+import { PropertyPriceTypeShortEnum } from 'enums/property/price-type-short.enum';
 
 export const filtersValueStub = (values: Partial<FiltersValueInterface> = {}): FiltersValueInterface => ({
+  [FiltersParametersEnum.amenities]: [],
   [FiltersParametersEnum.locationsIds]: [],
+  [FiltersParametersEnum.furnishing]: '',
+  [FiltersParametersEnum.pricePeriod]: PropertyPriceTypeShortEnum.yearly as FiltersValueFieldPricePeriodType,
   [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForRent,
+  [FiltersParametersEnum.sort]: 'mr' as FiltersValueFieldSortType,
   [FiltersParametersEnum.propertyTypeId]: '',
   [FiltersParametersEnum.minBedroom]: '',
   [FiltersParametersEnum.maxBedroom]: '',
@@ -14,12 +19,9 @@ export const filtersValueStub = (values: Partial<FiltersValueInterface> = {}): F
   [FiltersParametersEnum.maxBathroom]: '',
   [FiltersParametersEnum.minPrice]: null,
   [FiltersParametersEnum.maxPrice]: null,
-  [FiltersParametersEnum.furnishing]: '',
   [FiltersParametersEnum.minArea]: null,
   [FiltersParametersEnum.maxArea]: null,
-  [FiltersParametersEnum.pricePeriod]: 'y' as FiltersValueFieldPricePeriodType,
   [FiltersParametersEnum.keyword]: '',
-  [FiltersParametersEnum.amenities]: [],
   [FiltersParametersEnum.completionStatus]: '',
   [FiltersParametersEnum.paymentMethod]: '',
   [FiltersParametersEnum.utilitiesPriceType]: '',
@@ -27,7 +29,6 @@ export const filtersValueStub = (values: Partial<FiltersValueInterface> = {}): F
   [FiltersParametersEnum.isDeveloperProperty]: false,
   [FiltersParametersEnum.minInstallmentYears]: null,
   [FiltersParametersEnum.maxInstallmentYears]: null,
-  [FiltersParametersEnum.sort]: 'mr' as FiltersValueFieldSortType,
   [FiltersParametersEnum.pageNumber]: 1,
   ...values,
 });

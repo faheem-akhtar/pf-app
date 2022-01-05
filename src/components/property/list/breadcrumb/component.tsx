@@ -16,6 +16,7 @@ export const PropertyListBreadcrumbComponent: FunctionComponent<PropertyListBrea
 
   const onClick: PropertyListBreadcrumbTemplatePropsInterface['onClick'] = (event) => {
     event.preventDefault();
+
     filtersCtx.change((filtersValue) => ({
       ...filtersValue,
       ...breadcrumbMapQueryToFilters(locale, props.link),
