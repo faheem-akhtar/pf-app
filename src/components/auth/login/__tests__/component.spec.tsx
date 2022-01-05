@@ -188,6 +188,29 @@ describe('AuthLoginComponent', () => {
 
       expect(props.onClose).not.toHaveBeenCalled();
       expect(props.onSuccess).not.toHaveBeenCalled();
+      expect(screen.queryByText('auth/something-wrong! auth/try-later')).not.toBeInTheDocument();
+      expect(screen.getByText('This is an error')).toBeInTheDocument();
+    });
+
+    it('should show custom error when there is no error came from API in form submit', async () => {
+      jest.spyOn(AuthLoginServiceModule, 'AuthLoginService').mockReturnValue(
+        Promise.resolve({
+          ok: false,
+          error: { body: '', url: '', status: 500 },
+          headers: {} as Headers,
+        })
+      );
+
+      const googleRecaptchaMock = googleRecaptchaStub();
+      jest.spyOn(GoogleRecaptchaServiceModule, 'GoogleRecaptchaService').mockReturnValue(googleRecaptchaMock);
+
+      userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+      userEvent.type(screen.getByLabelText('password'), 'mypassword');
+      userEvent.click(screen.getByRole('button', { name: 'log-in' }));
+
+      await waitFor(() => expect(googleRecaptchaMock.reset).toHaveBeenCalledTimes(1));
+
+      expect(screen.getByText('auth/something-wrong! auth/try-later')).toBeInTheDocument();
     });
   });
 });

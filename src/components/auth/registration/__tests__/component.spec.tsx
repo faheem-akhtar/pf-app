@@ -109,6 +109,35 @@ describe('AuthRegistrationComponent', () => {
     expect(props.onClose).not.toHaveBeenCalled();
     expect(props.onSuccess).not.toHaveBeenCalled();
 
+    expect(screen.queryByText('auth/something-wrong! auth/try-later')).not.toBeInTheDocument();
+    expect(screen.getByText('This is an error')).toBeInTheDocument();
+
+    AuthRegisterServiceMock.mockReset();
+  });
+
+  it('should show custom error when there is no error came from API in form submit', async () => {
+    const AuthRegisterServiceMock = jest.spyOn(AuthRegisterServiceModule, 'AuthRegisterService').mockReturnValue(
+      Promise.resolve({
+        ok: false,
+        error: { body: '', url: '', status: 500 },
+        headers: {} as Headers,
+      })
+    );
+
+    userEvent.type(screen.getByLabelText('auth/first-name'), 'first name');
+    userEvent.type(screen.getByLabelText('auth/last-name'), 'last name');
+    userEvent.type(screen.getByLabelText('email'), 'email@example.com');
+    userEvent.type(screen.getByLabelText('password'), 'password');
+
+    userEvent.click(screen.getByRole('button', { name: 'auth/create-account' }));
+
+    await waitFor(() => expect(googleRecaptchaMock.reset).toHaveBeenCalledTimes(1));
+
+    expect(props.onClose).not.toHaveBeenCalled();
+    expect(props.onSuccess).not.toHaveBeenCalled();
+
+    expect(screen.getByText('auth/something-wrong! auth/try-later')).toBeInTheDocument();
+
     AuthRegisterServiceMock.mockReset();
   });
 

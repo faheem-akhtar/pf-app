@@ -1,10 +1,10 @@
 import { mockWindowFetch } from 'mocks/window/fetch.mock';
 import { tealiumServiceStub } from 'stubs/tealium/service.stub';
+import { userModelStub } from 'stubs/user/model.stub';
 import { windowStorageStub } from 'stubs/window/storage.stub';
 
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
 import { JwtTokenService } from 'services/jwt/token/service';
-import { UserModelInterface } from 'services/user/model.interface';
 import { WindowService } from 'services/window/service';
 import { WindowStorageInterface } from 'services/window/storage/interface';
 
@@ -18,14 +18,6 @@ describe('AuthStore', () => {
   let store: AuthStore;
   let signInSpy: jest.SpyInstance;
   let localStorageMock: WindowStorageInterface;
-
-  const userMock: UserModelInterface = {
-    email: 'email@example.com',
-    first_name: 'first name',
-    last_name: 'last name',
-    userId: '1',
-    image: '',
-  };
 
   beforeEach(() => {
     window.utag = tealiumServiceStub();
@@ -48,7 +40,7 @@ describe('AuthStore', () => {
 
     it('should not call signIn if user is already there', () => {
       signInSpy.mockReset();
-      localStorageMock = windowStorageStub(userMock);
+      localStorageMock = windowStorageStub(userModelStub());
       WindowService.localStorage = localStorageMock;
 
       store = new AuthStore();
@@ -62,19 +54,19 @@ describe('AuthStore', () => {
       const updateMock = jest.fn();
       store['subscribers'] = [updateMock];
 
-      store['updateUserData'](userMock, AuthSubscribeEventTypeEnum.login, 'Google');
+      store['updateUserData'](userModelStub(), AuthSubscribeEventTypeEnum.login, 'Google');
 
-      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'login', providerType: 'Google' });
+      expect(updateMock).toHaveBeenCalledWith(userModelStub(), { eventType: 'login', providerType: 'Google' });
     });
 
     it('should accept event type', () => {
       const updateMock = jest.fn();
       store['subscribers'] = [updateMock];
 
-      store['updateUserData'](userMock, AuthSubscribeEventTypeEnum.register, 'Google');
+      store['updateUserData'](userModelStub(), AuthSubscribeEventTypeEnum.register, 'Google');
 
       expect(updateMock).toHaveBeenCalledTimes(1);
-      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'register', providerType: 'Google' });
+      expect(updateMock).toHaveBeenCalledWith(userModelStub(), { eventType: 'register', providerType: 'Google' });
     });
   });
 
@@ -127,7 +119,7 @@ describe('AuthStore', () => {
     });
 
     it('should sign out', async () => {
-      localStorageMock = windowStorageStub(userMock);
+      localStorageMock = windowStorageStub(userModelStub());
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -161,11 +153,27 @@ describe('AuthStore', () => {
     });
 
     it('should return the user', () => {
-      localStorageMock = windowStorageStub(userMock);
+      localStorageMock = windowStorageStub(userModelStub());
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
-      expect(store.getUser()).toEqual(userMock);
+      expect(store.getUser()).toEqual(userModelStub());
+    });
+
+    it('should be able to handle the user', () => {
+      localStorageMock = windowStorageStub({});
+      WindowService.localStorage = localStorageMock;
+      store = new AuthStore();
+
+      expect(store.getUser()).toEqual(
+        userModelStub({
+          userId: '',
+          email: '',
+          first_name: '',
+          last_name: '',
+          image: '',
+        })
+      );
     });
   });
 
@@ -179,7 +187,7 @@ describe('AuthStore', () => {
       (store['windowLocalStorage'].removeItem as jest.Mock).mockClear();
 
       data = {
-        user: userMock,
+        user: userModelStub(),
         meta: {
           token: 'my token',
           refresh_token: 'refresh token',
@@ -200,18 +208,17 @@ describe('AuthStore', () => {
       const updateMock = jest.fn();
       store['subscribers'] = [updateMock];
 
+      const { userId, ...userData } = userModelStub();
+
       store.onAuthResolved(data, AuthSubscribeEventTypeEnum.login, 'Google');
 
       expect(store['windowLocalStorage'].removeItem).not.toHaveBeenCalled();
       expect(store['windowLocalStorage'].setItem).toHaveBeenCalledWith('user-authentication-user', {
-        id: userMock.userId,
-        first_name: userMock.first_name,
-        last_name: userMock.last_name,
-        image: userMock.image,
-        email: userMock.email,
+        id: userId,
+        ...userData,
       });
 
-      expect(updateMock).toHaveBeenCalledWith(userMock, { eventType: 'login', providerType: 'Google' });
+      expect(updateMock).toHaveBeenCalledWith(userModelStub(), { eventType: 'login', providerType: 'Google' });
     });
   });
 
@@ -235,6 +242,16 @@ describe('AuthStore', () => {
         })
       ).toEqual({ ok: false, headers: {} as Headers, error: { status: 401, body: 'this is an error', url: '' } });
     });
+
+    it('should handle 401 error when the detail is empty', () => {
+      expect(
+        store.onLoginRejected({
+          ok: false,
+          headers: {} as Headers,
+          error: { status: 401, body: '{"errors": [{ "detail": "" }]}', url: '' },
+        })
+      ).toEqual({ ok: false, headers: {} as Headers, error: { status: 401, body: '', url: '' } });
+    });
   });
 
   describe('onAuthRejected()', () => {
@@ -256,6 +273,16 @@ describe('AuthStore', () => {
           error: { status: 400, body: '{"errors": [{ "detail": "this is an error 400" }]}', url: '' },
         })
       ).toEqual({ ok: false, headers: {} as Headers, error: { status: 400, body: 'this is an error 400', url: '' } });
+    });
+
+    it('should handle 400 error when the detail is empty', () => {
+      expect(
+        store.onAuthRejected({
+          ok: false,
+          headers: {} as Headers,
+          error: { status: 400, body: '{"errors": [{ "detail": "" }]}', url: '' },
+        })
+      ).toEqual({ ok: false, headers: {} as Headers, error: { status: 400, body: '', url: '' } });
     });
 
     it('should handle 422 error', () => {
@@ -286,7 +313,7 @@ describe('AuthStore', () => {
 
   describe('signOut()', () => {
     it('should sign out', () => {
-      localStorageMock = windowStorageStub(userMock);
+      localStorageMock = windowStorageStub(userModelStub());
       WindowService.localStorage = localStorageMock;
       store = new AuthStore();
 
@@ -307,16 +334,15 @@ describe('AuthStore', () => {
       (store['windowLocalStorage'].setItem as jest.Mock).mockClear();
       (store['windowLocalStorage'].removeItem as jest.Mock).mockClear();
 
-      store['setUser'](userMock);
+      store['setUser'](userModelStub());
+
+      const { userId, ...userData } = userModelStub();
 
       expect(store['windowLocalStorage'].removeItem).not.toHaveBeenCalled();
       expect(store['windowLocalStorage'].setItem).toHaveBeenCalledTimes(1);
       expect(store['windowLocalStorage'].setItem).toHaveBeenCalledWith('user-authentication-user', {
-        id: userMock.userId,
-        first_name: userMock.first_name,
-        last_name: userMock.last_name,
-        image: userMock.image,
-        email: userMock.email,
+        id: userId,
+        ...userData,
       });
     });
 
