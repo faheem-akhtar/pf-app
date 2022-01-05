@@ -1,4 +1,4 @@
-import { render, RenderResult, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { mockModalEnv } from 'mocks/modal-env/mock';
@@ -11,14 +11,13 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersModalContentComponent } from '../content-component';
 
 describe('FiltersModalContentComponent', () => {
-  let renderResult: RenderResult;
   const close = jest.fn();
   const { filtersValueFromQuery, filtersData } = filtersContextPropsStub();
 
-  beforeEach(() => {
+  it('should not be able to close the modal when the button clicked and result is 0', () => {
     mockModalEnv();
 
-    renderResult = render(
+    render(
       <FiltersContextProvider
         filtersValueFromQuery={{
           ...filtersValueFromQuery,
@@ -29,19 +28,7 @@ describe('FiltersModalContentComponent', () => {
         <FiltersModalContentComponent close={close} />
       </FiltersContextProvider>
     );
-  });
 
-  it('should render without throwing any errors', () => {
-    expect(renderResult.container).toMatchSnapshot();
-  });
-
-  it('should not render all widgets', () => {
-    expect(
-      screen.queryByRole('checkbox', { name: 'filters-modal/is-developer-property-checkbox-label' })
-    ).not.toBeInTheDocument();
-  });
-
-  it('should not be able to close the modal when the button clicked and result is 0', () => {
     const submitButton = screen.getAllByRole('button')[3];
 
     userEvent.click(submitButton);
