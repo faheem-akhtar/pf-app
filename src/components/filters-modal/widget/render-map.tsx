@@ -1,3 +1,4 @@
+import { developerProjectEnabledByDefault } from 'config/developer-project/enabled-by-default';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
 import { FiltersModalWidgetAmenitiesComponent } from './amenities-component';
@@ -28,8 +29,12 @@ export const filtersModalWidgetRenderMap: Record<string, FiltersModalWidgetType>
   [FiltersParametersEnum.utilitiesPriceType]: FiltersModalWidgetUtilitiesPriceTypeComponent,
   [FiltersParametersEnum.maxBedroom]: FiltersModalWidgetBedroomComponent,
   [FiltersParametersEnum.maxBathroom]: FiltersModalWidgetBathroomComponent,
-  [FiltersParametersEnum.isDeveloperProperty]: FiltersModalWidgetIsDeveloperPropertyComponent,
-  [FiltersParametersEnum.minInstallmentYears]: FiltersModalWidgetInstallmentYearsComponent,
+  ...(developerProjectEnabledByDefault
+    ? {
+        [FiltersParametersEnum.isDeveloperProperty]: FiltersModalWidgetIsDeveloperPropertyComponent,
+        [FiltersParametersEnum.minInstallmentYears]: FiltersModalWidgetInstallmentYearsComponent,
+      }
+    : {}),
   [FiltersParametersEnum.minArea]: FiltersModalWidgetAreaComponent,
   [FiltersParametersEnum.completionStatus]: FiltersModalWidgetCompletionStatusComponent,
   [FiltersParametersEnum.amenities]: FiltersModalWidgetAmenitiesComponent,
