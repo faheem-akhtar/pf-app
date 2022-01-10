@@ -1,0 +1,32 @@
+name: pf-web-app-push
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+
+jobs:
+  bump-version:
+    if: github.event.pull_request.merged == true
+    name: 'Bump Version on master'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Automated version bump
+        id: version-bump
+        uses: phips28/gh-action-bump-version@v9.0.1
+        with:
+          tag-prefix: v
+          # defaulting to a patch bump.
+          minor-wording: '[minor]'
+          major-wording: '[major]'
+          commit-message: bumps version to {{version}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.SUBMODULES_TOKEN }}
+      - name: Output version
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"

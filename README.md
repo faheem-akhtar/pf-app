@@ -75,3 +75,7 @@ yarn test:update src/components/header/__tests__/component.spec.tsx
 
 Some console methods have been customized for datadog implementation in the client side.
 Nothing is required to send them to datadog, use console methods as normal. If first parameter is a string it will use that as message, otherwise the message will be `Generic`.
+
+## Workflow
+
+For automatic semantic version bump please use `[major]` or `[minor]` in the PR title for major and minor version respectively. Default will be the patch bump. This will be done on every successful merge to the master.
