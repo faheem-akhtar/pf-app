@@ -25,7 +25,7 @@ jobs:
           major-wording: '[major]'
           commit-message: bumps version to {{version}}
         env:
-          GITHUB_TOKEN: ${{ secrets.SUBMODULES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.VERSION_BUMP_TOKEN }}
       - name: Output version
         env:
           NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
