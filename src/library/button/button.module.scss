@@ -1,36 +1,22 @@
-@mixin reset-button {
-  -webkit-appearance: none;
-  background: transparent;
-  font: inherit;
-  margin: 0;
-  outline: none;
-  overflow: visible;
-}
-
 @mixin base-button {
   align-items: center;
   border: 0.1rem solid var(--color-global-stone-75);
-  cursor: pointer;
   display: flex;
   justify-content: center;
   position: relative;
-  -webkit-tap-highlight-color: transparent;
-  text-decoration: none;
+  text-decoration: none; /* Removes when the button type is link */
   transition: background 0.3s;
-  user-select: none;
   white-space: nowrap;
   width: fit-content;
 }
 
 .button {
-  @include reset-button;
   @include base-button;
 
   /* Tertiary/Floating - default */
   background-color: var(--color-global-white);
   border-radius: calc(var(--spacing) / 2);
   color: var(--color-global-black);
-
   font-size: var(--font-size-01);
   line-height: 2.4rem;
   min-width: 8rem;

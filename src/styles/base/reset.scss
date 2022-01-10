@@ -1,11 +1,19 @@
 /*
-    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
-    - The "symbol *" part is to solve Firefox SVG sprite bug
-    https://github.com/elad2412/the-new-css-reset/blob/main/css/reset.css
+  The New CSS Reset * v1.4.4 - https://github.com/elad2412/the-new-css-reset
+  Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+  - The "symbol *" part is to solve Firefox SVG sprite bug
+
+  Browser Support:
+  - Chrome, Edge: version 88+
+  - FireFox: version 84+
+  - Safari/iOS browsers: version 14+
+  - Opera: version 75+
+  - Samsung Browser: version 15+
  */
 *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
   all: unset;
   display: revert;
+  font-weight: revert;
 }
 
 /* Preferred box-sizing value */
@@ -37,8 +45,14 @@ textarea {
   white-space: revert;
 }
 
+/* fix the feature of 'hidden' attribute.
+ display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
 /* revert for bug in Chromium browsers
-   - fix for the content editable attribute will work properly. */
+ - fix for the content editable attribute will work properly. */
 :where([contenteditable]) {
   -webkit-line-break: after-white-space;
   overflow-wrap: break-word;
@@ -46,12 +60,112 @@ textarea {
   -webkit-user-modify: read-write;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: revert;
-  line-height: normal;
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable='true']) {
+  -webkit-user-drag: element;
+}
+
+/*
+  Backwards-compatible - ress.css • v4.0.0 - https://github.com/filipelinhares/ress
+  Uses Normalize.css under the hood with some customizations to apply a solid base to start your stylesheet.
+
+  Browser Support:
+  - Chrome
+  - Edge
+  - Firefox ESR+
+  - Internet Explorer 10+
+  - Safari 8+
+  - Opera
+*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove for any elements */
+*:focus {
+  outline: none;
+}
+
+/* Remove the gray background on active links in IE 10 */
+a {
+  background-color: transparent;
+}
+
+/* Add the correct font weight in Chrome, Edge, and Safari */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/* Specify font inheritance of form elements */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Remove the default button styling in all browsers */
+button,
+input,
+select,
+textarea {
+  background-color: transparent;
+  border-style: none;
+}
+
+/* Address `overflow` set to `hidden` in IE 8/9/10/11 */
+button {
+  overflow: visible;
+}
+
+/* Firefox 40+, Internet Explorer 11- */
+button,
+select {
+  text-transform: none;
+}
+
+/* Apply cursor pointer to button elements */
+button,
+[type='button'],
+[type='reset'],
+[type='submit'],
+[role='button'] {
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Remove inner padding and border in Firefox 4+ */
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/* Replace focus style removed in the border reset above */
+button:-moz-focusring,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  outline: 1px dotted ButtonText;
+}
+
+button,
+html [type='button'], /* Prevent a WebKit bug where (2) destroys native `audio` and `video`controls in Android 4 */
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button; /* Correct the inability to style clickable types in iOS */
+}
+
+/* Style select like a standard input */
+select {
+  -moz-appearance: none; /* Firefox 36+ */
+  -webkit-appearance: none; /* Chrome 41+ */
 }
