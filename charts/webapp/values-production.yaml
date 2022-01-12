@@ -46,3 +46,6 @@ countries:
 resources:
   limits:
     memory: 2Gi
+  requests:
+    cpu: 200m
+    memory: 700Mi
