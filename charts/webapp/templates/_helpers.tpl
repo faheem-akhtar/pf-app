@@ -33,6 +33,14 @@ release: {{ .Release.Name }}
 {{- end -}}
 
 {{/*
+Datadog labels
+*/}}
+{{- define "web-app.datadogLabels" -}}
+tags.datadoghq.com/env: {{ .Values.environment }}
+tags.datadoghq.com/version: {{ regexFind "[^ -][^-]*$" .Values.image.tag | quote }}
+{{- end }}
+
+{{/*
 Common labels
 */}}
 {{- define "web-app.labels" -}}
@@ -60,6 +68,26 @@ Deployment annotations
 app.propertyfinder.io/random: {{ randAlphaNum 8 | quote }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Default datadog environment variables
+*/}}
+{{- define "web-app.datadogVariables" -}}
+{{- if ne .Values.environment "prenv" }}
+- name: DD_AGENT_HOST
+  valueFrom:
+    fieldRef:
+      fieldPath: status.hostIP
+- name: DD_ENV
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.labels['tags.datadoghq.com/env']
+- name: DD_VERSION
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.labels['tags.datadoghq.com/version']
+{{- end }}
+{{- end }}
 
 {{/*
 Create chart name and version as used by the chart label.

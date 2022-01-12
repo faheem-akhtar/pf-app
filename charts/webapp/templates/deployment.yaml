@@ -26,6 +26,7 @@ spec:
         app: {{ template "web-app.name" $data }}-{{ $country }}-{{ $site }}
         release: {{ $data.Release.Name }}
         site: {{ $site }}
+        {{- include "web-app.datadogLabels" $data | nindent 8 }}
     spec:
       {{- if $data.Values.nodeSelector }}
       nodeSelector:
@@ -67,12 +68,7 @@ spec:
               value: {{ $data.Values.recaptcha_key }}
             - name: NEXT_PUBLIC_SNOWPLOW_HOST
               value: {{ $data.Values.snowplow_host }}
-            {{- if ne $data.Values.environment "prenv" }}
-            - name: DD_AGENT_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.hostIP
-            {{- end }}
+            {{- include "web-app.datadogVariables" $data | nindent 12 }}
 {{- if $data.Values.resources }}
           resources:
 {{ toYaml $data.Values.resources | indent 12 }}
