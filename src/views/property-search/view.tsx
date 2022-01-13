@@ -25,7 +25,7 @@ import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { WrapperTemplate } from 'components/wrapper/template';
 import { configCommon } from 'config/common';
 import { mapSearchEnabledByDefault } from 'config/map-search/enabled-by-default';
-import { localeGetHref } from 'helpers/locale/get-href';
+import { localeGetLangAwareHref } from 'helpers/locale/get-lang-aware-href';
 import { localeIsDefault } from 'helpers/locale/is-default';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
 import { useReactConstructor } from 'helpers/react/constructor.hook';
@@ -63,7 +63,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
 
   const { filtersValueFromQuery, filtersData } = props;
   const filtersContextProps = { filtersValueFromQuery, filtersData };
-  const pageUrl = localeGetHref(locale as string, asPath);
+  const pageUrl = localeGetLangAwareHref(locale as string, asPath);
 
   const seoTagsData = { [SeoTagEnum.numberOfListings]: props.searchResult.total.toString() };
   const pageTitle = seoReplaceTags(props.seoData?.content?.title || props.meta.title, seoTagsData);
@@ -82,7 +82,7 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
             pageUrl={pageUrl}
             alternateUrl={
               query.pattern &&
-              localeGetHref(
+              localeGetLangAwareHref(
                 targetLocale,
                 languageSelectorTargetPath(query.pattern as string, decodeURI(asPath), locale as string, targetLocale)
               )

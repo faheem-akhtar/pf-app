@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 
 import { configCommon } from 'config/common';
+import { localeInsertDefault } from 'helpers/locale/insert-default';
 import { localeIsDefault } from 'helpers/locale/is-default';
 import { useTranslation } from 'helpers/translation/hook';
 
@@ -20,7 +21,7 @@ export const LanguageSelectorComponent = (): JSX.Element => {
     <LanguageSelectorTemplate
       label={t(`menu.language.${targetLocale}`)}
       targetLocale={targetLocale}
-      path={targetPath}
+      path={query?.pattern && !localeInsertDefault(targetLocale) ? targetPath : `/${targetLocale}${targetPath}`}
     />
   );
 };

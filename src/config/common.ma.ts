@@ -7,6 +7,7 @@ export const configCommon: ConfigCommonInterface = {
   areaUnit: CountryAreaUnitEnum.sqm,
   currencyCode: CountryCurrencyEnum.mad,
   countryCode: 'ma',
+  insertDefaultLanguage: true,
   language: {
     current: LanguageCodeEnum.fr,
     alternative: LanguageCodeEnum.ar,

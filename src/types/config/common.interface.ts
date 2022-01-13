@@ -22,4 +22,10 @@ export interface ConfigCommonInterface {
    * language interface for country
    */
   language: LanguageConfigInterface;
+
+  /**
+   * Whether to insert default language in the url or not
+   * @default true
+   */
+  insertDefaultLanguage: boolean;
 }

@@ -22,4 +22,9 @@ describe('localeGetHref', () => {
     expect(localeGetHref(current, path, true)).toEqual(`/${current}${path}`);
     expect(localeGetHref(alternative, path, true)).toEqual(`/${alternative}${path}`);
   });
+
+  it('should not insert locale if ask to do so', () => {
+    expect(localeGetHref(current, path, true, false)).toEqual(path);
+    expect(localeGetHref(alternative, path, false, false)).toEqual(`https://${configOriginValue}${path}`);
+  });
 });
