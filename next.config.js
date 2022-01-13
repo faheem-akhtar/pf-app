@@ -35,6 +35,7 @@ module.exports = {
   sassOptions: {
     prependData: "@import 'src/styles/global';",
   },
+  // Keep the compression off as to decrease the load from next/node
   compress: false,
   async headers() {
     return [

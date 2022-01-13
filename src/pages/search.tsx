@@ -11,6 +11,7 @@ import { backendTranslationGetDefinitions } from 'backend/translation/get-defini
 import { FiltersDataInterface } from 'components/filters/data/interface';
 import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfuscated/get/img-url';
 import { SeoDataInterface } from 'components/seo/data.interface';
+import { configCacheStrategy } from 'config/cache/strategy';
 import { cookieAbTestKey } from 'constants/cookie/ab-test-key';
 import { propertySerpNoOfPreloadImages } from 'constants/property/serp/no-of-preload-images';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
@@ -37,6 +38,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
   );
 
   const isFirstPage = !query.page || query.page === '1';
+  const isSecondPage = query.page === '2';
   const isSortByFeatured = !query[FiltersQueryParametersEnum.sort] || query[FiltersQueryParametersEnum.sort] === 'mr';
 
   const isLandingPage = 'pattern' in query;
@@ -51,8 +53,8 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       context.req.headers['user-agent'] as string
     ),
 
-    // Only fetch ads for 1st page and when result is sort by featured
-    isFirstPage && isSortByFeatured
+    // Only fetch ads for 1st & 2nd pages and when result is sort by featured
+    (isFirstPage || isSecondPage) && isSortByFeatured
       ? backendApiPropertySearchAdFetcher(
           locale,
           filtersValueFromQuery,
@@ -84,10 +86,10 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     return { redirect };
   }
 
+  const searchAdResultProperties = (searchAdResult?.ok && searchAdResult.data.properties) || [];
+
   // insert ads at the start
-  searchResult.data.properties = ((searchAdResult?.ok && searchAdResult.data.properties) || []).concat(
-    searchResult.data.properties
-  );
+  searchResult.data.properties = searchAdResultProperties.concat(searchResult.data.properties);
 
   const seoData: SeoDataInterface = {
     ...(seoLinks?.ok && seoLinks.data),
@@ -101,10 +103,16 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     }
   });
 
+  // Set Headers
   context.res.setHeader('set-cookie', headersDevPatchSetCookieDomain(searchResult.headers.get('set-cookie') || ''));
 
   if (linkHeader.length) {
     context.res.setHeader('Link', linkHeader.join(', '));
+  }
+
+  if (!searchAdResultProperties.length) {
+    // set up a 30mins cache for pages without cts or smart ads.
+    context.res.setHeader('cache-control', `max-age=${configCacheStrategy.shortTerm}`);
   }
 
   return {
