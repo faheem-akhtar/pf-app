@@ -37,6 +37,16 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     `/${locale}${context.req.url}`
   );
 
+  if (error) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (redirect) {
+    return { redirect };
+  }
+
   const isFirstPage = !query.page || query.page === '1';
   const isSecondPage = query.page === '2';
   const isSortByFeatured = !query[FiltersQueryParametersEnum.sort] || query[FiltersQueryParametersEnum.sort] === 'mr';
@@ -82,10 +92,6 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     };
   }
 
-  if (redirect) {
-    return { redirect };
-  }
-
   const searchAdResultProperties = (searchAdResult?.ok && searchAdResult.data.properties) || [];
 
   // insert ads at the start
@@ -116,7 +122,6 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
   }
 
   return {
-    notFound: error,
     props: {
       ok: true,
       filtersData,
