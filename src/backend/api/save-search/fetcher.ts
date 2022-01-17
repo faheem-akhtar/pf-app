@@ -8,6 +8,6 @@ import { backendApiSaveSearchMapper } from './mapper';
 export const backendApiSaveSearchFetcher = (method: ApiHttpMethodType = 'GET'): ReturnType<typeof BackendApiFactory> =>
   BackendApiFactory<SaveSearchLoadResultInterface[], BackendModelSaveSearchInterface[]>({
     method,
-    url: 'saved-search',
+    url: method === 'GET' ? 'v2/saved-search' : 'saved-search',
     dataMapper: backendApiSaveSearchMapper,
   });

@@ -9,7 +9,7 @@ describe('backendApiSaveSearchFetcher', () => {
 
     expect(factoryMock).toHaveBeenCalledTimes(1);
     expect(factoryMock).toHaveBeenCalledWith(
-      expect.stringContaining('test.origin/en/api/saved-search'),
+      expect.stringContaining('test.origin/en/api/v2/saved-search'),
       expect.objectContaining({
         method: 'GET',
         headers: expect.objectContaining({
