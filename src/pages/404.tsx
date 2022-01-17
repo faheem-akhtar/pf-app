@@ -6,7 +6,10 @@ import { ErrorView } from 'views/error/view';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
-    props: { ...(await backendTranslationGetDefinitions(locale as string)), statusCode: 404 },
+    props: {
+      ...(await backendTranslationGetDefinitions(locale as string)),
+      statusCode: 404,
+    },
   };
 };
 

@@ -1,8 +1,13 @@
 import { ViewsPageMetaInterface } from 'views/page-meta.interface';
 
-export interface HeadComponentPropsInterface extends ViewsPageMetaInterface {
+export interface HeadComponentPropsInterface extends Omit<ViewsPageMetaInterface, 'description'> {
   /**
    * Snowplow host
    */
-  snowplowHost: string;
+  snowplowHost?: string;
+
+  /**
+   * Page meta description
+   */
+  description?: string;
 }

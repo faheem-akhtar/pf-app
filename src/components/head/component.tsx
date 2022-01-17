@@ -25,9 +25,13 @@ export const HeadComponent = ({
   return (
     <Head>
       <title>{title}</title>
-      <meta name='description' content={description} />
       <meta property='og:title' content={title} />
-      <meta property='og:description' content={description} />
+      {description && (
+        <>
+          <meta name='description' content={description} />
+          <meta property='og:description' content={description} />
+        </>
+      )}
       {pageUrl && (
         <>
           <link href={pageUrl} rel='canonical' />
@@ -38,7 +42,8 @@ export const HeadComponent = ({
       {alternateUrl && <link href={alternateUrl} rel='alternate' hrefLang={targetLocale} />}
       {pagePreviousUrl && <link href={pagePreviousUrl} rel='prev' />}
       {pageNextUrl && <link href={pageNextUrl} rel='next' />}
-      <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      {snowplowHost && <HeadTrackersTemplate snowplowHost={snowplowHost} />}
+      {schema && <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: schema }} />}
       <link rel='icon' type='image/png' sizes='32x32' href='/en/static/favicon/32x32.png' />
       <link rel='icon' type='image/png' sizes='16x16' href='/en/static/favicon/16x16.png' />
       <link rel='manifest' href='/en/static/manifest.json' />
@@ -48,9 +53,6 @@ export const HeadComponent = ({
       <meta name='robots' content={`${shouldIndex ? '' : 'no'}index,follow`} />
       <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' />
       <meta name='msapplication-TileColor' content='#ffffff' />
-      <meta name='theme-color' content='#ffffff' />
-      <HeadTrackersTemplate snowplowHost={snowplowHost} />
-      {schema && <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: schema }} />}
     </Head>
   );
 };

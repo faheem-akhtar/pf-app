@@ -11,8 +11,9 @@ export interface ViewsPageMetaInterface {
 
   /**
    * if true, set meta tag to indicate that this page should be indexed by search engines
+   * @default true
    */
-  shouldIndex: boolean;
+  shouldIndex?: boolean;
 
   /**
    * Absolute page url to be used as canonical tag
