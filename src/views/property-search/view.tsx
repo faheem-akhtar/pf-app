@@ -8,7 +8,6 @@ import { FiltersSectionComponent } from 'components/filters-section/component';
 import { FooterComponent } from 'components/footer/component';
 import { HeadComponent } from 'components/head/component';
 import { HeaderComponent } from 'components/header/component';
-import { languageSelectorTargetPath } from 'components/language-selector/target-path';
 import { MapSearchButtonComponent } from 'components/map-search/button/component';
 import { PaginationSectionComponent } from 'components/pagination-section/component';
 import { PropertyListComponent } from 'components/property/list/component';
@@ -25,6 +24,8 @@ import { SnackbarContextProvider } from 'components/snackbar/context-provider';
 import { WrapperTemplate } from 'components/wrapper/template';
 import { configCommon } from 'config/common';
 import { mapSearchEnabledByDefault } from 'config/map-search/enabled-by-default';
+import { LanguageCodeEnum } from 'enums/language/code.enum';
+import { helpersIsClient } from 'helpers/is-client';
 import { localeGetLangAwareHref } from 'helpers/locale/get-lang-aware-href';
 import { localeIsDefault } from 'helpers/locale/is-default';
 import { usePageIsLoading } from 'helpers/page/is-loading.hook';
@@ -32,6 +33,7 @@ import { useReactConstructor } from 'helpers/react/constructor.hook';
 import { usePrevious } from 'hooks/previous.hook';
 import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
 import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
+import { LocationService } from 'services/location/service';
 import { useServicesTealiumSearch } from 'services/tealium/search.hook';
 
 import { PropertySearchResultsCountForCurrentQueryContext } from './results-count-for-current-query/context';
@@ -43,13 +45,17 @@ import { PropertySearchViewPropsType } from './view-props.type';
 export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Element => {
   const prevProps = usePrevious(props);
   const { query, asPath, locale } = useRouter();
-  const { current, alternative } = configCommon.language;
-  const targetLocale = localeIsDefault(locale as string) ? alternative : current;
+  const targetLocale = localeIsDefault(locale as string)
+    ? configCommon.language.alternative
+    : configCommon.language.current;
   const { statsDataPromise } = usePropertySearchTrackPageView(prevProps, props);
   const pageIsLoading = usePageIsLoading();
 
   useReactConstructor(() => {
     if (props.ok) {
+      if (helpersIsClient) {
+        LocationService.init((locale || LanguageCodeEnum.en) as LanguageCodeEnum);
+      }
       abTestTracker.load(props.abTests);
     }
   });
@@ -80,20 +86,14 @@ export const PropertySearchView = (props: PropertySearchViewPropsType): JSX.Elem
             shouldIndex={props.meta.shouldIndex}
             snowplowHost={props.env.snowplowHost}
             pageUrl={pageUrl}
-            alternateUrl={
-              query.pattern &&
-              localeGetLangAwareHref(
-                targetLocale,
-                languageSelectorTargetPath(query.pattern as string, decodeURI(asPath), locale as string, targetLocale)
-              )
-            }
+            alternateUrl={query.pattern && localeGetLangAwareHref(targetLocale, props.alternateUrl)}
             pageNextUrl={propertySerpNextPageUrl(pageUrl, props.searchResult.pages)}
             pagePreviousUrl={propertySerpPreviousPageUrl(pageUrl)}
           />
           <FiltersContextProvider {...filtersContextProps}>
             <SavedPropertyContextProvider>
               <ContactedPropertyContextProvider>
-                <HeaderComponent />
+                <HeaderComponent alternateUrl={props.alternateUrl} />
                 <FiltersSectionComponent />
                 <PropertyListHeaderComponent
                   pageTitle={props.meta.title}

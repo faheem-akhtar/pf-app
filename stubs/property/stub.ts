@@ -1,7 +1,10 @@
 import { contactOptionsEnabledStub } from 'stubs/contact-options/enabled.stub';
-import { locationCompactJltStub, locationCompactKcStub } from 'stubs/location';
-import { locationCompactMeydanStub } from 'stubs/location/compact-meydan.stub';
-import { locationCompactSeasonsStub } from 'stubs/location/compact-seasons.stub';
+import {
+  locationCompactJltStub,
+  locationCompactKcStub,
+  locationCompactMeydanStub,
+  locationCompactSeasonsStub,
+} from 'stubs/location';
 
 import { propertySerpObfuscatedFieldAgentId } from 'components/property/serp/obfuscated/field/agent-id';
 import { propertySerpObfuscatedFieldAreaValue } from 'components/property/serp/obfuscated/field/area-value';

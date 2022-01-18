@@ -93,6 +93,16 @@ export class LocationStore {
     });
   }
 
+  public find(predicate: (location: LocationCompactInterface) => boolean): LocationCompactInterface | undefined | null {
+    if (!this.locations.length) {
+      // eslint-disable-next-line no-console
+      console.error('fetch all locations failed');
+      return null;
+    }
+
+    return this.locations.find(predicate);
+  }
+
   private loadLocations(currentEtag: string | null, updateEtag: (etag: string) => void): void {
     // first make a head request to check the version
     this.fetchLocationsEtag({ locale: this.locale }).then((loadEtagResult) => {

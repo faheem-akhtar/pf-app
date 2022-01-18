@@ -10,10 +10,17 @@ export interface LocationServiceInterface {
    * If resolved with non empty string, the new etag should be persisted for the next use
    */
   init: (locale: LanguageCodeEnum) => void;
+
   /**
    * Search for locations
    * @param searchString user input
    * @param limit optional number of results to return
    */
   search: (searchString: string, limit: number) => Promise<LocationCompactInterface[]>;
+
+  /**
+   * Find the location based on needs
+   * @param predicate The find function
+   */
+  find: (predicate: (location: LocationCompactInterface) => boolean) => LocationCompactInterface | undefined | null;
 }

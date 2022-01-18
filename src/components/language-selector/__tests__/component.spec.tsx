@@ -41,12 +41,12 @@ describe('LanguageSelectorComponent', () => {
       {
         pattern: '/categorySlug/propertyTypeSlug-saleType.html',
         path: '/buy/apartments-for-sale.html',
-        targetPath: '/ar/للبيع/شقق-للبيع.html',
+        targetPath: '/للبيع/شقق-للبيع.html',
       },
       {
         pattern: '/categorySlug/propertyTypeSlug-saleType.html',
         path: '/buy/properties-for-sale.html',
-        targetPath: '/ar/للبيع/عقارات-للبيع.html',
+        targetPath: '/للبيع/عقارات-للبيع.html',
       },
     ].forEach(({ pattern, path, targetPath }) => {
       it('should have correct value for the link', () => {
@@ -54,10 +54,10 @@ describe('LanguageSelectorComponent', () => {
         router.asPath = path;
         router.locale = 'en';
 
-        render(<LanguageSelectorComponent />);
+        render(<LanguageSelectorComponent alternateUrl={targetPath} />);
 
         const link = screen.getByRole('link', { name: 'language-selector' });
-        expect(link).toHaveAttribute('href', targetPath);
+        expect(link).toHaveAttribute('href', `/ar${targetPath}`);
       });
     });
   });
@@ -67,7 +67,7 @@ describe('LanguageSelectorComponent', () => {
       {
         pattern: '/categorySlug/propertyTypeSlug-saleType.html',
         path: '/للبيع/شقق-للبيع.html',
-        targetPath: '/en/buy/apartments-for-sale.html',
+        targetPath: '/buy/apartments-for-sale.html',
       },
     ].forEach(({ pattern, path, targetPath }) => {
       it('should have correct value for the link', () => {
@@ -75,10 +75,10 @@ describe('LanguageSelectorComponent', () => {
         router.asPath = path;
         router.locale = 'ar';
 
-        render(<LanguageSelectorComponent />);
+        render(<LanguageSelectorComponent alternateUrl={targetPath} />);
 
         const link = screen.getByRole('link', { name: 'language-selector' });
-        expect(link).toHaveAttribute('href', targetPath);
+        expect(link).toHaveAttribute('href', `/en${targetPath}`);
       });
     });
   });

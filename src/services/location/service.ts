@@ -24,4 +24,13 @@ export const LocationService: LocationServiceInterface = {
     }
     return locationsStore.search(searchString, limit);
   },
+  find: (predicate) => {
+    if (!locationsStore) {
+      // eslint-disable-next-line no-console
+      console.error('locationsStore was not initialized.');
+      return null;
+    }
+
+    return locationsStore.find(predicate);
+  },
 };

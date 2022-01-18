@@ -23,6 +23,7 @@ export type PropertySearchViewPropsType =
       };
       breadcrumbs: BreadcrumbInterface[];
       seoData?: SeoDataInterface;
+      alternateUrl: string;
     }
   | {
       ok: false;

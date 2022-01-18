@@ -1,4 +1,6 @@
 import { Redirect } from 'next';
+import locationsByLocale from 'public/static/locations';
+import locationsHistorySlugByLocale from 'public/static/locations-slug-history';
 
 import { FiltersQueryInterface } from 'components/filters/query/interface';
 import { FiltersQueryParamEnum } from 'components/filters/query/param.enum';
@@ -9,8 +11,6 @@ import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum'
 import { LocationCompactInterface } from 'types/location/compact.interface';
 import { LocationSlugHistoryInterface } from 'types/location/slug-history.interface';
 
-import locationsByLocale from '../../../../public/static/locations';
-import locationsHistorySlugByLocale from '../../../../public/static/locations-slug-history';
 import { backendFiltersAdditionalPropertyTypes } from '../additional-property-types';
 import { backendFiltersFindChoice } from '../find-choice';
 

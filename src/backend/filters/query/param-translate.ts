@@ -1,8 +1,9 @@
+import locationsByLocale from 'public/static/locations';
+
 import { FiltersQueryParamEnum } from 'components/filters/query/param.enum';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 
-import locationsByLocale from '../../../../public/static/locations';
 import { backendFiltersAdditionalPropertyTypes } from '../additional-property-types';
 import { backendFiltersFindChoice } from '../find-choice';
 

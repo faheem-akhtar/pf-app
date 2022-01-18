@@ -1,6 +1,6 @@
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
-import { locationsMapByLocale } from 'helpers/locations/map-by-locale';
+import { LocationService } from 'services/location/service';
 
 const entries: string[] = Object.values(FiltersQueryParametersEnum);
 
@@ -8,10 +8,9 @@ const entries: string[] = Object.values(FiltersQueryParametersEnum);
 type MapQueryToFiltersResultType = { [key in FiltersParametersEnum]?: any };
 
 /**
- * @param locale Active locale
  * @param link Clicked breadcrumb link
  */
-export const breadcrumbMapQueryToFilters = (locale: string, link: string): MapQueryToFiltersResultType => {
+export const breadcrumbMapQueryToFilters = (link: string): MapQueryToFiltersResultType => {
   const query = link.split('search?')[1];
   const values: MapQueryToFiltersResultType = {};
 
@@ -21,7 +20,9 @@ export const breadcrumbMapQueryToFilters = (locale: string, link: string): MapQu
     const filtersQueryParameterKey = Object.keys(FiltersQueryParametersEnum)[indexOfParam];
 
     if (queryKey === FiltersQueryParametersEnum.locationsIds) {
-      values[FiltersParametersEnum.locationsIds] = queryValue.split('-')?.map((id) => locationsMapByLocale(locale)[id]);
+      values[FiltersParametersEnum.locationsIds] = queryValue
+        .split('-')
+        ?.map((id) => LocationService.find((location) => location.id === id));
       return;
     }
 

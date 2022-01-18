@@ -2,8 +2,6 @@ import { useState } from 'react';
 
 import { IconThinMapPinTemplate } from 'components/icon/thin/map-pin-template';
 import { IconThinTimeTemplate } from 'components/icon/thin/time-template';
-import { helpersIsClient } from 'helpers/is-client';
-import { useReactConstructor } from 'helpers/react/constructor.hook';
 import { useTranslation } from 'helpers/translation/hook';
 import { MultiSelectionAutocompleteComponent } from 'library/multi-selection-autocomplete/component';
 import { LocationService } from 'services/location/service';
@@ -35,12 +33,6 @@ export const MultiLocationSelectorComponent = ({
 }: MultiLocationSelectorComponentPropsInterface): JSX.Element => {
   const { t } = useTranslation();
   const [inputValue, setInputValue] = useState('');
-
-  useReactConstructor(() => {
-    if (helpersIsClient) {
-      LocationService.init(locale);
-    }
-  });
 
   const { localStorage } = WindowService;
 

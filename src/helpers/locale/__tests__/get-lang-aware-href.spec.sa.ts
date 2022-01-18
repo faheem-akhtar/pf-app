@@ -2,7 +2,7 @@ import { configCommon } from 'config/common';
 import { configOriginValue } from 'config/origin/value';
 import { localeGetLangAwareHref } from 'helpers/locale/get-lang-aware-href';
 
-describe('localeGetLangAwareHref', () => {
+describe('localeGetLangAwareHref() Saudi', () => {
   const { current, alternative } = configCommon.language;
   let path: string;
 

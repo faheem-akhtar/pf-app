@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import { FunctionComponent, useContext } from 'react';
 
 import { FiltersContext } from 'components/filters/context';
@@ -11,7 +10,6 @@ import { PropertyListBreadcrumbTemplatePropsInterface } from './template-props.i
 export const PropertyListBreadcrumbComponent: FunctionComponent<PropertyListBreadcrumbComponentPropsInterface> = (
   props
 ) => {
-  const locale = useRouter().locale as string;
   const filtersCtx = useContext(FiltersContext);
 
   const onClick: PropertyListBreadcrumbTemplatePropsInterface['onClick'] = (event) => {
@@ -19,7 +17,7 @@ export const PropertyListBreadcrumbComponent: FunctionComponent<PropertyListBrea
 
     filtersCtx.change((filtersValue) => ({
       ...filtersValue,
-      ...breadcrumbMapQueryToFilters(locale, props.link),
+      ...breadcrumbMapQueryToFilters(props.link),
     }));
   };
 

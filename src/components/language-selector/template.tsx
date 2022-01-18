@@ -2,7 +2,7 @@ import { LanguageCodeEnum } from 'enums/language/code.enum';
 import { domClassMerge } from 'helpers/dom/class-merge';
 
 import styles from './language-selector.module.scss';
-import { LanguageSelectorTemplatePropsInterface } from './template.props.interface';
+import { LanguageSelectorTemplatePropsInterface } from './template-props.interface';
 
 export const LanguageSelectorTemplate = ({
   targetLocale,

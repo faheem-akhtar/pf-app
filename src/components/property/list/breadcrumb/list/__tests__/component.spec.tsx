@@ -2,16 +2,15 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { filtersContextPropsStub } from 'stubs/filters/context-props.stub';
-import { locationCompactKcStub } from 'stubs/location';
 import { locationCompactStub } from 'stubs/location/compact.stub';
 import { propertyListBreadcrumbStub } from 'stubs/property/list/breadcrumb/stub';
 
 import { FiltersContextProvider } from 'components/filters/context-provider';
 import { FiltersValueFieldPropertyTypeIdType } from 'components/filters/value/field/property-type-id.type';
-import { FiltersValueInterface } from 'components/filters/value/interface';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { functionSelf } from 'helpers/function/self';
+import { LocationService } from 'services/location/service';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import { PropertyListBreadcrumbListComponent } from '../component';
@@ -25,10 +24,14 @@ const breadcrumbStub = [
   },
 ];
 
+jest.mock('services/location/service');
+
 describe('PropertyListBreadcrumbListComponent', () => {
   let props: PropertyListBreadcrumbListComponentPropsInterface;
 
   beforeEach(() => {
+    (LocationService.find as jest.Mock).mockReturnValue(locationCompactStub);
+
     props = {
       breadcrumbs: propertyListBreadcrumbStub(),
       onClickShowMore: jest.fn(),
@@ -97,13 +100,10 @@ describe('PropertyListBreadcrumbListComponent', () => {
   it('should update the filters when no initial locations', () => {
     const { rerender } = render(
       <FiltersContextProvider
-        {...filtersContextPropsStub()}
-        filtersValueFromQuery={
-          {
-            [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForSale,
-            [FiltersParametersEnum.locationsIds]: [] as LocationCompactInterface[],
-          } as FiltersValueInterface
-        }
+        {...filtersContextPropsStub({
+          [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForSale,
+          [FiltersParametersEnum.locationsIds]: [] as LocationCompactInterface[],
+        })}
       >
         <PropertyListBreadcrumbListComponent {...props} />
       </FiltersContextProvider>
@@ -115,13 +115,10 @@ describe('PropertyListBreadcrumbListComponent', () => {
 
     rerender(
       <FiltersContextProvider
-        {...filtersContextPropsStub()}
-        filtersValueFromQuery={
-          {
-            [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForSale,
-            [FiltersParametersEnum.propertyTypeId]: '1' as FiltersValueFieldPropertyTypeIdType,
-          } as FiltersValueInterface
-        }
+        {...filtersContextPropsStub({
+          [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForSale,
+          [FiltersParametersEnum.propertyTypeId]: '1' as FiltersValueFieldPropertyTypeIdType,
+        })}
       >
         <PropertyListBreadcrumbListComponent
           {...props}
@@ -142,13 +139,10 @@ describe('PropertyListBreadcrumbListComponent', () => {
 
     rerender(
       <FiltersContextProvider
-        {...filtersContextPropsStub()}
-        filtersValueFromQuery={
-          {
-            [FiltersParametersEnum.propertyTypeId]: '1' as FiltersValueFieldPropertyTypeIdType,
-            [FiltersParametersEnum.locationsIds]: [{ id: '6' }] as LocationCompactInterface[],
-          } as FiltersValueInterface
-        }
+        {...filtersContextPropsStub({
+          [FiltersParametersEnum.propertyTypeId]: '1' as FiltersValueFieldPropertyTypeIdType,
+          [FiltersParametersEnum.locationsIds]: [{ id: '6' }] as LocationCompactInterface[],
+        })}
       >
         <PropertyListBreadcrumbListComponent {...props} breadcrumbs={[]} />
       </FiltersContextProvider>
@@ -161,16 +155,10 @@ describe('PropertyListBreadcrumbListComponent', () => {
   it('should update the filters when initial locations are exist', () => {
     const { rerender } = render(
       <FiltersContextProvider
-        {...filtersContextPropsStub()}
-        filtersValueFromQuery={
-          {
-            [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForSale,
-            [FiltersParametersEnum.locationsIds]: [
-              locationCompactStub(),
-              locationCompactKcStub,
-            ] as LocationCompactInterface[],
-          } as FiltersValueInterface
-        }
+        {...filtersContextPropsStub({
+          [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForSale,
+          [FiltersParametersEnum.locationsIds]: [locationCompactStub()],
+        })}
       >
         <PropertyListBreadcrumbListComponent {...props} />
       </FiltersContextProvider>
@@ -182,17 +170,11 @@ describe('PropertyListBreadcrumbListComponent', () => {
 
     rerender(
       <FiltersContextProvider
-        {...filtersContextPropsStub()}
-        filtersValueFromQuery={
-          {
-            [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForSale,
-            [FiltersParametersEnum.propertyTypeId]: '1' as FiltersValueFieldPropertyTypeIdType,
-            [FiltersParametersEnum.locationsIds]: [
-              locationCompactStub(),
-              locationCompactKcStub,
-            ] as LocationCompactInterface[],
-          } as FiltersValueInterface
-        }
+        {...filtersContextPropsStub({
+          [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForSale,
+          [FiltersParametersEnum.propertyTypeId]: '1' as FiltersValueFieldPropertyTypeIdType,
+          [FiltersParametersEnum.locationsIds]: [locationCompactStub()],
+        })}
       >
         <PropertyListBreadcrumbListComponent
           {...props}
@@ -213,13 +195,11 @@ describe('PropertyListBreadcrumbListComponent', () => {
 
     rerender(
       <FiltersContextProvider
-        {...filtersContextPropsStub()}
-        filtersValueFromQuery={
-          {
-            [FiltersParametersEnum.propertyTypeId]: '1' as FiltersValueFieldPropertyTypeIdType,
-            [FiltersParametersEnum.locationsIds]: [{ id: '6' }] as LocationCompactInterface[],
-          } as FiltersValueInterface
-        }
+        {...filtersContextPropsStub({
+          [FiltersParametersEnum.categoryId]: FiltersCategoryIdEnum.residentialForSale,
+          [FiltersParametersEnum.propertyTypeId]: '1' as FiltersValueFieldPropertyTypeIdType,
+          [FiltersParametersEnum.locationsIds]: [locationCompactStub()],
+        })}
       >
         <PropertyListBreadcrumbListComponent {...props} breadcrumbs={[]} />
       </FiltersContextProvider>

@@ -1,4 +1,5 @@
 import filtersDataByLocale from 'public/static/filters-data';
+import locationsByLocale from 'public/static/locations';
 
 import { backendFiltersValueDefault } from 'backend/filters/value/default';
 import { filtersDataGetInitialState } from 'components/filters/data/get-initial-state';
@@ -10,8 +11,8 @@ import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 import { arrayFilterNonValue } from 'helpers/array/filter/non-value';
 import { categoryIdIsRent } from 'helpers/category-id/is-rent';
-import { locationsMapByLocale } from 'helpers/locations/map-by-locale';
 import { objectReduce } from 'helpers/object/reduce';
+import { LocationCompactInterface } from 'types/location/compact.interface';
 
 /**
  * Transforms query params to filters value
@@ -30,8 +31,13 @@ export const backendFiltersQueryToValue = (
 
   const values = {
     [FiltersParametersEnum.locationsIds]: arrayFilterNonValue(
-      queryParams[FiltersQueryParametersEnum.locationsIds]?.split('-')?.map((id) => locationsMapByLocale(locale)[id]) ||
-        []
+      queryParams[FiltersQueryParametersEnum.locationsIds]
+        ?.split('-')
+        ?.map((id) =>
+          (locationsByLocale as unknown as Record<string, LocationCompactInterface[]>)[locale].find(
+            (location) => location.id === id
+          )
+        ) || []
     ),
     [FiltersParametersEnum.categoryId]: categoryId,
     [FiltersParametersEnum.propertyTypeId]: queryParams[FiltersQueryParametersEnum.propertyTypeId] || '',

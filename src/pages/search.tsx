@@ -1,5 +1,6 @@
 /* eslint-disable pf-rules/export-name-validation */
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import filtersDataByLocale from 'public/static/filters-data';
 
 import { backendApiPropertySearchAdFetcher } from 'backend/api/property/search/ad-fetcher';
 import { backendApiPropertySearchFetcher } from 'backend/api/property/search/fetcher';
@@ -8,21 +9,22 @@ import { backendApiSeoLinksFetcher } from 'backend/api/seo/links/fetcher';
 import { backendFiltersQueryFromParam } from 'backend/filters/query/from-param';
 import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
 import { backendTranslationGetDefinitions } from 'backend/translation/get-definitions';
+import { backendTranslationQueryToPath } from 'backend/translation/query-to-path';
 import { FiltersDataInterface } from 'components/filters/data/interface';
 import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfuscated/get/img-url';
 import { SeoDataInterface } from 'components/seo/data.interface';
 import { configCacheStrategy } from 'config/cache/strategy';
+import { configCommon } from 'config/common';
 import { cookieAbTestKey } from 'constants/cookie/ab-test-key';
 import { propertySerpNoOfPreloadImages } from 'constants/property/serp/no-of-preload-images';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 import { PageTypeEnum } from 'enums/page-type/enum';
 import { headersDevPatchSetCookieDomain } from 'helpers/headers/dev-patch-set-cookie-domain';
 import { headersParseExperimentsFromSetCookie } from 'helpers/headers/parse-experiments-from-set-cookie';
+import { localeIsDefault } from 'helpers/locale/is-default';
 import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-value';
 import { PropertySearchView } from 'views/property-search/view';
 import { PropertySearchViewPropsType } from 'views/property-search/view-props.type';
-
-import filtersDataByLocale from '../../public/static/filters-data';
 
 export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType> = async (
   context: GetServerSidePropsContext
@@ -102,6 +104,13 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     ...(seoContent?.ok && seoContent.data && { content: seoContent.data }),
   };
 
+  const alternateUrl =
+    backendTranslationQueryToPath(
+      context.query,
+      locale as string,
+      localeIsDefault(locale as string) ? configCommon.language.alternative : configCommon.language.current
+    ) || '';
+
   searchResult.data.properties.slice(0, propertySerpNoOfPreloadImages).map((property) => {
     const imgUrl = propertySerpObfuscatedGetImgUrl(property);
     if (imgUrl) {
@@ -137,6 +146,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
         shouldIndex: !!query.pattern,
         schema: searchResult.data.schema,
       },
+      alternateUrl,
       env: {
         recaptchaKey: process.env.NEXT_PUBLIC_RECAPTCHA as string,
         snowplowHost: process.env.NEXT_PUBLIC_SNOWPLOW_HOST as string,

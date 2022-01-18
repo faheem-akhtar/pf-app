@@ -2,7 +2,7 @@ import { configCommon } from 'config/common';
 
 import { localeInsertDefault } from '../insert-default';
 
-describe('localeInsertDefault Saudi', () => {
+describe('localeInsertDefault() Saudi', () => {
   const { current, alternative } = configCommon.language;
 
   it('should return false for current locale', () => {

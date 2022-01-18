@@ -15,7 +15,7 @@ describe('HeaderComponent', () => {
 
     renderResult = render(
       <UserContext.Provider value={null}>
-        <HeaderComponent />
+        <HeaderComponent alternateUrl='/للبيع/شقق-للبيع.html' />
       </UserContext.Provider>
     );
   });

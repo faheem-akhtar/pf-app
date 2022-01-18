@@ -1,55 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`breadcrumbMapQueryToFilters() should map correctly for multiple locations when locale is alternative 1`] = `
-Object {
-  "filter[category_id]": "1",
-  "filter[locations_ids]": Array [
-    Object {
-      "abbreviation": "",
-      "id": "6",
-      "name": "أبوظبي",
-      "path": "أبوظبي",
-      "path_name": "",
-      "slug": "أبوظبي",
-    },
-    Object {
-      "abbreviation": "",
-      "id": "1231",
-      "name": "البرج",
-      "path": "البرج",
-      "path_name": "دبي, شارع الشيخ زايد",
-      "slug": "شارع-الشيخ-زايد-البرج",
-    },
-  ],
-  "filter[property_type_id]": "1",
-}
-`;
-
-exports[`breadcrumbMapQueryToFilters() should map correctly for multiple locations when locale is current 1`] = `
-Object {
-  "filter[category_id]": "1",
-  "filter[locations_ids]": Array [
-    Object {
-      "abbreviation": "",
-      "id": "6",
-      "name": "Abu Dhabi",
-      "path": "Abu Dhabi",
-      "path_name": "",
-      "slug": "abu-dhabi",
-    },
-    Object {
-      "abbreviation": "",
-      "id": "1231",
-      "name": "The Tower",
-      "path": "The Tower",
-      "path_name": "Dubai, Sheikh Zayed Road",
-      "slug": "sheikh-zayed-road-the-tower",
-    },
-  ],
-  "filter[property_type_id]": "1",
-}
-`;
-
 exports[`breadcrumbMapQueryToFilters() should map correctly when locale is alternative 1`] = `
 Object {
   "filter[category_id]": "1",

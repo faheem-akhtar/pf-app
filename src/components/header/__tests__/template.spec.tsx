@@ -16,6 +16,7 @@ describe('HeaderTemplate', () => {
         user: null,
         savedPropertiesCount: 1,
       },
+      alternateUrl: '/للبيع/شقق-للبيع.html',
     };
   });
 

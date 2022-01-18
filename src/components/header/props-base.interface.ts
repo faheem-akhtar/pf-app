@@ -4,4 +4,9 @@ export interface HeaderPropsBaseInterface {
    * @default true
    */
   languageSelectorVisible?: boolean;
+
+  /**
+   * An alternate base URL for SEO
+   */
+  alternateUrl?: string;
 }

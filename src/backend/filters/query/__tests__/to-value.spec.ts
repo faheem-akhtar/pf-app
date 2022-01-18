@@ -1,5 +1,8 @@
+import { locationCompactStub } from 'stubs/location/compact.stub';
+
 import { FiltersQueryInterface } from 'components/filters/query/interface';
 import { configCommon } from 'config/common';
+import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 
 import { backendFiltersQueryToValue } from '../to-value';
 
@@ -32,5 +35,31 @@ describe('backendFiltersQueryToValue()', () => {
         "sort": "mr",
       }
     `);
+  });
+
+  it('should be able to find the locations by ids', () => {
+    expect(
+      backendFiltersQueryToValue({ c: '2', l: '6-1' } as FiltersQueryInterface, configCommon.language.current)
+    ).toEqual(
+      expect.objectContaining({
+        [FiltersParametersEnum.locationsIds]: [
+          locationCompactStub(),
+          locationCompactStub({
+            name: 'Dubai',
+            slug: 'dubai',
+            id: '1',
+            path: 'Dubai',
+          }),
+        ],
+      })
+    );
+  });
+
+  it('should have fallback value when no location id params', () => {
+    expect(backendFiltersQueryToValue({ c: '2' } as FiltersQueryInterface, configCommon.language.current)).toEqual(
+      expect.objectContaining({
+        [FiltersParametersEnum.locationsIds]: [],
+      })
+    );
   });
 });
