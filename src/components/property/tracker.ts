@@ -14,7 +14,7 @@ import { propertySerpObfuscatedGetLiveEventValue } from './serp/obfuscated/get/l
 import { propertySerpObfuscatedGetVideoTour } from './serp/obfuscated/get/video-tour';
 import { PropertySerpObfuscatedType } from './serp/obfuscated/type';
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export class PropertyTracker {
   /**
    * Constructor

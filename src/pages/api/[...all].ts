@@ -1,4 +1,4 @@
-/* eslint pf-rules/export-name-validation: 0 */
+/* eslint @propertyfinder/rules/export-name-validation: 0 */
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import httpProxyMiddleware from 'next-http-proxy-middleware';

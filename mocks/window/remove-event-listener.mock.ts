@@ -11,7 +11,7 @@ export const mockWindowRemoveEventListener = (): jest.Mock => {
   return mock;
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverWindowRemoveEventListener = (): void => {
   WindowService.removeEventListener = original;
 };

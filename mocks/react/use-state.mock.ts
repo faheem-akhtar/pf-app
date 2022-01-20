@@ -12,7 +12,7 @@ export const mockReactUseState = (setState?: Mock): void => {
   jest.spyOn(global.React, 'useState').mockImplementation(useStateMock as jest.Mock);
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverReactUseState = (): void => {
   global.React.useState = original;
 };

@@ -1,4 +1,4 @@
-/* eslint-disable pf-rules/export-name-validation */
+/* eslint-disable @propertyfinder/rules/export-name-validation */
 
 import { AppearOnScrollComponent } from './component';
 import styles from './component.stories.module.scss';

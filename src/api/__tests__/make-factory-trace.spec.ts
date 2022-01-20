@@ -1,4 +1,4 @@
-/* eslint pf-rules/export-name-validation: 0 */
+/* eslint @propertyfinder/rules/export-name-validation: 0 */
 
 import { mockWindowConsole } from 'mocks/window/console.mock';
 import { mockWindowFetch } from 'mocks/window/fetch.mock';

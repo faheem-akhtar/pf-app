@@ -26,7 +26,7 @@ const collect = (type: TealiumCollectTypeEnum, data: TealiumDataLayerInterface):
   });
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export class AnalyticsTealium implements TealiumServiceInterface {
   // doc: https://docs.tealium.com/platforms/javascript/api/tracking-functions/#utag-view
   public view: TealiumServiceInterface['view'] = (data) => {

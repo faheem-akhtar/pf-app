@@ -1,4 +1,4 @@
-// eslint-disable-next-line pf-rules/forbid-import
+// eslint-disable-next-line @propertyfinder/rules/forbid-import
 import { useTranslation as i18nUseTranslation } from 'next-i18next';
 
 import { helpersIsTest } from 'helpers/is-test';

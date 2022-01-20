@@ -53,13 +53,13 @@ describe('BrowserLoggerStore', () => {
     const browserLogger = new BrowserLoggerStore();
     browserLogger.initialize();
 
-    /* eslint-disable pf-rules/console-first-argument-string */
+    /* eslint-disable @propertyfinder/rules/console-first-argument-string */
     console.log({ testNo: '1' });
     console.info({ testNo: '2' });
     console.debug({ testNo: '3' });
     console.warn({ testNo: '4' });
     console.error({ testNo: '5' });
-    /* eslint-enable pf-rules/console-first-argument-string */
+    /* eslint-enable @propertyfinder/rules/console-first-argument-string */
 
     expect(datadogLogs.logger.log).toHaveBeenCalledWith('Generic', [{ testNo: '1' }]);
     expect(datadogLogs.logger.info).toHaveBeenCalledWith('Generic', [{ testNo: '2' }]);

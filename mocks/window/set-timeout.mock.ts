@@ -24,7 +24,7 @@ export const mockWindowSetTimeout = (): (() => void) => {
   };
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverWindowSetTimeout = (): void => {
   TimeService.setTimeout = original;
 };

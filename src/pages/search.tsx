@@ -1,4 +1,4 @@
-/* eslint-disable pf-rules/export-name-validation */
+/* eslint-disable @propertyfinder/rules/export-name-validation */
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import filtersDataByLocale from 'public/static/filters-data';
 

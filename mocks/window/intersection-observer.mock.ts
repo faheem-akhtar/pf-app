@@ -12,7 +12,7 @@ export const mockWindowIntersectionObserver = (): jest.Mock => {
   return intersectionObserverMock;
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverWindowIntersectionObserver = (): void => {
   global.IntersectionObserver = originalIntersectionObserver;
 };

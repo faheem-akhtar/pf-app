@@ -16,7 +16,7 @@ export const mockReactUseRef = <T>(initialValue?: T): React.MutableRefObject<T> 
   return mock;
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverReactUseRef = (): void => {
   unmountCallbacks.length = 0;
   global.React.useRef = original;

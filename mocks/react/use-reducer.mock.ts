@@ -17,7 +17,7 @@ export const mockReactUseReducer = <State>(
   };
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverReactUseReducer = (): void => {
   global.React.useReducer = original;
 };

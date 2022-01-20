@@ -5,7 +5,7 @@ import { LocaleService } from 'services/locale/service';
 import { WindowService } from 'services/window/service';
 import { AnyValueType } from 'types/any/value.type';
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export class GoogleRecaptcha {
   /**
    * Google recaptcha site key

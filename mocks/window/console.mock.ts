@@ -11,7 +11,7 @@ export const mockWindowConsole = (): Console => {
   return global.console;
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverWindowConsole = (): void => {
   global.console = originalConsole;
 };

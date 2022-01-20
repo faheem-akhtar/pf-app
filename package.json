@@ -42,13 +42,12 @@
     "lint": "yarn eslint stubs --max-warnings=0 --ext .ts,.tsx && yarn eslint mocks --ext .ts,.tsx && yarn eslint src --max-warnings=0 --ext .ts,.tsx && yarn stylelint 'src/**/*.{css,scss}'",
     "lint-fix": "yarn eslint stubs --ext .ts,.tsx --fix && yarn eslint mocks --ext .ts,.tsx --fix && yarn eslint src --ext .ts,.tsx --fix && yarn stylelint 'src/**/*.{css,scss}' --fix",
     "validate-types": "tsc --project ./tsconfig.json",
-    "download-i18n": "node ./scripts/download-translations",
-    "build-eslint": "rm -rf ./utils/eslint/result && tsc --project ./utils/eslint/tsconfig.json && cp ./utils/eslint/package.json ./utils/eslint/result && yarn add --dev file:./utils/eslint/result"
+    "download-i18n": "node ./scripts/download-translations"
   },
   "lint-staged": {
     "*.{js,ts,tsx,css,scss,md}": "prettier --check",
     "src/**/*.{css,scss}": "stylelint --quiet",
-    "*.{js,ts,tsx}": "eslint --max-warnings=0",
+    "!(.eslintrc).{js,ts,tsx}": "eslint --max-warnings=0",
     "src/**/*spec.{js,ts,tsx}": "yarn test"
   },
   "dependencies": {
@@ -74,6 +73,7 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@lokalise/node-api": "^6.3.0",
+    "@propertyfinder/eslint-plugin-rules": "0.4.2",
     "@storybook/addon-a11y": "^6.3.4",
     "@storybook/addon-actions": "^6.3.2",
     "@storybook/addon-essentials": "^6.3.2",
@@ -106,7 +106,6 @@
     "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest-dom": "^3.9.2",
-    "eslint-plugin-pf-rules": "file:./utils/eslint/result",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-testing-library": "^4.12.4",

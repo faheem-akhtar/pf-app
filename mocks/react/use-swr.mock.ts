@@ -13,7 +13,7 @@ export const mockReactUseSwr = (
   mocksMap[key] = { swrResultData, swrIsValidating };
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const setupSwrMock = (): void => {
   jest.mock('swr', () => (key: string | void): SWRResponse<AnyValueType, AnyValueType> => {
     const baseProps = {
@@ -37,7 +37,7 @@ export const setupSwrMock = (): void => {
   });
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const mockReactUseSwrRecover = (): void => {
   mocksMap = {};
 };

@@ -5,7 +5,7 @@ import type { AppContext, AppProps, NextWebVitalsMetric } from 'next/app';
 // eslint-disable-next-line no-duplicate-imports
 import App from 'next/app';
 import { useRouter } from 'next/router';
-// eslint-disable-next-line pf-rules/forbid-import
+// eslint-disable-next-line @propertyfinder/rules/forbid-import
 import { appWithTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 import { appRootElementId } from 'src/constants/app/root-element-id';
@@ -54,7 +54,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   );
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export function reportWebVitals(metric: NextWebVitalsMetric): void {
   // eslint-disable-next-line no-console
   console.log(`CWV-${metric.name.replace('Next.js-', '')}:${Math.round(metric.value)}:${Math.round(metric.startTime)}`);

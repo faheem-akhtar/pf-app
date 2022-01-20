@@ -12,7 +12,7 @@ export const mockReactUseContext = (...contextsValues: AnyValueType[]): void => 
   });
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverReactUseContext = (): void => {
   global.React.useContext = original;
 };

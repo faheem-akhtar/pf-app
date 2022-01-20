@@ -21,7 +21,7 @@ export const mockWindowFetch = (response = {}): jest.Mock => {
   return fetchMock;
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverWindowFetch = (): void => {
   global.fetch = originalFetch;
 };

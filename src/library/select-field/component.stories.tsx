@@ -1,4 +1,4 @@
-/* eslint-disable pf-rules/export-name-validation */
+/* eslint-disable @propertyfinder/rules/export-name-validation */
 
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';

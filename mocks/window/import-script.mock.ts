@@ -13,7 +13,7 @@ export const mockWindowImportScript = (): {
   };
 };
 
-// eslint-disable-next-line pf-rules/export-name-validation
+// eslint-disable-next-line @propertyfinder/rules/export-name-validation
 export const recoverWindowMockImportScript = (): void => {
   Object.defineProperty(importScriptModule, 'importScript', original);
 };
