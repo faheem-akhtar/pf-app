@@ -21,3 +21,4 @@ yarn-error.log
 /public/static/locations-slug-history/*.ts
 /scripts/download-resources/script.js
 story-book/
+.vscode

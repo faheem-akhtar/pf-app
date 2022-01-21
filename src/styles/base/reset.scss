@@ -23,6 +23,11 @@
   box-sizing: border-box;
 }
 
+a {
+  background-color: transparent; /* Remove the gray background on active links in IE 10 */
+  cursor: revert; /* Reapply the pointer cursor for anchor tags */
+}
+
 /* Remove list styles (bullets/numbers) */
 ol,
 ul,
@@ -88,11 +93,6 @@ textarea {
 /* Remove for any elements */
 *:focus {
   outline: none;
-}
-
-/* Remove the gray background on active links in IE 10 */
-a {
-  background-color: transparent;
 }
 
 /* Add the correct font weight in Chrome, Edge, and Safari */
