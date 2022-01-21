@@ -9,7 +9,7 @@ describe('environmentGetDatadog', () => {
 
   it('should return datadog environment for prod', () => {
     process.env.ENVIRONMENT = 'production';
-    expect(environmentGetDatadog(config.countryCode)).toEqual('production');
+    expect(environmentGetDatadog(config.countryCode)).toEqual(`prod_${config.countryCode}`);
   });
 
   it('should return datadog env for staging', () => {
