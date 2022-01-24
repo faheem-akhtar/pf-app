@@ -18,7 +18,9 @@
   }
 
   &--apps {
-    margin-top: spacingm(4);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 }
 
@@ -45,6 +47,8 @@
   }
 
   &--download {
-    display: flex;
+    display: block;
+    margin-top: spacingm(2);
+    width: 48%;
   }
 }

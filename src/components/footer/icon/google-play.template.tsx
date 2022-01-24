@@ -1,11 +1,5 @@
 export const IconGooglePlayTemplate = (): JSX.Element => (
-  <svg
-    width='165'
-    height='52'
-    viewBox='0 0 165 52'
-    xmlns='http://www.w3.org/2000/svg'
-    xmlnsXlink='http://www.w3.org/1999/xlink'
-  >
+  <svg viewBox='0 0 165 52' xmlns='http://www.w3.org/2000/svg' xmlnsXlink='http://www.w3.org/1999/xlink'>
     <defs>
       <path id='a' d='M0 0h165v51.563H0z' />
       <path

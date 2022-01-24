@@ -21,4 +21,8 @@ export interface ConfigLinksDefinitionInterface {
    * Android - Mobile app link
    */
   androidDownloadLink: string;
+  /**
+   * Huawei - Mobile app link
+   */
+  huaweiDownloadLink: string;
 }

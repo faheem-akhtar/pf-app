@@ -1,5 +1,6 @@
 import { ConfigLinksDefinitionInterface } from './definition.interface';
 import { configLinksMobileAppAndroid } from './mobile-app/android';
+import { configLinksMobileAppHuawei } from './mobile-app/huawei';
 import { configLinksMobileAppIos } from './mobile-app/ios';
 import { configLinksPrimaryBlog } from './primary/blog';
 import { configLinksPrimaryBuy } from './primary/buy';
@@ -25,4 +26,5 @@ export const configLinksDefinition: ConfigLinksDefinitionInterface = {
   ],
   iosDownloadLink: configLinksMobileAppIos,
   androidDownloadLink: configLinksMobileAppAndroid,
+  huaweiDownloadLink: configLinksMobileAppHuawei,
 };
