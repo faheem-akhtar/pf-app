@@ -42,24 +42,14 @@ const mapper: {
     newKey: SaveSearchPayloadFilterKeysEnum.MAX_PRICE,
   },
 
-  [FiltersParametersEnum.minBedroom]: {
-    filterAndMap: toNumberOrFalse,
-    newKey: SaveSearchPayloadFilterKeysEnum.MIN_BEDROOM,
+  [FiltersParametersEnum.bedrooms]: {
+    filterAndMap: toArrayOrFalse,
+    newKey: SaveSearchPayloadFilterKeysEnum.BEDROOMS,
   },
 
-  [FiltersParametersEnum.maxBedroom]: {
-    filterAndMap: toNumberOrFalse,
-    newKey: SaveSearchPayloadFilterKeysEnum.MAX_BEDROOM,
-  },
-
-  [FiltersParametersEnum.minBathroom]: {
-    filterAndMap: toNumberOrFalse,
-    newKey: SaveSearchPayloadFilterKeysEnum.MIN_BATHROOM,
-  },
-
-  [FiltersParametersEnum.maxBathroom]: {
-    filterAndMap: toNumberOrFalse,
-    newKey: SaveSearchPayloadFilterKeysEnum.MAX_BATHROOM,
+  [FiltersParametersEnum.bathrooms]: {
+    filterAndMap: toArrayOrFalse,
+    newKey: SaveSearchPayloadFilterKeysEnum.BATHROOMS,
   },
 
   [FiltersParametersEnum.minArea]: {

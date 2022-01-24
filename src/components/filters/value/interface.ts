@@ -3,12 +3,10 @@ import { LocationCompactInterface } from 'types/location/compact.interface';
 
 import { FiltersValueBaseInterface } from './base-interface';
 import { FiltersValueFieldAmenitiesType } from './field/amenities.type';
+import { FiltersValueFieldBathroomsType } from './field/bathrooms.type';
+import { FiltersValueFieldBedroomsType } from './field/bedrooms.type';
 import { FiltersValueFieldCompletionStatusType } from './field/completion-status.type';
 import { FiltersValueFieldFurnishedType } from './field/furnished.type';
-import { FiltersValueFieldMaxBathroomType } from './field/max-bathroom.type';
-import { FiltersValueFieldMaxBedroomType } from './field/max-bedroom.type';
-import { FiltersValueFieldMinBathroomType } from './field/min-bathroom.type';
-import { FiltersValueFieldMinBedroomType } from './field/min-bedroom.type';
 import { FiltersValueFieldPaymentMethodType } from './field/payment-method.type';
 import { FiltersValueFieldPricePeriodType } from './field/price-period.type';
 import { FiltersValueFieldSortType } from './field/sort.type';
@@ -77,24 +75,14 @@ export interface FiltersValueInterface extends FiltersValueBaseInterface {
   [FiltersParametersEnum.pricePeriod]?: FiltersValueFieldPricePeriodType;
 
   /**
-   * Min beds
+   * Bedrooms
    */
-  [FiltersParametersEnum.minBedroom]?: FiltersValueFieldMinBedroomType | '';
+  [FiltersParametersEnum.bedrooms]?: FiltersValueFieldBedroomsType[];
 
   /**
-   * Max beds
+   * Bathrooms
    */
-  [FiltersParametersEnum.maxBedroom]?: FiltersValueFieldMaxBedroomType | '';
-
-  /**
-   * Min bathrooms
-   */
-  [FiltersParametersEnum.minBathroom]?: FiltersValueFieldMinBathroomType | '';
-
-  /**
-   * Max bathrooms
-   */
-  [FiltersParametersEnum.maxBathroom]?: FiltersValueFieldMaxBathroomType | '';
+  [FiltersParametersEnum.bathrooms]?: FiltersValueFieldBathroomsType[];
 
   /**
    * Furnishing

@@ -6,5 +6,5 @@ import { comparatorNonValue } from '../../comparator/non-value';
  * - Won't remove falsy values like: 0, '', false
  */
 export function arrayFilterNonValue<T>(array: T[]): T[] {
-  return array.filter(comparatorNonValue);
+  return array.filter((val) => comparatorNonValue(val));
 }

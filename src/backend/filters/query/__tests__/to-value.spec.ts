@@ -21,13 +21,11 @@ describe('backendFiltersQueryToValue()', () => {
         "filter[keywords]": "",
         "filter[locations_ids]": Array [],
         "filter[max_area]": null,
-        "filter[max_bathroom]": "",
-        "filter[max_bedroom]": "",
         "filter[max_price]": null,
         "filter[min_area]": null,
-        "filter[min_bathroom]": "",
-        "filter[min_bedroom]": "",
         "filter[min_price]": null,
+        "filter[number_of_bathrooms]": Array [],
+        "filter[number_of_bedrooms]": Array [],
         "filter[price_type]": "y",
         "filter[property_type_id]": "",
         "filter[virtual_viewings]": "",
@@ -59,6 +57,51 @@ describe('backendFiltersQueryToValue()', () => {
     expect(backendFiltersQueryToValue({ c: '2' } as FiltersQueryInterface, configCommon.language.current)).toEqual(
       expect.objectContaining({
         [FiltersParametersEnum.locationsIds]: [],
+      })
+    );
+  });
+
+  it('should be able to handle multiple array params for a single value', () => {
+    expect(
+      backendFiltersQueryToValue(
+        { c: '2', 'bdr[]': '0', 'btr[]': '1', 'am[]': 'BA' } as unknown as FiltersQueryInterface,
+        configCommon.language.current
+      )
+    ).toEqual(
+      expect.objectContaining({
+        [FiltersParametersEnum.bedrooms]: ['0'],
+        [FiltersParametersEnum.bathrooms]: ['1'],
+        [FiltersParametersEnum.amenities]: ['BA'],
+      })
+    );
+  });
+
+  it('should be able to handle multiple array params for multiple values', () => {
+    expect(
+      backendFiltersQueryToValue(
+        { c: '2', 'bdr[]': ['0', '1'], 'btr[]': ['1', '2'], 'am[]': ['BA', 'CA'] } as unknown as FiltersQueryInterface,
+        configCommon.language.current
+      )
+    ).toEqual(
+      expect.objectContaining({
+        [FiltersParametersEnum.bedrooms]: ['0', '1'],
+        [FiltersParametersEnum.bathrooms]: ['1', '2'],
+        [FiltersParametersEnum.amenities]: ['BA', 'CA'],
+      })
+    );
+  });
+
+  it('should be able to handle multiple array params for an empty value', () => {
+    expect(
+      backendFiltersQueryToValue(
+        { c: '2', 'bdr[]': '', 'btr[]': '', 'am[]': '' } as unknown as FiltersQueryInterface,
+        configCommon.language.current
+      )
+    ).toEqual(
+      expect.objectContaining({
+        [FiltersParametersEnum.bedrooms]: [],
+        [FiltersParametersEnum.bathrooms]: [],
+        [FiltersParametersEnum.amenities]: [],
       })
     );
   });

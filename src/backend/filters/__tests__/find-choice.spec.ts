@@ -16,7 +16,7 @@ describe('backendFiltersFindChoice()', () => {
   });
 
   it('should accept a predicate function', () => {
-    expect(backendFiltersFindChoice('en', FiltersParametersEnum.minBedroom, (value) => value.label === 'Studio'))
+    expect(backendFiltersFindChoice('en', FiltersParametersEnum.bedrooms, (value) => value.label === 'Studio'))
       .toMatchInlineSnapshot(`
     Object {
       "label": "Studio",

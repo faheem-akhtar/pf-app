@@ -40,24 +40,14 @@ export interface FiltersQueryInterface {
   [FiltersQueryParametersEnum.maxPrice]?: string;
 
   /**
-   * Beds (Min)
+   * Bedrooms
    */
-  [FiltersQueryParametersEnum.minBedroom]?: string;
+  [FiltersQueryParametersEnum.bedrooms]?: string[];
 
   /**
-   * Beds (Max)
+   * Bathrooms
    */
-  [FiltersQueryParametersEnum.maxBedroom]?: string;
-
-  /**
-   * Bathrooms (Min)
-   */
-  [FiltersQueryParametersEnum.minBathroom]?: string;
-
-  /**
-   * Bathrooms (Max)
-   */
-  [FiltersQueryParametersEnum.maxBathroom]?: string;
+  [FiltersQueryParametersEnum.bathrooms]?: string[];
 
   /**
    * Furnishing

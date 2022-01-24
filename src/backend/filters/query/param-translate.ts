@@ -17,7 +17,7 @@ const saleTypeTranslations: Record<string, string> = {
 const mapFilterQueryToFilterParam: Partial<Record<FiltersQueryParamEnum, FiltersParametersEnum>> = {
   [FiltersQueryParamEnum.category]: FiltersParametersEnum.categoryId,
   [FiltersQueryParamEnum.propertyType]: 'propertyTypeSlug' as FiltersParametersEnum,
-  [FiltersQueryParamEnum.bedroom]: FiltersParametersEnum.minBedroom,
+  [FiltersQueryParamEnum.bedroom]: FiltersParametersEnum.bedrooms,
   [FiltersQueryParamEnum.furnish]: FiltersParametersEnum.furnishing,
   [FiltersQueryParamEnum.priceType]: FiltersParametersEnum.pricePeriod,
 };

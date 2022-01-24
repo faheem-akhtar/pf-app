@@ -148,6 +148,8 @@ describe('usePropertySearchTrackPageView', () => {
     expect(setAbTestsSpy).toHaveBeenCalledWith(abTests);
     expect(setPropertySearchSpy).toHaveBeenCalledWith({
       amenities: [],
+      bedrooms: [],
+      bathrooms: [],
       category: 2,
       is_developer_property: false,
       locations: [],

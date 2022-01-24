@@ -1,8 +1,7 @@
-import { filtersDataChoicesGetMinBedroom } from 'components/filters/data/choices/get-min-bedroom';
-import { FiltersValueFieldMaxBedroomType } from 'components/filters/value/field/max-bedroom.type';
+import { filtersDataChoicesGetBedrooms } from 'components/filters/data/choices/get-bedrooms';
 import { IconThickBedroomTemplate } from 'components/icon/thick/bedroom-template';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
-import { ChipChoiceTemplate } from 'library/chip-choice/template';
+import { ChipsFilterTemplate } from 'library/chips-filter/template';
 
 import { FiltersModalItemTemplate } from '../item/template';
 import styles from './filters-modal-widget-component.module.scss';
@@ -15,15 +14,14 @@ export const FiltersModalWidgetBedroomComponent: FiltersModalWidgetType = ({
   t,
 }) => (
   <FiltersModalItemTemplate label={t('bedrooms')} icon={<IconThickBedroomTemplate class={styles.icon} />}>
-    <ChipChoiceTemplate
+    <ChipsFilterTemplate
       containerClassName={styles.list}
-      options={filtersDataChoicesGetMinBedroom(filtersValue, filtersData)}
-      selected={filtersValue[FiltersParametersEnum.minBedroom]}
-      onCheck={(selectedOption): void => {
+      options={filtersDataChoicesGetBedrooms(filtersValue, filtersData)}
+      selected={filtersValue[FiltersParametersEnum.bedrooms] || []}
+      onCheck={(selectedOptions): void => {
         changeFiltersValue({
           ...filtersValue,
-          [FiltersParametersEnum.minBedroom]: selectedOption.value,
-          [FiltersParametersEnum.maxBedroom]: selectedOption.value as FiltersValueFieldMaxBedroomType,
+          [FiltersParametersEnum.bedrooms]: selectedOptions,
         });
       }}
     />

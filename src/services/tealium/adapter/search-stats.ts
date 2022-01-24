@@ -40,12 +40,12 @@ export const tealiumAdapterSearchStats = (
         filters[FiltersParametersEnum.completionStatus]
       )?.value || '',
     search_keywords: filters[FiltersParametersEnum.keyword] || '',
+    search_bedrooms: filters[FiltersParametersEnum.bedrooms] || [],
+    search_bathrooms: filters[FiltersParametersEnum.bathrooms] || [],
     search_max_area: `${filters[FiltersParametersEnum.maxArea] || ''}`,
     search_min_area: `${filters[FiltersParametersEnum.minArea] || ''}`,
     search_max_price: `${filters[FiltersParametersEnum.maxPrice] || ''}`,
     search_min_price: `${filters[FiltersParametersEnum.minPrice] || ''}`,
-    search_max_bed: `${filters[FiltersParametersEnum.maxBedroom] || undefined}`,
-    search_min_bed: `${filters[FiltersParametersEnum.minBedroom] || undefined}`,
     search_viewings_type: filters[FiltersParametersEnum.virtualViewings] || '',
   };
 };

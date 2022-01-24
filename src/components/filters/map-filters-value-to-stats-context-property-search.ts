@@ -13,10 +13,6 @@ export const filtersMapFiltersValueToStatsContextPropertySearch = (
   const maxPrice = filtersValue[FiltersParametersEnum.maxPrice];
   const minArea = filtersValue[FiltersParametersEnum.minArea];
   const maxArea = filtersValue[FiltersParametersEnum.maxArea];
-  const minBedroom = filtersValue[FiltersParametersEnum.minBedroom];
-  const maxBedroom = filtersValue[FiltersParametersEnum.maxBedroom];
-  const minBathroom = filtersValue[FiltersParametersEnum.minBathroom];
-  const maxBathroom = filtersValue[FiltersParametersEnum.maxBathroom];
   const furnishing = filtersValue[FiltersParametersEnum.furnishing];
   const propertyTypeId = filtersValue[FiltersParametersEnum.propertyTypeId];
 
@@ -30,10 +26,8 @@ export const filtersMapFiltersValueToStatsContextPropertySearch = (
     payment_method: filtersValue[FiltersParametersEnum.paymentMethod],
     min_installment_years: filtersValue[FiltersParametersEnum.minInstallmentYears],
     max_installment_years: filtersValue[FiltersParametersEnum.maxInstallmentYears],
-    bedroom_min: minBedroom ? parseInt(minBedroom) : undefined,
-    bedroom_max: maxBedroom ? parseInt(maxBedroom) : undefined,
-    bathroom_min: minBathroom ? parseInt(minBathroom) : undefined,
-    bathroom_max: maxBathroom ? parseInt(maxBathroom) : undefined,
+    bedrooms: filtersValue[FiltersParametersEnum.bedrooms],
+    bathrooms: filtersValue[FiltersParametersEnum.bathrooms],
     area_min: minArea === null ? undefined : minArea,
     area_max: maxArea === null ? undefined : maxArea,
     utilities_price_type: filtersValue[FiltersParametersEnum.utilitiesPriceType],

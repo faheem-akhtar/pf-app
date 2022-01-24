@@ -13,7 +13,7 @@ export const filtersCountGetActiveFields = FiltersCountFactory([
   [FiltersParametersEnum.paymentMethod],
   [FiltersParametersEnum.utilitiesPriceType],
   [FiltersParametersEnum.minPrice, FiltersParametersEnum.maxPrice],
-  [FiltersParametersEnum.minBedroom, FiltersParametersEnum.maxBedroom],
-  [FiltersParametersEnum.minBathroom, FiltersParametersEnum.maxBathroom],
+  [FiltersParametersEnum.bedrooms],
+  [FiltersParametersEnum.bathrooms],
   [FiltersParametersEnum.minArea, FiltersParametersEnum.maxArea],
 ]);

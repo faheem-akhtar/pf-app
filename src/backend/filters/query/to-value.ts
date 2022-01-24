@@ -10,13 +10,14 @@ import { FiltersValueInterface } from 'components/filters/value/interface';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 import { arrayFilterNonValue } from 'helpers/array/filter/non-value';
+import { arrayFromValue } from 'helpers/array/from-value';
 import { categoryIdIsRent } from 'helpers/category-id/is-rent';
 import { objectReduce } from 'helpers/object/reduce';
 import { LocationCompactInterface } from 'types/location/compact.interface';
 
 /**
  * Transforms query params to filters value
- * @example { c: 2, bf: 4, bt: 4 } => { filter[category_id] : '2', filter[min_bedroom]: '4', filter[max_bedroom]: '4' }
+ * @example { c: 2, bdr[]: 4 } => { filter[category_id] : '2', filter[number_of_bedrooms]: ['4']}
  */
 export const backendFiltersQueryToValue = (
   queryParams: FiltersQueryInterface,
@@ -41,10 +42,8 @@ export const backendFiltersQueryToValue = (
     ),
     [FiltersParametersEnum.categoryId]: categoryId,
     [FiltersParametersEnum.propertyTypeId]: queryParams[FiltersQueryParametersEnum.propertyTypeId] || '',
-    [FiltersParametersEnum.minBedroom]: queryParams[FiltersQueryParametersEnum.minBedroom] || '',
-    [FiltersParametersEnum.maxBedroom]: queryParams[FiltersQueryParametersEnum.maxBedroom] || '',
-    [FiltersParametersEnum.minBathroom]: queryParams[FiltersQueryParametersEnum.minBathroom] || '',
-    [FiltersParametersEnum.maxBathroom]: queryParams[FiltersQueryParametersEnum.maxBathroom] || '',
+    [FiltersParametersEnum.bedrooms]: arrayFromValue(queryParams[FiltersQueryParametersEnum.bedrooms]),
+    [FiltersParametersEnum.bathrooms]: arrayFromValue(queryParams[FiltersQueryParametersEnum.bathrooms]),
     [FiltersParametersEnum.minPrice]: queryParams[FiltersQueryParametersEnum.minPrice]
       ? parseInt(queryParams[FiltersQueryParametersEnum.minPrice] as string, 10)
       : null,
@@ -62,7 +61,7 @@ export const backendFiltersQueryToValue = (
       : null,
     [FiltersParametersEnum.pricePeriod]: queryParams[FiltersQueryParametersEnum.pricePeriod] || defaultPricePeriod,
     [FiltersParametersEnum.keyword]: queryParams[FiltersQueryParametersEnum.keyword] || '',
-    [FiltersParametersEnum.amenities]: queryParams[FiltersQueryParametersEnum.amenities] || [],
+    [FiltersParametersEnum.amenities]: arrayFromValue(queryParams[FiltersQueryParametersEnum.amenities]),
     [FiltersParametersEnum.completionStatus]: queryParams[FiltersQueryParametersEnum.completionStatus] || '',
     [FiltersParametersEnum.paymentMethod]: queryParams[FiltersQueryParametersEnum.paymentMethod] || '',
     [FiltersParametersEnum.utilitiesPriceType]: queryParams[FiltersQueryParametersEnum.utilitiesPriceType] || '',

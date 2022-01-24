@@ -27,8 +27,8 @@ export const filtersModalWidgetRenderMap: Record<string, FiltersModalWidgetType>
   [FiltersParametersEnum.minPrice]: FiltersModalWidgetPriceComponent,
   [FiltersParametersEnum.paymentMethod]: FiltersModalWidgetPaymentMethodComponent,
   [FiltersParametersEnum.utilitiesPriceType]: FiltersModalWidgetUtilitiesPriceTypeComponent,
-  [FiltersParametersEnum.maxBedroom]: FiltersModalWidgetBedroomComponent,
-  [FiltersParametersEnum.maxBathroom]: FiltersModalWidgetBathroomComponent,
+  [FiltersParametersEnum.bedrooms]: FiltersModalWidgetBedroomComponent,
+  [FiltersParametersEnum.bathrooms]: FiltersModalWidgetBathroomComponent,
   ...(developerProjectEnabledByDefault
     ? {
         [FiltersParametersEnum.isDeveloperProperty]: FiltersModalWidgetIsDeveloperPropertyComponent,

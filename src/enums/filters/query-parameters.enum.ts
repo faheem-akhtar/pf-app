@@ -25,24 +25,14 @@ export enum FiltersQueryParametersEnum {
   locationsIds = 'l',
 
   /**
-   * Min beds
+   * Bedrooms
    */
-  minBedroom = 'bf',
+  bedrooms = 'bdr[]',
 
   /**
-   * Max beds
+   * Bathrooms
    */
-  maxBedroom = 'bt',
-
-  /**
-   * Min bathrooms
-   */
-  minBathroom = 'btf',
-
-  /**
-   * Max bathrooms
-   */
-  maxBathroom = 'btt',
+  bathrooms = 'btr[]',
 
   /**
    * Min price

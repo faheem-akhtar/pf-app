@@ -1,10 +1,10 @@
 import { filtersValueStub } from 'stubs/filters/value/stub';
 
 import { FiltersValueFieldAmenitiesType } from 'components/filters/value/field/amenities.type';
+import { FiltersValueFieldBathroomsType } from 'components/filters/value/field/bathrooms.type';
+import { FiltersValueFieldBedroomsType } from 'components/filters/value/field/bedrooms.type';
 import { FiltersValueFieldCompletionStatusType } from 'components/filters/value/field/completion-status.type';
 import { FiltersValueFieldFurnishedType } from 'components/filters/value/field/furnished.type';
-import { FiltersValueFieldMaxBathroomType } from 'components/filters/value/field/max-bathroom.type';
-import { FiltersValueFieldMinBedroomType } from 'components/filters/value/field/min-bedroom.type';
 import { FiltersValueFieldPaymentMethodType } from 'components/filters/value/field/payment-method.type';
 import { FiltersValueFieldPricePeriodType } from 'components/filters/value/field/price-period.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
@@ -26,16 +26,17 @@ const exampleSaveSearchFilters: FiltersValueInterface = filtersValueStub({
     { id: 'L1' } as LocationCompactInterface,
     { id: 'L2' } as LocationCompactInterface,
   ],
-  [FiltersParametersEnum.maxBathroom]: '3' as FiltersValueFieldMaxBathroomType,
+  [FiltersParametersEnum.bathrooms]: ['3' as FiltersValueFieldBathroomsType],
+  [FiltersParametersEnum.bedrooms]: ['2' as FiltersValueFieldBedroomsType, '3' as FiltersValueFieldBedroomsType],
+
   [FiltersParametersEnum.paymentMethod]: 'payment' as FiltersValueFieldPaymentMethodType,
-  [FiltersParametersEnum.minBedroom]: '0' as FiltersValueFieldMinBedroomType,
 });
 
 describe('saveSearchFiltersMapper', () => {
   it('should exclude not-valid parameters', () => {
     expect(saveSearchFiltersMapper(exampleSaveSearchFilters)).not.toContain(
       expect.objectContaining({
-        max_bathroom: '',
+        bathrooms: [],
       })
     );
   });
@@ -55,8 +56,13 @@ describe('saveSearchFiltersMapper', () => {
           "L1",
           "L2",
         ],
-        "max_bathroom": 3,
-        "min_bedroom": 0,
+        "number_of_bathrooms": Array [
+          "3",
+        ],
+        "number_of_bedrooms": Array [
+          "2",
+          "3",
+        ],
         "payment_method": "payment",
         "price_type": "y",
       }
@@ -91,8 +97,13 @@ describe('saveSearchFiltersMapper', () => {
           "L1",
           "L2",
         ],
-        "max_bathroom": 3,
-        "min_bedroom": 0,
+        "number_of_bathrooms": Array [
+          "3",
+        ],
+        "number_of_bedrooms": Array [
+          "2",
+          "3",
+        ],
         "payment_method": "payment",
       }
     `);

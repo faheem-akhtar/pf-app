@@ -7,7 +7,7 @@ describe('backendFiltersQueryToValue() Egypt', () => {
   it('should have matched params for the category', () => {
     expect(
       backendFiltersQueryToValue(
-        { c: '2', bf: '4', bt: '4', pattern: '/categorySlug/propertyTypeSlug-saleType.html' } as FiltersQueryInterface,
+        { c: '2', 'bdr[]': ['4'], pattern: '/categorySlug/propertyTypeSlug-saleType.html' } as FiltersQueryInterface,
         configCommon.language.current
       )
     ).toMatchInlineSnapshot(`
@@ -17,13 +17,13 @@ describe('backendFiltersQueryToValue() Egypt', () => {
         "filter[keywords]": "",
         "filter[locations_ids]": Array [],
         "filter[max_area]": null,
-        "filter[max_bathroom]": "",
-        "filter[max_bedroom]": "4",
         "filter[max_price]": null,
         "filter[min_area]": null,
-        "filter[min_bathroom]": "",
-        "filter[min_bedroom]": "4",
         "filter[min_price]": null,
+        "filter[number_of_bathrooms]": Array [],
+        "filter[number_of_bedrooms]": Array [
+          "4",
+        ],
         "filter[price_type]": "m",
         "filter[property_type_id]": "",
         "page[number]": 1,

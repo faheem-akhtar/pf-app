@@ -30,7 +30,7 @@ const mapFilterQueryToFilterParam: Partial<
     query: FiltersQueryParametersEnum.categoryId,
   },
   [FiltersQueryParamEnum.propertyType]: { param: 'propertyTypeSlug' as FiltersParametersEnum },
-  [FiltersQueryParamEnum.bedroom]: { param: FiltersParametersEnum.minBedroom },
+  [FiltersQueryParamEnum.bedroom]: { param: FiltersParametersEnum.bedrooms },
   [FiltersQueryParamEnum.furnish]: {
     param: FiltersParametersEnum.furnishing,
     query: FiltersQueryParametersEnum.furnishing,
@@ -82,8 +82,7 @@ export const backendFiltersQueryFromParam = (
 
         case FiltersQueryParamEnum.bedroom:
           if (currentChoice) {
-            acc[FiltersQueryParametersEnum.minBedroom] = currentChoice.value.toString();
-            acc[FiltersQueryParametersEnum.maxBedroom] = currentChoice.value.toString();
+            acc[FiltersQueryParametersEnum.bedrooms] = [currentChoice.value.toString()];
           } else {
             error = true;
             // eslint-disable-next-line no-console

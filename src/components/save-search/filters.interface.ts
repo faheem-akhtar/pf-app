@@ -18,21 +18,13 @@ export interface SaveSearchFiltersInterface {
    */
   [SaveSearchPayloadFilterKeysEnum.MAX_PRICE]?: number;
   /**
-   * Min bedroom as number
+   * Array of selected bedrooms
    */
-  [SaveSearchPayloadFilterKeysEnum.MIN_BEDROOM]?: number;
+  [SaveSearchPayloadFilterKeysEnum.BEDROOMS]?: string[];
   /**
-   * Max bedroom as number
+   * Array of selected bathrooms
    */
-  [SaveSearchPayloadFilterKeysEnum.MAX_BEDROOM]?: number;
-  /**
-   * Min bathroom as number
-   */
-  [SaveSearchPayloadFilterKeysEnum.MIN_BATHROOM]?: number;
-  /**
-   * Max bathroom as number
-   */
-  [SaveSearchPayloadFilterKeysEnum.MAX_BATHROOM]?: number;
+  [SaveSearchPayloadFilterKeysEnum.BATHROOMS]?: string[];
   /**
    * Min min_area as number
    */

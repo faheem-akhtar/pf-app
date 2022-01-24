@@ -2,10 +2,9 @@ import { filtersDataStub } from 'stubs/filters/data.stub';
 import { filtersValueStub } from 'stubs/filters/value/stub';
 import { locationCompactJltStub, locationCompactKcStub } from 'stubs/location';
 
+import { FiltersValueFieldBedroomsType } from 'components/filters/value/field/bedrooms.type';
 import { FiltersValueFieldCategoryIdType } from 'components/filters/value/field/category-id.type';
 import { FiltersValueFieldFurnishedType } from 'components/filters/value/field/furnished.type';
-import { FiltersValueFieldMaxBedroomType } from 'components/filters/value/field/max-bedroom.type';
-import { FiltersValueFieldMinBedroomType } from 'components/filters/value/field/min-bedroom.type';
 import { FiltersValueFieldPropertyTypeIdType } from 'components/filters/value/field/property-type-id.type';
 import { FiltersValueFieldVirtualViewingType } from 'components/filters/value/field/virtual-viewing.type';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
@@ -26,8 +25,11 @@ describe('tealiumAdapterSearchStats()', () => {
       [FiltersParametersEnum.minArea]: 122,
       [FiltersParametersEnum.maxPrice]: 122,
       [FiltersParametersEnum.minPrice]: 121,
-      [FiltersParametersEnum.maxBedroom]: '13' as FiltersValueFieldMaxBedroomType,
-      [FiltersParametersEnum.minBedroom]: '12' as FiltersValueFieldMinBedroomType,
+      [FiltersParametersEnum.bedrooms]: [
+        '1' as FiltersValueFieldBedroomsType,
+        '2' as FiltersValueFieldBedroomsType,
+        '3' as FiltersValueFieldBedroomsType,
+      ],
       [FiltersParametersEnum.virtualViewings]: '360' as FiltersValueFieldVirtualViewingType,
       [FiltersParametersEnum.locationsIds]: [
         locationCompactKcStub,
@@ -47,8 +49,7 @@ describe('tealiumAdapterSearchStats()', () => {
         search_min_area: '122',
         search_max_price: '122',
         search_min_price: '121',
-        search_max_bed: '13',
-        search_min_bed: '12',
+        search_bedrooms: ['1', '2', '3'],
         search_viewings_type: '360',
       })
     );
@@ -68,12 +69,12 @@ describe('tealiumAdapterSearchStats()', () => {
         search_furnishing: '',
         search_rental_period: '',
         search_keywords: '',
+        search_bedrooms: [],
+        search_bathrooms: [],
         search_max_area: '',
         search_min_area: '',
         search_max_price: '',
         search_min_price: '',
-        search_max_bed: 'undefined',
-        search_min_bed: 'undefined',
         search_viewings_type: '',
       })
     );

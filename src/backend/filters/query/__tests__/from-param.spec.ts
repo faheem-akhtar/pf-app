@@ -21,8 +21,7 @@ describe('backendFiltersQueryFromParam()', () => {
       ).query
     ).toEqual({
       [FiltersQueryParametersEnum.categoryId]: '2',
-      [FiltersQueryParametersEnum.minBedroom]: '3',
-      [FiltersQueryParametersEnum.maxBedroom]: '3',
+      [FiltersQueryParametersEnum.bedrooms]: ['3'],
       [FiltersQueryParametersEnum.furnishing]: '1',
       [FiltersQueryParametersEnum.pricePeriod]: 'm',
       [FiltersQueryParametersEnum.propertyTypeId]: '35',
@@ -40,8 +39,7 @@ describe('backendFiltersQueryFromParam()', () => {
         '/en/abc'
       ).query
     ).toEqual({
-      [FiltersQueryParametersEnum.minBedroom]: '0',
-      [FiltersQueryParametersEnum.maxBedroom]: '0',
+      [FiltersQueryParametersEnum.bedrooms]: ['0'],
     });
   });
 
@@ -303,8 +301,7 @@ describe('backendFiltersQueryFromParam()', () => {
             '/en/abc'
           ).query
         ).toEqual({
-          [FiltersQueryParametersEnum.minBedroom]: id,
-          [FiltersQueryParametersEnum.maxBedroom]: id,
+          [FiltersQueryParametersEnum.bedrooms]: [id],
         });
       });
 
@@ -318,8 +315,7 @@ describe('backendFiltersQueryFromParam()', () => {
             '/en/abc'
           ).query
         ).toEqual({
-          [FiltersQueryParametersEnum.minBedroom]: id,
-          [FiltersQueryParametersEnum.maxBedroom]: id,
+          [FiltersQueryParametersEnum.bedrooms]: [id],
         });
       });
     });

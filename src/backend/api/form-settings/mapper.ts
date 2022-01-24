@@ -28,8 +28,8 @@ const helperFilterParams = Object.values(FilterFormSettingsHelpersMapping).reduc
 const FilterFormSettingsParametersMapping: Record<string, Array<string>> = {
   query: [FiltersParametersEnum.query],
   keyword: [FiltersParametersEnum.keyword],
-  bedroom: [FiltersParametersEnum.minBedroom, FiltersParametersEnum.maxBedroom],
-  bathroom: [FiltersParametersEnum.minBathroom, FiltersParametersEnum.maxBathroom],
+  bedroom: [FiltersParametersEnum.bedrooms],
+  bathroom: [FiltersParametersEnum.bathrooms],
   price: [FiltersParametersEnum.minPrice, FiltersParametersEnum.maxPrice],
   area: [FiltersParametersEnum.minArea, FiltersParametersEnum.maxArea],
   amenity: [FiltersParametersEnum.amenities],
@@ -305,6 +305,12 @@ const cleanUp = (value: ValidateSettingsResultType): void => {
   if (value[FiltersParametersEnum.amenities]?.value === '') {
     value[FiltersParametersEnum.amenities].value = [];
   }
+  if (value[FiltersParametersEnum.bedrooms]?.value === '') {
+    value[FiltersParametersEnum.bedrooms].value = [];
+  }
+  if (value[FiltersParametersEnum.bathrooms]?.value === '') {
+    value[FiltersParametersEnum.bathrooms].value = [];
+  }
   if (value[FiltersParametersEnum.minArea]?.value === '') {
     value[FiltersParametersEnum.minArea].value = null;
   }
@@ -362,20 +368,12 @@ const addAnyChoice = (initialFilterParams: ValidateSettingsResultType): void => 
   const filterTypesToAddAnyOption: Array<
     | FiltersParametersEnum.propertyTypeId
     | FiltersParametersEnum.virtualViewings
-    | FiltersParametersEnum.minBedroom
-    | FiltersParametersEnum.maxBedroom
-    | FiltersParametersEnum.minBathroom
-    | FiltersParametersEnum.maxBathroom
     | FiltersParametersEnum.completionStatus
     | FiltersParametersEnum.paymentMethod
     | FiltersParametersEnum.utilitiesPriceType
   > = [
     FiltersParametersEnum.propertyTypeId,
     FiltersParametersEnum.virtualViewings,
-    FiltersParametersEnum.minBedroom,
-    FiltersParametersEnum.maxBedroom,
-    FiltersParametersEnum.minBathroom,
-    FiltersParametersEnum.maxBathroom,
     FiltersParametersEnum.completionStatus,
     FiltersParametersEnum.paymentMethod,
     FiltersParametersEnum.utilitiesPriceType,

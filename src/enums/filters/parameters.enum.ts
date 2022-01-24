@@ -28,24 +28,14 @@ export enum FiltersParametersEnum {
   locationsIds = 'filter[locations_ids]',
 
   /**
-   * Min beds
+   * Bedrooms
    */
-  minBedroom = 'filter[min_bedroom]',
+  bedrooms = 'filter[number_of_bedrooms]',
 
   /**
-   * Max beds
+   * Bathrooms
    */
-  maxBedroom = 'filter[max_bedroom]',
-
-  /**
-   * Min bathrooms
-   */
-  minBathroom = 'filter[min_bathroom]',
-
-  /**
-   * Max bathrooms
-   */
-  maxBathroom = 'filter[max_bathroom]',
+  bathrooms = 'filter[number_of_bathrooms]',
 
   /**
    * Min price

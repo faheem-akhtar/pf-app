@@ -35,19 +35,20 @@ export interface TealiumPropertySearchStatsInterface {
   search_max_area: string;
 
   /**
+   * Bedrooms
+   */
+  search_bedrooms: string[];
+
+  /**
+   * Bathrooms
+   */
+  search_bathrooms: string[];
+
+  /**
    * Area (Min)
    */
   search_min_area: string;
 
-  /**
-   * Bed (Max)
-   */
-  search_max_bed: string;
-
-  /**
-   * Bed (Min)
-   */
-  search_min_bed: string;
   /**
    * Price (Max)
    */

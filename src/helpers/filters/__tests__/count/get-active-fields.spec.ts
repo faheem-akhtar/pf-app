@@ -2,6 +2,8 @@ import { filtersDataStub } from 'stubs/filters/data.stub';
 import { filtersValueStub } from 'stubs/filters/value/stub';
 
 import { FiltersValueFieldAmenitiesType } from 'components/filters/value/field/amenities.type';
+import { FiltersValueFieldBathroomsType } from 'components/filters/value/field/bathrooms.type';
+import { FiltersValueFieldBedroomsType } from 'components/filters/value/field/bedrooms.type';
 import { FiltersValueFieldFurnishedType } from 'components/filters/value/field/furnished.type';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
@@ -35,6 +37,8 @@ describe('filtersCountGetActiveFields()', () => {
 
   it('should return the count of the fields for pair-defined and array values', () => {
     sampleFilterValues[FiltersParametersEnum.amenities] = [{}, {}] as FiltersValueFieldAmenitiesType[];
+    sampleFilterValues[FiltersParametersEnum.bedrooms] = [{}, {}] as FiltersValueFieldBedroomsType[];
+    sampleFilterValues[FiltersParametersEnum.bathrooms] = [{}, {}] as FiltersValueFieldBathroomsType[];
     sampleFilterValues[FiltersParametersEnum.minPrice] = 1234;
     sampleFilterValues[FiltersParametersEnum.maxArea] = 1234;
     expect(
@@ -42,6 +46,6 @@ describe('filtersCountGetActiveFields()', () => {
         value: sampleFilterValues,
         data: filtersDataStub(),
       })
-    ).toBe(3);
+    ).toBe(5);
   });
 });

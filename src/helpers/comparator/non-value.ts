@@ -5,8 +5,16 @@
  *
  * @param input The type of value
  */
-export function comparatorNonValue<T>(input: T): boolean {
-  if (input === null || typeof input === 'undefined' || (typeof input === 'number' && isNaN(input))) {
+export function comparatorNonValue<T>(
+  input: T,
+  additionalFalsyValues: Array<string | boolean | number | T> = []
+): boolean {
+  if (
+    input === null ||
+    typeof input === 'undefined' ||
+    (typeof input === 'number' && isNaN(input)) ||
+    additionalFalsyValues.includes(input as T)
+  ) {
     return false;
   }
 

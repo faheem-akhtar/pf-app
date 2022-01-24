@@ -12,7 +12,7 @@ export const urlQuerySerialize = (query: UrlQueryType, encoded: boolean = false)
   for (const key in query) {
     const value = query[key];
     const valueIsArray = Array.isArray(value);
-    const values = Array.isArray(value) ? value : [value];
+    const values = valueIsArray ? value : [value];
 
     values.forEach((v) => {
       parts.push(

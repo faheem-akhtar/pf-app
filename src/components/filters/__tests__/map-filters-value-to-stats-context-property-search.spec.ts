@@ -9,6 +9,8 @@ describe('filtersMapFiltersValueToStatsContextPropertySearch', () => {
 
     expect(result).toEqual({
       amenities: [],
+      bedrooms: [],
+      bathrooms: [],
       category: 2,
       locations: [],
       rental_period: 'y',
@@ -22,12 +24,10 @@ describe('filtersMapFiltersValueToStatsContextPropertySearch', () => {
 
     expect(result).toEqual({
       amenities: ['BB', 'RR'],
+      bedrooms: ['1', '2'],
+      bathrooms: ['1', '3'],
       area_max: 700,
       area_min: 500,
-      bathroom_max: 5,
-      bathroom_min: 2,
-      bedroom_max: 4,
-      bedroom_min: 3,
       category: 1,
       keywords: 'beach,pool',
       locations: [280, 943],
