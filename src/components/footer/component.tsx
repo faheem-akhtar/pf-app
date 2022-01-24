@@ -53,17 +53,17 @@ export const FooterComponent = ({ onClickAppDownload }: { onClickAppDownload?: (
         </a>
         <a
           className={styles['link--download']}
-          href={t(configLinksDefinition.huaweiDownloadLink)}
-          onClick={onClickAppDownload}
-        >
-          <IconHuaweiStoreTemplate />
-        </a>
-        <a
-          className={styles['link--download']}
           href={t(configLinksDefinition.androidDownloadLink)}
           onClick={onClickAppDownload}
         >
           <IconGooglePlayTemplate />
+        </a>
+        <a
+          className={styles['link--download']}
+          href={t(configLinksDefinition.huaweiDownloadLink)}
+          onClick={onClickAppDownload}
+        >
+          <IconHuaweiStoreTemplate />
         </a>
       </div>
       {copyrightEnabledByDefault && <CopyrightTemplate t={t} />}
