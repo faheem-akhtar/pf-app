@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { propertySerpStickyHeaderHeight } from 'constants/property/serp/sticky-header-height';
+import { PROPERTY_SERP_STICKY_HEADER_HEIGHT } from 'components/property/serp/sticky-header-height.constant';
 import { usePrevious } from 'hooks/previous.hook';
 import { useScrollDirection } from 'hooks/scroll-direction.hook';
 import { HooksScrollDirectionEnum } from 'hooks/scroll-direction/enum';
@@ -25,7 +25,7 @@ export const AppearOnScrollComponent = ({
   const previousWrapperInView = usePrevious(wrapperInView);
 
   const [status, setStatus] = useState<AppearOnScrollStatusEnum | null>(null);
-  const scrollDirection = useScrollDirection({ thresholdPixels: propertySerpStickyHeaderHeight });
+  const scrollDirection = useScrollDirection({ thresholdPixels: PROPERTY_SERP_STICKY_HEADER_HEIGHT });
 
   // On mount
   useEffect(

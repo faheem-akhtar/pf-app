@@ -1,7 +1,7 @@
 import { arrayFromRange } from 'helpers/array/from-range';
 
 import { GalleryScrollIndicatorItemInterface } from '../item.interface';
-import { galleryScrollIndicatorClassicVisibleItemsCount } from './visible-items-count';
+import { GALLERY_SCROLL_INDICATOR_CLASSIC_VISIBLE_ITEMS_COUNT } from './visible-items-count.constant';
 
 export const galleryScrollIndicatorClassicMakeItems = (
   itemsCount: number,
@@ -12,7 +12,7 @@ export const galleryScrollIndicatorClassicMakeItems = (
     let isVisible;
     const firstActive = activeIndex === 0;
     const lastActive = activeIndex === itemsCount - 1;
-    const numberOfSmallDots = galleryScrollIndicatorClassicVisibleItemsCount - 1;
+    const numberOfSmallDots = GALLERY_SCROLL_INDICATOR_CLASSIC_VISIBLE_ITEMS_COUNT - 1;
     if (firstActive) {
       isVisible = i <= numberOfSmallDots;
     } else if (lastActive) {

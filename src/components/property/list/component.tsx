@@ -6,15 +6,15 @@ import { AuthScreenEnum } from 'components/auth/screen.enum';
 import { ModalComponent } from 'components/modal/component';
 import { PropertyCardComponent } from 'components/property-card/component';
 import { SavedPropertyAuthLoginTemplate } from 'components/saved-property/auth/login/template';
-import { savedPropertyAuthModalStorageKey } from 'components/saved-property/auth/modal/storage-key';
+import { SAVED_PROPERTY_AUTH_MODAL_STORAGE_KEY } from 'components/saved-property/auth/modal/storage-key.constant';
 import { savedPropertyTracker } from 'components/saved-property/tracker';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
-import { propertySerpNoOfPreloadImages } from 'constants/property/serp/no-of-preload-images';
 import { UserContext } from 'context/user/context';
 import { functionNoop } from 'helpers/function/noop';
 import { useServicesDfpAds } from 'services/dfp/ads.hook';
 import { WindowService } from 'services/window/service';
 
+import { PROPERTY_SERP_NO_OF_PRELOAD_IMAGES } from '../serp/no-of-preload-images.constant';
 import { propertySerpObfuscatedGetImgUrl } from '../serp/obfuscated/get/img-url';
 import { propertySerpObfuscatedGetUrl } from '../serp/obfuscated/get/url';
 import { PropertySerpObfuscatedType } from '../serp/obfuscated/type';
@@ -49,7 +49,7 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
 
   const PreloadImages = (): JSX.Element => (
     <Head>
-      {properties.slice(0, propertySerpNoOfPreloadImages).map((p, index) => (
+      {properties.slice(0, PROPERTY_SERP_NO_OF_PRELOAD_IMAGES).map((p, index) => (
         <link
           key={index}
           rel='preload'
@@ -75,9 +75,9 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
               property={item.property}
               loading={pageIsLoading}
               onSaveButtonClick={(propertyId, isSaved): void => {
-                if (isSaved && !sessionStorage.getItem(savedPropertyAuthModalStorageKey) && !user) {
+                if (isSaved && !sessionStorage.getItem(SAVED_PROPERTY_AUTH_MODAL_STORAGE_KEY) && !user) {
                   authModalOpenRef.current();
-                  sessionStorage.setItem(savedPropertyAuthModalStorageKey, { propertyId });
+                  sessionStorage.setItem(SAVED_PROPERTY_AUTH_MODAL_STORAGE_KEY, { propertyId });
                   savedPropertyTracker.onOpenUserAuthModal();
                 }
               }}

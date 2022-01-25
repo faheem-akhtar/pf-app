@@ -7,13 +7,13 @@ import { WindowService } from 'services/window/service';
 
 import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
 
-const scriptUrl = '//apis.google.com/js/api:client.js';
+const SCRIPT_URL = '//apis.google.com/js/api:client.js';
 
 export const AuthGoogleService = {
   signIn: (): Promise<ApiAuthSocialLoginModelInterface> => {
     return new Promise((resolve, reject) => {
       // Import google script
-      importScript(scriptUrl).then(() => {
+      importScript(SCRIPT_URL).then(() => {
         const gapi = WindowService.getGapi();
 
         if (!gapi) {

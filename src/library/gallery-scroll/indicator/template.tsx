@@ -2,13 +2,13 @@ import { PropertyCardTypeEnum } from 'components/property-card/type.enum';
 import { domClassMerge } from 'helpers/dom/class-merge';
 
 import { galleryScrollIndicatorClassicMakeItems } from './classic/make-items';
-import { galleryScrollIndicatorClassicVisibleItemsCount } from './classic/visible-items-count';
+import { GALLERY_SCROLL_INDICATOR_CLASSIC_VISIBLE_ITEMS_COUNT } from './classic/visible-items-count.constant';
 import styles from './gallery-scroll-indicator.module.scss';
 import { galleryScrollIndicatorGetTransform } from './get-transform';
 import { GalleryScrollIndicatorItemInterface } from './item.interface';
 import { galleryScrollIndicatorMakeItems } from './make-items';
 import { GalleryScrollIndicatorPropsInterface } from './props.interface';
-import { galleryScrollIndicatorVisibleItemsCount } from './visible-items-count';
+import { GALLERY_SCROLL_INDICATOR_VISIBLE_ITEMS_COUNT } from './visible-items-count.constant';
 
 export const GalleryScrollIndicatorTemplate = (props: GalleryScrollIndicatorPropsInterface): JSX.Element | null => {
   const { cardType = PropertyCardTypeEnum.modern } = props;
@@ -34,9 +34,9 @@ export const GalleryScrollIndicatorTemplate = (props: GalleryScrollIndicatorProp
   };
 
   const widthMultiplier =
-    props.itemsCount < galleryScrollIndicatorVisibleItemsCount
+    props.itemsCount < GALLERY_SCROLL_INDICATOR_VISIBLE_ITEMS_COUNT
       ? props.itemsCount
-      : galleryScrollIndicatorVisibleItemsCount;
+      : GALLERY_SCROLL_INDICATOR_VISIBLE_ITEMS_COUNT;
 
   return (
     <div
@@ -46,7 +46,7 @@ export const GalleryScrollIndicatorTemplate = (props: GalleryScrollIndicatorProp
           props.itemWidth *
           (props.cardType === PropertyCardTypeEnum.modern
             ? widthMultiplier
-            : galleryScrollIndicatorClassicVisibleItemsCount),
+            : GALLERY_SCROLL_INDICATOR_CLASSIC_VISIBLE_ITEMS_COUNT),
       }}
     >
       <div className={styles.items} style={containerStyle}>

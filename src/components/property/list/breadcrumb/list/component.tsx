@@ -10,17 +10,17 @@ import { ButtonTemplate } from 'library/button/template';
 import { PropertyListBreadcrumbComponent } from '../component';
 import styles from '../property-list-breadcrumb.module.scss';
 import { PropertyListBreadcrumbListComponentPropsInterface } from './component-props.interface';
-import { propertyListBreadcrumbListItemsVisibleCount } from './items-visible-count';
+import { PROPERTY_LIST_BREADCRUMB_LIST_ITEMS_VISIBLE_COUNT } from './items-visible-count.constant';
 
 export const PropertyListBreadcrumbListComponent: FunctionComponent<PropertyListBreadcrumbListComponentPropsInterface> =
   ({ breadcrumbs, onClickShowMore, expanded, t }) => (
     <section role='section' className={styles.breadcrumb}>
       <ul role='list' className={styles.breadcrumb__list}>
-        {breadcrumbs.slice(0, propertyListBreadcrumbListItemsVisibleCount).map((breadcrumb) => (
+        {breadcrumbs.slice(0, PROPERTY_LIST_BREADCRUMB_LIST_ITEMS_VISIBLE_COUNT).map((breadcrumb) => (
           <PropertyListBreadcrumbComponent key={breadcrumb.name} {...breadcrumb} />
         ))}
 
-        {breadcrumbs.length > propertyListBreadcrumbListItemsVisibleCount && (
+        {breadcrumbs.length > PROPERTY_LIST_BREADCRUMB_LIST_ITEMS_VISIBLE_COUNT && (
           <li role='listitem'>
             <ButtonTemplate
               className={styles.breadcrumb__button}
@@ -47,7 +47,7 @@ export const PropertyListBreadcrumbListComponent: FunctionComponent<PropertyList
           [styles['breadcrumb__list--expanded']]: expanded,
         })}
       >
-        {breadcrumbs.slice(propertyListBreadcrumbListItemsVisibleCount, breadcrumbs.length).map((breadcrumb) => (
+        {breadcrumbs.slice(PROPERTY_LIST_BREADCRUMB_LIST_ITEMS_VISIBLE_COUNT, breadcrumbs.length).map((breadcrumb) => (
           <PropertyListBreadcrumbComponent
             key={breadcrumb.name}
             class={styles['breadcrumb__item--more']}

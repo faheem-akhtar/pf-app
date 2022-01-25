@@ -1,0 +1,1 @@
+export const FEEDBACK_ANSWERS_NEED_TO_BE_REPORTED = ['no'];

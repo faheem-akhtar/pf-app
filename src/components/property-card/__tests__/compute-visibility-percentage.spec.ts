@@ -1,4 +1,4 @@
-import { propertySerpStickyHeaderHeight } from 'constants/property/serp/sticky-header-height';
+import { PROPERTY_SERP_STICKY_HEADER_HEIGHT } from 'components/property/serp/sticky-header-height.constant';
 
 import { propertyCardComputeVisibilityPercentage } from '../compute-visibility-percentage';
 
@@ -6,7 +6,7 @@ describe('propertyCardComputeVisibilityPercentage', () => {
   it('should return 50% if half of the card is above the screen (account for sticky header height)', () => {
     const result = propertyCardComputeVisibilityPercentage({
       getBoundingClientRect: () => ({
-        top: -100 + propertySerpStickyHeaderHeight,
+        top: -100 + PROPERTY_SERP_STICKY_HEADER_HEIGHT,
         height: 200,
         bottom: 100,
       }),

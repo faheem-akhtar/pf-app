@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 import { backendApiGetLocaleFromReq } from 'backend/api/get-locale-from-req';
 import { backendApiPropertyImagesFetcher } from 'backend/api/property/images/fetcher';
-import { imageAllowedTypes } from 'components/image/allowed-types';
+import { IMAGE_ALLOWED_TYPES } from 'components/image/allowed-types.constant';
 import { ImageFormatType } from 'components/image/format-type';
 import { configCacheStrategy } from 'config/cache/strategy';
 
@@ -11,7 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
   const propertyId = req.query.propertyId as string;
   const imageType = req.query.imageType as ImageFormatType;
 
-  if (!imageAllowedTypes.includes(imageType)) {
+  if (!IMAGE_ALLOWED_TYPES.includes(imageType)) {
     res.status(500);
     res.send({ error: 'invalid imageType' });
     return;

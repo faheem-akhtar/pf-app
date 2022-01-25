@@ -1,7 +1,7 @@
 import { PropertyReportReasonEnum } from 'enums/property/report/reason.enum';
 import { SelectFieldOptionInterface } from 'library/select-field/option.interface';
 
-export const propertyReportFormReasons: SelectFieldOptionInterface<PropertyReportReasonEnum>[] = [
+export const REPORT_FORM_REASONS: SelectFieldOptionInterface<PropertyReportReasonEnum>[] = [
   {
     label: 'report/property-not-available',
     value: PropertyReportReasonEnum.notAvailable,

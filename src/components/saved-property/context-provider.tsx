@@ -9,12 +9,12 @@ import { dateToIso } from 'helpers/date/to-iso';
 import { SavedPropertyContext } from './context';
 import { SavedPropertyContextInterface } from './context.interface';
 import { SavedPropertyInterface } from './interface';
-import { savedPropertyStorageKey } from './storage-key';
+import { SAVED_PROPERTY_STORAGE_KEY } from './storage-key.constant';
 
 export const SavedPropertyContextProvider: FunctionComponent = ({ children }) => {
   const savedPropertiesResponse = useApiSavedProperties();
   const [savedProperties, setSavedProperty, removeSavedProperty] = useUserPropertyState<SavedPropertyInterface>(
-    savedPropertyStorageKey,
+    SAVED_PROPERTY_STORAGE_KEY,
     savedPropertiesResponse,
     ({ propertyId, saveDate }) => ({ propertyId, saveDate } as SavedPropertyInterface),
     apiSavedPropertiesCreateFetcher,

@@ -7,13 +7,13 @@ import { WindowService } from 'services/window/service';
 
 import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
 
-const scriptUrl = 'https://accounts.google.com/gsi/client';
+const SCRIPT_URL = 'https://accounts.google.com/gsi/client';
 
 export const AuthGoogleOneTapService = {
   signIn: (): Promise<ApiAuthSocialLoginModelInterface> => {
     return new Promise((resolve, reject) => {
       // Import google script
-      importScript(scriptUrl).then(() => {
+      importScript(SCRIPT_URL).then(() => {
         const google = WindowService.getGoogle();
         if (!google) {
           return;

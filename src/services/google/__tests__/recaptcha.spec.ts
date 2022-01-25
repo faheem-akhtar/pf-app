@@ -1,4 +1,4 @@
-import { reCaptchaSelector } from 'components/re-captcha/selector';
+import { RE_CAPTCHA_SELECTOR } from 'components/re-captcha/selector.constant';
 import { functionNoop } from 'helpers/function/noop';
 import * as importScriptModule from 'helpers/import/script';
 import { WindowService } from 'services/window/service';
@@ -153,7 +153,7 @@ describe('GoogleRecaptcha', () => {
       googleRecaptcha['onCaptchaRender']();
 
       expect(renderSpy).toHaveBeenCalledTimes(1);
-      expect(renderSpy).toHaveBeenCalledWith(reCaptchaSelector, {
+      expect(renderSpy).toHaveBeenCalledWith(RE_CAPTCHA_SELECTOR, {
         sitekey: '',
         callback: expect.any(Function),
         'expired-callback': expect.any(Function),

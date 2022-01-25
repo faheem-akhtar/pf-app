@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react';
 
 import { FiltersContext } from 'components/filters/context';
+import { PROPERTY_SERP_ITEMS_PER_PAGE } from 'components/property/serp/items-per-page.constant';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
 import { PropertyTrackerFactory } from 'components/property/tracker.factory';
-import { propertySerpItemsPerPage } from 'constants/property/serp/items-per-page';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { PropertySearchResultsCountForCurrentQueryContext } from 'views/property-search/results-count-for-current-query/context';
 
@@ -42,7 +42,7 @@ export const usePropertyCardTrackVisibilityOnScreen = (
             propertyTracker.impression(property, {
               pagination: {
                 pageCurrent,
-                itemPerPage: propertySerpItemsPerPage, // this property is not used in pf-frontend-common, but interface requires some value even it is not used
+                itemPerPage: PROPERTY_SERP_ITEMS_PER_PAGE, // this property is not used in pf-frontend-common, but interface requires some value even it is not used
                 itemTotal,
               },
             });

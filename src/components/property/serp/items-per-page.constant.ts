@@ -1,0 +1,1 @@
+export const PROPERTY_SERP_ITEMS_PER_PAGE = 25;

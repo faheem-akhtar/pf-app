@@ -1,4 +1,4 @@
-import { propertySerpStickyHeaderHeight } from 'constants/property/serp/sticky-header-height';
+import { PROPERTY_SERP_STICKY_HEADER_HEIGHT } from 'components/property/serp/sticky-header-height.constant';
 
 export const propertyCardComputeVisibilityPercentage = (container: HTMLDivElement): number => {
   const cardRect = container.getBoundingClientRect();
@@ -10,7 +10,7 @@ export const propertyCardComputeVisibilityPercentage = (container: HTMLDivElemen
   if (cardAboveTheScreen || cardBelowTheScreen) {
     heightPxOnTheScreen = 0;
   } else if (cardRect.top < 0) {
-    heightPxOnTheScreen = cardRect.height + cardRect.top - propertySerpStickyHeaderHeight;
+    heightPxOnTheScreen = cardRect.height + cardRect.top - PROPERTY_SERP_STICKY_HEADER_HEIGHT;
   } else if (cardRect.bottom > window.innerHeight) {
     heightPxOnTheScreen = window.innerHeight - cardRect.top;
   }

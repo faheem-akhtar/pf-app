@@ -6,17 +6,16 @@ import { TransitionTypeEnum } from 'library/transition/type.enum';
 import { TransitionComponent } from '../transition/component';
 import { SnackbarContentComponent } from './content/component';
 import { SnackbarContentPropsInterface } from './content/props.interface';
+import { SNACKBAR_DEFAULT_HIDE_DURATION } from './default-hide-duration.constant';
 import { SnackbarPropsInterface } from './props.interface';
 import styles from './snackbar.module.scss';
-
-const DEFAULT_AUTO_HIDE_DURATION = 5;
 
 export const SnackbarComponent: FunctionComponent<SnackbarPropsInterface> = ({
   id,
   visible,
   message,
   action,
-  autoHideDuration = DEFAULT_AUTO_HIDE_DURATION,
+  autoHideDuration = SNACKBAR_DEFAULT_HIDE_DURATION,
   onClose = functionNoop,
   onOpen = functionNoop,
 }) => {

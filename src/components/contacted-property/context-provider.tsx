@@ -8,12 +8,12 @@ import { dateToIso } from 'helpers/date/to-iso';
 import { ContactedPropertyContext } from './context';
 import { ContactedPropertyContextInterface } from './context.interface';
 import { ContactedPropertyInterface } from './interface';
-import { contactedPropertyStorageKey } from './storage-key';
+import { CONTACTED_PROPERTY_STORAGE_KEY } from './storage-key.constant';
 
 export const ContactedPropertyContextProvider: FunctionComponent = ({ children }) => {
   const contactedPropertiesResponse = useApiContactedProperties();
   const [contactedProperties, setContactedProperty] = useUserPropertyState<ContactedPropertyInterface>(
-    contactedPropertyStorageKey,
+    CONTACTED_PROPERTY_STORAGE_KEY,
     contactedPropertiesResponse,
     ({ propertyId, contactType, contactDate }) =>
       ({ propertyId, contactType, contactDate } as ContactedPropertyInterface),

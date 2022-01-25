@@ -1,0 +1,1 @@
+export const PROPERTY_SERP_NO_OF_PRELOAD_IMAGES = 3;

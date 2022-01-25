@@ -9,6 +9,7 @@ import { TFunctionType } from 'types/t-function/type';
 import { PropertyCardBannersBannerInterface } from './banner.interface';
 import { PropertyCardBannersBannerClassEnum } from './banner-class.enum';
 import { PropertyCardBannersBannerTextEnum } from './banner-text.enum';
+import { PROPERTY_CARD_BANNERS_MAX_AVAILABLE_COUNT } from './max-available-count.constant';
 
 export function propertyCardBannersGetBanners(
   property: PropertySerpObfuscatedType,
@@ -46,5 +47,5 @@ export function propertyCardBannersGetBanners(
   }
 
   // Only 3 banners can be shown at any given time
-  return list.slice(0, 3);
+  return list.slice(0, PROPERTY_CARD_BANNERS_MAX_AVAILABLE_COUNT);
 }

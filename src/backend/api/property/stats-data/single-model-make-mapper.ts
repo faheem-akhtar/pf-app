@@ -3,8 +3,8 @@ import { PropertyCompletionStatusType } from '@propertyfinder/pf-frontend-common
 
 import { BackendModelPropertyCategoryIdentifierEnum } from 'backend/model/property/category-identifier.enum';
 import { BackendModelPropertyInterface } from 'backend/model/property/interface';
+import { PROPERTY_SERP_ITEMS_PER_PAGE } from 'components/property/serp/items-per-page.constant';
 import { configCommon } from 'config/common';
-import { propertySerpItemsPerPage } from 'constants/property/serp/items-per-page';
 
 const getListingStatusDisplayed = (property: BackendModelPropertyInterface): string => {
   return property.areaSpecialistProperty ? 'Area Specialist Property' : property.listing_level_label;
@@ -75,7 +75,7 @@ export const backendApiPropertyStatsDataSingleModelMakeMapper =
     subtitle: propertyModel.meta.subtitle,
     mortgageRent: false,
     moveSouq: false,
-    position: propertySerpItemsPerPage * (pageNumber - 1) + index + 1,
+    position: PROPERTY_SERP_ITEMS_PER_PAGE * (pageNumber - 1) + index + 1,
     positionPage: index + 1,
     isSmartAd: propertyModel.smart_ad ? 1 : 0,
     isCtsProperty: propertyModel.cts ? 1 : 0,

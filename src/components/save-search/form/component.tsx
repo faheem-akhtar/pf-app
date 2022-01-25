@@ -12,7 +12,7 @@ import { InputBaseComponent } from 'library/input/base/component';
 import { SelectFieldTemplate } from 'library/select-field/template';
 
 import { SaveSearchContext } from '../context';
-import { saveSearchFrequencies } from '../frequencies';
+import { SAVE_SEARCH_FREQUENCIES } from '../frequencies.constant';
 import styles from './save-search-form-component.module.scss';
 
 const MAX_CHARACTERS_LIMIT = 256;
@@ -33,7 +33,7 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
     formatted_filters: null,
     frequency: SaveSearchFrequencyEnum.DAILY,
   };
-  const selectedFrequency = saveSearchFrequencies.find((item) => item.value === frequency.value);
+  const selectedFrequency = SAVE_SEARCH_FREQUENCIES.find((item) => item.value === frequency.value);
 
   return (
     <>
@@ -70,7 +70,7 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
             id='frequency'
             name='frequency'
             value={selectedFrequency?.value}
-            options={saveSearchFrequencies.map((item) => ({ ...item, label: t(item.label) }))}
+            options={SAVE_SEARCH_FREQUENCIES.map((item) => ({ ...item, label: t(item.label) }))}
             onChange={(value): void => {
               setGeneralError('');
               setFrequency(value as SaveSearchFrequencyEnum);

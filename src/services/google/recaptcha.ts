@@ -1,4 +1,4 @@
-import { reCaptchaSelector } from 'components/re-captcha/selector';
+import { RE_CAPTCHA_SELECTOR } from 'components/re-captcha/selector.constant';
 import { functionNoop } from 'helpers/function/noop';
 import { importScript } from 'helpers/import/script';
 import { LocaleService } from 'services/locale/service';
@@ -149,7 +149,7 @@ export class GoogleRecaptcha {
     WindowService.document?.querySelector('body')?.appendChild(captchaPlaceholder as Node);
 
     // Render inside the placeholder
-    this.instanceId = WindowService.getGrecaptcha().render(reCaptchaSelector, {
+    this.instanceId = WindowService.getGrecaptcha().render(RE_CAPTCHA_SELECTOR, {
       sitekey: this.recaptchaKey,
       callback: (c: string) => {
         // Store captcha token

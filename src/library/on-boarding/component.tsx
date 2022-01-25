@@ -8,11 +8,11 @@ import { WindowService } from 'services/window/service';
 
 import { OnBoardingComponentPropsInterface } from './component-props.interface';
 import { OnBoardingPlacementEnum } from './placement.enum';
-import { onBoardingStorageKey } from './storage-key';
+import { ON_BOARDING_STORAGE_KEY } from './storage-key.constant';
 import { OnBoardingTemplate } from './template';
 import { OnBoardingTemplatePropsInterface } from './template-props.interface';
 
-const makeOnBoardingLocalStorageKey = (locale: string): string => `${locale}_${onBoardingStorageKey}`;
+const makeOnBoardingLocalStorageKey = (locale: string): string => `${locale}_${ON_BOARDING_STORAGE_KEY}`;
 
 export const OnBoardingComponent: FunctionComponent<OnBoardingComponentPropsInterface> = ({
   placement = OnBoardingPlacementEnum.bottom,

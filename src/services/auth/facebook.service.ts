@@ -10,29 +10,29 @@ import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
 /**
  * Script url
  */
-const scriptUrl = 'https://connect.facebook.net/en_US/sdk.js';
+const SCRIPT_URL = 'https://connect.facebook.net/en_US/sdk.js';
 
 /**
  * API version
  */
-const apiVersion = 'v7.0';
+const API_VERSION = 'v7.0';
 
 /**
  * User scope
  */
-const scope = 'public_profile,email';
+const SCOPE = 'public_profile,email';
 
 export const AuthFacebookService = {
   signIn: (): Promise<ApiAuthSocialLoginModelInterface> => {
     return new Promise((resolve, reject) => {
       // Import FB script
-      importScript(scriptUrl).then(() => {
+      importScript(SCRIPT_URL).then(() => {
         const facebook = WindowService.getFB();
 
         // Init provider
         facebook?.init({
           appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID,
-          version: apiVersion,
+          version: API_VERSION,
         });
 
         // Start login
@@ -52,7 +52,7 @@ export const AuthFacebookService = {
               reject();
             }
           },
-          { scope }
+          { scope: SCOPE }
         );
       });
     });

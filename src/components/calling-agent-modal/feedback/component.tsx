@@ -12,11 +12,10 @@ import { ButtonSizeEnum } from 'library/button/size.enum';
 import { ButtonTemplate } from 'library/button/template';
 import { ReportAttributesInterface } from 'types/report/attributes-interface';
 
+import { FEEDBACK_ANSWER_KEYS_IN_ORDER } from './answer-keys-in-order.constant';
+import { FEEDBACK_ANSWERS_NEED_TO_BE_REPORTED } from './answers-need-to-be-reported.constant';
 import styles from './calling-agent-modal-feedback.module.scss';
 import { CallingAgentModalFeedbackComponentPropsInterface } from './component-props.interface';
-
-const feedbackAnswerKeysInOrder = ['yes', 'no', 'agent-modal/agent-not-answered', 'agent-modal/not-called'];
-const answersNeedToBeReported = ['no'];
 
 const reportAttributes: Omit<ReportAttributesInterface, 'reporter_type'> = {
   email: 'report@report.com',
@@ -31,7 +30,7 @@ export const CallingAgentModalFeedbackComponent: React.FunctionComponent<Calling
     const { t } = useTranslation();
 
     const onClickAnswer = (option: string) => (): void => {
-      if (answersNeedToBeReported.includes(option)) {
+      if (FEEDBACK_ANSWERS_NEED_TO_BE_REPORTED.includes(option)) {
         apiReportFetcher(propertyId, {
           ...reportAttributes,
           email: user?.email || reportAttributes.email,
@@ -44,7 +43,7 @@ export const CallingAgentModalFeedbackComponent: React.FunctionComponent<Calling
     return (
       <React.Fragment>
         <div className={styles.feedback}>
-          {feedbackAnswerKeysInOrder.map((option, index) => (
+          {FEEDBACK_ANSWER_KEYS_IN_ORDER.map((option, index) => (
             <ButtonTemplate
               key={`feedback-${index}`}
               className={styles.option}

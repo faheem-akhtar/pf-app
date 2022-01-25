@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { appRootElementId } from 'src/constants/app/root-element-id';
+import { APP_ROOT_ELEMENT_ID } from 'src/constants/app/root-element-id.constant';
 
-import { appModalRootElementId } from 'constants/app/modal-root-element-id';
+import { APP_MODAL_ROOT_ELEMENT_ID } from 'constants/app/modal-root-element-id.constant';
 
 import styles from './modal.module.scss';
 
@@ -10,7 +10,7 @@ export const ModalPortalComponent: React.FunctionComponent = (props) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {
-    const rootElement = document.getElementById(appRootElementId) as HTMLElement;
+    const rootElement = document.getElementById(APP_ROOT_ELEMENT_ID) as HTMLElement;
     const { scrollTop } = document.documentElement;
 
     setIsBrowser(true);
@@ -22,7 +22,7 @@ export const ModalPortalComponent: React.FunctionComponent = (props) => {
 
     return (): void => {
       // Prevent body scrolling when nested modals are opened
-      if (!document.getElementById(appModalRootElementId)?.children.length) {
+      if (!document.getElementById(APP_MODAL_ROOT_ELEMENT_ID)?.children.length) {
         rootElement.classList.remove(styles.hide);
         document.documentElement.scroll({ top: scrollTop });
       }
@@ -34,7 +34,7 @@ export const ModalPortalComponent: React.FunctionComponent = (props) => {
   }, []);
 
   if (isBrowser) {
-    return ReactDOM.createPortal(props.children, document.getElementById(appModalRootElementId) as Element);
+    return ReactDOM.createPortal(props.children, document.getElementById(APP_MODAL_ROOT_ELEMENT_ID) as Element);
   }
   return null;
 };

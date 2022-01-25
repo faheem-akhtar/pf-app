@@ -10,13 +10,13 @@ import { backendFiltersQueryFromParam } from 'backend/filters/query/from-param';
 import { backendFiltersQueryToValue } from 'backend/filters/query/to-value';
 import { backendTranslationGetDefinitions } from 'backend/translation/get-definitions';
 import { backendTranslationQueryToPath } from 'backend/translation/query-to-path';
+import { AB_TEST_COOKIE_STORAGE_KEY } from 'components/ab-test/cookie-storage-key.constant';
 import { FiltersDataInterface } from 'components/filters/data/interface';
+import { PROPERTY_SERP_NO_OF_PRELOAD_IMAGES } from 'components/property/serp/no-of-preload-images.constant';
 import { propertySerpObfuscatedGetImgUrl } from 'components/property/serp/obfuscated/get/img-url';
 import { SeoDataInterface } from 'components/seo/data.interface';
 import { configCacheStrategy } from 'config/cache/strategy';
 import { configCommon } from 'config/common';
-import { cookieAbTestKey } from 'constants/cookie/ab-test-key';
-import { propertySerpNoOfPreloadImages } from 'constants/property/serp/no-of-preload-images';
 import { FiltersQueryParametersEnum } from 'enums/filters/query-parameters.enum';
 import { PageTypeEnum } from 'enums/page-type/enum';
 import { headersDevPatchSetCookieDomain } from 'helpers/headers/dev-patch-set-cookie-domain';
@@ -61,7 +61,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     backendApiPropertySearchFetcher(
       locale,
       filtersValueFromQuery,
-      context.req.cookies[cookieAbTestKey],
+      context.req.cookies[AB_TEST_COOKIE_STORAGE_KEY],
       context.req.headers['user-agent'] as string
     ),
 
@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       ? backendApiPropertySearchAdFetcher(
           locale,
           filtersValueFromQuery,
-          context.req.cookies[cookieAbTestKey],
+          context.req.cookies[AB_TEST_COOKIE_STORAGE_KEY],
           context.req.headers['user-agent'] as string
         )
       : null,
@@ -111,7 +111,7 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
       localeIsDefault(locale as string) ? configCommon.language.alternative : configCommon.language.current
     ) || '';
 
-  searchResult.data.properties.slice(0, propertySerpNoOfPreloadImages).map((property) => {
+  searchResult.data.properties.slice(0, PROPERTY_SERP_NO_OF_PRELOAD_IMAGES).map((property) => {
     const imgUrl = propertySerpObfuscatedGetImgUrl(property);
     if (imgUrl) {
       linkHeader.push(`<${imgUrl.replace(/\.jpg\b/, '.webp')}>; rel="preload"; as="image"`);

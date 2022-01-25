@@ -5,10 +5,9 @@ import { domToChildArray } from 'helpers/dom/to-child-array';
 import { functionNoop } from 'helpers/function/noop';
 
 import styles from '../snackbar.module.scss';
+import { SNACKBAR_CONTENT_MAX_NUMBER_OF_ACTIONS } from './max-number-of-actions.constant';
+import { SNACKBAR_CONTENT_MAX_NUMBER_OF_ACTIONS_INLINE } from './max-number-of-actions-inline.constant';
 import { SnackbarContentPropsInterface } from './props.interface';
-
-const MAX_NUMBER_OF_ACTIONS = 2;
-const MAX_NUMBER_OF_ACTIONS_INLINE = 1;
 
 export const SnackbarContentComponent: FunctionComponent<SnackbarContentPropsInterface> = ({
   message,
@@ -22,7 +21,7 @@ export const SnackbarContentComponent: FunctionComponent<SnackbarContentPropsInt
   // Limit the number and type of actions
   const actions = domToChildArray<HTMLButtonElement>(action, (item) =>
     ['button', 'a'].includes(item.type as string)
-  ).slice(0, MAX_NUMBER_OF_ACTIONS);
+  ).slice(0, SNACKBAR_CONTENT_MAX_NUMBER_OF_ACTIONS);
 
   // is event target is on the snackbar
   const isComponentTargeted = (event: MouseEvent): boolean | null => {
@@ -59,7 +58,7 @@ export const SnackbarContentComponent: FunctionComponent<SnackbarContentPropsInt
       className={domClassMerge(
         styles.snackbar,
         {
-          [styles['snackbar--wrap']]: actions.length > MAX_NUMBER_OF_ACTIONS_INLINE,
+          [styles['snackbar--wrap']]: actions.length > SNACKBAR_CONTENT_MAX_NUMBER_OF_ACTIONS_INLINE,
         },
         className
       )}

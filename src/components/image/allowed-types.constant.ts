@@ -1,6 +1,6 @@
 import { ImageFormatType } from './format-type';
 
-export const imageAllowedTypes: ImageFormatType[] = [
+export const IMAGE_ALLOWED_TYPES: ImageFormatType[] = [
   'default',
   'homepage',
   'cts',

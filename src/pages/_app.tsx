@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 // eslint-disable-next-line @propertyfinder/rules/forbid-import
 import { appWithTranslation } from 'next-i18next';
 import { useEffect } from 'react';
-import { appRootElementId } from 'src/constants/app/root-element-id';
+import { APP_ROOT_ELEMENT_ID } from 'src/constants/app/root-element-id.constant';
 
 import { UserContextProvider } from 'context/user/context-provider';
 import { AuthService } from 'services/auth/service';
@@ -47,7 +47,7 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 
   return (
     <UserContextProvider>
-      <div id={appRootElementId}>
+      <div id={APP_ROOT_ELEMENT_ID}>
         <Component {...pageProps} />
       </div>
     </UserContextProvider>

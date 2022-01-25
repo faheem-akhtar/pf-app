@@ -4,9 +4,9 @@ import { useRef } from 'react';
 import { apiPropertyStatsDataFetcher } from 'api/property-stats-data/fetcher';
 import { filtersMapCategoryIdToStats } from 'components/filters/map-category-id-to-stats';
 import { filtersMapFiltersValueToStatsContextPropertySearch } from 'components/filters/map-filters-value-to-stats-context-property-search';
+import { PROPERTY_SERP_ITEMS_PER_PAGE } from 'components/property/serp/items-per-page.constant';
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { PropertyTrackerFactory } from 'components/property/tracker.factory';
-import { propertySerpItemsPerPage } from 'constants/property/serp/items-per-page';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { helpersIsClient } from 'helpers/is-client';
 import { StatsContexterService } from 'services/stats/contexter.service';
@@ -54,7 +54,7 @@ export const usePropertySearchTrackPageView = (
   const localContext = {
     pagination: {
       pageCurrent: filtersValueFromQuery[FiltersParametersEnum.pageNumber],
-      itemPerPage: propertySerpItemsPerPage, // this property is not used in pf-frontend-common, but interface requires some value even it is not used
+      itemPerPage: PROPERTY_SERP_ITEMS_PER_PAGE, // this property is not used in pf-frontend-common, but interface requires some value even it is not used
       itemTotal: searchResult.total,
     },
   };

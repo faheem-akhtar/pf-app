@@ -21,12 +21,11 @@ import { ButtonTemplate } from 'library/button/template';
 import { InputBaseComponent } from 'library/input/base/component';
 import { SelectFieldTemplate } from 'library/select-field/template';
 
-import { propertyReportFormAdditionalUserTypes } from './additional-user-types';
+import { FORM_ACCEPTABLE_FILE_TYPES } from './acceptable-file-types.constant';
+import { REPORT_FORM_ADDITIONAL_USER_TYPES } from './additional-user-types.constant';
 import { PropertyReportFormComponentPropsInterface } from './component-props.interface';
 import styles from './property-report-form.module.scss';
-import { propertyReportFormReasons } from './reasons';
-
-const ACCEPTABLE_FILE_TYPES = ['image/png', 'image/jpg', 'image/jpeg', 'image/bmp', 'application/pdf'];
+import { REPORT_FORM_REASONS } from './reasons.constant';
 
 export const PropertyReportFormComponent = ({
   t,
@@ -50,9 +49,9 @@ export const PropertyReportFormComponent = ({
       validators: [
         formValidatorFileMime(
           t('report-modal/file-type-error', {
-            formats: ACCEPTABLE_FILE_TYPES.map((format) => format.replace(/.*?\//, '')).join(', '),
+            formats: FORM_ACCEPTABLE_FILE_TYPES.map((format) => format.replace(/.*?\//, '')).join(', '),
           }),
-          ACCEPTABLE_FILE_TYPES
+          FORM_ACCEPTABLE_FILE_TYPES
         ),
         formValidatorFileSize(t('validation/max-file-size-error'), configPropertyReportAttachmentSizeLimit),
       ],
@@ -104,7 +103,7 @@ export const PropertyReportFormComponent = ({
             label: t('report-modal/select-reason'),
             value: '',
           },
-          ...propertyReportFormReasons.map(({ label, value }) => ({
+          ...REPORT_FORM_REASONS.map(({ label, value }) => ({
             value,
             label: t(label),
           })),
@@ -126,7 +125,7 @@ export const PropertyReportFormComponent = ({
             label: t(`user-${categoryIdIsSale(categoryId) ? 'buyer' : 'renter'}`),
             value: userReportCategory(categoryId),
           },
-          ...propertyReportFormAdditionalUserTypes.map(({ label, value }) => ({
+          ...REPORT_FORM_ADDITIONAL_USER_TYPES.map(({ label, value }) => ({
             value,
             label: t(label),
           })),

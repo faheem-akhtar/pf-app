@@ -52,13 +52,13 @@ module.exports = {
             folderName: 'stubs',
           },
         ],
-        // formatWithSeparatorForExtension: [
-        //   {
-        //     extension: 'constant',
-        //     case: 'uppercase', // uppercase || lowercase
-        //     separator: '_',
-        //   },
-        // ],
+        formatWithSeparatorForExtension: [
+          {
+            extension: 'constant',
+            case: 'uppercase', // uppercase || lowercase
+            separator: '_',
+          },
+        ],
       },
     ],
     '@propertyfinder/rules/must-prefix': [
@@ -91,20 +91,6 @@ module.exports = {
         sourceType: 'module',
         project: ['./tsconfig.json'],
         tsconfigRootDir: __dirname,
-      },
-      rules: {
-        '@typescript-eslint/naming-convention': [
-          'error',
-          {
-            selector: ['variable', 'function'],
-            modifiers: ['exported'],
-            format: ['PascalCase', 'camelCase'],
-            filter: {
-              regex: '^(use|backend|api|config|feature)',
-              match: false,
-            },
-          },
-        ],
       },
     },
   ],
