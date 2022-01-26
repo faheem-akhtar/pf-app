@@ -108,11 +108,7 @@ describe('pagesApiPwaContactedProperty', () => {
     expect((consoleMock.error as jest.Mock).mock.calls).toMatchInlineSnapshot(`
       Array [
         Array [
-          "contacted property api failed",
-          Object {
-            "body": "this is an error",
-            "status": 500,
-          },
+          "API_FAILED:CONTACTED_PROPERTY:this is an error",
         ],
       ]
     `);

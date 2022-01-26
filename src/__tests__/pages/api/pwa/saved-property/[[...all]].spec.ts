@@ -107,11 +107,7 @@ describe('pagesApiPwaSavedPropertyAll', () => {
     expect((consoleMock.error as jest.Mock).mock.calls).toMatchInlineSnapshot(`
       Array [
         Array [
-          "saved property api failed",
-          Object {
-            "body": "this is an error",
-            "status": 500,
-          },
+          "API_FAILED:SAVED_PROPERTY:this is an error",
         ],
       ]
     `);

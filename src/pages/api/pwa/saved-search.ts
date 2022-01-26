@@ -24,7 +24,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     } else {
       res.status(response.error.status);
       // eslint-disable-next-line no-console
-      console.error('save search api failed', response.error);
+      console.error(`API_FAILED:SAVED_SEARCH:${response.error?.body || response.error}`);
       res.end();
     }
   });

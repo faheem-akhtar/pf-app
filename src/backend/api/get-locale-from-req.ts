@@ -8,7 +8,7 @@ export const backendApiGetLocaleFromReq = (req: NextApiRequest): string => {
 
   if (!locale) {
     // eslint-disable-next-line no-console
-    console.error(`Locale is missing in request headers ${req.url}`);
+    console.warn(`Locale is missing in request headers ${req.url}`);
   }
 
   return (locale || 'en') as string;

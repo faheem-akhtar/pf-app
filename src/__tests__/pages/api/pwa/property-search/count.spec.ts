@@ -31,24 +31,10 @@ describe('pages/api/property-search/count', () => {
     expect((consoleMock.error as jest.Mock).mock.calls).toMatchInlineSnapshot(`
       Array [
         Array [
-          "window.fetch error: http://website-pf-local/en/api/search/count?filter%5Bcategory_id%5D=2&filter%5Bfurnished%5D=0&filter%5Bprice_type%5D=y&sort=mr&page%5Bnumber%5D=1. response.text",
+          "FETCH_ERROR:500:GET:http://website-pf-local/en/api/search/count?filter%5Bcategory_id%5D=2&filter%5Bfurnished%5D=0&filter%5Bprice_type%5D=y&sort=mr&page%5Bnumber%5D=1:Internal Server Error",
         ],
         Array [
-          "property search count failed",
-          Object {
-            "body": "response.text",
-            "payload": Object {
-              "headers": Object {
-                "Host": "www.propertyfinder.ae",
-                "locale": "en",
-                "x-akamai-device-characteristics": "is_mobile=true&is_tablet=false",
-                "x-forwarded-proto": "https",
-              },
-              "method": "GET",
-            },
-            "status": 500,
-            "url": "http://website-pf-local/en/api/search/count?filter%5Bcategory_id%5D=2&filter%5Bfurnished%5D=0&filter%5Bprice_type%5D=y&sort=mr&page%5Bnumber%5D=1",
-          },
+          "API_FAILED:PROPERTY_SEARCH_COUNT:Internal Server Error",
         ],
       ]
     `);

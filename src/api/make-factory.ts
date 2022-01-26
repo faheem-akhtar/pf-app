@@ -105,22 +105,23 @@ export const ApiMakeFactory =
         if (!response.ok) {
           if (makeFactoryProps.requireAuth && response.status === 401 && shouldRetryOn401) {
             // eslint-disable-next-line no-console
-            console.warn(`Got 401, retrying: ${finalUrl}`);
+            console.warn(`RETRYING:${response.status}:${payload.method}:${finalUrl}`);
             return makeFactoryProps.jwtTokenService.refreshToken().then((): Promise<ApiFetcherResultType<Result>> => {
               return ApiMakeFactory(makeFactoryProps)(factoryProps)(props, false);
             });
           }
 
           return response.text().then((body) => {
+            const errorMessage = { 400: '404 Not Found', 500: 'Internal Server Error' }[response.status] || body || '';
             // eslint-disable-next-line no-console
-            console.error(`window.fetch error: ${finalUrl}. ${body || ''}`);
+            console.error(`FETCH_ERROR:${response.status}:${payload.method}:${finalUrl}:${errorMessage}`);
             return {
               ok: false,
               error: {
                 payload,
                 url: finalUrl,
                 status: response.status,
-                body,
+                body: errorMessage,
               },
               headers,
             };
@@ -159,7 +160,7 @@ export const ApiMakeFactory =
               try {
                 data = makeFactoryProps.dataMapper(data);
               } catch (e) {
-                const error: string = `failed to execute makeFactoryProps.dataMapper for: ${finalUrl}. ${
+                const error: string = `[FAILED_TO_EXECUTE]:makeFactoryProps.dataMapper:${finalUrl}:${
                   (e as Error).message
                 }`;
                 // eslint-disable-next-line no-console
@@ -181,9 +182,7 @@ export const ApiMakeFactory =
               try {
                 data = factoryProps.dataMapper(data, json);
               } catch (e) {
-                const error: string = `failed to execute factoryProps.dataMapper for: ${finalUrl}. ${
-                  (e as Error).message
-                }`;
+                const error: string = `[FAILED_TO_EXECUTE]:factoryProps.dataMapper:${finalUrl}:${(e as Error).message}`;
                 // eslint-disable-next-line no-console
                 console.error(error);
 
@@ -203,7 +202,7 @@ export const ApiMakeFactory =
               try {
                 data = props.dataMapper(data, json);
               } catch (e) {
-                const error: string = `failed to execute props.dataMapper for: ${finalUrl}. ${(e as Error).message}`;
+                const error: string = `[FAILED_TO_EXECUTE]:props.dataMapper:${finalUrl}:${(e as Error).message}`;
                 // eslint-disable-next-line no-console
                 console.error(error);
 

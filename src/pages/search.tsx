@@ -1,5 +1,6 @@
 /* eslint-disable @propertyfinder/rules/export-name-validation */
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { performance } from 'perf_hooks';
 import filtersDataByLocale from 'public/static/filters-data';
 
 import { backendApiPropertySearchAdFetcher } from 'backend/api/property/search/ad-fetcher';
@@ -23,6 +24,7 @@ import { headersDevPatchSetCookieDomain } from 'helpers/headers/dev-patch-set-co
 import { headersParseExperimentsFromSetCookie } from 'helpers/headers/parse-experiments-from-set-cookie';
 import { localeIsDefault } from 'helpers/locale/is-default';
 import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-value';
+import { promiseAllSettled } from 'helpers/promise/all-settled';
 import { PropertySearchView } from 'views/property-search/view';
 import { PropertySearchViewPropsType } from 'views/property-search/view-props.type';
 
@@ -57,7 +59,9 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
 
   const filtersValueFromQuery = backendFiltersQueryToValue(query, locale);
 
-  const [searchResult, searchAdResult, serverSideTranslations, seoLinks, seoContent] = await Promise.all([
+  const apiRequestStartTime = performance.now();
+
+  const [searchResult, searchAdResult, serverSideTranslations, seoLinks, seoContent] = await promiseAllSettled([
     backendApiPropertySearchFetcher(
       locale,
       filtersValueFromQuery,
@@ -83,6 +87,9 @@ export const getServerSideProps: GetServerSideProps<PropertySearchViewPropsType>
     // Only fetch seo content for 1st landing page
     isLandingPage && isFirstPage ? backendApiSeoContentFetcher(locale, `/${locale}${context.req.url}`) : null,
   ]);
+
+  // eslint-disable-next-line no-console
+  console.log(`SEARCH_API_CALLS:${Math.round(performance.now() - apiRequestStartTime)}:${context.req.url}`);
 
   if (!searchResult.ok) {
     context.res.statusCode = 500;

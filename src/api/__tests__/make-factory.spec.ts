@@ -266,7 +266,7 @@ describe('ApiFactory', () => {
   });
 
   test('if fetch response is not ok, should return response body as error', async () => {
-    mockWindowFetch({ ok: false, status: 500 });
+    mockWindowFetch({ ok: false, status: 401 });
 
     const apiFactory = ApiMakeFactory({
       getOrigin: () => origin,
@@ -281,6 +281,29 @@ describe('ApiFactory', () => {
       expect.objectContaining({
         error: expect.objectContaining({
           body: 'response.text',
+          status: 401,
+        }),
+        ok: false,
+      })
+    );
+  });
+
+  test('if fetch response is not ok, should return response based on status', async () => {
+    mockWindowFetch({ ok: false, status: 500 });
+
+    const apiFactory = ApiMakeFactory({
+      getOrigin: () => origin,
+      requireAuth: false,
+    });
+
+    const fetcher = apiFactory({ method: 'GET', url });
+
+    const response = await fetcher({ locale: 'en' });
+
+    expect(response).toEqual(
+      expect.objectContaining({
+        error: expect.objectContaining({
+          body: 'Internal Server Error',
           status: 500,
         }),
         ok: false,
@@ -414,7 +437,7 @@ describe('ApiFactory', () => {
     expect(result).toEqual(
       expect.objectContaining({
         error: expect.objectContaining({
-          body: 'failed to execute makeFactoryProps.dataMapper for: origin/en/api/url. make factory data mapper error',
+          body: '[FAILED_TO_EXECUTE]:makeFactoryProps.dataMapper:origin/en/api/url:make factory data mapper error',
         }),
         ok: false,
       })
@@ -459,7 +482,7 @@ describe('ApiFactory', () => {
     expect(result).toEqual(
       expect.objectContaining({
         error: expect.objectContaining({
-          body: 'failed to execute factoryProps.dataMapper for: origin/en/api/url. factory data mapper error',
+          body: '[FAILED_TO_EXECUTE]:factoryProps.dataMapper:origin/en/api/url:factory data mapper error',
         }),
         ok: false,
       })
@@ -506,7 +529,7 @@ describe('ApiFactory', () => {
     expect(result).toEqual(
       expect.objectContaining({
         error: expect.objectContaining({
-          body: 'failed to execute props.dataMapper for: origin/en/api/url. mapping error',
+          body: '[FAILED_TO_EXECUTE]:props.dataMapper:origin/en/api/url:mapping error',
         }),
         ok: false,
       })

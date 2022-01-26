@@ -100,11 +100,7 @@ describe('pagesApiPwaSavedSearch', () => {
     expect((consoleMock.error as jest.Mock).mock.calls).toMatchInlineSnapshot(`
       Array [
         Array [
-          "save search api failed",
-          Object {
-            "body": "this is an error",
-            "status": 500,
-          },
+          "API_FAILED:SAVED_SEARCH:this is an error",
         ],
       ]
     `);

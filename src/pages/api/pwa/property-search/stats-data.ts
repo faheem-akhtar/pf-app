@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> 
     } else {
       res.status(response.error.status);
       // eslint-disable-next-line no-console
-      console.error('property search stats data failed', response.error);
+      console.error(`API_FAILED:PROPERTY_SEARCH_STATS_DATA:${response.error?.body || response.error}`);
       res.end();
     }
   });
