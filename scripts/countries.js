@@ -1,3 +1,3 @@
-const countries = ['bh', 'eg', 'lb', 'ma', 'qa', 'sa', 'ae'];
+const countries = ['bh'];
 
 module.exports = countries;

@@ -82,7 +82,6 @@ async function start() {
   await Promise.all(
     countries.reduce((acc, countryCode) => {
       acc.push(build(countryCode, true));
-      acc.push(build(countryCode, false));
       return acc;
     }, [])
   );

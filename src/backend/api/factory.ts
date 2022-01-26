@@ -4,7 +4,6 @@ import { backendJsonApiSync } from 'backend/json-api/sync';
 import { configOriginValue } from 'config/origin/value';
 import { helpersIsDevelopment } from 'helpers/is-development';
 
-import { backendApiPfWebsiteInternalOrigin } from './pf-website-internal-origin';
 import { backendApiXAkamaiDeviceCharacteristicsHeaderValue } from './x-akamai-device-characteristics-header-value';
 
 /**
@@ -12,7 +11,7 @@ import { backendApiXAkamaiDeviceCharacteristicsHeaderValue } from './x-akamai-de
  */
 export const BackendApiFactory = ApiMakeFactory({
   // TODO-FE[TPNX-3007] use the internal network to call the apis
-  getOrigin: () => `http://${helpersIsDevelopment ? configOriginValue : backendApiPfWebsiteInternalOrigin}`,
+  getOrigin: () => `https://${configOriginValue}`,
   dataMapper: (json) => backendJsonApiSync(json as BackendJsonApiPayloadInterface),
   alterHeaders: (headers) => {
     if (backendApiXAkamaiDeviceCharacteristicsHeaderValue) {

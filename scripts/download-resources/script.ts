@@ -115,13 +115,13 @@ async function downloadResources() {
     downloadLocationSlugHistory(country),
   ];
   await Promise.all([
-    ...downloadForCountry('ae'),
+    // ...downloadForCountry('ae'),
     ...downloadForCountry('bh'),
-    ...downloadForCountry('eg'),
-    ...downloadForCountry('lb'),
-    ...downloadForCountry('ma'),
-    ...downloadForCountry('qa'),
-    ...downloadForCountry('sa'),
+    // ...downloadForCountry('eg'),
+    // ...downloadForCountry('lb'),
+    // ...downloadForCountry('ma'),
+    // ...downloadForCountry('qa'),
+    // ...downloadForCountry('sa'),
   ]);
 }
 
