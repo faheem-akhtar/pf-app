@@ -1,4 +1,3 @@
-import { LeadMediumType } from '@propertyfinder/pf-frontend-common/dist/module/stats/types';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef, useState } from 'react';
 
@@ -31,7 +30,6 @@ import { dateToLocale } from 'helpers/date/to-locale';
 import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
 import { LocaleService } from 'services/locale/service';
-import { StatsService } from 'services/stats/service';
 import { TealiumConversionEventFactory } from 'services/tealium/conversion-event-factory';
 import { PropertySearchStatsDataPromiseForCurrentQueryContext } from 'views/property-search/stats-data-promise-for-current-query/context';
 
@@ -100,10 +98,9 @@ export const PropertyCardComponent = ({
     cardType,
   };
 
-  const sendLead = (medium: LeadMediumType): void => {
+  const sendLead = (medium: any): void => {
     statsDataPromise.then((result) => {
       if (result.ok) {
-        StatsService().propertyLeadClick(parseInt(propertyId), { lead: { medium, cta: 'button' } });
       } else {
         // eslint-disable-next-line no-console
         console.error('Unable to send lead because stats data failed to load');
@@ -174,7 +171,6 @@ export const PropertyCardComponent = ({
       if (!isPropertySaved) {
         tealiumEvents.sendSavePropertyEvent();
       }
-      StatsService()[isPropertySaved ? 'propertyUnsave' : 'propertySave'](parseInt(propertyId), {});
     },
     onMenuButtonClick: (): void => {
       menuModalOpenRef.current();

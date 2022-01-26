@@ -1,6 +1,3 @@
-import { StatsDataPropertyInterface } from '@propertyfinder/pf-frontend-common/dist/module/stats/data/property.interface';
-import { PropertyCompletionStatusType } from '@propertyfinder/pf-frontend-common/dist/module/stats/types';
-
 import { BackendModelPropertyCategoryIdentifierEnum } from 'backend/model/property/category-identifier.enum';
 import { BackendModelPropertyInterface } from 'backend/model/property/interface';
 import { PROPERTY_SERP_ITEMS_PER_PAGE } from 'components/property/serp/items-per-page.constant';
@@ -19,10 +16,10 @@ const isRental = (category: BackendModelPropertyCategoryIdentifierEnum): boolean
   return rentalCategories.includes(category);
 };
 
-const getCompletionStatus = (completionStatus: string | null): PropertyCompletionStatusType => {
+const getCompletionStatus = (completionStatus: string | null): any => {
   // Back end will return either 'off_plan', off plan', 'completed' or NULL
   const completionStatusMapping: {
-    [key: string]: PropertyCompletionStatusType;
+    [key: string]: any;
   } = {
     off_plan: 'off_plan',
     'off plan': 'off_plan',
@@ -34,7 +31,7 @@ const getCompletionStatus = (completionStatus: string | null): PropertyCompletio
 
 export const backendApiPropertyStatsDataSingleModelMakeMapper =
   (pageNumber: number) =>
-  (propertyModel: BackendModelPropertyInterface, index: number): StatsDataPropertyInterface => ({
+  (propertyModel: BackendModelPropertyInterface, index: number): any => ({
     id: parseInt(propertyModel.id, 10),
     referenceNumber: propertyModel.reference,
     bedrooms: String(propertyModel.bedroom_value),

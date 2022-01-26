@@ -1,5 +1,3 @@
-import { StatsContextAbTestsInterface } from '@propertyfinder/pf-frontend-common/dist/module/stats/context/ab-tests.interface';
-
 import { FiltersDataInterface } from 'components/filters/data/interface';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { BreadcrumbInterface } from 'components/property/list/breadcrumb/interface';
@@ -14,7 +12,7 @@ export type PropertySearchViewPropsType =
       filtersData: FiltersDataInterface;
       filtersValueFromQuery: FiltersValueInterface;
       searchResult: PropertySerpSearchResultType;
-      abTests: StatsContextAbTestsInterface;
+      abTests: any;
       pageType: PageTypeEnum;
       meta: ViewsPageMetaInterface;
       env: {

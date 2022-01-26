@@ -1,6 +1,4 @@
-import { StatsContextAbTestsInterface } from '@propertyfinder/pf-frontend-common/dist/module/stats/context/ab-tests.interface';
-
-export const headersParseExperimentsFromSetCookie = (valueOfSetCookieHeader: string): StatsContextAbTestsInterface => {
+export const headersParseExperimentsFromSetCookie = (valueOfSetCookieHeader: string): any => {
   try {
     const keyStr = process.env.ENVIRONMENT === 'staging' ? 'website_ab_tests_staging=' : 'website_ab_tests=';
     const indexOfKeyStr = valueOfSetCookieHeader.indexOf(keyStr);
@@ -23,7 +21,7 @@ export const headersParseExperimentsFromSetCookie = (valueOfSetCookieHeader: str
           },
         };
         return acc;
-      }, {} as StatsContextAbTestsInterface);
+      }, {} as any);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(`Failed to parse abtests from set cookie header: ${valueOfSetCookieHeader}`, e);

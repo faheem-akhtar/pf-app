@@ -1,5 +1,3 @@
-import { AuthenticationProviderType } from '@propertyfinder/pf-frontend-common/dist/module/stats/types';
-
 import { TealiumAgentStatsInterface } from './agent-stats.interface';
 import { TealiumConversionEventOptionsInterface } from './conversion-event-options.interface';
 import { TealiumDataLayerInterface } from './data-layer.interface';
@@ -17,6 +15,6 @@ export interface TealiumServiceInterface extends TealiumUtagInterface {
     options?: Omit<TealiumConversionEventOptionsInterface, 'event'>
   ) => void;
   onUserRegistered: (user: TealiumUserInterface) => void;
-  onUserLoggedIn: (user: TealiumUserInterface, provider: Lowercase<AuthenticationProviderType>) => void;
+  onUserLoggedIn: (user: TealiumUserInterface, provider: Lowercase<any>) => void;
   onUserLoggedOut: (user: TealiumUserInterface) => void;
 }

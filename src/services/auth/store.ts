@@ -1,5 +1,3 @@
-import { AuthenticationProviderType } from '@propertyfinder/pf-frontend-common/dist/module/stats/types';
-
 import { apiAuthLogoutFetcher } from 'api/auth/logout/fetcher';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
 import { UserInterface } from 'components/user/interface';
@@ -59,7 +57,7 @@ export class AuthStore {
   private updateUserData = (
     userData: UserInterface | null,
     eventType: AuthSubscribeEventTypeEnum,
-    providerType: AuthenticationProviderType | null
+    providerType: any | null
   ): void => {
     this.subscribers.forEach((update) => {
       update(userData, { eventType, providerType });
@@ -122,7 +120,7 @@ export class AuthStore {
   public onAuthResolved = (
     data: AuthModelInterface,
     eventType: AuthSubscribeEventTypeEnum,
-    providerType: AuthenticationProviderType
+    providerType: any
   ): void => {
     this.setProviderType(providerType);
 
@@ -202,7 +200,7 @@ export class AuthStore {
   /**
    * Set provider
    */
-  private setProviderType(providerType: AuthenticationProviderType | null): void {
+  private setProviderType(providerType: any | null): void {
     if (!providerType) {
       this.windowLocalStorage.removeItem(this.providerTypeKey);
       return;
@@ -214,8 +212,8 @@ export class AuthStore {
   /**
    * Get provider type
    */
-  private getProviderType(): AuthenticationProviderType | null {
-    const providerType = <AuthenticationProviderType>this.windowLocalStorage.getItem(this.providerTypeKey) || null;
+  private getProviderType(): any | null {
+    const providerType = <any>this.windowLocalStorage.getItem(this.providerTypeKey) || null;
 
     return providerType;
   }

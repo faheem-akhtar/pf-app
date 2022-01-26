@@ -1,14 +1,9 @@
-import { StatsContextPropertySearchInterface } from '@propertyfinder/pf-frontend-common/dist/module/stats/context/property-search.interface';
-import { CtaSortPropertyType } from '@propertyfinder/pf-frontend-common/dist/module/stats/types';
-
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { objectFilterNonOrEmptyValue } from 'helpers/object/filter/non-or-empty-value';
 
 import { FiltersValueInterface } from './value/interface';
 
-export const filtersMapFiltersValueToStatsContextPropertySearch = (
-  filtersValue: FiltersValueInterface
-): StatsContextPropertySearchInterface => {
+export const filtersMapFiltersValueToStatsContextPropertySearch = (filtersValue: FiltersValueInterface): any => {
   const minPrice = filtersValue[FiltersParametersEnum.minPrice];
   const maxPrice = filtersValue[FiltersParametersEnum.maxPrice];
   const minArea = filtersValue[FiltersParametersEnum.minArea];
@@ -36,7 +31,7 @@ export const filtersMapFiltersValueToStatsContextPropertySearch = (
     furnished: furnishing ? parseInt(furnishing) : undefined,
     amenities: filtersValue[FiltersParametersEnum.amenities],
     keywords: filtersValue[FiltersParametersEnum.keyword],
-    sort: filtersValue[FiltersParametersEnum.sort] as CtaSortPropertyType,
+    sort: filtersValue[FiltersParametersEnum.sort] as any,
     completion_status: filtersValue[FiltersParametersEnum.completionStatus],
   });
 };
