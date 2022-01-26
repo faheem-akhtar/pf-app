@@ -1,11 +1,12 @@
 import { FunctionComponent } from 'react';
 
-import { UserModelInterface } from 'services/user/model.interface';
+import { UserInterface } from 'components/user/interface';
 
 import { AuthSuccessTypeEnum } from '../success-type.enum';
+import { AuthLoginPropsBaseInterface } from './props-base.interface';
 import { AuthLoginTemplatePropsInterface } from './template-props.interface';
 
-export interface AuthLoginPropsInterface {
+export interface AuthLoginPropsInterface extends AuthLoginPropsBaseInterface {
   /**
    * Template for the component
    */
@@ -19,22 +20,7 @@ export interface AuthLoginPropsInterface {
   /**
    * On success
    */
-  onSuccess: (type: AuthSuccessTypeEnum, user: UserModelInterface) => void;
-
-  /**
-   * On registration link clicked
-   */
-  onRegister: () => void;
-
-  /**
-   * On login link clicked
-   */
-  onLogin?: () => void;
-
-  /**
-   * On forgot password link clicked
-   */
-  onForgotPassword: () => void;
+  onSuccess: (type: AuthSuccessTypeEnum, user: UserInterface) => void;
 
   /**
    * When user click on login with facebook

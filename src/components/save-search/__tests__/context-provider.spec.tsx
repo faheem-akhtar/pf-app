@@ -11,7 +11,7 @@ import { userModelStub } from 'stubs/user/model.stub';
 import * as apiSaveSearchCreateFetcherModule from 'api/save-search/create/fetcher';
 import { FiltersContextProvider } from 'components/filters/context-provider';
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { UserContext } from 'context/user/context';
+import { UserContext } from 'components/user/context';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';

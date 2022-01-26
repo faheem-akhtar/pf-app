@@ -1,10 +1,10 @@
 import { BackendApiFactory } from 'backend/api/factory';
-import { PropertyImagesResultType } from 'components/property/images-result.type';
 
 import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
 import { backendApiPropertyImagesMapper } from './mapper';
+import { BackendApiPropertyImagesType } from './type';
 
-const fetcher = BackendApiFactory<PropertyImagesResultType, BackendApiPropertyJsonApiResultType>({
+const fetcher = BackendApiFactory<BackendApiPropertyImagesType, BackendApiPropertyJsonApiResultType>({
   method: 'GET',
   url: 'property',
   queryDefaultParams: {

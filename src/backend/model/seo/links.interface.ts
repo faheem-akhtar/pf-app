@@ -1,19 +1,19 @@
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-import { SeoLinksAttributeInterface } from 'components/seo/links/attribute.interface';
+import { SeoLinksLinkInterface } from 'components/seo/links/link.interface';
 
 export interface BackendModelSeoLinksInterface extends BackendJsonApiModelType {
   /**
    * Popular searches
    */
-  popular_searches?: SeoLinksAttributeInterface;
+  popular_searches?: SeoLinksLinkInterface;
 
   /**
    * Nearby Areas
    */
-  nearby_areas?: SeoLinksAttributeInterface;
+  nearby_areas?: SeoLinksLinkInterface;
 
   /**
    * Alternate Category
    */
-  alternate_category?: SeoLinksAttributeInterface;
+  alternate_category?: SeoLinksLinkInterface;
 }

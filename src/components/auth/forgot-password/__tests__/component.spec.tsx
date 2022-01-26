@@ -7,10 +7,10 @@ import { AuthForgotPasswordComponent } from 'components/auth/forgot-password/com
 import * as AuthResetPasswordServiceModule from 'services/auth/reset-password.service';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
 
-import { AuthForgotPasswordPropsInterface } from '../props.interface';
+import { AuthForgotPasswordComponentPropsInterface } from '../component-props.interface';
 
 describe('AuthForgotPasswordComponent', () => {
-  let props: AuthForgotPasswordPropsInterface;
+  let props: AuthForgotPasswordComponentPropsInterface;
 
   beforeEach(() => {
     props = {

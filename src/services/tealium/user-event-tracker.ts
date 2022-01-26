@@ -1,8 +1,8 @@
+import { UserInterface } from 'components/user/interface';
 import { AnalyticsTealiumService } from 'services/analytics/tealium.service';
-import { UserModelInterface } from 'services/user/model.interface';
 
 export const tealiumUserEventTracker = {
-  onLoginWithFacebook: (user: UserModelInterface): void => {
+  onLoginWithFacebook: (user: UserInterface): void => {
     AnalyticsTealiumService().onUserLoggedIn(
       {
         user_email: user.email,
@@ -12,7 +12,7 @@ export const tealiumUserEventTracker = {
       'facebook'
     );
   },
-  onLoginWithEmail: (user: UserModelInterface): void => {
+  onLoginWithEmail: (user: UserInterface): void => {
     AnalyticsTealiumService().onUserLoggedIn(
       {
         user_email: user.email,
@@ -22,7 +22,7 @@ export const tealiumUserEventTracker = {
       'email'
     );
   },
-  onLoginWithGoogle: (user: UserModelInterface): void => {
+  onLoginWithGoogle: (user: UserInterface): void => {
     AnalyticsTealiumService().onUserLoggedIn(
       {
         user_email: user.email,
@@ -32,14 +32,14 @@ export const tealiumUserEventTracker = {
       'google'
     );
   },
-  onRegisterWithEmail: (user: UserModelInterface): void => {
+  onRegisterWithEmail: (user: UserInterface): void => {
     AnalyticsTealiumService().onUserRegistered({
       user_email: user.email,
       user_id: user.userId,
       user_status: 'Logged In',
     });
   },
-  onLogout: (user: UserModelInterface | null): void => {
+  onLogout: (user: UserInterface | null): void => {
     if (user) {
       AnalyticsTealiumService().onUserLoggedOut({
         user_email: user.email,

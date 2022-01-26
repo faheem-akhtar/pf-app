@@ -30,7 +30,7 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
   const fields = {
     id: null,
     name: '',
-    formatted_filters: null,
+    formattedFilters: null,
     frequency: SaveSearchFrequencyEnum.DAILY,
   };
   const selectedFrequency = SAVE_SEARCH_FREQUENCIES.find((item) => item.value === frequency.value);
@@ -42,8 +42,8 @@ export const SaveSearchFormComponent = ({ onSuccess }: { onSuccess: () => void }
       </header>
       <div className={styles['save-search-form__content']}>
         {generalError && <div className={styles['save-search-form__error--general']}>{generalError}</div>}
-        {fields.formatted_filters && (
-          <p className={styles['save-search-form__content-desc']}>{fields.formatted_filters}</p>
+        {fields.formattedFilters && (
+          <p className={styles['save-search-form__content-desc']}>{fields.formattedFilters}</p>
         )}
         <div className={styles['save-search-form__content-row']}>
           <label htmlFor='save-search-name' className={styles['save-search-form__label']}>

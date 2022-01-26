@@ -1,11 +1,11 @@
+import { EmailAgentModalDataInterface } from 'components/email-agent-modal/data.interface';
 import { LocationTypeEnum } from 'enums/location/type.enum';
 
 import { BackendApiPropertySearchJsonApiResultType } from '../json-api-result.type';
-import { BackendApiPropertySearchEmailAgentDataResultType } from './result-type';
 
 export const backendApiPropertySearchEmailAgentDataMapper = ({
   properties,
-}: BackendApiPropertySearchJsonApiResultType): BackendApiPropertySearchEmailAgentDataResultType => {
+}: BackendApiPropertySearchJsonApiResultType): EmailAgentModalDataInterface => {
   const locations = properties[0].location_tree;
   let propertyLocationId: number;
 

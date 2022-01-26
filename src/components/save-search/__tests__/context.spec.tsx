@@ -8,7 +8,7 @@ import { SaveSearchPayloadFilterKeysEnum } from 'enums/save-search/payload-filte
 
 import { SaveSearchContext } from '../context';
 import { SaveSearchContextInterface } from '../context.interface';
-import { SaveSearchLoadResultInterface } from '../load-result-interface';
+import { SaveSearchInterface } from '../interface';
 
 describe('SaveSearchContext', () => {
   let MockChildComponent: FunctionComponent;
@@ -33,7 +33,7 @@ describe('SaveSearchContext', () => {
   });
 
   it('should have default values', (done) => {
-    let returnValue = Promise.resolve({} as ApiFetcherResultType<SaveSearchLoadResultInterface>);
+    let returnValue = Promise.resolve({} as ApiFetcherResultType<SaveSearchInterface>);
     render(
       <SaveSearchContext.Consumer>
         {({ data: propertyIds, filtered, ok, create }): ReactElement => (
@@ -75,7 +75,7 @@ describe('SaveSearchContext', () => {
           name: '',
           frequency: SaveSearchFrequencyEnum.WEEKLY,
           filters: { [SaveSearchPayloadFilterKeysEnum.CATEGORY_ID]: 1 },
-          formatted_filters: 'This is a string',
+          formattedFilters: 'This is a string',
         },
       ],
       filtered: [
@@ -84,7 +84,7 @@ describe('SaveSearchContext', () => {
           name: 'name',
           frequency: SaveSearchFrequencyEnum.WEEKLY,
           filters: { [SaveSearchPayloadFilterKeysEnum.CATEGORY_ID]: 1 },
-          formatted_filters: 'This is a string',
+          formattedFilters: 'This is a string',
         },
       ],
       create: jest.fn(),

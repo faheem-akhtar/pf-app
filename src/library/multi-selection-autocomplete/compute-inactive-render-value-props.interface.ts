@@ -1,4 +1,4 @@
-import { TFunctionType } from 'types/t-function/type';
+import { TFunctionType } from 'helpers/t-function/type';
 
 export interface MultiSelectionAutocompleteComputeInactiveRenderValuePropsInterface<T> {
   /**

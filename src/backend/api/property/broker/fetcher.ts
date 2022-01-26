@@ -1,11 +1,11 @@
 import { BackendApiFactory } from 'backend/api/factory';
-import { PropertyBrokerResultType } from 'components/property/broker-result.type';
+import { PropertyBrokerInterface } from 'components/property/broker.interface';
 import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
 
 import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
 import { backendApiPropertyBrokerMapper } from './mapper';
 
-const fetcher = BackendApiFactory<PropertyBrokerResultType, BackendApiPropertyJsonApiResultType>({
+const fetcher = BackendApiFactory<PropertyBrokerInterface, BackendApiPropertyJsonApiResultType>({
   method: 'GET',
   url: 'property',
   queryDefaultParams: {

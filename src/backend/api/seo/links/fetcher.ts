@@ -1,12 +1,12 @@
 import { BackendApiFactory } from 'backend/api/factory';
 import { BackendModelSeoLinksInterface } from 'backend/model/seo/links.interface';
 import { FiltersQueryParamInterface } from 'components/filters/query/param.interface';
-import { SeoLinksResultType } from 'components/seo/links/result.type';
+import { SeoLinksInterface } from 'components/seo/links/interface';
 
 import { backendApiSeoLinksMapper } from './mapper';
 import { backendApiSeoLinksToFilterQueryParams } from './to-filter-query-params';
 
-const fetcher = BackendApiFactory<SeoLinksResultType, BackendModelSeoLinksInterface>({
+const fetcher = BackendApiFactory<SeoLinksInterface, BackendModelSeoLinksInterface>({
   method: 'GET',
   url: 'seo/links',
   dataMapper: backendApiSeoLinksMapper,

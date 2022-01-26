@@ -1,6 +1,6 @@
-import { SeoLinksResultType } from 'components/seo/links/result.type';
+import { SeoLinksInterface } from 'components/seo/links/interface';
 
-export const seoLinksStub = (links: Partial<SeoLinksResultType> = {}): SeoLinksResultType => ({
+export const seoLinksStub = (links: Partial<SeoLinksInterface> = {}): SeoLinksInterface => ({
   popularSearches: {
     title: 'Popular searches',
     links: [

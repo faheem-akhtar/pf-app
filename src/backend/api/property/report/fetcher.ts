@@ -1,7 +1,7 @@
+import { ApiPropertyReportRequestInterface } from 'api/property/report/request.interface';
 import { BackendApiFactory } from 'backend/api/factory';
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
 import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
-import { ReportAttributesInterface } from 'types/report/attributes-interface';
 
 const fetcher = BackendApiFactory<BackendJsonApiModelType, BackendJsonApiModelType>({
   method: 'POST',
@@ -15,7 +15,7 @@ const fetcher = BackendApiFactory<BackendJsonApiModelType, BackendJsonApiModelTy
 export const backendApiPropertyReportFetcher = (
   locale: string,
   propertyId: string,
-  attributes: ReportAttributesInterface
+  attributes: ApiPropertyReportRequestInterface
 ): ReturnType<ReturnType<typeof BackendApiFactory>> => {
   return fetcher({
     locale,

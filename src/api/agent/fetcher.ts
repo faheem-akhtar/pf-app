@@ -1,8 +1,8 @@
 import { ApiFactory } from 'api/factory';
-import { PropertyAgentResultType } from 'components/property/agent-result.type';
+import { PropertyAgentInterface } from 'components/property/agent-interface';
 import { LocaleService } from 'services/locale/service';
 
-const fetcher = ApiFactory<PropertyAgentResultType>({
+const fetcher = ApiFactory<PropertyAgentInterface>({
   method: 'GET',
   url: 'property-search/agent',
   handledByPfWebApp: true,

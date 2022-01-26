@@ -1,7 +1,7 @@
 import { MortgageCampaignComponentPropsInterface } from 'components/mortgage/campaign/component-props.interface';
-import { UserModelInterface } from 'services/user/model.interface';
-import { PropertyLeadAttributesInterface } from 'types/property/lead/attributes.interface';
-import { TFunctionType } from 'types/t-function/type';
+import { PropertyLeadInterface } from 'components/property/lead.interface';
+import { UserInterface } from 'components/user/interface';
+import { TFunctionType } from 'helpers/t-function/type';
 
 export interface EmailAgentModalFormSuccessComponentPropsInterface
   extends Pick<MortgageCampaignComponentPropsInterface, 'property'> {
@@ -23,10 +23,10 @@ export interface EmailAgentModalFormSuccessComponentPropsInterface
   /**
    * User
    */
-  user: UserModelInterface | null;
+  user: UserInterface | null;
 
   /**
    * Fields value
    */
-  fieldsValue: PropertyLeadAttributesInterface;
+  fieldsValue: PropertyLeadInterface;
 }

@@ -1,4 +1,4 @@
-import { PropertyLeadAttributesInterface } from 'types/property/lead/attributes.interface';
+import { PropertyLeadInterface } from 'components/property/lead.interface';
 
 import { MortgageCampaignPropertyInterface } from './property.interface';
 
@@ -11,5 +11,5 @@ export interface MortgageCampaignComponentPropsInterface {
   /**
    * Lead attributes
    */
-  leadModel: PropertyLeadAttributesInterface;
+  leadModel: PropertyLeadInterface;
 }

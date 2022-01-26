@@ -3,7 +3,7 @@ import { jwtTokenStoreStub } from 'stubs/jwt/token/store.stub';
 import { saveSearchDataStub } from 'stubs/save-search/data.stub';
 
 import { FiltersValueInterface } from 'components/filters/value/interface';
-import { SaveSearchLoadResultInterface } from 'components/save-search/load-result-interface';
+import { SaveSearchInterface } from 'components/save-search/interface';
 import { FiltersParametersEnum } from 'enums/filters/parameters.enum';
 import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 import { LocationCompactInterface } from 'types/location/compact.interface';
@@ -18,7 +18,7 @@ describe('apiSaveSearchCreateFetcher', () => {
   it('should send a post request', async () => {
     const dataMock = saveSearchDataStub();
     const factoryMock = mockWindowFetch({
-      json: (): Promise<SaveSearchLoadResultInterface[]> => Promise.resolve([dataMock]),
+      json: (): Promise<SaveSearchInterface[]> => Promise.resolve([dataMock]),
     });
 
     const response = await apiSaveSearchCreateFetcher({

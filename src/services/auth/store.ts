@@ -2,13 +2,13 @@ import { AuthenticationProviderType } from '@propertyfinder/pf-frontend-common/d
 
 import { apiAuthLogoutFetcher } from 'api/auth/logout/fetcher';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
+import { UserInterface } from 'components/user/interface';
 import { AuthGoogleOneTapService } from 'services/auth/google-one-tap.service';
 import { AuthModelInterface } from 'services/auth/model.interface';
 import { AuthSubscriberType } from 'services/auth/subscriber.type';
 import { JwtTokenService } from 'services/jwt/token/service';
 import { JwtTokenStore } from 'services/jwt/token/store';
 import { tealiumUserEventTracker } from 'services/tealium/user-event-tracker';
-import { UserModelInterface } from 'services/user/model.interface';
 import { WindowService } from 'services/window/service';
 import { WindowStorageInterface } from 'services/window/storage/interface';
 
@@ -57,7 +57,7 @@ export class AuthStore {
    * @param userData
    */
   private updateUserData = (
-    userData: UserModelInterface | null,
+    userData: UserInterface | null,
     eventType: AuthSubscribeEventTypeEnum,
     providerType: AuthenticationProviderType | null
   ): void => {
@@ -100,8 +100,8 @@ export class AuthStore {
   /**
    * Get user data
    */
-  public getUser(): UserModelInterface | null {
-    const data = <UserModelInterface>this.windowLocalStorage.getItem(this.userKey);
+  public getUser(): UserInterface | null {
+    const data = <UserInterface>this.windowLocalStorage.getItem(this.userKey);
 
     if (!data || typeof data !== 'object') {
       return null;
@@ -184,7 +184,7 @@ export class AuthStore {
   /**
    * Set user
    */
-  private setUser(model: UserModelInterface | null): void {
+  private setUser(model: UserInterface | null): void {
     if (!model) {
       this.windowLocalStorage.removeItem(this.userKey);
       return;

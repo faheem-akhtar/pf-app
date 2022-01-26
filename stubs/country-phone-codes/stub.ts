@@ -1,4 +1,4 @@
-import { CountryPhoneCodesInterface } from 'types/country-phone-codes/interface';
+import { CountryPhoneCodesInterface } from 'library/input/phone-number/country/phone-codes.interface';
 
 export const countryPhoneCodesStub = (data: Partial<CountryPhoneCodesInterface> = {}): CountryPhoneCodesInterface => ({
   code: 'ae',

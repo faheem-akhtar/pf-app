@@ -1,10 +1,10 @@
-import { UserModelInterface } from 'services/user/model.interface';
+import { UserInterface } from 'components/user/interface';
 
 export interface ApiAuthRegisterModelInterface {
   /**
    * User
    */
-  user: UserModelInterface;
+  user: UserInterface;
 
   /**
    * Meta data

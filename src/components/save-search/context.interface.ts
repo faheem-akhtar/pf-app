@@ -1,7 +1,7 @@
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiSaveSearchCreateRequestInterface } from 'api/save-search/create/request.interface';
 
-import { SaveSearchLoadResultInterface } from './load-result-interface';
+import { SaveSearchInterface } from './interface';
 
 export interface SaveSearchContextInterface {
   /**
@@ -12,17 +12,17 @@ export interface SaveSearchContextInterface {
   /**
    * list of saved searches
    */
-  data: SaveSearchLoadResultInterface[];
+  data: SaveSearchInterface[];
 
   /**
    * List of filtered saved search
    */
-  filtered: SaveSearchLoadResultInterface[];
+  filtered: SaveSearchInterface[];
 
   /**
    * Create new saved search
    */
   create: (
     request: Pick<ApiSaveSearchCreateRequestInterface, 'name' | 'frequency'>
-  ) => Promise<ApiFetcherResultType<SaveSearchLoadResultInterface>>;
+  ) => Promise<ApiFetcherResultType<SaveSearchInterface>>;
 }

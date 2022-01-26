@@ -1,7 +1,8 @@
 import { BackendApiFactory } from 'backend/api/factory';
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
 import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
-import { EmailAlertAttributesInterface } from 'types/email-alert/attributes.interface';
+
+import { BackendApiPropertyEmailAlertRequestInterface } from './request.interface';
 
 const fetcher = BackendApiFactory<BackendJsonApiModelType, BackendJsonApiModelType>({
   method: 'POST',
@@ -13,7 +14,7 @@ const fetcher = BackendApiFactory<BackendJsonApiModelType, BackendJsonApiModelTy
 
 export const backendApiPropertyEmailAlertFetcher = (
   locale: string,
-  attributes: EmailAlertAttributesInterface
+  attributes: BackendApiPropertyEmailAlertRequestInterface
 ): ReturnType<typeof fetcher> =>
   fetcher({
     locale,

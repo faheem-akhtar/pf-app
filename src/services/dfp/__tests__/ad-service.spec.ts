@@ -3,7 +3,7 @@ import * as Googletag from 'Googletag';
 import { mockWindowImportScript } from 'mocks/window/import-script.mock';
 import { adConfigStub } from 'stubs/ad/config.stub';
 
-import { AdUnitInterface } from 'types/ad/unit.interface';
+import { AdUnitInterface } from 'components/ad/unit.interface';
 
 import { DfpAdService } from '../ad-service';
 

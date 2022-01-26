@@ -1,5 +1,5 @@
+import { PropertyLeadInterface } from 'components/property/lead.interface';
 import { FiltersCategoryIdEnum } from 'enums/filters/category-id.enum';
-import { PropertyLeadAttributesInterface } from 'types/property/lead/attributes.interface';
 
 import { mortgageGetUrl } from '../get-url';
 import { MortgageCampaignPropertyInterface } from './property.interface';
@@ -11,7 +11,7 @@ export const mortgageCampaignGetButtonUrl = (
   categoryId: FiltersCategoryIdEnum,
   mortgageFinderUrl: string,
   property: MortgageCampaignPropertyInterface,
-  leadModel: PropertyLeadAttributesInterface
+  leadModel: PropertyLeadInterface
 ): string =>
   mortgageGetUrl(mortgageFinderUrl, {
     propertyPrice: property.defaultPrice,

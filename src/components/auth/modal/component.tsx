@@ -5,14 +5,14 @@ import { AuthLoginComponent } from 'components/auth/login/component';
 import { AuthRegistrationComponent } from 'components/auth/registration/component';
 import { AuthScreenEnum } from 'components/auth/screen.enum';
 import { IconThickCrossTemplate } from 'components/icon/thick/cross-template';
+import { UserInterface } from 'components/user/interface';
 import { functionNoop } from 'helpers/function/noop';
 import { tealiumUserEventTracker } from 'services/tealium/user-event-tracker';
-import { UserModelInterface } from 'services/user/model.interface';
 
 import { AuthSuccessTypeEnum } from '../success-type.enum';
 import { authTracker } from '../tracker';
 import styles from './auth-modal-component.module.scss';
-import { AuthModalPropsInterface } from './props.interface';
+import { AuthModalComponentPropsInterface } from './component-props.interface';
 
 export const AuthModalComponent = ({
   eventLabel = 'Header',
@@ -21,7 +21,7 @@ export const AuthModalComponent = ({
   close = functionNoop,
   cancel = functionNoop,
   success = functionNoop,
-}: AuthModalPropsInterface): JSX.Element => {
+}: AuthModalComponentPropsInterface): JSX.Element => {
   const [authScreen, setAuthScreen] = useState(initialScreen);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export const AuthModalComponent = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authScreen]);
 
-  const onSuccess = (type?: AuthSuccessTypeEnum, user?: UserModelInterface): void => {
+  const onSuccess = (type?: AuthSuccessTypeEnum, user?: UserInterface): void => {
     if (type === AuthSuccessTypeEnum.signInWithEmail) {
       authTracker.onSuccessLoginWithEmail(eventLabel);
       user && tealiumUserEventTracker.onLoginWithEmail(user);

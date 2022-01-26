@@ -1,7 +1,7 @@
 import { StatsDataService } from '@propertyfinder/pf-frontend-common/dist/service/stats-data/service';
 import { useRef } from 'react';
 
-import { apiPropertyStatsDataFetcher } from 'api/property-stats-data/fetcher';
+import { apiPropertyStatsDataFetcher } from 'api/property/stats-data/fetcher';
 import { filtersMapCategoryIdToStats } from 'components/filters/map-category-id-to-stats';
 import { filtersMapFiltersValueToStatsContextPropertySearch } from 'components/filters/map-filters-value-to-stats-context-property-search';
 import { PROPERTY_SERP_ITEMS_PER_PAGE } from 'components/property/serp/items-per-page.constant';

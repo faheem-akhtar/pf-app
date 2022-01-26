@@ -1,8 +1,8 @@
 import { apiAuthAutoRegisterFetcher } from 'api/auth/auto-register/fetcher';
 import { ApiAuthAutoRegisterRequestInterface } from 'api/auth/auto-register/request.interface';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
+import { UserInterface } from 'components/user/interface';
 import { AuthService } from 'services/auth/service';
-import { UserModelInterface } from 'services/user/model.interface';
 
 import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
 
@@ -11,7 +11,7 @@ import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
  */
 export const AuthAutoRegisterService = (
   model: ApiAuthAutoRegisterRequestInterface
-): Promise<UserModelInterface | ApiFetcherResultFailureInterface> =>
+): Promise<UserInterface | ApiFetcherResultFailureInterface> =>
   apiAuthAutoRegisterFetcher({
     first_name: model.first_name,
     last_name: model.last_name,

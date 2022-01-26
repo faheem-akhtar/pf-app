@@ -1,10 +1,10 @@
 import { useContext, useRef, useState } from 'react';
 
-import { apiReportAttachmentsFetcher } from 'api/report/attachments/fetcher';
-import { apiReportFetcher } from 'api/report/fetcher';
+import { apiPropertyReportAttachmentsFetcher } from 'api/property/report/attachments/fetcher';
+import { apiPropertyReportFetcher } from 'api/property/report/fetcher';
 import { AuthModalComponent } from 'components/auth/modal/component';
 import { ModalComponent } from 'components/modal/component';
-import { UserContext } from 'context/user/context';
+import { UserContext } from 'components/user/context';
 import { functionNoop } from 'helpers/function/noop';
 import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 
@@ -43,8 +43,8 @@ export const PropertyReportComponent = ({
     const { attachment, ...attributes } = payload;
 
     const requests = [
-      (): ReturnType<typeof apiReportFetcher> =>
-        apiReportFetcher(propertyId, {
+      (): ReturnType<typeof apiPropertyReportFetcher> =>
+        apiPropertyReportFetcher(propertyId, {
           ...attributes,
           email: user?.email || '',
         }),
@@ -54,7 +54,7 @@ export const PropertyReportComponent = ({
       const fileData = new FormData();
 
       fileData.append('attachment[]', attachment, attachment.name);
-      requests.push(() => apiReportAttachmentsFetcher(propertyId, fileData));
+      requests.push(() => apiPropertyReportAttachmentsFetcher(propertyId, fileData));
     }
 
     Promise.all(requests.map((request) => request())).then((responses) => {

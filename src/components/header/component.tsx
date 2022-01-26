@@ -4,7 +4,7 @@ import { FunctionComponent, useContext, useRef } from 'react';
 import { AuthModalComponent } from 'components/auth/modal/component';
 import { ModalComponent } from 'components/modal/component';
 import { SavedPropertyContext } from 'components/saved-property/context';
-import { UserContext } from 'context/user/context';
+import { UserContext } from 'components/user/context';
 
 import { HeaderComponentPropsInterface } from './component-props.interface';
 import { HeaderTemplate } from './template';

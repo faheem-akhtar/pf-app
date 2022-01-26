@@ -1,0 +1,10 @@
+.ad {
+  font-size: 0;
+  margin-bottom: spacingd(2);
+
+  // Injected ad iframes take up space when they shouldn't
+  // https://stackoverflow.com/questions/21025319/iframe-creates-extra-space-below
+  iframe {
+    display: block;
+  }
+}

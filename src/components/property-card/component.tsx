@@ -2,7 +2,7 @@ import { LeadMediumType } from '@propertyfinder/pf-frontend-common/dist/module/s
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef, useState } from 'react';
 
-import { useApiPropertyImages } from 'api/property-images/hook';
+import { useApiPropertyImages } from 'api/property/images/hook';
 import { CallingAgentModalComponent } from 'components/calling-agent-modal/component';
 import { ContactedPropertyContext } from 'components/contacted-property/context';
 import { EmailAgentModalComponent } from 'components/email-agent-modal/component';

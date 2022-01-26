@@ -9,10 +9,10 @@ import { GoogleRecaptcha } from 'services/google/recaptcha';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
 
 import { AuthRegistrationComponent } from '../component';
-import { AuthRegistrationPropsInterface } from '../props.interface';
+import { AuthRegistrationComponentPropsInterface } from '../component-props.interface';
 
 describe('AuthRegistrationComponent', () => {
-  let props: AuthRegistrationPropsInterface;
+  let props: AuthRegistrationComponentPropsInterface;
   let renderResult: RenderResult;
   let googleRecaptchaMock: GoogleRecaptcha;
 

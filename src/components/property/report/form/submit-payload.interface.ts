@@ -1,5 +1,5 @@
-import { ReportAttributesInterface } from 'types/report/attributes-interface';
+import { ApiPropertyReportRequestInterface } from 'api/property/report/request.interface';
 
-export interface PropertyReportFormSubmitPayloadInterface extends ReportAttributesInterface {
+export interface PropertyReportFormSubmitPayloadInterface extends ApiPropertyReportRequestInterface {
   attachment?: File;
 }

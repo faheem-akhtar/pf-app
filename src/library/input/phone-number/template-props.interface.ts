@@ -1,6 +1,5 @@
-import { CountryPhoneCodesInterface } from 'types/country-phone-codes/interface';
-
 import { InputBaseComponentPropsInterface } from '../base/component-props.interface';
+import { CountryPhoneCodesInterface } from './country/phone-codes.interface';
 
 export interface InputPhoneNumberTemplatePropsInterface extends InputBaseComponentPropsInterface {
   /**

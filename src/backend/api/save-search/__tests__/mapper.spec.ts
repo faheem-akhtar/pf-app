@@ -16,7 +16,7 @@ describe('backendApiSaveSearchMapper', () => {
       Array [
         Object {
           "filters": undefined,
-          "formatted_filters": "Apartments for rent",
+          "formattedFilters": "Apartments for rent",
           "frequency": "daily",
           "id": "1",
           "name": "my search",
@@ -45,14 +45,14 @@ describe('backendApiSaveSearchMapper', () => {
       Array [
         Object {
           "filters": undefined,
-          "formatted_filters": "Apartments for rent",
+          "formattedFilters": "Apartments for rent",
           "frequency": "daily",
           "id": "1",
           "name": "my search",
         },
         Object {
           "filters": undefined,
-          "formatted_filters": "Buy apartments in UAE",
+          "formattedFilters": "Buy apartments in UAE",
           "frequency": "daily",
           "id": "2",
           "name": "my Save search",

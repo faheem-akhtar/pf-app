@@ -8,7 +8,7 @@ import { mockReactUseSwrRecover, setupSwrMock } from 'mocks/react/use-swr.mock';
 
 import { configStatsDataEncryptionKey } from 'config/stats-data-encryption-key';
 import { LanguageCodeEnum } from 'enums/language/code.enum';
-import { TFunctionType } from 'types/t-function/type';
+import { TFunctionType } from 'helpers/t-function/type';
 
 import { translationsMap } from './misc/add-translation.mock';
 import { recoverReactUseContext } from './react/use-context.mock';

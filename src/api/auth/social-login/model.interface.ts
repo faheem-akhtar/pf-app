@@ -1,4 +1,4 @@
-import { UserModelInterface } from 'services/user/model.interface';
+import { UserInterface } from 'components/user/interface';
 
 export interface ApiAuthSocialLoginModelInterface {
   /**
@@ -9,7 +9,7 @@ export interface ApiAuthSocialLoginModelInterface {
   /**
    * User
    */
-  user: UserModelInterface;
+  user: UserInterface;
 
   /**
    * @inheritDoc

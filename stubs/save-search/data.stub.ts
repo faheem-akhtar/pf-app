@@ -1,17 +1,15 @@
-import { SaveSearchLoadResultInterface } from 'components/save-search/load-result-interface';
+import { SaveSearchInterface } from 'components/save-search/interface';
 import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 
 import { saveSearchFiltersStub } from './filters.stub';
 
-export const saveSearchDataStub = (
-  data: Partial<SaveSearchLoadResultInterface> = {}
-): SaveSearchLoadResultInterface => {
+export const saveSearchDataStub = (data: Partial<SaveSearchInterface> = {}): SaveSearchInterface => {
   return {
     id: '1',
     name: 'mocked save search name',
     frequency: SaveSearchFrequencyEnum.DAILY,
     filters: saveSearchFiltersStub(),
-    formatted_filters: 'mocked formatted filters',
+    formattedFilters: 'mocked formatted filters',
     ...data,
   };
 };

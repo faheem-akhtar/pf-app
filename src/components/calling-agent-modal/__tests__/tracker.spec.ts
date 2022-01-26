@@ -6,7 +6,7 @@ import { propertySerpObfuscatedFieldOfferingTypeName } from 'components/property
 
 import { callingAgentModalTracker } from '../tracker';
 
-describe('callingAgentModalTracker', () => {
+describe('callingAgentTracker', () => {
   beforeEach(() => {
     window.dataLayer = [];
   });

@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { TFunctionType } from 'helpers/t-function/type';
 import { GalleryScrollComponentPropsInterface } from 'library/gallery-scroll/component-props.interface';
-import { TFunctionType } from 'types/t-function/type';
 
 import { PropertyCardBannersBannerInterface } from './banners/banner.interface';
 import { PropertyCardTypeEnum } from './type.enum';

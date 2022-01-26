@@ -1,15 +1,16 @@
 import { BackendModelSaveSearchInterface } from 'backend/model/save-search/interface';
-import { SaveSearchLoadResultInterface } from 'components/save-search/load-result-interface';
+import { SaveSearchInterface } from 'components/save-search/interface';
 
 export const backendApiSaveSearchMapper = (
   data: BackendModelSaveSearchInterface | BackendModelSaveSearchInterface[]
-): SaveSearchLoadResultInterface[] => {
+): SaveSearchInterface[] => {
   const savedSearches = Array.isArray(data) ? data : data ? [data] : [];
+
   return savedSearches.map(({ id, name, frequency, filters, formatted_filters }) => ({
     id,
     name,
     frequency,
     filters,
-    formatted_filters,
+    formattedFilters: formatted_filters,
   }));
 };

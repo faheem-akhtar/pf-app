@@ -1,10 +1,10 @@
 import { userModelStub } from 'stubs/user/model.stub';
 
-import { PropertyLeadAttributesInterface } from 'types/property/lead/attributes.interface';
+import { PropertyLeadInterface } from 'components/property/lead.interface';
 
 const user = userModelStub();
 
-export const propertyLeadStub = (): PropertyLeadAttributesInterface => ({
+export const propertyLeadStub = (): PropertyLeadInterface => ({
   name: `${user.first_name} ${user.last_name}`,
   email: `${user.email}`,
   phone: '+97155555555',

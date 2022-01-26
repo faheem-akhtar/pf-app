@@ -2,7 +2,7 @@
 import { useTranslation as i18nUseTranslation } from 'next-i18next';
 
 import { helpersIsTest } from 'helpers/is-test';
-import { TFunctionType } from 'types/t-function/type';
+import { TFunctionType } from 'helpers/t-function/type';
 
 const { NEXT_PUBLIC_COUNTRY_CODE } = process.env;
 

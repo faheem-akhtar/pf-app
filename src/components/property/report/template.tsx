@@ -1,7 +1,7 @@
 import { IconSolidWarningTemplate } from 'components/icon/solid/warning-template';
 import { IconThickCloseTemplate } from 'components/icon/thick/close-template';
 import { IconThinCheckmarkCircleTemplate } from 'components/icon/thin/checkmark-circle-template';
-import { TFunctionType } from 'types/t-function/type';
+import { TFunctionType } from 'helpers/t-function/type';
 
 import { PropertyReportFormComponent } from './form/component';
 import { PropertyReportFormSubmitPayloadInterface } from './form/submit-payload.interface';

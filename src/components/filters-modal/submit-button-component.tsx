@@ -1,5 +1,5 @@
 import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
-import { useApiPropertySearchCount } from 'api/property-search-count/hook';
+import { useApiPropertySearchCount } from 'api/property/search-count/hook';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { useTranslation } from 'helpers/translation/hook';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';

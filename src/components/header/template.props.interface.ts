@@ -1,4 +1,4 @@
-import { UserModelInterface } from 'services/user/model.interface';
+import { UserInterface } from 'components/user/interface';
 
 import { HeaderPropsBaseInterface } from './props-base.interface';
 
@@ -20,7 +20,7 @@ export interface HeaderTemplatePropsInterface extends HeaderPropsBaseInterface {
     /**
      * The URL of the user photo
      */
-    user: UserModelInterface | null;
+    user: UserInterface | null;
 
     /**
      * #s of saved properties

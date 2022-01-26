@@ -1,13 +1,10 @@
 import { BackendApiFactory } from 'backend/api/factory';
+import { EmailAgentModalDataInterface } from 'components/email-agent-modal/data.interface';
 
 import { BackendApiPropertySearchJsonApiResultType } from '../json-api-result.type';
 import { backendApiPropertySearchEmailAgentDataMapper } from './mapper';
-import { BackendApiPropertySearchEmailAgentDataResultType } from './result-type';
 
-const fetcher = BackendApiFactory<
-  BackendApiPropertySearchEmailAgentDataResultType,
-  BackendApiPropertySearchJsonApiResultType
->({
+const fetcher = BackendApiFactory<EmailAgentModalDataInterface, BackendApiPropertySearchJsonApiResultType>({
   method: 'GET',
   url: 'search',
   queryDefaultParams: {

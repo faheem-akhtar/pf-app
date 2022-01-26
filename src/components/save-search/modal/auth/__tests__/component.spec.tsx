@@ -5,7 +5,7 @@ import { mockModalEnv } from 'mocks/modal-env/mock';
 import { userModelStub } from 'stubs/user/model.stub';
 
 import { SaveSearchContext } from 'components/save-search/context';
-import { UserContext } from 'context/user/context';
+import { UserContext } from 'components/user/context';
 import { AuthService } from 'services/auth/service';
 import { AuthSubscribeEventTypeEnum } from 'services/auth/subscribe-event-type.enum';
 

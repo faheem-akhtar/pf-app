@@ -1,5 +1,5 @@
 export enum EmailAgentModalStatusEnum {
-  opened = 'opened',
-  submitting = 'submitting',
-  submitted = 'submitted',
+  OPENED = 'opened',
+  SUBMITTING = 'submitting',
+  SUBMITTED = 'submitted',
 }

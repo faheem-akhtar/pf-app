@@ -3,15 +3,15 @@ import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiJsonModelInterface } from 'api/json/model.interface';
 import { FiltersValueInterface } from 'components/filters/value/interface';
 import { saveSearchFiltersMapper } from 'components/save-search/filters-mapper';
-import { SaveSearchLoadResultInterface } from 'components/save-search/load-result-interface';
+import { SaveSearchInterface } from 'components/save-search/interface';
 import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 import { LocaleService } from 'services/locale/service';
 
 import { ApiSaveSearchCreateRequestInterface } from './request.interface';
 
 const fetcher = ApiAuthRequiredFactory<
-  SaveSearchLoadResultInterface,
-  SaveSearchLoadResultInterface[],
+  SaveSearchInterface,
+  SaveSearchInterface[],
   ApiJsonModelInterface<ApiSaveSearchCreateRequestInterface>
 >({
   method: 'POST',
@@ -27,7 +27,7 @@ export const apiSaveSearchCreateFetcher = (requestParams: {
   name: string;
   frequency: SaveSearchFrequencyEnum;
   filters: FiltersValueInterface;
-}): Promise<ApiFetcherResultType<SaveSearchLoadResultInterface>> => {
+}): Promise<ApiFetcherResultType<SaveSearchInterface>> => {
   const locale = LocaleService.getLocale();
   return fetcher({
     locale,

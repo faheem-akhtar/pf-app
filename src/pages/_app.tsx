@@ -10,7 +10,7 @@ import { appWithTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 import { APP_ROOT_ELEMENT_ID } from 'src/constants/app/root-element-id.constant';
 
-import { UserContextProvider } from 'context/user/context-provider';
+import { UserContextProvider } from 'components/user/context-provider';
 import { AuthService } from 'services/auth/service';
 import { BrowserLoggerService } from 'services/browser-logger/service';
 import { LocaleEnum } from 'services/locale/enum';

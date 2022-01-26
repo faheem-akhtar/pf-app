@@ -1,3 +1,3 @@
-import { SeoLinksResultType } from './result.type';
+import { SeoLinksInterface } from './interface';
 
-export interface SeoLinksComponentPropsInterface extends SeoLinksResultType {}
+export interface SeoLinksComponentPropsInterface extends SeoLinksInterface {}

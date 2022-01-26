@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import React, { useContext, useRef } from 'react';
 
+import { AdComponent } from 'components/ad/component';
 import { AuthModalComponent } from 'components/auth/modal/component';
 import { AuthScreenEnum } from 'components/auth/screen.enum';
 import { ModalComponent } from 'components/modal/component';
@@ -8,8 +9,8 @@ import { PropertyCardComponent } from 'components/property-card/component';
 import { SavedPropertyAuthLoginTemplate } from 'components/saved-property/auth/login/template';
 import { SAVED_PROPERTY_AUTH_MODAL_STORAGE_KEY } from 'components/saved-property/auth/modal/storage-key.constant';
 import { savedPropertyTracker } from 'components/saved-property/tracker';
+import { UserContext } from 'components/user/context';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
-import { UserContext } from 'context/user/context';
 import { functionNoop } from 'helpers/function/noop';
 import { useServicesDfpAds } from 'services/dfp/ads.hook';
 import { WindowService } from 'services/window/service';
@@ -19,7 +20,6 @@ import { propertySerpObfuscatedGetImgUrl } from '../serp/obfuscated/get/img-url'
 import { propertySerpObfuscatedGetUrl } from '../serp/obfuscated/get/url';
 import { PropertySerpObfuscatedType } from '../serp/obfuscated/type';
 import { PropertyTrackerFactory } from '../tracker.factory';
-import { PropertyListAdPlaceholderTemplate } from './ad-placeholder-template';
 import { PropertyListComponentPropsInterface } from './component-props.interface';
 import { PropertyListItemType } from './item/type';
 import { PropertyListItemTypeEnum } from './item/type.enum';
@@ -66,7 +66,11 @@ export const PropertyListComponent: React.FunctionComponent<PropertyListComponen
       <div className={styles.container}>
         {items.map((item, index) => {
           if (item.type === 'ad') {
-            return <PropertyListAdPlaceholderTemplate id={item.id} key={index} />;
+            return (
+              <div key={index} className={styles.ad_placeholder} data-testid='list-item'>
+                <AdComponent id={item.id} />
+              </div>
+            );
           }
 
           return (

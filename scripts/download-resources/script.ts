@@ -22,9 +22,9 @@ import { configOriginValue as saOrigin } from 'config/origin/value.sa';
 
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
 import { ApiRequestPropsType } from 'api/request-props.type';
-import { ConfigCommonInterface } from 'types/config/common.interface';
 import { backendApiLocationSlugHistoryFetcher } from 'backend/api/location/slug-history/fetcher';
 import { backendTranslationGetDefinitions } from 'backend/translation/get-definitions';
+import { ConfigCommonInterface } from 'config/common.interface';
 
 let translations: Record<string, Record<string, Record<string, string>>>;
 

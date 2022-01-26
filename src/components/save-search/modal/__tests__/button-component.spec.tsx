@@ -9,10 +9,10 @@ import { saveSearchDataStub } from 'stubs/save-search/data.stub';
 import { userModelStub } from 'stubs/user/model.stub';
 
 import { SaveSearchContext } from 'components/save-search/context';
-import { SaveSearchLoadResultInterface } from 'components/save-search/load-result-interface';
+import { SaveSearchInterface } from 'components/save-search/interface';
 import { SnackbarContextProvider } from 'components/snackbar/context-provider';
-import { UserContext } from 'context/user/context';
-import { UserContextProvider } from 'context/user/context-provider';
+import { UserContext } from 'components/user/context';
+import { UserContextProvider } from 'components/user/context-provider';
 import * as OnBoardingComponentModule from 'library/on-boarding/component';
 import { AuthService } from 'services/auth/service';
 import { AuthSubscribeEventTypeEnum } from 'services/auth/subscribe-event-type.enum';
@@ -140,7 +140,7 @@ describe('SaveSearchModalButtonComponent', () => {
     });
 
     it('should display an alert message when user try to save already saved search', async () => {
-      const renderComponent = (filteredData: SaveSearchLoadResultInterface[] = []): ReactElement => (
+      const renderComponent = (filteredData: SaveSearchInterface[] = []): ReactElement => (
         <UserContextProvider>
           <SnackbarContextProvider>
             <SaveSearchContext.Provider

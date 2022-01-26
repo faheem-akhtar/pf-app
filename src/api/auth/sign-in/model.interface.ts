@@ -1,10 +1,10 @@
-import { UserModelInterface } from 'services/user/model.interface';
+import { UserInterface } from 'components/user/interface';
 
 export interface ApiAuthSignInModelInterface {
   /**
    * User
    */
-  user: UserModelInterface;
+  user: UserInterface;
 
   /**
    * @inheritDoc

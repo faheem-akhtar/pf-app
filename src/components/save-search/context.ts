@@ -1,11 +1,11 @@
 import { createContext } from 'react';
 
 import { SaveSearchContextInterface } from './context.interface';
-import { SaveSearchLoadResultInterface } from './load-result-interface';
+import { SaveSearchInterface } from './interface';
 
 export const SaveSearchContext = createContext<SaveSearchContextInterface>({
   ok: null,
   data: [],
   filtered: [],
-  create: () => Promise.resolve({ ok: true, data: {} as SaveSearchLoadResultInterface, headers: {} as Headers }),
+  create: () => Promise.resolve({ ok: true, data: {} as SaveSearchInterface, headers: {} as Headers }),
 });

@@ -1,11 +1,11 @@
 import { FormEvent, useContext, useState } from 'react';
 
-import { apiShareFetcher } from 'api/share/fetcher';
+import { apiPropertyShareFetcher } from 'api/property/share/fetcher';
 import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
 import { ReCaptchaComponent } from 'components/re-captcha/component';
+import { UserContext } from 'components/user/context';
 import { configSiteNameValue } from 'config/site-name/value';
-import { UserContext } from 'context/user/context';
 import { validationEmail } from 'helpers/validation/email';
 import { validationRequired } from 'helpers/validation/required';
 import { ButtonComponentTypeEnum } from 'library/button/component-type.enum';
@@ -60,7 +60,7 @@ export const PropertyShareEmailFormComponent = ({
       setIsLoading(true);
       const captcha_token = await captchaService.execute();
 
-      const shareProperty = await apiShareFetcher(propertyId, {
+      const shareProperty = await apiPropertyShareFetcher(propertyId, {
         email,
         message,
         friend_email: friendEmail,

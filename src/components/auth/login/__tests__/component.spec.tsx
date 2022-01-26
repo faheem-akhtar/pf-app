@@ -4,11 +4,11 @@ import userEvent from '@testing-library/user-event';
 import { googleRecaptchaStub } from 'stubs/google/recaptcha.stub';
 import { userModelStub } from 'stubs/user/model.stub';
 
+import { UserInterface } from 'components/user/interface';
 import { AuthFacebookService } from 'services/auth/facebook.service';
 import { AuthGoogleService } from 'services/auth/google.service';
 import * as AuthLoginServiceModule from 'services/auth/login.service';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
-import { UserModelInterface } from 'services/user/model.interface';
 
 import { AuthLoginComponent } from '../component';
 import { AuthLoginPropsInterface } from '../props.interface';
@@ -16,7 +16,7 @@ import { AuthLoginPropsInterface } from '../props.interface';
 describe('AuthLoginComponent', () => {
   let props: AuthLoginPropsInterface;
   let renderResult: RenderResult;
-  let userModel: UserModelInterface;
+  let userModel: UserInterface;
 
   beforeEach(() => {
     props = {

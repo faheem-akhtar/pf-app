@@ -1,17 +1,15 @@
 import { apiAuthSignInFetcher } from 'api/auth/sign-in/fetcher';
 import { ApiAuthSignInRequestInterface } from 'api/auth/sign-in/request.interface';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
+import { UserInterface } from 'components/user/interface';
 import { AuthService } from 'services/auth/service';
-import { UserModelInterface } from 'services/user/model.interface';
 
 import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
 
 /**
  * Login user
  */
-export const AuthLoginService = (
-  model: ApiAuthSignInRequestInterface
-): Promise<ApiFetcherResultType<UserModelInterface>> =>
+export const AuthLoginService = (model: ApiAuthSignInRequestInterface): Promise<ApiFetcherResultType<UserInterface>> =>
   apiAuthSignInFetcher({
     email: model.email,
     password: model.password,

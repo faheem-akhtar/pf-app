@@ -1,4 +1,4 @@
-import { PropertyBrokerResultType } from 'components/property/broker-result.type';
+import { PropertyBrokerInterface } from 'components/property/broker.interface';
 import { configIsTrace } from 'config/is-trace';
 
 import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
@@ -6,9 +6,9 @@ import { BackendApiPropertyJsonApiResultType } from '../json-api-result.type';
 // TODO-FE[CX-431] Add unit tests for backendApiPropertyBrokerMapper
 export const backendApiPropertyBrokerMapper = ([
   property,
-]: BackendApiPropertyJsonApiResultType): PropertyBrokerResultType => {
+]: BackendApiPropertyJsonApiResultType): PropertyBrokerInterface => {
   const { broker } = property;
-  const result: PropertyBrokerResultType = {
+  const result: PropertyBrokerInterface = {
     id: broker?.id || '',
     agentCount: broker?.agents || 0,
     locationName: broker?.location_name || '',

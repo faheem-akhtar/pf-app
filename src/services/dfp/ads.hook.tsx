@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+import { AdConfigInterface } from 'components/ad/config.interface';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
-import { AdConfigInterface } from 'types/ad/config.interface';
 
 import { DfpAdService } from './ad-service';
 

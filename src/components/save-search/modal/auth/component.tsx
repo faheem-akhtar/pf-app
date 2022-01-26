@@ -4,7 +4,7 @@ import { AuthModalComponent } from 'components/auth/modal/component';
 import { ModalComponent } from 'components/modal/component';
 import { SaveSearchContext } from 'components/save-search/context';
 import { saveSearchTracker } from 'components/save-search/tracker';
-import { UserContext } from 'context/user/context';
+import { UserContext } from 'components/user/context';
 import { functionNoop } from 'helpers/function/noop';
 import { AuthService } from 'services/auth/service';
 import { AuthSubscribeEventTypeEnum } from 'services/auth/subscribe-event-type.enum';

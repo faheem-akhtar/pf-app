@@ -4,7 +4,7 @@ import { newProjectsPropertyGetIsNewProperty } from 'common/helper/new-projects-
 import { propertySerpObfuscatedGetLiveEventValue } from 'components/property/serp/obfuscated/get/live-event-value';
 import { propertySerpObfuscatedGetVerified } from 'components/property/serp/obfuscated/get/verified';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
-import { TFunctionType } from 'types/t-function/type';
+import { TFunctionType } from 'helpers/t-function/type';
 
 import { PropertyCardBannersBannerInterface } from './banner.interface';
 import { PropertyCardBannersBannerClassEnum } from './banner-class.enum';

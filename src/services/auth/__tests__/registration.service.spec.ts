@@ -4,8 +4,8 @@ import { ApiAuthRegisterRequestInterface } from 'api/auth/register/request.inter
 import { ApiAuthRegisterResponseInterface } from 'api/auth/register/response.interface';
 import { ApiFetcherResultFailureInterface } from 'api/fetcher-result-failure.interface';
 import { ApiFetcherResultSuccessInterface } from 'api/fetcher-result-success.interface';
+import { UserInterface } from 'components/user/interface';
 import { AuthRegisterService } from 'services/auth/register.service';
-import { UserModelInterface } from 'services/user/model.interface';
 
 describe('AuthRegisterService', () => {
   const model: ApiAuthRegisterRequestInterface = {
@@ -88,7 +88,7 @@ describe('AuthRegisterService', () => {
 
     const res = await AuthRegisterService(model);
 
-    expect((res as ApiFetcherResultSuccessInterface<UserModelInterface>).data).toEqual({
+    expect((res as ApiFetcherResultSuccessInterface<UserInterface>).data).toEqual({
       email: 'test@propertyfinder.ae',
       first_name: 'first name',
       image: 'image',

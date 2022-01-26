@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import { AuthLoaderComponent } from 'components/auth/loader/component';
 import { AuthRegistrationFieldEnum } from 'components/auth/registration/field.enum';
-import { AuthRegistrationPropsInterface } from 'components/auth/registration/props.interface';
 import { ErrorMessageComponent } from 'components/error-message/component';
 import { formMakeValidator } from 'components/form/make-validator';
 import { ReCaptchaComponent } from 'components/re-captcha/component';
@@ -22,8 +21,9 @@ import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 
 import styles from '../auth.module.scss';
 import { AuthSuccessTypeEnum } from '../success-type.enum';
+import { AuthRegistrationComponentPropsInterface } from './component-props.interface';
 
-export const AuthRegistrationComponent = (props: AuthRegistrationPropsInterface): JSX.Element => {
+export const AuthRegistrationComponent = (props: AuthRegistrationComponentPropsInterface): JSX.Element => {
   const captchaService = GoogleRecaptchaService();
   const { t } = useTranslation();
 

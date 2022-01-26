@@ -1,4 +1,11 @@
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
-import { SaveSearchLoadResultInterface } from 'components/save-search/load-result-interface';
+import { SaveSearchFiltersInterface } from 'components/save-search/filters.interface';
+import { SaveSearchFrequencyEnum } from 'enums/save-search/frequency.enum';
 
-export interface BackendModelSaveSearchInterface extends SaveSearchLoadResultInterface, BackendJsonApiModelType {}
+export interface BackendModelSaveSearchInterface extends BackendJsonApiModelType {
+  id: string;
+  name: string;
+  frequency: SaveSearchFrequencyEnum;
+  filters: SaveSearchFiltersInterface;
+  formatted_filters: string;
+}

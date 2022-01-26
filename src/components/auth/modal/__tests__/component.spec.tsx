@@ -9,14 +9,14 @@ import * as AuthRegistrationComponentModule from 'components/auth/registration/c
 import { AuthScreenEnum } from 'components/auth/screen.enum';
 import { AuthSuccessTypeEnum } from 'components/auth/success-type.enum';
 import { SavedPropertyAuthLoginTemplate } from 'components/saved-property/auth/login/template';
-import { UserModelInterface } from 'services/user/model.interface';
+import { UserInterface } from 'components/user/interface';
 
 import { AuthModalComponent } from '../component';
-import { AuthModalPropsInterface } from '../props.interface';
+import { AuthModalComponentPropsInterface } from '../component-props.interface';
 
 describe('AuthModalComponent', () => {
-  let props: AuthModalPropsInterface;
-  let userModel: UserModelInterface;
+  let props: AuthModalComponentPropsInterface;
+  let userModel: UserInterface;
 
   beforeEach(() => {
     window.dataLayer = [];

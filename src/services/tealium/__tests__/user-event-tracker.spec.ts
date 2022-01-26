@@ -1,14 +1,14 @@
 import { tealiumServiceStub } from 'stubs/tealium/service.stub';
 import { userModelStub } from 'stubs/user/model.stub';
 
-import { UserModelInterface } from 'services/user/model.interface';
+import { UserInterface } from 'components/user/interface';
 
 import { TealiumEventEnum } from '../event.enum';
 import { TealiumEventCategoryEnum } from '../event-category.enum';
 import { tealiumUserEventTracker } from '../user-event-tracker';
 
 describe('tealiumUserEventTracker', () => {
-  let userModel: UserModelInterface;
+  let userModel: UserInterface;
   beforeEach(() => {
     window.utag = tealiumServiceStub();
     window.tealium = { page_type: 'page_type', page_currency: 'AED' };

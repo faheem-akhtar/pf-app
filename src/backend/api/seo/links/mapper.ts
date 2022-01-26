@@ -1,7 +1,7 @@
 import { BackendModelSeoLinksInterface } from 'backend/model/seo/links.interface';
-import { SeoLinksResultType } from 'components/seo/links/result.type';
+import { SeoLinksInterface } from 'components/seo/links/interface';
 
-export const backendApiSeoLinksMapper = (data: BackendModelSeoLinksInterface): SeoLinksResultType => ({
+export const backendApiSeoLinksMapper = (data: BackendModelSeoLinksInterface): SeoLinksInterface => ({
   ...(data.popular_searches && {
     popularSearches: {
       title: data.popular_searches.title,

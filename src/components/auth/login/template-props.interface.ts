@@ -1,12 +1,11 @@
 import { FormEvent } from 'react';
 
-import { TFunctionType } from 'types/t-function/type';
+import { TFunctionType } from 'helpers/t-function/type';
 
 import { AuthLoginFieldEnum } from './field.enum';
-import { AuthLoginPropsInterface } from './props.interface';
+import { AuthLoginPropsBaseInterface } from './props-base.interface';
 
-export interface AuthLoginTemplatePropsInterface
-  extends Pick<AuthLoginPropsInterface, 'onForgotPassword' | 'onRegister' | 'onLogin'> {
+export interface AuthLoginTemplatePropsInterface extends AuthLoginPropsBaseInterface {
   /**
    * Is loading state
    */

@@ -1,8 +1,8 @@
 import { apiAuthRegisterFetcher } from 'api/auth/register/fetcher';
 import { ApiAuthRegisterRequestInterface } from 'api/auth/register/request.interface';
 import { ApiFetcherResultType } from 'api/fetcher-result-type';
+import { UserInterface } from 'components/user/interface';
 import { AuthService } from 'services/auth/service';
-import { UserModelInterface } from 'services/user/model.interface';
 
 import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
 
@@ -11,7 +11,7 @@ import { AuthSubscribeEventTypeEnum } from './subscribe-event-type.enum';
  */
 export const AuthRegisterService = (
   model: ApiAuthRegisterRequestInterface
-): Promise<ApiFetcherResultType<UserModelInterface>> =>
+): Promise<ApiFetcherResultType<UserInterface>> =>
   apiAuthRegisterFetcher({
     first_name: model.first_name,
     last_name: model.last_name,

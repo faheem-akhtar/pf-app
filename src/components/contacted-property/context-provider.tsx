@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 import { apiContactedPropertiesCreateFetcher } from 'api/contacted-properties/create/fetcher';
 import { useApiContactedProperties } from 'api/contacted-properties/hook';
-import { useUserPropertyState } from 'components/user-property/state.hook';
+import { useUserPropertyState } from 'components/user/property/state.hook';
 import { dateToIso } from 'helpers/date/to-iso';
 
 import { ContactedPropertyContext } from './context';

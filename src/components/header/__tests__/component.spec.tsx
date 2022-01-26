@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 import { mockModalEnv } from 'mocks/modal-env/mock';
 
-import { UserContext } from 'context/user/context';
+import { UserContext } from 'components/user/context';
 
 import { HeaderComponent } from '../component';
 

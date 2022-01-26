@@ -1,5 +1,6 @@
 import { configCommon } from 'config/common';
-import { CountryPhoneCodesInterface } from 'types/country-phone-codes/interface';
+
+import { CountryPhoneCodesInterface } from './phone-codes.interface';
 
 /**
  * Returns default country config or selected

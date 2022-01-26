@@ -1,7 +1,7 @@
 import { BackendApiFactory } from 'backend/api/factory';
 import { BackendJsonApiModelType } from 'backend/json-api/model.type';
+import { PropertyLeadInterface } from 'components/property/lead.interface';
 import { configOriginIfDevUseStagingValue } from 'config/origin/if-dev-use-staging-value';
-import { PropertyLeadAttributesInterface } from 'types/property/lead/attributes.interface';
 
 type getFetcherReturnType = ReturnType<typeof BackendApiFactory>;
 
@@ -17,7 +17,7 @@ const getFetcher = (url: string): getFetcherReturnType =>
 export const backendApiPropertyLeadFetcher = (
   locale: string,
   propertyId: string,
-  attributes: PropertyLeadAttributesInterface
+  attributes: PropertyLeadInterface
 ): ReturnType<getFetcherReturnType> => {
   const fetcher = getFetcher(`property/${propertyId}/lead`);
 

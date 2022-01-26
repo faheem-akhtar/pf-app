@@ -1,4 +1,4 @@
-import { ConfigCommonInterface } from 'types/config/common.interface';
+import { ConfigCommonInterface } from 'config/common.interface';
 
 import { environmentGetDatadog } from './get-datadog';
 

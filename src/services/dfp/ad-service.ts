@@ -1,11 +1,11 @@
 import * as Googletag from 'Googletag';
 
+import { AdConfigInterface } from 'components/ad/config.interface';
+import { AdStrategyInterface } from 'components/ad/strategy.interface';
+import { AdTargetingInterface } from 'components/ad/targeting.interface';
+import { AdUnitInterface } from 'components/ad/unit.interface';
 import { configAdsGptUnits } from 'config/ads/gpt/units';
 import { importScript } from 'helpers/import/script';
-import { AdConfigInterface } from 'types/ad/config.interface';
-import { AdStrategyInterface } from 'types/ad/strategy.interface';
-import { AdTargetingInterface } from 'types/ad/targeting.interface';
-import { AdUnitInterface } from 'types/ad/unit.interface';
 
 export class DfpAdService implements AdStrategyInterface {
   /**

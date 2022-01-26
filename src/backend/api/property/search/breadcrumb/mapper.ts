@@ -1,9 +1,9 @@
 import { BreadcrumbInterface } from 'components/property/list/breadcrumb/interface';
 
-import { BackendApiPropertySearchBreadcrumbResultType } from './result.type';
+import { BackendApiPropertySearchBreadcrumbInterface } from './interface';
 
 export const backendApiPropertySearchBreadcrumbMapper = (
-  breadcrumbs: BackendApiPropertySearchBreadcrumbResultType[]
+  breadcrumbs: BackendApiPropertySearchBreadcrumbInterface[]
 ): BreadcrumbInterface[] =>
   breadcrumbs.map((breadcrumb) => ({
     name: breadcrumb.attributes.name,

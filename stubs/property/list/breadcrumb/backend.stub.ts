@@ -1,8 +1,8 @@
-import { BackendApiPropertySearchBreadcrumbResultType } from 'backend/api/property/search/breadcrumb/result.type';
+import { BackendApiPropertySearchBreadcrumbInterface } from 'backend/api/property/search/breadcrumb/interface';
 
 export const propertyListBreadcrumbBackendStub = (
-  breadcrumbs: Partial<BackendApiPropertySearchBreadcrumbResultType[]> = []
-): BackendApiPropertySearchBreadcrumbResultType[] => {
+  breadcrumbs: Partial<BackendApiPropertySearchBreadcrumbInterface[]> = []
+): BackendApiPropertySearchBreadcrumbInterface[] => {
   const defaultBreadcrumbs = [
     {
       type: 'breadcrumb_item',
@@ -84,5 +84,5 @@ export const propertyListBreadcrumbBackendStub = (
     },
   ];
 
-  return [...defaultBreadcrumbs, ...(breadcrumbs as unknown as BackendApiPropertySearchBreadcrumbResultType[])];
+  return [...defaultBreadcrumbs, ...(breadcrumbs as unknown as BackendApiPropertySearchBreadcrumbInterface[])];
 };

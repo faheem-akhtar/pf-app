@@ -1,5 +1,5 @@
-import { AdNameType } from 'types/ad/name.type';
-import { AdUnitInterface } from 'types/ad/unit.interface';
+import { AdNameType } from 'components/ad/name.type';
+import { AdUnitInterface } from 'components/ad/unit.interface';
 
 const genericProps = {
   size: [

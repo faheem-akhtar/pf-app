@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { AuthForgotPasswordFieldEnum } from 'components/auth/forgot-password/field.enum';
-import { AuthForgotPasswordPropsInterface } from 'components/auth/forgot-password/props.interface';
 import { AuthLoaderComponent } from 'components/auth/loader/component';
 import { AuthLoginFieldEnum } from 'components/auth/login/field.enum';
 import { ErrorMessageComponent } from 'components/error-message/component';
@@ -19,8 +18,9 @@ import { AuthResetPasswordService } from 'services/auth/reset-password.service';
 import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 
 import styles from '../auth.module.scss';
+import { AuthForgotPasswordComponentPropsInterface } from './component-props.interface';
 
-export const AuthForgotPasswordComponent = (props: AuthForgotPasswordPropsInterface): JSX.Element => {
+export const AuthForgotPasswordComponent = (props: AuthForgotPasswordComponentPropsInterface): JSX.Element => {
   const captchaService = GoogleRecaptchaService();
   const { t } = useTranslation();
   const [email, setEmail] = useState('');

@@ -4,7 +4,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { IconThinStarTemplate } from 'components/icon/thin/star-template';
 import { ModalComponent } from 'components/modal/component';
 import { SnackbarContext } from 'components/snackbar/context';
-import { UserContext } from 'context/user/context';
+import { UserContext } from 'components/user/context';
 import { functionNoop } from 'helpers/function/noop';
 import { localeGetHref } from 'helpers/locale/get-href';
 import { useTranslation } from 'helpers/translation/hook';

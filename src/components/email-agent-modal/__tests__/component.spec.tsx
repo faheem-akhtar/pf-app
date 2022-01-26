@@ -10,7 +10,7 @@ import { userModelStub } from 'stubs/user/model.stub';
 
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { PropertySerpObfuscatedType } from 'components/property/serp/obfuscated/type';
-import { UserContext } from 'context/user/context';
+import { UserContext } from 'components/user/context';
 import { GoogleRecaptcha } from 'services/google/recaptcha';
 import * as GoogleRecaptchaServiceModule from 'services/google/recaptcha.service';
 import { StatsService } from 'services/stats/service';

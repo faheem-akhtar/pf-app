@@ -2,6 +2,7 @@ import { StatsContextLeadInterface } from '@propertyfinder/pf-frontend-common/di
 import { FunctionComponent, useContext, useRef, useState } from 'react';
 
 import { apiEmailAgentFetcher } from 'api/email-agent/fetcher';
+import { ApiEmailAgentRequestInterface } from 'api/email-agent/request.interface';
 import { AuthModalComponent } from 'components/auth/modal/component';
 import { formMakeValidator } from 'components/form/make-validator';
 import { IconThickSmallCloseTemplate } from 'components/icon/thick/small-close-template';
@@ -10,10 +11,10 @@ import { propertySerpObfuscatedGetDefaultPrice } from 'components/property/serp/
 import { propertySerpObfuscatedGetId } from 'components/property/serp/obfuscated/get/id';
 import { propertySerpObfuscatedGetName } from 'components/property/serp/obfuscated/get/name';
 import { propertySerpObfuscatedGetReference } from 'components/property/serp/obfuscated/get/reference';
+import { UserContext } from 'components/user/context';
 import { configEmailAgentEmailAlertCheckedByDefault } from 'config/email-agent/email-alert-checked-by-default';
 import { configEmailAgentMustAcceptTerms } from 'config/email-agent/must-accept-terms';
 import { configEmailAgentReceiveAdsEnabled } from 'config/email-agent/receive-ads-enabled';
-import { UserContext } from 'context/user/context';
 import { functionNoop } from 'helpers/function/noop';
 import { useTranslation } from 'helpers/translation/hook';
 import { validationEmail } from 'helpers/validation/email';
@@ -21,7 +22,6 @@ import { validationPhone } from 'helpers/validation/phone';
 import { validationRequired } from 'helpers/validation/required';
 import { GoogleRecaptchaService } from 'services/google/recaptcha.service';
 import { StatsService } from 'services/stats/service';
-import { EmailAgentAttributesInterface } from 'types/email-agent/attributes.interface';
 
 import { EmailAgentModalComponentPropsInterface } from './component-props.interface';
 import styles from './email-agent-modal.module.scss';
@@ -81,13 +81,13 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
     }
     return state;
   });
-  const [status, setStatus] = useState<EmailAgentModalStatusEnum>(EmailAgentModalStatusEnum.opened);
+  const [status, setStatus] = useState<EmailAgentModalStatusEnum>(EmailAgentModalStatusEnum.OPENED);
   const validate = formMakeValidator(errors, setErrors, validators);
 
   const onOpen = (): void => {
     setFieldsValue(getInitialFieldsValue());
     setErrors({});
-    setStatus(EmailAgentModalStatusEnum.opened);
+    setStatus(EmailAgentModalStatusEnum.OPENED);
   };
 
   const closeModal = (): void => {
@@ -119,7 +119,7 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
       return;
     }
 
-    setStatus(EmailAgentModalStatusEnum.submitting);
+    setStatus(EmailAgentModalStatusEnum.SUBMITTING);
     setError('');
 
     try {
@@ -143,11 +143,11 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
         emailAlert: fieldsValue.emailAlert,
         [FormFieldsEnum.captchaToken]: captcha_token,
         autoRegister: !!user,
-      } as EmailAgentAttributesInterface);
+      } as ApiEmailAgentRequestInterface);
 
       StatsService().propertyLeadSend(propertyId, { lead: leadContext });
 
-      setStatus(EmailAgentModalStatusEnum.submitted);
+      setStatus(EmailAgentModalStatusEnum.SUBMITTED);
     } catch {
       setError(t('something-wrong-try-again'));
       captchaService.reset();
@@ -160,7 +160,7 @@ export const EmailAgentModalComponent: FunctionComponent<EmailAgentModalComponen
   };
 
   const body =
-    status === EmailAgentModalStatusEnum.submitted ? (
+    status === EmailAgentModalStatusEnum.SUBMITTED ? (
       <EmailAgentModalFormSuccessComponent
         closeModal={closeModal}
         t={t}

@@ -1,5 +1,5 @@
+import { AdConfigInterface } from 'components/ad/config.interface';
 import { BreadcrumbInterface } from 'components/property/list/breadcrumb/interface';
-import { AdConfigInterface } from 'types/ad/config.interface';
 
 import { PropertySerpObfuscatedType } from './obfuscated/type';
 

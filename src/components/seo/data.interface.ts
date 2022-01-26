@@ -1,6 +1,6 @@
 import { SeoContentInterface } from './content/interface';
-import { SeoLinksResultType } from './links/result.type';
+import { SeoLinksInterface } from './links/interface';
 
-export interface SeoDataInterface extends SeoLinksResultType {
+export interface SeoDataInterface extends SeoLinksInterface {
   content?: SeoContentInterface;
 }

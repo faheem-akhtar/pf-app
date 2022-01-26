@@ -1,9 +1,9 @@
 import { ApiSwrAuthRequiredFactory } from 'api/swr-auth-required-factory';
 import { ApiSwrResultType } from 'api/swr-result-type';
-import { SaveSearchLoadResultInterface } from 'components/save-search/load-result-interface';
+import { SaveSearchInterface } from 'components/save-search/interface';
 
-export const useApiSaveSearch = (): ApiSwrResultType<SaveSearchLoadResultInterface[]> =>
-  ApiSwrAuthRequiredFactory<SaveSearchLoadResultInterface[]>({
+export const useApiSaveSearch = (): ApiSwrResultType<SaveSearchInterface[]> =>
+  ApiSwrAuthRequiredFactory<SaveSearchInterface[]>({
     method: 'GET',
     url: 'saved-search',
     handledByPfWebApp: true,

@@ -3,7 +3,7 @@ import { FunctionComponent } from 'react';
 import { apiSavedPropertiesCreateFetcher } from 'api/saved-properties/create-fetcher';
 import { useApiSavedProperties } from 'api/saved-properties/hook';
 import { apiSavedPropertiesRemoveFetcher } from 'api/saved-properties/remove-fetcher';
-import { useUserPropertyState } from 'components/user-property/state.hook';
+import { useUserPropertyState } from 'components/user/property/state.hook';
 import { dateToIso } from 'helpers/date/to-iso';
 
 import { SavedPropertyContext } from './context';

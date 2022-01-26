@@ -1,10 +1,10 @@
 import { IconThinChevronDownTemplate } from 'components/icon/thin/chevron-down-template';
 import { domClassMerge } from 'helpers/dom/class-merge';
 import { InputBaseComponent } from 'library/input/base/component';
-import { CountryPhoneCodesInterface } from 'types/country-phone-codes/interface';
 
 import { InputPhoneNumberCountryFlagTemplate } from './country/flag/template';
 import { phoneNumberCountryGetConfig } from './country/get-config';
+import { CountryPhoneCodesInterface } from './country/phone-codes.interface';
 import styles from './input-phone-number.module.scss';
 import { InputPhoneNumberTemplatePropsInterface } from './template-props.interface';
 

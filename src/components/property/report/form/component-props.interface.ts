@@ -1,4 +1,4 @@
-import { TFunctionType } from 'types/t-function/type';
+import { TFunctionType } from 'helpers/t-function/type';
 
 import { PropertyReportFormSubmitPayloadInterface } from './submit-payload.interface';
 

@@ -1,13 +1,9 @@
-import { PropertyLeadAttributesInterface } from 'types/property/lead/attributes.interface';
+import { PropertyLeadInterface } from 'components/property/lead.interface';
 
 /**
  * Returns property lead data params for mortgage finder widgets
  */
-export const mortgageGetPropertyLeadData = ({
-  name,
-  phone,
-  email,
-}: PropertyLeadAttributesInterface): { ud: string } | void => ({
+export const mortgageGetPropertyLeadData = ({ name, phone, email }: PropertyLeadInterface): { ud: string } | void => ({
   ud: btoa(
     JSON.stringify({
       fullname: name || undefined,
